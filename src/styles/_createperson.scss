@@ -1,0 +1,64 @@
+@import "./common";
+
+.createperson-tittle {
+  color: #75828d;
+  font-size: 50px;
+}
+.main-container {
+  margin: auto;
+  border: #566573 solid 1px;
+  height: 20rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+.tag-menu {
+  margin: auto;
+  margin-top: 100px;
+}
+.tag-container {
+  width: 2000px;
+}
+.tag-style {
+  width: 465px;
+  background: none;
+  // border-radius: 0.6rem;
+  border: #566573 solid 1px;
+  height: 2.8rem;
+  color: white;
+  background: none;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 3px;
+  &:hover {
+    color: #566573;
+  }
+}
+
+.createperson-input {
+  border-radius: 0.6vw;
+  width: 25rem;
+  height: 2.5rem;
+  border: none;
+  padding-left: 1rem;
+  font-style: italic;
+  font-size: 1rem;
+  outline: none;
+  background-color: white;
+}
+.btn-cancel {
+  border-radius: 0.6rem;
+  width: 18rem;
+  height: 2.8rem;
+  border: none;
+  color: white;
+  background-color: #b45548;
+  text-align: center;
+  font-size: 18px;
+
+  &:hover {
+    color: $main-background;
+  }
+}

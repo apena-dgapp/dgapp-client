@@ -1,0 +1,41 @@
+@import "./common";
+
+.header-container {
+  padding-top: 1rem;
+}
+.user-icon {
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-right: 10px;
+  margin-left: 50px;
+  margin-top: 6px;
+}
+.user-text {
+  margin-right: 20px;
+  margin-top: 8px;
+  color: #75828d;
+  cursor: pointer;
+}
+.flag-us {
+  width: 2.2rem;
+  height: 2rem;
+  margin-right: 25px;
+  margin-top: 2px;
+}
+.flag-spain {
+  width: 2.2rem;
+  height: 2rem;
+  margin-right: 10px;
+  margin-top: 2px;
+}
+.img-dgapp {
+  width: 8rem;
+  margin-left: 20px;
+}
+.text-dgapp {
+  color: white;
+  font-size: 10px;
+  margin-left: 18px;
+  margin-top: 5px;
+  font-family: papyrus;
+}

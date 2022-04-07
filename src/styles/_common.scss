@@ -1,0 +1,44 @@
+$main-background: rbg(0.08, 0.17, 0.26);
+
+.input {
+  border-radius: 0.6vw;
+  width: 35rem;
+  height: 2.8rem;
+  border: none;
+  padding-left: 1rem;
+  font-style: italic;
+  font-size: 1rem;
+  outline: none;
+}
+
+.btn-apply {
+  border-radius: 0.6rem;
+  width: 12rem;
+  height: 2.8rem;
+  border: none;
+  color: white;
+  background-color: #1e8809;
+  text-align: center;
+  font-size: 18px;
+
+  &:hover {
+    color: white;
+    background-color: #566573;
+  }
+}
+
+.btn-cancel {
+  border-radius: 0.6rem;
+  width: 12rem;
+  height: 2.8rem;
+  border: none;
+  color: white;
+  background-color: #970234;
+  text-align: center;
+  font-size: 18px;
+
+  &:hover {
+    color: white;
+    background-color: #566573;
+  }
+}

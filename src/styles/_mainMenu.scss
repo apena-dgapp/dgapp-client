@@ -1,0 +1,31 @@
+@import "./common";
+
+.mainmenu-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-self: center;
+  height: 866px;
+}
+.mainmenu-btn {
+  border: #353a3f solid 0.2vw;
+  height: 20vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.6vw;
+}
+
+.mainmenu-btn:hover {
+  background: #353a3f;
+  cursor: pointer;
+  border: #52b7be solid 0.3vw;
+}
+
+.mainmenu-btn-img {
+  width: 10vw;
+}
+.mainmenu-btn-txt {
+  color: white;
+  font-size: calc(0.92vw + 0.92vh + 1vmin);
+}

@@ -1,0 +1,66 @@
+@import "../styles/common";
+
+.img-login {
+  width: 10rem;
+}
+
+.container-login {
+  // border: rgb(148, 177, 194) solid;
+  width: 700px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.txt-title {
+  color: white;
+  font-family: "Work Sans", Sans-serif;
+  font-size: 55px;
+}
+.txt-subtitle {
+  color: white;
+  font-family: "Work Sans", Sans-serif;
+  font-size: 20px;
+}
+.txt-forgot {
+  color: deepskyblue;
+  font-style: italic;
+  font-size: 12px;
+  width: 35rem;
+  cursor: pointer;
+}
+
+.btn-login {
+  border-radius: 0.6rem;
+  width: 18rem;
+  height: 2.8rem;
+  border: none;
+  color: white;
+  background-color: #566573;
+  text-align: center;
+  font-size: 18px;
+
+  &:hover {
+    color: white;
+    background-color: rgb(42, 156, 190);
+  }
+}
+.btn-create {
+  border-radius: 0.6rem;
+  border: #566573 solid 1px;
+  width: 18rem;
+  height: 2.8rem;
+  color: white;
+  background: none;
+  text-align: center;
+  font-size: 18px;
+
+  &:hover {
+    color: rgb(56, 192, 233);
+  }
+}
