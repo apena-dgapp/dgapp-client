@@ -23,15 +23,41 @@
   font-size: 55px;
 }
 .txt-subtitle {
-  color: white;
+  color: #163466;
   font-family: "Work Sans", Sans-serif;
   font-size: 20px;
+  font-weight: bold;
+}
+
+.login-input{
+    border-radius: 0.6vw;
+    width: 25rem;
+    height: 2.8rem;
+    border: #566573 solid 1px;
+    padding-left: 1rem;
+    font-style: italic;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+  }
+.container-input{
+  // margin-top: 3rem!important;
+  background-color: white;
+  width: 480px;
+  height: 480px;
+  display: flex;
+  align-content: center;
+  border-radius: 10px;
 }
 .txt-forgot {
-  color: deepskyblue;
+  color: #163466;
   font-style: italic;
-  font-size: 12px;
-  width: 35rem;
+  font-size: 14px;
+  width: 25rem;
   cursor: pointer;
 }
 
@@ -41,26 +67,28 @@
   height: 2.8rem;
   border: none;
   color: white;
-  background-color: #566573;
+  background-color: #163466;
   text-align: center;
   font-size: 18px;
+  font-weight: bold;
 
   &:hover {
     color: white;
-    background-color: rgb(42, 156, 190);
+    background-color: #8CB2C4;
   }
 }
 .btn-create {
   border-radius: 0.6rem;
-  border: #566573 solid 1px;
+  border: #163466 solid 1px;
   width: 18rem;
   height: 2.8rem;
-  color: white;
+  color: #163466;
   background: none;
   text-align: center;
   font-size: 18px;
+  font-weight: bold;
 
   &:hover {
-    color: rgb(56, 192, 233);
+    color:#8CB2C4;
   }
 }

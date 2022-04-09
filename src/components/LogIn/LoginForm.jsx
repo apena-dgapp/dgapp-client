@@ -38,23 +38,27 @@ const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, m
             />
 
             <div className="container-login">
+                
                 <div className="d-flex justify-content-center">
                     <p className="txt-title">
                         <FormattedMessage id="login.title" defaultMessage="WELCOME" />
                     </p>
                 </div>
-                <div className="d-flex justify-content-center">
+
+                <div className="row mt-5 container-input">
+
+                <div className="d-flex justify-content-center mb-3">
                     <p className="txt-subtitle">
                         <FormattedMessage id="login.subtitle" defaultMessage="Sing in to your account" />
                     </p>
                 </div>
 
-                <div className="row mt-5">
                     <form className="" name="loginForm" action="" method="post" /*onSubmit={handeleSignIn}*/>
                         <div className="d-flex justify-content-center mb-4">
                             <Input
                                 name="username"
                                 type="text"
+                                classInput="login-input"
                                 maxLength="16"
                                 minLength="4"
                                 placeholder={placeholderUser}
@@ -67,6 +71,7 @@ const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, m
                             <Input
                                 name="password"
                                 type="password"
+                                classInput="login-input"
                                 placeholder={placeholderPass}
                                 // minLength="8"
                                 required
@@ -74,10 +79,10 @@ const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, m
                                 value={profile.password}
                             />
                         </div>
-                        <div className="d-flex justify-content-center mt-2">
+                        <div className="d-flex justify-content-center mt-1">
                             <p className="txt-forgot" onClick={modalToggle}>{<FormattedMessage id="login.forgot" defaultMessage="Forgot Password?" />}</p>
                         </div>
-                        <div className="d-flex justify-content-center mt-4">
+                        <div className="d-flex justify-content-center mt-5">
                             <Button
                                 className="btn-login"
                                 name="btn-submit"
