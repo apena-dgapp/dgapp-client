@@ -32,7 +32,7 @@ const NewPostForm = ({seletedHandler, sendHandlerImg,handlerInputChange,formData
                         <option defaultValue={true}>Choose a Category</option>
                         <option className="option-txt" value="Main Post">Main Post</option>
                         <option className="option-txt" value="Featured Post">Featured Post</option>
-                        <option className="option-txt" value="Topic of Interest">Topic of Interest</option>
+                        {/* <option className="option-txt" value="Topic of Interest">Topic of Interest</option> */}
                     </select>
                     </div>
 

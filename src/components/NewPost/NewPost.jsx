@@ -16,6 +16,7 @@ const NewPost = () => {
     category:'',
     author:'',
     img:'',
+    views: 0,
     isActive: true
   })
 
@@ -50,7 +51,7 @@ const NewPost = () => {
 
       const myb64 = await blobToBase64(img)
     
-      newPostApi(contextState.token,formData.title,formData.description, formData.category, formData.author,myb64,formData.isActive,contextState.userName,'')
+      newPostApi(contextState.token,formData.title,formData.description, formData.category, formData.author,myb64, formData.views, formData.isActive, contextState.userName,'')
           .then(res => {
             if (res.status >= 400) throw new alert.err('error al hacer el fetch');
             return res.json();
@@ -71,6 +72,7 @@ const NewPost = () => {
             category:'',
             author:'',
             img:'',
+            views:'',
             isActive: true
           })
         

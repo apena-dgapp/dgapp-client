@@ -39,6 +39,11 @@ const Login = ({ intl }) => {
         history.push('./userregister')
     }
 
+        //funcion para setear lenguaje
+        const setLanguage = (lang) => {
+            contextMiddleware.implementationLang(lang);
+        };
+
     //funcion para llamar un boton con el evento key
     // const clickLogin = event => {
     //     if (event.key === 'Enter') {
@@ -90,6 +95,7 @@ const Login = ({ intl }) => {
                 modalActive={modalActive}
                 modalToggle={modalToggle}
                 userRegister={userRegister}
+                handeleLang={setLanguage}
             />
         </>
     )

@@ -1,7 +1,17 @@
-import React from 'react';
-// import Images from '../../images';
+import React,{useState} from 'react';
 
-const Card = (props) => {
+const CardForm = (props) => {
+
+  const [idPost, setIdPost] = useState('');
+
+  const click = () => {
+    setIdPost(...idPost, document.getElementById('postid').innerHTML) 
+    console.log(idPost)
+  }
+    
+
+
+
   return (
     <>
       <div className="card">
@@ -9,11 +19,12 @@ const Card = (props) => {
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
           <p className="card-text">{props.description}</p>
-          <a href="/#" className="btn btn-dark">Read More</a>
+          <p id='postid' className='m-0 p-0'>{props.klk}</p>
+          <button onClick={click} className="btn btn-dark">Read More</button>
         </div>
       </div>
     </>
   )
 }
 
-export default Card
+export default CardForm

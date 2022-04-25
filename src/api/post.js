@@ -1,6 +1,6 @@
 
-const newPostApi = async (token,title,description,category,author,image,isactive,createdby,modifiedby) => {
-    const body = {title,description,category,author,image,isactive,createdby,modifiedby};
+const newPostApi = async (token,title,description,category,author,image,views,isactive,createdby,modifiedby) => {
+    const body = {title,description,category,author,image,views,isactive,createdby,modifiedby};
     return fetch(`${process.env.REACT_APP_API}post/newpost`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -23,8 +23,32 @@ const getPost = async (token,category) => {
     })
 }
 
+const getview = async (token) => {
+    return fetch(`${process.env.REACT_APP_API}post/getview`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token,
+        }   
+    })
+}
+
+const viewUpdate = async (token,click) => {
+    const body = {click};
+    return fetch(`${process.env.REACT_APP_API}post/view`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token,
+        }   
+    })
+}
+
 
 module.exports = {
     newPostApi,
-    getPost
+    getPost,
+    viewUpdate,
+    getview
 };

@@ -4,8 +4,9 @@ import Input from '../../common/components/Input/Input';
 import Button from '../../common/components/Button/Button';
 import Modal from '../../common/components/Modal/Modal';
 import GlobalContext from '../../context/GlobalContext';
+import Images from '../../common/images';
 
-const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, modalToggle, userRegister }) => {
+const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, modalToggle, userRegister, handeleLang }) => {
 
     // //ContexState
     const [contextState] = useContext(GlobalContext)
@@ -35,6 +36,10 @@ const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, m
                 setInputState={setInputField}
             />
 
+                <figure className="flag-menu">
+                    <img className="flag-us-login" src={Images.flagUs} type="button" onClick={() => handeleLang('en-US')} alt="" />
+                    <img className="flag-spain-login" src={Images.flagSpain} type="button" onClick={() => handeleLang('es-DR')} alt="" />
+                </figure>
             <div className="container-login">
                 
                 <div className="d-flex justify-content-center">

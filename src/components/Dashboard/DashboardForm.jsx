@@ -3,7 +3,7 @@ import Images  from '../../common/images/index';
 import Carousel from '../../common/components/Carousel/Carousel';
 import Card from '../../common/components/Card/Card';
 
-const DashboardForm = ({singlePost,arrayPost}) => {
+const DashboardForm = ({arrayPost}) => {
 
   return (
     <>
@@ -22,6 +22,7 @@ const DashboardForm = ({singlePost,arrayPost}) => {
                        <Card
                         key={post.postId}
                         title={post.title} 
+                        klk = {post.postId}
                         img={post.image}
                         description={post.description}
                       />

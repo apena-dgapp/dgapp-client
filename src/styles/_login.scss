@@ -97,6 +97,22 @@
   }
 }
 
+.flag-menu{
+  display: flex;
+  width: 100%;
+  justify-content: end;
+  margin-top: 0.3rem;
+}
+.flag-us-login{
+  width: 2.5rem;
+  z-index: 1;
+}
+.flag-spain-login{
+  width: 2.5rem;
+  margin: 0 1.6rem;
+  z-index: 1;
+}
+
 @media screen and (max-width: 400px) {
   .container-login {
     transform: translate(-50%, -50%);
@@ -150,7 +166,18 @@
     height: 2.2rem;
     font-size: 15px;
   }
-  
+
+  .flag-menu{
+    margin-top: 0.3rem;
+  }
+  .flag-us-login{
+    width: 2rem;
+  }
+  .flag-spain-login{
+    width: 2rem;
+    margin: 0 1rem;
+  }
+   
 }
 
 @media screen and (min-width: 401px) and (max-width: 720px) {
@@ -200,6 +227,17 @@
     height: 2.5rem;
     font-size: 15px
   }
+  .flag-menu{
+    margin-top: 0.3rem;
+  }
+  .flag-us-login{
+    width: 2rem;
+  }
+  .flag-spain-login{
+    width: 2rem;
+    margin: 0 1rem;
+  }
+  
   
 }
 
