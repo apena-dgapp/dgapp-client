@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import GlobalContext from '../../../context/GlobalContext';
-import HeaderForm from './HeaderForm';
+import NavbarForm from './NavbarForm';
 
 const Header = () => {
 
@@ -22,7 +22,7 @@ const Header = () => {
 
     return (
         <>
-            <HeaderForm
+            <NavbarForm
                 handeleLang={setLanguage}
                 logOut={logOut}
             />

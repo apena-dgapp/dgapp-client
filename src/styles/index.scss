@@ -1,21 +1,40 @@
 @import "./login";
 @import "./createperson";
 @import "./header";
-@import "./mainMenu";
 @import "./modal";
 @import "./page404";
 @import "./register";
+@import "./navbar";
+@import "./sidebar";
+@import "./Dashboard"; 
+@import "./newpost";
+@import "./singlepost";
+@import "./carousel";
+@import "./card";
+
+*, *:before, *:after{
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
 
 html,
 body {
-  height: 100%;
+  // height: 100%;
+  // width: 100%;
   // background: rgb(21, 43, 67);
-  background-image: linear-gradient(137deg, #163466, rgba(51, 70, 82, 0.989));
-  overflow: hidden;
+  // background-image: linear-gradient(137deg, #163466, rgba(9, 11, 12, 0.989));
+  //background-color: lightgrey;
+  background-color: #EEEEEE;
+  // overflow: hidden;
+  overflow-x: hidden;  
+  // position: absolute;
+  font-family: 'Montserrat', sans-serif;
 }
-figure {
-  margin: 0;
-}
+// figure {
+//   margin: 0;
+// }
 // .h100 {
 //   height: 100%;
 // }
@@ -27,3 +46,15 @@ figure {
 // #main-container {
 //   overflow: hidden;
 // }
+
+
+body::-webkit-scrollbar{
+  background-color: white;
+  width: 20px;
+}
+
+body::-webkit-scrollbar-thumb{
+  background-color: #39427c;
+  border-radius: 7px;
+}
+

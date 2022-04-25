@@ -10,27 +10,25 @@ const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, m
     // //ContexState
     const [contextState] = useContext(GlobalContext)
 
-    const [modalValidaton, setModalValidation] = useState(false);
+    // const [modalValidaton, setModalValidation] = useState(false);
 
     const placeholderUser = intl.formatMessage({ id: 'login.username', defaultMessage: 'Username' });
     const placeholderPass = intl.formatMessage({ id: 'login.password', defaultMessage: 'Password' });
     const placeholderEmail = intl.formatMessage({ id: 'modal.input.email', defaultMessage: 'Enter your Email' });
     const placeholderId = intl.formatMessage({ id: 'modal.input.id', defaultMessage: 'Enter your Document ID' });
-    const modalTitle = intl.formatMessage({ id: 'modal.title.forgot', defaultMessage: 'ACCOUNT RECOVERY' });
-    const modalTitleAuth = intl.formatMessage({ id: 'modal.title.authenticate', defaultMessage: 'AUTHENTICATE' });
+    // const modalTitle = intl.formatMessage({ id: 'modal.title.forgot', defaultMessage: 'ACCOUNT RECOVERY' });
+    // const modalTitleAuth = intl.formatMessage({ id: 'modal.title.authenticate', defaultMessage: 'AUTHENTICATE' });
 
     const [inputFields, setInputField] = useState([
         { id: 1, name: 'email', type: 'email', placeholder: placeholderEmail },
         { id: 2, name: 'id', type: 'text', placeholder: placeholderId }
     ]);
 
-    console.log(modalValidaton)
-
     return (
 
         <>
             <Modal
-                modalTitle={modalValidaton ? modalTitleAuth : modalTitle}
+                // modalTitle={modalValidaton ? modalTitleAuth : modalTitle}
                 modalActive={modalActive}
                 modalToggle={modalToggle}
                 inputState={inputFields}
@@ -45,7 +43,7 @@ const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, m
                     </p>
                 </div>
 
-                <div className="row mt-5 container-input">
+                <div className="row container-input">
 
                 <div className="d-flex justify-content-center mb-3">
                     <p className="txt-subtitle">
@@ -54,7 +52,7 @@ const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, m
                 </div>
 
                     <form className="" name="loginForm" action="" method="post" /*onSubmit={handeleSignIn}*/>
-                        <div className="d-flex justify-content-center mb-4">
+                        <div className="d-flex justify-content-center container-input-user">
                             <Input
                                 name="username"
                                 type="text"
@@ -82,7 +80,7 @@ const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, m
                         <div className="d-flex justify-content-center mt-1">
                             <p className="txt-forgot" onClick={modalToggle}>{<FormattedMessage id="login.forgot" defaultMessage="Forgot Password?" />}</p>
                         </div>
-                        <div className="d-flex justify-content-center mt-5">
+                        <div className="d-flex justify-content-center container-btn-login">
                             <Button
                                 className="btn-login"
                                 name="btn-submit"
@@ -92,7 +90,7 @@ const LoginForm = ({ profileInputs, handeleSignIn, intl, profile, modalActive, m
                                 onClick={handeleSignIn}>
                             </Button>
                         </div>
-                        <div className="d-flex justify-content-center mt-4">
+                        <div className="d-flex justify-content-center container-btn-login">
                             <Button
                                 className="btn-create"
                                 name="btn-create"

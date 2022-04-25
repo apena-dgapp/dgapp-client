@@ -72,7 +72,7 @@ const Login = ({ intl }) => {
             .then(res => {
                 contextMiddleware.newToken(res.token);
                 contextMiddleware.newUserName(profile.username, res.user.UserRoles[0].roleId === 1 ? true : false, profile.isAuth = true);
-                history.push('./dashboard');
+                history.push('./home');
 
             })
             .catch(err => {

@@ -1,13 +1,56 @@
-import React from 'react'
-import DashboardForm from '../Dashboard/DashboardForm';
+import React,{useContext,useState,useEffect} from 'react';
+import GlobalContext from '../../context/GlobalContext';
+import DashboardForm from './DashboardForm';
+import { useHistory } from 'react-router-dom';
+import {getPost} from '../../api/post'; 
 
 const Dashboard = () => {
-    return (
-        <>
-            <DashboardForm />
-        </>
 
-    )
+  const [contextState] = useContext(GlobalContext);
+
+  const [arrayPost, setArrayPost] = useState([]);
+  
+  const history = useHistory();
+
+  const singlePost = () =>{
+    history.push('./siglepost')
+  }
+
+  useEffect(()=>{
+
+    let unmounted = false;
+
+      getPost(contextState.token,'Featured Post')
+      .then(res => {
+        if (res.status >= 400) throw new alert.err('error usuario incorrecto');
+        return res.json();
+
+      })
+
+      .then(res => {
+        if(!unmounted){
+          setArrayPost(arrayPost => [...arrayPost, ...res.posts]);
+        }
+        
+      })
+      .catch(err => {
+          console.error(err.status);
+      })
+
+      return () => {
+        unmounted = true
+      } 
+      
+  },[contextState.token])
+
+  return (
+    <>
+    <DashboardForm
+      arrayPost={arrayPost}
+      singlePost={singlePost}
+    />
+    </>
+  )
 }
 
 export default Dashboard

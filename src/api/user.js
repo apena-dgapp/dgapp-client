@@ -1,7 +1,7 @@
 
 const createUser = async (token,personid,username,password,createby,modifiedby) => {
     const body = {personid,username,password,createby,modifiedby};
-    return fetch("http://localhost:4500/api/v1/user/createuser", {
+    return fetch(`${process.env.REACT_APP_API}user/createuser`, {
         method: "POST",
          body: JSON.stringify(body),
         headers: {

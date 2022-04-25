@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react'
 import GlobalContext from '../../context/GlobalContext';
 import RegisterForm from './RegisterForm'
-import Modal from '../../common/components/Modal/Modal';
+// import Modal from '../../common/components/Modal/Modal';
 import { useHistory } from 'react-router-dom'
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 import { getOnePerson } from '../../api/person';
 
 const Register = () => {
