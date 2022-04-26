@@ -1,5 +1,4 @@
 import React from 'react'
-import Images from '../../common/images/index';
 import Carousel from '../../common/components/Carousel/Carousel';
 import Card from '../../common/components/Card/Card';
 

@@ -1,8 +1,8 @@
 import React,{useContext,useState,useEffect} from 'react';
 import GlobalContext from '../../context/GlobalContext';
 import DashboardForm from './DashboardForm';
-// import { useHistory } from 'react-router-dom';
 import {getPost, interestPost} from '../../api/post'; 
+
 
 const Dashboard = () => {
 
@@ -10,14 +10,6 @@ const Dashboard = () => {
 
   const [arrayPost, setArrayPost] = useState([]);
   const [interest, setInterest] = useState('');
-  
-  // const history = useHistory();
-
-  // const singlePost = () =>{
-  //   history.push('./siglepost')
-  // }
-
-
 
   useEffect(()=>{
 

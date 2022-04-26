@@ -10,15 +10,15 @@
     align-items: center;
     flex-direction: column;
 }
-.mainPostImg{
-    width: 70rem;
-    height: 25rem;
-    margin-bottom: 0.5rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 1rem;
-    object-fit: cover
+// .mainPostImg{
+//     width: 70rem;
+//     height: 25rem;
+//     margin-bottom: 0.5rem;
+//     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//     border-radius: 1rem;
+//     object-fit: cover
 
-}
+// }
 .mainImg-descp{
     color: #141E61;
     width: 70rem; 
@@ -157,6 +157,7 @@
     text-align: center;
     font-weight: bold;
     color: #3B4E81;
+    font-size: 2rem;
 }
 .interest-text{
     overflow: hidden;
