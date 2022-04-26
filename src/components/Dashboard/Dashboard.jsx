@@ -2,14 +2,14 @@ import React,{useContext,useState,useEffect} from 'react';
 import GlobalContext from '../../context/GlobalContext';
 import DashboardForm from './DashboardForm';
 // import { useHistory } from 'react-router-dom';
-import {getPost, viewUpdate,getview} from '../../api/post'; 
+import {getPost, interestPost} from '../../api/post'; 
 
 const Dashboard = () => {
 
   const [contextState] = useContext(GlobalContext);
 
   const [arrayPost, setArrayPost] = useState([]);
-  const [viewInterest, setViewInterest] = useState();
+  const [interest, setInterest] = useState('');
   
   // const history = useHistory();
 
@@ -46,32 +46,29 @@ const Dashboard = () => {
   },[contextState.token])
 
 
-
   useEffect(()=>{
 
     let unmounted = false;
 
-      getview(contextState.token)
-        .then(res => {
-          if (res.status >= 400) throw new alert.err('error usuario incorrecto');
-          return res.json();
+    interestPost(contextState.token)
+      .then(res => {
+        if (res.status >= 400) throw new alert.err('error usuario incorrecto');
+        return res.json();
 
-        })
-        .then(res => {
-          // if(!unmounted){
-          //   setViewInterest(viewInterest => [...viewInterest, ...res.posts]);
-          // }
+      })
+      .then(res => {
+        if(!unmounted){
+         setInterest(res.post);
+        }
+        
+      })
+      .catch(err => {
+          console.error(err.status);
+      })
 
-          console.log(res.post)
-          
-        })
-        .catch(err => {
-            console.error(err.status);
-        })
-
-        return () => {
-          unmounted = true
-        } 
+      return () => {
+        unmounted = true
+      } 
       
   },[contextState.token])
 
@@ -79,6 +76,7 @@ const Dashboard = () => {
     <>
     <DashboardForm
       arrayPost={arrayPost}
+      interest={interest}
     />
     </>
   )

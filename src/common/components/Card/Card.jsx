@@ -1,11 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
+import {viewUpdate} from '../../../api/post';
+import GlobalContext from '../../../context/GlobalContext';
 
 const CardForm = (props) => {
 
-  const [idPost, setIdPost] = useState('');
+  const [contextState] = useContext(GlobalContext);
 
-  const click = (id) => {
-    console.log(props.id)
+  const click = () => {
+    viewUpdate(contextState.token, props.id)
+    .then(res => {
+      console.log(res.status)
+      console.log("se agrego un view")
+    })
+    .catch(err =>{
+      console.error(err.status)
+      return
+    })
   }
 
   return (
@@ -15,9 +25,9 @@ const CardForm = (props) => {
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
           <p className="card-text">{props.description}</p>
-          <p id='postid' className='m-0 p-0'>{props.klk}</p>
-          <button onClick={click} className="btn btn-dark">Read More</button>
         </div>
+        <p className="card-date"><small className="text-muted">{new Date(props.date).toDateString()}</small></p>
+        <button onClick={click} className="btn btn-dark">Read More</button>
       </div>
     </>
   )

@@ -23,9 +23,9 @@ const getPost = async (token,category) => {
     })
 }
 
-const getview = async (token) => {
-    return fetch(`${process.env.REACT_APP_API}post/getview`, {
-        method: "POST",
+const interestPost = async (token) => {
+    return fetch(`${process.env.REACT_APP_API}post/interest`, {
+        method: "GET",
         headers: {
             "Content-Type": "application/json",
             Authorization: 'Bearer ' + token,
@@ -33,9 +33,9 @@ const getview = async (token) => {
     })
 }
 
-const viewUpdate = async (token,click) => {
-    const body = {click};
-    return fetch(`${process.env.REACT_APP_API}post/view`, {
+const viewUpdate = async (token,id) => {
+    const body = {id};
+    return fetch(`${process.env.REACT_APP_API}post/updateview`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: {
@@ -50,5 +50,5 @@ module.exports = {
     newPostApi,
     getPost,
     viewUpdate,
-    getview
+    interestPost
 };

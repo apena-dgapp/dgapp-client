@@ -3,7 +3,7 @@ import Images from '../../common/images/index';
 import Carousel from '../../common/components/Carousel/Carousel';
 import Card from '../../common/components/Card/Card';
 
-const DashboardForm = ({ arrayPost }) => {
+const DashboardForm = ({ arrayPost, interest }) => {
 
   return (
     <>
@@ -23,9 +23,9 @@ const DashboardForm = ({ arrayPost }) => {
                   key={post.postId}
                   id={post.postId}
                   title={post.title}
-                  klk={post.postId}
                   img={post.image}
                   description={post.description}
+                  date={post.createdAt}
                 />
               )
             })
@@ -33,8 +33,10 @@ const DashboardForm = ({ arrayPost }) => {
         </div>
       </div>
 
-      <div className='btn-allpost'>
-        <button type="button" className="btn btn-secondary btn-lg">See all the post</button>
+      <div className="btn-allpost-container">
+        <div className='row btn-allpost'>
+          <button type="button" className="btn btn-secondary btn-lg">See all the post</button>
+        </div>
       </div>
 
       <div className='container-column-title'>
@@ -45,11 +47,11 @@ const DashboardForm = ({ arrayPost }) => {
 
       <div className="d-flex justify-content-center card-xl">
         <div className="card card-costum mb-3">
-          <img src={Images.batalla} className="card-img-top img-costum" alt="..." />
+          <img src={interest.image} className="card-img-top img-costum" alt="..." />
           <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+            <h5 className="interest-title">{interest.title}</h5>
+            <p className="interest-text">{interest.description}</p>
+            <p className="card-text"><small className="text-muted">{new Date(interest.createdAt).toDateString()}</small></p>
           </div>
         </div>
       </div>
