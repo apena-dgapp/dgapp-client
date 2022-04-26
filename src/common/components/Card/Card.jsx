@@ -1,16 +1,12 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 
 const CardForm = (props) => {
 
   const [idPost, setIdPost] = useState('');
 
-  const click = () => {
-    setIdPost(...idPost, document.getElementById('postid').innerHTML) 
-    console.log(idPost)
+  const click = (id) => {
+    console.log(props.id)
   }
-    
-
-
 
   return (
     <>
