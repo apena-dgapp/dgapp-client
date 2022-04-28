@@ -14,7 +14,11 @@ const CardForm = (props) => {
     .then(res => {
       console.log(res.status)
       console.log("se agrego un view")
-      history.push('./siglepost')
+      history.push({
+        pathname: './siglepost',
+        state: props
+      })
+
     })
     .catch(err =>{
       console.error(err.status)
@@ -24,14 +28,14 @@ const CardForm = (props) => {
 
   return (
     <>
-      <div className="card">
+      <div className="card" onClick={click}>
         <img src={props.img} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
           <p className="card-text">{props.description}</p>
         </div>
         <p className="card-date"><small className="text-muted">{new Date(props.date).toDateString()}</small></p>
-        <button onClick={click} className="btn btn-dark">Read More</button>
+        <button className="btn btn-dark">Read More</button>
       </div>
     </>
   )

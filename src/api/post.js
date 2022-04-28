@@ -23,6 +23,16 @@ const getPost = async (token,category) => {
     })
 }
 
+const allPostApi = async (token) => {
+    return fetch(`${process.env.REACT_APP_API}post/allpost`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token,
+        }   
+    })
+}
+
 const interestPost = async (token) => {
     return fetch(`${process.env.REACT_APP_API}post/interest`, {
         method: "GET",
@@ -45,10 +55,10 @@ const viewUpdate = async (token,id) => {
     })
 }
 
-
 module.exports = {
     newPostApi,
     getPost,
     viewUpdate,
-    interestPost
+    interestPost,
+    allPostApi
 };

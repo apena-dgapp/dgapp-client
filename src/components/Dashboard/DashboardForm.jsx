@@ -2,11 +2,11 @@ import React from 'react'
 import Carousel from '../../common/components/Carousel/Carousel';
 import Card from '../../common/components/Card/Card';
 
-const DashboardForm = ({ arrayPost, interest }) => {
+const DashboardForm = ({ arrayPost, interest,singleInsterest, allPost }) => {
 
   return (
     <>
-      <Carousel />
+      <Carousel/>
       <div className='container-column-title'>
         <div className="column-title">
           <p className='column-txt'>FEATURED POST</p>
@@ -14,7 +14,7 @@ const DashboardForm = ({ arrayPost, interest }) => {
       </div>
 
       <div className="row col-12 d-flex justify-content-evenly">
-        <div className="col-10 d-flex justify-content-evenly mb-5">
+        <div className="col-10 d-flex justify-content-evenly">
           {
             arrayPost.map((post) => {
               return (
@@ -32,7 +32,7 @@ const DashboardForm = ({ arrayPost, interest }) => {
         </div>
       </div>
 
-      <div className="btn-allpost-container">
+      <div className="btn-allpost-container" onClick={allPost}>
         <div className='row btn-allpost'>
           <button type="button" className="btn btn-secondary btn-lg">See all the post</button>
         </div>
@@ -44,7 +44,7 @@ const DashboardForm = ({ arrayPost, interest }) => {
         </div>
       </div>
 
-      <div className="d-flex justify-content-center card-xl">
+      <div className="d-flex justify-content-center card-xl" onClick={singleInsterest}>
         <div className="card card-costum mb-3">
           <img src={interest.image} className="card-img-top img-costum" alt="..." />
           <div className="card-body">
@@ -60,35 +60,6 @@ const DashboardForm = ({ arrayPost, interest }) => {
           <p className='column-txt'>LET'S CONTACT</p>
         </div>
       </div>
-
-      <footer className="bg-dark text-center text-white">
-        {/* Grid container */}
-        <div className="container p-4 pb-0">
-          {/* Section: Social media */}
-          <section className="mb-4">
-            {/* Facebook */}
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i className="fab fa-facebook-f" /></a>
-            {/* Twitter */}
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i className="fab fa-twitter" /></a>
-            {/* Google */}
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i className="fab fa-google" /></a>
-            {/* Instagram */}
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i className="fab fa-instagram" /></a>
-            {/* Linkedin */}
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i className="fab fa-linkedin-in" /></a>
-            {/* Github */}
-            <a className="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i className="fab fa-github" /></a>
-          </section>
-          {/* Section: Social media */}
-        </div>
-        {/* Grid container */}
-        {/* Copyright */}
-        <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-          © 2022 Copyright:
-          <a className="text-white" href="/#">DGAPP</a>
-        </div>
-        {/* Copyright */}
-      </footer>
     </>
   )
 }

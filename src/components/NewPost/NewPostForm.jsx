@@ -36,20 +36,6 @@ const NewPostForm = ({seletedHandler, sendHandlerImg,handlerInputChange,formData
                     </select>
                     </div>
 
-                        {/* <div className="btn-group">
-                                <button type="button" className="btn btn-category">Category</button>
-                                <button type="button" className="btn btn-category-down dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span className="visually-hidden">Toggle Dropdown</span>
-                                </button>
-                                <ul className="dropdown-menu">
-                                    <li><div name="category" className="dropdown-item" href="/#" onClick={handlerInputChange} value='Main Card'>Main Card</div></li>
-                                    <li><div className="dropdown-item" href="/#">Post Card</div></li>
-                                    <li><div className="dropdown-item" href="/#">Something else here</div></li>
-                                </ul>
-                            </div> */}
-
-
-        
                     <div className="pb-4">
                         <Input
                             id="titleinput"

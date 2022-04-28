@@ -32,8 +32,8 @@ const Navbar = ({handeleLang, logOut}) => {
                 <li className='class-list'><a href='/#'>HOME</a></li>
                 <li className='class-list'><a href='/#'>APPS<img className='icondown' src={Images.icondown} alt=''/></a>
                 <ul>
-                    <li><a href='/#'>CORRESPONDECE</a></li>
-                    <li><a href='/#'>CORRESPONDECE</a></li>
+                    <li><a href='/correspondence'>CORRESPONDECE</a></li>
+                    <li><a href='/#'>TICKET</a></li>
                 </ul>
                 </li>
                 <li className='class-list'><a href='/#'>TRAINING</a></li>

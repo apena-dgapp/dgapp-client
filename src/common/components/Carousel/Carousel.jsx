@@ -4,7 +4,7 @@ import CardCarousel from '../Carousel/CardCarousel';
 import { getPost } from '../../../api/post';
 
 
-const Carousel = () => {
+const Carousel = ({singleInsterest }) => {
   
   const [contextState] = useContext(GlobalContext);
 
@@ -57,7 +57,8 @@ const Carousel = () => {
                       key={post.postId}
                       img={post.image}
                       title={post.title}
-                      descrip={post.description}
+                      description={post.description}
+                      date={post.createdAt}
                     />
                     )
                   })

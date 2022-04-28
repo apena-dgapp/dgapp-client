@@ -1,12 +1,13 @@
 import React,{useContext,useState,useEffect} from 'react';
+import { useHistory } from 'react-router-dom';
 import GlobalContext from '../../context/GlobalContext';
 import DashboardForm from './DashboardForm';
 import {getPost, interestPost} from '../../api/post'; 
 
-
 const Dashboard = () => {
 
   const [contextState] = useContext(GlobalContext);
+  const history = useHistory();
 
   const [arrayPost, setArrayPost] = useState([]);
   const [interest, setInterest] = useState('');
@@ -64,11 +65,34 @@ const Dashboard = () => {
       
   },[contextState.token])
 
+
+
+  const singleInsterest = () => {
+
+    const interestNewObj = { 
+        title: interest.title,
+        img: interest.image,
+        description: interest.description,
+        date: interest.createdAt 
+    };
+    
+      history.push({
+        pathname: './siglepost',
+        state: interestNewObj
+      })
+  }
+
+  const allPost = () => {
+    history.push('./allpost')
+  }
+
   return (
     <>
     <DashboardForm
       arrayPost={arrayPost}
       interest={interest}
+      singleInsterest={singleInsterest}
+      allPost={allPost}
     />
     </>
   )
