@@ -16,7 +16,7 @@ import trash from '../images/trash.png';
 import addifle from '../images/addfile.png';
 import icondown from '../images/down-filled-triangular-arrow.png';
 import barmenu from '../images/menu.png';
-import facebook from '../images/facebook.png';
+import director from '../images/director.jpg';
  
 const Images = {
     iconUser,
@@ -35,7 +35,8 @@ const Images = {
     trash,
     addifle,
     icondown,
-    barmenu
+    barmenu,
+    director
 }
 
 export default Images;

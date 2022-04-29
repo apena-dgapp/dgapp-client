@@ -60,7 +60,7 @@ const Footer = () => {
             <h6 className="text-uppercase fw-bold">Products</h6>
             <hr className="mb-4 mt-0 d-inline-block mx-auto" style={{width: 60, backgroundColor: '#7c4dff', height: 2}} />
             <p>
-              <a href="#!" className="text-white">MDBootstrap</a>
+              <a href='./organization' className="text-white">Organization Chart</a>
             </p>
             <p>
               <a href="#!" className="text-white">MDWordPress</a>

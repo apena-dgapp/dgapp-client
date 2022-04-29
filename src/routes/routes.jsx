@@ -14,6 +14,7 @@ import Page404 from '../components/404/Page404';
 import ScrollToTop from '../utils/scrollToTop';
 import Footer from '../common/components/Footer/Footer';
 import Correspondence from '../components/Correspondence/Correspondence';
+import OrganizationChart from '../common/components/Organization/OrganizationChart';
 
 
 
@@ -37,6 +38,7 @@ const Routes = () => {
                 <Route path="/userregister" component={userRegister} />
                 <Route path="/newpost" component={NewPost} />
                 <Route path="/correspondence" component={Correspondence} />
+                <Route path="/organization" component={OrganizationChart} />
                 <Route exact path="*" component={Page404} />
             </Switch>
 
