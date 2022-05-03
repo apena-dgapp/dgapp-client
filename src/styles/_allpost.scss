@@ -14,7 +14,7 @@
     display: flex;
     justify-content: center;
     color: steelblue;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
     margin-top: 13rem;
     margin-bottom: 1rem;
@@ -24,7 +24,7 @@
 .grid-container{
     display: grid;
     // background-color: red;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 25% 25% 25% 25%;
     width: 80%;
 }
 .grid-card:hover{
@@ -39,6 +39,15 @@
     display: flex;
     width: 80%;
     margin-bottom: 2rem;
+}
+.allpost-input-search{
+    border-radius: 0.6vw;
+    width: 25rem;
+    height: 2.5rem;
+    border: gray solid 1px;
+    padding-left: 1rem;
+    font-size: 1rem;
+    outline: none;
 }
 .allpost-btn-cont{
     display: flex;
@@ -55,13 +64,13 @@
 
 .btn-next {
     border-radius: 0.6rem;
-    width: 18rem;
+    width: 15rem;
     height: 2.8rem;
     border: none;
     color: white;
     background-color: green;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
   
     &:hover {
@@ -72,13 +81,13 @@
 
   .btn-back {
     border-radius: 0.6rem;
-    width: 18rem;
+    width: 15rem;
     height: 2.8rem;
     border: none;
     color: white;
     background-color: brown;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
   
     &:hover {

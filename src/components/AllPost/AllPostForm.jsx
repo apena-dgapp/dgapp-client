@@ -18,7 +18,7 @@ const AllPostForm = ({filteredArryPost, nextPage, backPage, onSearchChange, sear
                     name="searchpost"
                     type="text"
                     placeholder="Search Post..."
-                    classInput="inputTitle"
+                    classInput="allpost-input-search"
                     value={search}
                     onChange={onSearchChange}
                 /> 

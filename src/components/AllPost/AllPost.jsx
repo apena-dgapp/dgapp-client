@@ -37,19 +37,19 @@ const AllPost = () => {
   },[contextState.token])
 
   const filteredArryPost = () => {
-    if(search.length === 0) return arrayAllPost.slice(currentPage, currentPage + 10 );
+    if(search.length === 0) return arrayAllPost.slice(currentPage, currentPage + 8 );
       const filtered = arrayAllPost.filter( post => post.title.toLowerCase().includes(search) );
-      return filtered.slice(currentPage, currentPage + 10 );
+      return filtered.slice(currentPage, currentPage + 8 );
   }
 
   const nextPage = () => {
-    if(arrayAllPost.filter( post => post.title.toLowerCase().includes(search) ).length > currentPage + 10)
-    setCurrentPage( currentPage + 10);
+    if(arrayAllPost.filter( post => post.title.toLowerCase().includes(search) ).length > currentPage + 8)
+    setCurrentPage( currentPage + 8);
   }
 
   const backPage = () => {
     if(currentPage > 0 ){
-      setCurrentPage( currentPage - 10);
+      setCurrentPage( currentPage - 8);
     } 
   }
 

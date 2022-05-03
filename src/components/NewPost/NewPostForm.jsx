@@ -1,6 +1,6 @@
 import React from 'react';
 import Input from '../../common/components/Input/Input';
-import Images from '../../common/images';
+// import Images from '../../common/images';
 
 const NewPostForm = ({seletedHandler, sendHandlerImg,handlerInputChange,formData}) => {
 
@@ -16,9 +16,6 @@ const NewPostForm = ({seletedHandler, sendHandlerImg,handlerInputChange,formData
 
                 <div className="newPostContainer">
                     <div className="newPostInputContainer">
-                            {/* <label className='labeladdfile' htmlFor='fileinput'>
-                                <img className='imgAddFile'  src={Images.addifle} alt=""/>
-                            </label> */}
                         <div className="input-group mb-3">
                             <label className="input-group-text" htmlFor="inputGroupSelect01">CATEGORY</label>
                                 <select 
