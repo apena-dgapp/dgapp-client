@@ -22,7 +22,8 @@ const Routes = () => {
 
     const [contextState] = useContext(GlobalContext);
 
-    // const rute = "/dgapp-dev";
+    // <Route exact path={`${process.env.REACT_APP_RUTE}/`} component={contextState.token ? Dashboard : Login} />
+    // <PrivateRoutes exct path={`${process.env.REACT_APP_RUTE}/home`} component={Dashboard} />
 
     return (
         <BrowserRouter>
@@ -33,8 +34,8 @@ const Routes = () => {
         }
             
             <Switch>
-                <Route exact path={`${process.env.REACT_APP_RUTE}/`} component={contextState.token ? Dashboard : Login} />
-                <PrivateRoutes exct path={`${process.env.REACT_APP_RUTE}/home`} component={Dashboard} />
+                <Route exact path="/" component={contextState.token ? Dashboard : Login} />
+                <PrivateRoutes exct path="/home" component={Dashboard} />
                 <Route path="/siglepost" component={SinglePost}/>
                 <Route path="/allpost" component={allPost}/>
                 <Route path="/userregister" component={userRegister} />

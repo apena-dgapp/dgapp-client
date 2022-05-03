@@ -1,6 +1,6 @@
 import React,{ useContext, useState, useEffect } from 'react';
 import GlobalContext from '../../context/GlobalContext';
-import AllPostForm from './AllPostForm'
+import AllPostForm from './AllPostForm';
 import {allPostApi} from '../../api/post'; 
 
 const AllPost = () => {
