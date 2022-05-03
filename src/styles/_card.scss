@@ -1,5 +1,5 @@
 .card{
-    width: 22rem;
+    width: 18rem;
     cursor: pointer;
     margin-bottom: 3rem;
 }
@@ -9,7 +9,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 
@@ -23,7 +23,7 @@
     object-fit: cover;
 }
 .card-xl{
-    margin-bottom: 8rem;
+    margin-bottom: 12rem;
 }
 
 .btn-group{
@@ -38,7 +38,8 @@
     align-items: center;
     text-align: center;
     height: 3.5rem;
-    margin: 2rem 0;
+    margin-bottom: 2rem;
+    margin-top: 5rem;
 }
 .column-title{
     width: 90%;
@@ -62,10 +63,10 @@
 
 .card-title{
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     font-weight: bold;
     color: royalblue;
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .card-date{

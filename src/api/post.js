@@ -1,6 +1,6 @@
 
-const newPostApi = async (token,title,description,category,author,image,views,isactive,createdby,modifiedby) => {
-    const body = {title,description,category,author,image,views,isactive,createdby,modifiedby};
+const newPostApi = async (token, title, description, category, author, image, views, isactive, createdby, modifiedby) => {
+    const body = {title, description, category, author, image, views, isactive, createdby, modifiedby};
     return fetch(`${process.env.REACT_APP_API}post/newpost`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -11,7 +11,7 @@ const newPostApi = async (token,title,description,category,author,image,views,is
     })
 }
 
-const getPost = async (token,category) => {
+const getPost = async (token, category) => {
     const body = {category};
     return fetch(`${process.env.REACT_APP_API}post/featuredposts`, {
         method: "POST",
@@ -43,7 +43,7 @@ const interestPost = async (token) => {
     })
 }
 
-const viewUpdate = async (token,id) => {
+const viewUpdate = async (token, id) => {
     const body = {id};
     return fetch(`${process.env.REACT_APP_API}post/updateview`, {
         method: "POST",

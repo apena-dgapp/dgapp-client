@@ -72,7 +72,7 @@ const NewPost = () => {
             category:'',
             author:'',
             img:'',
-            views:'',
+            views: 0,
             isActive: true
           })
         

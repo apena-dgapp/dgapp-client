@@ -33,9 +33,12 @@ const DashboardForm = ({ arrayPost, interest,singleInsterest, allPost }) => {
       </div>
 
       <div className="btn-allpost-container" onClick={allPost}>
-        <div className='row btn-allpost'>
-          <button type="button" className="btn btn-secondary btn-lg">See all the post</button>
-        </div>
+        <di className='btn-allpost-w'>
+          <div className='row btn-allpost'>
+            <button type="button" className="btn btn-secondary btn-lg">See all the post</button>
+          </div>
+        </di>
+        
       </div>
 
       <div className='container-column-title'>
