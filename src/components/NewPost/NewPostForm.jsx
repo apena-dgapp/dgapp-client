@@ -119,6 +119,7 @@ const NewPostForm = ({seletedHandler, sendHandlerImg,handlerInputChange,formData
                                 name="content"
                                 type="file"
                                 onChange={seletedHandler}
+                                multiple
                                 // className='inputAddFile'
                                 accept='.jpg, .jpeg, .jfif, .png'
                             /> 

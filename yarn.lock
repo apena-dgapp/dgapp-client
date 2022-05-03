@@ -9748,6 +9748,13 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
+"react-viewer@^3.2.2":
+  "integrity" "sha512-DHOq1x6cXsAViY43204ILRzLVR5ovP1MgzsC+LzZCWlInRuHjzAgpQZ8GzWm1CkiNYuHGwCxH36X0JUHl2xDSg=="
+  "resolved" "https://registry.npmjs.org/react-viewer/-/react-viewer-3.2.2.tgz"
+  "version" "3.2.2"
+  dependencies:
+    "classnames" "^2.2.5"
+
 "react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^16.0.0", "react@^16.14.0", "react@^16.3.0 || 17", "react@^16.8.0 || ^17.0.0-rc.1", "react@>= 16", "react@>=0.14.0", "react@>=15", "react@>=15.0.0", "react@>=16", "react@>=16.14.0", "react@>=16.3.2", "react@>=16.6.0", "react@>=16.8.0":
   "integrity" "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.14.0.tgz"
