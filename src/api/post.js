@@ -1,5 +1,5 @@
 
-const newPostApi = async (token, title, description, category, author, image, views, isactive, createdby, modifiedby) => {
+export const newPostApi = async (token, title, description, category, author, image, views, isactive, createdby, modifiedby) => {
     const body = {title, description, category, author, image, views, isactive, createdby, modifiedby};
     return fetch(`${process.env.REACT_APP_API}post/newpost`, {
         method: "POST",
@@ -11,7 +11,7 @@ const newPostApi = async (token, title, description, category, author, image, vi
     })
 }
 
-const getPost = async (token, category) => {
+export const getPost = async (token, category) => {
     const body = {category};
     return fetch(`${process.env.REACT_APP_API}post/featuredposts`, {
         method: "POST",
@@ -23,7 +23,7 @@ const getPost = async (token, category) => {
     })
 }
 
-const allPostApi = async (token) => {
+export const allPostApi = async (token) => {
     return fetch(`${process.env.REACT_APP_API}post/allpost`, {
         method: "GET",
         headers: {
@@ -33,7 +33,7 @@ const allPostApi = async (token) => {
     })
 }
 
-const interestPost = async (token) => {
+export const interestPost = async (token) => {
     return fetch(`${process.env.REACT_APP_API}post/interest`, {
         method: "GET",
         headers: {
@@ -43,7 +43,7 @@ const interestPost = async (token) => {
     })
 }
 
-const viewUpdate = async (token, id) => {
+export const viewUpdate = async (token, id) => {
     const body = {id};
     return fetch(`${process.env.REACT_APP_API}post/updateview`, {
         method: "POST",
@@ -55,10 +55,3 @@ const viewUpdate = async (token, id) => {
     })
 }
 
-module.exports = {
-    newPostApi,
-    getPost,
-    viewUpdate,
-    interestPost,
-    allPostApi
-};

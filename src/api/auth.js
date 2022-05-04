@@ -1,4 +1,4 @@
-const apiAuth = async (username, password) => {
+export const apiAuth = async (username, password) => {
     const body = {username, password};
     return fetch(`${process.env.REACT_APP_API}auth/signin`, {
         method: "POST",
@@ -7,6 +7,3 @@ const apiAuth = async (username, password) => {
     })
 }
 
-module.exports = {
-    apiAuth,
-};

@@ -1,4 +1,4 @@
-const blobToBase64 = (blob) =>{
+export const blobToBase64 = (blob) =>{
     return new Promise((resolve, reject) =>{
         const reader = new FileReader();
         reader.readAsDataURL(blob);
@@ -34,12 +34,8 @@ const blobToBase64 = (blob) =>{
 //     })
 // }
 
-const base64ToBlob = async (b64, type) => {
+export const base64ToBlob = async (b64, type) => {
     const blob = await fetch(`data:${type};base64,${b64}`);
     return blob;
 }
 
-module.exports ={
-    blobToBase64,
-    base64ToBlob
-};

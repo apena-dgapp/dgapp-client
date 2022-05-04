@@ -1,4 +1,4 @@
-const getOnePerson = async (token,email) => {
+export const getOnePerson = async (token,email) => {
     const body = {token,email};
     return fetch(`${process.env.REACT_APP_API}person/getoneperson`, {
         method: "POST",
@@ -9,7 +9,3 @@ const getOnePerson = async (token,email) => {
         }   
     })
 }
-
-module.exports = {
-    getOnePerson
-};
