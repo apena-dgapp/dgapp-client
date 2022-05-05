@@ -14,7 +14,8 @@ import director from '../images/director.jpg';
 import pdf from './pdf.png';
 import video from './movie-player.png';
 import link from './link.png';
-import img from './image.png'
+import img from './image.png';
+import avatar from "./avatar.jpg";
  
 const Images = {
     iconUser,
@@ -32,7 +33,8 @@ const Images = {
     pdf,
     video,
     link,
-    img
+    img,
+    avatar
 }
 
 export default Images;

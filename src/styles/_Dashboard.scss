@@ -185,6 +185,26 @@
     font-size: 1rem;
 }
 
+.carousel-Grid-cont{
+    display: grid;
+    // background-color: red;
+    grid-template-columns: 70% 30%;
+    width: 100%;
+}
+.right-Panel-cont{
+    margin-top: 9rem;
+    margin-left: 1rem;
+}
+.right-Panel-img{
+    // display: flex;
+}
+
+.right-Panel-img{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 5rem;
+}
+
 
 
 @media screen and (max-width: 400px) {

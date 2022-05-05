@@ -24,8 +24,8 @@ const Routes = () => {
     // <Route exact path={`${process.env.REACT_APP_RUTE}/`} component={contextState.token ? Dashboard : Login} />
     // <PrivateRoutes exct path={`${process.env.REACT_APP_RUTE}/home`} component={Dashboard} />
 
-    // const ruteServer = "";
-    const ruteServer = "/intranet"; 
+    const ruteServer = "";
+    // const ruteServer = "/intranet"; 
 
     return (
         <BrowserRouter>

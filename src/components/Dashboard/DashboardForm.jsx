@@ -1,12 +1,28 @@
 import React from 'react'
 import Carousel from '../../common/components/Carousel/Carousel';
 import Card from '../../common/components/Card/Card';
+import Images from '../../common/images';
 
 const DashboardForm = ({ arrayPost, interest,singleInsterest, allPost }) => {
 
   return (
     <>
-      <Carousel/>
+    <div className="carousel-Grid-cont">
+      <div className="div">
+        <Carousel/>
+      </div>
+      <div className="right-Panel-cont">
+        <div className="right-Panel-img">
+          <figure>
+            <img className='right-Panel-img' src={Images.avatar} alt=''></img>
+          </figure>
+          <div>
+              <p>Bienvenido Mario Gonasalez</p>
+            </div>
+        </div>
+      </div>
+    </div>
+      
       <div className='container-column-title'>
         <div className="column-title">
           <p className='column-txt'>FEATURED POST</p>
