@@ -2,7 +2,7 @@ import React, {useContext,useState} from 'react';
 import Images from '../../images';
 import GlobalContext from '../../../context/GlobalContext';
 
-const Navbar = ({handeleLang, logOut}) => {
+const Navbar = ({handeleLang, logOut, createPost, correspo}) => {
     const [contextState] = useContext(GlobalContext);
 
         // addEventListener('DOMContentLoaded', () => {
@@ -29,16 +29,16 @@ const Navbar = ({handeleLang, logOut}) => {
             </figure>
 
             <ul className={active}>
-                <li className='class-list'><a href='/#'>HOME</a></li>
-                <li className='class-list'><a href='/#'>APPS<img className='icondown' src={Images.icondown} alt=''/></a>
+                <li className='class-list'><a href='/intranet'>HOME</a></li>
+                <li className='class-list'><a href='#/'>APPS<img className='icondown' src={Images.icondown} alt=''/></a>
                 <ul>
-                    <li><a href='/correspondence'>CORRESPONDECE</a></li>
-                    <li><a href='/#'>TICKET</a></li>
+                    <li><a href='#/' onClick={correspo}>CORRESPONDECE</a></li>
+                    <li><a href='#/'>TICKET</a></li>
                 </ul>
                 </li>
-                <li className='class-list'><a href='/#'>TRAINING</a></li>
-                <li className='class-list'><a href='/#'>SERVICES</a></li>
-                <li className='class-list'><a href='./newpost'>CREATE</a></li>
+                <li className='class-list'><a href='#/'>TRAINING</a></li>
+                <li className='class-list'><a href='#/'>SERVICES</a></li>
+                <li className='class-list'><a href='#/' onClick={createPost}>CREATE</a></li>
              </ul>
 
             <figure className="container-menu-right">

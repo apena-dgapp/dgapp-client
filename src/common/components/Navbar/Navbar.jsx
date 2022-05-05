@@ -17,7 +17,15 @@ const Header = () => {
 
     const logOut = () => {
         contextMiddleware.signOut();
-        history.push('/')
+        history.push('./home')
+    };
+
+    const createPost = () => {
+        history.push('./newpost')
+    };
+
+    const correspo = () => {
+        history.push('./correspondence')
     };
 
     return (
@@ -25,6 +33,8 @@ const Header = () => {
             <NavbarForm
                 handeleLang={setLanguage}
                 logOut={logOut}
+                createPost={createPost}
+                correspo={correspo}
             />
         </>
     )

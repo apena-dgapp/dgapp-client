@@ -17,13 +17,15 @@ import Correspondence from '../components/Correspondence/Correspondence';
 import OrganizationChart from '../common/components/Organization/OrganizationChart';
 
 
-
 const Routes = () => {
 
     const [contextState] = useContext(GlobalContext);
 
     // <Route exact path={`${process.env.REACT_APP_RUTE}/`} component={contextState.token ? Dashboard : Login} />
     // <PrivateRoutes exct path={`${process.env.REACT_APP_RUTE}/home`} component={Dashboard} />
+
+    // const ruteServer = "";
+    const ruteServer = "/intranet"; 
 
     return (
         <BrowserRouter>
@@ -34,15 +36,15 @@ const Routes = () => {
         }
             
             <Switch>
-                <Route exact path="/" component={contextState.token ? Dashboard : Login} />
-                <PrivateRoutes exct path="/home" component={Dashboard} />
-                <Route path="/siglepost" component={SinglePost}/>
-                <Route path="/allpost" component={allPost}/>
-                <Route path="/userregister" component={userRegister} />
-                <Route path="/newpost" component={NewPost} />
-                <Route path="/correspondence" component={Correspondence} />
-                <Route path="/organization" component={OrganizationChart} />
-                <Route exact path="*" component={Page404} />
+                <Route exact path={`${ruteServer}/`} component={contextState.token ? Dashboard : Login} />
+                <PrivateRoutes exct path={`${ruteServer}/home`} component={Dashboard} />
+                <Route path={`${ruteServer}/siglepost`} component={SinglePost}/>
+                <Route path={`${ruteServer}/allpost`} component={allPost}/>
+                <Route path={`${ruteServer}/userregister`} component={userRegister} />
+                <Route path={`${ruteServer}/newpost`} component={NewPost} />
+                <Route path={`${ruteServer}/correspondence`} component={Correspondence} />
+                <Route path={`${ruteServer}/organization`} component={OrganizationChart} />
+                <Route exact path={`${ruteServer}*`} component={Page404} />
             </Switch>
 
         {
