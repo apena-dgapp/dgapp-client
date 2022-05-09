@@ -1,5 +1,8 @@
 import React,{useState} from 'react';
 import Viewer from 'react-viewer';
+// import Slider from "react-slick";
+import Item from "../../utils/item";
+import Carousel from "react-elastic-carousel";
 
 const SiglePostForm = ({dataPost}) => {
 
@@ -15,6 +18,33 @@ const SiglePostForm = ({dataPost}) => {
             src: "https://images.unsplash.com/photo-1534628526458-a8de087b1123",
             title: "image title 2"
           }
+          ,
+          {
+            src: "https://images.unsplash.com/photo-1534628526458-a8de087b1123",
+            title: "image title 2"
+          }
+          ,
+          {
+            src: "https://images.unsplash.com/photo-1534628526458-a8de087b1123",
+            title: "image title 2"
+          }
+          ,
+          {
+            src: "https://images.unsplash.com/photo-1534628526458-a8de087b1123",
+            title: "image title 2"
+          }
+          ,
+          {
+            src: "https://images.unsplash.com/photo-1534628526458-a8de087b1123",
+            title: "image title 2"
+          }
+      ];
+
+      const breakPoints = [
+        { width: 1, itemsToShow: 1 },
+        { width: 550, itemsToShow: 2 },
+        { width: 768, itemsToShow: 3 },
+        { width: 1200, itemsToShow: 4 },
       ];
 
   return (
@@ -37,45 +67,35 @@ const SiglePostForm = ({dataPost}) => {
                 <div className="singlePostDescp-container">
                      <p className="singlePostDescp">{dataPost.description}</p>
                 </div>
-
-                {/* <button onClick={}>show</button> */}
-
-                <div className="singlePost-view-cont">
-                    <div className="singlePost-view">
-                        
-                        {images.map((item, index) => {
-                            return (
-                                <div key={index.toString()}>
-                                    <img src={item.src} 
-                                        alt=""
-                                        width="300px"
-                                        onClick={() => {
-                                            setVisible(true)
-                                            setActiveIndex(index)
-                                        }} 
-                                    />
-                                </div>
-                            )
-                        })}
-
-
-                        <Viewer
-                        visible= {visible}
-                        images={images}
-                        onClose={() => {setVisible(false)}}
-                        zoomSpeed={0.2}
-                        activeIndex={activeIndex}
-                        downloadable
-                        />
-                    </div>
-                </div>
-               
-
             </div>
-            
-           
-         </div>
 
+            <Carousel breakPoints={breakPoints}>
+                {images.map((item, index) => {
+                    return (
+                        <div key={index.toString()}>
+                            <img src={item.src} 
+                                alt=""
+                                width="300px"
+                                onClick={() => {
+                                    setVisible(true)
+                                    setActiveIndex(index)
+                                }} 
+                            />
+                        </div>
+                    )
+                })}
+
+                <Viewer
+                visible= {visible}
+                images={images}
+                onClose={() => {setVisible(false)}}
+                zoomSpeed={0.2}
+                activeIndex={activeIndex}
+                downloadable
+                />
+            </Carousel>
+           
+        </div>
 
     </>
   )

@@ -1,13 +1,12 @@
 import React from 'react'
 import Carousel from '../../common/components/Carousel/Carousel';
 import Card from '../../common/components/Card/Card';
-import Images from '../../common/images';
 
 const DashboardForm = ({ arrayPost, interest,singleInsterest, allPost }) => {
 
   return (
     <>
-    <div className="carousel-Grid-cont">
+    {/* <div className="carousel-Grid-cont">
       <div className="div">
         <Carousel/>
       </div>
@@ -18,10 +17,12 @@ const DashboardForm = ({ arrayPost, interest,singleInsterest, allPost }) => {
           </figure>
           <div>
               <p>Bienvenido Mario Gonasalez</p>
-            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </div> */}
+
+      <Carousel/>
       
       <div className='container-column-title'>
         <div className="column-title">

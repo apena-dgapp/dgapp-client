@@ -15,7 +15,7 @@ import pdf from './pdf.png';
 import video from './movie-player.png';
 import link from './link.png';
 import img from './image.png';
-import avatar from "./avatar.jpg";
+import avatar from "./empleadodelmes.webp";
  
 const Images = {
     iconUser,

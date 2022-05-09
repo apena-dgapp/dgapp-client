@@ -139,6 +139,33 @@ nav ul li ul li:hover::before{
     margin-right: 2rem;
 }
 
+.nav-user-img{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 3rem;
+    margin-top: 1rem;
+    margin-right: 1.5rem;
+    object-fit: cover;
+    border: 0.2rem solid gray;
+    // margin-right: 5rem;
+}
+.nav-user-txt-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nav-user-name{
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+.nav-user-position{
+    color: gray;
+    font-size: 1rem;
+}
+
 
 @media screen and (max-width: 400px) {
     .bar_menu{

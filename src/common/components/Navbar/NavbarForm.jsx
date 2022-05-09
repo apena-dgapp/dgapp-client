@@ -1,9 +1,9 @@
-import React, {useContext,useState} from 'react';
+import React, {useState} from 'react';
 import Images from '../../images';
-import GlobalContext from '../../../context/GlobalContext';
+// import GlobalContext from '../../../context/GlobalContext';
 
-const Navbar = ({handeleLang, logOut, createPost, correspo}) => {
-    const [contextState] = useContext(GlobalContext);
+const Navbar = ({handeleLang, logOut, createPost, correspo, person}) => {
+    // const [contextState] = useContext(GlobalContext);
 
         // addEventListener('DOMContentLoaded', () => {
         //     const btn_menu = document.querySelector('.btn_menu')
@@ -42,10 +42,18 @@ const Navbar = ({handeleLang, logOut, createPost, correspo}) => {
              </ul>
 
             <figure className="container-menu-right">
-            <img className="flag-us" src={Images.flagUs} type="button" onClick={() => handeleLang('en-US')} alt="" />
-                    <img className="flag-spain" src={Images.flagSpain} type="button" onClick={() => handeleLang('es-DR')} alt="" />
-                    <img className="user-icon" src={Images.iconUser} onClick={() => logOut()} type="button" alt="" />
-                    <div className="user-text" onClick={() => logOut()}>{contextState.userName}</div>
+                {/* <img className="flag-us" src={Images.flagUs} type="button" onClick={() => handeleLang('en-US')} alt="" />
+                <img className="flag-spain" src={Images.flagSpain} type="button" onClick={() => handeleLang('es-DR')} alt="" />
+                <img className="user-icon" src={Images.iconUser} onClick={() => logOut()} type="button" alt="" />
+                <div className="user-text" onClick={() => logOut()}>{contextState.userName}</div> */}
+
+                <img className='nav-user-img' src={person.photo} alt=''/>
+                <div className="nav-user-txt-cont">
+                    {/* <div className="nav-user-name" onClick={() => logOut()}>{`Hola, ${contextState.userName}`}</div>  */}
+                    <div className="nav-user-name" onClick={() => logOut()}>{`Hola, ${person.fullName}`}</div> 
+                    <div className='nav-user-position'>{person.position}</div>
+                </div>
+               
             </figure>
 
             <span className='btn_menu'>

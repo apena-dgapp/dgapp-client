@@ -12,7 +12,11 @@ const ContextMiddleware = (props) => {
         isAdmin: false,
         isAuth: false,
         appMessage: LangEnglish,
-        appLocale: 'en-US'
+        appLocale: 'en-US',
+        personId:'',
+        // fullName: '',
+        // position:'',
+        // photo:''
     });
 
     function getLocalCache () {
@@ -63,16 +67,16 @@ const ContextMiddleware = (props) => {
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                { token: '', userName:'', isAdmin:false, isAuth:false }
+                { token: '', personId:'', userName:'', isAdmin:false, isAuth:false }
             );
             setLocalCache(localContext);
         };
 
-           const newUserName = (userName, role, isAuth) =>{
+           const newUserName = (personId, userName, role, isAuth) =>{
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                {  userName: userName, isAdmin: role, isAuth: isAuth }
+                { personId:personId, userName: userName, isAdmin: role, isAuth: isAuth }
             );
             setLocalCache(localContext);
         };

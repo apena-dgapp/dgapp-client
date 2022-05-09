@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext} from 'react';
 import { useHistory } from 'react-router-dom';
 import GlobalContext from '../../context/GlobalContext';
 import { apiAuth } from '../../api/auth';
@@ -76,7 +76,7 @@ const Login = ({ intl }) => {
 
             .then(res => {
                 contextMiddleware.newToken(res.token);
-                contextMiddleware.newUserName(profile.username, res.user.UserRoles[0].roleId === 1 ? true : false, profile.isAuth = true);
+                contextMiddleware.newUserName(res.user.personId, profile.username, res.user.UserRoles[0].roleId === 1 ? true : false, profile.isAuth = true);
                 history.push('./home');
 
             })
@@ -84,6 +84,7 @@ const Login = ({ intl }) => {
                 console.log(err.status);
                 throw new toast.error(serverError);
             })
+
     }
 
     return (

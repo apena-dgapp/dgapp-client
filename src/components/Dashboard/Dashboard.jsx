@@ -66,7 +66,6 @@ const Dashboard = () => {
   },[contextState.token])
 
 
-
   const singleInsterest = () => {
 
     const interestNewObj = { 
