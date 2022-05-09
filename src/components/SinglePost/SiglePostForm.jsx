@@ -1,7 +1,5 @@
 import React,{useState} from 'react';
 import Viewer from 'react-viewer';
-// import Slider from "react-slick";
-import Item from "../../utils/item";
 import Carousel from "react-elastic-carousel";
 
 const SiglePostForm = ({dataPost}) => {

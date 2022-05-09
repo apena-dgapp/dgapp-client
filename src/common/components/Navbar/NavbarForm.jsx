@@ -29,7 +29,7 @@ const Navbar = ({handeleLang, logOut, createPost, correspo, person}) => {
             </figure>
 
             <ul className={active}>
-                <li className='class-list'><a href='/intranet'>HOME</a></li>
+                <li className='class-list'><a href='/home'>HOME</a></li>
                 <li className='class-list'><a href='#/'>APPS<img className='icondown' src={Images.icondown} alt=''/></a>
                 <ul>
                     <li><a href='#/' onClick={correspo}>CORRESPONDECE</a></li>
