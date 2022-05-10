@@ -21,8 +21,7 @@ const DashboardForm = ({ arrayPost, interest,singleInsterest, allPost }) => {
         </div>
       </div>
     </div> */}
-
-      <Carousel/>
+    <Carousel/>
       
       <div className='container-column-title'>
         <div className="column-title">

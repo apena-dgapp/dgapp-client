@@ -16,6 +16,7 @@ import video from './movie-player.png';
 import link from './link.png';
 import img from './image.png';
 import avatar from "./empleadodelmes.webp";
+import cumpleanos from './cumpleanos.png';
  
 const Images = {
     iconUser,
@@ -34,7 +35,7 @@ const Images = {
     video,
     link,
     img,
-    avatar
+    avatar,cumpleanos
 }
 
 export default Images;

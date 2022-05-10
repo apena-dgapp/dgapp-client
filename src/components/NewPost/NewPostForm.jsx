@@ -1,6 +1,5 @@
 import React from 'react';
 import Input from '../../common/components/Input/Input';
-// import Images from '../../common/images';
 
 const NewPostForm = ({seletedHandler, sendHandlerImg,handlerInputChange,formData}) => {
 

@@ -48,10 +48,9 @@ const NewPost = () => {
         return
       }
 
-      const myb64 = blobToBase64(img)
-
+      const myb64 = await blobToBase64(img)
       console.log(myb64)
-    
+      
       // newPostApi(contextState.token,formData.title,formData.description, formData.category, formData.author,myb64, formData.views, formData.isActive, contextState.userName,'')
       //     .then(res => {
       //       if (res.status >= 400) throw new alert.err('error al hacer el fetch');
@@ -67,14 +66,14 @@ const NewPost = () => {
       //         console.error(err.status);
       //     })
 
-          // setFormData({
-          //   title:'',
-          //   description:'',
-          //   category:'',
-          //   author:'',
-          //   views: 0,
-          //   isActive: true
-          // })
+      //     setFormData({
+      //       title:'',
+      //       description:'',
+      //       category:'',
+      //       author:'',
+      //       views: 0,
+      //       isActive: true
+      //     })
         
   }
 

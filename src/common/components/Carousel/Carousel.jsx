@@ -2,6 +2,7 @@ import React,{useContext, useEffect, useState} from 'react';
 import GlobalContext from '../../../context/GlobalContext';
 import CardCarousel from '../Carousel/CardCarousel';
 import { getPost } from '../../../api/post';
+import Images from '../../images/index';
 
 
 const Carousel = ({singleInsterest }) => {
@@ -23,6 +24,23 @@ const Carousel = ({singleInsterest }) => {
   
         .then(res => {
           if(!unmounted){
+                var getArray = res.posts;
+                getArray.unshift({
+                  author: "Admin",
+                  category: "birthday",
+                  createdAt: "",
+                  createdBy: "",
+                  description: "Estos son los empleados que cumplen en el Marzo",
+                  image: Images.cumpleanos,
+                  isActive: true,
+                  modifiedAt: "",
+                  modifiedBy: "",
+                  postId: 0,
+                  title: "Cumpleanos",
+                  views: 0
+                })
+                console.log(getArray)
+
             setArrayCarousel(arrayCarousel => [...arrayCarousel, ...res.posts]);
           }
           
@@ -50,20 +68,21 @@ const Carousel = ({singleInsterest }) => {
 
             <div className="carousel-inner">
               {
-                  arrayCarousel.map((post,index) =>{
-                    return(
-                    <CardCarousel
-                      index={index}
-                      key={post.postId}
-                      img={post.image}
-                      title={post.title}
-                      description={post.description}
-                      date={post.createdAt}
-                    />
-                    )
-                  })
+                arrayCarousel.map((post, index) =>{
+                  return(
+                  <CardCarousel
+                    index={index}
+                    key={post.postId}
+                    img={post.image}
+                    title={post.title}
+                    description={post.description}
+                    date={post.createdAt}
+                  />
+                  )
+                })
               }
             </div>      
+
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
               <span className="carousel-control-prev-icon" aria-hidden="true" />
               <span className="visually-hidden">Previous</span>

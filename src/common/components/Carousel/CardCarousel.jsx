@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import Birthday from '../Birthday/Birthday';
 
 const CardCarousel = (props) => {
 
@@ -17,6 +18,9 @@ const CardCarousel = (props) => {
     <>
         <div onClick={singleCarousel} className={`${props.index ===0 ? 'carousel-item active':'carousel-item'}`}>
             <img src={props.img} className="d-block w-100" alt="..." />
+              {
+                props.index ===0 ? <Birthday/>:null
+              }
             <div className="carousel-caption d-none d-md-block">
                 <h5>{props.title}</h5>
                 <div className="p-container">
