@@ -45,6 +45,8 @@ const SiglePostForm = ({dataPost}) => {
         { width: 1200, itemsToShow: 4 },
       ];
 
+      console.log(dataPost.img)
+
   return (
     <>
         <div className='singlePostContainer'>
