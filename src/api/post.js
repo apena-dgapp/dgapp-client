@@ -55,6 +55,41 @@ export const viewUpdate = async (token, id) => {
     })
 }
 
+export const postId = async (token, title, category, author) => {
+    const body = {title, category, author};
+    return fetch(`${process.env.REACT_APP_API}post/postid`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token,
+        }   
+    })
+}
+
+export const createFile = async (token, postid, type, file) => {
+    const body = {postid, type, file};
+    return fetch(`${process.env.REACT_APP_API}files/createfile`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token,
+        }   
+    })
+}
+
+export const getFiles = async (token, postid) => {
+    const body = {postid};
+    return fetch(`${process.env.REACT_APP_API}files/getfiles`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token,
+        }   
+    })
+}
 
 
 

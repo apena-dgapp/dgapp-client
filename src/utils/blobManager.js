@@ -1,26 +1,33 @@
-// export const blobToBase64 = (blob) =>{
+// export const fileToBase64 = (file) =>{
 //     return new Promise((resolve, reject) =>{
 //         const reader = new FileReader();
-//         reader.readAsDataURL(blob);
+//         reader.readAsDataURL(file);
 //         reader.onload = () => {
 //         resolve(reader.result);
 //         }
 //     })
 // }
 
-export const blobToBase64 = (blob) => {
-    return new Promise((resolve, reject) =>{
-        Array.from(blob).forEach(e =>{
-            const reader = new FileReader();
-            reader.readAsDataURL(e);
-            reader.onload = () => {
-                resolve(reader.result);
-                // console.log()
-            }
-        })
-    })
+export const blobToBase64 = async (files) => {
+    
+    const promises = []
+    Array.from(files).forEach(file => promises.push(getBase64(file)))
+    return await Promise.all(promises)
 }
 
+export const getBase64 = (file) => {
+    const reader = new FileReader();
+    return new Promise(resolve => {
+        reader.onload = base64 => {
+            resolve(base64.target.result)
+        }
+       
+        if(file){
+           reader.readAsDataURL(file); 
+        }
+              
+    })
+}
 
 // export const blobToBase64 = (blob) => {
 //     Array.from(blob).forEach(file =>{

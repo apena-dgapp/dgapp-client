@@ -11,8 +11,8 @@ const ContextMiddleware = (props) => {
         userName: '',
         isAdmin: false,
         isAuth: false,
-        appMessage: LangEnglish,
-        appLocale: 'en-US',
+        appMessage: LangSpanish,
+        appLocale: 'en-DR',
         personId:'',
         // fullName: '',
         // position:'',
@@ -30,7 +30,6 @@ const ContextMiddleware = (props) => {
     //         setContextState(localContextCached);
     //     }
     // }, []);
-
 
     const langError = () =>{
       if(contextState.appLocale && contextState.appMessage){
@@ -90,7 +89,7 @@ const ContextMiddleware = (props) => {
                     setLanguage(LangEnglish,'en-US')
                     break; 
                 default:
-                    setLanguage(LangEnglish,'en-US')
+                    setLanguage(LangEnglish,'en-DR')
             }
         }
 

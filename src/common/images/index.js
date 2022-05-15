@@ -12,9 +12,13 @@ import icondown from '../images/down-filled-triangular-arrow.png';
 import barmenu from '../images/menu.png';
 import director from '../images/director.jpg';
 import pdf from './pdf.png';
+import pdfActive from './pdf-active.png';
 import video from './movie-player.png';
 import link from './link.png';
 import img from './image.png';
+import imgActive from './image-active.png';
+import galery from '../images/galeria-de-imagenes.png';
+import galeryActive from '../images/galeria-de-imagenes-active.png';
 import avatar from "./empleadodelmes.webp";
 import cumpleanos from './cumpleanos.png';
  
@@ -32,10 +36,14 @@ const Images = {
     barmenu,
     director,
     pdf,
+    pdfActive,
     video,
     link,
     img,
-    avatar,cumpleanos
+    imgActive,
+    avatar,cumpleanos,
+    galery,
+    galeryActive
 }
 
 export default Images;

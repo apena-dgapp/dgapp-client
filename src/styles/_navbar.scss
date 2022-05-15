@@ -83,8 +83,8 @@ nav ul li ul li:hover::before{
 }
 
 .class-list{
-    margin-left: 3rem;
-    margin-right: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 .container-menu-right{
@@ -147,6 +147,7 @@ nav ul li ul li:hover::before{
     margin-right: 1.5rem;
     object-fit: cover;
     border: 0.2rem solid gray;
+    cursor: pointer;
     // margin-right: 5rem;
 }
 .nav-user-txt-cont{
@@ -160,6 +161,7 @@ nav ul li ul li:hover::before{
   color: white;
   font-size: 1.5rem;
   margin-top: 2rem;
+  cursor: pointer;
 }
 .nav-user-position{
     color: gray;

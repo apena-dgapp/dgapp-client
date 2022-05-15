@@ -1,136 +1,250 @@
-import React from 'react';
-import Input from '../../common/components/Input/Input';
+import React from "react";
+import Input from "../../common/components/Input/Input";
+import Images from "../../common/images/index";
+import { TiDelete } from "react-icons/ti";
 
-const NewPostForm = ({seletedHandler, sendHandlerImg,handlerInputChange,formData}) => {
-
+const NewPostForm = ({
+  sendHandlerForm,
+  handlerInputChange,
+  formData,
+  actionHandler,
+  actionInput,
+  accept,
+  handleruploadFiles,
+  seletedHandler,
+  msgDisable,
+  img,
+  qtyImg,
+  qtyPdf,
+  removeCover,
+  removeGalery,
+  removePdf,
+}) => {
   return (
-    <> 
-        <div className="row post-container">         
-                <div className='post-title'>
-                    <p className='m-0'>CREATE A NEW POST</p>
-                </div>
+    <>
+      <div className="row post-container">
+        <div className="post-title">
+          <p className="m-0">CREAR UNA NUEVA PUBLICACION</p>
+        </div>
 
+        <div className="newPostContainerGrid">
+          <div className="newPostContainer">
+            <div className="newPostInputContainer">
+              <div className="input-group mb-5">
+                <label
+                  className="input-group-text"
+                  htmlFor="inputGroupSelect01"
+                >
+                  CATEGORIA
+                </label>
+                <select
+                  name="category"
+                  value={formData.category}
+                  onChange={handlerInputChange}
+                  className="form-select"
+                  id="inputGroupSelect01"
+                >
+                  <option defaultValue={true}>Elige una Categoria</option>
+                  <option className="option-txt" value="Main Post">
+                    Main Post
+                  </option>
+                  <option className="option-txt" value="Featured Post">
+                    Featured Post
+                  </option>
+                  {/* <option className="option-txt" value="Topic of Interest">Topic of Interest</option> */}
+                </select>
+              </div>
 
-            <div className="newPostContainerGrid">
+              <div className="pb-5">
+                <Input
+                  id="titleinput"
+                  name="title"
+                  type="text"
+                  placeholder="Agregar un titulo"
+                  classInput="inputTitle"
+                  // maxLength="16"
+                  // minLength="4"
+                  onChange={handlerInputChange}
+                  value={formData.title}
+                />
+              </div>
 
-                <div className="newPostContainer">
-                    <div className="newPostInputContainer">
-                        <div className="input-group mb-3">
-                            <label className="input-group-text" htmlFor="inputGroupSelect01">CATEGORY</label>
-                                <select 
-                                    name="category" 
-                                    value={formData.category} 
-                                    onChange={handlerInputChange}
-                                    className="form-select"
-                                    id="inputGroupSelect01"
-                                >
-                                    <option defaultValue={true}>Choose a Category</option>
-                                    <option className="option-txt" value="Main Post">Main Post</option>
-                                    <option className="option-txt" value="Featured Post">Featured Post</option>
-                                    {/* <option className="option-txt" value="Topic of Interest">Topic of Interest</option> */}
-                                </select>
-                        </div>
+              <div className="pb-5">
+                <Input
+                  id="authorinput"
+                  name="author"
+                  type="text"
+                  placeholder="Agregar un autor"
+                  classInput="inputTitle"
+                  // maxLength="16"
+                  // minLength="4"
+                  onChange={handlerInputChange}
+                  value={formData.author}
+                />
+              </div>
 
-                        <div className="pb-4">
-                            <Input
-                                id="titleinput"
-                                name="title"
-                                type="text"
-                                placeholder="Add title here"
-                                classInput="inputTitle"
-                                // maxLength="16"
-                                // minLength="4"
-                                onChange={handlerInputChange}
-                                value={formData.title}
-                            /> 
-                        </div>  
+              <div className="mb-5">
+                <textarea
+                  id="descpinput"
+                  name="description"
+                  className="txtarea"
+                  placeholder="Agregar el contenido de la nueva publicacion"
+                  onChange={handlerInputChange}
+                  value={formData.description}
+                />
+              </div>
+            </div>
+          </div>
 
-                        {/* <div className="">
-                            <input
-                                id="fileinput"
-                                name="content"
-                                type="file"
-                                onChange={seletedHandler}
-                                className='inputAddFile'
-                                accept='.jpg, .jpeg, .jfif, .png'
-                            /> 
-                        </div> */}
-
-                        <div className="pb-4">
-                            <Input
-                                id="authorinput"
-                                name="author"
-                                type="text"
-                                placeholder="Add an author"
-                                classInput="inputTitle"
-                                // maxLength="16"
-                                // minLength="4"
-                                onChange={handlerInputChange}
-                                value={formData.author}
-                            /> 
-                        </div>   
-
-                        <div className="mb-5">
-                            <textarea
-                                id="descpinput"
-                                name='description'
-                                className='txtarea'
-                                placeholder='Add text'
-                                onChange={handlerInputChange}
-                                value={formData.description}
-                            />
-                        </div> 
-                        <div>
-                            <button className="btn-publish" name="btn-publish" type="submit" onClick={sendHandlerImg}>Publish</button>
-                        </div>
-                    </div>
-                </div> 
-
-                <div className="newPostContainer">
-
-                    {/* <div className="newPostToolsContainer">
-                        <div className="newPostImgCont">
-                            <figure>
-                                <p>Add Images</p>
-                                <img className='newPostImg' src={Images.img} alt=''/>
-                            </figure>
-                            <figure>
-                            <p>Add PDF</p>
-                                <img className='newPostImg' src={Images.pdf} alt=''/>
-                            </figure>
-                            <figure>
-                                <p>Add Video</p>
-                                <img className='newPostImg' src={Images.video} alt=''/>
-                            </figure>
-                            <figure>
-                            <p>Add Link</p>
-                                <img className='newPostImg' src={Images.link} alt=''/>
-                            </figure>
-                            
-                        </div>
-                    </div> */}
-                    
-                    <div className="newPostToolsContainer">
-                        <p className='area-txt'>Drag and drop an image or select to add an image</p>
-                        <div className="area">
-                            <input
-                                id="fileinput"
-                                name="content"
-                                type="file"
-                                onChange={seletedHandler}
-                                multiple
-                                // className='inputAddFile'
-                                accept='.jpg, .jpeg, .jfif, .png'
-                            /> 
-                        </div>
-                    </div>
-                    
-                </div> 
-
+          <div className="newPostContainer">
+            <div className="newpost-tools-title">
+              <p>Seleccionar una accion</p>
             </div>
 
+            <div className="newPostToolsContainer">
+              <div className="newPostImgCont">
+                <figure>
+                  <p className="newPostImg-txt">Agregar Portada</p>
+                  <img
+                    name="image"
+                    onClick={actionHandler}
+                    className="newPostImg"
+                    src={
+                      actionInput === "image" ? Images.imgActive : Images.img
+                    }
+                    alt=".jpg, .jpeg, .jfif, .png"
+                  />
+                  {img ? (
+                    <div onClick={removeCover} className="remove-cont">
+                      <p style={{ fontWeight: "bold" }} className="p-0 m-0">
+                        (1)
+                      </p>
+                      <a
+                        style={{ color: "red" }}
+                        href="#/"
+                        className="text-white me-4"
+                      >
+                        <i className="Md Delete-Forever" />
+                        <TiDelete size="2em" color="red" />
+                      </a>
+                    </div>
+                  ) : null}
+                </figure>
+                <figure>
+                  <p className="newPostImg-txt">Agregar Imagenes</p>
+                  <img
+                    name="imagenes"
+                    onClick={actionHandler}
+                    className="newPostImg"
+                    src={
+                      actionInput === "imagenes"
+                        ? Images.galeryActive
+                        : Images.galery
+                    }
+                    alt=".jpg, .jpeg, .jfif, .png"
+                  />
+                  {qtyImg ? (
+                    <div onClick={removeGalery} className="remove-cont">
+                      <p style={{ fontWeight: "bold" }} className="p-0 m-0">
+                        ({qtyImg})
+                      </p>
+                      <a
+                        style={{ color: "red" }}
+                        href="#/"
+                        className="text-white me-4"
+                      >
+                        <i className="Md Delete-Forever" />
+                        <TiDelete size="2em" color="red" />
+                      </a>
+                    </div>
+                  ) : null}
+                </figure>
+                <figure>
+                  <p className="newPostImg-txt">Agregar PDF</p>
+                  <img
+                    name="pdf"
+                    onClick={actionHandler}
+                    className="newPostImg"
+                    src={actionInput === "pdf" ? Images.pdfActive : Images.pdf}
+                    alt=".pdf"
+                  />
+                  {qtyPdf ? (
+                    <div onClick={removePdf} className="remove-cont">
+                      <p style={{ fontWeight: "bold" }} className="p-0 m-0">
+                        ({qtyPdf})
+                      </p>
+                      <a href="#/" className="text-white me-4">
+                        <i className="Md Delete-Forever" />
+                        <TiDelete size="2em" color="red" />
+                      </a>
+                    </div>
+                  ) : null}
+                </figure>
+                <figure>
+                  <p className="newPostImg-txt">Agregar Video</p>
+                  <img
+                    name="video"
+                    onClick={msgDisable}
+                    className="newPostImg"
+                    src={Images.video}
+                    alt=".mp4, .avi, .mkv, .mov"
+                  />
+                  {/* <p className="">Remove (1)</p> */}
+                </figure>
+                {/* <figure>
+                  <p className="newPostImg-txt">Agregar Link</p>
+                  <img
+                    name="link"
+                    onClick={actionHandler}
+                    className="newPostImg"
+                    src={Images.link}
+                    alt=""
+                  />
+                </figure> */}
+              </div>
+            </div>
+            {!actionInput ? null : (
+              <div className="newPostToolsContainer">
+                <div className="area">
+                  <p className="area-txt">
+                    {`Arrastre y suelte ${actionInput} o click para agregar ${actionInput}`}
+                  </p>
+                  {actionInput === "image" ? (
+                    <input
+                      id="fileinput"
+                      name="image"
+                      type="file"
+                      onChange={seletedHandler}
+                      accept=".jpg, .jpeg, .jfif, .png"
+                    />
+                  ) : (
+                    <input
+                      id="fileinput"
+                      name={actionInput}
+                      type="file"
+                      onChange={handleruploadFiles}
+                      accept={accept}
+                      multiple
+                    />
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
+        <div className="btn-publish-cont">
+          <button
+            className="btn-publish"
+            name="btn-publish"
+            type="submit"
+            onClick={sendHandlerForm}
+          >
+            Publicar
+          </button>
+        </div>
+      </div>
     </>
-)}
+  );
+};
 
-export default NewPostForm
+export default NewPostForm;
