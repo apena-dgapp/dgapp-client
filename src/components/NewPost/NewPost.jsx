@@ -64,9 +64,13 @@ const NewPost = () => {
       });
     }
 
-    if (actionInput === "imagenes") {
+    if (actionInput === "imagenes" && files.length > 1) {
       setQtyImg(files.length);
-    } else if (actionInput === "pdf") {
+    } else if (actionInput === "imagenes" && files.length === 1) {
+      setQtyImg(1);
+    }
+
+    if (actionInput === "pdf") {
       setQtyPdf(files.length);
     }
   };
@@ -152,24 +156,29 @@ const NewPost = () => {
             .then((res) => {
               const id = res.post.postId;
               for (let i = 0; i < uploadFiles.imagenes.length; i++) {
-                // console.log(uploadFiles.imagenes[0].split(","));
+                const typeSplit = uploadFiles.imagenes[i].split(";");
+                const type = typeSplit[0].split("/");
+
                 createFile(
                   contextState.token,
                   id,
-                  "",
+                  type[1],
                   uploadFiles.imagenes[i]
                 ).then((res) => {
                   console.log(res.status);
                 });
               }
+              // toast.dismiss(loadingId);
               toast.success("Publicacion guardada exitosamente!");
               scrollToTop();
             })
             .catch((err) => {
+              // toast.dismiss(loadingId);
               console.error(err.status);
               toast.error("Error al intentar guardar la publicacion!");
             });
         } else {
+          // toast.dismiss(loadingId);
           toast.success("Publicacion guardada exitosamente!");
           scrollToTop();
         }

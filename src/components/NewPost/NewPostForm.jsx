@@ -232,16 +232,16 @@ const NewPostForm = ({
             )}
           </div>
         </div>
-        <div className="btn-publish-cont">
-          <button
-            className="btn-publish"
-            name="btn-publish"
-            type="submit"
-            onClick={sendHandlerForm}
-          >
-            Publicar
-          </button>
-        </div>
+      </div>
+      <div className="btn-publish-cont">
+        <button
+          className="btn-publish"
+          name="btn-publish"
+          type="submit"
+          onClick={sendHandlerForm}
+        >
+          Publicar
+        </button>
       </div>
     </>
   );

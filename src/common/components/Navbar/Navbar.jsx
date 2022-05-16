@@ -60,26 +60,29 @@ const Header = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getOnePerson(contextState.token, contextState.personId)
-      .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
-        return res.json();
-      })
-      .then((res) => {
-        if (!unmounted) {
-          //  setInterest(res.post);
-          setPerson({
-            fullName:
-              res.firstName.split(" ", 1) + " " + res.lastName.split(" ", 1),
-            position: res.position,
-            birthday: res.birthday,
-            photo: res.photo,
-          });
-        }
-      })
-      .catch((err) => {
-        console.error(err.status);
-      });
+    if (contextState.personId) {
+      getOnePerson(contextState.token, contextState.personId)
+        .then((res) => {
+          if (res.status >= 400)
+            throw new alert.err("error usuario incorrecto");
+          return res.json();
+        })
+        .then((res) => {
+          if (!unmounted) {
+            //  setInterest(res.post);
+            setPerson({
+              fullName:
+                res.firstName.split(" ", 1) + " " + res.lastName.split(" ", 1),
+              position: res.position,
+              birthday: res.birthday,
+              photo: res.photo,
+            });
+          }
+        })
+        .catch((err) => {
+          console.error(err.status);
+        });
+    }
 
     return () => {
       unmounted = true;

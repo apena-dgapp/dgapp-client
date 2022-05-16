@@ -10,10 +10,8 @@ const LoginForm = ({
   handeleSignIn,
   intl,
   profile,
-  modalActive,
   modalToggle,
   userRegister,
-  handeleLang,
 }) => {
   // //ContexState
   const [contextState] = useContext(GlobalContext);
@@ -48,7 +46,6 @@ const LoginForm = ({
     <>
       <Modal
         // modalTitle={modalValidaton ? modalTitleAuth : modalTitle}
-        modalActive={modalActive}
         modalToggle={modalToggle}
         inputState={inputFields}
         setInputState={setInputField}

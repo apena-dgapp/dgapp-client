@@ -25,7 +25,7 @@ const Login = ({ intl }) => {
   });
 
   const history = useHistory();
-  const [modalActive, setModalActive] = useState(false);
+  // const [modalActive, setModalActive] = useState(false);
 
   //InitialState - ContexState
   const [, , contextMiddleware] = useContext(GlobalContext);
@@ -113,7 +113,7 @@ const Login = ({ intl }) => {
         profileInputs={handleInputChange}
         handeleSignIn={handeleSignIn}
         profile={profile}
-        modalActive={modalActive}
+        // modalActive={modalActive}
         modalToggle={modalToggle}
         userRegister={userRegister}
         handeleLang={setLanguage}

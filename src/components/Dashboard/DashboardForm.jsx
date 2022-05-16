@@ -68,6 +68,7 @@ const DashboardForm = ({ arrayPost, interest, singleInsterest, allPost }) => {
         <div className="card card-costum mb-3">
           <img
             src={interest.image}
+            id={interest.postId}
             className="card-img-top img-costum"
             alt="..."
           />

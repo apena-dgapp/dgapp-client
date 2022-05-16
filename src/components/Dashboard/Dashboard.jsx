@@ -1,100 +1,89 @@
-import React,{useContext,useState,useEffect} from 'react';
-import { useHistory } from 'react-router-dom';
-import GlobalContext from '../../context/GlobalContext';
-import DashboardForm from './DashboardForm';
-import {getPost, interestPost} from '../../api/post'; 
+import React, { useContext, useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import GlobalContext from "../../context/GlobalContext";
+import DashboardForm from "./DashboardForm";
+import { getPost, interestPost } from "../../api/post";
 
 const Dashboard = () => {
-
   const [contextState] = useContext(GlobalContext);
   const history = useHistory();
 
   const [arrayPost, setArrayPost] = useState([]);
-  const [interest, setInterest] = useState('');
+  const [interest, setInterest] = useState("");
 
-  useEffect(()=>{
-
+  useEffect(() => {
     let unmounted = false;
 
-      getPost(contextState.token,'Featured Post')
-        .then(res => {
-          if (res.status >= 400) throw new alert.err('error usuario incorrecto');
-          return res.json();
+    getPost(contextState.token, "Featured Post")
+      .then((res) => {
+        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setArrayPost((arrayPost) => [...arrayPost, ...res.posts]);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
 
-        })
-        .then(res => {
-          if(!unmounted){
-            setArrayPost(arrayPost => [...arrayPost, ...res.posts]);
-          }
-          
-        })
-        .catch(err => {
-            console.error(err.status);
-        })
+    return () => {
+      unmounted = true;
+    };
+  }, [contextState.token]);
 
-        return () => {
-          unmounted = true
-        } 
-      
-  },[contextState.token])
-
-
-  useEffect(()=>{
-
+  useEffect(() => {
     let unmounted = false;
 
     interestPost(contextState.token)
-      .then(res => {
-        if (res.status >= 400) throw new alert.err('error usuario incorrecto');
+      .then((res) => {
+        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
-
       })
-      .then(res => {
-        if(!unmounted){
-         setInterest(res.post);
+      .then((res) => {
+        if (!unmounted) {
+          setInterest(res.post);
         }
-        
       })
-      .catch(err => {
-          console.error(err.status);
-      })
+      .catch((err) => {
+        console.error(err.status);
+      });
 
-      return () => {
-        unmounted = true
-      } 
-      
-  },[contextState.token])
-
+    return () => {
+      unmounted = true;
+    };
+  }, [contextState.token]);
 
   const singleInsterest = () => {
-
-    const interestNewObj = { 
-        title: interest.title,
-        img: interest.image,
-        description: interest.description,
-        date: interest.createdAt 
+    const interestNewObj = {
+      id: interest.postId,
+      title: interest.title,
+      img: interest.image,
+      description: interest.description,
+      date: interest.createdAt,
     };
-    
-      history.push({
-        pathname: './siglepost',
-        state: interestNewObj
-      })
-  }
+
+    history.push({
+      pathname: "./siglepost",
+      state: interestNewObj,
+    });
+  };
 
   const allPost = () => {
-    history.push('./allpost')
-  }
+    history.push("./allpost");
+  };
 
   return (
     <>
-    <DashboardForm
-      arrayPost={arrayPost}
-      interest={interest}
-      singleInsterest={singleInsterest}
-      allPost={allPost}
-    />
+      <DashboardForm
+        arrayPost={arrayPost}
+        interest={interest}
+        singleInsterest={singleInsterest}
+        allPost={allPost}
+      />
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

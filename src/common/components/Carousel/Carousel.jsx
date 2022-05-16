@@ -31,7 +31,7 @@ const Carousel = ({ singleInsterest }) => {
             isActive: true,
             modifiedAt: "",
             modifiedBy: "",
-            postId: 0,
+            postId: 1,
             title: "Cumpleanos",
             views: 0,
           });
@@ -84,6 +84,12 @@ const Carousel = ({ singleInsterest }) => {
               data-bs-slide-to={3}
               aria-label="Slide 4"
             />
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to={4}
+              aria-label="Slide 4"
+            />
           </div>
 
           <div className="carousel-inner">
@@ -92,6 +98,7 @@ const Carousel = ({ singleInsterest }) => {
                 <CardCarousel
                   index={index}
                   key={post.postId}
+                  id={post.postId}
                   img={post.image}
                   title={post.title}
                   description={post.description}
