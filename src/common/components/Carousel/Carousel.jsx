@@ -4,13 +4,18 @@ import CardCarousel from "../Carousel/CardCarousel";
 import { getPost } from "../../../api/post";
 import Images from "../../images/index";
 
-const Carousel = ({ singleInsterest }) => {
+const Carousel = () => {
   const [contextState] = useContext(GlobalContext);
 
   const [arrayCarousel, setArrayCarousel] = useState([]);
 
+  // const month = new Date(date).toDateString();
+
   useEffect(() => {
     let unmounted = false;
+    const month = new Intl.DateTimeFormat("es-ES", { month: "long" }).format(
+      new Date()
+    );
 
     getPost(contextState.token, "Main Post")
       .then((res) => {
@@ -26,13 +31,15 @@ const Carousel = ({ singleInsterest }) => {
             category: "birthday",
             createdAt: "",
             createdBy: "",
-            description: "Estos son los empleados que cumplen en el Marzo",
+            description:
+              "Estos son los Cumpleaños de " +
+              month.replace(/^\w/, (c) => c.toUpperCase()),
             image: Images.cumpleanos,
             isActive: true,
             modifiedAt: "",
             modifiedBy: "",
             postId: 1,
-            title: "Cumpleanos",
+            title: "Cumpleaños",
             views: 0,
           });
           //console.log(getArray)

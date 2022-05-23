@@ -1,29 +1,49 @@
-import React from 'react'
+import React from "react";
 
-const BirthdayForm = () => {
+const BirthdayForm = ({ arrayBirthday }) => {
+  const month = new Intl.DateTimeFormat("es-ES", { month: "long" }).format(
+    new Date()
+  );
   return (
-    <>    
-        <div className="birthday-cont">
-            <p className="birtday-title">Mes de Marzo</p>
-            <div className="birtday-list-cont">
-                <div className="birtday-list">
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Lunes (02)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Sabado (10)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Miercoles (17)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Miercoles (17)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Vierens (19)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Lunes (28)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Lunes (02)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Sabado (10)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Miercoles (17)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Miercoles (17)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Vierens (19)</div>
-                    <div className='birtday-enl'>&#127880; Maria Lopez - Lunes (28)</div>
-                </div>
-            </div>
-        </div>
-    </>
-  )
-}
+    <>
+      <div className="birthday-cont">
+        <p className="birtday-title">
+          Mes de {month.replace(/^\w/, (c) => c.toUpperCase())}
+        </p>
+        <div className="birtday-list-cont">
+          <div className="birtday-list">
+            {arrayBirthday.map((file) => {
+              const day = file.birthdayDate.split("-");
+              const daySplit = day[2];
+              const currentDay = `${new Date().getFullYear()}-${
+                new Date().getMonth() + 1
+              }-${daySplit}`;
+              const fechaComoCadena = currentDay; // día lunes
+              const dias = [
+                "domingo",
+                "lunes",
+                "martes",
+                "miércoles",
+                "jueves",
+                "viernes",
+                "sábado",
+              ];
+              const numeroDia = new Date(fechaComoCadena).getDay();
+              const nombreDia = dias[numeroDia];
+              // console.log("Nombre de día de la semana: ", nombreDia);
 
-export default BirthdayForm
+              return (
+                <div key={file.personId} className="birtday-enl">
+                  &#127880; {file.firstName} -{" "}
+                  {nombreDia.replace(/^\w/, (c) => c.toUpperCase())} {daySplit}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default BirthdayForm;
