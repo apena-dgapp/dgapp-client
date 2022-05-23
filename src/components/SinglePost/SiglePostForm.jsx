@@ -13,22 +13,30 @@ const SiglePostForm = ({ dataPost, arrayImg }) => {
     { width: 1200, itemsToShow: 4 },
   ];
 
+  // console.log(arrayImg.files.length);
+
+  // if (arrayImg.length < 1) {
+  // }
+
   return (
     <>
       <div className="singlePostContainer">
         <div className="singlePostTitle">
-          <p className="m-0">{dataPost.title}</p>
+          {/* <p className="m-0">{dataPost.title}</p> */}
           {/* <figure className='singlePost-img'>
                     <img className='post-title-img' src={Images.blog} alt=''/>
                 </figure> */}
+          <h2 className="">{new Date(dataPost.date).toDateString()}</h2>
+          <h1 className="">{dataPost.title}</h1>
+          <h2 className="">Por {dataPost.author}</h2>
         </div>
 
         <div className="singlePost-img-cont">
           <img className="singlePost-img" src={dataPost.img} alt="" />
 
-          <div className="postDate">
+          {/* <div className="postDate">
             <p>{new Date(dataPost.date).toDateString()}</p>
-          </div>
+          </div> */}
 
           <div className="singlePostDescp-container">
             <p className="singlePostDescp">{dataPost.description}</p>

@@ -62,6 +62,7 @@ const Dashboard = () => {
       img: interest.image,
       description: interest.description,
       date: interest.createdAt,
+      author: interest.author,
     };
 
     history.push({

@@ -39,6 +39,7 @@ const DashboardForm = ({ arrayPost, interest, singleInsterest, allPost }) => {
                 img={post.image}
                 description={post.description}
                 date={post.createdAt}
+                author={post.author}
               />
             );
           })}
