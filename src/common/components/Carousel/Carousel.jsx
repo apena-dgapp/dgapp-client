@@ -32,14 +32,13 @@ const Carousel = () => {
             createdAt: "",
             createdBy: "",
             description:
-              "Estos son los Cumpleaños de " +
-              month.replace(/^\w/, (c) => c.toUpperCase()),
+              "Como parte de las nuevas políticas de binestar de la DGAPP, el día del cumpleaños de colaborador es libre, si cae fin de semana puede tomarlo otro día en el mismo mes.",
             image: Images.cumpleanos,
             isActive: true,
             modifiedAt: "",
             modifiedBy: "",
             postId: 1,
-            title: "Cumpleaños",
+            title: "Mes de " + month.replace(/^\w/, (c) => c.toUpperCase()),
             views: 0,
           });
           //console.log(getArray)

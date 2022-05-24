@@ -1,15 +1,13 @@
 import React from "react";
 
 const BirthdayForm = ({ arrayBirthday }) => {
-  const month = new Intl.DateTimeFormat("es-ES", { month: "long" }).format(
-    new Date()
-  );
+  // const month = new Intl.DateTimeFormat("es-ES", { month: "long" }).format(
+  //   new Date()
+  // );
   return (
     <>
       <div className="birthday-cont">
-        <p className="birtday-title">
-          Mes de {month.replace(/^\w/, (c) => c.toUpperCase())}
-        </p>
+        <p className="birtday-title">CUMPLEAÑOS</p>
         <div className="birtday-list-cont">
           <div className="birtday-list">
             {arrayBirthday.map((file) => {
@@ -36,6 +34,7 @@ const BirthdayForm = ({ arrayBirthday }) => {
                 <div key={file.personId} className="birtday-enl">
                   &#127880; {file.firstName} -{" "}
                   {nombreDia.replace(/^\w/, (c) => c.toUpperCase())} {daySplit}
+                  <p className="birthday-position">{file.position}</p>
                 </div>
               );
             })}

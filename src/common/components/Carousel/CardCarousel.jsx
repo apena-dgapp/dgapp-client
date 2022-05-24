@@ -15,7 +15,7 @@ const CardCarousel = (props) => {
   return (
     <>
       <div
-        onClick={singleCarousel}
+        onClick={props.index !== 0 ? singleCarousel : null}
         className={`${
           props.index === 0 ? "carousel-item active" : "carousel-item"
         }`}
@@ -25,9 +25,15 @@ const CardCarousel = (props) => {
         <div className="carousel-caption d-none d-md-block">
           <h5>{props.title}</h5>
           <div className="p-container">
-            <div className="p-class">
-              <p>{props.description}</p>
-            </div>
+            {props.index === 0 ? (
+              <div className="p-class-birthday">
+                <p>{props.description}</p>
+              </div>
+            ) : (
+              <div className="p-class">
+                <p>{props.description}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

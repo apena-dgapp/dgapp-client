@@ -42,6 +42,10 @@
     font-size: 40px;
     font-family: 'Montserrat', sans-serif;
 }
+
+.p-class{
+    width: 60%;
+}
 .p-class > p {
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
@@ -49,6 +53,19 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.p-class-birthday{
+    width: 60%;
+}
+.p-class-birthday > p {
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 .p-container{
@@ -59,9 +76,7 @@
     width: 100%;
 }
 
-.p-class{
-    width: 60%;
-}
+
 .carousel-control-next{
     // position: relative;
     // z-index: 0;

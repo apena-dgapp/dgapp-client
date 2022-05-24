@@ -5,7 +5,7 @@
 @import "./register";
 @import "./navbar";
 @import "./sidebar";
-@import "./Dashboard"; 
+@import "./dashboard"; 
 @import "./newpost";
 @import "./singlepost";
 @import "./carousel";
@@ -13,7 +13,8 @@
 @import "./allpost";
 @import "./footer";
 @import "./correspondence";
-@import "./OrganizationChart";
+@import "./organizationChart";
+@import "./birthday";
 
 *, *:before, *:after{
   margin: 0;
