@@ -4,6 +4,7 @@ import Input from "../../common/components/Input/Input";
 import Button from "../../common/components/Button/Button";
 import Modal from "../../common/components/Modal/Modal";
 import GlobalContext from "../../context/GlobalContext";
+import Images from "../../common/images/index";
 
 const LoginForm = ({
   profileInputs,
@@ -55,7 +56,9 @@ const LoginForm = ({
                     <img className="flag-us-login" src={Images.flagUs} type="button" onClick={() => handeleLang('en-US')} alt="" />
                     <img className="flag-spain-login" src={Images.flagSpain} type="button" onClick={() => handeleLang('es-DR')} alt="" />
                 </figure> */}
-
+      <div className="login-dgappLogo-container">
+        <img className="login-dgappLogo-img" src={Images.dgappLogo2} alt="" />
+      </div>
       <div className="container-login">
         <div className="d-flex justify-content-center">
           <p className="txt-title">
