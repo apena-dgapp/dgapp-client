@@ -1,6 +1,6 @@
 import React from "react";
 
-const BirthdayForm = ({ arrayBirthday }) => {
+const BirthdayForm = ({ arrayBirthday, employeeProfile }) => {
   // const month = new Intl.DateTimeFormat("es-ES", { month: "long" }).format(
   //   new Date()
   // );
@@ -30,9 +30,19 @@ const BirthdayForm = ({ arrayBirthday }) => {
               const nombreDia = dias[numeroDia];
               // console.log("Nombre de día de la semana: ", nombreDia);
 
+              const firstN = file.firstName.split(" ");
+              const lastN = file.lastName.split(" ");
+              const firstNSplit = firstN[0];
+              const lastNSplit = lastN[0];
+
               return (
-                <div key={file.personId} className="birtday-enl">
-                  &#127880; {file.firstName} -{" "}
+                <div
+                  onClick={employeeProfile}
+                  key={file.personId}
+                  id={file.personId}
+                  className="birtday-enl"
+                >
+                  &#127880; {firstNSplit + " " + lastNSplit} -{" "}
                   {nombreDia.replace(/^\w/, (c) => c.toUpperCase())} {daySplit}
                   <p className="birthday-position">{file.position}</p>
                 </div>

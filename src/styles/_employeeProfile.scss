@@ -1,0 +1,133 @@
+.employee-container{
+    width: 100%;
+    height: 100%;
+}
+.employee-header-container{
+    width: 100%;
+    height: 35em;
+    // background: rgb(85,132,172);
+    // background: linear-gradient(0deg, rgba(85,132,172,1) 0%, rgba(34,87,126,1) 58%);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/colleagues-giving-fist-bump.jpg");
+}
+.employee-card-container{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    height: 100%;
+    padding-right: 2rem;
+}
+.employee-img-container{
+    width: 20%;
+    height: 28em;
+    margin-top: 10em;
+    background-color: white;
+    position: fixed;
+    border-radius: 0.5rem;
+}
+.employee-name{
+    padding-top: 10rem;
+    color: white;
+    font-size: 2.5rem;
+    margin-left: 1.5rem;
+}
+.employee-position{
+    // padding-top: 10rem;
+    color: rgb(247, 200, 140);
+    font-size: 1rem;
+    margin-left: 1.5rem;
+    margin-bottom: 3rem;
+}
+.employee-info-container{
+    display: flex;
+    margin-left: 1.5rem;
+}
+.employee-info-text{
+    margin-left: 1rem;
+    color: white;
+}
+.employee-btn-container{
+    margin-left: 1rem;
+    margin-top: 2rem;   
+}
+.employee-btn{
+    margin-right: 0.8rem;
+}
+
+.employee-img{
+    width: 100%;
+    border-radius: 0.5rem 0.5rem 0 0 ;
+}
+.employe-line-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.employee-line{
+    border-top: 0.1rem solid;
+    width: 90%;
+    border-color: gainsboro;
+}
+.employee-report-to{
+    margin-top: 1.5rem;
+    margin-left: 1.1rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.employee-report-img{
+    width: 25%;
+    margin-left: 0.5rem;
+    border-radius: 0.3rem;
+    margin-top: 0.6rem;
+}
+
+.employee-report-txt{
+    margin-left: 0.5rem;
+}
+.employee-report-position{
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.employee-report-name{
+    font-size: 0.8rem;
+}
+.employee-report-arrow{
+    float: right;
+    margin-right: 1rem;
+}
+.employee-updates-container{
+    width: 100%;
+    height: 100%;
+}
+.employee-updates-title{
+    margin-top: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-left: 1.5rem;
+}
+.employee-upcoming-title{
+    margin-top: 1rem;
+    margin-bottom: 0.8rem;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-left: 1.5rem;
+}
+
+.employee-upcoming-birthday{
+    margin-left: 0.5rem;
+    color: rgb(22, 21, 21);
+    margin-bottom:0;
+    font-size: 1.3rem;
+    margin-top: -0.2rem;
+}
+.employee-upcoming-wishing{
+    margin-left: 1.9rem;
+    color: rgb(22, 21, 21); 
+    font-size: 0.8rem;
+}
+.employee-email-container{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 13em;
+}

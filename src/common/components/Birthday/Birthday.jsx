@@ -2,11 +2,12 @@ import React, { useEffect, useContext, useState } from "react";
 import BirthdayForm from "./BirthdayForm";
 import GlobalContext from "../../../context/GlobalContext";
 import { getBirthday } from "../../../api/person";
+import { useHistory } from "react-router-dom";
 
 const Birthday = () => {
   const [contextState] = useContext(GlobalContext);
-
   const [arrayBirthday, setArrayBirthday] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     let unmounted = false;
@@ -31,9 +32,19 @@ const Birthday = () => {
     };
   }, [contextState.token]);
 
+  const employeeProfile = () => {
+    history.push({
+      pathname: "./employee",
+      state: arrayBirthday,
+    });
+  };
+
   return (
     <>
-      <BirthdayForm arrayBirthday={arrayBirthday} />
+      <BirthdayForm
+        arrayBirthday={arrayBirthday}
+        employeeProfile={employeeProfile}
+      />
     </>
   );
 };
