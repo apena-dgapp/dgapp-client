@@ -28,7 +28,6 @@ const BirthdayForm = ({ arrayBirthday, employeeProfile }) => {
               ];
               const numeroDia = new Date(fechaComoCadena).getDay();
               const nombreDia = dias[numeroDia];
-              // console.log("Nombre de día de la semana: ", nombreDia);
 
               const firstN = file.firstName.split(" ");
               const lastN = file.lastName.split(" ");

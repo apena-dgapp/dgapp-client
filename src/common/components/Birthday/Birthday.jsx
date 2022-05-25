@@ -32,10 +32,11 @@ const Birthday = () => {
     };
   }, [contextState.token]);
 
-  const employeeProfile = () => {
+  const employeeProfile = (e) => {
+    const employeeId = e.currentTarget.id;
     history.push({
       pathname: "./employee",
-      state: arrayBirthday,
+      state: employeeId,
     });
   };
 
