@@ -20,7 +20,12 @@ const CardCarousel = (props) => {
           props.index === 0 ? "carousel-item active" : "carousel-item"
         }`}
       >
-        <img src={props.img} className="d-block w-100" alt="..." />
+        <img
+          style={props.index !== 0 ? { cursor: "pointer" } : null}
+          src={props.img}
+          className="d-block w-100"
+          alt="..."
+        />
         {props.index === 0 ? <Birthday /> : null}
         <div className="carousel-caption d-none d-md-block">
           <h5>{props.title}</h5>

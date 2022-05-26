@@ -9,8 +9,6 @@ const Carousel = () => {
 
   const [arrayCarousel, setArrayCarousel] = useState([]);
 
-  // const month = new Date(date).toDateString();
-
   useEffect(() => {
     let unmounted = false;
     const month = new Intl.DateTimeFormat("es-ES", { month: "long" }).format(
@@ -41,7 +39,6 @@ const Carousel = () => {
             title: "Mes de " + month.replace(/^\w/, (c) => c.toUpperCase()),
             views: 0,
           });
-          //console.log(getArray)
 
           setArrayCarousel((arrayCarousel) => [...arrayCarousel, ...res.posts]);
         }

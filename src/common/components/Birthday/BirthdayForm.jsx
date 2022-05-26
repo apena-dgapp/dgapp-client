@@ -39,10 +39,12 @@ const BirthdayForm = ({ arrayBirthday, employeeProfile }) => {
                   onClick={employeeProfile}
                   key={file.personId}
                   id={file.personId}
-                  className="birtday-enl"
                 >
-                  &#127880; {firstNSplit + " " + lastNSplit} -{" "}
-                  {nombreDia.replace(/^\w/, (c) => c.toUpperCase())} {daySplit}
+                  <p className="birthday-name">
+                    &#127880; {firstNSplit + " " + lastNSplit} -{" "}
+                    {nombreDia.replace(/^\w/, (c) => c.toUpperCase())}{" "}
+                    {daySplit}
+                  </p>
                   <p className="birthday-position">{file.position}</p>
                 </div>
               );

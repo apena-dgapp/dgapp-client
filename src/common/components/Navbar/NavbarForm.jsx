@@ -36,7 +36,9 @@ const Navbar = ({
     <>
       <nav className="bar_menu">
         <figure>
-          <img className="logo_dgapp" src={Images.dgappLogo} alt=""></img>
+          <a href="/home">
+            <img className="logo_dgapp" src={Images.dgappLogo} alt="" />
+          </a>
         </figure>
 
         <ul className={active}>

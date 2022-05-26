@@ -48,9 +48,6 @@ const EmployeeForm = ({ profile, reportsTo }) => {
     var reportsToPosition = reportsTo.position;
     var reportsToPhoto = reportsTo.photo;
   }
-
-  console.log(reportsTo);
-
   return (
     <>
       <div className="employee-container">
