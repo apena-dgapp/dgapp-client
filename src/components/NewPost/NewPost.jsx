@@ -101,7 +101,7 @@ const NewPost = () => {
     document.getElementById("fileinput").value = "";
   };
 
-  const sendHandlerForm = async () => {
+  const sendHandlerForm = async (editor_content) => {
     if (!formData.category) {
       alert("Por favor agregar un categoria");
       return;
@@ -111,18 +111,18 @@ const NewPost = () => {
     } else if (!formData.author) {
       alert("Por favor agregar un autor");
       return;
-    } else if (!formData.description) {
+    } else if (!editor_content) {
       alert("Por favor agregar una descripcion");
       return;
     } else if (!img) {
-      alert("Por favor agregar una descripcion");
+      alert("Por favor agregar una imagen de portada");
       return;
     }
 
     newPostApi(
       contextState.token,
       formData.title,
-      formData.description,
+      editor_content,
       formData.category,
       formData.author,
       img,

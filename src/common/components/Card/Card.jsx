@@ -29,7 +29,10 @@ const CardForm = (props) => {
         <img src={props.img} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
-          <p className="card-text">{props.description}</p>
+          <p
+            dangerouslySetInnerHTML={{ __html: props.description }}
+            className="card-text"
+          ></p>
         </div>
         <p className="card-date">
           <small className="text-muted">

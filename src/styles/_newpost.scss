@@ -42,6 +42,37 @@
     border: #141E61 solid 1px;
 }
 
+.editor{
+  width: 35rem;
+  height: 15em;
+  background-color: white;
+  border: none !important;
+  border-radius:0.5rem ;
+  
+}
+
+.rdw-editor-wrapper{
+  // border-top: gray solid 1px;
+  border-bottom: gray solid 1px;
+  border-right: gray solid 1px;
+  border-left: gray solid 1px;
+  border-radius:0.5rem ;
+}
+.editor .rdw-editor-main{
+  border-radius: 0.6vw;
+}
+.rdw-editor-toolbar{
+  // border: none !important;
+  border-bottom:1px solid #F1F1F1 !important ;
+  border-top: gray solid 1px;
+  border-radius:0.5rem 0.5rem 0 0;
+}
+.editor-class{
+  background-color: white;
+  width: 34.5rem;
+  height: 8.7em;
+  overflow-x: hidden;
+}
 .btn-publish {
     border-radius: 0.6rem;
     width: 15rem;
@@ -59,6 +90,19 @@
       background-color: #787A91;
     }
   }
+  .input-group{
+    display: flex;
+    justify-content: center;
+    border-radius: 0.6vw;
+    width: 35rem;
+    height: 3rem;
+    border: gray solid 1px;
+    padding-left: 1rem;
+    font-size: 1rem;
+    outline: none;
+    align-items: center;
+}
+  
 
   .input-group-text{
     font-weight: bold;
@@ -69,11 +113,21 @@
     font-size: 1rem;   
     color: gray;
     font-style: normal;
+    width: 10px;
+  }
+  .rdw-dropdown-selectedtext{
+    text-decoration: none;
+    color: #000;
+    font-size: 0.8rem;
+  }
+  .option-txt-placeholder{
+    color: gray;
   }
 .option-txt{
     font-size: 1rem;
     color: #141E61;
     font-weight: bold;
+
 }
 
 .newPostContainerGrid{
@@ -96,6 +150,8 @@
 //   display: flex;
 //   justify-content: center;
 // }
+
+
 
 .area {
   width: 48rem;

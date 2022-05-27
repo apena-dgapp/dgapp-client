@@ -32,7 +32,7 @@ const CardCarousel = (props) => {
           <div className="p-container">
             {props.index === 0 ? (
               <div className="p-class-birthday">
-                <p>{props.description}</p>
+                <p dangerouslySetInnerHTML={{ __html: props.description }}></p>
               </div>
             ) : (
               <div className="p-class">

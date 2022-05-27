@@ -2,6 +2,8 @@ import React from "react";
 import Input from "../../common/components/Input/Input";
 import Images from "../../common/images/index";
 import { TiDelete } from "react-icons/ti";
+import WYSIWYGEditor from "../../common/components/TextEditor/WYSIWYG";
+import { useForm, Controller } from "react-hook-form";
 
 const NewPostForm = ({
   sendHandlerForm,
@@ -20,6 +22,13 @@ const NewPostForm = ({
   removeGalery,
   removePdf,
 }) => {
+  const { handleSubmit, control } = useForm({
+    mode: "onChange",
+  });
+  const handleSubmitOnClick = ({ editor_content }) => {
+    sendHandlerForm(editor_content);
+  };
+
   return (
     <>
       <div className="row post-container">
@@ -30,13 +39,11 @@ const NewPostForm = ({
         <div className="newPostContainerGrid">
           <div className="newPostContainer">
             <div className="newPostInputContainer">
-              <div className="input-group mb-5">
-                <label
+              <div className="d-flex justify-content-center mb-5">
+                {/* <label
                   className="input-group-text"
                   htmlFor="inputGroupSelect01"
-                >
-                  CATEGORIA
-                </label>
+                ></label>
                 <select
                   name="category"
                   value={formData.category}
@@ -51,8 +58,29 @@ const NewPostForm = ({
                   <option className="option-txt" value="Featured Post">
                     Featured Post
                   </option>
-                  {/* <option className="option-txt" value="Topic of Interest">Topic of Interest</option> */}
-                </select>
+                </select> */}
+                <div className="select">
+                  <select
+                    name="category"
+                    value={formData.category}
+                    onChange={handlerInputChange}
+                    className="input-group"
+                    id="inputGroupSelect01"
+                  >
+                    <option
+                      className="option-txt-placeholder"
+                      defaultValue={true}
+                    >
+                      Elige una Categoria
+                    </option>
+                    <option className="option-txt" value="Main Post">
+                      Main Post
+                    </option>
+                    <option className="option-txt" value="Featured Post">
+                      Featured Post
+                    </option>
+                  </select>
+                </div>
               </div>
 
               <div className="pb-5">
@@ -84,14 +112,30 @@ const NewPostForm = ({
               </div>
 
               <div className="mb-5">
-                <textarea
+                {/* <textarea
                   id="descpinput"
                   name="description"
                   className="txtarea"
                   placeholder="Agregar el contenido de la nueva publicacion"
                   onChange={handlerInputChange}
                   value={formData.description}
-                />
+                /> */}
+                <form onSubmit={handleSubmit(handleSubmitOnClick)}>
+                  <Controller
+                    as={<WYSIWYGEditor />}
+                    name="editor_content"
+                    control={control}
+                  />
+                  <div className="btn-publish-cont">
+                    <button
+                      className="btn-publish"
+                      name="btn-publish"
+                      type="submit"
+                    >
+                      Publicar
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -233,7 +277,7 @@ const NewPostForm = ({
           </div>
         </div>
       </div>
-      <div className="btn-publish-cont">
+      {/* <div className="btn-publish-cont">
         <button
           className="btn-publish"
           name="btn-publish"
@@ -242,7 +286,7 @@ const NewPostForm = ({
         >
           Publicar
         </button>
-      </div>
+      </div> */}
     </>
   );
 };

@@ -39,7 +39,10 @@ const SiglePostForm = ({ dataPost, arrayImg }) => {
           </div> */}
 
           <div className="singlePostDescp-container">
-            <p className="singlePostDescp">{dataPost.description}</p>
+            <p
+              dangerouslySetInnerHTML={{ __html: dataPost.description }}
+              className="singlePostDescp"
+            ></p>
           </div>
         </div>
 
