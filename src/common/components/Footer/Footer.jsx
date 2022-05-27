@@ -85,7 +85,7 @@ const Footer = () => {
                   </a>
                 </p>
                 <p>
-                  <a href="#!" className="text-white">
+                  <a href="./aboutus" className="text-white">
                     MDWordPress
                   </a>
                 </p>

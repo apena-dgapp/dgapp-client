@@ -4,15 +4,15 @@ import React, { useState } from "react";
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
-
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-// import "./WYSIWYG.scss";
+import clearFormatting from 'draft-js-clear-formatting';
+
 
 const WYSIWYGEditor = props => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const onEditorStateChange = editorState => {
     setEditorState(editorState);
-    console.log("PROPS ==> ", props);
+    // console.log("PROPS ==> ", props);
     return props.onChange(
       draftToHtml(convertToRaw(editorState.getCurrentContent()))
     );
@@ -26,6 +26,7 @@ const WYSIWYGEditor = props => {
           wrapperClassName="wrapper-class"
           editorClassName="editor-class"
           onEditorStateChange={onEditorStateChange}
+ 
         />
       </div>
     </>

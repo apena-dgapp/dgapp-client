@@ -29,6 +29,10 @@ const NewPostForm = ({
     sendHandlerForm(editor_content);
   };
 
+  // const { reset } = useForm({
+  //   defaultValues
+  // });
+
   return (
     <>
       <div className="row post-container">
@@ -82,7 +86,6 @@ const NewPostForm = ({
                   </select>
                 </div>
               </div>
-
               <div className="pb-5">
                 <Input
                   id="titleinput"
@@ -96,7 +99,6 @@ const NewPostForm = ({
                   value={formData.title}
                 />
               </div>
-
               <div className="pb-5">
                 <Input
                   id="authorinput"
@@ -110,7 +112,6 @@ const NewPostForm = ({
                   value={formData.author}
                 />
               </div>
-
               <div className="mb-5">
                 {/* <textarea
                   id="descpinput"
