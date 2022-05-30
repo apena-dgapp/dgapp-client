@@ -149,7 +149,7 @@ const EmployeeForm = ({ profile, reportsTo }) => {
           </div>
         </div>
         <div className="employee-updates-container">
-          <div className="employee-updates-title">Conctatos</div>
+          <div className="employee-updates-title">Contactos</div>
           <div className="employe-line-container">
             <p className="employee-line" style={{ width: "97%" }}></p>
           </div>
