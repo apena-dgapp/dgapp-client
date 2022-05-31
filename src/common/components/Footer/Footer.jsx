@@ -67,7 +67,7 @@ const Footer = () => {
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 {/* Content */}
                 <h6 className="text-uppercase fw-bold">
-                  GENERAL DIRECTORATE OF PUBLIC-PRIVATE ALLIANCE
+                  DIRECCIÓN GENERAL DE ALIANZAS PÚBLICO-PRIVADAS
                 </h6>
                 <hr
                   className="mb-4 mt-0 d-inline-block mx-auto"
