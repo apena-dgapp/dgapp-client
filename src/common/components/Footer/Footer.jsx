@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram } from "react-icons/fa";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Footer = () => {
+  const [aboutUs, setAboutUs] = useState("");
+  const history = useHistory();
+
+  const aboutUSChange = (name) => {
+    history.push({
+      pathname: "./aboutus",
+      state: name,
+    });
+  };
+  // console.log(aboutUs);
   return (
     <>
       {/* Footer */}
@@ -80,18 +91,30 @@ const Footer = () => {
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                 />
                 <p>
-                  <a href="./organization" className="text-white">
-                    Organigrama
+                  <a
+                    onClick={() => aboutUSChange("Mision, Vision y Valores")}
+                    href="#/"
+                    className="text-white"
+                  >
+                    Mision, Vision y Valores
                   </a>
                 </p>
                 <p>
-                  <a href="./aboutus" className="text-white">
-                    MDWordPress
+                  <a
+                    onClick={() => aboutUSChange("Funciones")}
+                    href="#/"
+                    className="text-white"
+                  >
+                    Funciones
                   </a>
                 </p>
                 <p>
-                  <a href="#!" className="text-white">
-                    BrandFlow
+                  <a
+                    onClick={() => aboutUSChange("Marco Institucional")}
+                    href="#/"
+                    className="text-white"
+                  >
+                    Marco Institucional
                   </a>
                 </p>
                 <p>
