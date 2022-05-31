@@ -3,6 +3,7 @@ import StrategicMap from "./StrategicMap";
 import Functions from "./Functions";
 import InstitutionalFramework from "./InstitutionalFramework";
 import Director from "./Director";
+import OrganizationChart from "./OrganizationChart";
 
 var component;
 var title;
@@ -22,6 +23,9 @@ const AboutUs = (state) => {
     } else if (data === "Director General") {
       title = "DIRECTOR GENERAL";
       component = <Director />;
+    } else if (data === "Organigrama") {
+      title = "ORGANIGRAMA";
+      component = <OrganizationChart />;
     }
   }
 

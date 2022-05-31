@@ -22,6 +22,7 @@ import galery from '../images/galeria-de-imagenes.png';
 import galeryActive from '../images/galeria-de-imagenes-active.png';
 import avatar from "./empleadodelmes.webp";
 import cumpleanos from './cumpleanos.png';
+import chart from './diagram.png';
  
 const Images = {
     iconUser,
@@ -46,6 +47,7 @@ const Images = {
     avatar,cumpleanos,
     galery,
     galeryActive,
+    chart
 }
 
 export default Images;

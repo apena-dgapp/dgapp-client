@@ -126,6 +126,15 @@ const Footer = () => {
                     Director General
                   </a>
                 </p>
+                <p>
+                  <a
+                    onClick={() => aboutUSChange("Organigrama")}
+                    href="#!"
+                    className="text-white"
+                  >
+                    Organigrama
+                  </a>
+                </p>
               </div>
               {/* Grid column */}
               {/* Grid column */}
