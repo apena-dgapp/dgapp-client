@@ -2,6 +2,7 @@ import React from "react";
 import StrategicMap from "./StrategicMap";
 import Functions from "./Functions";
 import InstitutionalFramework from "./InstitutionalFramework";
+import Director from "./Director";
 
 var component;
 var title;
@@ -18,6 +19,9 @@ const AboutUs = (state) => {
     } else if (data === "Marco Institucional") {
       title = "MARCO INSTITUCIONAL";
       component = <InstitutionalFramework />;
+    } else if (data === "Director General") {
+      title = "DIRECTOR GENERAL";
+      component = <Director />;
     }
   }
 

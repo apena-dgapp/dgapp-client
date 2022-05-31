@@ -118,8 +118,12 @@ const Footer = () => {
                   </a>
                 </p>
                 <p>
-                  <a href="#!" className="text-white">
-                    Bootstrap Angular
+                  <a
+                    onClick={() => aboutUSChange("Director General")}
+                    href="#!"
+                    className="text-white"
+                  >
+                    Director General
                   </a>
                 </p>
               </div>
