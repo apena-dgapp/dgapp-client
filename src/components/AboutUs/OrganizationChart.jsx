@@ -6,8 +6,8 @@ const OroganizationChart = () => {
     <>
       <div className="chart-container">
         <div>
-          <figure className="chart">
-            <img src={Images.chart} alt=""></img>
+          <figure>
+            <img className="chart" src={Images.chart} alt=""></img>
           </figure>
         </div>
       </div>
