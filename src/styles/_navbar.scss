@@ -163,9 +163,17 @@ nav ul li ul li:hover::before{
   margin-top: 2rem;
   cursor: pointer;
 }
+
 .nav-user-position{
     color: gray;
     font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.nav-user-close{
+    color: white;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 

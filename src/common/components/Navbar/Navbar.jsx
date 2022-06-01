@@ -12,11 +12,20 @@ const Header = () => {
   const [contextState, , contextMiddleware] = useContext(GlobalContext);
 
   const [person, setPerson] = useState({
+    personId: "",
     fullName: "",
     position: "",
     birthday: "",
     photo: "",
   });
+
+  const employeeProfile = (e) => {
+    const employeeId = e.currentTarget.id;
+    history.push({
+      pathname: "./employee",
+      state: employeeId,
+    });
+  };
 
   //funcion para setear lenguaje
   const setLanguage = (lang) => {
@@ -71,6 +80,7 @@ const Header = () => {
           if (!unmounted) {
             //  setInterest(res.post);
             setPerson({
+              personId: res.personId,
               fullName:
                 res.firstName.split(" ", 1) + " " + res.lastName.split(" ", 1),
               position: res.position,
@@ -100,6 +110,7 @@ const Header = () => {
         ticket={ticket}
         training={training}
         services={services}
+        employeeProfile={employeeProfile}
       />
     </>
   );

@@ -3,7 +3,6 @@ import Images from "../../images";
 // import GlobalContext from '../../../context/GlobalContext';
 
 const Navbar = ({
-  handeleLang,
   logOut,
   createPost,
   correspo,
@@ -11,6 +10,7 @@ const Navbar = ({
   ticket,
   training,
   services,
+  employeeProfile,
 }) => {
   // const [contextState] = useContext(GlobalContext);
 
@@ -23,6 +23,7 @@ const Navbar = ({
   //         })
   //     }
   // })
+  console.log(person);
 
   const [active, setActive] = useState("menu_items");
 
@@ -87,18 +88,24 @@ const Navbar = ({
                 <div className="user-text" onClick={() => logOut()}>{contextState.userName}</div> */}
 
           <img
-            onClick={() => logOut()}
+            onClick={employeeProfile}
+            id={person.personId}
             className="nav-user-img"
             src={person.photo}
             alt=""
           />
+
           <div className="nav-user-txt-cont">
             {/* <div className="nav-user-name" onClick={() => logOut()}>{`Hola, ${contextState.userName}`}</div>  */}
             <div
+              onClick={employeeProfile}
+              id={person.personId}
               className="nav-user-name"
-              onClick={() => logOut()}
             >{`Hola, ${person.fullName}`}</div>
             <div className="nav-user-position">{person.position}</div>
+            <div onClick={() => logOut()} className="nav-user-close">
+              Cerrar sesión
+            </div>
           </div>
         </figure>
 
