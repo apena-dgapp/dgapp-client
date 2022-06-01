@@ -3,7 +3,7 @@
     justify-content: center;
     width: 100%;
     height: 35em;
-    margin-bottom: 87em;
+    // margin-bottom: 80em;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/about-as-service-contact-information-concept.jpg");
 }
 .aboutus-header-title{
@@ -52,7 +52,7 @@
 }
 
 .strategicmap-content-grid{
-    grid-template-columns: 41% 8% 41%;
+    grid-template-columns: 50% 50%;
     display: grid;
     margin-top: 3rem;
     margin-bottom: 2rem;
@@ -61,6 +61,18 @@
     overflow: visible;
     // margin-left: 3rem;
 
+}
+.strategicmap-content-grid-1{
+    width: 95%;
+    text-align: justify;
+    // display: flex;
+    // justify-content: center;
+}
+.strategicmap-content-grid-2{
+    width: 95%;
+    text-align: justify;
+    // display: flex;
+    // justify-content: center;
 }
 .strategicmap-content-3{
  display: flex;

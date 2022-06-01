@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram } from "react-icons/fa";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const Footer = () => {
-  const [aboutUs, setAboutUs] = useState("");
   const history = useHistory();
+  const aboutUSChange = (e, name) => {
+    e.preventDefault();
 
-  const aboutUSChange = (name) => {
     history.push({
       pathname: "./aboutus",
       state: name,
     });
   };
-  // console.log(aboutUs);
+
   return (
     <>
       {/* Footer */}
@@ -92,7 +92,9 @@ const Footer = () => {
                 />
                 <p>
                   <a
-                    onClick={() => aboutUSChange("Mision, Vision y Valores")}
+                    onClick={(e) =>
+                      aboutUSChange(e, "MISION, VISION Y VALORES")
+                    }
                     href="#/"
                     className="text-white"
                   >
@@ -101,7 +103,7 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
-                    onClick={() => aboutUSChange("Funciones")}
+                    onClick={(e) => aboutUSChange(e, "FUNCIONES")}
                     href="#/"
                     className="text-white"
                   >
@@ -110,7 +112,7 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
-                    onClick={() => aboutUSChange("Marco Institucional")}
+                    onClick={(e) => aboutUSChange(e, "MARCO INSTITUCIONAL")}
                     href="#/"
                     className="text-white"
                   >
@@ -119,7 +121,7 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
-                    onClick={() => aboutUSChange("Director General")}
+                    onClick={(e) => aboutUSChange(e, "DIRECTOR GENERAL")}
                     href="#!"
                     className="text-white"
                   >
@@ -128,7 +130,7 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
-                    onClick={() => aboutUSChange("Organigrama")}
+                    onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}
                     href="#!"
                     className="text-white"
                   >

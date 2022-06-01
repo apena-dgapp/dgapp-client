@@ -48,8 +48,8 @@ const Functions = () => {
               <br /> h) Realizar las labores de secretaría en las reuniones del
               Consejo Nacional de Alianzas Público Privadas.
             </div>
-            <div className="strategicmap-content-grid-2"></div>
-            <div className="strategicmap-content-grid-3">
+            {/* <div className="strategicmap-content-grid-2"></div> */}
+            <div className="strategicmap-content-grid-2">
               <div style={{ fontWeight: "bold" }}>
                 2) Funciones administrativas
               </div>
