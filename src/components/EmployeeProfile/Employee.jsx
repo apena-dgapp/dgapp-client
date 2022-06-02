@@ -8,6 +8,7 @@ const Employee = (props) => {
   const [contextState] = useContext(GlobalContext);
   const [profile, setProfile] = useState("");
   const [reportsTo, setReportsTo] = useState("");
+
   useEffect(() => {
     let unmounted = false;
 
@@ -45,6 +46,8 @@ const Employee = (props) => {
       unmounted = true;
     };
   }, [contextState.token, id]);
+
+  // console.log(reportsTo);
 
   return (
     <>

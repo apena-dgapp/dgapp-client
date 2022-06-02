@@ -122,7 +122,7 @@
     position: absolute;
     width: 25em;
     height: 0.1rem;
-    background-color: currentColor;
+    background-color: gainsboro;
     top: 0.6em;
 }
 .singlePostContainer h2::before{
@@ -133,7 +133,7 @@
     right: -23em;
 }
 
-
+// .singlePost-img:hover {filter: grayscale(80%);}
 
 
 

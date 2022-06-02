@@ -24,7 +24,7 @@ const DashboardForm = ({ arrayPost, interest, singleInsterest, allPost }) => {
 
       <div className="container-column-title">
         <div className="column-title">
-          <p className="column-txt">PUBLICACIÓN DESTACADA</p>
+          <p className="column-txt">NOTICIAS MAS RECIENTES</p>
         </div>
       </div>
 
@@ -50,7 +50,7 @@ const DashboardForm = ({ arrayPost, interest, singleInsterest, allPost }) => {
         <div className="btn-allpost-w">
           <div className="row btn-allpost">
             <button type="button" className="btn btn-secondary btn-lg">
-              Todas las publicaciones
+              Todas las noticias
             </button>
           </div>
         </div>

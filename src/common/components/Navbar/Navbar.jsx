@@ -51,15 +51,11 @@ const Header = () => {
     );
     //history.push('./')
   };
-
-  const training = () => {
-    return toast.error(
-      "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
-    );
-    //history.push('./')
+  const allPost = () => {
+    history.push("./allpost");
   };
 
-  const services = () => {
+  const training = () => {
     return toast.error(
       "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
     );
@@ -109,7 +105,7 @@ const Header = () => {
         person={person}
         ticket={ticket}
         training={training}
-        services={services}
+        allPost={allPost}
         employeeProfile={employeeProfile}
       />
     </>

@@ -31,4 +31,14 @@ export const getBirthday = async (token) => {
 //             }   
 //         })
 //     }
-    
+export const getFollowers = async (token, id) => {
+    const body = {id};
+    return fetch(`${process.env.REACT_APP_API}person/getfollowers`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token,
+        }   
+    })
+}    

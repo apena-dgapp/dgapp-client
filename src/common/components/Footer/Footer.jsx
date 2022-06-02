@@ -60,7 +60,7 @@ const Footer = () => {
         {/* Section: Social media */}
         {/* Section: Links  */}
         <section>
-          <div className="container text-center text-md-start mt-5">
+          <div className="container m-0 text-center text-md-start mt-2">
             {/* Grid row */}
             <div className="row mt-3">
               {/* Grid column */}
@@ -83,7 +83,7 @@ const Footer = () => {
               </div>
               {/* Grid column */}
               {/* Grid column */}
-              <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 {/* Links */}
                 <h6 className="text-uppercase fw-bold">NOSOTROS</h6>
                 <hr
@@ -92,47 +92,52 @@ const Footer = () => {
                 />
                 <p>
                   <a
+                    style={{ textDecoration: "none" }}
                     onClick={(e) =>
                       aboutUSChange(e, "MISION, VISION Y VALORES")
                     }
                     href="#/"
-                    className="text-white"
+                    className="footer-txt"
                   >
                     Mision, Vision y Valores
                   </a>
                 </p>
                 <p>
                   <a
+                    style={{ textDecoration: "none" }}
                     onClick={(e) => aboutUSChange(e, "FUNCIONES")}
                     href="#/"
-                    className="text-white"
+                    className="footer-txt"
                   >
                     Funciones
                   </a>
                 </p>
                 <p>
                   <a
+                    style={{ textDecoration: "none" }}
                     onClick={(e) => aboutUSChange(e, "MARCO INSTITUCIONAL")}
                     href="#/"
-                    className="text-white"
+                    className="footer-txt"
                   >
                     Marco Institucional
                   </a>
                 </p>
                 <p>
                   <a
+                    style={{ textDecoration: "none" }}
                     onClick={(e) => aboutUSChange(e, "DIRECTOR GENERAL")}
                     href="#!"
-                    className="text-white"
+                    className="footer-txt"
                   >
                     Director General
                   </a>
                 </p>
                 <p>
                   <a
+                    style={{ textDecoration: "none" }}
                     onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}
                     href="#!"
-                    className="text-white"
+                    className="footer-txt"
                   >
                     Organigrama
                   </a>
@@ -142,29 +147,54 @@ const Footer = () => {
               {/* Grid column */}
               <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
                 {/* Links */}
-                <h6 className="text-uppercase fw-bold">Useful links</h6>
+                <h6 className="text-uppercase fw-bold">NORMATIVAS</h6>
                 <hr
                   className="mb-4 mt-0 d-inline-block mx-auto"
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                 />
                 <p>
-                  <a href="#!" className="text-white">
-                    Your Account
+                  <a
+                    style={{ textDecoration: "none" }}
+                    href="#!"
+                    className="footer-txt"
+                  >
+                    Marco Legal
                   </a>
                 </p>
                 <p>
-                  <a href="#!" className="text-white">
-                    Become an Affiliate
+                  <a
+                    style={{ textDecoration: "none" }}
+                    href="#!"
+                    className="footer-txt"
+                  >
+                    Leyes
                   </a>
                 </p>
                 <p>
-                  <a href="#!" className="text-white">
-                    Shipping Rates
+                  <a
+                    style={{ textDecoration: "none" }}
+                    href="#!"
+                    className="footer-txt"
+                  >
+                    Reglamentos
                   </a>
                 </p>
                 <p>
-                  <a href="#!" className="text-white">
-                    Help
+                  <a
+                    style={{ textDecoration: "none" }}
+                    href="#!"
+                    className="footer-txt"
+                  >
+                    Resoluciones
+                  </a>
+                </p>
+                <p>
+                  <a
+                    style={{ textDecoration: "none" }}
+                    href="#!"
+                    className="footer-txt"
+                  >
+                    Consultas Públicas
                   </a>
                 </p>
               </div>

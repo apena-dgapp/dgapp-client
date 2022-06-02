@@ -9,7 +9,7 @@ const Navbar = ({
   person,
   ticket,
   training,
-  services,
+  allPost,
   employeeProfile,
 }) => {
   // const [contextState] = useContext(GlobalContext);
@@ -23,7 +23,6 @@ const Navbar = ({
   //         })
   //     }
   // })
-  console.log(person);
 
   const [active, setActive] = useState("menu_items");
 
@@ -48,18 +47,61 @@ const Navbar = ({
           </li>
           <li className="class-list">
             <a href="#/">
-              APPS
+              SERVICIOS
               <img className="icondown" src={Images.icondown} alt="" />
             </a>
             <ul>
               <li>
+                <a href="#/" onClick={createPost}>
+                  Crear Entradas
+                </a>
+              </li>
+              <li>
                 <a href="#/" onClick={correspo}>
-                  CORRESPONDENCIA
+                  Correspondencia
                 </a>
               </li>
               <li>
                 <a href="#/" onClick={ticket}>
-                  TICKET
+                  Crear Ticket
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li className="class-list">
+            <a href="#/" onClick={allPost}>
+              NOTICIAS
+            </a>
+          </li>
+          <li className="class-list">
+            <a href="#/">
+              SOLICITUDES
+              <img className="icondown" src={Images.icondown} alt="" />
+            </a>
+            <ul>
+              <li>
+                <a onClick={ticket} href="#/">
+                  Carta Laboral
+                </a>
+              </li>
+              <li>
+                <a href="#/" onClick={ticket}>
+                  Vacaciones
+                </a>
+              </li>
+              <li>
+                <a href="#/" onClick={ticket}>
+                  Seguro
+                </a>
+              </li>
+              <li>
+                <a href="#/" onClick={ticket}>
+                  Maternidad
+                </a>
+              </li>
+              <li>
+                <a href="#/" onClick={ticket}>
+                  Enfermedad
                 </a>
               </li>
             </ul>
@@ -67,16 +109,6 @@ const Navbar = ({
           <li className="class-list">
             <a href="#/" onClick={training}>
               ENTRENAMIENTO
-            </a>
-          </li>
-          <li className="class-list">
-            <a href="#/" onClick={services}>
-              SERVICIOS
-            </a>
-          </li>
-          <li className="class-list">
-            <a href="#/" onClick={createPost}>
-              PUBLICACION
             </a>
           </li>
         </ul>

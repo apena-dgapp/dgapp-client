@@ -16,6 +16,8 @@ import Footer from "../common/components/Footer/Footer";
 import Correspondence from "../components/Correspondence/Correspondence";
 import Employee from "../components/EmployeeProfile/Employee";
 import AboutUs from "../components/AboutUs/AboutUs";
+import EmployeeChart from "../components/EmployeeProfile/EmployeeChart";
+import EmployeeProfile from "../components/EmployeeProfile/Employee";
 
 const Routes = () => {
   const [contextState] = useContext(GlobalContext);
@@ -45,6 +47,11 @@ const Routes = () => {
         <Route path={`${ruteServer}/newpost`} component={NewPost} />
         <Route path={`${ruteServer}/employee`} component={Employee} />
         <Route path={`${ruteServer}/aboutus`} component={AboutUs} />
+        <Route path={`${ruteServer}/employeechart`} component={EmployeeChart} />
+        <Route
+          path={`${ruteServer}/employeeprofile`}
+          component={EmployeeProfile}
+        />
         <Route
           path={`${ruteServer}/correspondence`}
           component={Correspondence}
