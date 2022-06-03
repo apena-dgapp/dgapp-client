@@ -12,6 +12,13 @@ const Footer = () => {
       state: name,
     });
   };
+  const goToRegulations = (e, name) => {
+    e.preventDefault();
+    history.push({
+      pathname: "./regulations",
+      state: name,
+    });
+  };
 
   return (
     <>
@@ -154,8 +161,9 @@ const Footer = () => {
                 />
                 <p>
                   <a
+                    onClick={(e) => goToRegulations(e, "MARCO LEGAL")}
                     style={{ textDecoration: "none" }}
-                    href="#!"
+                    href="#/"
                     className="footer-txt"
                   >
                     Marco Legal
@@ -163,8 +171,9 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
+                    onClick={(e) => goToRegulations(e, "LEYES")}
                     style={{ textDecoration: "none" }}
-                    href="#!"
+                    href="#/"
                     className="footer-txt"
                   >
                     Leyes
@@ -172,8 +181,9 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
+                    onClick={(e) => goToRegulations(e, "REGLAMENTOS")}
                     style={{ textDecoration: "none" }}
-                    href="#!"
+                    href="#/"
                     className="footer-txt"
                   >
                     Reglamentos
@@ -181,8 +191,9 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
+                    onClick={(e) => goToRegulations(e, "RESOLUCIONES")}
                     style={{ textDecoration: "none" }}
-                    href="#!"
+                    href="#/"
                     className="footer-txt"
                   >
                     Resoluciones
@@ -190,8 +201,9 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
+                    onClick={(e) => goToRegulations(e, "CONSULTAS PÚBLICAS")}
                     style={{ textDecoration: "none" }}
-                    href="#!"
+                    href="#/"
                     className="footer-txt"
                   >
                     Consultas Públicas

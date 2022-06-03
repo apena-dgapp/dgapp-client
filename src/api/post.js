@@ -69,7 +69,7 @@ export const postId = async (token, title, category, author) => {
 
 export const createFile = async (token, postid, type, file) => {
     const body = {postid, type, file};
-    return fetch(`${process.env.REACT_APP_API}files/createfile`, {
+    return fetch(`${process.env.REACT_APP_API}filespost/createfile`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: {
@@ -81,7 +81,7 @@ export const createFile = async (token, postid, type, file) => {
 
 export const getFiles = async (token, postid) => {
     const body = {postid};
-    return fetch(`${process.env.REACT_APP_API}files/getfiles`, {
+    return fetch(`${process.env.REACT_APP_API}filespost/getfiles`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: {
