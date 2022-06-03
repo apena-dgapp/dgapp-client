@@ -35,9 +35,9 @@ const NewPostForm = ({
 
   return (
     <>
-      <div className="row post-container">
+      <div className="post-container">
         <div className="post-title">
-          <p className="m-0">CREAR UNA NUEVA PUBLICACION</p>
+          <p className="Post-title-text">CREAR UNA NUEVA PUBLICACION</p>
         </div>
 
         <div className="newPostContainerGrid">
