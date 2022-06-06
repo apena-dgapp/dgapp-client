@@ -67,6 +67,7 @@ function RegulationsForm({ title, arrayFiles }) {
                         <div className="regulations-data-container">
                           <div className="">
                             <button
+                              id={file.fileId}
                               type="button"
                               className="btn btn-success btn-sm"
                               onClick={() => goToPDF(file.file)}
