@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import GlobalContext from "../../context/GlobalContext";
-import Images from "../../common/images/index";
 import { getFollowers } from "../../api/person";
 import { useHistory } from "react-router-dom";
 
@@ -55,6 +54,7 @@ const EmployeeChart = (state) => {
           <ul>
             <li>
               <a
+                href={state.location.state.idReportTo === 0 ? null : "#/"}
                 onClick={(e) => goToProfile(e, state.location.state.idReportTo)}
                 className="img-first"
                 // href="#/"
@@ -89,6 +89,7 @@ const EmployeeChart = (state) => {
                       return (
                         <li
                           id={follower.personId}
+                          key={follower.personId}
                           onClick={(e) => goToProfile(e, follower.personId)}
                         >
                           <a href="#/">

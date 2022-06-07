@@ -1,12 +1,12 @@
-import React from 'react';
-import CorrespondenceForm from './CorrespondenceForm';
+import React from "react";
+import CorrespondenceForm from "./CorrespondenceForm";
 
 const Correspondence = () => {
   return (
     <>
-        <CorrespondenceForm/>
+      <CorrespondenceForm />
     </>
-  )
-}
+  );
+};
 
-export default Correspondence
+export default Correspondence;

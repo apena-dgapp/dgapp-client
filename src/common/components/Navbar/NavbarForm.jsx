@@ -7,8 +7,7 @@ const Navbar = ({
   createPost,
   correspo,
   person,
-  ticket,
-  training,
+  inConstruction,
   allPost,
   employeeProfile,
 }) => {
@@ -62,7 +61,7 @@ const Navbar = ({
                 </a>
               </li>
               <li>
-                <a href="#/" onClick={ticket}>
+                <a href="#/" onClick={inConstruction}>
                   Crear Ticket
                 </a>
               </li>
@@ -80,34 +79,34 @@ const Navbar = ({
             </a>
             <ul>
               <li>
-                <a onClick={ticket} href="#/">
+                <a onClick={inConstruction} href="#/">
                   Carta Laboral
                 </a>
               </li>
               <li>
-                <a href="#/" onClick={ticket}>
+                <a href="#/" onClick={inConstruction}>
                   Vacaciones
                 </a>
               </li>
               <li>
-                <a href="#/" onClick={ticket}>
+                <a href="#/" onClick={inConstruction}>
                   Seguro
                 </a>
               </li>
               <li>
-                <a href="#/" onClick={ticket}>
+                <a href="#/" onClick={inConstruction}>
                   Maternidad
                 </a>
               </li>
               <li>
-                <a href="#/" onClick={ticket}>
+                <a href="#/" onClick={inConstruction}>
                   Enfermedad
                 </a>
               </li>
             </ul>
           </li>
           <li className="class-list">
-            <a href="#/" onClick={training}>
+            <a href="#/" onClick={inConstruction}>
               ENTRENAMIENTO
             </a>
           </li>

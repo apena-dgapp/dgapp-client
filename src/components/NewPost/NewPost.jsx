@@ -39,7 +39,6 @@ const NewPost = () => {
       [e.target.name]: e.target.value,
     });
   };
-
   const seletedHandler = async (e) => {
     setImg(await getBase64(e.target.files[0]));
   };
@@ -118,7 +117,6 @@ const NewPost = () => {
       alert("Por favor agregar una imagen de portada");
       return;
     }
-
     newPostApi(
       contextState.token,
       formData.title,

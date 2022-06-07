@@ -4,6 +4,7 @@ const BirthdayForm = ({ arrayBirthday, employeeProfile }) => {
   // const month = new Intl.DateTimeFormat("es-ES", { month: "long" }).format(
   //   new Date()
   // );
+
   return (
     <>
       <div className="birthday-cont">
@@ -12,6 +13,8 @@ const BirthdayForm = ({ arrayBirthday, employeeProfile }) => {
           <div className="birtday-list">
             {arrayBirthday.map((file) => {
               const day = file.birthdayDate.split("-");
+              const month = new Date(day).getMonth();
+              const currentMonth = new Date().getMonth();
               const daySplit = day[2];
               const currentDay = `${new Date().getFullYear()}-${
                 new Date().getMonth() + 1
@@ -33,8 +36,7 @@ const BirthdayForm = ({ arrayBirthday, employeeProfile }) => {
               const lastN = file.lastName.split(" ");
               const firstNSplit = firstN[0];
               const lastNSplit = lastN[0];
-
-              return (
+              return currentMonth === month ? (
                 <div
                   onClick={employeeProfile}
                   key={file.personId}
@@ -47,7 +49,7 @@ const BirthdayForm = ({ arrayBirthday, employeeProfile }) => {
                   </p>
                   <p className="birthday-position">{file.position}</p>
                 </div>
-              );
+              ) : null;
             })}
           </div>
         </div>

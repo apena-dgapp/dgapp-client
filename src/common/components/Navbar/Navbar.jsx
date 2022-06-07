@@ -45,7 +45,7 @@ const Header = () => {
     history.push("./correspondence");
   };
 
-  const ticket = () => {
+  const inConstruction = () => {
     return toast.error(
       "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
     );
@@ -53,13 +53,6 @@ const Header = () => {
   };
   const allPost = () => {
     history.push("./allpost");
-  };
-
-  const training = () => {
-    return toast.error(
-      "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
-    );
-    //history.push('./')
   };
 
   useEffect(() => {
@@ -103,8 +96,7 @@ const Header = () => {
         createPost={createPost}
         correspo={correspo}
         person={person}
-        ticket={ticket}
-        training={training}
+        inConstruction={inConstruction}
         allPost={allPost}
         employeeProfile={employeeProfile}
       />
