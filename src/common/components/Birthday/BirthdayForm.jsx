@@ -1,14 +1,37 @@
 import React from "react";
+import { FaBirthdayCake } from "react-icons/fa";
+import ModalBirthday from "../../components/Modal/ModalBirthday";
 
-const BirthdayForm = ({ arrayBirthday, employeeProfile }) => {
+const BirthdayForm = ({
+  arrayBirthday,
+  employeeProfile,
+  modalActive,
+  modalToggle,
+}) => {
   // const month = new Intl.DateTimeFormat("es-ES", { month: "long" }).format(
   //   new Date()
   // );
 
+  // console.log(modalActive);
+
   return (
     <>
+      <ModalBirthday
+        // modalTitle={modalValidaton ? modalTitleAuth : modalTitle}
+        modalToggle={modalToggle}
+        modalActive={modalActive}
+        arrayBirthday={arrayBirthday}
+        employeeProfile={employeeProfile}
+      />
+
       <div className="birthday-cont">
-        <p className="birtday-title">CUMPLEAÑOS</p>
+        <p className="birtday-title m-0">CUMPLEAÑOS</p>
+        <div onClick={modalToggle} className="d-flex justify-content-center">
+          <i className="fa fa-birthday-cake" />
+          <FaBirthdayCake size="1.3em" color="orange" />
+          <p className="animate-charcter">Ver cumpleaños de hoy</p>
+        </div>
+
         <div className="birtday-list-cont">
           <div className="birtday-list">
             {arrayBirthday.map((file) => {
@@ -36,6 +59,7 @@ const BirthdayForm = ({ arrayBirthday, employeeProfile }) => {
               const lastN = file.lastName.split(" ");
               const firstNSplit = firstN[0];
               const lastNSplit = lastN[0];
+
               return currentMonth === month ? (
                 <div
                   onClick={employeeProfile}

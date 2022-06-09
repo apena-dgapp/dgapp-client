@@ -8,6 +8,12 @@ const Birthday = () => {
   const [contextState] = useContext(GlobalContext);
   const [arrayBirthday, setArrayBirthday] = useState([]);
   const history = useHistory();
+  const [modalActive, setModalActive] = useState(false);
+  // const [isToday, setIsToday] = useState(false);
+
+  const modalToggle = () => {
+    setModalActive(!modalActive);
+  };
 
   useEffect(() => {
     let unmounted = false;
@@ -31,7 +37,21 @@ const Birthday = () => {
       unmounted = true;
     };
   }, [contextState.token]);
+  // if (arrayBirthday) {
+  //   var day = `${new Date().getDate()}`.padStart(2, "0");
+  //   var isToday = "";
 
+  //   arrayBirthday.map((file) => {
+  //     const date = `${new Date(
+  //       file.birthdayDate.split("-")
+  //     ).getDate()}`.padStart(2, "0");
+  //     // const arrayDate = date[2]);
+  //     // return day === date ? setIsToday(true) : null;
+  //    date === day ? isToday === true: null
+
+  //     // console.log(date + " /// " + day);
+  //   });
+  // }
   const employeeProfile = (e) => {
     const employeeId = e.currentTarget.id;
     history.push({
@@ -39,12 +59,14 @@ const Birthday = () => {
       state: employeeId,
     });
   };
-
+  // console.log(isToday);
   return (
     <>
       <BirthdayForm
         arrayBirthday={arrayBirthday}
         employeeProfile={employeeProfile}
+        modalActive={modalActive}
+        modalToggle={modalToggle}
       />
     </>
   );

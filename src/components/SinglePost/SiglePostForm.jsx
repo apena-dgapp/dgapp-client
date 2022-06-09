@@ -26,9 +26,11 @@ const SiglePostForm = ({ dataPost, arrayImg }) => {
           {/* <figure className='singlePost-img'>
                     <img className='post-title-img' src={Images.blog} alt=''/>
                 </figure> */}
-          <h2 className="">{new Date(dataPost.date).toDateString()}</h2>
-          <h1 className="">{dataPost.title}</h1>
-          <h2 className="">Por {dataPost.author}</h2>
+          <div className="singlePostTxt">
+            <h2 className="">{new Date(dataPost.date).toDateString()}</h2>
+            <h1 className="">{dataPost.title}</h1>
+            <h2 className="">Por {dataPost.author}</h2>
+          </div>
         </div>
 
         <div className="singlePost-img-cont">
