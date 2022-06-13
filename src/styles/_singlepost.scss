@@ -51,19 +51,20 @@
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     // border-radius: 1rem;
-    height: 25rem;
+    height: 30%;
     margin-bottom: 2rem;
+    flex-direction: column;
     
 }
 .singlePostDescp{
     color: black;
-    width: 95%; 
+    width: 100%; 
     text-align: center;
     // margin-top: 1rem;
     font-family:Georgia, 'Times New Roman', Times, serif;
     text-align: justify;
     font-size: 1.2rem;
-    padding: 1.3rem 0;
+    padding: 2rem;
 }
 
 .postDate{
@@ -91,7 +92,7 @@
 //     justify-content: space-evenly;
 // }
 .eLPooy{
-    width: 80% !important; 
+    width: 95% !important; 
 }
 // .grUxXV{ 
 //     display: none !important;
@@ -102,6 +103,13 @@
 
 .singlePostTxt{
     margin-top: 8.5rem;
+}
+.singlePost-galeryImg {
+    // max-height: 15rem;
+    // max-width: 17rem;
+    object-fit: cover;
+    max-width: 20rem;
+    max-height: 8rem;
 }
 
 .singlePostContainer h1{
@@ -124,6 +132,16 @@
     color:  white;
 }
 
+.singlePostVideo{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    padding: 2rem;
+    width: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/coffee-gd7dbd416f_1920.jpg");
+}
+
 // .singlePostContainer h2::after, h2::before{
 //     content: "";
 //     position: absolute;
@@ -141,6 +159,8 @@
 // }
 
 // .singlePost-img:hover {filter: grayscale(80%);}
+
+
 
 
 

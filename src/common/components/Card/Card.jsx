@@ -23,6 +23,43 @@ const CardForm = (props) => {
       });
   };
 
+  // Creamos array con los meses del año
+  const meses = [
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
+    "octubre",
+    "noviembre",
+    "diciembre",
+  ];
+  // Creamos array con los días de la semana
+  const dias_semana = [
+    "Domingo",
+    "Lunes",
+    "martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+  ];
+  // Creamos el objeto fecha instanciándolo con la clase Date
+  const fecha = new Date(props.date);
+  // Construimos el formato de salida
+  const fechaES =
+    dias_semana[fecha.getDay()] +
+    ", " +
+    fecha.getDate() +
+    " de " +
+    meses[fecha.getMonth()] +
+    " de " +
+    fecha.getUTCFullYear();
+
   return (
     <>
       <div className="card" onClick={click}>
@@ -35,11 +72,9 @@ const CardForm = (props) => {
           ></p>
         </div>
         <p className="card-date">
-          <small className="text-muted">
-            {new Date(props.date).toDateString()}
-          </small>
+          <small className="text-muted">{fechaES}</small>
         </p>
-        <button className="btn btn-dark">Leer mas</button>
+        <button className="btn-dark">Leer mas</button>
       </div>
     </>
   );

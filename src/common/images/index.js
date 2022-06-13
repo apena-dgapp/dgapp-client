@@ -11,7 +11,6 @@ import trash from '../images/trash.png';
 import addifle from '../images/addfile.png';
 import icondown from '../images/down-filled-triangular-arrow.png';
 import barmenu from '../images/menu.png';
-import director from '../images/director.jpg';
 import pdf from './pdf.png';
 import pdfActive from './pdf-active.png';
 import video from './movie-player.png';
@@ -20,7 +19,6 @@ import img from './image.png';
 import imgActive from './image-active.png';
 import galery from '../images/galeria-de-imagenes.png';
 import galeryActive from '../images/galeria-de-imagenes-active.png';
-import avatar from "./empleadodelmes.webp";
 import cumpleanos from './cumpleanos.png';
 import chart from './diagram.png';
 import ministerio from './ministerio.jpg';
@@ -38,14 +36,13 @@ const Images = {
     addifle,
     icondown,
     barmenu,
-    director,
     pdf,
     pdfActive,
     video,
     link,
     img,
     imgActive,
-    avatar,cumpleanos,
+    cumpleanos,
     galery,
     galeryActive,
     chart,

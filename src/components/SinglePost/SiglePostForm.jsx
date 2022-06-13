@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Viewer from "react-viewer";
 import Carousel from "react-elastic-carousel";
+import ReactPlayer from "react-player";
 
 const SiglePostForm = ({ dataPost, arrayImg }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -13,10 +14,42 @@ const SiglePostForm = ({ dataPost, arrayImg }) => {
     { width: 1200, itemsToShow: 4 },
   ];
 
-  // console.log(arrayImg.files.length);
-
-  // if (arrayImg.length < 1) {
-  // }
+  // Creamos array con los meses del año
+  const meses = [
+    "enero",
+    "febrero",
+    "marzo",
+    "abril",
+    "mayo",
+    "junio",
+    "julio",
+    "agosto",
+    "septiembre",
+    "octubre",
+    "noviembre",
+    "diciembre",
+  ];
+  // Creamos array con los días de la semana
+  const dias_semana = [
+    "Domingo",
+    "Lunes",
+    "martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+  ];
+  // Creamos el objeto fecha instanciándolo con la clase Date
+  const fecha = new Date(dataPost.date);
+  // Construimos el formato de salida
+  const fechaES =
+    dias_semana[fecha.getDay()] +
+    ", " +
+    fecha.getDate() +
+    " de " +
+    meses[fecha.getMonth()] +
+    " de " +
+    fecha.getUTCFullYear();
 
   return (
     <>
@@ -27,7 +60,7 @@ const SiglePostForm = ({ dataPost, arrayImg }) => {
                     <img className='post-title-img' src={Images.blog} alt=''/>
                 </figure> */}
           <div className="singlePostTxt">
-            <h2 className="">{new Date(dataPost.date).toDateString()}</h2>
+            <h2 className="">{fechaES}</h2>
             <h1 className="">{dataPost.title}</h1>
             <h2 className="">Por {dataPost.author}</h2>
           </div>
@@ -45,36 +78,42 @@ const SiglePostForm = ({ dataPost, arrayImg }) => {
               dangerouslySetInnerHTML={{ __html: dataPost.description }}
               className="singlePostDescp"
             ></p>
+            <Carousel breakPoints={breakPoints}>
+              {arrayImg.files?.map((item, index) => {
+                return (
+                  <div key={index.toString()}>
+                    <img
+                      className="singlePost-galeryImg"
+                      src={item.src}
+                      alt=""
+                      width="300px"
+                      onClick={() => {
+                        setVisible(true);
+                        setActiveIndex(index);
+                      }}
+                    />
+                  </div>
+                );
+              })}
+              <Viewer
+                visible={visible}
+                images={arrayImg.files}
+                onClose={() => {
+                  setVisible(false);
+                }}
+                zoomSpeed={0.2}
+                activeIndex={activeIndex}
+                downloadable
+              />
+            </Carousel>
           </div>
         </div>
-
-        <Carousel breakPoints={breakPoints}>
-          {arrayImg.files?.map((item, index) => {
-            return (
-              <div key={index.toString()}>
-                <img
-                  src={item.src}
-                  alt=""
-                  width="300px"
-                  onClick={() => {
-                    setVisible(true);
-                    setActiveIndex(index);
-                  }}
-                />
-              </div>
-            );
-          })}
-          <Viewer
-            visible={visible}
-            images={arrayImg.files}
-            onClose={() => {
-              setVisible(false);
-            }}
-            zoomSpeed={0.2}
-            activeIndex={activeIndex}
-            downloadable
-          />
-        </Carousel>
+      </div>
+      <div className="singlePostVideo">
+        <ReactPlayer
+          url="https://www.youtube.com/watch?v=pLBuFxMYkx8"
+          controls
+        />
       </div>
     </>
   );

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Images from "../../images";
-// import GlobalContext from '../../../context/GlobalContext';
+import GlobalContext from "../../../context/GlobalContext";
 
 const Navbar = ({
   logOut,
@@ -11,7 +11,7 @@ const Navbar = ({
   allPost,
   employeeProfile,
 }) => {
-  // const [contextState] = useContext(GlobalContext);
+  const [contextState] = useContext(GlobalContext);
 
   // addEventListener('DOMContentLoaded', () => {
   //     const btn_menu = document.querySelector('.btn_menu')
@@ -50,16 +50,11 @@ const Navbar = ({
               <img className="icondown" src={Images.icondown} alt="" />
             </a>
             <ul>
-              <li>
-                <a href="#/" onClick={createPost}>
-                  Crear Entradas
-                </a>
-              </li>
-              <li>
+              {/* <li>
                 <a href="#/" onClick={correspo}>
                   Correspondencia
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a href="#/" onClick={inConstruction}>
                   Crear Ticket
@@ -72,7 +67,7 @@ const Navbar = ({
               NOTICIAS
             </a>
           </li>
-          <li className="class-list">
+          {/* <li className="class-list">
             <a href="#/">
               SOLICITUDES
               <img className="icondown" src={Images.icondown} alt="" />
@@ -90,7 +85,7 @@ const Navbar = ({
               </li>
               <li>
                 <a href="#/" onClick={inConstruction}>
-                  Seguro
+                  Seguro Medico
                 </a>
               </li>
               <li>
@@ -104,12 +99,31 @@ const Navbar = ({
                 </a>
               </li>
             </ul>
-          </li>
+          </li> */}
+
           <li className="class-list">
             <a href="#/" onClick={inConstruction}>
               ENTRENAMIENTO
             </a>
           </li>
+          {contextState.isAdmin ? (
+            <li className="class-list">
+              <a href="#/">
+                ADMINISTRACIÓN
+                <img className="icondown" src={Images.icondown} alt="" />
+              </a>
+              <ul>
+                <li>
+                  <a href="#/" onClick={createPost}>
+                    Crear Entradas
+                  </a>
+                </li>
+                <li>
+                  <a href="#/">Empleados</a>
+                </li>
+              </ul>
+            </li>
+          ) : null}
         </ul>
 
         <figure className="container-menu-right">

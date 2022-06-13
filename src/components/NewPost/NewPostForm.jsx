@@ -78,10 +78,10 @@ const NewPostForm = ({
                       Elige una Categoria
                     </option>
                     <option className="option-txt" value="Main Post">
-                      Main Post
+                      Portada Principal
                     </option>
                     <option className="option-txt" value="Featured Post">
-                      Featured Post
+                      Noticias
                     </option>
                   </select>
                 </div>

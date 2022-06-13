@@ -6,7 +6,8 @@ import { MdArrowForwardIos, MdEmail, MdPhoneInTalk } from "react-icons/md";
 import { FaBirthdayCake } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import Images from "../../common/images/index";
-const EmployeeForm = ({ profile, reportsTo }) => {
+
+const EmployeeForm = ({ profile, reportsTo, generateDocument }) => {
   const history = useHistory();
   const [profileChart, setProfileChart] = useState({
     id: "",
@@ -105,6 +106,14 @@ const EmployeeForm = ({ profile, reportsTo }) => {
     });
   };
 
+  const goToDownload = (e, name) => {
+    e.preventDefault();
+    history.push({
+      pathname: "./docdynamic",
+      state: name,
+    });
+  };
+
   return (
     <>
       <div className="employee-container">
@@ -175,7 +184,11 @@ const EmployeeForm = ({ profile, reportsTo }) => {
           </div>
 
           <div className="employee-btn-container">
-            <button type="button" className="btn btn-success employee-btn">
+            <button
+              onClick={(e) => goToDownload(e, "MIS DOCUMENTOS")}
+              type="button"
+              className="btn btn-success employee-btn"
+            >
               Documentacion
             </button>
             <button type="button" className="btn btn-primary employee-btn">

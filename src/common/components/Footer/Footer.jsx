@@ -12,10 +12,10 @@ const Footer = () => {
       state: name,
     });
   };
-  const goToRegulations = (e, name) => {
+  const goToDownload = (e, name) => {
     e.preventDefault();
     history.push({
-      pathname: "./regulations",
+      pathname: "./download",
       state: name,
     });
   };
@@ -152,9 +152,9 @@ const Footer = () => {
               </div>
               {/* Grid column */}
               {/* Grid column */}
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+              <div className="col-md-3 col-lg-2 col-xl-3 mx-auto mb-4">
                 {/* Links */}
-                <h6 className="text-uppercase fw-bold">NORMATIVAS</h6>
+                {/* <h6 className="text-uppercase fw-bold">NORMATIVAS</h6>
                 <hr
                   className="mb-4 mt-0 d-inline-block mx-auto"
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
@@ -208,6 +208,71 @@ const Footer = () => {
                   >
                     Consultas Públicas
                   </a>
+                </p> */}
+                <h6 className="text-uppercase fw-bold">SOLICITUDES</h6>
+                <hr
+                  className="mb-4 mt-0 d-inline-block mx-auto"
+                  style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
+                />
+                <p>
+                  <a
+                    onClick={(e) => goToDownload(e, "CARTA LABORAL")}
+                    style={{ textDecoration: "none" }}
+                    href="#/"
+                    className="footer-txt"
+                  >
+                    Carta Laboral
+                  </a>
+                </p>
+                <p>
+                  <a
+                    onClick={(e) => goToDownload(e, "SEGURO MEDICO")}
+                    style={{ textDecoration: "none" }}
+                    href="#/"
+                    className="footer-txt"
+                  >
+                    Seguro Medico
+                  </a>
+                </p>
+                <p>
+                  <a
+                    onClick={(e) => goToDownload(e, "SOLICITUD DE VACACIONES")}
+                    style={{ textDecoration: "none" }}
+                    href="#/"
+                    className="footer-txt"
+                  >
+                    Solicitud de Vacaciones
+                  </a>
+                </p>
+                <p>
+                  <a
+                    onClick={(e) => goToDownload(e, "SOLICITUD DE MATERNIDAD")}
+                    style={{ textDecoration: "none" }}
+                    href="#/"
+                    className="footer-txt"
+                  >
+                    Solicitud de Maternidad
+                  </a>
+                </p>
+                <p>
+                  <a
+                    onClick={(e) => goToDownload(e, "SOLICITUD DE ENFERMEDAD")}
+                    style={{ textDecoration: "none" }}
+                    href="#/"
+                    className="footer-txt"
+                  >
+                    Solicitud de Enfermedad
+                  </a>
+                </p>
+                <p>
+                  <a
+                    onClick={(e) => goToDownload(e, "FORMULARIO DE DESEMPEÑO")}
+                    style={{ textDecoration: "none" }}
+                    href="#/"
+                    className="footer-txt"
+                  >
+                    Formulario de desempeño
+                  </a>
                 </p>
               </div>
               {/* Grid column */}
@@ -221,14 +286,15 @@ const Footer = () => {
                 />
                 <p>
                   <i className="fas fa-home mr-3" />
-                  Oficina principal - Av. Enrique Jiménez Moya #667, Santo
-                  Domingo, República Dominicana
+                  Wendy A. Nuñez Nuñez Directora de Recursos Humanos
                 </p>
                 <p>
-                  <i className="fas fa-envelope mr-3" /> info@dgapp.gob.do
+                  <i className="fas fa-envelope mr-3" />
+                  wnunez@dgapp.gob.do
                 </p>
                 <p>
-                  <i className="fas fa-phone mr-3" /> (809) 682-7000
+                  <i className="fas fa-phone mr-3" />
+                  Ext. 7040
                 </p>
               </div>
               {/* Grid column */}

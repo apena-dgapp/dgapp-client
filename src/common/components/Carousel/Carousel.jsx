@@ -52,6 +52,8 @@ const Carousel = () => {
     };
   }, [contextState.token]);
 
+  // console.log(arrayCarousel.length);
+
   return (
     <>
       <div className="carousel-container">
@@ -61,7 +63,21 @@ const Carousel = () => {
           data-bs-ride="carousel"
         >
           <div className="carousel-indicators">
-            <button
+            {arrayCarousel.map((post, index) => {
+              return (
+                <button
+                  key={index}
+                  type="button"
+                  data-bs-target="#carouselExampleCaptions"
+                  data-bs-slide-to={index}
+                  className="active"
+                  aria-current="true"
+                  aria-label={`Slide ${index}`}
+                />
+              );
+            })}
+            ;
+            {/* <button
               type="button"
               data-bs-target="#carouselExampleCaptions"
               data-bs-slide-to={0}
@@ -80,19 +96,7 @@ const Carousel = () => {
               data-bs-target="#carouselExampleCaptions"
               data-bs-slide-to={2}
               aria-label="Slide 3"
-            />
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to={3}
-              aria-label="Slide 4"
-            />
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to={4}
-              aria-label="Slide 4"
-            />
+            /> */}
           </div>
 
           <div className="carousel-inner">
