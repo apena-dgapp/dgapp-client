@@ -26,7 +26,6 @@ const WYSIWYGEditor = props => {
           wrapperClassName="wrapper-class"
           editorClassName="editor-class"
           onEditorStateChange={onEditorStateChange}
- 
         />
       </div>
     </>

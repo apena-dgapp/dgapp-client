@@ -27,11 +27,10 @@ const NewPostForm = ({
   });
   const handleSubmitOnClick = ({ editor_content }) => {
     sendHandlerForm(editor_content);
+    // if (!img) {
+    //   window.location.reload(false);
+    // }
   };
-
-  // const { reset } = useForm({
-  //   defaultValues
-  // });
 
   return (
     <>

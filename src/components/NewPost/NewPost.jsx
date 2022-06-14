@@ -168,7 +168,12 @@ const NewPost = () => {
               }
               // toast.dismiss(loadingId);
               toast.success("Publicacion guardada exitosamente!");
+
               scrollToTop();
+
+              setTimeout(function () {
+                window.location.reload(true);
+              }, 1100);
             })
             .catch((err) => {
               // toast.dismiss(loadingId);
@@ -179,6 +184,10 @@ const NewPost = () => {
           // toast.dismiss(loadingId);
           toast.success("Publicacion guardada exitosamente!");
           scrollToTop();
+
+          setTimeout(function () {
+            window.location.reload(true);
+          }, 1100);
         }
       })
       .catch((err) => {
