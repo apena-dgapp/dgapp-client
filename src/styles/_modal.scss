@@ -19,14 +19,16 @@
   padding: 15px;
   box-shadow: rgb(0, 0, 0) 2px 2px 10px;
   z-index: 10;
-  min-width: 320px;
+  // min-width: 50rem;
+  // min-height: ;
   // display: flex;
   // justify-content: space-between;
   // align-items: center;
   // flex-flow: wrap;
   //flex-direction: column;
   overflow: hidden;
-  width: 1170px;
+  width: 50rem;
+  height: 20rem;
   margin: auto;
 }
 .container-input {
@@ -113,4 +115,97 @@
 .birthdayModal-text-title{
   color:white;
   font-size: 1.5rem;
+}
+
+//modal newpost
+.wrapper-newpost {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window-newpost {
+  position: relative;
+  background: #EEEEEE;
+  border-radius: 0.5rem;
+  // padding: 15px;
+  box-shadow: rgb(0, 0, 0) 2px 2px 10px;
+  z-index: 10;
+  overflow: hidden;
+  width: 40rem;
+  height: 13rem;
+  margin: auto;
+}
+
+// .background-newpost {
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+//   top: 0;
+//   left: 0;
+//   background: rgba(20, 20, 20, 0.5);
+//   // opacity: 0.4;
+//   backdrop-filter: blur(2px);
+// }
+
+.modal-title-newpost {
+  color: #172261;
+  font-size: 30px;
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+.modal-inputcont-newpost{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}.modal-input-newpost{
+  border-radius: 0.6vw;
+    width: 30rem;
+    height: 2.5rem;
+    border: #141E61 solid 1px;
+    padding-left: 1rem;
+    // font-style: italic;
+    font-size: 1rem;
+    outline: none;
+}
+.btn-apply-newpost {
+  border-radius: 0.6rem;
+  width: 10rem;
+  height: 2.5rem;
+  border: none;
+  color: white;
+  background-color: #1e8809;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background-color: #566573;
+  }
+}
+
+.btn-cancel-newpost {
+  border-radius: 0.6rem;
+  width: 10rem;
+  height: 2.5rem;
+  border: none;
+  color: white;
+  background-color: #970234;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+
+  &:hover {
+    color: white;
+    background-color: #566573;
+  }
 }

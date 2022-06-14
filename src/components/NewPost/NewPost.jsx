@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 
 const NewPost = () => {
   const [contextState] = useContext(GlobalContext);
+  const [modalActive, setModalActive] = useState(false);
 
   const [img, setImg] = useState("");
   const [actionInput, setActionInput] = useState("");
@@ -22,7 +23,15 @@ const NewPost = () => {
     views: 0,
     isActive: true,
   });
-
+  const modalToggle = () => {
+    setModalActive(!modalActive);
+  };
+  const modalToggleCancel = () => {
+    setModalActive(!modalActive);
+    setFormData({
+      video: "",
+    });
+  };
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -79,12 +88,12 @@ const NewPost = () => {
     setAccept(e.target.alt);
   };
 
-  const removeCover = (e) => {
+  const removeCover = () => {
     setImg("");
     document.getElementById("fileinput").value = "";
   };
 
-  const removeGalery = (e) => {
+  const removeGalery = () => {
     setUploadFiles({
       imagenes: "",
     });
@@ -92,7 +101,7 @@ const NewPost = () => {
     document.getElementById("fileinput").value = "";
   };
 
-  const removePdf = (e) => {
+  const removePdf = () => {
     setUploadFiles({
       pdf: "",
     });
@@ -100,7 +109,14 @@ const NewPost = () => {
     document.getElementById("fileinput").value = "";
   };
 
+  const removeVideo = () => {
+    setFormData({
+      video: "",
+    });
+  };
+
   const sendHandlerForm = async (editor_content) => {
+    console.log(formData);
     if (!formData.category) {
       alert("Por favor agregar un categoria");
       return;
@@ -166,14 +182,20 @@ const NewPost = () => {
                   console.log(res.status);
                 });
               }
+
+              if (formData.video) {
+                createFile(contextState.token, id, "URL", formData.video).then(
+                  (res) => {
+                    console.log(res.status);
+                  }
+                );
+              }
               // toast.dismiss(loadingId);
               toast.success("Publicacion guardada exitosamente!");
-
               scrollToTop();
-
-              setTimeout(function () {
-                window.location.reload(true);
-              }, 1100);
+              // setTimeout(function () {
+              //   window.location.reload(true);
+              // }, 1100);
             })
             .catch((err) => {
               // toast.dismiss(loadingId);
@@ -184,10 +206,9 @@ const NewPost = () => {
           // toast.dismiss(loadingId);
           toast.success("Publicacion guardada exitosamente!");
           scrollToTop();
-
-          setTimeout(function () {
-            window.location.reload(true);
-          }, 1100);
+          // setTimeout(function () {
+          //   window.location.reload(true);
+          // }, 1100);
         }
       })
       .catch((err) => {
@@ -221,6 +242,7 @@ const NewPost = () => {
         sendHandlerForm={sendHandlerForm}
         handlerInputChange={handlerInputChange}
         formData={formData}
+        setFormData={setFormData}
         actionHandler={actionHandler}
         actionInput={actionInput}
         accept={accept}
@@ -233,6 +255,10 @@ const NewPost = () => {
         removeCover={removeCover}
         removeGalery={removeGalery}
         removePdf={removePdf}
+        removeVideo={removeVideo}
+        modalActive={modalActive}
+        modalToggle={modalToggle}
+        modalToggleCancel={modalToggleCancel}
       />
     </>
   );

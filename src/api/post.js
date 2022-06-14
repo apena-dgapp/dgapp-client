@@ -90,6 +90,17 @@ export const getFiles = async (token, postid) => {
         }   
     })
 }
+export const getVideo = async (token, postid) => {
+    const body = {postid};
+    return fetch(`${process.env.REACT_APP_API}filespost/getvideo`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token,
+        }   
+    })
+}
 
 
 

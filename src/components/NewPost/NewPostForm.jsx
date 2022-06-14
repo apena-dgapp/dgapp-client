@@ -4,11 +4,13 @@ import Images from "../../common/images/index";
 import { TiDelete } from "react-icons/ti";
 import WYSIWYGEditor from "../../common/components/TextEditor/WYSIWYG";
 import { useForm, Controller } from "react-hook-form";
+import Modal from "./NewPost.Modal";
 
 const NewPostForm = ({
   sendHandlerForm,
   handlerInputChange,
   formData,
+  setFormData,
   actionHandler,
   actionInput,
   accept,
@@ -21,19 +23,28 @@ const NewPostForm = ({
   removeCover,
   removeGalery,
   removePdf,
+  removeVideo,
+  modalActive,
+  modalToggle,
+  modalToggleCancel,
 }) => {
   const { handleSubmit, control } = useForm({
     mode: "onChange",
   });
   const handleSubmitOnClick = ({ editor_content }) => {
     sendHandlerForm(editor_content);
-    // if (!img) {
-    //   window.location.reload(false);
-    // }
   };
 
   return (
     <>
+      <Modal
+        // modalTitle={modalValidaton ? modalTitleAuth : modalTitle}
+        modalToggle={modalToggle}
+        modalActive={modalActive}
+        formData={formData}
+        setFormData={setFormData}
+        modalToggleCancel={modalToggleCancel}
+      />
       <div className="post-container">
         <div className="post-title">
           <p className="Post-title-text">CREAR UNA NUEVA PUBLICACION</p>
@@ -228,11 +239,29 @@ const NewPostForm = ({
                   <p className="newPostImg-txt">Agregar Video</p>
                   <img
                     name="video"
-                    onClick={msgDisable}
+                    onClick={modalToggle}
                     className="newPostImg"
+                    type="text"
                     src={Images.video}
                     alt=".mp4, .avi, .mkv, .mov"
+                    onChange={handlerInputChange}
+                    value={formData.video}
                   />
+                  {formData.video ? (
+                    <div onClick={removeVideo} className="remove-cont">
+                      <p style={{ fontWeight: "bold" }} className="p-0 m-0">
+                        (1)
+                      </p>
+                      <a
+                        style={{ color: "red" }}
+                        href="#/"
+                        className="text-white me-4"
+                      >
+                        <i className="Md Delete-Forever" />
+                        <TiDelete size="2em" color="red" />
+                      </a>
+                    </div>
+                  ) : null}
                   {/* <p className="">Remove (1)</p> */}
                 </figure>
                 {/* <figure>

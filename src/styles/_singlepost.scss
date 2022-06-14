@@ -161,6 +161,75 @@
 // .singlePost-img:hover {filter: grayscale(80%);}
 
 
+///download
+.siglepost-download-title{
+    margin-left: 0.5rem;
+    color: gray;
+    font-size: 1.2rem;
+}
 
+.siglepost-download-title p{
+margin-bottom: 0;
+}
+.siglepost-header-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 30em;
+    // margin-bottom: 80em;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/folder-g94c5946c0_1280.jpg");
+}
+
+.siglepost-card-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.siglepost-card::-webkit-scrollbar{
+    background-color: white;
+    width: 20px;
+  }
+  
+  .siglepost-card::-webkit-scrollbar-thumb{
+    background-color: gainsboro;
+    // border-radius: 7px;
+  }
+.siglepost-header-grid{
+    display: grid;
+    grid-template-columns: 40% 20% 20% 20%;
+    background-color: gainsboro;
+    height: 7.2vh;
+}
+.siglepost-nav-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    color: gray;
+}
+.siglepost-nav-txt{
+    font-weight: bold;
+}
+.siglepost-data-grid{
+    display: grid;
+    grid-template-columns: 40% 20% 20% 20%;
+    height: 6vh;
+}
+.siglepost-data-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+.siglepost-scroll-cont{
+    width: 100%;
+    height: 6vh;
+    // margin-top: 16.62em;
+}
+.siglepost-data-txt{
+    color: gray;
+}
 
 

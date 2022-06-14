@@ -9,3 +9,4 @@ export const apiFiles = async (token, category) => {
         }   
     })
 }
+

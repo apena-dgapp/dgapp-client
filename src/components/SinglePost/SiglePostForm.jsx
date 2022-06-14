@@ -3,7 +3,7 @@ import Viewer from "react-viewer";
 import Carousel from "react-elastic-carousel";
 import ReactPlayer from "react-player";
 
-const SiglePostForm = ({ dataPost, arrayImg }) => {
+const SiglePostForm = ({ dataPost, arrayImg, video }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visible, setVisible] = useState(false);
 
@@ -80,7 +80,10 @@ const SiglePostForm = ({ dataPost, arrayImg }) => {
             ></p>
             <Carousel breakPoints={breakPoints}>
               {arrayImg.files?.map((item, index) => {
-                return (
+                return item.type === "jpg" ||
+                  item.type === "jpeg" ||
+                  item.type === "jfif" ||
+                  item.type === "png" ? (
                   <div key={index.toString()}>
                     <img
                       className="singlePost-galeryImg"
@@ -93,7 +96,7 @@ const SiglePostForm = ({ dataPost, arrayImg }) => {
                       }}
                     />
                   </div>
-                );
+                ) : null;
               })}
               <Viewer
                 visible={visible}
@@ -110,10 +113,79 @@ const SiglePostForm = ({ dataPost, arrayImg }) => {
         </div>
       </div>
       <div className="singlePostVideo">
-        <ReactPlayer
-          url="https://www.youtube.com/watch?v=pLBuFxMYkx8"
-          controls
-        />
+        <ReactPlayer url={video.src} controls />
+      </div>
+
+      <div className="siglepost-download-title">
+        <p className="">ZONA DE DESCARGA</p>
+      </div>
+
+      <div className="siglepost-scroll-cont">
+        <div className="siglepost-header-grid">
+          <div className="siglepost-grid-1">
+            <div className="siglepost-nav-container">
+              <div className="siglepost-nav-txt">Titulo</div>
+            </div>
+          </div>
+          <div className="siglepost-grid-2">
+            <div className="siglepost-nav-container">
+              <div className="siglepost-nav-txt">Tamaño</div>
+            </div>
+          </div>
+          <div className="siglepost-grid-3">
+            <div className="siglepost-nav-container">
+              <div className="siglepost-nav-txt">Fecha de Publicación</div>
+            </div>
+          </div>
+          <div className="siglepost-grid-4">
+            <div className="siglepost-nav-container">
+              <div className="siglepost-nav-txt">Descargar Archivo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        {arrayImg
+          ? arrayImg.files.map((file) => {
+              return file.type === "PDF" ? (
+                <div key={file.fileId} id={file.fileId}>
+                  <div className="regulations-data-grid">
+                    <div className="regulations-grid-1">
+                      <div className="regulations-data-container">
+                        <div className="regulations-data-txt">{file.name}</div>
+                      </div>
+                    </div>
+                    <div className="regulations-grid-2">
+                      <div className="regulations-data-container">
+                        <div className="regulations-data-txt">{file.size}</div>
+                      </div>
+                    </div>
+                    <div className="regulations-grid-3">
+                      <div className="regulations-data-container">
+                        <div className="regulations-data-txt">
+                          {new Date(file.publicationDate).toDateString()}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="regulations-grid-4">
+                      <div className="regulations-data-container">
+                        <div className="">
+                          <button
+                            id={file.fileId}
+                            type="button"
+                            className="btn btn-success btn-sm"
+                            // onClick={() => goToPDF(file.file)}
+                          >
+                            Descargar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : null;
+            })
+          : null}
       </div>
     </>
   );
