@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, Component } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import EmployeeForm from "./EmployeeForm";
 import GlobalContext from "../../context/GlobalContext";
 import { getOnePerson } from "../../api/person";

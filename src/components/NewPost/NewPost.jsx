@@ -14,6 +14,8 @@ const NewPost = () => {
   const [accept, setAccept] = useState("");
   const [qtyImg, setQtyImg] = useState("");
   const [qtyPdf, setQtyPdf] = useState("");
+  const [namePdf, setNamePdf] = useState("");
+  const [nameImg, setNameImg] = useState("");
 
   const [formData, setFormData] = useState({
     title: "",
@@ -59,7 +61,12 @@ const NewPost = () => {
 
   const handleruploadFiles = async (e) => {
     const { name, files } = e.target;
-
+    if (actionInput === "imagenes") {
+      setNameImg(...nameImg, files);
+    }
+    if (actionInput === "pdf") {
+      setNamePdf(...namePdf, files);
+    }
     if (files.length > 1) {
       setUploadFiles({
         ...uploadFiles,
@@ -116,7 +123,6 @@ const NewPost = () => {
   };
 
   const sendHandlerForm = async (editor_content) => {
-    console.log(formData);
     if (!formData.category) {
       alert("Por favor agregar un categoria");
       return;
@@ -169,26 +175,83 @@ const NewPost = () => {
             })
             .then((res) => {
               const id = res.post.postId;
-              for (let i = 0; i < uploadFiles.imagenes.length; i++) {
-                const typeSplit = uploadFiles.imagenes[i].split(";");
-                const type = typeSplit[0].split("/");
+              const newArrayImg = uploadFiles.imagenes;
+              const newArrayPdf = uploadFiles.pdf;
 
+              if (newArrayImg) {
+                if (Array.isArray(newArrayImg)) {
+                  for (let i = 0; i < newArrayImg.length; i++) {
+                    const typeSplit = newArrayImg[i].split(";");
+                    const type = typeSplit[0].split("/");
+
+                    createFile(
+                      contextState.token,
+                      id,
+                      nameImg[i].name,
+                      type[1],
+                      newArrayImg[i]
+                    ).then((res) => {
+                      console.log(res.status);
+                    });
+                  }
+                } else {
+                  const typeSplit = newArrayImg.split(";");
+                  const type = typeSplit[0].split("/");
+
+                  createFile(
+                    contextState.token,
+                    id,
+                    nameImg[0].name,
+                    type[1],
+                    newArrayImg
+                  ).then((res) => {
+                    console.log(res.status);
+                  });
+                }
+              }
+
+              if (newArrayPdf) {
+                if (Array.isArray(newArrayPdf)) {
+                  for (let x = 0; x < newArrayPdf.length; x++) {
+                    const typeSplit = newArrayPdf[x].split(";");
+                    const type = typeSplit[0].split("/");
+                    console.log(namePdf);
+                    createFile(
+                      contextState.token,
+                      id,
+                      namePdf[x].name,
+                      type[1],
+                      newArrayPdf[x]
+                    ).then((res) => {
+                      console.log(res.status);
+                    });
+                  }
+                } else {
+                  const typeSplitPdf = newArrayPdf.split(";");
+                  const typePdf = typeSplitPdf[0].split("/");
+
+                  createFile(
+                    contextState.token,
+                    id,
+                    namePdf[0].name,
+                    typePdf[1],
+                    newArrayPdf
+                  ).then((res) => {
+                    console.log(res.status);
+                  });
+                }
+              }
+              console.log(formData.video);
+              if (formData.video) {
                 createFile(
                   contextState.token,
                   id,
-                  type[1],
-                  uploadFiles.imagenes[i]
+                  "",
+                  "URL",
+                  formData.video
                 ).then((res) => {
                   console.log(res.status);
                 });
-              }
-
-              if (formData.video) {
-                createFile(contextState.token, id, "URL", formData.video).then(
-                  (res) => {
-                    console.log(res.status);
-                  }
-                );
               }
               // toast.dismiss(loadingId);
               toast.success("Publicacion guardada exitosamente!");
@@ -228,6 +291,8 @@ const NewPost = () => {
     setActionInput("");
     setQtyImg("");
     setQtyPdf("");
+    setNameImg("");
+    setNamePdf("");
     setUploadFiles({
       imagenes: "",
       pdf: "",

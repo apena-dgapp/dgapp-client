@@ -304,7 +304,7 @@ const Footer = () => {
         </section>
         {/* Section: Links  */}
         {/* Copyright */}
-        <div
+        {/* <div
           className="text-center p-3"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
         >
@@ -312,7 +312,7 @@ const Footer = () => {
           <a className="text-white" href="https://mdbootstrap.com/">
             MDBootstrap.com
           </a>
-        </div>
+        </div> */}
         {/* Copyright */}
       </footer>
       {/* Footer */}
