@@ -8,6 +8,7 @@ const Modal = ({
   formData,
   setFormData,
   modalToggleCancel,
+  modalToggleAceppt,
 }) => {
   const handlerInputChange = (e) => {
     setFormData({
@@ -39,7 +40,7 @@ const Modal = ({
                 className="btn-apply-newpost"
                 name="btn-Apply"
                 type="button"
-                onClick={modalToggle}
+                onClick={modalToggleAceppt}
               >
                 Aplicar
               </button>

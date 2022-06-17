@@ -24,7 +24,15 @@ const NewPost = () => {
     author: "",
     views: 0,
     isActive: true,
+    video: "",
   });
+  const modalToggleAceppt = () => {
+    if (formData.video) {
+      setModalActive(!modalActive);
+    } else {
+      return toast.error("Por favor de agregar el enlace del video");
+    }
+  };
   const modalToggle = () => {
     setModalActive(!modalActive);
   };
@@ -124,20 +132,15 @@ const NewPost = () => {
 
   const sendHandlerForm = async (editor_content) => {
     if (!formData.category) {
-      alert("Por favor agregar un categoria");
-      return;
+      return toast.error("Por favor agregar un categoria");
     } else if (!formData.title) {
-      alert("Por favor agregar un titulo");
-      return;
+      return toast.error("Por favor agregar un titulo");
     } else if (!formData.author) {
-      alert("Por favor agregar un autor");
-      return;
+      return toast.error("Por favor agregar un autor");
     } else if (!editor_content) {
-      alert("Por favor agregar una descripcion");
-      return;
+      return toast.error("Por favor agregar una descripcion");
     } else if (!img) {
-      alert("Por favor agregar una imagen de portada");
-      return;
+      return toast.error("Por favor agregar una imagen de portada");
     }
     newPostApi(
       contextState.token,
@@ -157,122 +160,108 @@ const NewPost = () => {
       })
       .then((res) => {
         console.log(res.status);
-        if (
-          uploadFiles.imagenes !== "" ||
-          uploadFiles.pdf !== "" ||
-          uploadFiles.video !== ""
-        ) {
-          postId(
-            contextState.token,
-            formData.title,
-            formData.category,
-            formData.author
-          )
-            .then((res) => {
-              if (res.status >= 400)
-                throw new alert.err("error al hacer el fetch");
-              return res.json();
-            })
-            .then((res) => {
-              const id = res.post.postId;
-              const newArrayImg = uploadFiles.imagenes;
-              const newArrayPdf = uploadFiles.pdf;
 
-              if (newArrayImg) {
-                if (Array.isArray(newArrayImg)) {
-                  for (let i = 0; i < newArrayImg.length; i++) {
-                    const typeSplit = newArrayImg[i].split(";");
-                    const type = typeSplit[0].split("/");
-
-                    createFile(
-                      contextState.token,
-                      id,
-                      nameImg[i].name,
-                      type[1],
-                      newArrayImg[i]
-                    ).then((res) => {
-                      console.log(res.status);
-                    });
-                  }
-                } else {
-                  const typeSplit = newArrayImg.split(";");
+        postId(
+          contextState.token,
+          formData.title,
+          formData.category,
+          formData.author
+        )
+          .then((res) => {
+            if (res.status >= 400)
+              throw new alert.err("error al hacer el fetch");
+            return res.json();
+          })
+          .then((res) => {
+            const id = res.post.postId;
+            const newArrayImg = uploadFiles.imagenes;
+            const newArrayPdf = uploadFiles.pdf;
+            if (newArrayImg) {
+              if (Array.isArray(newArrayImg)) {
+                for (let i = 0; i < newArrayImg.length; i++) {
+                  const typeSplit = newArrayImg[i].split(";");
                   const type = typeSplit[0].split("/");
 
                   createFile(
                     contextState.token,
                     id,
-                    nameImg[0].name,
+                    nameImg[i].name,
                     type[1],
-                    newArrayImg
+                    newArrayImg[i]
                   ).then((res) => {
                     console.log(res.status);
                   });
                 }
-              }
+              } else {
+                const typeSplit = newArrayImg.split(";");
+                const type = typeSplit[0].split("/");
 
-              if (newArrayPdf) {
-                if (Array.isArray(newArrayPdf)) {
-                  for (let x = 0; x < newArrayPdf.length; x++) {
-                    const typeSplit = newArrayPdf[x].split(";");
-                    const type = typeSplit[0].split("/");
-                    console.log(namePdf);
-                    createFile(
-                      contextState.token,
-                      id,
-                      namePdf[x].name,
-                      type[1],
-                      newArrayPdf[x]
-                    ).then((res) => {
-                      console.log(res.status);
-                    });
-                  }
-                } else {
-                  const typeSplitPdf = newArrayPdf.split(";");
-                  const typePdf = typeSplitPdf[0].split("/");
-
-                  createFile(
-                    contextState.token,
-                    id,
-                    namePdf[0].name,
-                    typePdf[1],
-                    newArrayPdf
-                  ).then((res) => {
-                    console.log(res.status);
-                  });
-                }
-              }
-              console.log(formData.video);
-              if (formData.video) {
                 createFile(
                   contextState.token,
                   id,
-                  "",
-                  "URL",
-                  formData.video
+                  nameImg[0].name,
+                  type[1],
+                  newArrayImg
                 ).then((res) => {
                   console.log(res.status);
                 });
               }
-              // toast.dismiss(loadingId);
-              toast.success("Publicacion guardada exitosamente!");
-              scrollToTop();
-              // setTimeout(function () {
-              //   window.location.reload(true);
-              // }, 1100);
-            })
-            .catch((err) => {
-              // toast.dismiss(loadingId);
-              console.error(err.status);
-              toast.error("Error al intentar guardar la publicacion!");
-            });
-        } else {
-          // toast.dismiss(loadingId);
-          toast.success("Publicacion guardada exitosamente!");
-          scrollToTop();
-          // setTimeout(function () {
-          //   window.location.reload(true);
-          // }, 1100);
-        }
+            }
+
+            if (newArrayPdf) {
+              if (Array.isArray(newArrayPdf)) {
+                for (let x = 0; x < newArrayPdf.length; x++) {
+                  const typeSplit = newArrayPdf[x].split(";");
+                  const type = typeSplit[0].split("/");
+                  createFile(
+                    contextState.token,
+                    id,
+                    namePdf[x].name,
+                    type[1],
+                    newArrayPdf[x]
+                  ).then((res) => {
+                    console.log(res.status);
+                  });
+                }
+              } else {
+                const typeSplitPdf = newArrayPdf.split(";");
+                const typePdf = typeSplitPdf[0].split("/");
+
+                createFile(
+                  contextState.token,
+                  id,
+                  namePdf[0].name,
+                  typePdf[1],
+                  newArrayPdf
+                ).then((res) => {
+                  console.log(res.status);
+                });
+              }
+            }
+
+            if (formData.video) {
+              createFile(
+                contextState.token,
+                id,
+                "",
+                "URL",
+                formData.video
+              ).then((res) => {
+                console.log(res.status);
+              });
+            }
+            // toast.dismiss(loadingId);
+            toast.success("Publicacion guardada exitosamente!");
+            scrollToTop();
+            // setTimeout(function () {
+            //   window.location.reload(true);
+            // }, 1100);
+          })
+          .catch((err) => {
+            // toast.dismiss(loadingId);
+            console.error(err.status);
+            toast.error("Error al intentar guardar la publicacion!");
+          });
       })
       .catch((err) => {
         console.error(err.status);
@@ -285,6 +274,7 @@ const NewPost = () => {
       author: "",
       views: 0,
       isActive: true,
+      video: "",
     });
     setImg("");
     setAccept("");
@@ -324,6 +314,7 @@ const NewPost = () => {
         modalActive={modalActive}
         modalToggle={modalToggle}
         modalToggleCancel={modalToggleCancel}
+        modalToggleAceppt={modalToggleAceppt}
       />
     </>
   );

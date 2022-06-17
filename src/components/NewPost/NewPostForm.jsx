@@ -27,6 +27,7 @@ const NewPostForm = ({
   modalActive,
   modalToggle,
   modalToggleCancel,
+  modalToggleAceppt,
 }) => {
   const { handleSubmit, control } = useForm({
     mode: "onChange",
@@ -44,6 +45,7 @@ const NewPostForm = ({
         formData={formData}
         setFormData={setFormData}
         modalToggleCancel={modalToggleCancel}
+        modalToggleAceppt={modalToggleAceppt}
       />
       <div className="post-container">
         <div className="post-title">
