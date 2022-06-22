@@ -1,4 +1,3 @@
-
 export const createUser = async (token,personid,username,password,createby,modifiedby) => {
     const body = {personid,username,password,createby,modifiedby};
     return fetch(`${process.env.REACT_APP_API}user/createuser`, {
@@ -11,6 +10,8 @@ export const createUser = async (token,personid,username,password,createby,modif
     })
 }
 
+//build
+
 // export const createUser = async (token,personid,username,password,createby,modifiedby) => {
 //     const body = {personid,username,password,createby,modifiedby};
 //     return fetch("http://172.17.70.118:4500/api/v1/user/createuser", {
@@ -22,5 +23,3 @@ export const createUser = async (token,personid,username,password,createby,modif
 //         }   
 //     })
 // }
-
-

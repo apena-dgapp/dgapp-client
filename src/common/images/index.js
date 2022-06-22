@@ -22,6 +22,7 @@ import galeryActive from '../images/galeria-de-imagenes-active.png';
 import cumpleanos from './cumpleanos.png';
 import chart from './diagram.png';
 import ministerio from './ministerio.jpg';
+import noImg from '../images/sinFoto.jpg';
  
 const Images = {
     iconUser,
@@ -46,7 +47,8 @@ const Images = {
     galery,
     galeryActive,
     chart,
-    ministerio
+    ministerio,
+    noImg
 }
 
 export default Images;

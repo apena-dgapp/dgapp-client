@@ -35,8 +35,9 @@ nav ul a:hover{
 }
 
 nav ul ul a:hover{
-    background: #787A91;
-    color: white;
+    // background: #2e4957;
+    color: #122129;
+    font-weight: bold;
 }
 nav ul ul{
     position: absolute;
@@ -47,7 +48,8 @@ nav ul li:hover > ul{
     display: block;
     padding: 0 0.5rem;
     padding-top: 0.5rem;
-    background-color: rgba(20, 30, 97, .96);
+    // background-color: rgba(20, 30, 97, .96);
+    background-color: #4B778D;
     // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -117,7 +119,7 @@ nav ul li ul li:hover::before{
   }
 
 .bar_menu{
-    background-color: rgba(20, 30, 97, .96);
+    background-color: #4B778D;
     height: 130px; 
     width: 100vw;
     display: flex;
@@ -146,7 +148,7 @@ nav ul li ul li:hover::before{
     margin-top: 1rem;
     margin-right: 1.5rem;
     object-fit: cover;
-    border: 0.2rem solid gray;
+    border: 0.2rem solid rgb(42, 52, 63);
     cursor: pointer;
     // margin-right: 5rem;
 }
@@ -165,9 +167,10 @@ nav ul li ul li:hover::before{
 }
 
 .nav-user-position{
-    color: gray;
+    color:rgb(42, 52, 63);
     font-size: 1rem;
     margin-bottom: 0.5rem;
+    font-weight: bold;
 }
 .nav-user-close{
     color: white;
@@ -176,6 +179,11 @@ nav ul li ul li:hover::before{
     text-decoration: underline;
 }
 
+.nav-user-notf-cont{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
 
 @media screen and (max-width: 400px) {
     .bar_menu{
@@ -281,6 +289,7 @@ nav ul li ul li:hover::before{
     // }
     .logo_dgapp{
         width: 5rem;
+        cursor: pointer;
     }
 
     .class-list{

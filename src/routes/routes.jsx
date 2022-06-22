@@ -26,7 +26,7 @@ const Routes = () => {
   // <Route exact path={`${process.env.REACT_APP_RUTE}/`} component={contextState.token ? Dashboard : Login} />
   // <PrivateRoutes exct path={`${process.env.REACT_APP_RUTE}/home`} component={Dashboard} />
 
-  const ruteServer = "";
+  // const ruteServer = "";
   // const ruteServer = "/intranet";
 
   return (
@@ -36,29 +36,61 @@ const Routes = () => {
       <Switch>
         <Route
           exact
-          path={`${ruteServer}/`}
+          path={`${process.env.REACT_APP_RUTE}/`}
           component={contextState.token ? Dashboard : Login}
         />
-        <PrivateRoutes exct path={`${ruteServer}/home`} component={Dashboard} />
-        <Route path={`${ruteServer}/siglepost`} component={SinglePost} />
-        <Route path={`${ruteServer}/allpost`} component={allPost} />
-        <Route path={`${ruteServer}/userregister`} component={userRegister} />
-        <Route path={`${ruteServer}/newpost`} component={NewPost} />
-        <Route path={`${ruteServer}/employee`} component={Employee} />
-        <Route path={`${ruteServer}/aboutus`} component={AboutUs} />
-        <Route path={`${ruteServer}/employeechart`} component={EmployeeChart} />
-        <Route path={`${ruteServer}/docdynamic`} component={DocDynamic} />
-        <Route path={`${ruteServer}/pdf`} component={FilePdf} />
+        <PrivateRoutes
+          exct
+          path={`${process.env.REACT_APP_RUTE}/home`}
+          component={Dashboard}
+        />
         <Route
-          path={`${ruteServer}/employeeprofile`}
+          path={`${process.env.REACT_APP_RUTE}/siglepost`}
+          component={SinglePost}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/allpost`}
+          component={allPost}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/userregister`}
+          component={userRegister}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/newpost`}
+          component={NewPost}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/employee`}
+          component={Employee}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/aboutus`}
+          component={AboutUs}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/employeechart`}
+          component={EmployeeChart}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/docdynamic`}
+          component={DocDynamic}
+        />
+        <Route path={`${process.env.REACT_APP_RUTE}/pdf`} component={FilePdf} />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/employeeprofile`}
           component={EmployeeProfile}
         />
         <Route
-          path={`${ruteServer}/correspondence`}
+          path={`${process.env.REACT_APP_RUTE}/correspondence`}
           component={Correspondence}
         />
 
-        <Route exact path={`${ruteServer}*`} component={Page404} />
+        <Route
+          exact
+          path={`${process.env.REACT_APP_RUTE}*`}
+          component={Page404}
+        />
       </Switch>
       {contextState.token ? <Footer /> : null}
     </BrowserRouter>

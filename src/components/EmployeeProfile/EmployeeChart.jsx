@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import GlobalContext from "../../context/GlobalContext";
 import { getFollowers } from "../../api/person";
 import { useHistory } from "react-router-dom";
+import Images from "../../common/images";
 
 const EmployeeChart = (state) => {
   const [contextState] = useContext(GlobalContext);
@@ -41,8 +42,15 @@ const EmployeeChart = (state) => {
     }
   };
 
-  //console.log(followersChart);
-  //   console.log(state.location.state);
+  const goTochart = () => {
+    if (state.location.state.fullName) {
+      history.push({
+        pathname: "./employeechart",
+        state: state.location.state.id,
+      });
+    }
+  };
+
   return (
     <>
       <div className="tree-container">
@@ -59,11 +67,36 @@ const EmployeeChart = (state) => {
                 className="img-first"
                 // href="#/"
               >
-                <img src={state.location.state.photoReportTo} alt="" />
+                {state.location.state.id === 1 ? (
+                  <img src={Images.ministerio} alt="" />
+                ) : (
+                  <img
+                    src={
+                      state.location.state.photoReportTo
+                        ? state.location.state.photoReportTo
+                        : Images.noImg
+                    }
+                    alt=""
+                  />
+                )}
+                {/* <img
+                  src={
+                    state.location.state.photoReportTo
+                      ? state.location.state.photoReportTo
+                      : Images.noImg
+                  }
+                  alt=""
+                /> */}
                 <p className="img-departament">
                   {state.location.state.departamentReportTo}
                 </p>
-                <span>{state.location.state.fullNameReportTo}</span>
+                {state.location.state.id === 1 ? (
+                  <span>Ministerio de la Presidencia</span>
+                ) : (
+                  <span>{state.location.state.fullNameReportTo}</span>
+                )}
+
+                {/* <span>{state.location.state.fullNameReportTo}</span> */}
                 <p className="img-position">
                   {state.location.state.positionReportTo}
                 </p>
@@ -72,10 +105,19 @@ const EmployeeChart = (state) => {
                 <li>
                   <a
                     onClick={(e) => goToProfile(e, state.location.state.id)}
+                    // onClick={goTochart}
                     className="img-second"
                     href="#/"
                   >
-                    <img src={state.location.state.photo} alt="" />
+                    <img
+                      // onClick={(e) => goToProfile(e, state.location.state.id)}
+                      src={
+                        state.location.state.photo
+                          ? state.location.state.photo
+                          : Images.noImg
+                      }
+                      alt=""
+                    />
                     <p className="img-departament">
                       {state.location.state.departament}
                     </p>
@@ -95,7 +137,9 @@ const EmployeeChart = (state) => {
                           <a href="#/">
                             <img
                               className="img-last"
-                              src={follower.photo}
+                              src={
+                                follower.photo ? follower.photo : Images.noImg
+                              }
                               alt=""
                             />
                             <p className="img-departament-last">

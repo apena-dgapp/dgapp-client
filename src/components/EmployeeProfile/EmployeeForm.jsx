@@ -7,7 +7,7 @@ import { FaBirthdayCake } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import Images from "../../common/images/index";
 
-const EmployeeForm = ({ profile, reportsTo, generateDocument }) => {
+const EmployeeForm = ({ profile, reportsTo, generateDocument, msgDisable }) => {
   const history = useHistory();
   const [profileChart, setProfileChart] = useState({
     id: "",
@@ -37,23 +37,25 @@ const EmployeeForm = ({ profile, reportsTo, generateDocument }) => {
       month: "long",
     }).format(new Date(profile.birthdayDate));
 
-    var day = profile.birthdayDate.split("-");
-    var daySplit = day[2];
-    const currentDay = `${new Date().getFullYear()}-${
-      new Date().getMonth() + 1
-    }-${daySplit}`;
-    const fechaComoCadena = currentDay; // día lunes
-    const dias = [
-      "domingo",
-      "lunes",
-      "martes",
-      "miércoles",
-      "jueves",
-      "viernes",
-      "sábado",
-    ];
-    const numeroDia = new Date(fechaComoCadena).getDay();
-    var nombreDia = dias[numeroDia];
+    if (profile.birthdayDate) {
+      var day = profile.birthdayDate.split("-");
+      var daySplit = day[2];
+      const currentDay = `${new Date().getFullYear()}-${
+        new Date().getMonth() + 1
+      }-${daySplit}`;
+      const fechaComoCadena = currentDay; // día lunes
+      const dias = [
+        "domingo",
+        "lunes",
+        "martes",
+        "miércoles",
+        "jueves",
+        "viernes",
+        "sábado",
+      ];
+      const numeroDia = new Date(fechaComoCadena).getDay();
+      var nombreDia = dias[numeroDia];
+    }
   }
 
   if (reportsTo) {
@@ -75,10 +77,10 @@ const EmployeeForm = ({ profile, reportsTo, generateDocument }) => {
       idReportTo: reportsTo ? reportsTo.personId : 0,
       fullNameReportTo: reportsTo
         ? `${reportsTofirstN} ${reportsTolastN}`
-        : "Ministerio de la Presidencia",
+        : null,
       positionReportTo: reportsTo ? reportsTo.position : null,
       departamentReportTo: reportsTo ? reportsTo.Departament.name : null,
-      photoReportTo: reportsTo ? reportsTo.photo : Images.ministerio,
+      photoReportTo: reportsTo ? reportsTo.photo : Images.noImg,
     });
   }, [
     setProfileChart,
@@ -106,24 +108,32 @@ const EmployeeForm = ({ profile, reportsTo, generateDocument }) => {
     });
   };
 
-  const goToDownload = (e, name) => {
-    e.preventDefault();
-    history.push({
-      pathname: "./docdynamic",
-      state: name,
-    });
-  };
+  // const goToDownload = (e, name) => {
+  //   e.preventDefault();
+  //   history.push({
+  //     pathname: "./docdynamic",
+  //     state: name,
+  //   });
+  // };
 
   return (
     <>
       <div className="employee-container">
         <div className="employee-card-container">
           <div className="employee-img-container">
-            <img
-              className="employee-img"
-              src={profile ? profile.photo : null}
-              alt=""
-            />
+            {profile.personId === 1 ? (
+              <img
+                className="employee-img"
+                src={profile.photo ? profile.photo : Images.ministerio}
+                alt=""
+              />
+            ) : (
+              <img
+                className="employee-img"
+                src={profile.photo ? profile.photo : Images.noImg}
+                alt=""
+              />
+            )}
             <div className="employee-report-to">
               <p className="m-0">Reporta a</p>
             </div>
@@ -132,24 +142,45 @@ const EmployeeForm = ({ profile, reportsTo, generateDocument }) => {
             </div>
 
             <div className="employee-report-container">
-              <img
+              {/* <img
                 onClick={reportsTo ? goToProfileReportTo : null}
                 className="employee-report-img"
-                src={reportsTo ? reportsToPhoto : Images.ministerio}
+                src={reportsTo ? reportsToPhoto : Images.noImg}
                 alt=""
-              ></img>
+              ></img> */}
+
+              {profile.personId === 1 ? (
+                <img
+                  onClick={reportsTo ? goToProfileReportTo : null}
+                  className="employee-report-img"
+                  src={reportsTo ? reportsToPhoto : Images.ministerio}
+                  alt=""
+                />
+              ) : (
+                <img
+                  onClick={reportsTo ? goToProfileReportTo : null}
+                  className="employee-report-img"
+                  src={reportsTo ? reportsToPhoto : Images.noImg}
+                  alt=""
+                />
+              )}
               <div className="employee-report-txt">
-                <p className="employee-report-position m-0">
-                  <i className="md md-arrow-forward-ios" />
-                  <MdArrowForwardIos
-                    className="employee-report-arrow"
-                    size="1.5em"
-                    color="grey"
-                  />
-                  {reportsTo
-                    ? reportsToPosition
-                    : "Ministerio de la Presidencia"}
-                </p>
+                {profile.personId !== 1 ? (
+                  <p className="employee-report-position m-0">
+                    <i className="md md-arrow-forward-ios" />
+                    <MdArrowForwardIos
+                      className="employee-report-arrow"
+                      size="1.5em"
+                      color="grey"
+                    />
+                    {reportsTo ? reportsToPosition : null}
+                  </p>
+                ) : (
+                  <p className="employee-report-position m-0">
+                    Ministerio de la Presidencia
+                  </p>
+                )}
+
                 <p className="employee-report-name m-0">
                   {reportsTo ? reportsTofirstN + " " + reportsTolastN : null}
                 </p>
@@ -185,7 +216,8 @@ const EmployeeForm = ({ profile, reportsTo, generateDocument }) => {
 
           <div className="employee-btn-container">
             <button
-              onClick={(e) => goToDownload(e, "MIS DOCUMENTOS")}
+              // onClick={(e) => goToDownload(e, "MIS DOCUMENTOS")}
+              onClick={msgDisable}
               type="button"
               className="btn btn-success employee-btn"
             >
@@ -237,7 +269,7 @@ const EmployeeForm = ({ profile, reportsTo, generateDocument }) => {
             <MdEmail size="1.5em" color="gray" />
             <p className="employee-upcoming-birthday">Email:</p>
             <p className="employee-contact-email">
-              {profile ? profile.email.toLowerCase() : null}
+              {profile.email ? profile.email.toLowerCase() : null}
             </p>
           </div>
           <div className="employee-info-container">
@@ -245,7 +277,7 @@ const EmployeeForm = ({ profile, reportsTo, generateDocument }) => {
             <MdPhoneInTalk size="1.5em" color="gray" />
             <p className="employee-upcoming-birthday">Telefono:</p>
             <p className="employee-contact-email">
-              {profile ? profile.phoneNumber : null}
+              {profile.phoneNumber ? profile.phoneNumber : null}
             </p>
           </div>
         </div>

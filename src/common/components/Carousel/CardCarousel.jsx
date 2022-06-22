@@ -36,7 +36,7 @@ const CardCarousel = (props) => {
               </div>
             ) : (
               <div className="p-class">
-                <p>{props.description}</p>
+                <p dangerouslySetInnerHTML={{ __html: props.description }}></p>
               </div>
             )}
           </div>

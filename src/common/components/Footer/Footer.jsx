@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFacebookF, FaTwitter, FaGoogle, FaInstagram } from "react-icons/fa";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { toast } from "react-hot-toast";
 
 const Footer = () => {
   const history = useHistory();
@@ -18,6 +19,13 @@ const Footer = () => {
       pathname: "./download",
       state: name,
     });
+  };
+
+  const msgDisable = () => {
+    return toast.error(
+      "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
+    );
+    //history.push('./')
   };
 
   return (
@@ -216,8 +224,8 @@ const Footer = () => {
                 />
                 <p>
                   <a
-                    onClick={(e) => goToDownload(e, "CARTA LABORAL")}
-                    style={{ textDecoration: "none" }}
+                    // onClick={(e) => goToDownload(e, "CARTA LABORAL")}
+                    onClick={msgDisable}
                     href="#/"
                     className="footer-txt"
                   >
@@ -226,7 +234,8 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
-                    onClick={(e) => goToDownload(e, "SEGURO MEDICO")}
+                    // onClick={(e) => goToDownload(e, "SEGURO MEDICO")}
+                    onClick={msgDisable}
                     style={{ textDecoration: "none" }}
                     href="#/"
                     className="footer-txt"
@@ -236,7 +245,8 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
-                    onClick={(e) => goToDownload(e, "SOLICITUD DE VACACIONES")}
+                    // onClick={(e) => goToDownload(e, "SOLICITUD DE VACACIONES")}
+                    onClick={msgDisable}
                     style={{ textDecoration: "none" }}
                     href="#/"
                     className="footer-txt"
@@ -246,7 +256,8 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
-                    onClick={(e) => goToDownload(e, "SOLICITUD DE MATERNIDAD")}
+                    // onClick={(e) => goToDownload(e, "SOLICITUD DE MATERNIDAD")}
+                    onClick={msgDisable}
                     style={{ textDecoration: "none" }}
                     href="#/"
                     className="footer-txt"
@@ -256,7 +267,8 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
-                    onClick={(e) => goToDownload(e, "SOLICITUD DE ENFERMEDAD")}
+                    // onClick={(e) => goToDownload(e, "SOLICITUD DE ENFERMEDAD")}
+                    onClick={msgDisable}
                     style={{ textDecoration: "none" }}
                     href="#/"
                     className="footer-txt"
@@ -266,7 +278,8 @@ const Footer = () => {
                 </p>
                 <p>
                   <a
-                    onClick={(e) => goToDownload(e, "FORMULARIO DE DESEMPEÑO")}
+                    // onClick={(e) => goToDownload(e, "FORMULARIO DE DESEMPEÑO")}
+                    onClick={msgDisable}
                     style={{ textDecoration: "none" }}
                     href="#/"
                     className="footer-txt"

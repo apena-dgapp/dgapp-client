@@ -67,8 +67,8 @@ export const postId = async (token, title, category, author) => {
     })
 }
 
-export const createFile = async (token, postid,name, type, file) => {
-    const body = {postid,name, type, file};
+export const createFile = async (token, postid,name, type, file,size) => {
+    const body = {postid,name, type, file,size};
     return fetch(`${process.env.REACT_APP_API}filespost/createfile`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -102,7 +102,7 @@ export const getVideo = async (token, postid) => {
     })
 }
 
-
+//build
 
 // export const newPostApi = async (token, title, description, category, author, image, views, isactive, createdby, modifiedby) => {
 //     const body = {title, description, category, author, image, views, isactive, createdby, modifiedby};
@@ -160,3 +160,49 @@ export const getVideo = async (token, postid) => {
 //     })
 // }
 
+// export const postId = async (token, title, category, author) => {
+//     const body = {title, category, author};
+//     return fetch("http://172.17.70.118:4500/api/v1/post/postid", {
+//         method: "POST",
+//         body: JSON.stringify(body),
+//         headers: {
+//             "Content-Type": "application/json",
+//             Authorization: 'Bearer ' + token,
+//         }   
+//     })
+// }
+
+// export const createFile = async (token, postid,name, type, file,size) => {
+//     const body = {postid,name, type, file,size};
+//     return fetch("http://172.17.70.118:4500/api/v1/filespost/createfile", {
+//         method: "POST",
+//         body: JSON.stringify(body),
+//         headers: {
+//             "Content-Type": "application/json",
+//             Authorization: 'Bearer ' + token,
+//         }   
+//     })
+// }
+
+// export const getFiles = async (token, postid) => {
+//     const body = {postid};
+//     return fetch("http://172.17.70.118:4500/api/v1/filespost/getfiles", {
+//         method: "POST",
+//         body: JSON.stringify(body),
+//         headers: {
+//             "Content-Type": "application/json",
+//             Authorization: 'Bearer ' + token,
+//         }   
+//     })
+// }
+// export const getVideo = async (token, postid) => {
+//     const body = {postid};
+//     return fetch("http://172.17.70.118:4500/api/v1/filespost/getvideo", {
+//         method: "POST",
+//         body: JSON.stringify(body),
+//         headers: {
+//             "Content-Type": "application/json",
+//             Authorization: 'Bearer ' + token,
+//         }   
+//     })
+// }

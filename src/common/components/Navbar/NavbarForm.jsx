@@ -1,6 +1,11 @@
 import React, { useState, useContext } from "react";
 import Images from "../../images";
 import GlobalContext from "../../../context/GlobalContext";
+import {
+  MdNotificationsNone,
+  MdNotificationsActive,
+  MdLogout,
+} from "react-icons/md";
 
 const Navbar = ({
   logOut,
@@ -10,6 +15,7 @@ const Navbar = ({
   inConstruction,
   allPost,
   employeeProfile,
+  home,
 }) => {
   const [contextState] = useContext(GlobalContext);
 
@@ -34,15 +40,18 @@ const Navbar = ({
   return (
     <>
       <nav className="bar_menu">
-        <figure>
-          <a href="/home">
-            <img className="logo_dgapp" src={Images.dgappLogo} alt="" />
-          </a>
+        <figure style={{ cursor: "pointer" }}>
+          <img
+            onClick={home}
+            className="logo_dgapp"
+            src={Images.dgappLogo}
+            alt=""
+          />
         </figure>
 
         <ul className={active}>
-          <li className="class-list">
-            <a href="/home">INICIO</a>
+          <li onClick={home} className="class-list">
+            <a href="#/">INICIO</a>
           </li>
           <li className="class-list">
             <a href="#/">
@@ -119,7 +128,9 @@ const Navbar = ({
                   </a>
                 </li>
                 <li>
-                  <a href="#/">Empleados</a>
+                  <a href="#/" onClick={inConstruction}>
+                    Empleados
+                  </a>
                 </li>
               </ul>
             </li>
@@ -148,8 +159,21 @@ const Navbar = ({
               className="nav-user-name"
             >{`Hola, ${person.fullName}`}</div>
             <div className="nav-user-position">{person.position}</div>
-            <div onClick={() => logOut()} className="nav-user-close">
-              Cerrar sesión
+            <div className="nav-user-notf-cont">
+              <div onClick={() => logOut()} className="nav-user-close">
+                <p>
+                  <i className="md md-logout " />
+                  <MdLogout size="1.5em" color="white" />
+                  Cerrar sesión
+                </p>
+              </div>
+              {/* <div onClick={() => logOut()} className="nav-user-close">
+                <p>
+                  <i className="md md-notifications-none" />
+                  <MdNotificationsNone size="1.5em" color="white" />
+                  Notificaciones
+                </p>
+              </div> */}
             </div>
           </div>
         </figure>

@@ -111,7 +111,11 @@ const DashboardForm = ({ arrayPost, interest, singleInsterest, allPost }) => {
           />
           <div className="card-body">
             <h5 className="interest-title">{interest.title}</h5>
-            <p className="interest-text">{interest.description}</p>
+
+            <p
+              dangerouslySetInnerHTML={{ __html: interest.description }}
+              className="interest-text"
+            ></p>
             <p className="card-text">
               <small className="text-muted">{fechaES}</small>
             </p>

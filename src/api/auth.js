@@ -7,6 +7,7 @@ export const apiAuth = async (username, password) => {
     })
 }
 
+//build
 // export const apiAuth = async (username, password) => {
 //         const body = {username, password};
 //         return fetch("http://172.17.70.118:4500/api/v1/auth/signin", {

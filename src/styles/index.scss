@@ -30,7 +30,8 @@
 html,
 body {
   // min-height: 100vh;
-  background-color: #EEEEEE;
+  // background-color: #EEEEEE;
+  background-color: white;
   overflow-x: hidden;  
   font-family: 'Montserrat', sans-serif;
   // height: 100%;
@@ -42,7 +43,8 @@ body::-webkit-scrollbar{
 }
 
 body::-webkit-scrollbar-thumb{
-  background-color: #39427c;
+  // background-color: #39427c;
+  background-color: rgb(42, 52, 63);
   border-radius: 7px;
 }
 

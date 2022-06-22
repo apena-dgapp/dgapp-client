@@ -32,9 +32,13 @@ const Header = () => {
     contextMiddleware.implementationLang(lang);
   };
 
+  const home = () => {
+    history.push("./home");
+  };
+
   const logOut = () => {
     contextMiddleware.signOut();
-    history.push("./home");
+    history.push("./");
   };
 
   const createPost = () => {
@@ -99,6 +103,7 @@ const Header = () => {
         inConstruction={inConstruction}
         allPost={allPost}
         employeeProfile={employeeProfile}
+        home={home}
       />
     </>
   );

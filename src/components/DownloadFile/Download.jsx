@@ -9,7 +9,7 @@ const Download = (state) => {
   const title = state.location.state;
 
   useEffect(() => {
-    apiFiles(contextState.token, title)
+    apiFiles(contextState.token, "PERSONAL DOCUMENT")
       .then((res) => {
         if (res.status >= 400) throw new alert.err("error al hacer el fetch");
         return res.json();
@@ -19,11 +19,20 @@ const Download = (state) => {
         // console.log(res);
         setArrayFiles(res);
         // alert("el nuevo post se creo exitosamente");
+        // console.log(res);
+        fetch(res)
+          .then((res) => res.blob())
+          .then((blob) => {
+            var formData = new FormData();
+            formData.append("my_image", blob);
+            console.log(blob);
+            console.log(formData);
+          });
       })
       .catch((err) => {
         console.error(err.status);
       });
-  }, [contextState.token, title]);
+  }, [contextState.token]);
 
   return (
     <>

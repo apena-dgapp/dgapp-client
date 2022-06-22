@@ -1,21 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { apiFiles } from "../../../api/files";
+import GlobalContext from "../../../context/GlobalContext";
 const PizZip = require("pizzip");
 const { saveAs } = require("file-saver");
 
 const DocDynamic = () => {
+  const [contextState] = useContext(GlobalContext);
   const [docs, setDocs] = useState("");
+  const [file, setFile] = useState("");
+
+  useEffect(() => {
+    apiFiles(contextState.token, "PERSONAL DOCUMENT")
+      .then((res) => {
+        if (res.status >= 400) throw new alert.err("error al hacer el fetch");
+        return res.json();
+      })
+      .then((res) => {
+        setFile(...file, res.files);
+        // console.log(res);
+        // setArrayFiles(res);
+        // alert("el nuevo post se creo exitosamente");
+        // console.log(res);
+        // fetch(res)
+        //   .then((res) => res.blob())
+        //   .then((blob) => {
+        //     var formData = new FormData();
+        //     formData.append("my_image", blob);
+        //     console.log(blob);
+        //     console.log(formData);
+        //     setDocs(res);
+        //     console.log(docs);
+        //   });
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  }, [contextState.token, file]);
 
   const seletedHandler = (e) => {
     setDocs(e.target.files[0]);
   };
 
-  const doc = "../../Docs/carta-laboral.docx";
-  const newDoc = new File([""], doc);
-
+  // const doc = "../../Docs/carta-laboral.docx";
+  // const newDoc = new File(file, "carta-laboral.docx", {
+  //   type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  // });
+  console.log(file);
+  console.log(docs);
+  // console.log(newDoc);
   const generate = () => {
     // docs = document.getElementById("doc");
-    console.log(docs);
-    console.log(newDoc);
+
     if (docs) {
       var reader = new FileReader();
       // if (docs.files.length === 0) {

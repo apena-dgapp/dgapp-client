@@ -2,10 +2,19 @@ import React, { useState } from "react";
 import Viewer from "react-viewer";
 import Carousel from "react-elastic-carousel";
 import ReactPlayer from "react-player";
+import { useHistory } from "react-router-dom";
 
 const SiglePostForm = ({ dataPost, arrayImg, video }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visible, setVisible] = useState(false);
+  const history = useHistory();
+
+  const goToPDF = (pdf) => {
+    history.push({
+      pathname: "./pdf",
+      state: pdf,
+    });
+  };
 
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -81,9 +90,12 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
     }
   }
 
-  console.log(foundImg);
-  console.log(foundVideo);
-  console.log(foundPdf);
+  function bytesToSize(bytes) {
+    var sizes = ["Bytes", "KB", "MB", "GB", "TB"];
+    if (bytes === 0) return "0 Byte";
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    return Math.round(bytes / Math.pow(1024, i), 2) + " " + sizes[i];
+  }
 
   return (
     <>
@@ -115,7 +127,6 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
             {foundImg ? (
               <Carousel breakPoints={breakPoints}>
                 {arrayImg.files?.map((item, index) => {
-                  console.log(item);
                   return item.type === "jpg" ||
                     item.type === "jpeg" ||
                     item.type === "jfif" ||
@@ -160,7 +171,7 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
           <div className="siglepost-download-title">
             <p className="">ZONA DE DESCARGA</p>
           </div>
-          <div className="siglepost-scroll-cont">
+          <div className="siglepost-scroll-cont mb-2">
             <div className="siglepost-header-grid">
               <div className="siglepost-grid-1">
                 <div className="siglepost-nav-container">
@@ -172,11 +183,11 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
                   <div className="siglepost-nav-txt">Tamaño</div>
                 </div>
               </div>
-              {/* <div className="siglepost-grid-3">
-            <div className="siglepost-nav-container">
-              <div className="siglepost-nav-txt">Fecha de Publicación</div>
-            </div>
-          </div> */}
+              <div className="siglepost-grid-3">
+                <div className="siglepost-nav-container">
+                  <div className="siglepost-nav-txt">Tipo</div>
+                </div>
+              </div>
               <div className="siglepost-grid-4">
                 <div className="siglepost-nav-container">
                   <div className="siglepost-nav-txt">Descargar Archivo</div>
@@ -190,6 +201,7 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
       <div>
         {arrayImg
           ? arrayImg.files.map((file) => {
+              // console.log(file.src.size);
               return file.type === "pdf" ? (
                 <div key={file.filesId} id={file.filesId}>
                   <div className="regulations-data-grid">
@@ -202,16 +214,19 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
                     </div>
                     <div className="regulations-grid-2">
                       <div className="regulations-data-container">
-                        <div className="regulations-data-txt">{file.size}</div>
-                      </div>
-                    </div>
-                    {/* <div className="regulations-grid-3">
-                      <div className="regulations-data-container">
                         <div className="regulations-data-txt">
-                          {new Date(file.publicationDate).toDateString()}
+                          {bytesToSize(file.size)}
                         </div>
                       </div>
-                    </div> */}
+                    </div>
+                    <div className="regulations-grid-3">
+                      <div className="regulations-data-container">
+                        <div className="regulations-data-txt">
+                          {/* {new Date(file.publicationDate).toDateString()} */}
+                          {file.type}
+                        </div>
+                      </div>
+                    </div>
                     <div className="regulations-grid-4">
                       <div className="regulations-data-container">
                         <div className="">
@@ -219,7 +234,7 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
                             id={file.fileId}
                             type="button"
                             className="btn btn-success btn-sm"
-                            // onClick={() => goToPDF(file.file)}
+                            onClick={() => goToPDF(file.src)}
                           >
                             Descargar
                           </button>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaBirthdayCake } from "react-icons/fa";
 import ModalBirthday from "../../components/Modal/ModalBirthday";
 
@@ -12,7 +12,16 @@ const BirthdayForm = ({
   //   new Date()
   // );
 
-  // console.log(modalActive);
+  const [modalToday, setModalToday] = useState(false);
+  // let isModal;
+
+  // useEffect(() => {
+  //   if (isModal) {
+  //     setModalToday(true);
+  //   }
+  // }, [isModal]);
+
+  console.log(modalToday);
 
   return (
     <>
@@ -26,11 +35,13 @@ const BirthdayForm = ({
 
       <div className="birthday-cont">
         <p className="birtday-title m-0">CUMPLEAÑOS</p>
-        <div onClick={modalToggle} className="d-flex justify-content-center">
-          <i className="fa fa-birthday-cake" />
-          <FaBirthdayCake size="1.3em" color="orange" />
-          <p className="animate-charcter">Ver cumpleaños de hoy</p>
-        </div>
+        {modalToday ? (
+          <div onClick={modalToggle} className="d-flex justify-content-center">
+            <i className="fa fa-birthday-cake" />
+            <FaBirthdayCake size="1.3em" color="orange" />
+            <p className="animate-charcter">Ver cumpleaños de hoy</p>
+          </div>
+        ) : null}
 
         <div className="birtday-list-cont">
           <div className="birtday-list">
@@ -54,11 +65,25 @@ const BirthdayForm = ({
               ];
               const numeroDia = new Date(fechaComoCadena).getDay();
               const nombreDia = dias[numeroDia];
+              const numero = new Date().getDate();
 
               const firstN = file.firstName.split(" ");
               const lastN = file.lastName.split(" ");
               const firstNSplit = firstN[0];
               const lastNSplit = lastN[0];
+
+              // console.log(firstNSplit);
+              // console.log(currentMonth);
+              // console.log(month);
+              // console.log(numero);
+              // console.log(daySplit);
+
+              if (currentMonth === month && numero === Number(daySplit)) {
+                if (!modalToday) {
+                  setModalToday(true);
+                }
+              }
+              // console.log(modal);
 
               return currentMonth === month ? (
                 <div

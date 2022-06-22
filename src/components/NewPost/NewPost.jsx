@@ -187,7 +187,8 @@ const NewPost = () => {
                     id,
                     nameImg[i].name,
                     type[1],
-                    newArrayImg[i]
+                    newArrayImg[i],
+                    nameImg[i].size
                   ).then((res) => {
                     console.log(res.status);
                   });
@@ -201,7 +202,8 @@ const NewPost = () => {
                   id,
                   nameImg[0].name,
                   type[1],
-                  newArrayImg
+                  newArrayImg,
+                  nameImg[0].size
                 ).then((res) => {
                   console.log(res.status);
                 });
@@ -218,7 +220,8 @@ const NewPost = () => {
                     id,
                     namePdf[x].name,
                     type[1],
-                    newArrayPdf[x]
+                    newArrayPdf[x],
+                    namePdf[x].size
                   ).then((res) => {
                     console.log(res.status);
                   });
@@ -232,7 +235,8 @@ const NewPost = () => {
                   id,
                   namePdf[0].name,
                   typePdf[1],
-                  newArrayPdf
+                  newArrayPdf,
+                  namePdf[0].size
                 ).then((res) => {
                   console.log(res.status);
                 });

@@ -6,6 +6,7 @@ import Docxtemplater from "docxtemplater";
 import PizZip from "pizzip";
 import PizZipUtils from "pizzip/utils/index.js";
 import { saveAs } from "file-saver";
+import { toast } from "react-hot-toast";
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -16,6 +17,13 @@ const Employee = (props) => {
   const [contextState] = useContext(GlobalContext);
   const [profile, setProfile] = useState("");
   const [reportsTo, setReportsTo] = useState("");
+
+  const msgDisable = () => {
+    return toast.error(
+      "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
+    );
+    //history.push('./')
+  };
 
   useEffect(() => {
     let unmounted = false;
@@ -121,6 +129,7 @@ const Employee = (props) => {
         generateDocument={generateDocument}
         reportsTo={reportsTo}
         profile={profile}
+        msgDisable={msgDisable}
       />
     </>
   );
