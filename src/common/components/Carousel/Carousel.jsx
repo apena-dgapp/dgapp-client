@@ -52,8 +52,6 @@ const Carousel = () => {
     };
   }, [contextState.token]);
 
-  // console.log(arrayCarousel.length);
-
   return (
     <>
       <div className="carousel-container">

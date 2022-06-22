@@ -3,16 +3,31 @@ import GlobalContext from "../../context/GlobalContext";
 import { getFollowers } from "../../api/person";
 import { useHistory } from "react-router-dom";
 import Images from "../../common/images";
+import { getOnePerson } from "../../api/person";
 
 const EmployeeChart = (state) => {
   const [contextState] = useContext(GlobalContext);
   const [followersChart, setFollowersChart] = useState([]);
+  const [profile, setProfile] = useState(state.location.state);
+  // const [profileChart, setProfileChart] = useState({
+  //   id: "",
+  //   fullName: "",
+  //   position: "",
+  //   departament: "",
+  //   photo: "",
+  //   idReportTo: "",
+  //   fullNameReportTo: "",
+  //   positionReportTo: "",
+  //   departamentReportTo: "",
+  //   photoReportTo: "",
+  // });
+  // const [reportsTo, setReportsTo] = useState("");
   const history = useHistory();
 
   useEffect(() => {
     let unmounted = false;
 
-    getFollowers(contextState.token, state.location.state.id)
+    getFollowers(contextState.token, profile.id)
       .then((res) => {
         if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
@@ -30,7 +45,7 @@ const EmployeeChart = (state) => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token, state.location.state.id]);
+  }, [contextState.token, profile.id]);
 
   const goToProfile = (e, id) => {
     if (id !== 0) {
@@ -42,14 +57,73 @@ const EmployeeChart = (state) => {
     }
   };
 
-  const goTochart = () => {
-    if (state.location.state.fullName) {
-      history.push({
-        pathname: "./employeechart",
-        state: state.location.state.id,
-      });
-    }
+  const goTochart = (e, id) => {
+    //   e.preventDefault();
+    //   // window.location.reload();
+    //   // setProfile(id);
+    //   // getOnePerson(contextState.token, id)
+    //   //   .then((res) => {
+    //   //     if (res.status >= 400) throw new alert.err("error usuario incorrecto");
+    //   //     return res.json();
+    //   //   })
+    //   //   .then((res) => {
+    //   //     setProfileChart(res);
+    //   //     getOnePerson(contextState.token, res.reportsTo)
+    //   //       .then((res) => {
+    //   //         if (res.status >= 400)
+    //   //           throw new alert.err("error usuario incorrecto");
+    //   //         return res.json();
+    //   //       })
+    //   //       .then((res) => {
+    //   //         setReportsTo(res);
+    //   //       })
+    //   //       .catch((err) => {
+    //   //         console.error(err.status);
+    //   //       });
+    //   //   })
+    //   //   .catch((err) => {
+    //   //     console.error(err.status);
+    //   //   });
+    //   // klk();
   };
+
+  // const klk = async () => {
+  //   const valuE = await reportsTo;
+  //   console.log(reportsTo);
+  //   if (valuE) {
+  //     const firstN = profileChart.firstName.split(" ");
+  //     const lastN = profileChart.lastName.split(" ");
+  //     var firstNSplit = firstN[0];
+  //     var lastNSplit = lastN[0];
+
+  //     const first = reportsTo.firstName.split(" ");
+  //     const last = reportsTo.lastName.split(" ");
+  //     var reportsTofirstN = first[0];
+  //     var reportsTolastN = last[0];
+  //     // var reportsToPosition = reportsTo.position;
+  //     // var reportsToPhoto = reportsTo.photo;
+
+  //     setProfileChart({
+  //       id: profileChart.personId,
+  //       fullName: `${firstNSplit} ${lastNSplit}`,
+  //       position: profileChart.position,
+  //       departament: profileChart ? profileChart.Departament.name : null,
+  //       photo: profileChart.photo,
+  //       idReportTo: reportsTo ? reportsTo.personId : 0,
+  //       fullNameReportTo: reportsTo
+  //         ? `${reportsTofirstN} ${reportsTolastN}`
+  //         : null,
+  //       positionReportTo: reportsTo ? reportsTo.position : null,
+  //       departamentReportTo: reportsTo ? reportsTo.Departament.name : null,
+  //       photoReportTo: reportsTo ? reportsTo.photo : Images.noImg,
+  //     });
+  //     setProfile(profileChart);
+  //   }
+  // };
+
+  // console.log(profileChart);
+  // console.log(reportsTo);
+  // console.log(profile);
 
   return (
     <>
@@ -62,18 +136,18 @@ const EmployeeChart = (state) => {
           <ul>
             <li>
               <a
-                href={state.location.state.idReportTo === 0 ? null : "#/"}
-                onClick={(e) => goToProfile(e, state.location.state.idReportTo)}
+                href={profile.idReportTo === 0 ? null : "#/"}
+                onClick={(e) => goToProfile(e, profile.idReportTo)}
                 className="img-first"
                 // href="#/"
               >
-                {state.location.state.id === 1 ? (
+                {profile.id === 1 ? (
                   <img src={Images.ministerio} alt="" />
                 ) : (
                   <img
                     src={
-                      state.location.state.photoReportTo
-                        ? state.location.state.photoReportTo
+                      profile.photoReportTo
+                        ? profile.photoReportTo
                         : Images.noImg
                     }
                     alt=""
@@ -81,50 +155,38 @@ const EmployeeChart = (state) => {
                 )}
                 {/* <img
                   src={
-                    state.location.state.photoReportTo
-                      ? state.location.state.photoReportTo
+                    profile.photoReportTo
+                      ? profile.photoReportTo
                       : Images.noImg
                   }
                   alt=""
                 /> */}
-                <p className="img-departament">
-                  {state.location.state.departamentReportTo}
-                </p>
-                {state.location.state.id === 1 ? (
+                <p className="img-departament">{profile.departamentReportTo}</p>
+                {profile.id === 1 ? (
                   <span>Ministerio de la Presidencia</span>
                 ) : (
-                  <span>{state.location.state.fullNameReportTo}</span>
+                  <span>{profile.fullNameReportTo}</span>
                 )}
 
-                {/* <span>{state.location.state.fullNameReportTo}</span> */}
-                <p className="img-position">
-                  {state.location.state.positionReportTo}
-                </p>
+                {/* <span>{profile.fullNameReportTo}</span> */}
+                <p className="img-position">{profile.positionReportTo}</p>
               </a>
               <ul>
                 <li>
                   <a
-                    onClick={(e) => goToProfile(e, state.location.state.id)}
-                    // onClick={goTochart}
+                    // onClick={(e) => goToProfile(e, profile.id)}
+                    // onClick={(e) => goTochart(e, profile.id)}
                     className="img-second"
                     href="#/"
                   >
                     <img
-                      // onClick={(e) => goToProfile(e, state.location.state.id)}
-                      src={
-                        state.location.state.photo
-                          ? state.location.state.photo
-                          : Images.noImg
-                      }
+                      onClick={(e) => goToProfile(e, profile.id)}
+                      src={profile.photo ? profile.photo : Images.noImg}
                       alt=""
                     />
-                    <p className="img-departament">
-                      {state.location.state.departament}
-                    </p>
-                    <span>{state.location.state.fullName}</span>
-                    <p className="img-position">
-                      {state.location.state.position}
-                    </p>
+                    <p className="img-departament">{profile.departament}</p>
+                    <span>{profile.fullName}</span>
+                    <p className="img-position">{profile.position}</p>
                   </a>
                   <ul>
                     {followersChart.map((follower) => {
@@ -132,10 +194,12 @@ const EmployeeChart = (state) => {
                         <li
                           id={follower.personId}
                           key={follower.personId}
-                          onClick={(e) => goToProfile(e, follower.personId)}
+                          // onClick={(e) => goToProfile(e, follower.personId)}
+                          onClick={(e) => goTochart(e, follower.personId)}
                         >
                           <a href="#/">
                             <img
+                              onClick={(e) => goToProfile(e, follower.personId)}
                               className="img-last"
                               src={
                                 follower.photo ? follower.photo : Images.noImg

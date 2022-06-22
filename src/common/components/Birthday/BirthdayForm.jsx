@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FaBirthdayCake } from "react-icons/fa";
 import ModalBirthday from "../../components/Modal/ModalBirthday";
 
@@ -13,16 +13,6 @@ const BirthdayForm = ({
   // );
 
   const [modalToday, setModalToday] = useState(false);
-  // let isModal;
-
-  // useEffect(() => {
-  //   if (isModal) {
-  //     setModalToday(true);
-  //   }
-  // }, [isModal]);
-
-  console.log(modalToday);
-
   return (
     <>
       <ModalBirthday
@@ -72,18 +62,11 @@ const BirthdayForm = ({
               const firstNSplit = firstN[0];
               const lastNSplit = lastN[0];
 
-              // console.log(firstNSplit);
-              // console.log(currentMonth);
-              // console.log(month);
-              // console.log(numero);
-              // console.log(daySplit);
-
               if (currentMonth === month && numero === Number(daySplit)) {
                 if (!modalToday) {
                   setModalToday(true);
                 }
               }
-              // console.log(modal);
 
               return currentMonth === month ? (
                 <div

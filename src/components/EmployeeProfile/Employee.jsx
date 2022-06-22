@@ -121,8 +121,6 @@ const Employee = (props) => {
     });
   };
 
-  // console.log(reportsTo);
-
   return (
     <>
       <EmployeeForm

@@ -90,7 +90,6 @@ const Login = ({ intl }) => {
         if (res.status >= 400) throw new toast.error(userPassError);
         return res.json();
       })
-
       .then((res) => {
         contextMiddleware.newToken(res.token);
         contextMiddleware.newUserName(
@@ -103,7 +102,7 @@ const Login = ({ intl }) => {
       })
       .catch((err) => {
         console.log(err.status);
-        throw new toast.error(serverError);
+        // throw new toast.error(serverError);
       });
   };
 

@@ -129,7 +129,7 @@ const Navbar = ({
                 </li>
                 <li>
                   <a href="#/" onClick={inConstruction}>
-                    Empleados
+                    Directorio de Empleados
                   </a>
                 </li>
               </ul>
