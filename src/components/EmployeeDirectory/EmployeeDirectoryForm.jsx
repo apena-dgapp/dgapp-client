@@ -1,9 +1,10 @@
 import React from "react";
 import Input from "../../common/components/Input/Input";
-import Card from "../../common/components/Card/Card";
+import CardEmployee from "./EmployeeDirectoryCard";
+import { MdSearch } from "react-icons/md";
 
 const EmployeeDirectoryForm = ({
-  filteredArryPost,
+  filteredArryPersons,
   nextPage,
   backPage,
   onSearchChange,
@@ -11,47 +12,52 @@ const EmployeeDirectoryForm = ({
 }) => {
   return (
     <>
-      <div className="allPostTitle-cont">
-        <div className="allPostTitle">NOTICIAS</div>
+      <div className="emDirectory-cont">
+        <div className="emDirectory">DIRECTORIO DE EMPLEADOS</div>
       </div>
-
-      <div className="allpost-input-cont">
-        <div className="allpost-input">
+      <div className="emDirectory-input-search-cont">
+        <i className="md md-arrow-forward-ios" />
+        <MdSearch
+          className="emDirectory-se"
+          size="1.5em"
+          color="rgb(153, 149, 149)"
+        />
+      </div>
+      <div className="emDirectory-input-cont">
+        <div className="emDirectory-input">
           <Input
             id="search"
             name="searchpost"
             type="text"
-            placeholder="Buscar noticias..."
-            classInput="allpost-input-search"
+            placeholder="Buscar empleados por nombre..."
+            classInput="emDirectory-input-search"
             value={search}
             onChange={onSearchChange}
           />
         </div>
       </div>
 
-      <div className="allPost-Container">
+      <div className="emDirectory-Container">
         <div className="grid-container">
-          {/* <div className='grid-card'>
-                 
-                </div> */}
-
-          {filteredArryPost().map((post) => {
+          {filteredArryPersons().map((person) => {
             return (
-              <Card
-                key={post.postId}
-                id={post.postId}
-                title={post.title}
-                img={post.image}
-                description={post.description}
-                date={post.createdAt}
+              <CardEmployee
+                key={person.personId}
+                id={person.personId}
+                name={person.fullName}
+                img={person.photo}
+                position={person.position}
+                departament={person.Departament.name}
+                email={person.email.toLowerCase()}
+                phone={person.phoneNumber}
               />
             );
           })}
         </div>
       </div>
 
-      <div className="allpost-btn-cont">
-        <div className="allpost-btns">
+      <div className="emDirectory-btn-cont">
+        <div className="emDirectory-btns">
           <button
             onClick={backPage}
             className="btn-back"

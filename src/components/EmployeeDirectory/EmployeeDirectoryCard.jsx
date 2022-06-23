@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { viewUpdate } from "../../../api/post";
 import { useHistory } from "react-router-dom";
-import GlobalContext from "../../../context/GlobalContext";
+import GlobalContext from "../../context/GlobalContext";
+import Images from "../../common/images/index";
+import { MdEmail, MdPhoneInTalk } from "react-icons/md";
 
 const CardForm = (props) => {
   const [contextState] = useContext(GlobalContext);
@@ -9,72 +10,64 @@ const CardForm = (props) => {
   const history = useHistory();
 
   const click = () => {
-    viewUpdate(contextState.token, props.id)
-      .then((res) => {
-        console.log(res.status);
-        history.push({
-          pathname: "./siglepost",
-          state: props,
-        });
-      })
-      .catch((err) => {
-        console.error(err.status);
-        return;
-      });
+    //   viewUpdate(contextState.token, props.id)
+    //     .then((res) => {
+    //       console.log(res.status);
+    //       history.push({
+    //         pathname: "./siglepost",
+    //         state: props,
+    //       });
+    //     })
+    //     .catch((err) => {
+    //       console.error(err.status);
+    //       return;
+    //     });
   };
-
-  // Creamos array con los meses del año
-  const meses = [
-    "enero",
-    "febrero",
-    "marzo",
-    "abril",
-    "mayo",
-    "junio",
-    "julio",
-    "agosto",
-    "septiembre",
-    "octubre",
-    "noviembre",
-    "diciembre",
-  ];
-  // Creamos array con los días de la semana
-  const dias_semana = [
-    "Domingo",
-    "Lunes",
-    "martes",
-    "Miércoles",
-    "Jueves",
-    "Viernes",
-    "Sábado",
-  ];
-  // Creamos el objeto fecha instanciándolo con la clase Date
-  const fecha = new Date(props.date);
-  // Construimos el formato de salida
-  const fechaES =
-    dias_semana[fecha.getDay()] +
-    ", " +
-    fecha.getDate() +
-    " de " +
-    meses[fecha.getMonth()] +
-    " de " +
-    fecha.getUTCFullYear();
 
   return (
     <>
-      <div className="card" onClick={click}>
-        <img src={props.img} className="card-img-top" alt="..." />
-        <div className="card-body">
-          <h5 className="card-title">{props.title}</h5>
-          <p
-            dangerouslySetInnerHTML={{ __html: props.description }}
-            className="card-text"
-          ></p>
+      <div className="emDirectory-card" onClick={click}>
+        <div className="emDirectory-card-cont">
+          <img
+            src={props.img ? props.img : Images.noImg}
+            className="emDirectory-card-img"
+            alt="..."
+          />
+          <div className="card-body">
+            <p className="emDirectory-card-departament">
+              {props.departament ? props.departament : "No definido!"}
+            </p>
+            <h5 className="emDirectory-card-name">
+              {props.name ? props.name : "No definido!"}
+            </h5>
+            <p className="emDirectory-card-position">
+              {props.position ? props.position : "No definido!"}
+            </p>
+          </div>
+          <div className="mb-2">
+            <p className="emDirectory-card-text-contact">
+              <i className="md md-phone-in-talk" />
+              <MdPhoneInTalk
+                style={{ marginRight: "0.5rem" }}
+                size="1.5em"
+                color="darkcyan"
+              />
+              {props.phone ? props.phone : "No definido!"}
+            </p>
+          </div>
+          <div className="mb-2">
+            <p className="emDirectory-card-text-contact">
+              <i className="md md-Email" />
+              <MdEmail
+                style={{ marginRight: "0.5rem" }}
+                size="1.5em"
+                color="darkcyan"
+              />
+              {props.email ? props.email : "No definido!"}
+            </p>
+          </div>
+          <button className="emDirectory-card-btn">Ir al Perfil</button>
         </div>
-        <p className="card-date">
-          <small className="text-muted">{fechaES}</small>
-        </p>
-        <button className="btn-dark">Leer mas</button>
       </div>
     </>
   );

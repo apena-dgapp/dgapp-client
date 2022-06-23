@@ -10,6 +10,16 @@ export const getOnePerson = async (token, id) => {
     })
 }
 
+export const getAllPersons = async (token) => {
+    return fetch(`${process.env.REACT_APP_API}person/getallpersons`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token,
+        }   
+    })
+}
+
 export const getBirthday = async (token) => {
     return fetch(`${process.env.REACT_APP_API}person/getallbirthday`, {
         method: "GET",

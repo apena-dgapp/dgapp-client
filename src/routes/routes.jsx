@@ -20,6 +20,7 @@ import EmployeeChart from "../components/EmployeeProfile/EmployeeChart";
 import EmployeeProfile from "../components/EmployeeProfile/Employee";
 import DocDynamic from "../common/components/DocDynamic/DocDynamic";
 import FilePdf from "../common/components/FilePdf/FilePdf";
+import EmployeeDirectory from "../components/EmployeeDirectory/EmployeeDirectory";
 const Routes = () => {
   const [contextState] = useContext(GlobalContext);
 
@@ -85,7 +86,10 @@ const Routes = () => {
           path={`${process.env.REACT_APP_RUTE}/correspondence`}
           component={Correspondence}
         />
-
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/employeedirectory`}
+          component={EmployeeDirectory}
+        />
         <Route
           exact
           path={`${process.env.REACT_APP_RUTE}*`}

@@ -128,9 +128,7 @@ const Navbar = ({
                   </a>
                 </li>
                 <li>
-                  <a href="#/" onClick={inConstruction}>
-                    Directorio de Empleados
-                  </a>
+                  <a href="/employeedirectory">Directorio de Empleados</a>
                 </li>
               </ul>
             </li>
