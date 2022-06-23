@@ -2,12 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import EmployeeDirectoryForm from "./EmployeeDirectoryForm";
 import { getAllPersons } from "../../api/person";
 import GlobalContext from "../../context/GlobalContext";
+import { useHistory } from "react-router-dom";
 
 const EmployeeDirectory = () => {
   const [contextState] = useContext(GlobalContext);
   const [arrayAllPersons, setArrayAllPersons] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState("");
+  const history = useHistory();
 
   useEffect(() => {
     let unmounted = false;
@@ -61,7 +63,15 @@ const EmployeeDirectory = () => {
     setSearch(e.target.value.toLowerCase());
   };
 
-  console.log(currentPage);
+  const goToProfile = (e, id) => {
+    if (id !== 0) {
+      e.preventDefault();
+      history.push({
+        pathname: "./employeeprofile",
+        state: id,
+      });
+    }
+  };
 
   return (
     <>
@@ -71,6 +81,7 @@ const EmployeeDirectory = () => {
         backPage={backPage}
         onSearchChange={onSearchChange}
         search={search}
+        goToProfile={goToProfile}
       />
     </>
   );

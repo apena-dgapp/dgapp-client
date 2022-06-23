@@ -1,37 +1,17 @@
-import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
-import GlobalContext from "../../context/GlobalContext";
+import React from "react";
 import Images from "../../common/images/index";
 import { MdEmail, MdPhoneInTalk } from "react-icons/md";
 
 const CardForm = (props) => {
-  const [contextState] = useContext(GlobalContext);
-
-  const history = useHistory();
-
-  const click = () => {
-    //   viewUpdate(contextState.token, props.id)
-    //     .then((res) => {
-    //       console.log(res.status);
-    //       history.push({
-    //         pathname: "./siglepost",
-    //         state: props,
-    //       });
-    //     })
-    //     .catch((err) => {
-    //       console.error(err.status);
-    //       return;
-    //     });
-  };
-
   return (
     <>
-      <div className="emDirectory-card" onClick={click}>
+      <div className="emDirectory-card">
         <div className="emDirectory-card-cont">
           <img
             src={props.img ? props.img : Images.noImg}
             className="emDirectory-card-img"
             alt="..."
+            onClick={(e) => props.goToProfile(e, props.id)}
           />
           <div className="card-body">
             <p className="emDirectory-card-departament">

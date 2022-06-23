@@ -9,6 +9,7 @@ const EmployeeDirectoryForm = ({
   backPage,
   onSearchChange,
   search,
+  goToProfile,
 }) => {
   return (
     <>
@@ -50,6 +51,7 @@ const EmployeeDirectoryForm = ({
                 departament={person.Departament.name}
                 email={person.email.toLowerCase()}
                 phone={person.phoneNumber}
+                goToProfile={goToProfile}
               />
             );
           })}
