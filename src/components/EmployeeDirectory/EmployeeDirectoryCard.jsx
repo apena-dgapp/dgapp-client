@@ -46,7 +46,12 @@ const CardForm = (props) => {
               {props.email ? props.email : "No definido!"}
             </p>
           </div>
-          <button className="emDirectory-card-btn">Ir al Perfil</button>
+          <button
+            onClick={(e) => props.goToProfile(e, props.id)}
+            className="emDirectory-card-btn"
+          >
+            Ir al Perfil
+          </button>
         </div>
       </div>
     </>

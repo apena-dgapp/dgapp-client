@@ -191,27 +191,31 @@ const EmployeeForm = ({ profile, reportsTo, generateDocument, msgDisable }) => {
         <div className="employee-header-container">
           <div className="employee-name">{firstNSplit + " " + lastNSplit}</div>
           <div className="employee-position">
-            {profile ? profile.career : null}
+            {profile.career ? profile.career : "No definido!"}
           </div>
 
           <div className="employee-info-container">
             <i className="bs bs-Flag" />
             <BsFlag size="1.5em" color="white" />
             <p className="employee-info-text">
-              {profile ? profile.position : null}
+              {profile.position ? profile.position : "No definido!"}
             </p>
           </div>
           <div className="employee-info-container">
             <i className="go go-Location" />
             <GoLocation size="1.5em" color="white" />
             <p className="employee-info-text">
-              {profile ? profile.Departament.name : null}
+              {profile ? profile.Departament.name : "No definido!"}
             </p>
           </div>
           <div className="employee-info-container">
             <i className="gi gi-Trophy-Cup" />
             <GiTrophyCup size="1.5em" color="white" />
-            <p className="employee-info-text">{`Comenzó en ${dateES}`}</p>
+            {dateES ? (
+              <p className="employee-info-text">{`Comenzó en ${dateES}`}</p>
+            ) : (
+              <p className="employee-info-text">No definido!</p>
+            )}
           </div>
 
           <div className="employee-btn-container">

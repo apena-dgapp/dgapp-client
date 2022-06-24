@@ -24,6 +24,35 @@ const EmployeeDirectoryForm = ({
           color="rgb(153, 149, 149)"
         />
       </div>
+      <div className="dropdown emDirectory-dropdown">
+        <p
+          className="dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Filtrar por Area
+        </p>
+        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <a className="dropdown-item" href="#/">
+              Recursos Humanos
+            </a>
+          </li>
+          <li>
+            <a className="dropdown-item" href="#/">
+              Tecnologia
+            </a>
+          </li>
+          <li>
+            <a className="dropdown-item" href="#/">
+              Servicios Generales
+            </a>
+          </li>
+        </ul>
+      </div>
+
       <div className="emDirectory-input-cont">
         <div className="emDirectory-input">
           <Input

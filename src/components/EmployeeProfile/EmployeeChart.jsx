@@ -9,19 +9,20 @@ const EmployeeChart = (state) => {
   const [contextState] = useContext(GlobalContext);
   const [followersChart, setFollowersChart] = useState([]);
   const [profile, setProfile] = useState(state.location.state);
-  // const [profileChart, setProfileChart] = useState({
-  //   id: "",
-  //   fullName: "",
-  //   position: "",
-  //   departament: "",
-  //   photo: "",
-  //   idReportTo: "",
-  //   fullNameReportTo: "",
-  //   positionReportTo: "",
-  //   departamentReportTo: "",
-  //   photoReportTo: "",
-  // });
-  // const [reportsTo, setReportsTo] = useState("");
+  const [reportsTo, setReportsTo] = useState("");
+  const [profileChart, setProfileChart] = useState({
+    id: "",
+    fullName: "",
+    position: "",
+    departament: "",
+    photo: "",
+    idReportTo: "",
+    fullNameReportTo: "",
+    positionReportTo: "",
+    departamentReportTo: "",
+    photoReportTo: "",
+  });
+
   const history = useHistory();
 
   useEffect(() => {
@@ -47,6 +48,44 @@ const EmployeeChart = (state) => {
     };
   }, [contextState.token, profile.id]);
 
+  // useEffect(() => {
+  //   let unmounted = false;
+  //   if (!unmounted) {
+  //     if (reportsTo && profileChart) {
+  //       const firstN = profileChart.firstName.split(" ");
+  //       const lastN = profileChart.lastName.split(" ");
+  //       var firstNSplit = firstN[0];
+  //       var lastNSplit = lastN[0];
+
+  //       const first = reportsTo.firstName.split(" ");
+  //       const last = reportsTo.lastName.split(" ");
+  //       var reportsTofirstN = first[0];
+  //       var reportsTolastN = last[0];
+  //       // var reportsToPosition = reportsTo.position;
+  //       // var reportsToPhoto = reportsTo.photo;
+
+  //       setProfileChart({
+  //         id: profileChart.personId,
+  //         fullName: `${firstNSplit} ${lastNSplit}`,
+  //         position: profileChart.position,
+  //         departament: profileChart ? profileChart.Departament.name : null,
+  //         photo: profileChart.photo,
+  //         idReportTo: reportsTo ? reportsTo.personId : 0,
+  //         fullNameReportTo: reportsTo
+  //           ? `${reportsTofirstN} ${reportsTolastN}`
+  //           : null,
+  //         positionReportTo: reportsTo ? reportsTo.position : null,
+  //         departamentReportTo: reportsTo ? reportsTo.Departament.name : null,
+  //         photoReportTo: reportsTo ? reportsTo.photo : Images.noImg,
+  //       });
+  //       // setProfile(profileChart);
+  //     }
+  //   }
+  //   return () => {
+  //     unmounted = true;
+  //   };
+  // }, [profileChart, reportsTo]);
+
   const goToProfile = (e, id) => {
     if (id !== 0) {
       e.preventDefault();
@@ -60,70 +99,36 @@ const EmployeeChart = (state) => {
   const goTochart = (e, id) => {
     //   e.preventDefault();
     //   // window.location.reload();
-    //   // setProfile(id);
-    //   // getOnePerson(contextState.token, id)
-    //   //   .then((res) => {
-    //   //     if (res.status >= 400) throw new alert.err("error usuario incorrecto");
-    //   //     return res.json();
-    //   //   })
-    //   //   .then((res) => {
-    //   //     setProfileChart(res);
-    //   //     getOnePerson(contextState.token, res.reportsTo)
-    //   //       .then((res) => {
-    //   //         if (res.status >= 400)
-    //   //           throw new alert.err("error usuario incorrecto");
-    //   //         return res.json();
-    //   //       })
-    //   //       .then((res) => {
-    //   //         setReportsTo(res);
-    //   //       })
-    //   //       .catch((err) => {
-    //   //         console.error(err.status);
-    //   //       });
-    //   //   })
-    //   //   .catch((err) => {
-    //   //     console.error(err.status);
-    //   //   });
-    //   // klk();
+    setProfile({
+      id: id,
+    });
+    getOnePerson(contextState.token, id)
+      .then((res) => {
+        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
+        return res.json();
+      })
+      .then((res) => {
+        setProfileChart(res);
+        getOnePerson(contextState.token, res.reportsTo)
+          .then((res) => {
+            if (res.status >= 400)
+              throw new alert.err("error usuario incorrecto");
+            return res.json();
+          })
+          .then((res) => {
+            setReportsTo(res);
+          })
+          .catch((err) => {
+            console.error(err.status);
+          });
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    console.log(profileChart);
+    console.log(reportsTo);
   };
-
-  // const klk = async () => {
-  //   const valuE = await reportsTo;
-  //   console.log(reportsTo);
-  //   if (valuE) {
-  //     const firstN = profileChart.firstName.split(" ");
-  //     const lastN = profileChart.lastName.split(" ");
-  //     var firstNSplit = firstN[0];
-  //     var lastNSplit = lastN[0];
-
-  //     const first = reportsTo.firstName.split(" ");
-  //     const last = reportsTo.lastName.split(" ");
-  //     var reportsTofirstN = first[0];
-  //     var reportsTolastN = last[0];
-  //     // var reportsToPosition = reportsTo.position;
-  //     // var reportsToPhoto = reportsTo.photo;
-
-  //     setProfileChart({
-  //       id: profileChart.personId,
-  //       fullName: `${firstNSplit} ${lastNSplit}`,
-  //       position: profileChart.position,
-  //       departament: profileChart ? profileChart.Departament.name : null,
-  //       photo: profileChart.photo,
-  //       idReportTo: reportsTo ? reportsTo.personId : 0,
-  //       fullNameReportTo: reportsTo
-  //         ? `${reportsTofirstN} ${reportsTolastN}`
-  //         : null,
-  //       positionReportTo: reportsTo ? reportsTo.position : null,
-  //       departamentReportTo: reportsTo ? reportsTo.Departament.name : null,
-  //       photoReportTo: reportsTo ? reportsTo.photo : Images.noImg,
-  //     });
-  //     setProfile(profileChart);
-  //   }
-  // };
-
-  // console.log(profileChart);
-  // console.log(reportsTo);
-  // console.log(profile);
 
   return (
     <>
