@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { BsFlag } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import { GiTrophyCup } from "react-icons/gi";
@@ -6,9 +6,17 @@ import { MdArrowForwardIos, MdEmail, MdPhoneInTalk } from "react-icons/md";
 import { FaBirthdayCake } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import Images from "../../common/images/index";
+import GlobalContext from "../../context/GlobalContext";
 
-const EmployeeForm = ({ profile, reportsTo, generateDocument, msgDisable }) => {
+const EmployeeForm = ({
+  profile,
+  reportsTo,
+  generateDocument,
+  msgDisable,
+  edit,
+}) => {
   const history = useHistory();
+  const [contextState] = useContext(GlobalContext);
   const [profileChart, setProfileChart] = useState({
     id: "",
     fullName: "",
@@ -227,7 +235,11 @@ const EmployeeForm = ({ profile, reportsTo, generateDocument, msgDisable }) => {
             >
               Documentacion
             </button>
-            <button type="button" className="btn btn-primary employee-btn">
+            <button
+              onClick={edit}
+              type="button"
+              className="btn btn-primary employee-btn"
+            >
               Editar
             </button>
             <button
@@ -240,51 +252,88 @@ const EmployeeForm = ({ profile, reportsTo, generateDocument, msgDisable }) => {
           </div>
         </div>
 
-        <div className="employee-updates-container">
-          <div className="employee-updates-title">Actualizaciones</div>
-          <div className="employe-line-container">
-            <p className="employee-line" style={{ width: "97%" }}></p>
-          </div>
-        </div>
-        <div className="employee-upcoming-container">
-          <div className="employee-upcoming-title">PRÓXIMO</div>
-          <div className="employee-info-container">
-            <i className="fa fa-birthday-cake" />
-            <FaBirthdayCake size="1.3em" color="orange" />
-            <p className="employee-upcoming-birthday">
-              Cumpleaños el {nombreDia} {daySplit} de {birthdayMonth}
-            </p>
-          </div>
-          <div className="employee-info-container">
-            <p className="employee-upcoming-wishing">
-              "Deseale a {firstNSplit} un feliz cumpleaños!"
-            </p>
-          </div>
-        </div>
-        <div className="employee-updates-container">
-          <div className="employee-updates-title">Contactos</div>
-          <div className="employe-line-container">
-            <p className="employee-line" style={{ width: "97%" }}></p>
-          </div>
-        </div>
-        <div className="employee-email-container">
-          <div className="employee-info-container">
-            <i className="md md-Email mt-5" />
-            <MdEmail size="1.5em" color="gray" />
-            <p className="employee-upcoming-birthday">Email:</p>
-            <p className="employee-contact-email">
-              {profile.email ? profile.email.toLowerCase() : null}
-            </p>
-          </div>
-          <div className="employee-info-container">
-            <i className="md md-phone-in-talk" />
-            <MdPhoneInTalk size="1.5em" color="gray" />
-            <p className="employee-upcoming-birthday">Telefono:</p>
-            <p className="employee-contact-email">
-              {profile.phoneNumber ? profile.phoneNumber : null}
-            </p>
-          </div>
-        </div>
+        {contextState.personId === profile.personId ? (
+          <>
+            <div className="employee-updates-container">
+              <div className="employee-updates-title">Informacion personal</div>
+              <div className="employe-line-container">
+                <p className="employee-line" style={{ width: "97%" }}></p>
+              </div>
+            </div>
+            <div className="employee-upcoming-container">
+              <div className="employee-info-container">
+                <i className="md md-Email mt-5" />
+                <MdEmail size="1.5em" color="gray" />
+                <p className="employee-upcoming-birthday">Seguro medico:</p>
+                <p className="employee-contact-email">1827394404322</p>
+              </div>
+            </div>
+            <div className="employee-updates-container">
+              <div className="employee-updates-title">
+                Documentos Personales
+              </div>
+              <div className="employe-line-container">
+                <p className="employee-line" style={{ width: "97%" }}></p>
+              </div>
+            </div>
+            <div className="employee-email-container">
+              <div className="employee-info-container">
+                <p className="employee-contact-email">- Volante de pago</p>
+              </div>
+              <div className="employee-info-container">
+                <p className="employee-contact-email">- Cursos Realizados</p>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="employee-updates-container">
+              <div className="employee-updates-title">Informacion</div>
+              <div className="employe-line-container">
+                <p className="employee-line" style={{ width: "97%" }}></p>
+              </div>
+            </div>
+            <div className="employee-upcoming-container">
+              <div className="employee-upcoming-title">PRÓXIMO</div>
+              <div className="employee-info-container">
+                <i className="fa fa-birthday-cake" />
+                <FaBirthdayCake size="1.3em" color="orange" />
+                <p className="employee-upcoming-birthday">
+                  Cumpleaños el {nombreDia} {daySplit} de {birthdayMonth}
+                </p>
+              </div>
+              <div className="employee-info-container">
+                <p className="employee-upcoming-wishing">
+                  "Deseale a {firstNSplit} un feliz cumpleaños!"
+                </p>
+              </div>
+            </div>
+            <div className="employee-updates-container">
+              <div className="employee-updates-title">Contactos</div>
+              <div className="employe-line-container">
+                <p className="employee-line" style={{ width: "97%" }}></p>
+              </div>
+            </div>
+            <div className="employee-email-container">
+              <div className="employee-info-container">
+                <i className="md md-Email mt-5" />
+                <MdEmail size="1.5em" color="gray" />
+                <p className="employee-upcoming-birthday">Email:</p>
+                <p className="employee-contact-email">
+                  {profile.email ? profile.email.toLowerCase() : null}
+                </p>
+              </div>
+              <div className="employee-info-container">
+                <i className="md md-phone-in-talk" />
+                <MdPhoneInTalk size="1.5em" color="gray" />
+                <p className="employee-upcoming-birthday">Telefono:</p>
+                <p className="employee-contact-email">
+                  {profile.phoneNumber ? profile.phoneNumber : null}
+                </p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

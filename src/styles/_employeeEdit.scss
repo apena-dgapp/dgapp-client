@@ -1,0 +1,194 @@
+.edit-input-cont{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.edit-inputs{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-items: center;
+    align-items: center;
+    width: 80%;
+    height: 9rem;
+    // background-color: white;
+    // box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    margin-bottom: 1rem;
+}
+.edit-input-title{
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    // font-weight: bold;
+
+}
+.edit-input{
+    border-radius: 0.6vw;
+    width: 25rem;
+    height: 2rem;
+    border: #141E61 solid 1px;
+    padding-left: 1rem;
+    // font-style: italic;
+    font-size: 0.9rem;
+    outline: none;
+    margin-bottom: 0.8rem;
+}
+.edit-subtitle-cont{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+}
+.edit-subtitle{
+    width: 70%;
+    border-bottom: gainsboro solid 1px;
+    margin-bottom: 1rem;
+    margin-top: 0.8rem;
+}
+.edit-org-cont{
+    margin-top: 2.5rem;
+}
+.edit-subtitle > p{
+    padding: 0;
+    margin: 0;
+    font-size: 1rem;
+    font-style: oblique;
+    color: #141E61;
+}
+.edit-btn-cont{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 9rem;
+}
+.edit-btns{
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+}
+.btn-done {
+    border-radius: 0.6rem;
+    width: 15rem;
+    height: 2.5rem;
+    border: none;
+    color: white;
+    background-color: green;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+  
+    &:hover {
+      color: white;
+      background-color: #787A91;
+    }
+  }
+
+  .btn-clear {
+    border-radius: 0.6rem;
+    width: 15rem;
+    height: 2.5rem;
+    border: none;
+    color: white;
+    background-color: brown;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+  
+    &:hover {
+      color: white;
+      background-color: #787A91;
+    }
+  }
+
+  .edit-header-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 35em;
+    margin-bottom: 34rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/technology-g0481aca92_1920.jpg");
+}
+.edit-header-title{
+    padding-top: 10rem;
+    color: white;
+    font-size: 2.5rem;
+}
+
+  .edit-card-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.edit-card{
+    width: 80%;
+    // max-height: 50em;
+    min-height: 38em;
+    margin-top: 20em;
+    background-color: white;
+    position: absolute;
+    border-radius: 0.5rem;
+}
+.edit-img-cont{
+display: flex;
+justify-content: center;
+align-items: center;
+position: absolute;
+width: 100%;
+margin-top:  -5rem;
+}
+// .edit-img {
+//     width: 7rem;
+//     height: 7rem;
+//     border-radius: 4rem;
+//     object-fit: cover;
+//     border: 0.2rem solid darkcyan;
+//     cursor: pointer;
+// }
+
+/* ESTILO DEL DIV QUE CONTENTRÁ EL INPUT */
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    }
+    /* ESTILO DEL INPUT*/
+    .upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    }
+    /* ESTILO DEL BOTÓN */
+    .boton-standar-rw{
+    // margin: 5px;
+    // background-color: white;
+    // color: rgb(245, 61, 58);
+    // border-radius: 20px;
+    // font-weight: bold;
+    // letter-spacing: 1px;
+    // line-height: 15px;
+    // border: 2px solid rgb(245, 61, 58);
+    // transition: all 0.3s ease 0s;
+    // width: 12em;
+    // padding: 10px;
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 4rem;
+    object-fit: cover;
+    border: 0.2rem solid darkcyan;
+    }
+    /* ESTILO DEL BOTÓN CON HOVER DE MOUSE */
+    .boton-standar-rw:hover{
+      color: white;
+      background-color: rgb(245, 61, 58);
+    }
+
+    .edit-img-text{
+        margin-right: 0.3rem;
+        color: #141E61;
+        font-weight: bold;
+    }

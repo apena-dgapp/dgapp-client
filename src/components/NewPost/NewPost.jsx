@@ -61,6 +61,7 @@ const NewPost = () => {
   const seletedHandler = async (e) => {
     setImg(await getBase64(e.target.files[0]));
   };
+
   const msgDisabled = () => {
     return toast.error(
       "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."

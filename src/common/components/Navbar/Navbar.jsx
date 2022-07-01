@@ -59,6 +59,14 @@ const Header = () => {
     history.push("./allpost");
   };
 
+  const employeedirectory = () => {
+    history.push("./employeedirectory");
+  };
+
+  const klk = () => {
+    history.push("./employeetree");
+  };
+
   useEffect(() => {
     let unmounted = false;
 
@@ -104,6 +112,8 @@ const Header = () => {
         allPost={allPost}
         employeeProfile={employeeProfile}
         home={home}
+        employeedirectory={employeedirectory}
+        klk={klk}
       />
     </>
   );

@@ -13,6 +13,8 @@ const Navbar = ({
   allPost,
   employeeProfile,
   home,
+  employeedirectory,
+  klk,
 }) => {
   const [contextState] = useContext(GlobalContext);
 
@@ -108,7 +110,7 @@ const Navbar = ({
           </li> */}
 
           <li className="class-list">
-            <a href="#/" onClick={inConstruction}>
+            <a href="#/" onClick={klk}>
               ENTRENAMIENTO
             </a>
           </li>
@@ -125,7 +127,9 @@ const Navbar = ({
                   </a>
                 </li>
                 <li>
-                  <a href="/employeedirectory">Directorio de Empleados</a>
+                  <a href="#/" onClick={employeedirectory}>
+                    Directorio de Empleados
+                  </a>
                 </li>
               </ul>
             </li>

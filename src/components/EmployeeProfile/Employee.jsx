@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, Component } from "react";
 import EmployeeForm from "./EmployeeForm";
 import GlobalContext from "../../context/GlobalContext";
 import { getOnePerson } from "../../api/person";
@@ -7,6 +7,7 @@ import PizZip from "pizzip";
 import PizZipUtils from "pizzip/utils/index.js";
 import { saveAs } from "file-saver";
 import { toast } from "react-hot-toast";
+import { useHistory } from "react-router-dom";
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -17,12 +18,25 @@ const Employee = (props) => {
   const [contextState] = useContext(GlobalContext);
   const [profile, setProfile] = useState("");
   const [reportsTo, setReportsTo] = useState("");
+  const history = useHistory();
 
   const msgDisable = () => {
     return toast.error(
       "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
     );
     //history.push('./')
+  };
+
+  const edit = () => {
+    const reportName = {
+      reportname: reportsTo.firstName + " " + reportsTo.lastName,
+    };
+
+    const newProfile = Object.assign(profile, reportName);
+    history.push({
+      pathname: "./employeeedit",
+      state: newProfile,
+    });
   };
 
   useEffect(() => {
@@ -128,6 +142,7 @@ const Employee = (props) => {
         reportsTo={reportsTo}
         profile={profile}
         msgDisable={msgDisable}
+        edit={edit}
       />
     </>
   );
