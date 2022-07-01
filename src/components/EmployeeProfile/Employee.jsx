@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState, Component } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import EmployeeForm from "./EmployeeForm";
 import GlobalContext from "../../context/GlobalContext";
 import { getOnePerson } from "../../api/person";
@@ -29,7 +29,7 @@ const Employee = (props) => {
 
   const edit = () => {
     const reportName = {
-      reportname: reportsTo.firstName + " " + reportsTo.lastName,
+      reportname: reportsTo?.firstName + " " + reportsTo?.lastName,
     };
 
     const newProfile = Object.assign(profile, reportName);

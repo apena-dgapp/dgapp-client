@@ -53,20 +53,20 @@ export const getFollowers = async (token, id) => {
     })
 }   
 
-// export const updatePerson = async (token, id,img,firstname,lastname,documentid,cel,date,career,code,position,departament,reportto,startedon,phone,email,health) => {
-//     const body = {id,img,firstname,lastname,documentid,cel,date,career,code,position,departament,reportto,startedon,phone,email,health};
-//     return fetch(`${process.env.REACT_APP_API}person/updateperson`, {
-//         method: "POST",
-//         body: JSON.stringify(body),
-//         headers: {
-//             "Content-Type": "application/json",
-//             Authorization: 'Bearer ' + token,
-//         }   
-//     })
-// }
+export const createPerson = async (token,code, firstname,lastname,documentid,phone, cel,email,departament,createdby,modifiedby,photo,date, position,isactive,career,reportto,startedon,health) => {
+    const body = {code,firstname,lastname,documentid,phone, cel,email,departament,createdby,modifiedby,photo,date,position,isactive,career,reportto,startedon,health};
+    return fetch(`${process.env.REACT_APP_API}person/createperson`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer ' + token,
+        }   
+    })
+}
 
-export const updatePerson = async (token, id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament, reportto, startedon, phone, email, health) => {
-    const body = {id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament, reportto, startedon, phone, email, health};
+export const updatePerson = async (token,id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament,reportto, startedon, phone, email, health) => {
+    const body = {id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament,reportto, startedon, phone, email, health};
     return fetch(`${process.env.REACT_APP_API}person/updateperson`, {
         method: "POST",
         body: JSON.stringify(body),

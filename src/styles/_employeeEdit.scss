@@ -192,3 +192,58 @@ margin-top:  -5rem;
         color: #141E61;
         font-weight: bold;
     }
+
+    ///new employee
+    .new-header-container{
+      display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 35em;
+    margin-bottom: 20rem;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/technology-g0481aca92_1920.jpg");
+    }
+    .new-card{
+        width: 80%;
+        // max-height: 50em;
+        min-height: 30em;
+        margin-top: 20em;
+        background-color: white;
+        position: absolute;
+        border-radius: 0.5rem;
+        border: 1px solid darkcyan;
+    }
+
+    .new-btn-next {
+        border-radius: 0.6rem;
+        width: 15rem;
+        height: 2.5rem;
+        border: none;
+        color: white;
+        background-color: #141E61;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+      
+        &:hover {
+          color: white;
+          background-color: #787A91;
+        }
+      }
+
+    .new-btn-back {
+        border-radius: 0.6rem;
+        width: 15rem;
+        height: 2.5rem;
+        border: none;
+        color: white;
+        background-color: slategray;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+      
+        &:hover {
+          color: white;
+          background-color: #787A91;
+        }
+      }
+    

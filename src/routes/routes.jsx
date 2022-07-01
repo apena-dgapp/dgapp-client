@@ -23,6 +23,7 @@ import FilePdf from "../common/components/FilePdf/FilePdf";
 import EmployeeDirectory from "../components/EmployeeDirectory/EmployeeDirectory";
 import EmployeeTree from "../components/EmployeeTree/EmployeeTree";
 import EmployeeEdit from "../components/EmployeeEdit/EmployeeEdit";
+import EmployeeNew from "../components/EmployeeNew/EmployeeNew";
 const Routes = () => {
   const [contextState] = useContext(GlobalContext);
 
@@ -52,6 +53,7 @@ const Routes = () => {
         <Route path={`${ruteServer}/employeechart`} component={EmployeeChart} />
         <Route path={`${ruteServer}/employeetree`} component={EmployeeTree} />
         <Route path={`${ruteServer}/employeeedit`} component={EmployeeEdit} />
+        <Route path={`${ruteServer}/employeenew`} component={EmployeeNew} />
         <Route path={`${ruteServer}/docdynamic`} component={DocDynamic} />
         <Route path={`${ruteServer}/pdf`} component={FilePdf} />
         <Route

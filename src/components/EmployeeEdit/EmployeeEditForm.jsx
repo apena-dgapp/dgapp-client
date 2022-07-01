@@ -14,6 +14,7 @@ function EmployeeEditForm({
   updateHandlerForm,
   handlerdDepartament,
   handlerdReportTo,
+  clearFormData,
 }) {
   // const date = new Date("06/29/2022").toISOString().split("T")[0];
   if (person) {
@@ -21,8 +22,6 @@ function EmployeeEditForm({
       (item) => item.personId !== profile?.personId
     );
   }
-
-  // console.log(formData);
 
   return (
     <>
@@ -279,7 +278,7 @@ function EmployeeEditForm({
                     type="email"
                     placeholder={profile?.email}
                     classInput="edit-input"
-                    value={formData.email}
+                    value={formData.email.toUpperCase()}
                   />
                 </div>
                 <div className="">
@@ -307,7 +306,12 @@ function EmployeeEditForm({
                 >
                   Actualizar
                 </button>
-                <button className="btn-clear" name="btn-clear" type="submit">
+                <button
+                  onClick={clearFormData}
+                  className="btn-clear"
+                  name="btn-clear"
+                  type="submit"
+                >
                   Limpiar
                 </button>
               </div>

@@ -1,18 +1,19 @@
 import React, { useEffect, useContext, useState } from "react";
-import EmployeeEditForm from "./EmployeeEditForm";
+import EmployeeNewForm from "./EmployeeNewForm";
 import { getAlldepartament } from "../../api/department";
-import { getAllPersons, updatePerson } from "../../api/person";
+import { getAllPersons, createPerson } from "../../api/person";
 import GlobalContext from "../../context/GlobalContext";
 import { getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 
-function EmployeeEdit(props) {
+function EmployeeNew() {
   const [contextState] = useContext(GlobalContext);
   const [departaments, setDepartaments] = useState("");
   const history = useHistory();
   const [person, setPerson] = useState("");
   const [photo, setPhoto] = useState("");
+  const [screen, setScreen] = useState(1);
   const [departament, setDepartament] = useState("");
   const [reportTo, setReportTo] = useState("");
   const [formData, setFormData] = useState({
@@ -57,12 +58,6 @@ function EmployeeEdit(props) {
   const removeImg = () => {
     setPhoto("");
   };
-  const goToProfile = (id) => {
-    history.push({
-      pathname: "./employeeprofile",
-      state: id,
-    });
-  };
 
   const clearFormData = () => {
     setFormData({
@@ -84,15 +79,30 @@ function EmployeeEdit(props) {
     setPhoto("");
   };
 
-  const updateHandlerForm = () => {
+  const next = () => {
     if (
-      photo === "" &&
+      // photo === "" &&
       formData.firstname === "" &&
       formData.lastname === "" &&
       formData.documentid === "" &&
       formData.cel === "" &&
-      formData.date === "" &&
-      formData.career === "" &&
+      formData.date === ""
+      // formData.career === ""
+    ) {
+      return toast.error(
+        "Debes completar todos los campos antes de continuar requeridos"
+      );
+    } else {
+      setScreen(2);
+    }
+  };
+
+  const back = () => {
+    setScreen(1);
+  };
+
+  const createHandlerForm = () => {
+    if (
       formData.code === "" &&
       formData.position === "" &&
       departament === "" &&
@@ -102,31 +112,31 @@ function EmployeeEdit(props) {
       formData.email === "" &&
       formData.health === ""
     ) {
-      return toast.error("Por el momento no hay datos para actulizar");
+      return toast.error(
+        "Debes completar todos los campos antes de continuar requeridos"
+      );
     }
-
-    updatePerson(
+    console.log(formData);
+    createPerson(
       contextState.token,
-      props.location.state.personId,
-      photo ? photo : props.location.state.photo,
-      formData.firstname ? formData.firstname : props.location.state.firstName,
-      formData.lastname ? formData.lastname : props.location.state.lastName,
-      formData.documentid
-        ? formData.documentid
-        : props.location.state.documentId,
-      formData.cel ? formData.cel : props.location.state.celNumber,
-      formData.date ? formData.date : props.location.state.birthdayDate,
-      formData.career ? formData.career : props.location.state.career,
-      formData.code ? formData.code : props.location.state.employeeCode,
-      formData.position ? formData.position : props.location.state.position,
-      departament ? Number(departament) : props.location.state.departamentId,
-      reportTo ? Number(reportTo) : props.location.state.reportsTo,
-      formData.startedon ? formData.startedon : props.location.state.startedOn,
-      formData.phone ? formData.phone : props.location.state.phoneNumber,
-      formData.email
-        ? formData.email.toUpperCase()
-        : props.location.state.email.toUpperCase(),
-      formData.health ? formData.health : props.location.state.healthInsurance
+      formData.code,
+      formData.firstname,
+      formData.lastname,
+      formData.documentid,
+      formData.phone,
+      formData.cel,
+      formData.email,
+      Number(departament),
+      contextState.userName,
+      "",
+      photo,
+      formData.date,
+      formData.position,
+      true,
+      formData.career,
+      reportTo,
+      formData.startedon,
+      formData.health
     )
       .then((res) => {
         if (res.status >= 400) throw new alert.err("error usuario incorrecto");
@@ -135,8 +145,8 @@ function EmployeeEdit(props) {
 
       .then((res) => {
         console.log(res.status);
-        toast.success("Perfil de empleado actulizado!");
-        goToProfile(props.location.state.personId);
+        toast.success("Nuevo Perfil de empleado creado!");
+        clearFormData();
       })
       .catch((err) => {
         console.error(err.status);
@@ -145,14 +155,6 @@ function EmployeeEdit(props) {
 
   useEffect(() => {
     let unmounted = false;
-
-    // const arroba = formData.email.includes("@");
-
-    // if(arroba){
-    //   setFormData({
-    //     email:{...formData.email, "DGAPP.COM"}
-    //   })
-    // }
 
     getAlldepartament(contextState.token)
       .then((res) => {
@@ -177,7 +179,10 @@ function EmployeeEdit(props) {
 
       .then((res) => {
         if (!unmounted) {
-          setPerson(res);
+          //   setPerson(res);
+          setPerson(
+            res?.filter((item) => item.personId !== contextState?.personId)
+          );
         }
       })
       .catch((err) => {
@@ -187,12 +192,11 @@ function EmployeeEdit(props) {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token]);
+  }, [contextState.token, contextState.personId]);
 
   return (
     <>
-      <EmployeeEditForm
-        profile={props.location.state}
+      <EmployeeNewForm
         departaments={departaments}
         handlerInputChange={handlerInputChange}
         formData={formData}
@@ -200,13 +204,15 @@ function EmployeeEdit(props) {
         seletedHandler={seletedHandler}
         photo={photo}
         removeImg={removeImg}
-        updateHandlerForm={updateHandlerForm}
+        createHandlerForm={createHandlerForm}
         handlerdDepartament={handlerdDepartament}
         handlerdReportTo={handlerdReportTo}
-        clearFormData={clearFormData}
+        next={next}
+        back={back}
+        screen={screen}
       />
     </>
   );
 }
 
-export default EmployeeEdit;
+export default EmployeeNew;

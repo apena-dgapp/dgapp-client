@@ -14,6 +14,7 @@ const Navbar = ({
   employeeProfile,
   home,
   employeedirectory,
+  employeeNew,
   klk,
 }) => {
   const [contextState] = useContext(GlobalContext);
@@ -124,6 +125,11 @@ const Navbar = ({
                 <li>
                   <a href="#/" onClick={createPost}>
                     Crear Entradas
+                  </a>
+                </li>
+                <li>
+                  <a href="#/" onClick={employeeNew}>
+                    Nuevo Empleado
                   </a>
                 </li>
                 <li>
