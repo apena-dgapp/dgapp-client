@@ -21,7 +21,7 @@ import EmployeeProfile from "../components/EmployeeProfile/Employee";
 import DocDynamic from "../common/components/DocDynamic/DocDynamic";
 import FilePdf from "../common/components/FilePdf/FilePdf";
 import EmployeeDirectory from "../components/EmployeeDirectory/EmployeeDirectory";
-import EmployeeTree from "../components/EmployeeTree/EmployeeTree";
+import EmployeeTree from "../components/EmployeeTree/Tree";
 import EmployeeEdit from "../components/EmployeeEdit/EmployeeEdit";
 import EmployeeNew from "../components/EmployeeNew/EmployeeNew";
 const Routes = () => {

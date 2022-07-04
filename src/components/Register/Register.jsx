@@ -43,10 +43,10 @@ const Register = () => {
         //     return toast.error('');
         // };
 
-        console.log(contextState.token)
-        console.log(registerForm.email)
+        // console.log(contextState.token)
+        // console.log(registerForm.email)
 
-        getOnePerson(contextState.token, registerForm.email)
+        getOnePerson(registerForm.email)
             .then(res => {
                 // if (res.status >= 400) throw new toast.error('');
                 return res.json();

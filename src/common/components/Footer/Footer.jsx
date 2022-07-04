@@ -13,13 +13,13 @@ const Footer = () => {
       state: name,
     });
   };
-  const goToDownload = (e, name) => {
-    e.preventDefault();
-    history.push({
-      pathname: "./download",
-      state: name,
-    });
-  };
+  // const goToDownload = (e, name) => {
+  //   e.preventDefault();
+  //   history.push({
+  //     pathname: "./download",
+  //     state: name,
+  //   });
+  // };
 
   const msgDisable = () => {
     return toast.error(

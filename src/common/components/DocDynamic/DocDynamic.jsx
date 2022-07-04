@@ -1,18 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { apiFiles } from "../../../api/files";
-import GlobalContext from "../../../context/GlobalContext";
 const PizZip = require("pizzip");
 const { saveAs } = require("file-saver");
 
 const DocDynamic = () => {
-  const [contextState] = useContext(GlobalContext);
   const [docs, setDocs] = useState("");
   const [file, setFile] = useState("");
 
   useEffect(() => {
-    apiFiles(contextState.token, "PERSONAL DOCUMENT")
+    apiFiles("PERSONAL DOCUMENT")
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error al hacer el fetch");
         return res.json();
       })
       .then((res) => {
@@ -35,7 +32,7 @@ const DocDynamic = () => {
       .catch((err) => {
         console.error(err.status);
       });
-  }, [contextState.token, file]);
+  }, [file]);
 
   const seletedHandler = (e) => {
     setDocs(e.target.files[0]);

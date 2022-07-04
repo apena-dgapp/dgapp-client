@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
-import EmployeeTreeForm from "./EmployeeTreeForm";
+import TreeForm from "./TreeForm";
 import { getEmployeeTree } from "./../../api/person";
 
-const EmployeeTree = () => {
-  const [persons, setPersons] = useState();
-  console.log(persons);
+const Tree = () => {
+  const [persons, setPersons] = useState({
+    name: "",
+    children: "",
+    attributes: { age: "" },
+    departament: "",
+    position: "",
+    photo: "",
+  });
+
   useEffect(() => {
     let unmounted = false;
 
@@ -31,8 +38,18 @@ const EmployeeTree = () => {
             // Add our current el to its parent's `children` array
             parentEl.children = [...(parentEl.children || []), el];
           });
+          //   console.log(root);
+          //   console.log(persons);
 
-          setPersons(root);
+          setPersons({
+            name:
+              root.firstName.split(" ", 1) + " " + root.lastName.split(" ", 1),
+            children: root.children,
+            departament: root.Departament.name,
+            position: root.position,
+            photo: root.photo,
+          });
+          //   setPersons(root);
         }
       })
       .catch((err) => {
@@ -46,11 +63,11 @@ const EmployeeTree = () => {
 
   return (
     <>
-      <div style={{ marginTop: "10rem" }}>
-        <EmployeeTreeForm persons={persons} />
+      <div>
+        <TreeForm persons={persons} />
       </div>
     </>
   );
 };
 
-export default EmployeeTree;
+export default Tree;

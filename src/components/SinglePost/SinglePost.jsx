@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
-import GlobalContext from "../../context/GlobalContext";
+import React, { useState, useEffect } from "react";
 import SiglePostForm from "./SiglePostForm";
 import { getFiles, getVideo } from "../../api/post";
 
 const SinglePost = (state) => {
-  const [contextState] = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
   const [arrayImg, setArrayImg] = useState("");
   const dataPost = state.location.state;
@@ -15,13 +13,12 @@ const SinglePost = (state) => {
   };
 
   useEffect(() => {
-    getFiles(contextState.token, dataPost.id)
+    getFiles(dataPost.id)
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error al hacer el fetch");
         return res.json();
       })
       .then((res) => {
-        console.log(res.status);
+        // console.log(res.status);
         // console.log(res);
         setArrayImg(res);
         // alert("el nuevo post se creo exitosamente");
@@ -30,13 +27,12 @@ const SinglePost = (state) => {
         console.error(err.status);
       });
 
-    getVideo(contextState.token, dataPost.id)
+    getVideo(dataPost.id)
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error al hacer el fetch");
         return res.json();
       })
       .then((res) => {
-        console.log(res.status);
+        // console.log(res.status);
         // console.log(res);
         setVideo(res);
         // alert("el nuevo post se creo exitosamente");
@@ -44,7 +40,7 @@ const SinglePost = (state) => {
       .catch((err) => {
         console.error(err.status);
       });
-  }, [contextState.token, dataPost.id]);
+  }, [dataPost.id]);
 
   return (
     <>

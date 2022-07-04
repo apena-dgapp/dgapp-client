@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../../common/components/Input/Input";
+// import Input from "../../common/components/Input/Input";
 import { BsPlusCircleDotted, BsDashCircleDotted } from "react-icons/bs";
 import Images from "../../common/images";
 import PersonalInformation from "./PersonalInformation";

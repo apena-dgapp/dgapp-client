@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
-import GlobalContext from "../../context/GlobalContext";
+import React, { useEffect, useState } from "react";
 import { getFollowers } from "../../api/person";
 import { useHistory } from "react-router-dom";
 import Images from "../../common/images";
 import { getOnePerson } from "../../api/person";
 
 const EmployeeChart = (state) => {
-  const [contextState] = useContext(GlobalContext);
   const [followersChart, setFollowersChart] = useState([]);
   const [profile, setProfile] = useState(state.location.state);
   const [reportsTo, setReportsTo] = useState("");
@@ -28,9 +26,8 @@ const EmployeeChart = (state) => {
   useEffect(() => {
     let unmounted = false;
 
-    getFollowers(contextState.token, profile.id)
+    getFollowers(profile.id)
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
 
@@ -46,7 +43,7 @@ const EmployeeChart = (state) => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token, profile.id]);
+  }, [profile.id]);
 
   // useEffect(() => {
   //   let unmounted = false;
@@ -102,17 +99,14 @@ const EmployeeChart = (state) => {
     setProfile({
       id: id,
     });
-    getOnePerson(contextState.token, id)
+    getOnePerson(id)
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
       .then((res) => {
         setProfileChart(res);
-        getOnePerson(contextState.token, res.reportsTo)
+        getOnePerson(res.reportsTo)
           .then((res) => {
-            if (res.status >= 400)
-              throw new alert.err("error usuario incorrecto");
             return res.json();
           })
           .then((res) => {
@@ -126,8 +120,8 @@ const EmployeeChart = (state) => {
         console.error(err.status);
       });
 
-    console.log(profileChart);
-    console.log(reportsTo);
+    // console.log(profileChart);
+    // console.log(reportsTo);
   };
 
   return (

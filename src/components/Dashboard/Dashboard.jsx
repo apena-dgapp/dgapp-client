@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import GlobalContext from "../../context/GlobalContext";
 import DashboardForm from "./DashboardForm";
 import { getPost, interestPost } from "../../api/post";
 
 const Dashboard = () => {
-  const [contextState] = useContext(GlobalContext);
   const history = useHistory();
 
   const [arrayPost, setArrayPost] = useState([]);
@@ -14,9 +12,8 @@ const Dashboard = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getPost(contextState.token, "Featured Post")
+    getPost("Featured Post")
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
       .then((res) => {
@@ -31,14 +28,13 @@ const Dashboard = () => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token]);
+  }, []);
 
   useEffect(() => {
     let unmounted = false;
 
-    interestPost(contextState.token)
+    interestPost()
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
       .then((res) => {
@@ -53,7 +49,7 @@ const Dashboard = () => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token]);
+  }, []);
 
   const singleInsterest = () => {
     const interestNewObj = {

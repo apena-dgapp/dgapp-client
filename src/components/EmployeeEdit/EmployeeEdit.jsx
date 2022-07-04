@@ -1,14 +1,12 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import EmployeeEditForm from "./EmployeeEditForm";
 import { getAlldepartament } from "../../api/department";
 import { getAllPersons, updatePerson } from "../../api/person";
-import GlobalContext from "../../context/GlobalContext";
 import { getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 
 function EmployeeEdit(props) {
-  const [contextState] = useContext(GlobalContext);
   const [departaments, setDepartaments] = useState("");
   const history = useHistory();
   const [person, setPerson] = useState("");
@@ -106,7 +104,6 @@ function EmployeeEdit(props) {
     }
 
     updatePerson(
-      contextState.token,
       props.location.state.personId,
       photo ? photo : props.location.state.photo,
       formData.firstname ? formData.firstname : props.location.state.firstName,
@@ -129,7 +126,6 @@ function EmployeeEdit(props) {
       formData.health ? formData.health : props.location.state.healthInsurance
     )
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
 
@@ -154,9 +150,8 @@ function EmployeeEdit(props) {
     //   })
     // }
 
-    getAlldepartament(contextState.token)
+    getAlldepartament()
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
 
@@ -169,9 +164,8 @@ function EmployeeEdit(props) {
         console.error(err.status);
       });
 
-    getAllPersons(contextState.token)
+    getAllPersons()
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
 
@@ -187,7 +181,7 @@ function EmployeeEdit(props) {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token]);
+  }, []);
 
   return (
     <>

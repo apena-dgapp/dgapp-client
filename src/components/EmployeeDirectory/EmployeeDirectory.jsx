@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import EmployeeDirectoryForm from "./EmployeeDirectoryForm";
 import { getAllPersons } from "../../api/person";
-import GlobalContext from "../../context/GlobalContext";
 import { useHistory } from "react-router-dom";
 
 const EmployeeDirectory = () => {
-  const [contextState] = useContext(GlobalContext);
   const [arrayAllPersons, setArrayAllPersons] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState("");
@@ -14,9 +12,8 @@ const EmployeeDirectory = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getAllPersons(contextState.token)
+    getAllPersons()
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
       .then((res) => {
@@ -31,7 +28,7 @@ const EmployeeDirectory = () => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token]);
+  }, []);
 
   const filteredArryPersons = () => {
     if (search.length === 0)

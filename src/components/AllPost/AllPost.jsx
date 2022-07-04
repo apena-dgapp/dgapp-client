@@ -1,10 +1,8 @@
-import React, { useContext, useState, useEffect } from "react";
-import GlobalContext from "../../context/GlobalContext";
+import React, { useState, useEffect } from "react";
 import AllPostForm from "./AllPostForm";
 import { allPostApi } from "../../api/post";
 
 const AllPost = () => {
-  const [contextState] = useContext(GlobalContext);
   const [arrayAllPost, setArrayAllPost] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState("");
@@ -12,9 +10,8 @@ const AllPost = () => {
   useEffect(() => {
     let unmounted = false;
 
-    allPostApi(contextState.token)
+    allPostApi()
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
       .then((res) => {
@@ -29,7 +26,7 @@ const AllPost = () => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token]);
+  }, []);
 
   const filteredArryPost = () => {
     if (search.length === 0)

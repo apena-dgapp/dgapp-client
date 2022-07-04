@@ -1,6 +1,5 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useState } from "react";
 import EmployeeForm from "./EmployeeForm";
-import GlobalContext from "../../context/GlobalContext";
 import { getOnePerson } from "../../api/person";
 import Docxtemplater from "docxtemplater";
 import PizZip from "pizzip";
@@ -15,7 +14,6 @@ function loadFile(url, callback) {
 
 const Employee = (props) => {
   const id = props.location.state;
-  const [contextState] = useContext(GlobalContext);
   const [profile, setProfile] = useState("");
   const [reportsTo, setReportsTo] = useState("");
   const history = useHistory();
@@ -42,19 +40,16 @@ const Employee = (props) => {
   useEffect(() => {
     let unmounted = false;
 
-    getOnePerson(contextState.token, id)
+    getOnePerson(id)
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
 
       .then((res) => {
         if (!unmounted) {
           setProfile(res);
-          getOnePerson(contextState.token, res.reportsTo)
+          getOnePerson(res.reportsTo)
             .then((res) => {
-              if (res.status >= 400)
-                throw new alert.err("error usuario incorrecto");
               return res.json();
             })
 
@@ -75,7 +70,7 @@ const Employee = (props) => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token, id]);
+  }, [id]);
   const generateDocument = () => {
     loadFile("../../common/Docs/carta-laboral.docx", function (error, content) {
       if (error) {

@@ -74,10 +74,8 @@ const Header = () => {
     let unmounted = false;
 
     if (contextState.personId) {
-      getOnePerson(contextState.token, contextState.personId)
+      getOnePerson(contextState.personId)
         .then((res) => {
-          if (res.status >= 400)
-            throw new alert.err("error usuario incorrecto");
           return res.json();
         })
         .then((res) => {
@@ -101,7 +99,7 @@ const Header = () => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token, contextState.personId]);
+  }, [contextState.personId]);
 
   return (
     <>

@@ -1,12 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import GlobalContext from "../../../context/GlobalContext";
+import React, { useEffect, useState } from "react";
 import CardCarousel from "../Carousel/CardCarousel";
 import { getPost } from "../../../api/post";
 import Images from "../../images/index";
 
 const Carousel = () => {
-  const [contextState] = useContext(GlobalContext);
-
   const [arrayCarousel, setArrayCarousel] = useState([]);
 
   useEffect(() => {
@@ -15,12 +12,10 @@ const Carousel = () => {
       new Date()
     );
 
-    getPost(contextState.token, "Main Post")
+    getPost("Main Post")
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
-
       .then((res) => {
         if (!unmounted) {
           var getArray = res.posts;
@@ -50,7 +45,7 @@ const Carousel = () => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token]);
+  }, []);
 
   return (
     <>

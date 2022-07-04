@@ -144,7 +144,6 @@ const NewPost = () => {
       return toast.error("Por favor agregar una imagen de portada");
     }
     newPostApi(
-      contextState.token,
       formData.title,
       editor_content,
       formData.category,
@@ -156,21 +155,13 @@ const NewPost = () => {
       ""
     )
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error al hacer el fetch");
         return res.json();
       })
       .then((res) => {
         console.log(res.status);
 
-        postId(
-          contextState.token,
-          formData.title,
-          formData.category,
-          formData.author
-        )
+        postId(formData.title, formData.category, formData.author)
           .then((res) => {
-            if (res.status >= 400)
-              throw new alert.err("error al hacer el fetch");
             return res.json();
           })
           .then((res) => {
@@ -184,7 +175,6 @@ const NewPost = () => {
                   const type = typeSplit[0].split("/");
 
                   createFile(
-                    contextState.token,
                     id,
                     nameImg[i].name,
                     type[1],
@@ -199,7 +189,6 @@ const NewPost = () => {
                 const type = typeSplit[0].split("/");
 
                 createFile(
-                  contextState.token,
                   id,
                   nameImg[0].name,
                   type[1],
@@ -217,7 +206,6 @@ const NewPost = () => {
                   const typeSplit = newArrayPdf[x].split(";");
                   const type = typeSplit[0].split("/");
                   createFile(
-                    contextState.token,
                     id,
                     namePdf[x].name,
                     type[1],
@@ -232,7 +220,6 @@ const NewPost = () => {
                 const typePdf = typeSplitPdf[0].split("/");
 
                 createFile(
-                  contextState.token,
                   id,
                   namePdf[0].name,
                   typePdf[1],
@@ -245,13 +232,7 @@ const NewPost = () => {
             }
 
             if (formData.video) {
-              createFile(
-                contextState.token,
-                id,
-                "",
-                "URL",
-                formData.video
-              ).then((res) => {
+              createFile(id, "", "URL", formData.video).then((res) => {
                 console.log(res.status);
               });
             }

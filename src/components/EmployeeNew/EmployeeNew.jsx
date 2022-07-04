@@ -5,12 +5,12 @@ import { getAllPersons, createPerson } from "../../api/person";
 import GlobalContext from "../../context/GlobalContext";
 import { getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 function EmployeeNew() {
   const [contextState] = useContext(GlobalContext);
   const [departaments, setDepartaments] = useState("");
-  const history = useHistory();
+  // const history = useHistory();
   const [person, setPerson] = useState("");
   const [photo, setPhoto] = useState("");
   const [screen, setScreen] = useState(1);
@@ -116,9 +116,8 @@ function EmployeeNew() {
         "Debes completar todos los campos antes de continuar requeridos"
       );
     }
-    console.log(formData);
+
     createPerson(
-      contextState.token,
       formData.code,
       formData.firstname,
       formData.lastname,
@@ -139,7 +138,6 @@ function EmployeeNew() {
       formData.health
     )
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
 
@@ -156,9 +154,8 @@ function EmployeeNew() {
   useEffect(() => {
     let unmounted = false;
 
-    getAlldepartament(contextState.token)
+    getAlldepartament()
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
 
@@ -171,9 +168,8 @@ function EmployeeNew() {
         console.error(err.status);
       });
 
-    getAllPersons(contextState.token)
+    getAllPersons()
       .then((res) => {
-        if (res.status >= 400) throw new alert.err("error usuario incorrecto");
         return res.json();
       })
 
@@ -192,7 +188,7 @@ function EmployeeNew() {
     return () => {
       unmounted = true;
     };
-  }, [contextState.token, contextState.personId]);
+  }, [contextState.personId]);
 
   return (
     <>
