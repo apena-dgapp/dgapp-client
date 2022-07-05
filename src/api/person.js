@@ -76,6 +76,19 @@ export const updatePerson = async (id,photo,firstname,lastname,documentid, cel,d
     })
 }
 
+export const isActivePerson = async (id,bool) => {
+    const body = {id,bool};
+    return fetch(`${process.env.REACT_APP_API}person/isactiveperson`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }   
+    })
+}
+
+
 
 //build
 

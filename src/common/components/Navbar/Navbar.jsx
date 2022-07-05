@@ -66,7 +66,7 @@ const Header = () => {
     history.push("./employeenew");
   };
 
-  const klk = () => {
+  const employeeTree = () => {
     history.push("./employeetree");
   };
 
@@ -115,7 +115,7 @@ const Header = () => {
         home={home}
         employeedirectory={employeedirectory}
         employeeNew={employeeNew}
-        klk={klk}
+        employeeTree={employeeTree}
       />
     </>
   );

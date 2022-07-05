@@ -111,7 +111,7 @@ const Footer = () => {
                     onClick={(e) =>
                       aboutUSChange(e, "MISION, VISION Y VALORES")
                     }
-                    href="#/"
+                    href="#!"
                     className="footer-txt"
                   >
                     Mision, Vision y Valores
@@ -121,7 +121,7 @@ const Footer = () => {
                   <a
                     style={{ textDecoration: "none" }}
                     onClick={(e) => aboutUSChange(e, "FUNCIONES")}
-                    href="#/"
+                    href="#!"
                     className="footer-txt"
                   >
                     Funciones
@@ -131,7 +131,7 @@ const Footer = () => {
                   <a
                     style={{ textDecoration: "none" }}
                     onClick={(e) => aboutUSChange(e, "MARCO INSTITUCIONAL")}
-                    href="#/"
+                    href="#!"
                     className="footer-txt"
                   >
                     Marco Institucional
@@ -226,7 +226,7 @@ const Footer = () => {
                   <a
                     // onClick={(e) => goToDownload(e, "CARTA LABORAL")}
                     onClick={msgDisable}
-                    href="#/"
+                    href="#!"
                     className="footer-txt"
                   >
                     Carta Laboral
@@ -237,7 +237,7 @@ const Footer = () => {
                     // onClick={(e) => goToDownload(e, "SEGURO MEDICO")}
                     onClick={msgDisable}
                     style={{ textDecoration: "none" }}
-                    href="#/"
+                    href="#!"
                     className="footer-txt"
                   >
                     Seguro Medico
@@ -248,7 +248,7 @@ const Footer = () => {
                     // onClick={(e) => goToDownload(e, "SOLICITUD DE VACACIONES")}
                     onClick={msgDisable}
                     style={{ textDecoration: "none" }}
-                    href="#/"
+                    href="#!"
                     className="footer-txt"
                   >
                     Solicitud de Vacaciones
@@ -259,7 +259,7 @@ const Footer = () => {
                     // onClick={(e) => goToDownload(e, "SOLICITUD DE MATERNIDAD")}
                     onClick={msgDisable}
                     style={{ textDecoration: "none" }}
-                    href="#/"
+                    href="#!"
                     className="footer-txt"
                   >
                     Solicitud de Maternidad
@@ -270,7 +270,7 @@ const Footer = () => {
                     // onClick={(e) => goToDownload(e, "SOLICITUD DE ENFERMEDAD")}
                     onClick={msgDisable}
                     style={{ textDecoration: "none" }}
-                    href="#/"
+                    href="#!"
                     className="footer-txt"
                   >
                     Solicitud de Enfermedad
@@ -281,7 +281,7 @@ const Footer = () => {
                     // onClick={(e) => goToDownload(e, "FORMULARIO DE DESEMPEÑO")}
                     onClick={msgDisable}
                     style={{ textDecoration: "none" }}
-                    href="#/"
+                    href="#!"
                     className="footer-txt"
                   >
                     Formulario de desempeño

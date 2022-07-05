@@ -47,6 +47,7 @@
     color: white;
 }
 .employee-btn-container{
+    display: flex;
     margin-left: 1rem;
     margin-top: 2rem;   
 }
@@ -147,4 +148,80 @@
     color: rgb(133, 204, 252);
     font-size: 1.3rem;
     margin-top: -0.2rem;
+}
+
+///check
+.onoffswitch1 {
+    position: relative; width: 110px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+
+.onoffswitch1-checkbox {
+    display: none;
+}
+
+.onoffswitch1-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px ; border-radius: 5px;
+}
+
+.onoffswitch1-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch1-inner:before, .onoffswitch1-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 1rem; color: white; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    border-radius: 30px;
+    box-shadow: 0px 15px 0px rgba(0,0,0,0.08) inset;
+}
+
+.onoffswitch1-inner:before {
+    content: "Activo";
+    // padding-left: 10px;
+    background-color: #08c450; color: #FFFFFF;
+    border-radius: 5px 0 0 5px;
+    height: 2.4rem;
+    text-align: center;
+    padding-top: 0.3rem;
+}
+
+.onoffswitch1-inner:after {
+    content: "No Activo";
+    // padding-right: 10px;
+    background-color: #c74343; color: white;
+    text-align: right;
+    border-radius: 0 5px 5px 0;
+    height: 2.4rem;
+    text-align: center;
+    padding-top: 0.3rem;
+}
+
+.onoffswitch1-switch {
+    display: block; width: 20px; margin: 0px; 
+    background: transparent;
+    // border: 2px solid white;
+    position: absolute; top: 0; bottom: 0; right: 90px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+    background-image: -moz-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%); 
+    background-image: -webkit-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%); 
+    background-image: -o-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%); 
+    background-image: linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
+    // box-shadow: 0 1px 1px white inset;
+}
+
+// .onoffswitch1-switch:before {
+//     border-radius: 5px 0 0 5px
+// }
+
+.onoffswitch1-checkbox:checked + .onoffswitch1-label .onoffswitch1-inner {
+    margin-left: 0;
+}
+
+.onoffswitch1-checkbox:checked + .onoffswitch1-label .onoffswitch1-switch {
+    right: 0px; 
 }

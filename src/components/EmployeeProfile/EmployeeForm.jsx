@@ -14,6 +14,7 @@ const EmployeeForm = ({
   generateDocument,
   msgDisable,
   edit,
+  handleIsActive,
 }) => {
   const history = useHistory();
   const [contextState] = useContext(GlobalContext);
@@ -231,24 +232,43 @@ const EmployeeForm = ({
               // onClick={(e) => goToDownload(e, "MIS DOCUMENTOS")}
               onClick={msgDisable}
               type="button"
-              className="btn btn-success employee-btn"
+              className="btn btn-primary employee-btn"
             >
               Documentacion
             </button>
-            <button
-              onClick={edit}
-              type="button"
-              className="btn btn-primary employee-btn"
-            >
-              Editar
-            </button>
-            <button
+            {contextState.isAdmin ? (
+              <button
+                onClick={edit}
+                type="button"
+                className="btn btn-warning employee-btn"
+              >
+                Editar
+              </button>
+            ) : null}
+
+            {/* <button
               onClick={goTochart}
               type="button"
               className="btn btn-light employee-btn"
             >
               Ver en Organigrama
-            </button>
+            </button> */}
+            {contextState.isAdmin ? (
+              <div className="onoffswitch1">
+                <input
+                  onChange={handleIsActive}
+                  type="checkbox"
+                  name="onoffswitch1"
+                  className="onoffswitch1-checkbox"
+                  id="myonoffswitch1"
+                  defaultChecked
+                />
+                <label className="onoffswitch1-label" htmlFor="myonoffswitch1">
+                  <span className="onoffswitch1-inner" />
+                  <span className="onoffswitch1-switch" />
+                </label>
+              </div>
+            ) : null}
           </div>
         </div>
 

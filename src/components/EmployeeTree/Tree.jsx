@@ -10,6 +10,8 @@ const Tree = () => {
     departament: "",
     position: "",
     photo: "",
+    firstName: "",
+    lastName: "",
   });
 
   useEffect(() => {
@@ -39,15 +41,16 @@ const Tree = () => {
             parentEl.children = [...(parentEl.children || []), el];
           });
           //   console.log(root);
-          //   console.log(persons);
 
           setPersons({
             name:
-              root.firstName.split(" ", 1) + " " + root.lastName.split(" ", 1),
+              root.firstName.split(" ")[0] + " " + root.lastName.split(" ")[0],
             children: root.children,
             departament: root.Departament.name,
             position: root.position,
             photo: root.photo,
+            firstName: root.firstName.split(" ")[0],
+            lastName: root.lastName.split(" ")[0],
           });
           //   setPersons(root);
         }
@@ -60,7 +63,7 @@ const Tree = () => {
       unmounted = true;
     };
   }, []);
-
+  //   console.log(persons);
   return (
     <>
       <div>

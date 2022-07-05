@@ -7,7 +7,7 @@ import { Button, IconButton } from "@material-ui/core";
 // import { Edit, AttachMoney, Accessible } from "@material-ui/icons";
 // import "./styles.css";
 import Images from "../../common/images/index";
-import { MdKeyboardArrowDown } from "react-icons/md";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 const containerStyles = {
   width: "100vw",
@@ -45,7 +45,7 @@ const useStyles = makeStyles(
       color: "gray",
       fontFamily: "Montserrat",
     },
-    firstName: {
+    name: {
       //   marginTop: "2rem",
       fontSize: "0.6rem",
       fontWeight: "bolder",
@@ -114,7 +114,7 @@ const renderForeignObjectNode = ({
 }) => (
   <>
     {/* `foreignObject` requires width & height to be explicitly set. */}
-    {/* {console.log(nodeDatum.__rd3t.collapsed)} */}
+    {/* {console.log(nodeDatum)} */}
     <foreignObject {...foreignObjectProps}>
       <Button
         className={classes.button}
@@ -127,10 +127,15 @@ const renderForeignObjectNode = ({
           alt="..."
         />
         <div className={classes.departament}>departament</div>
-        <div className={classes.firstName}>{nodeDatum.firstName}</div>
+        {/* <div className={classes.name}>{nodeDatum.name}</div> */}
+        <div className={classes.name}>
+          {nodeDatum.firstName.split(" ")[0] +
+            " " +
+            nodeDatum.lastName.split(" ")[0]}
+        </div>
         <div className={classes.position}>{nodeDatum.position}</div>
-
-        {nodeDatum.__rd3t.collapsed ? (
+        {/* 
+        {nodeDatum.children && nodeDatum.__rd3t.collapsed ? (
           <div className={classes.arrow}>
             {" "}
             <i className="md md-Keyboard-arrow-down" />
@@ -140,6 +145,30 @@ const renderForeignObjectNode = ({
               color="darkcyan"
             />
           </div>
+        ) : null} */}
+
+        {nodeDatum.children ? (
+          nodeDatum.__rd3t.collapsed ? (
+            <div className={classes.arrow}>
+              {" "}
+              <i className="md md-Keyboard-arrow-down" />
+              <MdKeyboardArrowDown
+                className="emDirectory-se"
+                size="2em"
+                color="darkcyan"
+              />
+            </div>
+          ) : (
+            <div className={classes.arrow}>
+              {" "}
+              <i className="md md-Keyboard-arrow-up" />
+              <MdKeyboardArrowUp
+                className="emDirectory-se"
+                size="2em"
+                color="gray"
+              />
+            </div>
+          )
         ) : null}
 
         {/* <div >Age: {nodeDatum.attributes.age}</div> */}
@@ -162,7 +191,7 @@ export default function TreeForm({ persons }) {
   const [translate, containerRef] = useCenteredTree();
   const nodeSize = { x: 300, y: 240 };
   const separation = { siblings: 1, nonSiblings: 2 };
-  const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: -85 };
+  const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: -80 };
   //   console.log(persons);
 
   return (

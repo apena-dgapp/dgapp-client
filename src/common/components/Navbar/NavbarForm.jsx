@@ -15,7 +15,7 @@ const Navbar = ({
   home,
   employeedirectory,
   employeeNew,
-  klk,
+  employeeTree,
 }) => {
   const [contextState] = useContext(GlobalContext);
 
@@ -54,7 +54,7 @@ const Navbar = ({
             <a href="#/">INICIO</a>
           </li>
           <li className="class-list">
-            <a href="#/">
+            <a href="#!">
               SERVICIOS
               <img className="icondown" src={Images.icondown} alt="" />
             </a>
@@ -65,14 +65,14 @@ const Navbar = ({
                 </a>
               </li> */}
               <li>
-                <a href="#/" onClick={inConstruction}>
+                <a href="#!" onClick={inConstruction}>
                   Crear Ticket
                 </a>
               </li>
             </ul>
           </li>
           <li className="class-list">
-            <a href="#/" onClick={allPost}>
+            <a href="#!" onClick={allPost}>
               NOTICIAS
             </a>
           </li>
@@ -111,29 +111,29 @@ const Navbar = ({
           </li> */}
 
           <li className="class-list">
-            <a href="#/" onClick={klk}>
+            <a href="#!" onClick={inConstruction}>
               ENTRENAMIENTO
             </a>
           </li>
           {contextState.isAdmin ? (
             <li className="class-list">
-              <a href="#/">
+              <a href="#!">
                 ADMINISTRACIÓN
                 <img className="icondown" src={Images.icondown} alt="" />
               </a>
               <ul>
                 <li>
-                  <a href="#/" onClick={createPost}>
+                  <a href="#!" onClick={createPost}>
                     Crear Entradas
                   </a>
                 </li>
                 <li>
-                  <a href="#/" onClick={employeeNew}>
+                  <a href="#!" onClick={employeeNew}>
                     Nuevo Empleado
                   </a>
                 </li>
                 <li>
-                  <a href="#/" onClick={employeedirectory}>
+                  <a href="#!" onClick={employeedirectory}>
                     Directorio de Empleados
                   </a>
                 </li>
@@ -171,7 +171,7 @@ const Navbar = ({
                 <img className="flag-spain" src={Images.flagSpain} type="button" onClick={() => handeleLang('es-DR')} alt="" />
                 <img className="user-icon" src={Images.iconUser} onClick={() => logOut()} type="button" alt="" />
                 <div className="user-text" onClick={() => logOut()}>{contextState.userName}</div> */}
-          <div className="dropdown klk">
+          <div className="dropdown">
             <i className="md md-keyboard-arrow-down" />
             <MdKeyboardArrowDown
               // style={{ marginLeft: "3rem", marginTop: "-0.8rem" }}
@@ -204,7 +204,7 @@ const Navbar = ({
                   Mi Prefil
                 </p>
               </li>
-              <li>
+              {/* <li>
                 <p className="dropdown-item">
                   <i className="fa fa-user-edit" />
                   <FaUserEdit
@@ -214,9 +214,9 @@ const Navbar = ({
                   />
                   Editar Perfil
                 </p>
-              </li>
+              </li> */}
               <li>
-                <p className="dropdown-item">
+                <p onClick={employeeTree} className="dropdown-item">
                   <i className="im im-tree" />
                   <ImTree
                     style={{ marginRight: "0.5rem" }}

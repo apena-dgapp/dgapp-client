@@ -3508,6 +3508,11 @@
   "resolved" "https://registry.npmjs.org/bootstrap/-/bootstrap-5.1.1.tgz"
   "version" "5.1.1"
 
+"bootstrap4-toggle@^3.6.1":
+  "integrity" "sha512-eRejcTc9YurhZ64nHY9Ii9DQn+F9/R74H9RPoeANVM3N1+C2lZ2tUuFCx1w3orOJ1y/iG4A7iCwdDZphMDIrYg=="
+  "resolved" "https://registry.npmjs.org/bootstrap4-toggle/-/bootstrap4-toggle-3.6.1.tgz"
+  "version" "3.6.1"
+
 "brace-expansion@^1.1.7":
   "integrity" "sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA=="
   "resolved" "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz"

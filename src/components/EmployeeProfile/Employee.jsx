@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EmployeeForm from "./EmployeeForm";
-import { getOnePerson } from "../../api/person";
+import { getOnePerson, isActivePerson } from "../../api/person";
 import Docxtemplater from "docxtemplater";
 import PizZip from "pizzip";
 import PizZipUtils from "pizzip/utils/index.js";
@@ -130,6 +130,17 @@ const Employee = (props) => {
     });
   };
 
+  const handleIsActive = (e) => {
+    const isActive = e.target.checked;
+    isActivePerson(id, isActive)
+      .then((res) => {
+        return res.json();
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  };
+
   return (
     <>
       <EmployeeForm
@@ -138,6 +149,7 @@ const Employee = (props) => {
         profile={profile}
         msgDisable={msgDisable}
         edit={edit}
+        handleIsActive={handleIsActive}
       />
     </>
   );
