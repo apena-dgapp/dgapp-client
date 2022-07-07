@@ -106,56 +106,51 @@ const Footer = () => {
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                 />
                 <p>
-                  <a
+                  <p
                     style={{ textDecoration: "none" }}
                     onClick={(e) =>
                       aboutUSChange(e, "MISION, VISION Y VALORES")
                     }
-                    href="#!"
                     className="footer-txt"
                   >
                     Mision, Vision y Valores
-                  </a>
+                  </p>
                 </p>
                 <p>
-                  <a
+                  <p
                     style={{ textDecoration: "none" }}
                     onClick={(e) => aboutUSChange(e, "FUNCIONES")}
-                    href="#!"
                     className="footer-txt"
                   >
                     Funciones
-                  </a>
+                  </p>
                 </p>
                 <p>
-                  <a
+                  <p
                     style={{ textDecoration: "none" }}
                     onClick={(e) => aboutUSChange(e, "MARCO INSTITUCIONAL")}
-                    href="#!"
                     className="footer-txt"
                   >
                     Marco Institucional
-                  </a>
+                  </p>
                 </p>
                 <p>
-                  <a
+                  <p
                     style={{ textDecoration: "none" }}
                     onClick={(e) => aboutUSChange(e, "DIRECTOR GENERAL")}
-                    href="#!"
                     className="footer-txt"
                   >
                     Director General
-                  </a>
+                  </p>
                 </p>
                 <p>
-                  <a
+                  <p
                     style={{ textDecoration: "none" }}
                     onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}
-                    href="#!"
                     className="footer-txt"
                   >
                     Organigrama
-                  </a>
+                  </p>
                 </p>
               </div>
               {/* Grid column */}
@@ -171,7 +166,7 @@ const Footer = () => {
                   <a
                     onClick={(e) => goToRegulations(e, "MARCO LEGAL")}
                     style={{ textDecoration: "none" }}
-                    href="#/"
+                   
                     className="footer-txt"
                   >
                     Marco Legal
@@ -181,7 +176,7 @@ const Footer = () => {
                   <a
                     onClick={(e) => goToRegulations(e, "LEYES")}
                     style={{ textDecoration: "none" }}
-                    href="#/"
+                   
                     className="footer-txt"
                   >
                     Leyes
@@ -191,7 +186,7 @@ const Footer = () => {
                   <a
                     onClick={(e) => goToRegulations(e, "REGLAMENTOS")}
                     style={{ textDecoration: "none" }}
-                    href="#/"
+                   
                     className="footer-txt"
                   >
                     Reglamentos
@@ -201,7 +196,7 @@ const Footer = () => {
                   <a
                     onClick={(e) => goToRegulations(e, "RESOLUCIONES")}
                     style={{ textDecoration: "none" }}
-                    href="#/"
+                   
                     className="footer-txt"
                   >
                     Resoluciones
@@ -211,7 +206,7 @@ const Footer = () => {
                   <a
                     onClick={(e) => goToRegulations(e, "CONSULTAS PÚBLICAS")}
                     style={{ textDecoration: "none" }}
-                    href="#/"
+                   
                     className="footer-txt"
                   >
                     Consultas Públicas
@@ -223,69 +218,63 @@ const Footer = () => {
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                 />
                 <p>
-                  <a
+                  <p
                     // onClick={(e) => goToDownload(e, "CARTA LABORAL")}
                     onClick={msgDisable}
-                    href="#!"
                     className="footer-txt"
                   >
                     Carta Laboral
-                  </a>
+                  </p>
                 </p>
                 <p>
-                  <a
+                  <p
                     // onClick={(e) => goToDownload(e, "SEGURO MEDICO")}
                     onClick={msgDisable}
                     style={{ textDecoration: "none" }}
-                    href="#!"
                     className="footer-txt"
                   >
                     Seguro Medico
-                  </a>
+                  </p>
                 </p>
                 <p>
-                  <a
+                  <p
                     // onClick={(e) => goToDownload(e, "SOLICITUD DE VACACIONES")}
                     onClick={msgDisable}
                     style={{ textDecoration: "none" }}
-                    href="#!"
                     className="footer-txt"
                   >
                     Solicitud de Vacaciones
-                  </a>
+                  </p>
                 </p>
                 <p>
-                  <a
+                  <p
                     // onClick={(e) => goToDownload(e, "SOLICITUD DE MATERNIDAD")}
                     onClick={msgDisable}
                     style={{ textDecoration: "none" }}
-                    href="#!"
                     className="footer-txt"
                   >
                     Solicitud de Maternidad
-                  </a>
+                  </p>
                 </p>
                 <p>
-                  <a
+                  <p
                     // onClick={(e) => goToDownload(e, "SOLICITUD DE ENFERMEDAD")}
                     onClick={msgDisable}
                     style={{ textDecoration: "none" }}
-                    href="#!"
                     className="footer-txt"
                   >
                     Solicitud de Enfermedad
-                  </a>
+                  </p>
                 </p>
                 <p>
-                  <a
+                  <p
                     // onClick={(e) => goToDownload(e, "FORMULARIO DE DESEMPEÑO")}
                     onClick={msgDisable}
                     style={{ textDecoration: "none" }}
-                    href="#!"
                     className="footer-txt"
                   >
                     Formulario de desempeño
-                  </a>
+                  </p>
                 </p>
               </div>
               {/* Grid column */}

@@ -8,6 +8,7 @@ import OrganizationInformation from "./OrganizationInformation";
 function EmployeeNewForm({
   departaments,
   formData,
+  setFormData,
   handlerInputChange,
   person,
   seletedHandler,
@@ -19,6 +20,10 @@ function EmployeeNewForm({
   next,
   back,
   screen,
+  setCode,
+  code,
+  setEmail,
+  email,
 }) {
   //   const date = new Date("06/29/2022").toISOString().split("T")[0];
   //     if (person) {
@@ -26,8 +31,6 @@ function EmployeeNewForm({
   //         (item) => item.personId !== profile?.personId
   //       );
   //     }
-
-  // console.log(formData);
 
   return (
     <>
@@ -92,6 +95,11 @@ function EmployeeNewForm({
                 handlerdReportTo={handlerdReportTo}
                 formData={formData}
                 handlerInputChange={handlerInputChange}
+                setFormData={setFormData}
+                setCode={setCode}
+                code={code}
+                setEmail={setEmail}
+                email={email}
               />
             ) : null}
 

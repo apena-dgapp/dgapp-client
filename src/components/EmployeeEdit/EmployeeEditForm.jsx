@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../../common/components/Input/Input";
 import { BsPlusCircleDotted, BsDashCircleDotted } from "react-icons/bs";
+import Images from "../../common/images";
 
 function EmployeeEditForm({
   profile,
@@ -34,7 +35,7 @@ function EmployeeEditForm({
             >
               <img
                 className="boton-standar-rw"
-                src={photo ? photo : profile?.photo}
+                src={photo ? photo : Images.noImg}
                 alt="..."
               />
               <input
@@ -278,7 +279,7 @@ function EmployeeEditForm({
                     type="email"
                     placeholder={profile?.email}
                     classInput="edit-input"
-                    value={formData.email.toUpperCase()}
+                    value={formData.email}
                   />
                 </div>
                 <div className="">

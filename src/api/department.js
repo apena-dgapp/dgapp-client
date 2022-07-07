@@ -7,3 +7,14 @@ export const getAlldepartament = async () => {
         }   
     })
 }
+
+//built
+// export const getAlldepartament = async () => {
+//     return fetch("http://172.17.70.118:4500/api/v1/departament/departaments",  {
+//         method: "GET",
+//         headers: {
+//             "Content-Type": "application/json",
+//             Authorization: 'Bearer',
+//         }   
+//     })
+// }

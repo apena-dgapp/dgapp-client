@@ -1,7 +1,11 @@
 import React, { useEffect, useContext, useState } from "react";
 import EmployeeNewForm from "./EmployeeNewForm";
 import { getAlldepartament } from "../../api/department";
-import { getAllPersons, createPerson } from "../../api/person";
+import {
+  getAllPersons,
+  createPerson,
+  validationDocument,
+} from "../../api/person";
 import GlobalContext from "../../context/GlobalContext";
 import { getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
@@ -11,6 +15,8 @@ function EmployeeNew() {
   const [contextState] = useContext(GlobalContext);
   const [departaments, setDepartaments] = useState("");
   // const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
   const [person, setPerson] = useState("");
   const [photo, setPhoto] = useState("");
   const [screen, setScreen] = useState(1);
@@ -82,18 +88,43 @@ function EmployeeNew() {
   const next = () => {
     if (
       // photo === "" &&
-      formData.firstname === "" &&
-      formData.lastname === "" &&
-      formData.documentid === "" &&
-      formData.cel === "" &&
-      formData.date === ""
+      formData.firstname === "" ||
+      formData.firstname === undefined ||
+      formData.lastname === "" ||
+      formData.lastname === undefined ||
+      formData.documentid === "" ||
+      formData.documentid === undefined ||
+      formData.cel === "" ||
+      formData.cel === undefined ||
+      formData.date === "" ||
+      formData.date === undefined
       // formData.career === ""
     ) {
       return toast.error(
         "Debes completar todos los campos antes de continuar requeridos"
       );
     } else {
-      setScreen(2);
+      if (formData?.documentid) {
+        validationDocument(formData?.documentid)
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            if (res) {
+              return toast.error("Este numero de cedula ya esta en el sistema");
+            } else {
+              setEmail(
+                formData.firstname.split("")[0].toUpperCase() +
+                  formData.lastname.split(" ")[0].toUpperCase() +
+                  "@DGAPP.GOB.DO"
+              );
+              setScreen(2);
+            }
+          })
+          .catch((err) => {
+            console.error(err.status);
+          });
+      }
     }
   };
 
@@ -101,56 +132,75 @@ function EmployeeNew() {
     setScreen(1);
   };
 
+  function formatDate(date) {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+  }
+
   const createHandlerForm = () => {
     if (
-      formData.code === "" &&
-      formData.position === "" &&
-      departament === "" &&
-      reportTo === "" &&
-      formData.startedon === "" &&
-      formData.phone === "" &&
-      formData.email === "" &&
-      formData.health === ""
+      code === "" ||
+      code === undefined ||
+      formData.position === "" ||
+      formData.position === undefined ||
+      departament === "" ||
+      departament === undefined ||
+      // reportTo === "" &&
+      formData.startedon === "" ||
+      formData.startedon === undefined ||
+      // formData.phone === "" &&
+      email === "" ||
+      email === undefined
+      // formData.health === ""
     ) {
       return toast.error(
         "Debes completar todos los campos antes de continuar requeridos"
       );
+    } else {
+      if (formData.date) {
+        createPerson(
+          code,
+          formData.firstname,
+          formData.lastname,
+          formData.documentid,
+          formData.phone,
+          formData.cel,
+          email,
+          Number(departament),
+          contextState.userName,
+          "",
+          photo,
+          formatDate(formData.date),
+          formData.position,
+          true,
+          formData.career,
+          reportTo,
+          formatDate(formData.startedon),
+          formData.health
+        )
+          .then((res) => {
+            console.log(res.status);
+            if (res.status === 500) {
+              return toast.error("Error en el Servidor!");
+            } else {
+              toast.success("Nuevo Perfil de empleado creado!");
+              clearFormData();
+              back();
+            }
+          })
+          .catch((err) => {
+            console.error(err.status);
+          });
+      }
     }
-
-    createPerson(
-      formData.code,
-      formData.firstname,
-      formData.lastname,
-      formData.documentid,
-      formData.phone,
-      formData.cel,
-      formData.email,
-      Number(departament),
-      contextState.userName,
-      "",
-      photo,
-      formData.date,
-      formData.position,
-      true,
-      formData.career,
-      reportTo,
-      formData.startedon,
-      formData.health
-    )
-      .then((res) => {
-        return res.json();
-      })
-
-      .then((res) => {
-        console.log(res.status);
-        toast.success("Nuevo Perfil de empleado creado!");
-        clearFormData();
-      })
-      .catch((err) => {
-        console.error(err.status);
-      });
   };
-
   useEffect(() => {
     let unmounted = false;
 
@@ -196,6 +246,7 @@ function EmployeeNew() {
         departaments={departaments}
         handlerInputChange={handlerInputChange}
         formData={formData}
+        setFormData={setFormData}
         person={person}
         seletedHandler={seletedHandler}
         photo={photo}
@@ -206,6 +257,10 @@ function EmployeeNew() {
         next={next}
         back={back}
         screen={screen}
+        setCode={setCode}
+        code={code}
+        setEmail={setEmail}
+        email={email}
       />
     </>
   );

@@ -256,12 +256,12 @@ const EmployeeForm = ({
             {contextState.isAdmin ? (
               <div className="onoffswitch1">
                 <input
-                  onChange={handleIsActive}
+                  onClick={handleIsActive}
                   type="checkbox"
                   name="onoffswitch1"
                   className="onoffswitch1-checkbox"
                   id="myonoffswitch1"
-                  defaultChecked
+                  defaultChecked={profile.isActive}
                 />
                 <label className="onoffswitch1-label" htmlFor="myonoffswitch1">
                   <span className="onoffswitch1-inner" />

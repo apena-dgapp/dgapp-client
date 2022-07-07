@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import Input from "../../common/components/Input/Input";
 import CardEmployee from "./EmployeeDirectoryCard";
 import { MdSearch } from "react-icons/md";
+import GlobalContext from "../../context/GlobalContext";
 
 const EmployeeDirectoryForm = ({
   filteredArryPersons,
@@ -11,6 +12,7 @@ const EmployeeDirectoryForm = ({
   search,
   goToProfile,
 }) => {
+  const [contextState] = useContext(GlobalContext);
   return (
     <>
       <div className="emDirectory-cont">
@@ -70,19 +72,37 @@ const EmployeeDirectoryForm = ({
       <div className="emDirectory-Container">
         <div className="grid-container">
           {filteredArryPersons().map((person) => {
-            return (
-              <CardEmployee
-                key={person.personId}
-                id={person.personId}
-                name={person.fullName}
-                img={person.photo}
-                position={person.position}
-                departament={person.Departament.name}
-                email={person.email.toLowerCase()}
-                phone={person.phoneNumber}
-                goToProfile={goToProfile}
-              />
-            );
+            if (contextState.isAdmin === false) {
+              return person.isActive ? (
+                <CardEmployee
+                  key={person.personId}
+                  id={person.personId}
+                  name={person.fullName}
+                  img={person.photo}
+                  position={person.position}
+                  departament={person.Departament.name}
+                  email={person.email.toLowerCase()}
+                  phone={person.phoneNumber}
+                  goToProfile={goToProfile}
+                  isActive={person.isActive}
+                />
+              ) : null;
+            } else {
+              return (
+                <CardEmployee
+                  key={person.personId}
+                  id={person.personId}
+                  name={person.fullName}
+                  img={person.photo}
+                  position={person.position}
+                  departament={person.Departament.name}
+                  email={person.email.toLowerCase()}
+                  phone={person.phoneNumber}
+                  goToProfile={goToProfile}
+                  isActive={person.isActive}
+                />
+              );
+            }
           })}
         </div>
       </div>

@@ -22,22 +22,27 @@ nav ul li{
     margin-bottom: 1rem;
 }
 
-nav ul li a{
+nav ul li p{
     display: block;
     color:white;
     text-decoration: none;
     font-size: calc(0.1em + 0.9vw);
     height: 100%;
+    margin-bottom: 0;
+    cursor: pointer;
 }
 
-nav ul a:hover{
+nav ul p:hover{
     color: white;
+    cursor: pointer;
 }
 
-nav ul ul a:hover{
+nav ul ul p:hover{
     // background: #2e4957;
     color: #122129;
     font-weight: bold;
+    margin-bottom: 0;
+    cursor: pointer;
 }
 nav ul ul{
     position: absolute;
@@ -245,8 +250,9 @@ nav ul li ul li:hover::before{
         // margin-right: 4.5rem;
 
     }
-    nav ul li a{
+    nav ul li p{
         font-size: 1.5rem;
+        margin-bottom: 0;
     }
 
     nav ul{
@@ -311,8 +317,9 @@ nav ul li ul li:hover::before{
         // margin-right: 4.5rem;
 
     }
-    nav ul li a{
+    nav ul li p{
         font-size: 1.5rem;
+        margin-bottom: 0;
     }
 
     nav ul{

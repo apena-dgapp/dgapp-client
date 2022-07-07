@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import EmployeeForm from "./EmployeeForm";
 import { getOnePerson, isActivePerson } from "../../api/person";
 import Docxtemplater from "docxtemplater";
@@ -7,12 +7,14 @@ import PizZipUtils from "pizzip/utils/index.js";
 import { saveAs } from "file-saver";
 import { toast } from "react-hot-toast";
 import { useHistory } from "react-router-dom";
+import GlobalContext from "../../context/GlobalContext";
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 }
 
 const Employee = (props) => {
+  const [contextState] = useContext(GlobalContext);
   const id = props.location.state;
   const [profile, setProfile] = useState("");
   const [reportsTo, setReportsTo] = useState("");
@@ -132,7 +134,8 @@ const Employee = (props) => {
 
   const handleIsActive = (e) => {
     const isActive = e.target.checked;
-    isActivePerson(id, isActive)
+    const modifiedAt = new Date();
+    isActivePerson(id, isActive, contextState.userName, modifiedAt)
       .then((res) => {
         return res.json();
       })

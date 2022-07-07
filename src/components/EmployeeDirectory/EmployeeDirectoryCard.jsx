@@ -1,12 +1,37 @@
-import React from "react";
+import React, { useContext } from "react";
 import Images from "../../common/images/index";
-import { MdEmail, MdPhoneInTalk } from "react-icons/md";
-
+import { MdEmail, MdPhoneInTalk, MdCircle } from "react-icons/md";
+import GlobalContext from "../../context/GlobalContext";
 const CardForm = (props) => {
+  const [contextState] = useContext(GlobalContext);
   return (
     <>
       <div className="emDirectory-card">
         <div className="emDirectory-card-cont">
+          {contextState.isAdmin === true ? (
+            props.isActive ? (
+              <div className="d-flex">
+                <p style={{ fontWeight: "bold", color: "green" }}>Activo</p>
+                <i className="md md-phone-in-talk" />
+                <MdCircle
+                  style={{ marginTop: "0.3rem" }}
+                  size="1rem"
+                  color="green"
+                />
+              </div>
+            ) : (
+              <div className="d-flex">
+                <p style={{ fontWeight: "bold", color: "red" }}>Desactivado</p>
+                <i className="md md-phone-in-talk" />
+                <MdCircle
+                  style={{ marginTop: "0.3rem" }}
+                  size="1rem"
+                  color="red"
+                />
+              </div>
+            )
+          ) : null}
+
           <img
             src={props.img ? props.img : Images.noImg}
             className="emDirectory-card-img"

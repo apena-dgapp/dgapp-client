@@ -3,7 +3,8 @@ import Images from "../../images";
 import GlobalContext from "../../../context/GlobalContext";
 import { ImTree } from "react-icons/im";
 import { MdLogout, MdKeyboardArrowDown } from "react-icons/md";
-import { FaUserCog, FaUserEdit } from "react-icons/fa";
+import { FaUserCog, FaUserEdit, FaUsers } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Navbar = ({
   logOut,
   createPost,
@@ -51,59 +52,55 @@ const Navbar = ({
 
         <ul className={active}>
           <li onClick={home} className="class-list">
-            <a href="#/">INICIO</a>
+            <p>INICIO</p>
           </li>
           <li className="class-list">
-            <a href="#!">
+            <p>
               SERVICIOS
               <img className="icondown" src={Images.icondown} alt="" />
-            </a>
+            </p>
             <ul>
               {/* <li>
-                <a href="#/" onClick={correspo}>
+                <a  onClick={correspo}>
                   Correspondencia
                 </a>
               </li> */}
               <li>
-                <a href="#!" onClick={inConstruction}>
-                  Crear Ticket
-                </a>
+                <p onClick={inConstruction}>Crear Ticket</p>
               </li>
             </ul>
           </li>
           <li className="class-list">
-            <a href="#!" onClick={allPost}>
-              NOTICIAS
-            </a>
+            <p onClick={allPost}>NOTICIAS</p>
           </li>
           {/* <li className="class-list">
-            <a href="#/">
+            <a >
               SOLICITUDES
               <img className="icondown" src={Images.icondown} alt="" />
             </a>
             <ul>
               <li>
-                <a onClick={inConstruction} href="#/">
+                <a onClick={inConstruction} >
                   Carta Laboral
                 </a>
               </li>
               <li>
-                <a href="#/" onClick={inConstruction}>
+                <a  onClick={inConstruction}>
                   Vacaciones
                 </a>
               </li>
               <li>
-                <a href="#/" onClick={inConstruction}>
+                <a  onClick={inConstruction}>
                   Seguro Medico
                 </a>
               </li>
               <li>
-                <a href="#/" onClick={inConstruction}>
+                <a  onClick={inConstruction}>
                   Maternidad
                 </a>
               </li>
               <li>
-                <a href="#/" onClick={inConstruction}>
+                <a  onClick={inConstruction}>
                   Enfermedad
                 </a>
               </li>
@@ -111,32 +108,26 @@ const Navbar = ({
           </li> */}
 
           <li className="class-list">
-            <a href="#!" onClick={inConstruction}>
-              ENTRENAMIENTO
-            </a>
+            <p onClick={inConstruction}>ENTRENAMIENTO</p>
           </li>
           {contextState.isAdmin ? (
             <li className="class-list">
-              <a href="#!">
+              <p>
                 ADMINISTRACIÓN
                 <img className="icondown" src={Images.icondown} alt="" />
-              </a>
+              </p>
               <ul>
                 <li>
-                  <a href="#!" onClick={createPost}>
-                    Crear Entradas
-                  </a>
+                  <p onClick={createPost}>Crear Entradas</p>
                 </li>
                 <li>
-                  <a href="#!" onClick={employeeNew}>
-                    Nuevo Empleado
-                  </a>
+                  <p onClick={employeeNew}>Nuevo Empleado</p>
                 </li>
-                <li>
-                  <a href="#!" onClick={employeedirectory}>
+                {/* <li>
+                  <a  onClick={employeedirectory}>
                     Directorio de Empleados
                   </a>
-                </li>
+                </li> */}
               </ul>
             </li>
           ) : null}
@@ -202,6 +193,17 @@ const Navbar = ({
                     color="darkcyan"
                   />
                   Mi Prefil
+                </p>
+              </li>
+              <li>
+                <p className="dropdown-item" onClick={employeedirectory}>
+                  <i className="fa fa-users" />
+                  <FaUsers
+                    style={{ marginRight: "0.5rem" }}
+                    size="1.2rem"
+                    color="darkcyan"
+                  />
+                  Directorio de Empleados
                 </p>
               </li>
               {/* <li>

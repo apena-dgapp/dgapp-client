@@ -92,7 +92,7 @@ const LoginForm = ({
                 placeholder={placeholderUser}
                 required
                 onChange={profileInputs}
-                value={profile.username.toUpperCase()}
+                value={profile.username}
               />
             </div>
             <div className="d-flex justify-content-center">

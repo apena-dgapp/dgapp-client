@@ -22,6 +22,7 @@ function PersonalInformation({ handlerInputChange, formData }) {
               classInput="edit-input"
               value={formData.firstname}
             />
+            <div className="input-required">*</div>
           </div>
 
           <div className="">
@@ -35,6 +36,7 @@ function PersonalInformation({ handlerInputChange, formData }) {
               classInput="edit-input"
               value={formData.lastname}
             />
+            <div className="input-required">*</div>
           </div>
 
           <div className="">
@@ -48,6 +50,7 @@ function PersonalInformation({ handlerInputChange, formData }) {
               classInput="edit-input"
               value={formData.documentid}
             />
+            <div className="input-required">*</div>
           </div>
           <div className="">
             <p className="edit-input-title">Celular</p>
@@ -60,9 +63,20 @@ function PersonalInformation({ handlerInputChange, formData }) {
               classInput="edit-input"
               value={formData.cel}
             />
+            <div className="input-required">*</div>
           </div>
           <div className="">
             <p className="edit-input-title">Fecha de Nacimiento</p>
+            {/* <DatePicker
+              // name="date"
+              dateFormat="yyyy/MM/dd"
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              // value={formData.date}
+              className="edit-input"
+              // selected={startDate}
+              // onChange={(date: Date) => setStartDate(date)}
+            /> */}
             <Input
               // id="titleinput"
               // value={date}
@@ -72,6 +86,7 @@ function PersonalInformation({ handlerInputChange, formData }) {
               classInput="edit-input"
               value={formData.date}
             />
+            <div className="input-required">*</div>
           </div>
           <div className="">
             <p className="edit-input-title">Carrera</p>

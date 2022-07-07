@@ -85,7 +85,7 @@ const Login = ({ intl }) => {
     }
 
     //api para autorizar y obtener el token
-    apiAuth(profile.username, profile.password)
+    apiAuth(profile.username.toUpperCase(), profile.password)
       .then((res) => {
         if (res.status >= 400) throw new toast.error(userPassError);
         return res.json();
@@ -94,7 +94,7 @@ const Login = ({ intl }) => {
         contextMiddleware.newToken(res.token);
         contextMiddleware.newUserName(
           res.user.personId,
-          profile.username,
+          profile.username.toUpperCase(),
           res.user.UserRoles[0].roleId === 1 ? true : false,
           (profile.isAuth = true)
         );

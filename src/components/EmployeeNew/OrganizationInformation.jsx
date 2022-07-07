@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Input from "../../common/components/Input/Input";
+import { getLastCode, validationEmail } from "../../api/person";
 
 function OrganizationInformation({
   handlerInputChange,
@@ -8,7 +9,50 @@ function OrganizationInformation({
   handlerdReportTo,
   departaments,
   person,
+  setCode,
+  code,
+  setEmail,
+  email,
 }) {
+  useEffect(() => {
+    let unmounted = false;
+
+    validationEmail(email)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res === true) {
+          setEmail(
+            formData.firstname.substring(0, 2).toUpperCase() +
+              formData.lastname.split(" ")[0].toUpperCase() +
+              "@DGAPP.GOB.DO"
+          );
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    getLastCode()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setCode(Number(res.employeeCode) + 1);
+          // console.log(res.employeeCode);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, [setCode, formData, email, setEmail]);
+
   return (
     <>
       <div className="edit-subtitle-cont">
@@ -28,8 +72,10 @@ function OrganizationInformation({
               type="text"
               placeholder="Escriba el codigo de empleado"
               classInput="edit-input"
-              value={formData.code}
+              value={code}
+              disabled={true}
             />
+            <div className="input-required">*</div>
           </div>
           <div className="">
             <p className="edit-input-title">Posición</p>
@@ -42,6 +88,7 @@ function OrganizationInformation({
               classInput="edit-input"
               value={formData.position}
             />
+            <div className="input-required">*</div>
           </div>
 
           <div className="">
@@ -70,6 +117,7 @@ function OrganizationInformation({
                   })
                 : null}
             </select>
+            <div className="input-required">*</div>
           </div>
 
           <div className="">
@@ -110,6 +158,7 @@ function OrganizationInformation({
               classInput="edit-input"
               value={formData.startedon}
             />
+            <div className="input-required">*</div>
           </div>
           <div className="">
             <p className="edit-input-title">Extensión</p>
@@ -133,8 +182,10 @@ function OrganizationInformation({
               type="email"
               placeholder="Correo Electronico de la Institucion"
               classInput="edit-input"
-              value={formData.email.toUpperCase()}
+              value={email.toUpperCase()}
+              disabled={true}
             />
+            <div className="input-required">*</div>
           </div>
           <div className="">
             <p className="edit-input-title">Seguro Medico</p>
