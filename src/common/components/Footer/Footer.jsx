@@ -105,52 +105,45 @@ const Footer = () => {
                   className="mb-4 mt-0 d-inline-block mx-auto"
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                 />
-                <p>
-                  <p
-                    style={{ textDecoration: "none" }}
-                    onClick={(e) =>
-                      aboutUSChange(e, "MISION, VISION Y VALORES")
-                    }
-                    className="footer-txt"
-                  >
-                    Mision, Vision y Valores
-                  </p>
+
+                <p
+                  style={{ textDecoration: "none" }}
+                  onClick={(e) => aboutUSChange(e, "MISION, VISION Y VALORES")}
+                  className="footer-txt"
+                >
+                  Mision, Vision y Valores
                 </p>
-                <p>
-                  <p
-                    style={{ textDecoration: "none" }}
-                    onClick={(e) => aboutUSChange(e, "FUNCIONES")}
-                    className="footer-txt"
-                  >
-                    Funciones
-                  </p>
+
+                <p
+                  style={{ textDecoration: "none" }}
+                  onClick={(e) => aboutUSChange(e, "FUNCIONES")}
+                  className="footer-txt"
+                >
+                  Funciones
                 </p>
-                <p>
-                  <p
-                    style={{ textDecoration: "none" }}
-                    onClick={(e) => aboutUSChange(e, "MARCO INSTITUCIONAL")}
-                    className="footer-txt"
-                  >
-                    Marco Institucional
-                  </p>
+
+                <p
+                  style={{ textDecoration: "none" }}
+                  onClick={(e) => aboutUSChange(e, "MARCO INSTITUCIONAL")}
+                  className="footer-txt"
+                >
+                  Marco Institucional
                 </p>
-                <p>
-                  <p
-                    style={{ textDecoration: "none" }}
-                    onClick={(e) => aboutUSChange(e, "DIRECTOR GENERAL")}
-                    className="footer-txt"
-                  >
-                    Director General
-                  </p>
+
+                <p
+                  style={{ textDecoration: "none" }}
+                  onClick={(e) => aboutUSChange(e, "DIRECTOR GENERAL")}
+                  className="footer-txt"
+                >
+                  Director General
                 </p>
-                <p>
-                  <p
-                    style={{ textDecoration: "none" }}
-                    onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}
-                    className="footer-txt"
-                  >
-                    Organigrama
-                  </p>
+
+                <p
+                  style={{ textDecoration: "none" }}
+                  onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}
+                  className="footer-txt"
+                >
+                  Organigrama
                 </p>
               </div>
               {/* Grid column */}
@@ -217,64 +210,51 @@ const Footer = () => {
                   className="mb-4 mt-0 d-inline-block mx-auto"
                   style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
                 />
-                <p>
-                  <p
-                    // onClick={(e) => goToDownload(e, "CARTA LABORAL")}
-                    onClick={msgDisable}
-                    className="footer-txt"
-                  >
-                    Carta Laboral
-                  </p>
+                <p
+                  // onClick={(e) => goToDownload(e, "CARTA LABORAL")}
+                  onClick={msgDisable}
+                  className="footer-txt"
+                >
+                  Carta Laboral
                 </p>
-                <p>
-                  <p
-                    // onClick={(e) => goToDownload(e, "SEGURO MEDICO")}
-                    onClick={msgDisable}
-                    style={{ textDecoration: "none" }}
-                    className="footer-txt"
-                  >
-                    Seguro Medico
-                  </p>
+                <p
+                  // onClick={(e) => goToDownload(e, "SEGURO MEDICO")}
+                  onClick={msgDisable}
+                  style={{ textDecoration: "none" }}
+                  className="footer-txt"
+                ></p>
+                Seguro Medico
+                <p
+                  // onClick={(e) => goToDownload(e, "SOLICITUD DE VACACIONES")}
+                  onClick={msgDisable}
+                  style={{ textDecoration: "none" }}
+                  className="footer-txt"
+                >
+                  Solicitud de Vacaciones
                 </p>
-                <p>
-                  <p
-                    // onClick={(e) => goToDownload(e, "SOLICITUD DE VACACIONES")}
-                    onClick={msgDisable}
-                    style={{ textDecoration: "none" }}
-                    className="footer-txt"
-                  >
-                    Solicitud de Vacaciones
-                  </p>
+                <p
+                  // onClick={(e) => goToDownload(e, "SOLICITUD DE MATERNIDAD")}
+                  onClick={msgDisable}
+                  style={{ textDecoration: "none" }}
+                  className="footer-txt"
+                >
+                  Solicitud de Maternidad
                 </p>
-                <p>
-                  <p
-                    // onClick={(e) => goToDownload(e, "SOLICITUD DE MATERNIDAD")}
-                    onClick={msgDisable}
-                    style={{ textDecoration: "none" }}
-                    className="footer-txt"
-                  >
-                    Solicitud de Maternidad
-                  </p>
+                <p
+                  // onClick={(e) => goToDownload(e, "SOLICITUD DE ENFERMEDAD")}
+                  onClick={msgDisable}
+                  style={{ textDecoration: "none" }}
+                  className="footer-txt"
+                >
+                  Solicitud de Enfermedad
                 </p>
-                <p>
-                  <p
-                    // onClick={(e) => goToDownload(e, "SOLICITUD DE ENFERMEDAD")}
-                    onClick={msgDisable}
-                    style={{ textDecoration: "none" }}
-                    className="footer-txt"
-                  >
-                    Solicitud de Enfermedad
-                  </p>
-                </p>
-                <p>
-                  <p
-                    // onClick={(e) => goToDownload(e, "FORMULARIO DE DESEMPEÑO")}
-                    onClick={msgDisable}
-                    style={{ textDecoration: "none" }}
-                    className="footer-txt"
-                  >
-                    Formulario de desempeño
-                  </p>
+                <p
+                  // onClick={(e) => goToDownload(e, "FORMULARIO DE DESEMPEÑO")}
+                  onClick={msgDisable}
+                  style={{ textDecoration: "none" }}
+                  className="footer-txt"
+                >
+                  Formulario de desempeño
                 </p>
               </div>
               {/* Grid column */}

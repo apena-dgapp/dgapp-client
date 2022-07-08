@@ -19,10 +19,10 @@ const Login = ({ intl }) => {
     id: "login.api.userpass",
     defaultMessage: "Wrong username or password",
   });
-  const serverError = intl.formatMessage({
-    id: "login.api.server",
-    defaultMessage: "Internal server error",
-  });
+  // const serverError = intl.formatMessage({
+  //   id: "login.api.server",
+  //   defaultMessage: "Internal server error",
+  // });
 
   const history = useHistory();
   // const [modalActive, setModalActive] = useState(false);

@@ -1,11 +1,8 @@
 import React from "react";
 import Tree from "react-d3-tree";
-import orgChartJson from "./org-chart.json";
 import { useCenteredTree } from "./helpers";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { Button, IconButton } from "@material-ui/core";
-// import { Edit, AttachMoney, Accessible } from "@material-ui/icons";
-// import "./styles.css";
+import { Button } from "@material-ui/core";
 import Images from "../../common/images/index";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
@@ -65,17 +62,6 @@ const useStyles = makeStyles(
       fontFamily: "Montserrat",
       //   marginBottom: "1rem",
     },
-    // edit: {
-    //   //   position: "absolute",
-    //   top: "0px",
-    //   right: "0px",
-    //   color: "#4BA083",
-    // },
-    // attributes: {
-    //   //   position: "absolute",
-    //   bottom: "5px",
-    //   right: "10px",
-    // },
     photo: {
       width: "5rem",
       height: "5rem",

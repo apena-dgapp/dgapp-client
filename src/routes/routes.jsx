@@ -16,7 +16,7 @@ import Footer from "../common/components/Footer/Footer";
 import Correspondence from "../components/Correspondence/Correspondence";
 import Employee from "../components/EmployeeProfile/Employee";
 import AboutUs from "../components/AboutUs/AboutUs";
-import EmployeeChart from "../components/EmployeeProfile/EmployeeChart";
+// import EmployeeChart from "../components/EmployeeProfile/EmployeeChart";
 import EmployeeProfile from "../components/EmployeeProfile/Employee";
 import DocDynamic from "../common/components/DocDynamic/DocDynamic";
 import FilePdf from "../common/components/FilePdf/FilePdf";
@@ -30,8 +30,8 @@ const Routes = () => {
   // <Route exact path={`${process.env.REACT_APP_RUTE}/`} component={contextState.token ? Dashboard : Login} />
   // <PrivateRoutes exct path={`${process.env.REACT_APP_RUTE}/home`} component={Dashboard} />
 
-  // const ruteServer = "";
-  const ruteServer = "/intranet";
+  const ruteServer = "";
+  // const ruteServer = "/intranet";
 
   return (
     <BrowserRouter>
@@ -50,7 +50,7 @@ const Routes = () => {
         <Route path={`${ruteServer}/newpost`} component={NewPost} />
         <Route path={`${ruteServer}/employee`} component={Employee} />
         <Route path={`${ruteServer}/aboutus`} component={AboutUs} />
-        <Route path={`${ruteServer}/employeechart`} component={EmployeeChart} />
+        {/* <Route path={`${ruteServer}/employeechart`} component={EmployeeChart} /> */}
         <Route path={`${ruteServer}/employeetree`} component={EmployeeTree} />
         <Route path={`${ruteServer}/employeeedit`} component={EmployeeEdit} />
         <Route path={`${ruteServer}/employeenew`} component={EmployeeNew} />

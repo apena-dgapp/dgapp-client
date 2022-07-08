@@ -3,8 +3,7 @@ import Images from "../../images";
 import GlobalContext from "../../../context/GlobalContext";
 import { ImTree } from "react-icons/im";
 import { MdLogout, MdKeyboardArrowDown } from "react-icons/md";
-import { FaUserCog, FaUserEdit, FaUsers } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaUserCog, FaUsers } from "react-icons/fa";
 const Navbar = ({
   logOut,
   createPost,

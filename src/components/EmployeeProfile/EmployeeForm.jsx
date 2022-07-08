@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { BsFlag } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import { GiTrophyCup } from "react-icons/gi";
@@ -18,18 +18,18 @@ const EmployeeForm = ({
 }) => {
   const history = useHistory();
   const [contextState] = useContext(GlobalContext);
-  const [profileChart, setProfileChart] = useState({
-    id: "",
-    fullName: "",
-    position: "",
-    departament: "",
-    photo: "",
-    idReportTo: "",
-    fullNameReportTo: "",
-    positionReportTo: "",
-    departamentReportTo: "",
-    photoReportTo: "",
-  });
+  // const [profileChart, setProfileChart] = useState({
+  //   id: "",
+  //   fullName: "",
+  //   position: "",
+  //   departament: "",
+  //   photo: "",
+  //   idReportTo: "",
+  //   fullNameReportTo: "",
+  //   positionReportTo: "",
+  //   departamentReportTo: "",
+  //   photoReportTo: "",
+  // });
   if (profile) {
     const firstN = profile.firstName.split(" ");
     const lastN = profile.lastName.split(" ");
@@ -77,22 +77,22 @@ const EmployeeForm = ({
   }
 
   useEffect(() => {
-    setProfileChart({
-      id: profile.personId,
-      fullName: `${firstNSplit} ${lastNSplit}`,
-      position: profile.position,
-      departament: profile ? profile.Departament.name : null,
-      photo: profile.photo,
-      idReportTo: reportsTo ? reportsTo.personId : 0,
-      fullNameReportTo: reportsTo
-        ? `${reportsTofirstN} ${reportsTolastN}`
-        : null,
-      positionReportTo: reportsTo ? reportsTo.position : null,
-      departamentReportTo: reportsTo ? reportsTo.Departament.name : null,
-      photoReportTo: reportsTo ? reportsTo.photo : Images.noImg,
-    });
+    // setProfileChart({
+    //   id: profile.personId,
+    //   fullName: `${firstNSplit} ${lastNSplit}`,
+    //   position: profile.position,
+    //   departament: profile ? profile.Departament.name : null,
+    //   photo: profile.photo,
+    //   idReportTo: reportsTo ? reportsTo.personId : 0,
+    //   fullNameReportTo: reportsTo
+    //     ? `${reportsTofirstN} ${reportsTolastN}`
+    //     : null,
+    //   positionReportTo: reportsTo ? reportsTo.position : null,
+    //   departamentReportTo: reportsTo ? reportsTo.Departament.name : null,
+    //   photoReportTo: reportsTo ? reportsTo.photo : Images.noImg,
+    // });
   }, [
-    setProfileChart,
+    // setProfileChart,
     firstNSplit,
     lastNSplit,
     profile,
@@ -101,14 +101,14 @@ const EmployeeForm = ({
     reportsTolastN,
   ]);
 
-  const goTochart = () => {
-    if (profileChart.fullName) {
-      history.push({
-        pathname: "./employeechart",
-        state: profileChart,
-      });
-    }
-  };
+  // const goTochart = () => {
+  //   if (profileChart.fullName) {
+  //     history.push({
+  //       pathname: "./employeechart",
+  //       state: profileChart,
+  //     });
+  //   }
+  // };
 
   const goToProfileReportTo = () => {
     history.push({

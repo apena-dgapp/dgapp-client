@@ -11,6 +11,9 @@ const EmployeeDirectoryForm = ({
   onSearchChange,
   search,
   goToProfile,
+  arrayDepartament,
+  filterDep,
+  searchDep,
 }) => {
   const [contextState] = useContext(GlobalContext);
   return (
@@ -38,19 +41,20 @@ const EmployeeDirectoryForm = ({
         </p>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
-            <a className="dropdown-item" href="#/">
-              Recursos Humanos
-            </a>
-          </li>
-          <li>
-            <a className="dropdown-item" href="#/">
-              Tecnologia
-            </a>
-          </li>
-          <li>
-            <a className="dropdown-item" href="#/">
-              Servicios Generales
-            </a>
+            <div onClick={() => filterDep("todos")} className="dropdown-item">
+              Todos
+            </div>
+            {arrayDepartament?.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  onClick={() => filterDep(item.name)}
+                  className="dropdown-item"
+                >
+                  {item.name}
+                </div>
+              );
+            })}
           </li>
         </ul>
       </div>
@@ -68,7 +72,19 @@ const EmployeeDirectoryForm = ({
           />
         </div>
       </div>
-
+      <div className="emDirectory-filter-dep">
+        <div className="emDirectory-filter-txt">
+          <div
+            style={{
+              color: "#2a343f",
+              fontWeight: "bold",
+              marginLeft: "0.3rem",
+            }}
+          >
+            {searchDep === "" ? "TODOS" : searchDep.toUpperCase()}
+          </div>
+        </div>
+      </div>
       <div className="emDirectory-Container">
         <div className="grid-container">
           {filteredArryPersons().map((person) => {
