@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/intranet/static/css/main.5f2da3d6.chunk.css",
-    "main.js": "/intranet/static/js/main.dc9cd460.chunk.js",
-    "main.js.map": "/intranet/static/js/main.dc9cd460.chunk.js.map",
+    "main.css": "/intranet/static/css/main.cffc438b.chunk.css",
+    "main.js": "/intranet/static/js/main.856d337f.chunk.js",
+    "main.js.map": "/intranet/static/js/main.856d337f.chunk.js.map",
     "runtime-main.js": "/intranet/static/js/runtime-main.4d9ab489.js",
     "runtime-main.js.map": "/intranet/static/js/runtime-main.4d9ab489.js.map",
     "static/css/2.ce5d0eb8.chunk.css": "/intranet/static/css/2.ce5d0eb8.chunk.css",
@@ -10,7 +10,7 @@
     "static/js/2.d86afe5f.chunk.js.map": "/intranet/static/js/2.d86afe5f.chunk.js.map",
     "index.html": "/intranet/index.html",
     "static/css/2.ce5d0eb8.chunk.css.map": "/intranet/static/css/2.ce5d0eb8.chunk.css.map",
-    "static/css/main.5f2da3d6.chunk.css.map": "/intranet/static/css/main.5f2da3d6.chunk.css.map",
+    "static/css/main.cffc438b.chunk.css.map": "/intranet/static/css/main.cffc438b.chunk.css.map",
     "static/js/2.d86afe5f.chunk.js.LICENSE.txt": "/intranet/static/js/2.d86afe5f.chunk.js.LICENSE.txt",
     "static/media/MicrosoftTeams-image (4).c3ea5a81.png": "/intranet/static/media/MicrosoftTeams-image (4).c3ea5a81.png",
     "static/media/index.scss": "/intranet/static/media/vintage-g347851f6b_1920.79897bf2.jpg",
@@ -35,7 +35,7 @@
     "static/js/runtime-main.4d9ab489.js",
     "static/css/2.ce5d0eb8.chunk.css",
     "static/js/2.d86afe5f.chunk.js",
-    "static/css/main.5f2da3d6.chunk.css",
-    "static/js/main.dc9cd460.chunk.js"
+    "static/css/main.cffc438b.chunk.css",
+    "static/js/main.856d337f.chunk.js"
   ]
 }
