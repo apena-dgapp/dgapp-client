@@ -168,6 +168,10 @@ const Navbar = ({
               // style={{ marginLeft: "3rem", marginTop: "-0.8rem" }}
               size="2rem"
               color="white"
+              className="dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style={{ cursor: "pointer" }}
             />
             <img
               // onClick={employeeProfile}
