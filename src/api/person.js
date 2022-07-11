@@ -52,8 +52,8 @@ export const getFollowers = async (id) => {
     })
 }   
 
-export const createPerson = async (code, firstname,lastname,documentid,phone, cel,email,departament,createdby,modifiedby,photo,date, position,isactive,career,reportto,startedon,health) => {
-    const body = {code,firstname,lastname,documentid,phone, cel,email,departament,createdby,modifiedby,photo,date,position,isactive,career,reportto,startedon,health};
+export const createPerson = async (code, firstname,lastname,documentid,phone, cel,email,departament,createdby,modifiedby,photo,date, position,isactive,career,reportto,startedon,health,blood,emergencyname,emergencynumber,emergencyrelationship,contracttype,contractexpiration) => {
+    const body = {code,firstname,lastname,documentid,phone, cel,email,departament,createdby,modifiedby,photo,date,position,isactive,career,reportto,startedon,health,blood,emergencyname,emergencynumber,emergencyrelationship,contracttype,contractexpiration};
     return fetch(`${process.env.REACT_APP_API}person/createperson`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -64,8 +64,8 @@ export const createPerson = async (code, firstname,lastname,documentid,phone, ce
     })
 }
 
-export const updatePerson = async (id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament,reportto, startedon, phone, email, health,modifiedby,modifiedat) => {
-    const body = {id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament,reportto, startedon, phone, email, health,modifiedby,modifiedat};
+export const updatePerson = async (id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament,reportto, startedon, phone, email, health,modifiedby,modifiedat,blood,emergencyname,emergencynumber,emergencyrelationship,contracttype,contractexpiration) => {
+    const body = {id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament,reportto, startedon, phone, email, health,modifiedby,modifiedat,blood,emergencyname,emergencynumber,emergencyrelationship,contracttype,contractexpiration};
     return fetch(`${process.env.REACT_APP_API}person/updateperson`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -178,8 +178,8 @@ export const validationDocument= async (documentid) => {
 //     })
 // }   
 
-// export const createPerson = async (code, firstname,lastname,documentid,phone, cel,email,departament,createdby,modifiedby,photo,date, position,isactive,career,reportto,startedon,health) => {
-//     const body = {code,firstname,lastname,documentid,phone, cel,email,departament,createdby,modifiedby,photo,date,position,isactive,career,reportto,startedon,health};
+// export const createPerson = async (code, firstname,lastname,documentid,phone, cel,email,departament,createdby,modifiedby,photo,date, position,isactive,career,reportto,startedon,health,blood,emergencyname,emergencynumber,emergencyrelationship,contracttype,contractexpiration) => {
+//     const body = {code,firstname,lastname,documentid,phone, cel,email,departament,createdby,modifiedby,photo,date,position,isactive,career,reportto,startedon,health,blood,emergencyname,emergencynumber,emergencyrelationship,contracttype,contractexpiration};
 //     return fetch("http://172.17.70.118:4500/api/v1/person/createperson", {
 //         method: "POST",
 //         body: JSON.stringify(body),
@@ -190,8 +190,8 @@ export const validationDocument= async (documentid) => {
 //     })
 // }
 
-// export const updatePerson = async (id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament,reportto, startedon, phone, email, health) => {
-//     const body = {id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament,reportto, startedon, phone, email, health};
+// export const updatePerson = async (id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament,reportto, startedon, phone, email, health,blood,emergencyname,emergencynumber,emergencyrelationship,contracttype,contractexpiration) => {
+//     const body = {id,photo,firstname,lastname,documentid, cel,date, career, code, position, departament,reportto, startedon, phone, email, health,blood,emergencyname,emergencynumber,emergencyrelationship,contracttype,contractexpiration};
 //     return fetch("http://172.17.70.118:4500/api/v1/person/updateperson",{
 //         method: "POST",
 //         body: JSON.stringify(body),

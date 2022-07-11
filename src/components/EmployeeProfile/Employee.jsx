@@ -144,6 +144,8 @@ const Employee = (props) => {
       });
   };
 
+  console.log(profile);
+
   return (
     <>
       <EmployeeForm

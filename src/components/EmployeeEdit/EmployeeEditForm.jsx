@@ -142,6 +142,58 @@ function EmployeeEditForm({
                 />
               </div>
               <div className="">
+                <p className="edit-input-title">Tipo de Sangre</p>
+                <Input
+                  // id="titleinput"
+                  onChange={handlerInputChange}
+                  name="blood"
+                  type="text"
+                  placeholder={profile?.bloodType}
+                  classInput="edit-input"
+                  value={formData.blood}
+                />
+              </div>
+              <div className="">
+                <p className="edit-input-title">Contacto de Emergencia</p>
+                <Input
+                  // id="titleinput"
+                  onChange={handlerInputChange}
+                  name="emergencyname"
+                  type="text"
+                  placeholder={profile?.emergencyName}
+                  classInput="edit-input"
+                  value={formData.emergencyname}
+                />
+              </div>
+              <div className="">
+                <p className="edit-input-title">
+                  Numero de contacto de emergencia
+                </p>
+                <Input
+                  // id="titleinput"
+                  onChange={handlerInputChange}
+                  name="emergencynumber"
+                  type="text"
+                  placeholder={profile?.emergencyNumber}
+                  classInput="edit-input"
+                  value={formData.emergencynumber}
+                />
+              </div>
+              <div className="">
+                <p className="edit-input-title">
+                  Contacto de Emergencia Relacion
+                </p>
+                <Input
+                  // id="titleinput"
+                  onChange={handlerInputChange}
+                  name="emergencyrelationship"
+                  type="text"
+                  placeholder={profile?.emergencyRelationship}
+                  classInput="edit-input"
+                  value={formData.emergencyrelationship}
+                />
+              </div>
+              <div className="">
                 <p className="edit-input-title">Carrera</p>
                 <Input
                   // id="titleinput"
@@ -292,6 +344,38 @@ function EmployeeEditForm({
                     placeholder={profile?.healthInsurance}
                     classInput="edit-input"
                     value={formData.health}
+                  />
+                </div>
+                <div className="">
+                  <p className="edit-input-title">Tipo de Contrato</p>
+                  <select
+                    // defaultValue="Seleccionar un Empleado"
+                    name="contracttype"
+                    className="edit-input"
+                    onChange={handlerInputChange}
+                    //   value={person?.fullName}
+                  >
+                    <option value="" disabled selected>
+                      Seleccionar el tipo de Contrato
+                    </option>
+                    <option id="1" value="Contratado">
+                      Contratado
+                    </option>
+                    <option id="2" value="Fijo">
+                      Fijo
+                    </option>
+                  </select>
+                </div>
+                <div className="">
+                  <p className="edit-input-title">Expiracion de Contrato</p>
+                  <Input
+                    // id="titleinput"
+                    // value={date}
+                    onChange={handlerInputChange}
+                    name="contractexpiration"
+                    type="date"
+                    classInput="edit-input"
+                    value={formData.contractexpiration}
                   />
                 </div>
               </div>

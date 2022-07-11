@@ -86,7 +86,7 @@ function EmployeeNewForm({
             />
           ) : null}
 
-          <div className="edit-org-cont">
+          <div className="">
             {screen === 2 ? (
               <OrganizationInformation
                 person={person}
@@ -103,7 +103,7 @@ function EmployeeNewForm({
               />
             ) : null}
 
-            <div className="edit-btn-cont">
+            <div className="new-btn-cont">
               <div className="edit-btns">
                 {screen === 2 ? (
                   <button

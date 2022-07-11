@@ -28,6 +28,12 @@ function EmployeeEdit(props) {
     phone: "",
     email: "",
     health: "",
+    blood: "",
+    emergencyname: "",
+    emergencynumber: "",
+    emergencyrelationship: "",
+    contracttype: "",
+    contractexpiration: "",
   });
 
   const handlerInputChange = (e) => {
@@ -78,6 +84,12 @@ function EmployeeEdit(props) {
       phone: "",
       email: "",
       health: "",
+      blood: "",
+      emergencyname: "",
+      emergencynumber: "",
+      emergencyrelationship: "",
+      contracttype: "",
+      contractexpiration: "",
     });
     setDepartament("");
     setReportTo("");
@@ -101,7 +113,13 @@ function EmployeeEdit(props) {
       formData.startedon === "" &&
       formData.phone === "" &&
       formData.email === "" &&
-      formData.health === ""
+      formData.health === "" &&
+      formData.blood === "" &&
+      formData.emergencyname === "" &&
+      formData.emergencynumber === "" &&
+      formData.emergencyrelationship === "" &&
+      formData.contracttype === "" &&
+      formData.contractexpiration === ""
     ) {
       return toast.error("Por el momento no hay datos para actulizar");
     }
@@ -128,7 +146,23 @@ function EmployeeEdit(props) {
         : props.location.state.email.toUpperCase(),
       formData.health ? formData.health : props.location.state.healthInsurance,
       contextState.userName,
-      modifiedAt
+      modifiedAt,
+      formData.blood ? formData.blood : props.location.state.bloodType,
+      formData.emergencyname
+        ? formData.emergencyname
+        : props.location.state.emergencyName,
+      formData.emergencynumber
+        ? formData.emergencynumber
+        : props.location.state.emergencyNumber,
+      formData.emergencyrelationship
+        ? formData.emergencyrelationship
+        : props.location.state.emergencyRelationship,
+      formData.contracttype
+        ? formData.contracttype
+        : props.location.state.contractType,
+      formData.contractexpiration
+        ? formData.contractexpiration
+        : props.location.state.contractExpiration
     )
       .then((res) => {
         if (res.status === 500) {

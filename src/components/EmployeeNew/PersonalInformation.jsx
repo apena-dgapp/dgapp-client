@@ -89,6 +89,18 @@ function PersonalInformation({ handlerInputChange, formData }) {
             <div className="input-required">*</div>
           </div>
           <div className="">
+            <p className="edit-input-title">Tipo de Sangre</p>
+            <Input
+              // id="titleinput"
+              onChange={handlerInputChange}
+              name="blood"
+              type="text"
+              placeholder="Escriba el tipo de sangre"
+              classInput="edit-input"
+              value={formData.blood}
+            />
+          </div>
+          <div className="">
             <p className="edit-input-title">Carrera</p>
             <Input
               // id="titleinput"
@@ -98,6 +110,42 @@ function PersonalInformation({ handlerInputChange, formData }) {
               placeholder="Escriba la carrera"
               classInput="edit-input"
               value={formData.career}
+            />
+          </div>
+          <div className="">
+            <p className="edit-input-title">Nombre Conctato de Emergencia</p>
+            <Input
+              // id="titleinput"
+              onChange={handlerInputChange}
+              name="emergencyname"
+              type="text"
+              placeholder="Escriba el nonbre de el conctato de emergencia"
+              classInput="edit-input"
+              value={formData.emergencyname}
+            />
+          </div>
+          <div className="">
+            <p className="edit-input-title">Numero Conctato de Emergencia</p>
+            <Input
+              // id="titleinput"
+              onChange={handlerInputChange}
+              name="emergencynumber"
+              type="text"
+              placeholder="Escriba el numero de el conctato de emergencia"
+              classInput="edit-input"
+              value={formData.emergencynumber}
+            />
+          </div>
+          <div className="">
+            <p className="edit-input-title">Relacion Conctato de Emergencia</p>
+            <Input
+              // id="titleinput"
+              onChange={handlerInputChange}
+              name="emergencyrelationship"
+              type="text"
+              placeholder="tipo de relacion de el conctato de emergencia"
+              classInput="edit-input"
+              value={formData.emergencyrelationship}
             />
           </div>
         </div>

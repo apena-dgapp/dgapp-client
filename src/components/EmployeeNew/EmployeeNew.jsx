@@ -35,6 +35,12 @@ function EmployeeNew() {
     phone: "",
     email: "",
     health: "",
+    blood: "",
+    emergencyname: "",
+    emergencynumber: "",
+    emergencyrelationship: "",
+    contracttype: "",
+    contractexpiration: "",
   });
 
   const handlerInputChange = (e) => {
@@ -79,6 +85,12 @@ function EmployeeNew() {
       phone: "",
       email: "",
       health: "",
+      blood: "",
+      emergencyname: "",
+      emergencynumber: "",
+      emergencyrelationship: "",
+      contracttype: "",
+      contractexpiration: "",
     });
     setDepartament("");
     setReportTo("");
@@ -157,7 +169,9 @@ function EmployeeNew() {
       formData.startedon === undefined ||
       // formData.phone === "" &&
       email === "" ||
-      email === undefined
+      email === undefined ||
+      formData.contracttype === "" ||
+      formData.contracttype === undefined
       // formData.health === ""
     ) {
       return toast.error(
@@ -183,7 +197,13 @@ function EmployeeNew() {
           formData.career,
           reportTo,
           formatDate(formData.startedon),
-          formData.health
+          formData.health,
+          formData.blood,
+          formData.emergencyname,
+          formData.emergencynumber,
+          formData.emergencyrelationship,
+          formData.contracttype,
+          formData.contractexpiration
         )
           .then((res) => {
             console.log(res.status);

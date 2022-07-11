@@ -90,6 +90,9 @@ const Login = ({ intl }) => {
         if (res.status >= 400) throw new toast.error(userPassError);
         return res.json();
       })
+      // .then((res) => {
+      //   if ((res.status = 500)) return toast.error("Error del servidor!!");
+      // })
       .then((res) => {
         contextMiddleware.newToken(res.token);
         contextMiddleware.newUserName(
@@ -101,8 +104,7 @@ const Login = ({ intl }) => {
         history.push("./home");
       })
       .catch((err) => {
-        console.log(err.status);
-        // throw new toast.error(serverError);
+        return console.log(err.status);
       });
   };
 

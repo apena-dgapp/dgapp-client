@@ -154,7 +154,6 @@ function OrganizationInformation({
               onChange={handlerInputChange}
               name="startedon"
               type="date"
-              placeholder="Por favor escriba la fecha que empezo a Laboral"
               classInput="edit-input"
               value={formData.startedon}
             />
@@ -198,6 +197,39 @@ function OrganizationInformation({
               classInput="edit-input"
               value={formData.health}
             />
+          </div>
+          <div className="">
+            <p className="edit-input-title">Tipo de Contrato</p>
+            <select
+              // defaultValue="Seleccionar un Empleado"
+              name="contracttype"
+              className="edit-input"
+              onChange={handlerInputChange}
+              //   value={person?.fullName}
+            >
+              <option value="" disabled selected>
+                Seleccionar el tipo de Contrato
+              </option>
+              <option id="1" value="Contratado">
+                Contratado
+              </option>
+              <option id="2" value="Fijo">
+                Fijo
+              </option>
+            </select>
+            <div className="input-required">*</div>
+          </div>
+          <div className="">
+            <p className="edit-input-title">Vencimiento de Contrato</p>
+            <Input
+              // id="titleinput"
+              onChange={handlerInputChange}
+              name="contractexpiration"
+              type="date"
+              classInput="edit-input"
+              value={formData.contractexpiration}
+            />
+            <div className="input-required">*</div>
           </div>
         </div>
       </div>

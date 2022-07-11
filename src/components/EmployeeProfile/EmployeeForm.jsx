@@ -285,7 +285,11 @@ const EmployeeForm = ({
                 <i className="md md-Email mt-5" />
                 <MdEmail size="1.5em" color="gray" />
                 <p className="employee-upcoming-birthday">Seguro medico:</p>
-                <p className="employee-contact-email">1827394404322</p>
+                <p className="employee-contact-email">
+                  {profile.healthInsurance
+                    ? profile.healthInsurance
+                    : "No definido!"}
+                </p>
               </div>
             </div>
             <div className="employee-updates-container">
