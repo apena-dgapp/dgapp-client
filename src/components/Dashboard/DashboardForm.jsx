@@ -41,21 +41,6 @@ const DashboardForm = ({ arrayPost, interest, singleInsterest, allPost }) => {
     fecha.getUTCFullYear();
   return (
     <>
-      {/* <div className="carousel-Grid-cont">
-      <div className="div">
-        <Carousel/>
-      </div>
-      <div className="right-Panel-cont">
-        <div className="right-Panel-img">
-          <figure>
-            <img className='right-Panel-img' src={Images.avatar} alt=''></img>
-          </figure>
-          <div>
-              <p>Bienvenido Mario Gonasalez</p>
-          </div>
-        </div>
-      </div>
-    </div> */}
       <Carousel />
 
       <div className="container-column-title">

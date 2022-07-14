@@ -5,21 +5,29 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import Images from "../../common/images/index";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
+import { useHistory } from "react-router-dom";
 
 const containerStyles = {
   width: "100vw",
-  height: "100vh",
-  //   background: "#eee",
+  height: "100rem",
+  // background: "#eee",
+};
+
+var history;
+
+const employeeProfile = (e) => {
+  const employeeId = e.currentTarget.id;
+  history.push({
+    pathname: "./employee",
+    state: employeeId,
+  });
 };
 
 const useStyles = makeStyles(
   createStyles({
     button: {
-      //   display: "flex",
-      //   justifyContent: "center",
-      //   alignItems: "center",
       boxShadow: "none",
-      border: "1px solid gainsboro",
+      border: "1px solid darkcyan",
       borderRadius: "0.2rem",
       position: "relative",
       maxWidth: "10rem",
@@ -43,24 +51,15 @@ const useStyles = makeStyles(
       fontFamily: "Montserrat",
     },
     name: {
-      //   marginTop: "2rem",
       fontSize: "0.6rem",
       fontWeight: "bolder",
       color: "navy",
       fontFamily: "Montserrat",
-      //   display: "box",
-      //   lineClamp: 1,
-      //   boxOrient: "vertical",
-
-      //   WebkitLineClamp: "1",
-      //   WebkitTextOrientation: "vertical",
     },
     position: {
-      //   marginTop: "2rem",
       fontSize: "0.5rem",
       color: "gray",
       fontFamily: "Montserrat",
-      //   marginBottom: "1rem",
     },
     photo: {
       width: "5rem",
@@ -88,10 +87,6 @@ const useStyles = makeStyles(
   })
 );
 
-// Here we're using `renderCustomNodeElement` render a component that uses
-// both SVG and HTML tags side-by-side.
-// This is made possible by `foreignObject`, which wraps the HTML tags to
-// allow for them to be injected into the SVG namespace.
 const renderForeignObjectNode = ({
   nodeDatum,
   toggleNode,
@@ -99,8 +94,7 @@ const renderForeignObjectNode = ({
   classes,
 }) => (
   <>
-    {/* `foreignObject` requires width & height to be explicitly set. */}
-    {/* {console.log(nodeDatum)} */}
+    {console.log(nodeDatum.personId)}
     <foreignObject {...foreignObjectProps}>
       <Button
         className={classes.button}
@@ -108,30 +102,20 @@ const renderForeignObjectNode = ({
         onClick={toggleNode}
       >
         <img
+          onClick={employeeProfile}
+          id={!nodeDatum.personId ? 1 : nodeDatum.personId}
           src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}
           className={classes.photo}
           alt="..."
         />
-        <div className={classes.departament}>departament</div>
-        {/* <div className={classes.name}>{nodeDatum.name}</div> */}
+
+        <div className={classes.departament}>departamento</div>
         <div className={classes.name}>
           {nodeDatum.firstName.split(" ")[0] +
             " " +
             nodeDatum.lastName.split(" ")[0]}
         </div>
         <div className={classes.position}>{nodeDatum.position}</div>
-        {/* 
-        {nodeDatum.children && nodeDatum.__rd3t.collapsed ? (
-          <div className={classes.arrow}>
-            {" "}
-            <i className="md md-Keyboard-arrow-down" />
-            <MdKeyboardArrowDown
-              className="emDirectory-se"
-              size="2em"
-              color="darkcyan"
-            />
-          </div>
-        ) : null} */}
 
         {nodeDatum.children ? (
           nodeDatum.__rd3t.collapsed ? (
@@ -156,17 +140,6 @@ const renderForeignObjectNode = ({
             </div>
           )
         ) : null}
-
-        {/* <div >Age: {nodeDatum.attributes.age}</div> */}
-
-        {/*  <IconButton className={classes.edit} aria-label="edit">
-          <Edit />
-        </IconButton>
-        <div className={classes.attributes}>
-          <AttachMoney style={{ color: "#459C7F" }} />
-          <Accessible style={{ color: "#459C7F" }} />
-        </div> */}
-        {/* <button className={classes.perfil}>Ir al Perfil</button> */}
       </Button>
     </foreignObject>
   </>
@@ -176,10 +149,10 @@ export default function TreeForm({ persons }) {
   const classes = useStyles();
   const [translate, containerRef] = useCenteredTree();
   const nodeSize = { x: 300, y: 240 };
-  const separation = { siblings: 1, nonSiblings: 2 };
+  const separation = { siblings: 1, nonSiblings: 1 };
   const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: -80 };
-  //   console.log(persons);
 
+  history = useHistory();
   return (
     <div style={containerStyles} ref={containerRef}>
       <Tree

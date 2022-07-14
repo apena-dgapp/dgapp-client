@@ -18,10 +18,7 @@ const SinglePost = (state) => {
         return res.json();
       })
       .then((res) => {
-        // console.log(res.status);
-        // console.log(res);
         setArrayImg(res);
-        // alert("el nuevo post se creo exitosamente");
       })
       .catch((err) => {
         console.error(err.status);
@@ -32,10 +29,7 @@ const SinglePost = (state) => {
         return res.json();
       })
       .then((res) => {
-        // console.log(res.status);
-        // console.log(res);
         setVideo(res);
-        // alert("el nuevo post se creo exitosamente");
       })
       .catch((err) => {
         console.error(err.status);

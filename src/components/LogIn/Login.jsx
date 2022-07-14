@@ -4,29 +4,9 @@ import GlobalContext from "../../context/GlobalContext";
 import { apiAuth } from "../../api/auth";
 import LoginForm from "./LoginForm";
 import toast from "react-hot-toast";
-import { injectIntl } from "react-intl";
 
-const Login = ({ intl }) => {
-  const usernameError = intl.formatMessage({
-    id: "login.api.username",
-    defaultMessage: "Please enter your username",
-  });
-  const passwordError = intl.formatMessage({
-    id: "login.api.password",
-    defaultMessage: "Please enter your password",
-  });
-  const userPassError = intl.formatMessage({
-    id: "login.api.userpass",
-    defaultMessage: "Wrong username or password",
-  });
-  // const serverError = intl.formatMessage({
-  //   id: "login.api.server",
-  //   defaultMessage: "Internal server error",
-  // });
-
+const Login = () => {
   const history = useHistory();
-  // const [modalActive, setModalActive] = useState(false);
-
   //InitialState - ContexState
   const [, , contextMiddleware] = useContext(GlobalContext);
 
@@ -45,18 +25,8 @@ const Login = ({ intl }) => {
     });
   };
 
-  //componente para registrar usuario
-  const userRegister = () => {
-    return toast.error(
-      "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
-    );
-
-    //history.push('./userregister')
-  };
-
-  //funcion para setear lenguaje
-  const setLanguage = (lang) => {
-    contextMiddleware.implementationLang(lang);
+  const inConstruction = () => {
+    history.push("./building");
   };
 
   //funcion para llamar un boton con el evento key
@@ -66,28 +36,18 @@ const Login = ({ intl }) => {
   //     }
   // }
 
-  //funcion crear nuevo usuario
-  const modalToggle = () => {
-    return toast.error(
-      "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
-    );
-    //setModalActive(!modalActive);
-  };
-
   //funcion encargada de logearse
   const handeleSignIn = (e) => {
     e.preventDefault();
 
-    if (profile.username === "") {
-      return toast.error(usernameError);
-    } else if (profile.password === "") {
-      return toast.error(passwordError);
+    if (profile.username === "" || profile.password === "") {
+      return toast.error("Usuario Incorrecto");
     }
 
     //api para autorizar y obtener el token
     apiAuth(profile.username.toUpperCase(), profile.password)
       .then((res) => {
-        if (res.status >= 400) throw new toast.error(userPassError);
+        if (res.status >= 400) throw new toast.error("Usuario Incorrecto");
         return res.json();
       })
       // .then((res) => {
@@ -114,13 +74,10 @@ const Login = ({ intl }) => {
         profileInputs={handleInputChange}
         handeleSignIn={handeleSignIn}
         profile={profile}
-        // modalActive={modalActive}
-        modalToggle={modalToggle}
-        userRegister={userRegister}
-        handeleLang={setLanguage}
+        inConstruction={inConstruction}
       />
     </>
   );
 };
 
-export default injectIntl(Login);
+export default Login;

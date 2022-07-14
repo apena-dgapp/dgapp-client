@@ -14,6 +14,7 @@ const ContextMiddleware = (props) => {
         appMessage: LangSpanish,
         appLocale: 'en-DR',
         personId:'',
+        isBlank:false
         // fullName: '',
         // position:'',
         // photo:''
@@ -102,9 +103,16 @@ const ContextMiddleware = (props) => {
             setLocalCache(localContext);
         }
 
- 
+        const setIsBlank = (isBlank) => {
+            localContext = Object.assign(
+                {},
+                { ...localContext },
+                { isBlank: isBlank}
+            );
+            setLocalCache(localContext);
+        }
 
-        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang};
+        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setIsBlank};
     };
 
     return (

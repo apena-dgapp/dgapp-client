@@ -52,7 +52,6 @@ const Tree = () => {
             firstName: root.firstName.split(" ")[0],
             lastName: root.lastName.split(" ")[0],
           });
-          //   setPersons(root);
         }
       })
       .catch((err) => {
@@ -63,10 +62,31 @@ const Tree = () => {
       unmounted = true;
     };
   }, []);
-  //   console.log(persons);
+
   return (
     <>
-      <div>
+      {/* <div className="tree-title">DGAPP ORGANIGRAMA</div> */}
+
+      <div className="tree-title">
+        {" "}
+        <div className="container-tree-title">
+          <div className="box">
+            <div className="title">
+              <span className="block" />
+              <h1>
+                DIRECCIÓN GENERAL DE ALIANZAS PÚBLICO-PRIVADAS
+                <span />
+              </h1>
+            </div>
+            <div className="role">
+              <div className="block" />
+              <p>Organigrama</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="tree-chart">
         <TreeForm persons={persons} />
       </div>
     </>

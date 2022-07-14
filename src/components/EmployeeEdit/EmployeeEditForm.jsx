@@ -251,7 +251,11 @@ function EmployeeEditForm({
                     onChange={handlerdDepartament}
                     value={profile?.departament}
                   >
-                    <option value="" disabled selected>
+                    <option
+                      defaultValue="Seleccionar una Departamento"
+                      disabled
+                      selected
+                    >
                       Seleccionar una Departamento
                     </option>
                     {departaments

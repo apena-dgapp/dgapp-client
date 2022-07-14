@@ -42,8 +42,6 @@ const DocDynamic = () => {
   // const newDoc = new File(file, "carta-laboral.docx", {
   //   type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
   // });
-  console.log(file);
-  console.log(docs);
   // console.log(newDoc);
   const generate = () => {
     // docs = document.getElementById("doc");

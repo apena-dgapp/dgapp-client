@@ -7,7 +7,6 @@ import { FaUserCog, FaUsers } from "react-icons/fa";
 const Navbar = ({
   logOut,
   createPost,
-  correspo,
   person,
   inConstruction,
   allPost,
@@ -16,30 +15,19 @@ const Navbar = ({
   employeedirectory,
   employeeNew,
   employeeTree,
+  isHidden,
+  goToPDF,
 }) => {
   const [contextState] = useContext(GlobalContext);
-
-  // addEventListener('DOMContentLoaded', () => {
-  //     const btn_menu = document.querySelector('.btn_menu')
-  //     if (btn_menu){
-  //         btn_menu.addEventListener('click', () => {
-  //             const menu_items = document.querySelector('.menu_items')
-  //             menu_items.classList.toggle('show')
-  //         })
-  //     }
-  // })
-
   const [active, setActive] = useState("menu_items");
-
   const navToggle = () => {
     active === "menu_items"
       ? setActive("menu_items_show")
       : setActive("menu_items");
   };
-
   return (
     <>
-      <nav className="bar_menu">
+      <nav style={{ display: isHidden ? "none" : null }} className="bar_menu">
         <figure style={{ cursor: "pointer" }}>
           <img
             onClick={home}
@@ -56,55 +44,52 @@ const Navbar = ({
           <li className="class-list">
             <p>
               SERVICIOS
-              <img className="icondown" src={Images.icondown} alt="" />
+              <img
+                // style={{ marginRight: "1.5rem" }}
+                className="icondown"
+                src={Images.icondown}
+                alt=""
+              />
             </p>
-            <ul>
-              {/* <li>
-                <a  onClick={correspo}>
-                  Correspondencia
-                </a>
-              </li> */}
+            <ul style={{ width: "8rem" }}>
               <li>
                 <p onClick={inConstruction}>Crear Ticket</p>
+              </li>
+              <li>
+                <p>
+                  Solicitudes
+                  <img
+                    style={{ transform: "rotate(270deg)" }}
+                    className="icondown"
+                    src={Images.icondown}
+                    alt=""
+                  />
+                </p>
+                <ul className="menu-left">
+                  <li>
+                    <p onClick={inConstruction}>Formulario</p>
+                  </li>
+                  <li>
+                    <p onClick={inConstruction}>Carta Laboral</p>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
           <li className="class-list">
-            <p onClick={allPost}>NOTICIAS</p>
-          </li>
-          {/* <li className="class-list">
-            <a >
-              SOLICITUDES
+            <p>
+              PUBLICACIONES{" "}
               <img className="icondown" src={Images.icondown} alt="" />
-            </a>
-            <ul>
+            </p>
+            <ul style={{ width: "10rem" }}>
               <li>
-                <a onClick={inConstruction} >
-                  Carta Laboral
-                </a>
+                <p onClick={allPost}>Noticias</p>
               </li>
               <li>
-                <a  onClick={inConstruction}>
-                  Vacaciones
-                </a>
-              </li>
-              <li>
-                <a  onClick={inConstruction}>
-                  Seguro Medico
-                </a>
-              </li>
-              <li>
-                <a  onClick={inConstruction}>
-                  Maternidad
-                </a>
-              </li>
-              <li>
-                <a  onClick={inConstruction}>
-                  Enfermedad
-                </a>
+                <p onClick={() => goToPDF()}>Boletin</p>
               </li>
             </ul>
-          </li> */}
+          </li>
 
           <li className="class-list">
             <p onClick={inConstruction}>ENTRENAMIENTO</p>
@@ -115,18 +100,13 @@ const Navbar = ({
                 ADMINISTRACIÓN
                 <img className="icondown" src={Images.icondown} alt="" />
               </p>
-              <ul>
+              <ul style={{ width: "10rem" }}>
                 <li>
                   <p onClick={createPost}>Crear Entradas</p>
                 </li>
                 <li>
                   <p onClick={employeeNew}>Nuevo Empleado</p>
                 </li>
-                {/* <li>
-                  <a  onClick={employeedirectory}>
-                    Directorio de Empleados
-                  </a>
-                </li> */}
               </ul>
             </li>
           ) : null}
@@ -134,37 +114,16 @@ const Navbar = ({
 
         <figure className="container-menu-right">
           <div className="nav-user-txt-cont">
-            {/* <div className="nav-user-name" onClick={() => logOut()}>{`Hola, ${contextState.userName}`}</div>  */}
             <div
               id={person.personId}
               className="nav-user-name"
             >{`Hola, ${person.fullName}`}</div>
             <div className="nav-user-position">{person.position}</div>
-            <div className="nav-user-notf-cont">
-              {/* <div onClick={() => logOut()} className="nav-user-close">
-                <p>
-                  <i className="md md-logout " />
-                  <MdLogout size="1.5em" color="white" />
-                  Cerrar sesión
-                </p>
-              </div> */}
-              {/* <div onClick={() => logOut()} className="nav-user-close">
-                <p>
-                  <i className="md md-notifications-none" />
-                  <MdNotificationsNone size="1.5em" color="white" />
-                  Notificaciones
-                </p>
-              </div> */}
-            </div>
+            <div className="nav-user-notf-cont"></div>
           </div>
-          {/* <img className="flag-us" src={Images.flagUs} type="button" onClick={() => handeleLang('en-US')} alt="" />
-                <img className="flag-spain" src={Images.flagSpain} type="button" onClick={() => handeleLang('es-DR')} alt="" />
-                <img className="user-icon" src={Images.iconUser} onClick={() => logOut()} type="button" alt="" />
-                <div className="user-text" onClick={() => logOut()}>{contextState.userName}</div> */}
           <div className="dropdown">
             <i className="md md-keyboard-arrow-down" />
             <MdKeyboardArrowDown
-              // style={{ marginLeft: "3rem", marginTop: "-0.8rem" }}
               size="2rem"
               color="white"
               className="dropdown-toggle"
@@ -173,11 +132,9 @@ const Navbar = ({
               style={{ cursor: "pointer" }}
             />
             <img
-              // onClick={employeeProfile}
-              // id={person.personId}
               id="dropdownMenuButton1"
               className="nav-user-img dropdown-toggle"
-              src={person.photo}
+              src={person.photo ? person.photo : Images.noImg}
               alt=""
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -209,17 +166,6 @@ const Navbar = ({
                   Directorio de Empleados
                 </p>
               </li>
-              {/* <li>
-                <p className="dropdown-item">
-                  <i className="fa fa-user-edit" />
-                  <FaUserEdit
-                    style={{ marginRight: "0.5rem" }}
-                    size="1.2rem"
-                    color="darkcyan"
-                  />
-                  Editar Perfil
-                </p>
-              </li> */}
               <li>
                 <p onClick={employeeTree} className="dropdown-item">
                   <i className="im im-tree" />

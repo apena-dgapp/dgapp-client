@@ -20,7 +20,6 @@
 @import "./aboutus";
 @import "./regulations";
 @import "./employeeDirectory";
-@import "./employeeTree";
 @import "./employeeEdit";
 
 *, *:before, *:after{
@@ -50,4 +49,3 @@ body::-webkit-scrollbar-thumb{
   background-color: rgb(42, 52, 63);
   border-radius: 7px;
 }
-

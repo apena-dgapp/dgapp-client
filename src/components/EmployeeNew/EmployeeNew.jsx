@@ -203,7 +203,7 @@ function EmployeeNew() {
           formData.emergencynumber,
           formData.emergencyrelationship,
           formData.contracttype,
-          formData.contractexpiration
+          formData.contractexpiration ? formData.contractexpiration : null
         )
           .then((res) => {
             console.log(res.status);
@@ -246,9 +246,7 @@ function EmployeeNew() {
       .then((res) => {
         if (!unmounted) {
           //   setPerson(res);
-          setPerson(
-            res?.filter((item) => item.personId !== contextState?.personId)
-          );
+          setPerson(res?.filter((item) => item.personId));
         }
       })
       .catch((err) => {

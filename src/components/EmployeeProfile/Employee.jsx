@@ -20,6 +20,8 @@ const Employee = (props) => {
   const [reportsTo, setReportsTo] = useState("");
   const history = useHistory();
 
+  console.log(id);
+
   const msgDisable = () => {
     return toast.error(
       "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
@@ -143,8 +145,6 @@ const Employee = (props) => {
         console.error(err.status);
       });
   };
-
-  console.log(profile);
 
   return (
     <>

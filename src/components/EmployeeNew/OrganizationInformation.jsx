@@ -22,12 +22,14 @@ function OrganizationInformation({
         return res.json();
       })
       .then((res) => {
-        if (res === true) {
-          setEmail(
-            formData.firstname.substring(0, 2).toUpperCase() +
-              formData.lastname.split(" ")[0].toUpperCase() +
-              "@DGAPP.GOB.DO"
-          );
+        if (!unmounted) {
+          if (res === true) {
+            setEmail(
+              formData.firstname.substring(0, 2).toUpperCase() +
+                formData.lastname.split(" ")[0].toUpperCase() +
+                "@DGAPP.GOB.DO"
+            );
+          }
         }
       })
       .catch((err) => {

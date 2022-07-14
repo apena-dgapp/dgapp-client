@@ -1,15 +1,20 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import GlobalContext from "../../../context/GlobalContext";
 import NavbarForm from "./NavbarForm";
 import { getOnePerson } from "../../../api/person";
-import toast from "react-hot-toast";
+import { apiFiles } from "../../../api/files";
 
 const Header = () => {
   const history = useHistory();
+  const location = useLocation();
+  const [isHidden, setIsHidden] = useState(false);
 
   //InitialState - ContexState
   const [contextState, , contextMiddleware] = useContext(GlobalContext);
+  // var path = require("path");
+  // var rute = path.resolve(__dirname, "/src/common/Docs/Boletin No. 03.pdf");
+  // console.log(rute);
 
   const [person, setPerson] = useState({
     personId: "",
@@ -18,6 +23,8 @@ const Header = () => {
     birthday: "",
     photo: "",
   });
+
+  const [file, setFile] = useState("");
 
   const employeeProfile = (e) => {
     const employeeId = e.currentTarget.id;
@@ -45,15 +52,8 @@ const Header = () => {
     history.push("./newpost");
   };
 
-  const correspo = () => {
-    history.push("./correspondence");
-  };
-
   const inConstruction = () => {
-    return toast.error(
-      "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
-    );
-    //history.push('./')
+    history.push("./building");
   };
   const allPost = () => {
     history.push("./allpost");
@@ -70,8 +70,28 @@ const Header = () => {
     history.push("./employeetree");
   };
 
+  const goToPDF = async () => {
+    // console.log(file.file);
+    history.push({
+      pathname: "./pdf",
+      state: file.file,
+    });
+  };
+
   useEffect(() => {
     let unmounted = false;
+    apiFiles("BOLETIN")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setFile(res[0]);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
 
     if (contextState.personId) {
       getOnePerson(contextState.personId)
@@ -80,7 +100,6 @@ const Header = () => {
         })
         .then((res) => {
           if (!unmounted) {
-            //  setInterest(res.post);
             setPerson({
               personId: res.personId,
               fullName:
@@ -96,10 +115,29 @@ const Header = () => {
         });
     }
 
+    if (!unmounted) {
+      location.pathname !== `${process.env.REACT_APP_RUTE}/` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/home` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/siglepost` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/allpost` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/userregister` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/newpost` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/employee` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/aboutus` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/employeetree` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/employeeedit` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/employeenew` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/docdynamic` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/employeeprofile` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory`
+        ? setIsHidden(true)
+        : setIsHidden(false);
+    }
+
     return () => {
       unmounted = true;
     };
-  }, [contextState.personId]);
+  }, [contextState.personId, location.pathname]);
 
   return (
     <>
@@ -107,7 +145,6 @@ const Header = () => {
         handeleLang={setLanguage}
         logOut={logOut}
         createPost={createPost}
-        correspo={correspo}
         person={person}
         inConstruction={inConstruction}
         allPost={allPost}
@@ -116,6 +153,9 @@ const Header = () => {
         employeedirectory={employeedirectory}
         employeeNew={employeeNew}
         employeeTree={employeeTree}
+        isHidden={isHidden}
+        file={file}
+        goToPDF={goToPDF}
       />
     </>
   );

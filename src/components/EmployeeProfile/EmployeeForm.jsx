@@ -200,7 +200,7 @@ const EmployeeForm = ({
         <div className="employee-header-container">
           <div className="employee-name">{firstNSplit + " " + lastNSplit}</div>
           <div className="employee-position">
-            {profile.career ? profile.career : "No definido!"}
+            {/* {profile.career ? profile.career : "No definido!"} */}
           </div>
 
           <div className="employee-info-container">

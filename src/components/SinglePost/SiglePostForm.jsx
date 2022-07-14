@@ -101,10 +101,6 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
     <>
       <div className="singlePostContainer">
         <div className="singlePostTitle">
-          {/* <p className="m-0">{dataPost.title}</p> */}
-          {/* <figure className='singlePost-img'>
-                    <img className='post-title-img' src={Images.blog} alt=''/>
-                </figure> */}
           <div className="singlePostTxt">
             <h2 className="">{fechaES}</h2>
             <h1 className="">{dataPost.title}</h1>
@@ -114,11 +110,6 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
 
         <div className="singlePost-img-cont">
           <img className="singlePost-img" src={dataPost.img} alt="" />
-
-          {/* <div className="postDate">
-            <p>{new Date(dataPost.date).toDateString()}</p>
-          </div> */}
-
           <div className="singlePostDescp-container">
             <p
               dangerouslySetInnerHTML={{ __html: dataPost.description }}
@@ -229,16 +220,14 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
                     </div>
                     <div className="regulations-grid-4">
                       <div className="regulations-data-container">
-                        <div className="">
-                          <button
-                            id={file.fileId}
-                            type="button"
-                            className="btn btn-success btn-sm"
-                            onClick={() => goToPDF(file.src)}
-                          >
-                            Descargar
-                          </button>
-                        </div>
+                        <button
+                          id={file.fileId}
+                          type="button"
+                          className="btn btn-success btn-sm"
+                          onClick={() => goToPDF(file.src)}
+                        >
+                          Descargar
+                        </button>
                       </div>
                     </div>
                   </div>
