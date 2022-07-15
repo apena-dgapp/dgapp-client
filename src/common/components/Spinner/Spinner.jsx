@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-// useEffect(() => {
-//     setLoading(true);
-//     setTimeout(() => {
-//       setLoading(false);
-//     }, 5000);
-//   }, []);
-const Spinner = ({ loading }) => {
+import GlobalContext from "../../../context/GlobalContext";
+
+const Spinner = ({ showSpinner }) => {
+  // const [contextState, , contextMiddleware] = useContext(GlobalContext);
+  // useEffect(() => {
+  //   console.log(contextState.isLoading);
+  //   if ((contextState.isLoading = true)) {
+  //     setTimeout(() => {}, 5000);
+  //   }
+  // }, [contextState]);
   return (
     <div className="spinner-container">
-      <ClipLoader color="36D7B7" loading={loading} size={150} />
+      <ClipLoader color="#36D7B7" loading={showSpinner} size={150} />
     </div>
   );
 };

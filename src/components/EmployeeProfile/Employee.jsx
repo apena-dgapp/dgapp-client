@@ -14,13 +14,11 @@ function loadFile(url, callback) {
 }
 
 const Employee = (props) => {
-  const [contextState] = useContext(GlobalContext);
+  const [contextState, , contextMiddleware] = useContext(GlobalContext);
   const id = props.location.state;
   const [profile, setProfile] = useState("");
   const [reportsTo, setReportsTo] = useState("");
   const history = useHistory();
-
-  console.log(id);
 
   const msgDisable = () => {
     return toast.error(
@@ -48,26 +46,28 @@ const Employee = (props) => {
       .then((res) => {
         return res.json();
       })
-
       .then((res) => {
+        contextMiddleware.showSpinner(true);
         if (!unmounted) {
           setProfile(res);
           getOnePerson(res.reportsTo)
             .then((res) => {
               return res.json();
             })
-
             .then((res) => {
               if (!unmounted) {
                 setReportsTo(res);
               }
+              contextMiddleware.showSpinner(false);
             })
             .catch((err) => {
+              contextMiddleware.showSpinner(false);
               console.error(err.status);
             });
         }
       })
       .catch((err) => {
+        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 

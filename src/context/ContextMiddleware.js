@@ -14,7 +14,8 @@ const ContextMiddleware = (props) => {
         appMessage: LangSpanish,
         appLocale: 'en-DR',
         personId:'',
-        isBlank:false
+        isBlank:false,
+        isLoading:false
         // fullName: '',
         // position:'',
         // photo:''
@@ -81,6 +82,15 @@ const ContextMiddleware = (props) => {
             setLocalCache(localContext);
         };
 
+        const showSpinner = (isLoading) =>{
+            localContext = Object.assign(
+                {},
+                { ...localContext },
+                { isLoading:isLoading }
+            );
+            setLocalCache(localContext);
+        };
+
         const implementationLang =(language)=>{
             switch (language){
                 case 'es-DR':
@@ -112,7 +122,7 @@ const ContextMiddleware = (props) => {
             setLocalCache(localContext);
         }
 
-        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setIsBlank};
+        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setIsBlank,showSpinner};
     };
 
     return (

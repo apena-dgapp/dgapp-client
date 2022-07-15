@@ -8,8 +8,8 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 
 const containerStyles = {
-  width: "100vw",
-  height: "100rem",
+  width: "130vw",
+  height: "130rem",
   // background: "#eee",
 };
 
@@ -94,20 +94,30 @@ const renderForeignObjectNode = ({
   classes,
 }) => (
   <>
-    {console.log(nodeDatum.personId)}
+    {/* {console.log(nodeDatum.personId)} */}
     <foreignObject {...foreignObjectProps}>
       <Button
         className={classes.button}
         variant="contained"
         onClick={toggleNode}
       >
-        <img
-          onClick={employeeProfile}
-          id={!nodeDatum.personId ? 1 : nodeDatum.personId}
-          src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}
-          className={classes.photo}
-          alt="..."
-        />
+        {process.env.REACT_APP_ENV === "production" ? (
+          <img
+            onClick={employeeProfile}
+            id={!nodeDatum.personId ? 14 : nodeDatum.personId}
+            src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}
+            className={classes.photo}
+            alt="..."
+          />
+        ) : (
+          <img
+            onClick={employeeProfile}
+            id={!nodeDatum.personId ? 1 : nodeDatum.personId}
+            src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}
+            className={classes.photo}
+            alt="..."
+          />
+        )}
 
         <div className={classes.departament}>departamento</div>
         <div className={classes.name}>

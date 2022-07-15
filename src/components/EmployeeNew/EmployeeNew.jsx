@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 // import { useHistory } from "react-router-dom";
 
 function EmployeeNew() {
-  const [contextState] = useContext(GlobalContext);
+  const [contextState, , contextMiddleware] = useContext(GlobalContext);
   const [departaments, setDepartaments] = useState("");
   // const history = useHistory();
   const [email, setEmail] = useState("");
@@ -179,6 +179,7 @@ function EmployeeNew() {
       );
     } else {
       if (formData.date) {
+        contextMiddleware.showSpinner(true);
         createPerson(
           code,
           formData.firstname,
@@ -206,16 +207,18 @@ function EmployeeNew() {
           formData.contractexpiration ? formData.contractexpiration : null
         )
           .then((res) => {
-            console.log(res.status);
             if (res.status === 500) {
+              contextMiddleware.showSpinner(false);
               return toast.error("Error en el Servidor!");
             } else {
+              contextMiddleware.showSpinner(false);
               toast.success("Nuevo Perfil de empleado creado!");
               clearFormData();
               back();
             }
           })
           .catch((err) => {
+            contextMiddleware.showSpinner(false);
             console.error(err.status);
           });
       }

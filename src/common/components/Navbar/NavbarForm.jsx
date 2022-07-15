@@ -4,6 +4,7 @@ import GlobalContext from "../../../context/GlobalContext";
 import { ImTree } from "react-icons/im";
 import { MdLogout, MdKeyboardArrowDown } from "react-icons/md";
 import { FaUserCog, FaUsers } from "react-icons/fa";
+
 const Navbar = ({
   logOut,
   createPost,
@@ -25,6 +26,8 @@ const Navbar = ({
       ? setActive("menu_items_show")
       : setActive("menu_items");
   };
+
+  const path = "/public/El Principito.pdf";
   return (
     <>
       <nav style={{ display: isHidden ? "none" : null }} className="bar_menu">
@@ -86,7 +89,15 @@ const Navbar = ({
                 <p onClick={allPost}>Noticias</p>
               </li>
               <li>
-                <p onClick={() => goToPDF()}>Boletin</p>
+                {/* <p on4Click={() => goToPDF()}>Boletin</p> */}
+                <p onClick={inConstruction}>Boletin</p>
+                {/* <a
+                  href="http://localhost:3000/public/Boletin.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Boletin
+                </a> */}
               </li>
             </ul>
           </li>

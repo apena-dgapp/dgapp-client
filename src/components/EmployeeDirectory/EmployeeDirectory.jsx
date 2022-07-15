@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import EmployeeDirectoryForm from "./EmployeeDirectoryForm";
 import { getAllPersons } from "../../api/person";
 import { getAlldepartament } from "../../api/department";
 import { useHistory } from "react-router-dom";
+import GlobalContext from "../../context/GlobalContext";
 
 const EmployeeDirectory = () => {
   const [arrayAllPersons, setArrayAllPersons] = useState([]);
@@ -11,6 +12,7 @@ const EmployeeDirectory = () => {
   const [search, setSearch] = useState("");
   const [searchDep, setSearchDep] = useState("");
   const history = useHistory();
+  const [, , contextMiddleware] = useContext(GlobalContext);
 
   useEffect(() => {
     let unmounted = false;
@@ -20,11 +22,13 @@ const EmployeeDirectory = () => {
         return res.json();
       })
       .then((res) => {
+        contextMiddleware.showSpinner(true);
         if (!unmounted) {
           setArrayDepartament(res);
         }
       })
       .catch((err) => {
+        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 
@@ -36,8 +40,10 @@ const EmployeeDirectory = () => {
         if (!unmounted) {
           setArrayAllPersons((arrayAllPersons) => [...arrayAllPersons, ...res]);
         }
+        contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
+        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 

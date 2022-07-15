@@ -15,7 +15,7 @@ const EmployeeDirectoryForm = ({
   filterDep,
   searchDep,
 }) => {
-  const [contextState] = useContext(GlobalContext);
+  const [contextMiddleware, , contextState] = useContext(GlobalContext);
   return (
     <>
       <div className="emDirectory-cont">

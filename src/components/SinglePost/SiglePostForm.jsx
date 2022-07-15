@@ -189,7 +189,7 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
         </>
       ) : null}
 
-      <div>
+      <div style={{ marginBottom: "8rem" }}>
         {arrayImg
           ? arrayImg.files.map((file) => {
               // console.log(file.src.size);

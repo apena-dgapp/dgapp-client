@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import TreeForm from "./TreeForm";
 import { getEmployeeTree } from "./../../api/person";
+import GlobalContext from "../../context/GlobalContext";
 
 const Tree = () => {
   const [persons, setPersons] = useState({
@@ -14,6 +15,8 @@ const Tree = () => {
     lastName: "",
   });
 
+  const [, , contextMiddleware] = useContext(GlobalContext);
+
   useEffect(() => {
     let unmounted = false;
 
@@ -22,6 +25,7 @@ const Tree = () => {
         return res.json();
       })
       .then((res) => {
+        contextMiddleware.showSpinner(true);
         if (!unmounted) {
           const userFalt = res.reduce((acc, el, i) => {
             acc[el.personId] = i;
@@ -30,17 +34,13 @@ const Tree = () => {
 
           let root;
           res.forEach((el) => {
-            // Handle the root element
             if (el.reportsTo === null) {
               root = el;
               return;
             }
-            // Use our mapping to locate the parent element in our res array
             const parentEl = res[userFalt[el.reportsTo]];
-            // Add our current el to its parent's `children` array
             parentEl.children = [...(parentEl.children || []), el];
           });
-          //   console.log(root);
 
           setPersons({
             name:
@@ -53,8 +53,10 @@ const Tree = () => {
             lastName: root.lastName.split(" ")[0],
           });
         }
+        contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
+        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 

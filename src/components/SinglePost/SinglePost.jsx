@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import SiglePostForm from "./SiglePostForm";
 import { getFiles, getVideo } from "../../api/post";
+import GlobalContext from "../../context/GlobalContext";
 
 const SinglePost = (state) => {
   const [visible, setVisible] = useState(false);
   const [arrayImg, setArrayImg] = useState("");
   const dataPost = state.location.state;
   const [video, setVideo] = useState("");
+  const [, , contextMiddleware] = useContext(GlobalContext);
 
   const viewShow = () => {
     setVisible(!visible);
@@ -18,9 +20,12 @@ const SinglePost = (state) => {
         return res.json();
       })
       .then((res) => {
+        contextMiddleware.showSpinner(true);
         setArrayImg(res);
+        contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
+        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 
@@ -30,8 +35,10 @@ const SinglePost = (state) => {
       })
       .then((res) => {
         setVideo(res);
+        contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
+        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
   }, [dataPost.id]);

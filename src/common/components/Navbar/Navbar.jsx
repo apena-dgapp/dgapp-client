@@ -85,11 +85,13 @@ const Header = () => {
         return res.json();
       })
       .then((res) => {
+        contextMiddleware.showSpinner(true);
         if (!unmounted) {
           setFile(res[0]);
         }
       })
       .catch((err) => {
+        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 
@@ -109,9 +111,14 @@ const Header = () => {
               photo: res.photo,
             });
           }
+          // setTimeout(() => {
+          //   contextMiddleware.showSpinner(false);
+          // }, 1000);
+          contextMiddleware.showSpinner(false);
         })
         .catch((err) => {
           console.error(err.status);
+          contextMiddleware.showSpinner(false);
         });
     }
 
