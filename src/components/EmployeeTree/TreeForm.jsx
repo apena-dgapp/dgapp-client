@@ -94,39 +94,32 @@ const renderForeignObjectNode = ({
   classes,
 }) => (
   <>
-    {/* {console.log(nodeDatum.personId)} */}
     <foreignObject {...foreignObjectProps}>
       <Button
         className={classes.button}
         variant="contained"
         onClick={toggleNode}
       >
-        {process.env.REACT_APP_ENV === "production" ? (
-          <img
-            onClick={employeeProfile}
-            id={!nodeDatum.personId ? 14 : nodeDatum.personId}
-            src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}
-            className={classes.photo}
-            alt="..."
-          />
+        <img
+          onClick={employeeProfile}
+          id={!nodeDatum.personId}
+          src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}
+          className={classes.photo}
+          alt="..."
+        />
+        {!nodeDatum.Departament ? (
+          <div className={classes.departament}>No Definido</div>
         ) : (
-          <img
-            onClick={employeeProfile}
-            id={!nodeDatum.personId ? 1 : nodeDatum.personId}
-            src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}
-            className={classes.photo}
-            alt="..."
-          />
+          <div className={classes.departament}>
+            {nodeDatum.Departament.name}
+          </div>
         )}
-
-        <div className={classes.departament}>departamento</div>
         <div className={classes.name}>
           {nodeDatum.firstName.split(" ")[0] +
             " " +
             nodeDatum.lastName.split(" ")[0]}
         </div>
         <div className={classes.position}>{nodeDatum.position}</div>
-
         {nodeDatum.children ? (
           nodeDatum.__rd3t.collapsed ? (
             <div className={classes.arrow}>

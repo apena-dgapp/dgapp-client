@@ -85,13 +85,14 @@ const Header = () => {
         return res.json();
       })
       .then((res) => {
-        contextMiddleware.showSpinner(true);
+        // contextMiddleware.showSpinner(true);
         if (!unmounted) {
           setFile(res[0]);
         }
+        // contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
-        contextMiddleware.showSpinner(false);
+        // contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 
@@ -114,11 +115,11 @@ const Header = () => {
           // setTimeout(() => {
           //   contextMiddleware.showSpinner(false);
           // }, 1000);
-          contextMiddleware.showSpinner(false);
+          // contextMiddleware.showSpinner(false);
         })
         .catch((err) => {
           console.error(err.status);
-          contextMiddleware.showSpinner(false);
+          // contextMiddleware.showSpinner(false);
         });
     }
 

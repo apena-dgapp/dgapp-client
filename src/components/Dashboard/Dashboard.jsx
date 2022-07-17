@@ -43,7 +43,6 @@ const Dashboard = () => {
         return res.json();
       })
       .then((res) => {
-        contextMiddleware.showSpinner(true);
         if (!unmounted) {
           setInterest(res.post);
         }

@@ -46,11 +46,14 @@ const Tree = () => {
             name:
               root.firstName.split(" ")[0] + " " + root.lastName.split(" ")[0],
             children: root.children,
-            departament: root.Departament.name,
+            Departament: {
+              name: root.Departament.name,
+            },
             position: root.position,
             photo: root.photo,
             firstName: root.firstName.split(" ")[0],
             lastName: root.lastName.split(" ")[0],
+            personId: root.personId,
           });
         }
         contextMiddleware.showSpinner(false);
