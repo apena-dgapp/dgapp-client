@@ -13,6 +13,8 @@ const EmployeeDirectory = () => {
   const [searchDep, setSearchDep] = useState("");
   const history = useHistory();
   const [, , contextMiddleware] = useContext(GlobalContext);
+  const [page, setPage] = useState(8);
+  const [pageLength, setPageLength] = useState("");
 
   useEffect(() => {
     let unmounted = false;
@@ -39,6 +41,7 @@ const EmployeeDirectory = () => {
       .then((res) => {
         if (!unmounted) {
           setArrayAllPersons((arrayAllPersons) => [...arrayAllPersons, ...res]);
+          setPageLength(res.length);
         }
         contextMiddleware.showSpinner(false);
       })
@@ -85,8 +88,8 @@ const EmployeeDirectory = () => {
       return filtered.slice(currentPage, currentPage + 8);
     }
   };
-
   const nextPage = () => {
+    setPage(page + 8);
     if (
       arrayAllPersons.filter((persons) =>
         persons.fullName.toLowerCase().includes(search)
@@ -95,8 +98,8 @@ const EmployeeDirectory = () => {
     )
       setCurrentPage(currentPage + 8);
   };
-
   const backPage = () => {
+    setPage(page - 8);
     if (currentPage > 0) {
       setCurrentPage(currentPage - 8);
     }
@@ -129,6 +132,8 @@ const EmployeeDirectory = () => {
         arrayDepartament={arrayDepartament}
         filterDep={filterDep}
         searchDep={searchDep}
+        pageLength={pageLength}
+        page={page}
       />
     </>
   );

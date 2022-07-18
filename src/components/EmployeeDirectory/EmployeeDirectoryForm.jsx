@@ -14,8 +14,15 @@ const EmployeeDirectoryForm = ({
   arrayDepartament,
   filterDep,
   searchDep,
+  pageLength,
+  page,
 }) => {
   const [contextMiddleware, , contextState] = useContext(GlobalContext);
+  // console.log(pageLength);
+  // console.log(page);
+
+  console.log(filteredArryPersons().length);
+
   return (
     <>
       <div className="emDirectory-cont">
@@ -127,17 +134,19 @@ const EmployeeDirectoryForm = ({
         <div className="emDirectory-btns">
           <button
             onClick={backPage}
-            className="btn-back"
+            className={page === 0 || page === 8 ? "btn-disabled" : "btn-back"}
             name="btn-back"
             type="submit"
+            disabled={page === 0 || page === 8 ? true : false}
           >
             Anterior
           </button>
           <button
             onClick={nextPage}
-            className="btn-next"
+            className={page < pageLength ? "btn-next" : "btn-disabled"}
             name="btn-next"
             type="submit"
+            disabled={page < pageLength ? false : true}
           >
             Siguiente
           </button>

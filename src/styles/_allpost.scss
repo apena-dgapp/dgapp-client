@@ -97,3 +97,15 @@
       background-color: #787A91;
     }
   }
+
+  .btn-disabled {
+    border-radius: 0.6rem;
+    width: 15rem;
+    height: 2.8rem;
+    border: none;
+    color: rgb(165, 164, 164);
+    background-color: #bebebe;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }

@@ -26,6 +26,9 @@ import EmployeeEdit from "../components/EmployeeEdit/EmployeeEdit";
 import EmployeeNew from "../components/EmployeeNew/EmployeeNew";
 import Spinner from "../common/components/Spinner/Spinner";
 import Building from "../common/components/Building/Building";
+import Chat from "../components/Chat/Chat";
+import ChatButton from "../common/components/ChatButton/ChatButton";
+
 const Routes = () => {
   const [contextState] = useContext(GlobalContext);
 
@@ -34,6 +37,7 @@ const Routes = () => {
 
   return (
     <BrowserRouter>
+      {!contextState.showChat ? <ChatButton /> : <Chat />}
       {contextState.isLoading ? <Spinner /> : null}
       <ScrollToTop />
       {contextState.token ? <Navbar /> : null}
@@ -106,6 +110,7 @@ const Routes = () => {
           path={`${process.env.REACT_APP_RUTE}/employeedirectory`}
           component={EmployeeDirectory}
         />
+        {/* <Route path={`${process.env.REACT_APP_RUTE}/chat`} component={Chat} /> */}
         <Route
           exact
           path={`${process.env.REACT_APP_RUTE}*`}

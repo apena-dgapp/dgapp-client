@@ -18,20 +18,13 @@ const EmployeeForm = ({
 }) => {
   const history = useHistory();
   const [contextState] = useContext(GlobalContext);
-  // const [profileChart, setProfileChart] = useState({
-  //   id: "",
-  //   fullName: "",
-  //   position: "",
-  //   departament: "",
-  //   photo: "",
-  //   idReportTo: "",
-  //   fullNameReportTo: "",
-  //   positionReportTo: "",
-  //   departamentReportTo: "",
-  //   photoReportTo: "",
+  // const [chat] = useState({
+  //   user: profile.firstName.split(" ")[0],
+  //   room: contextState.personId + "-" + profile.personId,
   // });
+
   if (profile) {
-    const firstN = profile.firstName.split(" ");
+    const firstN = profile.firstName.split(" ")[0];
     const lastN = profile.lastName.split(" ");
     var firstNSplit = firstN[0];
     var lastNSplit = lastN[0];
@@ -76,23 +69,7 @@ const EmployeeForm = ({
     var reportsToPhoto = reportsTo.photo;
   }
 
-  useEffect(() => {
-    // setProfileChart({
-    //   id: profile.personId,
-    //   fullName: `${firstNSplit} ${lastNSplit}`,
-    //   position: profile.position,
-    //   departament: profile ? profile.Departament.name : null,
-    //   photo: profile.photo,
-    //   idReportTo: reportsTo ? reportsTo.personId : 0,
-    //   fullNameReportTo: reportsTo
-    //     ? `${reportsTofirstN} ${reportsTolastN}`
-    //     : null,
-    //   positionReportTo: reportsTo ? reportsTo.position : null,
-    //   departamentReportTo: reportsTo ? reportsTo.Departament.name : null,
-    //   photoReportTo: reportsTo ? reportsTo.photo : Images.noImg,
-    // });
-  }, [
-    // setProfileChart,
+  useEffect(() => {}, [
     firstNSplit,
     lastNSplit,
     profile,
@@ -101,14 +78,15 @@ const EmployeeForm = ({
     reportsTolastN,
   ]);
 
-  // const goTochart = () => {
-  //   if (profileChart.fullName) {
-  //     history.push({
-  //       pathname: "./employeechart",
-  //       state: profileChart,
-  //     });
-  //   }
-  // };
+  const goToChat = () => {
+    history.push({
+      pathname: "./chat",
+      state: {
+        user: profile.firstName.split(" ")[0],
+        room: contextState.personId + "-" + profile.personId,
+      },
+    });
+  };
 
   const goToProfileReportTo = () => {
     history.push({
@@ -116,15 +94,6 @@ const EmployeeForm = ({
       state: reportsTo.personId,
     });
   };
-
-  // const goToDownload = (e, name) => {
-  //   e.preventDefault();
-  //   history.push({
-  //     pathname: "./docdynamic",
-  //     state: name,
-  //   });
-  // };
-
   return (
     <>
       <div className="employee-container">
@@ -246,13 +215,13 @@ const EmployeeForm = ({
               </button>
             ) : null}
 
-            {/* <button
-              onClick={goTochart}
+            <button
+              onClick={goToChat}
               type="button"
               className="btn btn-light employee-btn"
             >
-              Ver en Organigrama
-            </button> */}
+              Chatear
+            </button>
             {contextState.isAdmin ? (
               <div className="onoffswitch1">
                 <input
