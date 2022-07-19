@@ -32,12 +32,16 @@ import ChatButton from "../common/components/ChatButton/ChatButton";
 const Routes = () => {
   const [contextState] = useContext(GlobalContext);
 
-  // <Route exact path={`${process.env.REACT_APP_RUTE}/`} component={contextState.token ? Dashboard : Login} />
-  // <PrivateRoutes exct path={`${process.env.REACT_APP_RUTE}/home`} component={Dashboard} />
-
   return (
     <BrowserRouter>
-      {!contextState.showChat ? <ChatButton /> : <Chat />}
+      {contextState.token ? (
+        !contextState.isShowChat ? (
+          <ChatButton />
+        ) : (
+          <Chat />
+        )
+      ) : null}
+
       {contextState.isLoading ? <Spinner /> : null}
       <ScrollToTop />
       {contextState.token ? <Navbar /> : null}

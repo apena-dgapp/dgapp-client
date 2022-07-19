@@ -14,9 +14,9 @@ const ContextMiddleware = (props) => {
         appMessage: LangSpanish,
         appLocale: 'en-DR',
         personId:'',
-        // isBlank:false,
         isLoading:false,
-        showChat:false
+        isShowChat:false,
+        room:""
         // fullName: '',
         // position:'',
         // photo:''
@@ -92,15 +92,6 @@ const ContextMiddleware = (props) => {
             setLocalCache(localContext);
         };
 
-        // const setShowChat = (showChat) =>{
-        //     localContext = Object.assign(
-        //         {},
-        //         { ...localContext },
-        //         { showChat:showChat }
-        //     );
-        //     setLocalCache(localContext);
-        // };
-
         const implementationLang =(language)=>{
             switch (language){
                 case 'es-DR':
@@ -123,16 +114,25 @@ const ContextMiddleware = (props) => {
             setLocalCache(localContext);
         }
 
-        const setShowChat = (showChat) => {
+        const setIsShowChat = (isShowChat) => {
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                { showChat: showChat}
+                { isShowChat: isShowChat}
             );
             setLocalCache(localContext);
         }
 
-        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setShowChat, showSpinner};
+        const setRoom = (room) => {
+            localContext = Object.assign(
+                {},
+                { ...localContext },
+                { room: room}
+            );
+            setLocalCache(localContext);
+        }
+
+        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setIsShowChat, showSpinner,setRoom};
     };
 
     return (

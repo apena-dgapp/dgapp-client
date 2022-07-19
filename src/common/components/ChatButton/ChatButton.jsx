@@ -1,22 +1,27 @@
 import React, { useContext } from "react";
-import { AiOutlineMessage } from "react-icons/ai";
+import { AiOutlineMessage, AiFillBell } from "react-icons/ai";
 import GlobalContext from "../../../context/GlobalContext";
 
 const ChatButton = () => {
-  const [contextState, , contextMiddleware] = useContext(GlobalContext);
-  const toggleShowChat = () =>
-    contextMiddleware.setShowChat((showChat) => !showChat);
+  const [, , contextMiddleware] = useContext(GlobalContext);
   return (
     <>
-      <div onClick={toggleShowChat} className="chatbutton-container">
-        <di>
+      <div
+        onClick={() => contextMiddleware.setIsShowChat(true)}
+        className="chatbutton-container"
+      >
+        <div>
           <i className="bi bi-outline-message" />
-          <AiOutlineMessage
-            size="2.6rem"
-            color="white"
-            // style={{ marginBottom: "1rem" }}
+          <AiOutlineMessage size="2.6rem" color="white" />
+        </div>
+        <div>
+          <i className="bi bi-fillbell" />
+          <AiFillBell
+            style={{ marginTop: "-4rem", marginRight: "-1.2rem" }}
+            size="1.3rem"
+            color="red"
           />
-        </di>
+        </div>
       </div>
     </>
   );

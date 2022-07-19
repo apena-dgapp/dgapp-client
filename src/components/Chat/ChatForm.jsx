@@ -1,19 +1,20 @@
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
-import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { MdOutlineArrowForwardIos, MdSearch } from "react-icons/md";
 import { BiHide } from "react-icons/bi";
 import GlobalContext from "../../context/GlobalContext";
+import Images from "../../common/images";
 
-function ChatForm({ socket, username, room, persons }) {
+function ChatForm({ socket, username, room, persons, getRoom }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]); //Its contains all the message from a chat
-  const [isTyping, setIsTyping] = useState(false);
+  //   const [isTyping, setIsTyping] = useState(false);
   const [contextState, , contextMiddleware] = useContext(GlobalContext);
-  const toggleShowChat = () =>
-    contextMiddleware.setShowChat((showChat) => !showChat);
+  const [showHist, setShowHist] = useState(false);
 
-  console.log(contextState.showChat);
+  //   console.log(room);
+  //   console.log(username);
 
   const sendMessage = async () => {
     //Method that send the message
@@ -70,17 +71,22 @@ function ChatForm({ socket, username, room, persons }) {
       <div className="chat-window">
         <div className="chat-header">
           <p>
-            <i onClick={toggleShowChat} className="bi bi-hide" />
+            <i className="bi bi-hide" />
             <BiHide
               size="1.5rem"
               color="white"
-              style={{ marginRight: "12.5rem" }}
+              style={{ marginRight: "17.2rem" }}
+              onClick={() => contextMiddleware.setIsShowChat(false)}
             />
-            Historial
+            {/* <p onClick={() => setShowHist((showHist) => !showHist)}>
+              Historial
+            </p> */}
+
             <i className="md md-outline-arrow-forward-ios" />
             <MdOutlineArrowForwardIos
-              size="1rem"
+              size="1.5rem"
               color="white"
+              onClick={() => setShowHist((showHist) => !showHist)}
               //   style={{ marginRight: "3rem" }}
             />
           </p>
@@ -123,22 +129,40 @@ function ChatForm({ socket, username, room, persons }) {
           <button onClick={sendMessage}>&#9658;</button>
         </div>
       </div>
-      <div className="chat-historical">
+      <div
+        style={{ display: !showHist ? "none" : "flex" }}
+        className="chat-historical"
+      >
+        <input placeholder="Buscar persona..." className="chat-hist-input" />
+        {/* <i className="md md-search" />
+        <MdSearch size="1rem" color="white" /> */}
         {persons?.map((person) => {
-          return (
+          return person.isActive &&
+            person.personId !== contextState.personId ? (
             <div
               id={person.personId}
               key={person.personId}
               className="chat-hist-container"
+              onClick={() => getRoom(person.personId)}
             >
-              <div className="chat-hist-img">
-                <img className="chat-hist-img" src={person.photo} alt="" />
+              <div className="chat-hist-img-cont">
+                <img
+                  className="chat-hist-img"
+                  src={person.photo ? person.photo : Images.noImg}
+                  alt=""
+                />
+                <div className="chat-hist-name">
+                  <p>{person.fullName.split(" ")[0]}</p>
+                </div>
               </div>
-              <div className="chat-hist-name">
-                <p>{person.fullName.split(" ")[0]}</p>
+
+              <div className="chat-hist-msg">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry's standard dummy
+                text ever since the 1500
               </div>
             </div>
-          );
+          ) : null;
         })}
       </div>
     </>
