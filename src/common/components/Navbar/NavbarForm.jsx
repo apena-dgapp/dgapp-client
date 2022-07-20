@@ -54,7 +54,7 @@ const Navbar = ({
                 alt=""
               />
             </p>
-            <ul style={{ width: "8rem" }}>
+            <ul style={{ width: "10rem" }}>
               <li>
                 <p onClick={inConstruction}>Crear Ticket</p>
               </li>

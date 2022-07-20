@@ -139,23 +139,7 @@ const Header = () => {
       location.pathname !== `${process.env.REACT_APP_RUTE}/employeeprofile` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/chat` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory`
-        ? // location.pathname !== "/" &&
-          // location.pathname !== "/intranet" &&
-          // location.pathname !== "/home" &&
-          // location.pathname !== "/siglepost" &&
-          // location.pathname !== "/allpost" &&
-          // location.pathname !== "/userregister" &&
-          // location.pathname !== "/newpost" &&
-          // location.pathname !== "/employee" &&
-          // location.pathname !== "/aboutus" &&
-          // location.pathname !== "/employeetree" &&
-          // location.pathname !== "/employeeedit" &&
-          // location.pathname !== "/employeenew" &&
-          // location.pathname !== "/docdynamic" &&
-          // location.pathname !== "/employeeprofile" &&
-          // location.pathname !== "/chat" &&
-          // location.pathname !== "/employeedirectory"
-          setIsHidden(true)
+        ? setIsHidden(true)
         : setIsHidden(false);
     }
 

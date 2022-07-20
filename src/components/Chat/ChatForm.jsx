@@ -6,41 +6,33 @@ import { BiHide } from "react-icons/bi";
 import GlobalContext from "../../context/GlobalContext";
 import Images from "../../common/images";
 
-function ChatForm({ socket, username, room, persons, getRoom }) {
+function ChatForm({ socket, username, room, persons, getRoom, userHeader }) {
   const [currentMessage, setCurrentMessage] = useState("");
-  const [messageList, setMessageList] = useState([]); //Its contains all the message from a chat
-  //   const [isTyping, setIsTyping] = useState(false);
+  const [messageList, setMessageList] = useState([]);
   const [contextState, , contextMiddleware] = useContext(GlobalContext);
   const [showHist, setShowHist] = useState(false);
 
-  //   console.log(room);
-  //   console.log(username);
-
   const sendMessage = async () => {
-    //Method that send the message
     if (currentMessage !== "") {
-      //It confirm that the message is not empty
       const messageData = {
-        // This object contains all the information that is gonna be send, like which room, etc.
-        room: room, //Get the actual room
-        author: username, //Get the person who's sends the message
-        message: currentMessage, //Get the actual message
+        room: room,
+        author: username,
+        message: currentMessage,
         time:
           new Date(Date.now()).getHours() +
           ":" +
-          new Date(Date.now()).getMinutes(), //Get the actual time
+          new Date(Date.now()).getMinutes(),
       };
 
       await socket.emit("send_message", messageData);
-      setMessageList((list) => [...list, messageData]); //its add your current message to the list
-
+      setMessageList((list) => [...list, messageData]);
       setCurrentMessage("");
     }
   };
 
   function handleTyping() {
     if (currentMessage !== "") {
-      socket.emit("typing", { username, room }); //It's alert when the user is typing
+      socket.emit("typing", { username, room });
     } else {
       socket.emit("notTyping", { username, room });
     }
@@ -52,14 +44,10 @@ function ChatForm({ socket, username, room, persons, getRoom }) {
     });
 
     socket.on("user-isTyping", ({ username, room }) => {
-      //Determine if the other user is typing
-
       console.log(`the user ${username} in the room: ${room} is typing`);
     });
 
     socket.on("user-isNotTyping", ({ username, room }) => {
-      //Determine if the other user isn't typing anymore
-
       console.log(
         `the user ${username} in the room: ${room} is not typing anymore`
       );
@@ -70,26 +58,47 @@ function ChatForm({ socket, username, room, persons, getRoom }) {
     <>
       <div className="chat-window">
         <div className="chat-header">
-          <p>
-            <i className="bi bi-hide" />
-            <BiHide
-              size="1.5rem"
-              color="white"
-              style={{ marginRight: "17.2rem" }}
-              onClick={() => contextMiddleware.setIsShowChat(false)}
-            />
-            {/* <p onClick={() => setShowHist((showHist) => !showHist)}>
-              Historial
-            </p> */}
+          <i className="bi bi-hide" />
+          <BiHide
+            size="1.5rem"
+            color="white"
+            style={{ marginLeft: "0.2rem" }}
+            onClick={() => contextMiddleware.setIsShowChat(false)}
+          />
+          <div className="chat-hist-hearder-img-name">
+            {userHeader.id ? (
+              <img
+                className="chat-hist-header-img"
+                src={userHeader.photo ? userHeader.photo : Images.noImg}
+                alt=""
+              />
+            ) : null}
 
-            <i className="md md-outline-arrow-forward-ios" />
-            <MdOutlineArrowForwardIos
-              size="1.5rem"
-              color="white"
-              onClick={() => setShowHist((showHist) => !showHist)}
-              //   style={{ marginRight: "3rem" }}
-            />
-          </p>
+            <div className="chat-hist-header-name">
+              <p>{userHeader.name}</p>
+            </div>
+          </div>
+
+          {!showHist ? (
+            <>
+              <i className="md md-outline-arrow-forward-ios" />
+              <MdOutlineArrowForwardIos
+                size="1.5rem"
+                color="white"
+                onClick={() => setShowHist((showHist) => !showHist)}
+              />
+            </>
+          ) : (
+            <>
+              <i className="md md-outline-arrow-forward-ios" />
+              <MdOutlineArrowForwardIos
+                size="1.5rem"
+                color="white"
+                style={{ transform: "rotate(180deg)" }}
+                onClick={() => setShowHist((showHist) => !showHist)}
+              />
+            </>
+          )}
         </div>
         <ScrollToBottom className="message-container">
           <div className="chat-body">
@@ -98,7 +107,7 @@ function ChatForm({ socket, username, room, persons, getRoom }) {
                 <div
                   key={index}
                   className="message"
-                  id={username === messageContent.author ? "you" : "other"} //When the username is equal at the author in the array, its apply the corresponding css
+                  id={username === messageContent.author ? "you" : "other"}
                 >
                   <div>
                     <div className="message-content">
@@ -133,7 +142,9 @@ function ChatForm({ socket, username, room, persons, getRoom }) {
         style={{ display: !showHist ? "none" : "flex" }}
         className="chat-historical"
       >
-        <input placeholder="Buscar persona..." className="chat-hist-input" />
+        <div className="chat-hist-input-cont">
+          <input placeholder="Buscar persona..." className="chat-hist-input" />
+        </div>
         {/* <i className="md md-search" />
         <MdSearch size="1rem" color="white" /> */}
         {persons?.map((person) => {
@@ -143,7 +154,16 @@ function ChatForm({ socket, username, room, persons, getRoom }) {
               id={person.personId}
               key={person.personId}
               className="chat-hist-container"
-              onClick={() => getRoom(person.personId)}
+              onClick={() =>
+                getRoom({
+                  id: person.personId,
+                  name:
+                    person.firstName.split(" ")[0] +
+                    " " +
+                    person.lastName.split(" ")[0],
+                  photo: person.photo,
+                })
+              }
             >
               <div className="chat-hist-img-cont">
                 <img
@@ -152,7 +172,11 @@ function ChatForm({ socket, username, room, persons, getRoom }) {
                   alt=""
                 />
                 <div className="chat-hist-name">
-                  <p>{person.fullName.split(" ")[0]}</p>
+                  <p>
+                    {person.firstName.split(" ")[0] +
+                      " " +
+                      person.lastName.split(" ")[0]}
+                  </p>
                 </div>
               </div>
 

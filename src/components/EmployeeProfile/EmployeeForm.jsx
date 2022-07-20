@@ -24,7 +24,7 @@ const EmployeeForm = ({
   // });
 
   if (profile) {
-    const firstN = profile.firstName.split(" ")[0];
+    const firstN = profile.firstName.split(" ");
     const lastN = profile.lastName.split(" ");
     var firstNSplit = firstN[0];
     var lastNSplit = lastN[0];

@@ -16,7 +16,6 @@ const ContextMiddleware = (props) => {
         personId:'',
         isLoading:false,
         isShowChat:false,
-        room:""
         // fullName: '',
         // position:'',
         // photo:''
@@ -123,16 +122,7 @@ const ContextMiddleware = (props) => {
             setLocalCache(localContext);
         }
 
-        const setRoom = (room) => {
-            localContext = Object.assign(
-                {},
-                { ...localContext },
-                { room: room}
-            );
-            setLocalCache(localContext);
-        }
-
-        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setIsShowChat, showSpinner,setRoom};
+        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setIsShowChat, showSpinner};
     };
 
     return (

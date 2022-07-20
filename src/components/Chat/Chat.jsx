@@ -4,43 +4,35 @@ import io from "socket.io-client";
 import GlobalContext from "../../context/GlobalContext";
 import { getAllPersons } from "../../api/person";
 
-const socket = io.connect(process.env.REACT_APP_RUTE_SOCKET); //The url where the socket.io is running
+const socket = io.connect(process.env.REACT_APP_RUTE_SOCKET);
 
 const Chat = () => {
-  //   const [username, setUsername] = useState("");
-  //   const [room, setRoom] = useState("");
-  //   const [showChat, setShowChat] = useState(false);
-  const [contextState, , contextMiddleware] = useContext(GlobalContext);
+  const [contextState] = useContext(GlobalContext);
   const [arrayAllPersons, setArrayAllPersons] = useState();
-
-  //   const profileChat = state.location.state;
+  const [room, setRoom] = useState("");
+  const [userHeader, setUserHeader] = useState({
+    id: "",
+    name: "",
+    photo: "",
+  });
 
   const getRoom = (hostId) => {
-    if (contextState.personId >= hostId) {
-      socket.emit("join_room", contextState.personId + "-" + hostId);
+    setUserHeader({
+      id: hostId.id,
+      name: hostId.name,
+      photo: hostId.photo,
+    });
+    if (contextState.personId >= hostId.id) {
+      return setRoom(contextState.personId + "-" + hostId.id);
     } else {
-      socket.emit("join_room", hostId + "-" + contextState.personId);
+      return setRoom(hostId.id + "-" + contextState.personId);
     }
-
-    // if (contextState.personId >= hostId) {
-    //   contextMiddleware.setRoom(contextState.personId + "-" + hostId);
-    // } else {
-    //   contextMiddleware.setRoom(hostId + "-" + contextState.personId);
-    // }
   };
 
-  //   const createRoom = (getRoom) => {
-  //     socket.emit("join_room", getRoom);
-  //   };
-
-  //   console.log(io.sockets.adapter.rooms.get(roomName).size);
+  socket.emit("join_room", room);
 
   useEffect(() => {
     let unmounted = false;
-
-    socket.on("active-room", (roomData) => {
-      console.log(roomData);
-    });
 
     getAllPersons()
       .then((res) => {
@@ -58,16 +50,17 @@ const Chat = () => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.room]);
+  }, []);
 
   return (
     <>
       <ChatForm
         socket={socket}
         username={contextState.userName}
-        room={contextState.room}
+        room={room}
         persons={arrayAllPersons}
         getRoom={getRoom}
+        userHeader={userHeader}
       />
     </>
   );
