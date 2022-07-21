@@ -17,7 +17,7 @@ const Navbar = ({
   employeeNew,
   employeeTree,
   isHidden,
-  goToPDF,
+  goToFile,
 }) => {
   const [contextState] = useContext(GlobalContext);
   const [active, setActive] = useState("menu_items");
@@ -27,7 +27,6 @@ const Navbar = ({
       : setActive("menu_items");
   };
 
-  const path = "/public/El Principito.pdf";
   return (
     <>
       <nav style={{ display: isHidden ? "none" : null }} className="bar_menu">
@@ -73,7 +72,9 @@ const Navbar = ({
                     <p onClick={inConstruction}>Formulario</p>
                   </li>
                   <li>
-                    <p onClick={inConstruction}>Carta Laboral</p>
+                    <p onClick={() => goToFile("carta-laboral")}>
+                      Carta Laboral
+                    </p>
                   </li>
                 </ul>
               </li>
@@ -90,14 +91,14 @@ const Navbar = ({
               </li>
               <li>
                 {/* <p on4Click={() => goToPDF()}>Boletin</p> */}
-                <p onClick={inConstruction}>Boletin</p>
-                {/* <a
-                  href="http://localhost:3000/public/Boletin.pdf"
+                {/* <p onClick={inConstruction}>Boletin</p> */}
+                <a
+                  className=""
+                  href="Boletin No.3 Julio 2022.html"
                   target="_blank"
-                  rel="noreferrer"
                 >
-                  Boletin
-                </a> */}
+                  Botelin
+                </a>
               </li>
             </ul>
           </li>
@@ -125,12 +126,11 @@ const Navbar = ({
 
         <figure className="container-menu-right">
           <div className="nav-user-txt-cont">
-            <div
-              id={person.personId}
-              className="nav-user-name"
-            >{`Hola, ${person.fullName}`}</div>
-            <div className="nav-user-position">{person.position}</div>
-            <div className="nav-user-notf-cont"></div>
+            <div id={person.personId} className="nav-user-name">{`Hola, ${
+              person.fullName.split(" ")[0]
+            }`}</div>
+            {/* <div className="nav-user-position">{person.position}</div> */}
+            {/* <div className="nav-user-notf-cont"></div> */}
           </div>
           <div className="dropdown">
             <i className="md md-keyboard-arrow-down" />
@@ -140,7 +140,7 @@ const Navbar = ({
               className="dropdown-toggle"
               data-bs-toggle="dropdown"
               aria-expanded="false"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", marginTop: "0.3rem" }}
             />
             <img
               id="dropdownMenuButton1"

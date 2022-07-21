@@ -18,10 +18,6 @@ const EmployeeDirectoryForm = ({
   page,
 }) => {
   const [contextMiddleware, , contextState] = useContext(GlobalContext);
-  // console.log(pageLength);
-  // console.log(page);
-
-  console.log(filteredArryPersons().length);
 
   return (
     <>
@@ -106,6 +102,7 @@ const EmployeeDirectoryForm = ({
                   departament={person.Departament.name}
                   email={person.email.toLowerCase()}
                   phone={person.phoneNumber}
+                  cel={person.celNumber}
                   goToProfile={goToProfile}
                   isActive={person.isActive}
                 />
@@ -121,6 +118,7 @@ const EmployeeDirectoryForm = ({
                   departament={person.Departament.name}
                   email={person.email.toLowerCase()}
                   phone={person.phoneNumber}
+                  cel={person.celNumber}
                   goToProfile={goToProfile}
                   isActive={person.isActive}
                 />

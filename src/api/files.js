@@ -10,3 +10,17 @@ export const apiFiles = async (category) => {
     })
 }
 
+export const apiOneFile = async (name) => {
+    const body = {name};
+    return fetch(`${process.env.REACT_APP_API}files/getfile`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }   
+    })
+}
+
+
+

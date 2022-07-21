@@ -11,8 +11,6 @@
     -webkit-box-orient: vertical;
     font-size: 1rem;
 }
-
-
 .card-costum{
     width: 80vw;
     height: 58vh;
@@ -81,6 +79,12 @@
     cursor: pointer;
 }
 
-
+.img-costum-card-featured{
+    max-width: 17.8rem !important;
+    max-height: 12rem !important;
+    min-width: 17.8rem !important;
+    min-height: 12rem !important;
+    object-fit: cover !important;
+}
 
 

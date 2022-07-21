@@ -2,7 +2,12 @@ import React, { useEffect, useContext } from "react";
 import { BsFlag } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import { GiTrophyCup } from "react-icons/gi";
-import { MdArrowForwardIos, MdEmail, MdPhoneInTalk } from "react-icons/md";
+import {
+  MdArrowForwardIos,
+  MdEmail,
+  MdPhoneInTalk,
+  MdSmartphone,
+} from "react-icons/md";
 import { FaBirthdayCake } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import Images from "../../common/images/index";
@@ -18,10 +23,6 @@ const EmployeeForm = ({
 }) => {
   const history = useHistory();
   const [contextState] = useContext(GlobalContext);
-  // const [chat] = useState({
-  //   user: profile.firstName.split(" ")[0],
-  //   room: contextState.personId + "-" + profile.personId,
-  // });
 
   if (profile) {
     const firstN = profile.firstName.split(" ");
@@ -77,16 +78,6 @@ const EmployeeForm = ({
     reportsTofirstN,
     reportsTolastN,
   ]);
-
-  const goToChat = () => {
-    history.push({
-      pathname: "./chat",
-      state: {
-        user: profile.firstName.split(" ")[0],
-        room: contextState.personId + "-" + profile.personId,
-      },
-    });
-  };
 
   const goToProfileReportTo = () => {
     history.push({
@@ -215,13 +206,13 @@ const EmployeeForm = ({
               </button>
             ) : null}
 
-            <button
+            {/* <button
               onClick={goToChat}
               type="button"
               className="btn btn-light employee-btn"
             >
               Chatear
-            </button>
+            </button> */}
             {contextState.isAdmin ? (
               <div className="onoffswitch1">
                 <input
@@ -317,11 +308,19 @@ const EmployeeForm = ({
                 </p>
               </div>
               <div className="employee-info-container">
-                <i className="md md-phone-in-talk" />
+                <i className="md md-phone-in-talk mt-5" />
                 <MdPhoneInTalk size="1.5em" color="gray" />
                 <p className="employee-upcoming-birthday">Telefono:</p>
                 <p className="employee-contact-email">
                   {profile.phoneNumber ? profile.phoneNumber : null}
+                </p>
+              </div>
+              <div className="employee-info-container">
+                <i className="md md-smart-phone" />
+                <MdSmartphone size="1.5em" color="gray" />
+                <p className="employee-upcoming-birthday">Telefono:</p>
+                <p className="employee-contact-email">
+                  {profile.celNumber ? profile.celNumber : null}
                 </p>
               </div>
             </div>

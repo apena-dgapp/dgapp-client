@@ -114,7 +114,6 @@ const Routes = () => {
           path={`${process.env.REACT_APP_RUTE}/employeedirectory`}
           component={EmployeeDirectory}
         />
-        {/* <Route path={`${process.env.REACT_APP_RUTE}/chat`} component={Chat} /> */}
         <Route
           exact
           path={`${process.env.REACT_APP_RUTE}*`}

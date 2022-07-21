@@ -39,6 +39,7 @@ const EmployeeDirectory = () => {
         return res.json();
       })
       .then((res) => {
+        console.log(res);
         if (!unmounted) {
           setArrayAllPersons((arrayAllPersons) => [...arrayAllPersons, ...res]);
           setPageLength(res.length);

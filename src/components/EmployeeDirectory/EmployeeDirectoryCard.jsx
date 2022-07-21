@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import Images from "../../common/images/index";
-import { MdEmail, MdPhoneInTalk, MdCircle } from "react-icons/md";
+import { MdEmail, MdPhoneInTalk, MdCircle, MdSmartphone } from "react-icons/md";
 import GlobalContext from "../../context/GlobalContext";
 const CardForm = (props) => {
   const [contextState] = useContext(GlobalContext);
+
   return (
     <>
       <div className="emDirectory-card">
@@ -58,6 +59,17 @@ const CardForm = (props) => {
                 color="darkcyan"
               />
               {props.phone ? props.phone : "No definido!"}
+            </p>
+          </div>
+          <div className="mb-2">
+            <p className="emDirectory-card-text-contact">
+              <i className="md md-smart-phone" />
+              <MdSmartphone
+                style={{ marginRight: "0.5rem" }}
+                size="1.5em"
+                color="darkcyan"
+              />
+              {props.cel ? props.cel : "No definido!"}
             </p>
           </div>
           <div className="mb-2">

@@ -59,7 +59,11 @@ const CardForm = (props) => {
   return (
     <>
       <div className="card" onClick={click}>
-        <img src={props.img} className="card-img-top" alt="..." />
+        <img
+          src={props.img}
+          className="card-img-top img-costum-card-featured"
+          alt="..."
+        />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
           <p

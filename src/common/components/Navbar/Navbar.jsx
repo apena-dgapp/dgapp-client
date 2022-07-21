@@ -3,7 +3,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import GlobalContext from "../../../context/GlobalContext";
 import NavbarForm from "./NavbarForm";
 import { getOnePerson } from "../../../api/person";
-import { apiFiles } from "../../../api/files";
+import { apiOneFile } from "../../../api/files";
 
 const Header = () => {
   const history = useHistory();
@@ -24,7 +24,7 @@ const Header = () => {
     photo: "",
   });
 
-  const [file, setFile] = useState("");
+  // const [file, setFile] = useState("");
 
   const employeeProfile = (e) => {
     const employeeId = e.currentTarget.id;
@@ -70,33 +70,51 @@ const Header = () => {
     history.push("./employeetree");
   };
 
-  const goToPDF = async () => {
-    // console.log(file.file);
-    history.push({
-      pathname: "./pdf",
-      state: file.file,
-    });
-  };
-
-  useEffect(() => {
-    let unmounted = false;
-    apiFiles("BOLETIN")
+  const goToFile = (name) => {
+    apiOneFile(name)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
-        // contextMiddleware.showSpinner(true);
-        if (!unmounted) {
-          setFile(res[0]);
-        }
+        history.push({
+          pathname: "./pdf",
+          state: res[0].file,
+        });
         // contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
         // contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
+  };
+
+  // const goToDownload = (e, name) => {
+  //   history.push({
+  //     pathname: "./download",
+  //     state: name,
+  //   });
+  // };
+
+  useEffect(() => {
+    let unmounted = false;
+    // apiFiles("PERSONAL DOCUMENT")
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((res) => {
+    //     // contextMiddleware.showSpinner(true);
+    //     if (!unmounted) {
+    //       setFile(res);
+    //     }
+    //     // contextMiddleware.showSpinner(false);
+    //   })
+    //   .catch((err) => {
+    //     // contextMiddleware.showSpinner(false);
+    //     console.error(err.status);
+    //   });
 
     if (contextState.personId) {
+      contextMiddleware.showSpinner(true);
       getOnePerson(contextState.personId)
         .then((res) => {
           return res.json();
@@ -112,14 +130,11 @@ const Header = () => {
               photo: res.photo,
             });
           }
-          // setTimeout(() => {
-          //   contextMiddleware.showSpinner(false);
-          // }, 1000);
-          // contextMiddleware.showSpinner(false);
+          contextMiddleware.showSpinner(false);
         })
         .catch((err) => {
           console.error(err.status);
-          // contextMiddleware.showSpinner(false);
+          contextMiddleware.showSpinner(false);
         });
     }
 
@@ -163,8 +178,7 @@ const Header = () => {
         employeeNew={employeeNew}
         employeeTree={employeeTree}
         isHidden={isHidden}
-        file={file}
-        goToPDF={goToPDF}
+        goToFile={goToFile}
       />
     </>
   );

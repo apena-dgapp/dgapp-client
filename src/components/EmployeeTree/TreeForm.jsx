@@ -102,7 +102,7 @@ const renderForeignObjectNode = ({
       >
         <img
           onClick={employeeProfile}
-          id={!nodeDatum.personId}
+          id={nodeDatum.personId}
           src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}
           className={classes.photo}
           alt="..."
