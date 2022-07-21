@@ -69,7 +69,7 @@ const Navbar = ({
                 </p>
                 <ul className="menu-left">
                   <li>
-                    <p onClick={inConstruction}>Formulario</p>
+                    <p onClick={() => goToFile("carta-laboral")}>Formulario</p>
                   </li>
                   <li>
                     <p onClick={() => goToFile("carta-laboral")}>

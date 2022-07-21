@@ -307,8 +307,11 @@ margin-left: 0.5rem;
     margin-top: -1rem ;
 }
 .chat-hist-input-cont{
-    margin-right: 19rem;  
+    margin-right: -1rem;  
+    width: 20rem;
+    display: flex;
 }
+.chat-hist-input-icon{}
 .chat-hist-input{
     background-color: #263238;
     width: 20rem;

@@ -192,7 +192,6 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
       <div style={{ marginBottom: "8rem" }}>
         {arrayImg
           ? arrayImg.files.map((file) => {
-              // console.log(file.src.size);
               return file.type === "pdf" ? (
                 <div key={file.filesId} id={file.filesId}>
                   <div className="regulations-data-grid">

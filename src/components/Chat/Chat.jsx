@@ -1,10 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import ChatForm from "./ChatForm";
-import io from "socket.io-client";
 import GlobalContext from "../../context/GlobalContext";
 import { getAllPersons } from "../../api/person";
-
-const socket = io.connect(process.env.REACT_APP_RUTE_SOCKET);
+import socket from "../../utils/socket";
 
 const Chat = () => {
   const [contextState] = useContext(GlobalContext);
@@ -29,7 +27,11 @@ const Chat = () => {
     }
   };
 
-  socket.emit("join_room", room);
+  useEffect(() => {
+    if (room) {
+      socket.emit("join_room", room);
+    }
+  });
 
   useEffect(() => {
     let unmounted = false;

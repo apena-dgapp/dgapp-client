@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
-import { MdOutlineArrowForwardIos, MdSearch } from "react-icons/md";
+import { MdOutlineArrowForwardIos, MdSearch, MdCircle } from "react-icons/md";
 import { BiHide } from "react-icons/bi";
 import GlobalContext from "../../context/GlobalContext";
 import Images from "../../common/images";
@@ -52,6 +52,10 @@ function ChatForm({ socket, username, room, persons, getRoom, userHeader }) {
         `the user ${username} in the room: ${room} is not typing anymore`
       );
     });
+
+    return () => {
+      socket.off();
+    };
   }, [socket]);
 
   return (
@@ -145,8 +149,19 @@ function ChatForm({ socket, username, room, persons, getRoom, userHeader }) {
         <div className="chat-hist-input-cont">
           <input placeholder="Buscar persona..." className="chat-hist-input" />
         </div>
-        {/* <i className="md md-search" />
-        <MdSearch size="1rem" color="white" /> */}
+        {/* <div className="chat-hist-input-icon">
+          <i className="md md-search" />
+          <MdSearch
+            size="1rem"
+            color="red"
+            style={{
+              marginLeft: "18rem",
+              marginTop: "-2.5rem",
+              // position: "absolute",
+            }}
+          />
+        </div> */}
+
         {persons?.map((person) => {
           return person.isActive &&
             person.personId !== contextState.personId ? (
@@ -171,6 +186,20 @@ function ChatForm({ socket, username, room, persons, getRoom, userHeader }) {
                   src={person.photo ? person.photo : Images.noImg}
                   alt=""
                 />
+                <div className="d-flex">
+                  {/* <p style={{ fontWeight: "bold", color: "green" }}>Activo</p> */}
+                  <i className="md md-phone-in-talk" />
+                  <MdCircle
+                    style={{
+                      marginLeft: "-0.6rem",
+                      marginTop: "1.1rem",
+                      border: "2px solid white",
+                      borderRadius: "50%",
+                    }}
+                    size="0.8rem"
+                    color="green"
+                  />
+                </div>
                 <div className="chat-hist-name">
                   <p>
                     {person.firstName.split(" ")[0] +

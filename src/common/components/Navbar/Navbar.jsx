@@ -4,6 +4,7 @@ import GlobalContext from "../../../context/GlobalContext";
 import NavbarForm from "./NavbarForm";
 import { getOnePerson } from "../../../api/person";
 import { apiOneFile } from "../../../api/files";
+import socket from "../../../utils/socket";
 
 const Header = () => {
   const history = useHistory();
@@ -12,9 +13,6 @@ const Header = () => {
 
   //InitialState - ContexState
   const [contextState, , contextMiddleware] = useContext(GlobalContext);
-  // var path = require("path");
-  // var rute = path.resolve(__dirname, "/src/common/Docs/Boletin No. 03.pdf");
-  // console.log(rute);
 
   const [person, setPerson] = useState({
     personId: "",
@@ -44,7 +42,9 @@ const Header = () => {
   };
 
   const logOut = () => {
+    socket.disconnect();
     contextMiddleware.signOut();
+    contextMiddleware.setIsShowChat();
     history.push("./");
   };
 
@@ -80,38 +80,14 @@ const Header = () => {
           pathname: "./pdf",
           state: res[0].file,
         });
-        // contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
-        // contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
   };
 
-  // const goToDownload = (e, name) => {
-  //   history.push({
-  //     pathname: "./download",
-  //     state: name,
-  //   });
-  // };
-
   useEffect(() => {
     let unmounted = false;
-    // apiFiles("PERSONAL DOCUMENT")
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((res) => {
-    //     // contextMiddleware.showSpinner(true);
-    //     if (!unmounted) {
-    //       setFile(res);
-    //     }
-    //     // contextMiddleware.showSpinner(false);
-    //   })
-    //   .catch((err) => {
-    //     // contextMiddleware.showSpinner(false);
-    //     console.error(err.status);
-    //   });
 
     if (contextState.personId) {
       contextMiddleware.showSpinner(true);

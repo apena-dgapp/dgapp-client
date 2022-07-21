@@ -16,7 +16,6 @@ import GlobalContext from "../../context/GlobalContext";
 const EmployeeForm = ({
   profile,
   reportsTo,
-  generateDocument,
   msgDisable,
   edit,
   handleIsActive,
@@ -135,9 +134,13 @@ const EmployeeForm = ({
               )}
               <div className="employee-report-txt">
                 {profile.personId !== 1 ? (
-                  <p className="employee-report-position m-0">
+                  <p
+                    onClick={reportsTo ? goToProfileReportTo : null}
+                    className="employee-report-position m-0"
+                  >
                     <i className="md md-arrow-forward-ios" />
                     <MdArrowForwardIos
+                      style={{ cursor: "pointer" }}
                       className="employee-report-arrow"
                       size="1.5em"
                       color="grey"
