@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/intranet/static/css/main.82b60903.chunk.css",
-    "main.js": "/intranet/static/js/main.813f509b.chunk.js",
-    "main.js.map": "/intranet/static/js/main.813f509b.chunk.js.map",
+    "main.css": "/intranet/static/css/main.e6b53152.chunk.css",
+    "main.js": "/intranet/static/js/main.0cc1ec76.chunk.js",
+    "main.js.map": "/intranet/static/js/main.0cc1ec76.chunk.js.map",
     "runtime-main.js": "/intranet/static/js/runtime-main.4d9ab489.js",
     "runtime-main.js.map": "/intranet/static/js/runtime-main.4d9ab489.js.map",
     "static/css/2.ce5d0eb8.chunk.css": "/intranet/static/css/2.ce5d0eb8.chunk.css",
-    "static/js/2.632a39df.chunk.js": "/intranet/static/js/2.632a39df.chunk.js",
-    "static/js/2.632a39df.chunk.js.map": "/intranet/static/js/2.632a39df.chunk.js.map",
+    "static/js/2.b807aa71.chunk.js": "/intranet/static/js/2.b807aa71.chunk.js",
+    "static/js/2.b807aa71.chunk.js.map": "/intranet/static/js/2.b807aa71.chunk.js.map",
     "index.html": "/intranet/index.html",
     "static/css/2.ce5d0eb8.chunk.css.map": "/intranet/static/css/2.ce5d0eb8.chunk.css.map",
-    "static/css/main.82b60903.chunk.css.map": "/intranet/static/css/main.82b60903.chunk.css.map",
-    "static/js/2.632a39df.chunk.js.LICENSE.txt": "/intranet/static/js/2.632a39df.chunk.js.LICENSE.txt",
+    "static/css/main.e6b53152.chunk.css.map": "/intranet/static/css/main.e6b53152.chunk.css.map",
+    "static/js/2.b807aa71.chunk.js.LICENSE.txt": "/intranet/static/js/2.b807aa71.chunk.js.LICENSE.txt",
     "static/media/MicrosoftTeams-image (4).c3ea5a81.png": "/intranet/static/media/MicrosoftTeams-image (4).c3ea5a81.png",
     "static/media/index.scss": "/intranet/static/media/vintage-g347851f6b_1920.79897bf2.jpg",
     "static/media/cumpleanos.7f0389eb.png": "/intranet/static/media/cumpleanos.7f0389eb.png",
+    "static/media/curso.6f8bd9b7.png": "/intranet/static/media/curso.6f8bd9b7.png",
     "static/media/diagram.a56f9f37.png": "/intranet/static/media/diagram.a56f9f37.png",
     "static/media/director.7474ee95.jpg": "/intranet/static/media/director.7474ee95.jpg",
     "static/media/galeria-de-imagenes-active.d6ec8093.png": "/intranet/static/media/galeria-de-imagenes-active.d6ec8093.png",
@@ -34,8 +35,8 @@
   "entrypoints": [
     "static/js/runtime-main.4d9ab489.js",
     "static/css/2.ce5d0eb8.chunk.css",
-    "static/js/2.632a39df.chunk.js",
-    "static/css/main.82b60903.chunk.css",
-    "static/js/main.813f509b.chunk.js"
+    "static/js/2.b807aa71.chunk.js",
+    "static/css/main.e6b53152.chunk.css",
+    "static/js/main.0cc1ec76.chunk.js"
   ]
 }

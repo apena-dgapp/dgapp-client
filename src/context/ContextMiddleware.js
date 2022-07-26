@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import GlobalContext from '../context/GlobalContext';
 import LangEnglish from '../common/lang/en-US.json';
 import LangSpanish from '../common/lang/es-DR.json';
+// import io from "socket.io-client";
 
 const ContextMiddleware = (props) => {
     const [contextState, setContextState] = useState(getLocalCache() ||{
@@ -16,22 +17,14 @@ const ContextMiddleware = (props) => {
         personId:'',
         isLoading:false,
         isShowChat:false,
-        // fullName: '',
-        // position:'',
-        // photo:''
+        clients:'',
     });
+   
 
     function getLocalCache () {
         let localContextCached = localStorage.getItem("localContext");
         return localContextCached === null ? null : JSON.parse(localContextCached);
     };
-
-    // useEffect(() => {
-    //     const localContextCached = getLocalCache();
-    //     if (localContextCached !== null) {
-    //         setContextState(localContextCached);
-    //     }
-    // }, []);
 
     const langError = () =>{
       if(contextState.appLocale && contextState.appMessage){
@@ -68,16 +61,16 @@ const ContextMiddleware = (props) => {
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                { token: '', personId:'', userName:'', isAdmin:false, isAuth:false }
+                { token: '', personId:'', userName:'', isAdmin:false, isAuth:false, clients:'' }
             );
             setLocalCache(localContext);
         };
 
-           const newUserName = (personId, userName, role, isAuth) =>{
+           const newUserName = (personId, userName, role, isAuth,clients) =>{
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                { personId:personId, userName: userName, isAdmin: role, isAuth: isAuth }
+                { personId:personId, userName: userName, isAdmin: role, isAuth: isAuth, clients:clients }
             );
             setLocalCache(localContext);
         };
@@ -122,7 +115,16 @@ const ContextMiddleware = (props) => {
             setLocalCache(localContext);
         }
 
-        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setIsShowChat, showSpinner};
+        const setClients = (clients) => {
+            localContext = Object.assign(
+                {},
+                { ...localContext },
+                { clients: clients}
+            );
+            setLocalCache(localContext);
+        }
+
+        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setIsShowChat, showSpinner,setClients};
     };
 
     return (

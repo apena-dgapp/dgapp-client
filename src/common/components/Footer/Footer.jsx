@@ -53,7 +53,8 @@ const Footer = () => {
       location.pathname !== `${process.env.REACT_APP_RUTE}/docdynamic` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/employeeprofile` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/chat` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory`
+      location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/training`
         ? setIsHidden(true)
         : setIsHidden(false);
     }

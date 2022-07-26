@@ -3,28 +3,16 @@ import { useHistory } from "react-router-dom";
 import DashboardForm from "./DashboardForm";
 import { getPost, interestPost } from "../../api/post";
 import GlobalContext from "../../context/GlobalContext";
-import socket from "../../utils/socket";
 
 const Dashboard = () => {
   const history = useHistory();
 
   const [arrayPost, setArrayPost] = useState([]);
   const [interest, setInterest] = useState("");
-  const [contextState, , contextMiddleware] = useContext(GlobalContext);
-
-  useEffect(() => {
-    socket.on("active-users", (users) => {
-      console.log(users);
-    });
-  }, []);
+  const [, , contextMiddleware] = useContext(GlobalContext);
 
   useEffect(() => {
     let unmounted = false;
-
-    if (!unmounted) {
-      if (contextState.personId)
-        socket.emit("user", { id: contextState.personId });
-    }
 
     getPost("Featured Post")
       .then((res) => {

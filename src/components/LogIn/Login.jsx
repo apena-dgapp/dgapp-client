@@ -50,9 +50,6 @@ const Login = () => {
         if (res.status >= 400) throw new toast.error("Usuario Incorrecto");
         return res.json();
       })
-      // .then((res) => {
-      //   if ((res.status = 500)) return toast.error("Error del servidor!!");
-      // })
       .then((res) => {
         contextMiddleware.newToken(res.token);
         contextMiddleware.newUserName(
@@ -61,6 +58,7 @@ const Login = () => {
           res.user.UserRoles[0].roleId === 1 ? true : false,
           (profile.isAuth = true)
         );
+
         history.push("./home");
       })
       .catch((err) => {

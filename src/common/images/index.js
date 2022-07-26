@@ -24,6 +24,7 @@ import chart from './diagram.png';
 import ministerio from './ministerio.jpg';
 import noImg from '../images/sinFoto.jpg';
 import director from '../images/director.jpg';
+import curso from '../images/curso.png';
  
 const Images = {
     iconUser,
@@ -50,7 +51,8 @@ const Images = {
     chart,
     ministerio,
     noImg,
-    director
+    director,
+    curso
 }
 
 export default Images;

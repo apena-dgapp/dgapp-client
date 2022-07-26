@@ -18,6 +18,7 @@ const Navbar = ({
   employeeTree,
   isHidden,
   goToFile,
+  training,
 }) => {
   const [contextState] = useContext(GlobalContext);
   const [active, setActive] = useState("menu_items");
@@ -104,7 +105,7 @@ const Navbar = ({
           </li>
 
           <li className="class-list">
-            <p onClick={inConstruction}>ENTRENAMIENTO</p>
+            <p onClick={training}>ENTRENAMIENTO</p>
           </li>
           {contextState.isAdmin ? (
             <li className="class-list">

@@ -5,7 +5,7 @@ import { getAllPersons } from "../../api/person";
 import socket from "../../utils/socket";
 
 const Chat = () => {
-  const [contextState] = useContext(GlobalContext);
+  const [contextState, , contextMiddleware] = useContext(GlobalContext);
   const [arrayAllPersons, setArrayAllPersons] = useState();
   const [room, setRoom] = useState("");
   const [userHeader, setUserHeader] = useState({
@@ -15,6 +15,7 @@ const Chat = () => {
   });
 
   const getRoom = (hostId) => {
+    socket.emit("join_room", room);
     setUserHeader({
       id: hostId.id,
       name: hostId.name,
@@ -26,15 +27,75 @@ const Chat = () => {
       return setRoom(hostId.id + "-" + contextState.personId);
     }
   };
+  console.log(room);
 
-  useEffect(() => {
-    if (room) {
-      socket.emit("join_room", room);
-    }
-  });
+  // useEffect(() => {
+  //   if (room) {
+  //     socket.emit("join_room", room);
+  //   }
+  // }, [room]);
 
   useEffect(() => {
     let unmounted = false;
+
+    // if (!unmounted) {
+    //   socket.emit("users");
+    //   socket.on("getclients", (data) => {
+    //     if (data.length === 0) {
+    //       console.log("arreglo vacio");
+    //       socket.emit("storeClientInfo", { customId: contextState.personId });
+    //       socket.emit("users");
+
+    //       socket.on("getclients", (data) => {
+    //         // contextMiddleware.setClients(data);
+    //         console.log(data);
+    //       });
+    //     } else {
+    //       console.log("arreglo lleno");
+    //       socket.emit("users");
+
+    //       socket.on("getclients", (data) => {
+    //         // contextMiddleware.setClients(data);
+    //         console.log(data);
+    //       });
+    //     }
+    //   });
+    // }
+
+    // if (!unmounted) {
+    //   console.log("entro");
+    //   socket.on("connect", function () {
+    //     if(!socket.connected) ? setIsConnected(true) : setIsConnected(false);
+    //   });
+
+    //   console.log(isConnected);
+    // }
+
+    // socket.emit("storeClientInfo", { customId: contextState.personId });
+    // socket.emit("users");
+
+    // socket.on("getclients", (data) => {
+    //   contextMiddleware.setClients(data);
+    //   console.log(data);
+    // });
+
+    // if (!unmounted) {
+    //   const found = contextState.clients?.some(
+    //     (el) => el.customId === contextState.personId
+    //   );
+    //   if (!found) {
+    //     console.log("no existe");
+    //     socket.emit("storeClientInfo", { customId: contextState.personId });
+    //     socket.emit("users");
+
+    //     socket.on("getclients", (data) => {
+    //       contextMiddleware.setClients(data);
+    //       console.log(data);
+    //     });
+    //   } else {
+    //     console.log("existe");
+    //   }
+    // }
 
     getAllPersons()
       .then((res) => {
@@ -52,7 +113,7 @@ const Chat = () => {
     return () => {
       unmounted = true;
     };
-  }, []);
+  }, [contextState.personId]);
 
   return (
     <>

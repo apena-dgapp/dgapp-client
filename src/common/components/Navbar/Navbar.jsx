@@ -4,7 +4,7 @@ import GlobalContext from "../../../context/GlobalContext";
 import NavbarForm from "./NavbarForm";
 import { getOnePerson } from "../../../api/person";
 import { apiOneFile } from "../../../api/files";
-import socket from "../../../utils/socket";
+// import io from "socket.io-client";
 
 const Header = () => {
   const history = useHistory();
@@ -42,7 +42,7 @@ const Header = () => {
   };
 
   const logOut = () => {
-    socket.disconnect();
+    // socket.disconnect();
     contextMiddleware.signOut();
     contextMiddleware.setIsShowChat();
     history.push("./");
@@ -68,6 +68,10 @@ const Header = () => {
 
   const employeeTree = () => {
     history.push("./employeetree");
+  };
+
+  const training = () => {
+    history.push("./training");
   };
 
   const goToFile = (name) => {
@@ -129,7 +133,8 @@ const Header = () => {
       location.pathname !== `${process.env.REACT_APP_RUTE}/docdynamic` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/employeeprofile` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/chat` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory`
+      location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/training`
         ? setIsHidden(true)
         : setIsHidden(false);
     }
@@ -155,6 +160,7 @@ const Header = () => {
         employeeTree={employeeTree}
         isHidden={isHidden}
         goToFile={goToFile}
+        training={training}
       />
     </>
   );
