@@ -1,116 +1,194 @@
 import React from "react";
-import Carousel from "../../common/components/Carousel/Carousel";
-import Card from "../../common/components/Card/Card";
+import CarouselComponent from "../../common/components/Carousel/CarouselComponent";
+import { GoMegaphone } from "react-icons/go";
+import { FaBirthdayCake } from "react-icons/fa";
+import { GiGlassCelebration } from "react-icons/gi";
+import ReactPlayer from "react-player";
+import Calendar from "react-calendar";
 
-const DashboardForm = ({ arrayPost, interest, singleInsterest, allPost }) => {
-  // Creamos array con los meses del año
-  const meses = [
-    "enero",
-    "febrero",
-    "marzo",
-    "abril",
-    "mayo",
-    "junio",
-    "julio",
-    "agosto",
-    "septiembre",
-    "octubre",
-    "noviembre",
-    "diciembre",
-  ];
-  // Creamos array con los días de la semana
-  const dias_semana = [
-    "Domingo",
-    "Lunes",
-    "martes",
-    "Miércoles",
-    "Jueves",
-    "Viernes",
-    "Sábado",
-  ];
-  // Creamos el objeto fecha instanciándolo con la clase Date
-  const fecha = new Date(interest.createdAt);
-  // Construimos el formato de salida
-  const fechaES =
-    dias_semana[fecha.getDay()] +
-    ", " +
-    fecha.getDate() +
-    " de " +
-    meses[fecha.getMonth()] +
-    " de " +
-    fecha.getUTCFullYear();
+import Images from "../../common/images";
+
+const DashboardForm = () => {
   return (
     <>
-      <Carousel />
-
-      <div className="container-column-title">
-        <div className="column-title">
-          <p className="column-txt">NOTICIAS MAS RECIENTES</p>
-        </div>
-      </div>
-
-      <div className="row col-12 d-flex justify-content-evenly">
-        <div className="col-10 d-flex justify-content-evenly">
-          {arrayPost.map((post) => {
-            return (
-              <Card
-                key={post.postId}
-                id={post.postId}
-                title={post.title}
-                img={post.image}
-                description={post.description}
-                date={post.createdAt}
-                author={post.author}
+      <div className="dashboard-main-container">
+        <div className="dashboard-first-seccion-container">
+          <div className="dashboard-first-seccion-carousel">
+            <CarouselComponent />
+          </div>
+          <div className="dashboard-first-seccion-separation"></div>
+          <div className="dashboard-first-seccion-news">
+            <div className="dashboard-first-seccion-news-header">
+              <i className="go go-megaphone" />
+              <GoMegaphone
+                size="1.2rem"
+                color="rgb(42, 52, 63)"
+                style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
               />
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="btn-allpost-container" onClick={allPost}>
-        <div className="btn-allpost-w">
-          <div className="row btn-allpost">
-            <button type="button" className="btn btn-secondary btn-lg">
-              Todas las noticias
-            </button>
+              <div className="dashboard-first-seccion-news-header-txt">
+                Noticias/Anuncios
+              </div>
+            </div>
+            <div className="dashboard-first-seccion-news-content">
+              <img
+                className="dashboard-first-seccion-news-content-img"
+                src={Images.prueba2}
+                alt=""
+              />
+              <div className="dashboard-first-seccion-news-content-txt">
+                <div className="dashboard-first-seccion-news-content-txt-title">
+                  DIA DE LOS PADRES
+                </div>
+                <div className="dashboard-first-seccion-news-content-txt-inf">
+                  is simply dummy text of the printing and typesetting industry.
+                  Lorem Ipsum has been the industry's standard dummy text ever
+                  since the 1500s, when an unknown printer took a galley of type
+                  and scrambled it to make a type specimen book.
+                </div>
+              </div>
+            </div>
+            <div className="dashboard-first-seccion-news-content">
+              <img
+                className="dashboard-first-seccion-news-content-img"
+                src={Images.prueba2}
+                alt=""
+              />
+              <div className="dashboard-first-seccion-news-content-txt">
+                <div className="dashboard-first-seccion-news-content-txt-title">
+                  DIA DE LOS PADRES
+                </div>
+                <div className="dashboard-first-seccion-news-content-txt-inf">
+                  is simply dummy text of the printing and typesetting industry.
+                  Lorem Ipsum has been the industry's standard dummy text ever
+                  since the 1500s, when an unknown printer took a galley of type
+                  and scrambled it to make a type specimen book.
+                </div>
+              </div>
+            </div>
+            <div className="dashboard-first-seccion-news-content">
+              <img
+                className="dashboard-first-seccion-news-content-img"
+                src={Images.prueba2}
+                alt=""
+              />
+              <div className="dashboard-first-seccion-news-content-txt">
+                <div className="dashboard-first-seccion-news-content-txt-title">
+                  DIA DE LOS PADRES
+                </div>
+                <div className="dashboard-first-seccion-news-content-txt-inf">
+                  is simply dummy text of the printing and typesetting industry.
+                  Lorem Ipsum has been the industry's standard dummy text ever
+                  since the 1500s, when an unknown printer took a galley of type
+                  and scrambled it to make a type specimen book.
+                </div>
+              </div>
+            </div>
+            <div className="dashboard-first-seccion-news-content-btn">
+              <button type="button" className="dashboard-news-btn">
+                Ir a Todas
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="container-column-title">
-        <div className="column-title">
-          <p className="column-txt">TEMA DE INTERÉS</p>
-        </div>
-      </div>
-
-      <div
-        className="d-flex justify-content-center card-xl"
-        onClick={singleInsterest}
-      >
-        <div className="card card-costum mb-3">
-          <img
-            src={interest.image}
-            id={interest.postId}
-            className="card-img-top img-costum"
-            alt="..."
-          />
-          <div className="card-body">
-            <h5 className="interest-title">{interest.title}</h5>
-
-            <p
-              dangerouslySetInnerHTML={{ __html: interest.description }}
-              className="interest-text"
-            ></p>
-            <p className="card-text">
-              <small className="text-muted">{fechaES}</small>
+        <div className="dashboard-second-seccion-container">
+          <div className="dashboard-second-seccion-video">
+            <ReactPlayer
+              width="97%"
+              height="85%"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              url="https://www.youtube.com/watch?v=_nUlI4w8m0I"
+              controls
+            />
+            <p className="dashboard-second-video-title">
+              Recorrido por Pedernales
             </p>
           </div>
-        </div>
-      </div>
-
-      <div className="container-column-title">
-        <div className="column-title">
-          <p className="column-txt">CONTACTEMOS</p>
+          <div className="dashboard-first-seccion-separation"></div>
+          <div className="dashboard-second-seccion-board">
+            <Calendar />
+            {/* <div className="dashboard-second-seccion-board-activity">
+              <div className="dashboard-second-seccion-board-video">
+                <ReactPlayer
+                  width="17rem"
+                  height="11rem"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  url="https://www.youtube.com/watch?v=_nUlI4w8m0I"
+                />
+              </div>
+              <div className="dashboard-second-seccion-board-calendary"></div>
+            </div> */}
+            {/* <div className="dashboard-second-seccion-board-buttons">
+              <div className="dashboard-second-seccion-board-btn">
+                <button className="dashboard-second-seccion-board-btn-1">
+                  Boletin
+                </button>
+              </div>
+            </div> */}
+          </div>
+          <div className="dashboard-first-seccion-separation"></div>
+          <div className="dashboard-second-seccion-birth">
+            <div className="dashboard-second-seccion-birth-header">
+              <i className="fa fa-birthday-cake" />
+              <FaBirthdayCake
+                size="1.1rem"
+                color="rgb(42, 52, 63)"
+                style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
+              />
+              <div className="dashboard-second-seccion-birth-name">
+                Cumpleaños
+              </div>
+            </div>
+            <div className="dashboard-second-seccion-name">
+              <div className="dashboard-first-seccion-news-content-txt-title">
+                <i className="gi gi-glass-celebration" />
+                <GiGlassCelebration
+                  size="1.5rem"
+                  color="7A4495"
+                  style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
+                />
+                Rosalia Gonzalez
+              </div>
+              <div className="dashboard-second-seccion-dept">
+                Depart - Comunicaciones
+              </div>
+              <div className="dashboard-second-seccion-dept">15 MARZO</div>
+            </div>
+            <div className="dashboard-second-seccion-name">
+              <div className="dashboard-first-seccion-news-content-txt-title">
+                <i className="gi gi-glass-celebration" />
+                <GiGlassCelebration
+                  size="1.5rem"
+                  color="7A4495"
+                  style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
+                />
+                Rosalia Gonzalez
+              </div>
+              <div className="dashboard-second-seccion-dept">
+                Depart - Comunicaciones
+              </div>
+              <div className="dashboard-second-seccion-dept">15 MARZO</div>
+            </div>
+            <div className="dashboard-second-seccion-name">
+              <div className="dashboard-first-seccion-news-content-txt-title">
+                <i className="gi gi-glass-celebration" />
+                <GiGlassCelebration
+                  size="1.5rem"
+                  color="7A4495"
+                  style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
+                />
+                Rosalia Gonzalez
+              </div>
+              <div className="dashboard-second-seccion-dept">
+                Depart - Comunicaciones
+              </div>
+              <div className="dashboard-second-seccion-dept">15 MARZO</div>
+            </div>
+            <div className="dashboard-first-seccion-news-content-btn">
+              <button type="button" className="dashboard-birth-btn">
+                Ver Todos
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>

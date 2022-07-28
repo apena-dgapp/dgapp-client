@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import PrivateRoutes from "../routes/Private.Routes";
 import Navbar from "../common/components/Navbar/Navbar";
-// import SideBar from '../common/components/Sidebar/Sidebar';
 import Login from "../components/LogIn/Login";
 import Dashboard from "../components/Dashboard/Dashboard";
 import SinglePost from "../components/SinglePost/SinglePost";
@@ -13,12 +12,9 @@ import userRegister from "../components/Register/Register";
 import Page404 from "../common/components/404/Page404";
 import ScrollToTop from "../utils/scrollToTop";
 import Footer from "../common/components/Footer/Footer";
-import Correspondence from "../components/Correspondence/Correspondence";
 import Employee from "../components/EmployeeProfile/Employee";
 import AboutUs from "../components/AboutUs/AboutUs";
-// import EmployeeChart from "../components/EmployeeProfile/EmployeeChart";
 import EmployeeProfile from "../components/EmployeeProfile/Employee";
-import DocDynamic from "../common/components/DocDynamic/DocDynamic";
 import FilePdf from "../common/components/FilePdf/FilePdf";
 import EmployeeDirectory from "../components/EmployeeDirectory/EmployeeDirectory";
 import EmployeeTree from "../components/EmployeeTree/Tree";
@@ -94,10 +90,6 @@ const Routes = () => {
           path={`${process.env.REACT_APP_RUTE}/employeenew`}
           component={EmployeeNew}
         />
-        <Route
-          path={`${process.env.REACT_APP_RUTE}/docdynamic`}
-          component={DocDynamic}
-        />
         <Route path={`${process.env.REACT_APP_RUTE}/pdf`} component={FilePdf} />
         <Route
           path={`${process.env.REACT_APP_RUTE}/building`}
@@ -106,10 +98,6 @@ const Routes = () => {
         <Route
           path={`${process.env.REACT_APP_RUTE}/employeeprofile`}
           component={EmployeeProfile}
-        />
-        <Route
-          path={`${process.env.REACT_APP_RUTE}/employeeprofile`}
-          component={Correspondence}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/employeedirectory`}

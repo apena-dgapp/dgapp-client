@@ -145,7 +145,7 @@ nav ul li ul li:hover::before{
 .bar_menu{
     // background-color: #4B778D;
     background-color: darkcyan;
-    height: 6rem; 
+    height: 5rem; 
     width: 100vw;
     display: flex;
     justify-content: space-between;
@@ -154,7 +154,7 @@ nav ul li ul li:hover::before{
 }
 
 .logo_dgapp{
-    width: 8rem;
+    width: 6rem;
     margin-left: 1.5rem;
 }
 .btn_menu{
@@ -167,9 +167,9 @@ nav ul li ul li:hover::before{
 }
 
 .nav-user-img{
-    width: 5rem;
-    height: 5rem;
-    border-radius: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
     margin-top: 1rem;
     // margin-left: 1.5rem;
     object-fit: cover;
@@ -221,174 +221,3 @@ top: -0.5rem;
 width: 9rem;
 }
 
-// @media screen and (max-width: 400px) {
-//     .bar_menu{
-//         height: 65px;
-//     }
-//     .btn_menu{
-//         display: inline-flex;
-//     }
-
-
-//     .container-menu-right{
-//         display: none;
-//     }
-//     .menu_items_show{
-//         position: fixed;
-//         width: 100vw;
-//         height: calc(100% - 65px);
-//         background: #414141;
-//         // top: -100vh;
-//         text-align: center;
-//         transition: all .4s;
-//         flex-direction: column;
-//         top: 65px;
-//         color: white;
-//     }
-//     .menu_items li{
-//         display: none;
-//     }
-//     .menu_items li:hover{
-//         background: none;
-//     }
-//     // .menu_items li a:hover {
-//     //     color: red;
-//     // }
-//     .logo_dgapp{
-//         width: 5rem;
-//     }
-
-//     .class-list{
-//         display: block;
-//         background: #414141;
-//         // margin-left: 4.5rem;
-//         // margin-right: 4.5rem;
-
-//     }
-//     nav ul li p{
-//         font-size: 1.5rem;
-//         margin-bottom: 0;
-//     }
-
-//     nav ul{
-//         background: #414141;
-//     }
-//     nav ul li::before {
-//         content: "";
-//         height: 0;
-//         width: 0;
-//         left: 0;
-//         bottom: 0;
-//         transition: none;
-//     }
-
-// } 
-// @media screen and (min-width: 401px) and (max-width: 720px) {
-//     .bar_menu{
-//         height: 65px;
-//     }
-//     .btn_menu{
-//         display: inline-flex;
-//     }
-//     // .btn_menu-img{
-//     //     width: 2rem;
-//     //     margin-left: 18px;
-//     // }
-    
-
-//     .container-menu-right{
-//         display: none;
-//     }
-//     .menu_items_show{
-//         position: fixed;
-//         width: 100vw;
-//         height: calc(100% - 65px);
-//         background: #414141;
-//         // top: -100vh;
-//         text-align: center;
-//         transition: all .4s;
-//         flex-direction: column;
-//         top: 65px;
-//         color: white;
-//     }
-//     .menu_items li{
-//         display: none;
-//     }
-//     .menu_items li:hover{
-//         background: none;
-//     }
-//     // .menu_items li a:hover {
-//     //     color: red;
-//     // }
-//     .logo_dgapp{
-//         width: 5rem;
-//         cursor: pointer;
-//     }
-
-//     .class-list{
-//         display: block;
-//         background: #414141;
-//         // margin-left: 4.5rem;
-//         // margin-right: 4.5rem;
-
-//     }
-//     nav ul li p{
-//         font-size: 1.5rem;
-//         margin-bottom: 0;
-//     }
-
-//     nav ul{
-//         background: #414141;
-//     }
-//     nav ul li::before {
-//         content: "";
-//         height: 0;
-//         width: 0;
-//         left: 0;
-//         bottom: 0;
-//         transition: none;
-//     }
-// } 
-//   @media screen and (min-width: 721px) and (max-width: 1480px) {
-//     .logo_dgapp{
-//         width: 4rem;
-//     }
-//     .bar_menu{
-//         height: 80px; 
-//     }     
-//     .icondown{
-//         width: 13px;
-//         margin-left: 8px;   
-//     }
-//     .class-list{
-//         margin-left: 1.5rem;
-//         margin-right: 1.5rem;
-//         margin-top: 1rem;
-//     }
-//     .container-menu-right{
-//         margin-right: 0.5rem;
-//         margin-bottom: 0;
-//     }
-//     .user-icon {
-//         width: 1.2rem;
-//     }
-//     .user-text {
-//         font-size: 0.5rem;
-//     } 
-//     .flag-us {
-//         width: 1.2rem;
-//         // z-index: 1;
-//         margin-right: 1rem;
-//     }
-//     .flag-spain {
-//         width: 1.2rem;
-//         margin-right: 1rem;
-//         // z-index: 1;
-//     }
-//   }
-
-  //dropdown user icon
-//   .klk{
-//       position: absolute;
-//   }
- 

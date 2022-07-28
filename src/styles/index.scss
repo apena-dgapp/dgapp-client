@@ -4,7 +4,6 @@
 @import "./page404";
 @import "./register";
 @import "./navbar";
-@import "./sidebar";
 @import "./dashboard"; 
 @import "./newpost";
 @import "./singlepost";
@@ -12,8 +11,6 @@
 @import "./card";
 @import "./allpost";
 @import "./footer";
-@import "./correspondence";
-@import "./organizationChart";
 @import "./birthday";
 @import "./employeeProfile";
 @import "./WYSIWYG";
@@ -33,12 +30,9 @@
 
 html,
 body {
-  // min-height: 100vh;
   background-color: #EEEEEE;
-  // background-color: white;
   overflow-x: hidden;  
   font-family: 'Montserrat', sans-serif;
-  // height: 100%;
 }
 
 body::-webkit-scrollbar{
@@ -47,7 +41,6 @@ body::-webkit-scrollbar{
 }
 
 body::-webkit-scrollbar-thumb{
-  // background-color: #39427c;
   background-color: rgb(42, 52, 63);
   border-radius: 7px;
 }

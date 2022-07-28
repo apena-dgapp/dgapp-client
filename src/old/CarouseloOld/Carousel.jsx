@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import CardCarousel from "../Carousel/CardCarousel";
-import { getPost } from "../../../api/post";
-import Images from "../../images/index";
+import CardCarousel from "./CardCarousel";
+import { getPost } from "../../api/post";
+import Images from "../../common/images/index";
 
 const Carousel = () => {
   const [arrayCarousel, setArrayCarousel] = useState([]);

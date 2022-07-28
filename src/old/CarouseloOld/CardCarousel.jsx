@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import Birthday from "../Birthday/Birthday";
+import Birthday from "../../common/components/Birthday/Birthday";
 
 const CardCarousel = (props) => {
   const history = useHistory();

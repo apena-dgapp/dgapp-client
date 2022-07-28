@@ -25,6 +25,8 @@ import ministerio from './ministerio.jpg';
 import noImg from '../images/sinFoto.jpg';
 import director from '../images/director.jpg';
 import curso from '../images/curso.png';
+import prueba from '../images/coffee-gd7dbd416f_1920.jpg';
+import prueba2 from '../images/pencils-g2b5492fdc_1920.jpg';
  
 const Images = {
     iconUser,
@@ -52,7 +54,9 @@ const Images = {
     ministerio,
     noImg,
     director,
-    curso
+    curso,
+    prueba,
+    prueba2
 }
 
 export default Images;
