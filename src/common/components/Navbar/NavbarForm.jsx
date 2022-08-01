@@ -83,10 +83,10 @@ const Navbar = ({
           </li>
           <li className="class-list">
             <p>
-              PUBLICACIONES{" "}
+              PUBLICACIONES
               <img className="icondown" src={Images.icondown} alt="" />
             </p>
-            <ul style={{ width: "10rem" }}>
+            <ul style={{ width: "11rem" }}>
               <li>
                 <p onClick={allPost}>Noticias</p>
               </li>
@@ -113,7 +113,7 @@ const Navbar = ({
                 ADMINISTRACIÓN
                 <img className="icondown" src={Images.icondown} alt="" />
               </p>
-              <ul style={{ width: "10rem" }}>
+              <ul style={{ width: "12rem" }}>
                 <li>
                   <p onClick={createPost}>Crear Entradas</p>
                 </li>

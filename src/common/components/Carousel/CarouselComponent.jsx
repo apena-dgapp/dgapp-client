@@ -8,7 +8,8 @@ const CarouselComponent = () => {
     <Carousel
       autoPlay
       interval="5000"
-      transitionTime="5000"
+      infiniteLoop
+      transitionTime="2000"
       showThumbs={false}
       showStatus={false}
     >
