@@ -39,6 +39,7 @@ const Footer = () => {
     // console.log(process.env.REACT_APP_RUTE);
 
     if (!unmounted) {
+      location.pathname !== `${process.env.REACT_APP_RUTE}` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/home` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/siglepost` &&
