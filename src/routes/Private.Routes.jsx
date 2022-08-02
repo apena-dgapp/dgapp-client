@@ -7,8 +7,7 @@ const PrivateRoutes = ({ component: Component, ...rest }) => {
   const [contextState] = useContext(GlobalContext);
   return (
     <Route {...rest}>
-      {" "}
-      {contextState.token ? <Component /> : <Redirect to={<Login />} />}{" "}
+      {contextState.token ? <Component /> : <Redirect to={<Login />} />}
     </Route>
   );
 };

@@ -17,7 +17,10 @@ const EmployeeDirectoryForm = ({
   pageLength,
   page,
 }) => {
-  const [contextMiddleware, , contextState] = useContext(GlobalContext);
+  const [, , contextState] = useContext(GlobalContext);
+
+  console.log(page);
+  console.log(pageLength);
 
   return (
     <>
@@ -133,18 +136,22 @@ const EmployeeDirectoryForm = ({
           <button
             onClick={backPage}
             className={page === 0 || page === 8 ? "btn-disabled" : "btn-back"}
+            // className={numPersons < 8 ? "btn-disabled" : "btn-back"}
             name="btn-back"
             type="submit"
             disabled={page === 0 || page === 8 ? true : false}
+            // disabled={numPersons < 8 ? true : false}
           >
             Anterior
           </button>
           <button
             onClick={nextPage}
             className={page < pageLength ? "btn-next" : "btn-disabled"}
+            // className={numPersons.length === 8 ? "btn-back" : "btn-disabled"}
             name="btn-next"
             type="submit"
             disabled={page < pageLength ? false : true}
+            // disabled={numPersons.length === 8 ? false : true}
           >
             Siguiente
           </button>

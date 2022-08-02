@@ -39,7 +39,6 @@ const EmployeeDirectory = () => {
         return res.json();
       })
       .then((res) => {
-        console.log(res);
         if (!unmounted) {
           setArrayAllPersons((arrayAllPersons) => [...arrayAllPersons, ...res]);
           setPageLength(res.length);
@@ -56,11 +55,18 @@ const EmployeeDirectory = () => {
     };
   }, []);
 
-  // let filterDeparatment = [];
-
   const filterDep = (e) => {
+    setCurrentPage(0);
+    if (pageLength > 8) {
+      setPage(8);
+      // console.log("klk");
+      // console.log(pageLength);
+    }
     if (e) {
       setSearchDep(e);
+      if (e === "todos") {
+        setPageLength(arrayAllPersons.length);
+      }
     }
   };
 
@@ -76,16 +82,19 @@ const EmployeeDirectory = () => {
       let filterDeparatment = [];
       for (let i = 0; i < arrayAllPersons.length; i++) {
         var currentNumber = arrayAllPersons[i];
+
         if (currentNumber.Departament.name === searchDep) {
           filterDeparatment.push(currentNumber);
         }
       }
+      setPageLength(filterDeparatment.length);
 
       if (search.length === 0 && filterDeparatment.length !== 0)
         return filterDeparatment.slice(currentPage, currentPage + 8);
       const filtered = filterDeparatment.filter((persons) =>
         persons.fullName.toLowerCase().includes(search)
       );
+
       return filtered.slice(currentPage, currentPage + 8);
     }
   };
