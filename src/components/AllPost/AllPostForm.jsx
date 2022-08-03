@@ -8,8 +8,11 @@ const AllPostForm = ({
   backPage,
   onSearchChange,
   search,
-  nextActive,
+  page,
+  pageLength,
 }) => {
+  // console.log(page);
+  // console.log(pageLength);
   return (
     <>
       <div className="allPostTitle-cont">
@@ -32,10 +35,6 @@ const AllPostForm = ({
 
       <div className="allPost-Container">
         <div className="grid-container">
-          {/* <div className='grid-card'>
-                 
-                </div> */}
-
           {filteredArryPost().map((post) => {
             return (
               <Card
@@ -55,17 +54,19 @@ const AllPostForm = ({
         <div className="allpost-btns">
           <button
             onClick={backPage}
-            className="btn-back"
+            className={page === 0 || page === 8 ? "btn-disabled" : "btn-back"}
             name="btn-back"
             type="submit"
+            disabled={page === 0 || page === 8 ? true : false}
           >
             Anterior
           </button>
           <button
             onClick={nextPage}
-            className="btn-next"
+            className={page < pageLength ? "btn-next" : "btn-disabled"}
             name="btn-next"
             type="submit"
+            disabled={page < pageLength ? false : true}
           >
             Siguiente
           </button>

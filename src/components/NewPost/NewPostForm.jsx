@@ -16,7 +16,6 @@ const NewPostForm = ({
   accept,
   handleruploadFiles,
   seletedHandler,
-  msgDisable,
   img,
   qtyImg,
   qtyPdf,
@@ -39,7 +38,6 @@ const NewPostForm = ({
   return (
     <>
       <Modal
-        // modalTitle={modalValidaton ? modalTitleAuth : modalTitle}
         modalToggle={modalToggle}
         modalActive={modalActive}
         formData={formData}
@@ -55,26 +53,7 @@ const NewPostForm = ({
         <div className="newPostContainerGrid">
           <div className="newPostContainer">
             <div className="newPostInputContainer">
-              <div className="d-flex justify-content-center mb-5">
-                {/* <label
-                  className="input-group-text"
-                  htmlFor="inputGroupSelect01"
-                ></label>
-                <select
-                  name="category"
-                  value={formData.category}
-                  onChange={handlerInputChange}
-                  className="form-select"
-                  id="inputGroupSelect01"
-                >
-                  <option defaultValue={true}>Elige una Categoria</option>
-                  <option className="option-txt" value="Main Post">
-                    Main Post
-                  </option>
-                  <option className="option-txt" value="Featured Post">
-                    Featured Post
-                  </option>
-                </select> */}
+              <div className="d-flex justify-content-center">
                 <div className="select">
                   <select
                     name="category"
@@ -98,42 +77,33 @@ const NewPostForm = ({
                   </select>
                 </div>
               </div>
-              <div className="pb-5">
+              <div>
                 <Input
                   id="titleinput"
                   name="title"
                   type="text"
                   placeholder="Agregar un titulo"
                   classInput="inputTitle"
-                  // maxLength="16"
-                  // minLength="4"
                   onChange={handlerInputChange}
                   value={formData.title}
                 />
               </div>
-              <div className="pb-5">
+              <div>
                 <Input
                   id="authorinput"
                   name="author"
                   type="text"
                   placeholder="Agregar un autor"
                   classInput="inputTitle"
-                  // maxLength="16"
-                  // minLength="4"
                   onChange={handlerInputChange}
                   value={formData.author}
                 />
               </div>
-              <div className="mb-5">
-                {/* <textarea
-                  id="descpinput"
-                  name="description"
-                  className="txtarea"
-                  placeholder="Agregar el contenido de la nueva publicacion"
-                  onChange={handlerInputChange}
-                  value={formData.description}
-                /> */}
-                <form onSubmit={handleSubmit(handleSubmitOnClick)}>
+              <div>
+                <form
+                  className="newpost-form"
+                  onSubmit={handleSubmit(handleSubmitOnClick)}
+                >
                   <Controller
                     as={<WYSIWYGEditor />}
                     name="editor_content"
@@ -179,10 +149,10 @@ const NewPostForm = ({
                       <a
                         style={{ color: "red" }}
                         href="#/"
-                        className="text-white me-4"
+                        className="text-white "
                       >
                         <i className="Md Delete-Forever" />
-                        <TiDelete size="2em" color="red" />
+                        <TiDelete size="1.8rem" color="red" />
                       </a>
                     </div>
                   ) : null}
@@ -208,10 +178,10 @@ const NewPostForm = ({
                       <a
                         style={{ color: "red" }}
                         href="#/"
-                        className="text-white me-4"
+                        className="text-white "
                       >
                         <i className="Md Delete-Forever" />
-                        <TiDelete size="2em" color="red" />
+                        <TiDelete size="1.8rem" color="red" />
                       </a>
                     </div>
                   ) : null}
@@ -230,9 +200,9 @@ const NewPostForm = ({
                       <p style={{ fontWeight: "bold" }} className="p-0 m-0">
                         ({qtyPdf})
                       </p>
-                      <a href="#/" className="text-white me-4">
+                      <a href="#/" className="text-white ">
                         <i className="Md Delete-Forever" />
-                        <TiDelete size="2em" color="red" />
+                        <TiDelete size="1.8rem" color="red" />
                       </a>
                     </div>
                   ) : null}
@@ -257,25 +227,14 @@ const NewPostForm = ({
                       <a
                         style={{ color: "red" }}
                         href="#/"
-                        className="text-white me-4"
+                        className="text-white "
                       >
                         <i className="Md Delete-Forever" />
-                        <TiDelete size="2em" color="red" />
+                        <TiDelete size="1.8rem" color="red" />
                       </a>
                     </div>
                   ) : null}
-                  {/* <p className="">Remove (1)</p> */}
                 </figure>
-                {/* <figure>
-                  <p className="newPostImg-txt">Agregar Link</p>
-                  <img
-                    name="link"
-                    onClick={actionHandler}
-                    className="newPostImg"
-                    src={Images.link}
-                    alt=""
-                  />
-                </figure> */}
               </div>
             </div>
             {!actionInput ? null : (
@@ -308,16 +267,6 @@ const NewPostForm = ({
           </div>
         </div>
       </div>
-      {/* <div className="btn-publish-cont">
-        <button
-          className="btn-publish"
-          name="btn-publish"
-          type="submit"
-          onClick={sendHandlerForm}
-        >
-          Publicar
-        </button>
-      </div> */}
     </>
   );
 };

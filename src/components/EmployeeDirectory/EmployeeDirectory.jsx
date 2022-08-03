@@ -59,8 +59,6 @@ const EmployeeDirectory = () => {
     setCurrentPage(0);
     if (pageLength > 8) {
       setPage(8);
-      // console.log("klk");
-      // console.log(pageLength);
     }
     if (e) {
       setSearchDep(e);

@@ -19,9 +19,6 @@ const EmployeeDirectoryForm = ({
 }) => {
   const [, , contextState] = useContext(GlobalContext);
 
-  console.log(page);
-  console.log(pageLength);
-
   return (
     <>
       <div className="emDirectory-cont">
@@ -136,11 +133,9 @@ const EmployeeDirectoryForm = ({
           <button
             onClick={backPage}
             className={page === 0 || page === 8 ? "btn-disabled" : "btn-back"}
-            // className={numPersons < 8 ? "btn-disabled" : "btn-back"}
             name="btn-back"
             type="submit"
             disabled={page === 0 || page === 8 ? true : false}
-            // disabled={numPersons < 8 ? true : false}
           >
             Anterior
           </button>

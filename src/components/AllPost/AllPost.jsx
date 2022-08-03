@@ -8,6 +8,8 @@ const AllPost = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState("");
   const [, , contextMiddleware] = useContext(GlobalContext);
+  const [page, setPage] = useState(8);
+  const [pageLength, setPageLength] = useState("");
 
   useEffect(() => {
     let unmounted = false;
@@ -20,6 +22,7 @@ const AllPost = () => {
         contextMiddleware.showSpinner(true);
         if (!unmounted) {
           setArrayAllPost((arrayAllPost) => [...arrayAllPost, ...res.posts]);
+          setPageLength(res.posts.length);
         }
         contextMiddleware.showSpinner(false);
       })
@@ -39,10 +42,12 @@ const AllPost = () => {
     const filtered = arrayAllPost.filter((post) =>
       post.title.toLowerCase().includes(search)
     );
+    setPageLength(filtered.length);
     return filtered.slice(currentPage, currentPage + 8);
   };
 
   const nextPage = () => {
+    setPage(page + 8);
     if (
       arrayAllPost.filter((post) => post.title.toLowerCase().includes(search))
         .length >
@@ -52,12 +57,16 @@ const AllPost = () => {
   };
 
   const backPage = () => {
+    setPage(page - 8);
     if (currentPage > 0) {
       setCurrentPage(currentPage - 8);
     }
   };
 
   const onSearchChange = (e) => {
+    if (e.target.value === "") {
+      setPageLength(arrayAllPost.length);
+    }
     setCurrentPage(0);
     setSearch(e.target.value.toLowerCase());
   };
@@ -70,6 +79,8 @@ const AllPost = () => {
         backPage={backPage}
         onSearchChange={onSearchChange}
         search={search}
+        page={page}
+        pageLength={pageLength}
       />
     </>
   );
