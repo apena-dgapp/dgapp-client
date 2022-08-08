@@ -9,12 +9,10 @@ import {
 import GlobalContext from "../../context/GlobalContext";
 import { getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
-// import { useHistory } from "react-router-dom";
 
 function EmployeeNew() {
   const [contextState, , contextMiddleware] = useContext(GlobalContext);
   const [departaments, setDepartaments] = useState("");
-  // const history = useHistory();
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
   const [person, setPerson] = useState("");

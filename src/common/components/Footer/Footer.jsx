@@ -35,9 +35,6 @@ const Footer = () => {
   useEffect(() => {
     let unmounted = false;
 
-    // console.log(location.pathname);
-    // console.log(process.env.REACT_APP_RUTE);
-
     if (!unmounted) {
       location.pathname !== `${process.env.REACT_APP_RUTE}` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/` &&
@@ -55,7 +52,8 @@ const Footer = () => {
       location.pathname !== `${process.env.REACT_APP_RUTE}/employeeprofile` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/chat` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/training`
+      location.pathname !== `${process.env.REACT_APP_RUTE}/training` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/register`
         ? setIsHidden(true)
         : setIsHidden(false);
     }

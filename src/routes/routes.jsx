@@ -8,7 +8,7 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import SinglePost from "../components/SinglePost/SinglePost";
 import allPost from "../components/AllPost/AllPost";
 import NewPost from "../components/NewPost/NewPost";
-import userRegister from "../components/Register/Register";
+import Register from "../components/Register/Register";
 import Page404 from "../common/components/404/Page404";
 import ScrollToTop from "../utils/scrollToTop";
 import Footer from "../common/components/Footer/Footer";
@@ -62,8 +62,8 @@ const Routes = () => {
           component={allPost}
         />
         <Route
-          path={`${process.env.REACT_APP_RUTE}/userregister`}
-          component={userRegister}
+          path={`${process.env.REACT_APP_RUTE}/register`}
+          component={Register}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/newpost`}

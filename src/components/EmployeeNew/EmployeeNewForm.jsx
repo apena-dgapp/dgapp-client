@@ -1,5 +1,4 @@
 import React from "react";
-// import Input from "../../common/components/Input/Input";
 import { BsPlusCircleDotted, BsDashCircleDotted } from "react-icons/bs";
 import Images from "../../common/images";
 import PersonalInformation from "./PersonalInformation";
@@ -26,11 +25,6 @@ function EmployeeNewForm({
   email,
 }) {
   //   const date = new Date("06/29/2022").toISOString().split("T")[0];
-  //     if (person) {
-  //       var reportsTo = person?.filter(
-  //         (item) => item.personId !== profile?.personId
-  //       );
-  //     }
 
   return (
     <>
@@ -58,7 +52,9 @@ function EmployeeNewForm({
                   <p className="edit-img-text">Cargar Foto</p>
                   <i className="bs bs-dash-circle-dotted" />
                   <BsDashCircleDotted
-                    style={{ marginRight: "0.5rem" }}
+                    style={{
+                      marginRight: "0.5rem",
+                    }}
                     size="1.5rem"
                     color="red"
                   />

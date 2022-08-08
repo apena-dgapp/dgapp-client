@@ -74,6 +74,10 @@ const Header = () => {
     history.push("./training");
   };
 
+  const register = () => {
+    history.push("./register");
+  };
+
   const goToFile = (name) => {
     apiOneFile(name)
       .then((res) => {
@@ -135,7 +139,8 @@ const Header = () => {
       location.pathname !== `${process.env.REACT_APP_RUTE}/employeeprofile` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/chat` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/training`
+      location.pathname !== `${process.env.REACT_APP_RUTE}/training` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/register`
         ? setIsHidden(true)
         : setIsHidden(false);
     }
@@ -162,6 +167,7 @@ const Header = () => {
         isHidden={isHidden}
         goToFile={goToFile}
         training={training}
+        register={register}
       />
     </>
   );

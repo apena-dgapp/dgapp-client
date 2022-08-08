@@ -6,3 +6,13 @@ export const apiAuth = async (username, password) => {
         body: JSON.stringify(body)
     })
 }
+
+export const singUp = async (personId,userName, password,createdBy,roleId) => {
+    const body = {personId,userName, password,createdBy,roleId};
+    return fetch(`${process.env.REACT_APP_API}auth/signup`, {
+        method: "POST",
+        headers:{"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+    })
+}
+

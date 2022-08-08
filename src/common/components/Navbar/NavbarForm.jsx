@@ -19,6 +19,7 @@ const Navbar = ({
   isHidden,
   goToFile,
   training,
+  register,
 }) => {
   const [contextState] = useContext(GlobalContext);
   const [active, setActive] = useState("menu_items");
@@ -113,12 +114,15 @@ const Navbar = ({
                 ADMINISTRACIÓN
                 <img className="icondown" src={Images.icondown} alt="" />
               </p>
-              <ul style={{ width: "12rem" }}>
+              <ul style={{ width: "13.5rem" }}>
                 <li>
                   <p onClick={createPost}>Crear Entradas</p>
                 </li>
                 <li>
                   <p onClick={employeeNew}>Nuevo Empleado</p>
+                </li>
+                <li>
+                  <p onClick={register}>Registrar Empleado</p>
                 </li>
               </ul>
             </li>
