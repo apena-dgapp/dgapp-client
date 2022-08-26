@@ -16,21 +16,13 @@
 .carousel-container-txt{
     position: absolute;
     bottom: 6rem;
-    // left: 50%;
-    // margin-left: -50%;
-    width: 50%;
+    width: 100%;
     height: 3.5rem;
-    // opacity: 0.45;
-    // transition: opacity .35s ease-in-out;
-    // background-color: black;
-    // &:hover{
-    //     opacity: 0.55;
-    // }
-    text-align: justify;
-    // background-color: red;
+    text-align: start;
     left: 2rem;
 }
 .carousel-title{
+    width: 100%;
   font-size: 2rem;
   font-weight: bold;
   color:white;
@@ -38,8 +30,6 @@
 }
 .carousel-inf{
     display: flex;
-    // padding-left: 1rem;
-    // padding-right: 1rem;
     color:white;
     margin-top: -0.5rem;
     overflow: hidden;

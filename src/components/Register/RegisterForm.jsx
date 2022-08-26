@@ -1,6 +1,5 @@
 import React from "react";
 import Images from "../../common/images";
-import Input from "../../common/components/Input/Input";
 const RegisterForm = ({
   person,
   getPerson,
@@ -10,6 +9,8 @@ const RegisterForm = ({
   autoName,
   createUser,
   formData,
+  userName,
+  exist,
 }) => {
   return (
     <>
@@ -22,18 +23,21 @@ const RegisterForm = ({
                 src={user.photo ? user.photo : Images.noImg}
                 alt="..."
               />
+
+              <p className="register-img-txt">{exist ? "Registrado" : null}</p>
             </div>
           </div>
           <div className="register-inputs-cont">
             <div className="register-input-list">
               <p className="edit-input-title">Lista de Empleados</p>
               <select
-                name="reportto"
+                name="employees"
                 className="edit-input"
                 onChange={getPerson}
+                defaultValue={"DEFAULT"}
                 // value={reportsTo?.fullName}
               >
-                <option value="" disabled selected>
+                <option disabled value="DEFAULT">
                   Seleccionar un Empleado
                 </option>
                 {person
@@ -60,18 +64,30 @@ const RegisterForm = ({
             <div className="">
               <div className="register-switch-cont">
                 <p className="edit-input-title">Nombre de Usuario</p>
-                <div
-                  onClick={() => setAutoName((autoName) => !autoName)}
-                  className="switch-button"
-                >
-                  <input className="switch-button-checkbox" type="checkbox" />
-                  <label className="switch-button-label" htmlFor>
-                    <span className="switch-button-label-span">Auto</span>
-                  </label>
-                </div>
+                {exist ? null : (
+                  <div
+                    onClick={() => setAutoName((autoName) => !autoName)}
+                    className="switch-button"
+                  >
+                    <input className="switch-button-checkbox" type="checkbox" />
+                    <label className="switch-button-label" htmlFor="">
+                      <span className="switch-button-label-span">Auto</span>
+                    </label>
+                  </div>
+                )}
               </div>
-              {user ? (
-                <Input
+              {exist ? (
+                <input
+                  id="username"
+                  onChange={handlerInputChange}
+                  name="username"
+                  type="text"
+                  placeholder={userName}
+                  className="edit-input"
+                  value={formData.username}
+                />
+              ) : user ? (
+                <input
                   id="username"
                   onChange={handlerInputChange}
                   name="username"
@@ -82,33 +98,33 @@ const RegisterForm = ({
                         user.lastName.split(" ")[0]
                       : "ej: crodirguez"
                   }
-                  classInput="edit-input"
+                  className="edit-input"
                   disabled={autoName ? true : false}
-                  // value={formData.username}
+                  value={!autoName ? formData.username : userName}
                 />
               ) : (
-                <Input
+                <input
                   id="username"
                   onChange={handlerInputChange}
                   name="username"
                   type="text"
                   placeholder="ej: crodirguez"
-                  classInput="edit-input"
+                  className="edit-input"
                   disabled={autoName ? true : false}
-                  // value={formData.username}
+                  value={!autoName ? formData.username : userName}
                 />
               )}
             </div>
             <div className="mt-1">
               <p className="edit-input-title">Contraseña</p>
-              <Input
+              <input
                 id="password"
                 onChange={handlerInputChange}
                 name="password"
                 type="password"
                 placeholder="Escriba una contraseña facil de recordar"
-                classInput="edit-input"
-                value={formData.password}
+                className="edit-input"
+                value={formData.password || ""}
               />
             </div>
             <div className="mt-1">
@@ -117,9 +133,10 @@ const RegisterForm = ({
                 name="role"
                 className="edit-input"
                 onChange={handlerInputChange}
-                // value={formData.role}
+                defaultValue={"DEFAULT"}
+                // value={formData.role === "" ? "DEFAULT" : undefined}
               >
-                <option disabled selected>
+                <option value="DEFAULT" disabled>
                   Seleccionar privilegio
                 </option>
                 <option value="1">Administrador</option>

@@ -11,9 +11,9 @@ export const newPostApi = async (title, description, category, author, image, vi
     })
 }
 
-export const getPost = async (category) => {
-    const body = {category};
-    return fetch(`${process.env.REACT_APP_API}post/featuredposts`, {
+export const getPost = async (category,limit) => {
+    const body = {category, limit};
+    return fetch(`${process.env.REACT_APP_API}post/getposts`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: {

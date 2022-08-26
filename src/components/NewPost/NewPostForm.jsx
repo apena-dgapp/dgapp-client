@@ -56,11 +56,11 @@ const NewPostForm = ({
               <div className="d-flex justify-content-center">
                 <div className="select">
                   <select
+                    id="inputGroupSelect01"
                     name="category"
                     value={formData.category}
                     onChange={handlerInputChange}
                     className="input-group"
-                    id="inputGroupSelect01"
                   >
                     <option
                       className="option-txt-placeholder"

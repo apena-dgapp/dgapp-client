@@ -1,7 +1,7 @@
 import React from "react";
 import CarouselComponent from "../../common/components/Carousel/CarouselComponent";
 import { GoMegaphone } from "react-icons/go";
-import { FaBirthdayCake, FaConciergeBell } from "react-icons/fa";
+import { FaBirthdayCake, FaConciergeBell, FaVideo } from "react-icons/fa";
 import { MdEventNote } from "react-icons/md";
 import { GiNewspaper, GiOrganigram, GiFullFolder } from "react-icons/gi";
 import { ImNewspaper } from "react-icons/im";
@@ -11,7 +11,8 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import Images from "../../common/images";
 
-const DashboardForm = () => {
+const DashboardForm = ({ ad, news }) => {
+  var optionsDate = { month: "long", day: "numeric" };
   return (
     <>
       <div className="dashboard-main-container">
@@ -32,70 +33,31 @@ const DashboardForm = () => {
                 Anuncios
               </div>
             </div>
-            <div className="dashboard-first-seccion-news-content">
-              {/* <img
-                className="dashboard-first-seccion-news-content-img"
-                src={Images.prueba}
-                alt=""
-              /> */}
-              <div className="dashboard-first-seccion-news-content-txt">
-                <div className="dashboard-first-seccion-news-content-txt-title">
-                  DIA DE LOS PADRES
-                </div>
 
-                <div className="dashboard-first-seccion-news-content-txt-inf">
-                  is simply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum has been the industry's standard dummy text ever
-                  since the 1500s, when an unknown printer took a galley of type
-                  and scrambled it to make a type specimen book.
+            {ad?.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="dashboard-first-seccion-news-content"
+                >
+                  <div className="dashboard-first-seccion-news-content-txt">
+                    <div className="dashboard-first-seccion-news-content-txt-title">
+                      {item.title}
+                    </div>
+                    <div className="dashboard-first-seccion-news-content-txt-inf">
+                      {item.description}
+                    </div>
+                    <div className="dashboard-first-seccion-news-content-txt-date">
+                      {new Date(item.createdAt).toLocaleDateString(
+                        "es-ES",
+                        optionsDate
+                      )}
+                    </div>
+                  </div>
                 </div>
-                <div className="dashboard-first-seccion-news-content-txt-date">
-                  12 Julio 2022
-                </div>
-              </div>
-            </div>
-            <div className="dashboard-first-seccion-news-content">
-              {/* <img
-                className="dashboard-first-seccion-news-content-img"
-                src={Images.prueba2}
-                alt=""
-              /> */}
-              <div className="dashboard-first-seccion-news-content-txt">
-                <div className="dashboard-first-seccion-news-content-txt-title">
-                  DIA DE LOS PADRES
-                </div>
-                <div className="dashboard-first-seccion-news-content-txt-inf">
-                  is simply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum has been the industry's standard dummy text ever
-                  since the 1500s, when an unknown printer took a galley of type
-                  and scrambled it to make a type specimen book.
-                </div>
-                <div className="dashboard-first-seccion-news-content-txt-date">
-                  12 Julio 2022
-                </div>
-              </div>
-            </div>
-            <div className="dashboard-first-seccion-news-content">
-              {/* <img
-                className="dashboard-first-seccion-news-content-img"
-                src={Images.prueba}
-                alt=""
-              /> */}
-              <div className="dashboard-first-seccion-news-content-txt">
-                <div className="dashboard-first-seccion-news-content-txt-title">
-                  DIA DE LOS PADRES
-                </div>
-                <div className="dashboard-first-seccion-news-content-txt-inf">
-                  is simply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum has been the industry's standard dummy text ever
-                  since the 1500s, when an unknown printer took a galley of type
-                  and scrambled it to make a type specimen book.
-                </div>
-                <div className="dashboard-first-seccion-news-content-txt-date">
-                  12 Julio 2022
-                </div>
-              </div>
-            </div>
+              );
+            })}
+
             <div className="dashboard-first-seccion-news-content-btn">
               <button type="button" className="dashboard-news-btn">
                 Ir a Todas
@@ -105,10 +67,7 @@ const DashboardForm = () => {
         </div>
         <div className="dashboard-third-seccion-board">
           <div className="dashboard-third-seccion-board-grid">
-            <div
-              style={{ backgroundColor: "#019267" }}
-              className="dashboard-third-seccion-board-btn"
-            >
+            <div className="dashboard-third-seccion-board-btn">
               <i className="gi gi-newspaper" />
               <GiNewspaper
                 size="2.5rem"
@@ -119,10 +78,7 @@ const DashboardForm = () => {
                 <p>Boletin</p>
               </div>
             </div>
-            <div
-              style={{ backgroundColor: "#533E85" }}
-              className="dashboard-third-seccion-board-btn"
-            >
+            <div className="dashboard-third-seccion-board-btn">
               <i className="gi gi-organigram" />
               <GiOrganigram
                 size="2.5rem"
@@ -133,10 +89,7 @@ const DashboardForm = () => {
                 <p>Organigrama</p>
               </div>
             </div>
-            <div
-              style={{ backgroundColor: "#488FB1" }}
-              className="dashboard-third-seccion-board-btn"
-            >
+            <div className="dashboard-third-seccion-board-btn">
               <i className="gi gi-full-folder" />
               <GiFullFolder
                 size="2.5rem"
@@ -147,10 +100,7 @@ const DashboardForm = () => {
                 <p>Directorio</p>
               </div>
             </div>
-            <div
-              style={{ backgroundColor: "#E6B325" }}
-              className="dashboard-third-seccion-board-btn"
-            >
+            <div className="dashboard-third-seccion-board-btn">
               <i className="fa fa-concierge-bell" />
               <FaConciergeBell
                 size="2.5rem"
@@ -161,10 +111,7 @@ const DashboardForm = () => {
                 <p>Solicitudes</p>
               </div>
             </div>
-            <div
-              style={{ backgroundColor: "#F24A72" }}
-              className="dashboard-third-seccion-board-btn"
-            >
+            <div className="dashboard-third-seccion-board-btn">
               <i className="md md-school" />
               <MdSchool
                 size="2.5rem"
@@ -180,6 +127,17 @@ const DashboardForm = () => {
         {/* video y noticias */}
         <div className="dashboard-second-seccion-container">
           <div className="dashboard-second-seccion-video">
+            <div className="dashboard-first-seccion-news-header">
+              <i className="fa fa-megaphone" />
+              <FaVideo
+                size="1.2rem"
+                color="white"
+                style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
+              />
+              <div className="dashboard-first-seccion-news-header-txt">
+                Multimedia
+              </div>
+            </div>
             <ReactPlayer
               width="97%"
               height="85%"
@@ -205,337 +163,37 @@ const DashboardForm = () => {
               </div>
             </div>
             <div className="dashboard-news-content-container">
-              <div className="dashboard-news-content">
-                <img
-                  className="dashboard-news-content-img"
-                  src={Images.prueba}
-                  alt=""
-                />
-                <div className="dashboard-news-content-txt-cont">
-                  <p className="dashboard-news-content-title">
-                    Fideicomiso Pro-Pedernales, DGAPP Y el Departamento
-                    Aeroportuario firman acuerdo que contempla estudio de
-                    impacto ambiental para la construcción del aeropuerto
-                  </p>
-                  <p className="dashboard-news-content-txt">
-                    is simply dummy text of the printing and typesetting
-                    industry. Lorem Ipsum has been the industry's standard dummy
-                    text ever since the 1500s, when an unknown printer took a
-                    galley of type and scrambled it to make a type specimen
-                    book.
-                  </p>
-                  <p className="dashboard-news-content-txt-date">
-                    08 Julio 2022
-                  </p>
-                </div>
-              </div>
-              <div className="dashboard-news-content">
-                <img
-                  className="dashboard-news-content-img"
-                  src={Images.prueba2}
-                  alt=""
-                />
-                <div className="dashboard-news-content-txt-cont">
-                  <p className="dashboard-news-content-title">
-                    Estudio de impacto ambiental del Proyecto Pedernales asegura
-                    plan de desarrollo es viable y sugiere medidas para
-                    salvaguardar el medioambiente
-                  </p>
-                  <p className="dashboard-news-content-txt">
-                    is simply dummy text of the printing and typesetting
-                    industry. Lorem Ipsum has been the industry's standard dummy
-                    text ever since the 1500s, when an unknown printer took a
-                    galley of type and scrambled it to make a type specimen
-                    book.
-                  </p>
-                  <p className="dashboard-news-content-txt-date">
-                    08 Julio 2022
-                  </p>
-                </div>
-              </div>
-              <div className="dashboard-news-content">
-                <img
-                  className="dashboard-news-content-img"
-                  src={Images.prueba}
-                  alt=""
-                />
-                <div className="dashboard-news-content-txt-cont">
-                  <p className="dashboard-news-content-title">
-                    Director ejecutivo de la DGAPP ofrece conferencia en el
-                    cierre del 104 aniversario de la Cámara de Comercio y
-                    Producción de Puerto Plata
-                  </p>
-                  <p className="dashboard-news-content-txt">
-                    is simply dummy text of the printing and typesetting
-                    industry. Lorem Ipsum has been the industry's standard dummy
-                    text ever since the 1500s, when an unknown printer took a
-                    galley of type and scrambled it to make a type specimen
-                    book.
-                  </p>
-                  <p className="dashboard-news-content-txt-date">
-                    08 Julio 2022
-                  </p>
-                </div>
-              </div>
+              {news?.map((item, index) => {
+                return (
+                  <div key={index} className="dashboard-news-content">
+                    <img
+                      className="dashboard-news-content-img"
+                      src={item.image}
+                      alt=""
+                    />
+                    <div className="dashboard-news-content-txt-cont">
+                      <p className="dashboard-news-content-title">
+                        {item.title}
+                      </p>
+                      <p className="dashboard-news-content-txt">
+                        {item.description}
+                      </p>
+                      <p className="dashboard-news-content-txt-date">
+                        {new Date(item.createdAt).toLocaleDateString(
+                          "es-ES",
+                          optionsDate
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-            {/* <div className="dashboard-first-seccion-news-content-btn">
-              <button type="button" className="dashboard-birth-btn">
-                Ver Todos
-              </button>
-            </div> */}
           </div>
 
           <div className="dashboard-first-seccion-separation"></div>
         </div>
 
-        {/* eventos*/}
-        {/* <div className="dashboard-second-seccion-container">
-          <div className="dashboard-second-seccion-video">
-            <ReactPlayer
-              width="97%"
-              height="85%"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              url="https://www.youtube.com/watch?v=_nUlI4w8m0I"
-              controls
-            />
-            <p className="dashboard-second-video-title">
-              Recorrido por Pedernales
-            </p>
-          </div>
-          <div className="dashboard-first-seccion-separation"></div>
-          <div className="dashboard-second-seccion-board">
-            <div className="dashboard-second-activities-grid">
-              <div className="dashboard-second-activities-caledar">
-                <Calendar />
-              </div>
-              <div className="dashboard-second-activities-event">
-                <div className="dashboard-second-activities-header">
-                  <i className="md md-event-note" />
-                  <MdEventNote
-                    size="1.1rem"
-                    // color="rgb(42, 52, 63)"
-                    color="white"
-                    style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
-                  />
-                  <div className="dashboard-second-seccion-birth-name">
-                    Calendario/Eventos
-                  </div>
-                </div>
-                <div className="dashboard-second-activities">
-                  <div className="dashboard-second-event-grid">
-                    <div className="dashboard-second-birth-employee-inf">
-                      <div className="dashboard-second-birth-employee-name">
-                        <div>
-                          <p
-                            style={{ color: "#E8630A" }}
-                            className="m-0 fs-7 fw-bold"
-                          >
-                            Convocatoria para la Formacion de La Brigada de
-                            Evacuacion
-                          </p>
-                        </div>
-                        <div>
-                          <p className="m-0">Salon de Conferencias</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="dashboard-second-birth-employee-day">
-                      <div>
-                        <p className="m-0 fs-9 fw-bold">FECHA</p>
-                      </div>
-                      <div>
-                        <p className="m-0 fs-9">01 de agosto</p>
-                      </div>
-                      <div>
-                        <p className="m-0">10:00 A.M.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="dashboard-second-activities">
-                  <div className="dashboard-second-event-grid">
-                    <div className="dashboard-second-birth-employee-inf">
-                      <div className="dashboard-second-birth-employee-name">
-                        <div>
-                          <p
-                            style={{ color: "#001E6C" }}
-                            className="m-0 fs-7 fw-bold"
-                          >
-                            Convocatoria para la Formacion de La Brigada de
-                            Evacuacion
-                          </p>
-                        </div>
-                        <div>
-                          <p className="m-0">Salon de Conferencias</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="dashboard-second-birth-employee-day">
-                      <div>
-                        <p className="m-0 fs-9 fw-bold">FECHA</p>
-                      </div>
-                      <div>
-                        <p className="m-0 fs-9">01 de agosto</p>
-                      </div>
-                      <div>
-                        <p className="m-0">10:00 A.M.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="dashboard-second-activities">
-                  <div className="dashboard-second-event-grid">
-                    <div className="dashboard-second-birth-employee-inf">
-                      <div className="dashboard-second-birth-employee-name">
-                        <div>
-                          <p
-                            style={{ color: "#4E944F" }}
-                            className="m-0 fs-7 fw-bold"
-                          >
-                            Convocatoria para la Formacion de La Brigada de
-                            Evacuacion
-                          </p>
-                        </div>
-                        <div>
-                          <p className="m-0">Salon de Conferencias</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="dashboard-second-birth-employee-day">
-                      <div>
-                        <p className="m-0 fs-9 fw-bold">FECHA</p>
-                      </div>
-                      <div>
-                        <p className="m-0 fs-9">01 de agosto</p>
-                      </div>
-                      <div>
-                        <p className="m-0">10:00 A.M.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="dashboard-first-seccion-separation"></div>
-          <div className="dashboard-second-seccion-birth">
-            <div className="dashboard-second-seccion-birth-header">
-              <i className="fa fa-birthday-cake" />
-              <FaBirthdayCake
-                size="1.1rem"
-                // color="rgb(42, 52, 63)"
-                color="white"
-                style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
-              />
-              <div className="dashboard-second-seccion-birth-name">
-                Cumpleaños
-              </div>
-            </div>
-            <div className="dashboard-second-birth-employee">
-              <div className="dashboard-second-birth-employee-grid">
-                <div className="dashboard-second-birth-employee-inf">
-                  <div>
-                    <img
-                      className="dashboard-second-birth-employee-photo"
-                      src={Images.director}
-                      alt=""
-                    />
-                  </div>
-                  <div className="dashboard-second-birth-employee-name">
-                    <div>
-                      <p className="m-0 fw-bold">Sigmund Freund</p>
-                    </div>
-                    <div>
-                      <p className="m-0">Despacho</p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style={{ height: "90%", backgroundColor: "#F4E06D" }}
-                ></div>
-                <div className="dashboard-second-birth-employee-day">
-                  <div>
-                    <p className="m-0 fs-2">05</p>
-                  </div>
-                  <div>
-                    <p className="m-0">JUL</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="dashboard-second-birth-employee">
-              <div className="dashboard-second-birth-employee-grid">
-                <div className="dashboard-second-birth-employee-inf">
-                  <div>
-                    <img
-                      className="dashboard-second-birth-employee-photo"
-                      src={Images.director}
-                      alt=""
-                    />
-                  </div>
-                  <div className="dashboard-second-birth-employee-name">
-                    <div>
-                      <p className="m-0 fw-bold">Sigmund Freund</p>
-                    </div>
-                    <div>
-                      <p className="m-0">Despacho</p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style={{ height: "90%", backgroundColor: "#A084CF" }}
-                ></div>
-                <div className="dashboard-second-birth-employee-day">
-                  <div>
-                    <p className="m-0 fs-2">11</p>
-                  </div>
-                  <div>
-                    <p className="m-0">JUL</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="dashboard-second-birth-employee">
-              <div className="dashboard-second-birth-employee-grid">
-                <div className="dashboard-second-birth-employee-inf">
-                  <div>
-                    <img
-                      className="dashboard-second-birth-employee-photo"
-                      src={Images.director}
-                      alt=""
-                    />
-                  </div>
-                  <div className="dashboard-second-birth-employee-name">
-                    <div>
-                      <p className="m-0 fw-bold">Sigmund Freund</p>
-                    </div>
-                    <div>
-                      <p className="m-0">Despacho</p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  style={{ height: "90%", backgroundColor: "#37E2D5" }}
-                ></div>
-                <div className="dashboard-second-birth-employee-day">
-                  <div>
-                    <p className="m-0 fs-2">28</p>
-                  </div>
-                  <div>
-                    <p className="m-0">JUL</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="dashboard-first-seccion-news-content-btn">
-              <button type="button" className="dashboard-birth-btn">
-                Ver Todos
-              </button>
-            </div>
-          </div>
-        </div> */}
         <div className="dashboard-event-container">
           <div className="dashboard-event-grid">
             <div className="dashboard-event-cont">
@@ -548,7 +206,7 @@ const DashboardForm = () => {
                   style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
                 />
                 <div className="dashboard-second-seccion-birth-name">
-                  Calendario/Eventos
+                  Calendario de eventos
                 </div>
               </div>
               <div className="dashboard-second-activities">
@@ -558,7 +216,7 @@ const DashboardForm = () => {
                       <div>
                         <p
                           style={{ color: "#E8630A" }}
-                          className="m-0 fs-7 fw-bold"
+                          className="dashboard-second-activities-title"
                         >
                           Convocatoria para la Formacion de La Brigada de
                           Evacuacion
@@ -589,7 +247,7 @@ const DashboardForm = () => {
                       <div>
                         <p
                           style={{ color: "#001E6C" }}
-                          className="m-0 fs-7 fw-bold"
+                          className="dashboard-second-activities-title"
                         >
                           Convocatoria para la Formacion de La Brigada de
                           Evacuacion
@@ -623,7 +281,7 @@ const DashboardForm = () => {
                       <div>
                         <p
                           style={{ color: "#4E944F" }}
-                          className="m-0 fs-7 fw-bold"
+                          className="dashboard-second-activities-title"
                         >
                           Convocatoria para la Formacion de La Brigada de
                           Evacuacion
@@ -773,75 +431,102 @@ const DashboardForm = () => {
                 </button>
               </div>
             </div>
-
-            {/* <div className="dashboard-event-prom">
-              <div className="dashboard-fourth-promotions-header">
-                <i className="md md-event-note" />
-                <MdEventNote
-                  size="1.1rem"
-                  color="white"
-                  style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
-                />
-                <div className="dashboard-second-seccion-birth-name">
-                  Promociones
-                </div>
-              </div>
-              <div className="dashboard-fourth-promotions-content">
-                <div className="dashboard-fourth-promotions-content-banner">
-                  <img
-                    className="dashboard-fourth-promotions-banner-img"
-                    src={Images.prueba2}
-                    alt=""
-                  />
-                </div>
-                <div className="dashboard-fourth-promotions-content-banner">
-                  <img
-                    className="dashboard-fourth-promotions-banner-img"
-                    src={Images.prueba}
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div> */}
           </div>
         </div>
-        {/* promociones */}
-        {/* <div className="dashboard-fourth-seccion-board">
-          <div className="dashboard-fourth-promotions-header">
-            <i className="md md-event-note" />
-            <MdEventNote
-              size="1.1rem"
-              color="white"
-              style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
-            />
-            <div className="dashboard-second-seccion-birth-name">
-              Promociones
+        {/* <div className="dashboard-tweets-cont">
+          <div className="dashboard-tweets-cont-grid">
+            <div className="dashboard-tweets-cont-grid-1">
+              {tweets?.map((item, index) => {
+                return index < 3 ? (
+                  <div
+                    id={item.id}
+                    key={index}
+                    className="dashboard-tweets-cont-card"
+                  >
+                    {" "}
+                    <img
+                      className="dashboard-tweets-card-img"
+                      src={Images.dgappLogo2}
+                      alt=""
+                    />
+                    <p className="dashboard-tweets-card-title">
+                      Dirección General de Alianzas Público Privadas
+                    </p>
+                    <p className="dashboard-tweets-card-user">
+                      @DGAPRD - 13 Ago
+                    </p>
+                    <div className="dashboard-tweets-card-inf">
+                      {replaceTxt(item.text)}
+                    </div>
+                    <div className="dashboard-tweets-card-menu">
+                      <a
+                        href={`https://twitter.com/intent/tweet?in_reply_to=${item.id}&related=DGAPPRD`}
+                        className="dashboard-tweets-card-menu-txt"
+                      >
+                        <i className="fa fa-regcomment" />
+                        <FaRegComment
+                          className="tweets-icons"
+                          size="1.1rem"
+                          // color="#A5BECC"
+                          cursor="pointer"
+                          style={{
+                            marginLeft: "0.1rem",
+                            marginRight: "0.3rem",
+                          }}
+                        />
+                        {item.public_metrics.reply_count}
+                      </a>
+                      <p className="dashboard-tweets-card-menu-txt">
+                        <i className="fi fi-repeat" />
+                        <FiRepeat
+                          className="tweets-icons"
+                          size="1.1rem"
+                          // color="#A5BECC"
+                          cursor="pointer"
+                          style={{
+                            marginLeft: "0.1rem",
+                            marginRight: "0.3rem",
+                            transform: "rotate(90deg)",
+                          }}
+                        />{" "}
+                        {item.public_metrics.retweet_count}
+                      </p>
+
+                      <p className="dashboard-tweets-card-menu-txt">
+                        <i className="fi fi-heart" />
+                        <FiHeart
+                          className="tweets-icons"
+                          size="1.1rem"
+                          // color="#A5BECC"
+                          cursor="pointer"
+                          style={{
+                            marginLeft: "0.1rem",
+                            marginRight: "0.3rem",
+                          }}
+                        />
+                        {item.public_metrics.like_count}
+                      </p>
+                      <p>
+                        <i className="fa fa-Twitter" />
+                        <FaTwitter
+                          size="1.1rem"
+                          color="#1D9BF0"
+                          cursor="pointer"
+                        />
+                      </p>
+                    </div>
+                  </div>
+                ) : null;
+              })}
             </div>
+            <div className="dashboard-tweets-cont-grid-2">
+              {" "}
+              <div className="dashboard-tweets-cont-card"></div>
+              <div className="dashboard-tweets-cont-card"></div>
+              <div className="dashboard-tweets-cont-card"></div>
+            </div> 
           </div>
-          <div className="dashboard-fourth-promotions-content">
-            <div className="dashboard-fourth-promotions-content-banner">
-              <img
-                className="dashboard-fourth-promotions-banner-img"
-                src={Images.prueba}
-                alt=""
-              />
-            </div>
-            <div className="dashboard-fourth-promotions-content-banner">
-              <img
-                className="dashboard-fourth-promotions-banner-img"
-                src={Images.prueba2}
-                alt=""
-              />
-            </div>
-            <div className="dashboard-fourth-promotions-content-banner">
-              <img
-                className="dashboard-fourth-promotions-banner-img"
-                src={Images.prueba}
-                alt=""
-              />
-            </div>
-          </div>
-        </div> */}
+        </div>*/}
       </div>
     </>
   );

@@ -1,9 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
-import Images from "../../images/index";
+import { getPost } from "../../../api/post";
 
 const CarouselComponent = () => {
+  const [arrayCarousel, setArrayCarousel] = useState([]);
+
+  useEffect(() => {
+    let unmounted = false;
+
+    getPost("Portada", 4)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setArrayCarousel(res.posts);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
   return (
     <Carousel
       autoPlay
@@ -13,42 +35,22 @@ const CarouselComponent = () => {
       showThumbs={false}
       showStatus={false}
     >
-      <div className="carousel-container">
-        <img alt="" src={Images.prueba2} />
-        <div className="carousel-container-txt">
-          <p className="carousel-title">CARRETERA DE SAMANA</p>
-          <p className="carousel-inf">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </p>
-        </div>
-      </div>
-      <div className="carousel-container">
-        <img alt="" src={Images.prueba} />
-        <div className="carousel-container-txt">
-          <p className="carousel-title">CARRETERA DE SAMANA</p>
-          <p className="carousel-inf">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </p>
-        </div>
-      </div>
-      <div className="carousel-container">
-        <img alt="" src={Images.prueba2} />
-        <div className="carousel-container-txt">
-          <p className="carousel-title">CARRETERA DE SAMANA</p>
-          <p className="carousel-inf">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
-          </p>
-        </div>
-      </div>
+      {arrayCarousel?.map((item, index) => {
+        return (
+          <div key={index} className="carousel-container">
+            <img alt="" src={item.image} />
+            <div className="carousel-container-txt">
+              <p className="carousel-title">{item.title}</p>
+              <p
+                // dangerouslySetInnerHTML={{ __html: item.description }}
+                className="carousel-inf"
+              >
+                {item.description}
+              </p>
+            </div>
+          </div>
+        );
+      })}
     </Carousel>
   );
 };

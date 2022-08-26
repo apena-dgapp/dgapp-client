@@ -1,20 +1,27 @@
 import React, { useState, useEffect } from "react";
+import { getTweets } from "../../../api/tweets";
 import {
   FaFacebookF,
   FaTwitter,
   FaGoogle,
   FaInstagram,
   FaYoutube,
+  FaRegComment,
 } from "react-icons/fa";
+import { FiRepeat, FiHeart } from "react-icons/fi";
 import {
   useHistory,
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
+import { replaceTxt } from "../../../utils/textLink.js";
+import "react-ig-feed/dist/index.css";
 
 const Footer = () => {
   const history = useHistory();
   const location = useLocation();
   const [isHidden, setIsHidden] = useState(false);
+  const [tweets, setTweets] = useState([]);
+  const [postInstagram, setPostInstagram] = useState([]);
 
   const aboutUSChange = (e, name) => {
     e.preventDefault();
@@ -24,13 +31,6 @@ const Footer = () => {
       state: name,
     });
   };
-  // const goToDownload = (e, name) => {
-  //   e.preventDefault();
-  //   history.push({
-  //     pathname: "./download",
-  //     state: name,
-  //   });
-  // };
 
   useEffect(() => {
     let unmounted = false;
@@ -58,166 +58,322 @@ const Footer = () => {
         : setIsHidden(false);
     }
 
+    getTweets()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setTweets(res.tweets);
+        }
+      });
+
+    fetch(
+      `https://graph.instagram.com/me/media?fields=id,media_type,media_url,caption&limit=3&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setPostInstagram(data.data);
+      });
+
     return () => {
       unmounted = true;
     };
   }, [location.pathname]);
 
+  // console.log(postInstagram);
+
   return (
     <>
       <footer
-        className="text-center text-lg-start text-white"
-        // style={{ backgroundColor: "#1c2331" }}
+        className="footer-container"
         style={{ display: isHidden ? "none" : null }}
       >
-        <section
-          className="d-flex justify-content-between p-4"
-          style={{ backgroundColor: "#6351ce" }}
-        >
-          <div className="me-5">
-            <span>Conéctate con nosotros en las redes sociales:</span>
+        <div className="footer-social">
+          <div className="footer-social-title">
+            <p>Conéctate con nosotros en las redes sociales:</p>
           </div>
-          <div>
-            <a
-              href="https://twitter.com/dgapprd"
-              className="text-white me-4"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-twitter" />
-              <FaTwitter size="2.5em" />
-            </a>
-            <a
-              href="https://www.instagram.com/dgapprd/?hl=en"
-              className="text-white me-4"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-instagram size-icon" />
-              <FaInstagram size="2.5em" />
-            </a>
-            <a
-              href="https://www.facebook.com/dgapprd"
-              className="text-white me-4"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-facebook-f" />
-              <FaFacebookF size="2.5em" />
-            </a>
-            <a
-              href="https://www.youtube.com/channel/UCD4BpzpTLbXj4G7xHhOxP4g"
-              className="text-white me-4"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-youtube" />
-              <FaYoutube size="2.5em" />
-            </a>
-            <a
-              href="https://dgapp.gob.do/"
-              className="text-white me-4"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <i className="fab fa-google" />
-              <FaGoogle size="2.5em" />
-            </a>
-          </div>
-        </section>
-        <section>
-          <div className="container m-0 text-center text-md-start mt-2">
-            {/* Grid row */}
-            <div className="row mt-3">
-              {/* Grid column */}
-              <div className="col-md-4 col-lg-5 col-xl-4 mx-auto mb-4">
-                {/* Content */}
-                <h6 className="text-uppercase fw-bold">
-                  DIRECCIÓN GENERAL DE ALIANZAS PÚBLICO-PRIVADAS
-                </h6>
-                <hr
-                  className="mb-4 mt-0 d-inline-block mx-auto"
-                  style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
-                />
-                <p style={{ fontSize: "1rem" }}>
-                  La DGAPP es la institución responsable de la estructuración,
-                  promoción, supervisión y regulación de los proyectos de
-                  infraestructura, bienes y servicios de interés social, que se
-                  planifiquen y desarrollen en República Dominicana bajo la
-                  modalidad de alianzas público privadas (APP).
-                </p>
-              </div>
-
-              <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold">NOSOTROS</h6>
-                <hr
-                  className="mb-4 mt-0 d-inline-block mx-auto"
-                  style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
-                />
-
-                <p
-                  style={{ textDecoration: "none" }}
-                  onClick={(e) => aboutUSChange(e, "MISION, VISION Y VALORES")}
-                  className="footer-txt"
-                >
-                  Mision, Vision y Valores
-                </p>
-
-                <p
-                  style={{ textDecoration: "none" }}
-                  onClick={(e) => aboutUSChange(e, "FUNCIONES")}
-                  className="footer-txt"
-                >
-                  Funciones
-                </p>
-
-                <p
-                  style={{ textDecoration: "none" }}
-                  onClick={(e) => aboutUSChange(e, "MARCO INSTITUCIONAL")}
-                  className="footer-txt"
-                >
-                  Marco Institucional
-                </p>
-
-                <p
-                  style={{ textDecoration: "none" }}
-                  onClick={(e) => aboutUSChange(e, "DIRECTOR GENERAL")}
-                  className="footer-txt"
-                >
-                  Director General
-                </p>
-
-                <p
-                  style={{ textDecoration: "none" }}
-                  onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}
-                  className="footer-txt"
-                >
-                  Organigrama
-                </p>
-              </div>
-              <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                {/* Links */}
-                <h6 className="text-uppercase fw-bold">CONTACTOS</h6>
-                <hr
-                  className="mb-4 mt-0 d-inline-block mx-auto"
-                  style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
-                />
-                <p>
-                  <i className="fas fa-home mr-3" />
-                  Wendy A. Nuñez Nuñez Directora de Recursos Humanos
-                </p>
-                <p>
-                  <i className="fas fa-envelope mr-3" />
-                  wnunez@dgapp.gob.do
-                </p>
-                <p>
-                  <i className="fas fa-phone mr-3" />
-                  Ext. 7040
-                </p>
-              </div>
+          <div className="footer-social-icons">
+            {" "}
+            <div>
+              <a
+                href="https://twitter.com/dgapprd"
+                className="text-white me-4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-twitter" />
+                <FaTwitter size="2.5em" />
+              </a>
+              <a
+                href="https://www.instagram.com/dgapprd/?hl=en"
+                className="text-white me-4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-instagram size-icon" />
+                <FaInstagram size="2.5em" />
+              </a>
+              <a
+                href="https://www.facebook.com/dgapprd"
+                className="text-white me-4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-facebook-f" />
+                <FaFacebookF size="2.5em" />
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UCD4BpzpTLbXj4G7xHhOxP4g"
+                className="text-white me-4"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-youtube" />
+                <FaYoutube size="2.5em" />
+              </a>
+              <a
+                href="https://dgapp.gob.do/"
+                className="text-white"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-google" />
+                <FaGoogle size="2.5em" />
+              </a>
             </div>
           </div>
-        </section>
+        </div>
+        <div className="footer-grid-container">
+          <div className="footer-grid-information">
+            <p className="footer-grid-title">
+              DIRECCIÓN GENERAL DE ALIANZAS PÚBLICO-PRIVADAS
+            </p>
+            <hr
+              className="mb-4 mt-0 d-inline-block mx-auto"
+              style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
+            />
+            <p className="footer-grid-text">
+              La DGAPP es la institución responsable de la estructuración,
+              promoción, supervisión y regulación de los proyectos de
+              infraestructura, bienes y servicios de interés social, que se
+              planifiquen y desarrollen en República Dominicana bajo la
+              modalidad de alianzas público privadas (APP).
+            </p>
+          </div>
+          <div className="footer-grid-aboutus">
+            <p className="footer-grid-title">NOSOTROS</p>
+            <hr
+              className="mb-4 mt-0 d-inline-block mx-auto"
+              style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
+            />
+
+            <p
+              onClick={(e) => aboutUSChange(e, "MISION, VISION Y VALORES")}
+              className="footer-grid-aboutus-txt"
+            >
+              Mision, Vision y Valores
+            </p>
+
+            <p
+              onClick={(e) => aboutUSChange(e, "FUNCIONES")}
+              className="footer-grid-aboutus-txt"
+            >
+              Funciones
+            </p>
+
+            <p
+              onClick={(e) => aboutUSChange(e, "MARCO INSTITUCIONAL")}
+              className="footer-grid-aboutus-txt"
+            >
+              Marco Institucional
+            </p>
+
+            <p
+              onClick={(e) => aboutUSChange(e, "DIRECTOR GENERAL")}
+              className="footer-grid-aboutus-txt"
+            >
+              Director General
+            </p>
+
+            <p
+              onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}
+              className="footer-grid-aboutus-txt"
+            >
+              Organigrama
+            </p>
+          </div>
+
+          <div className="footer-grid-twitter">
+            <p className="footer-grid-title">TWITTER</p>
+            <hr
+              className="mb-4 mt-0 d-inline-block mx-auto"
+              style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
+            />
+            {tweets?.map((item, index) => {
+              return (
+                <div key={index}>
+                  <div className="footer-twitter-date">
+                    <p>{item.created_at}</p>
+                  </div>
+                  <div className="footer-twitter-text">
+                    {item.referenced_id !== ""
+                      ? replaceTxt(item.referenced_text)
+                      : replaceTxt(item.text)}
+                  </div>
+                  <div className="footer-twitter-buttons">
+                    <a
+                      href={`https://twitter.com/intent/tweet?in_reply_to=${item.tweet_id}&related=DGAPPRD`}
+                      className="footer-tweets-card-menu-txt"
+                    >
+                      <i className="fa fa-regcomment" />
+                      <FaRegComment
+                        className="footer-tweets-icons"
+                        size="1rem"
+                        // color="#A5BECC"
+                        cursor="pointer"
+                        style={{
+                          marginLeft: "0.1rem",
+                          marginRight: "0.3rem",
+                        }}
+                      />
+                      {item.public_metrics.reply_count}
+                    </a>
+                    <p className="footer-tweets-card-menu-txt">
+                      <a
+                        href={`https://twitter.com/intent/retweet?tweet_id=${item.tweet_id}&related=DGAPPRD`}
+                        className="footer-tweets-card-menu-txt"
+                      >
+                        <i className="fi fi-repeat" />
+                        <FiRepeat
+                          className="footer-tweets-icons"
+                          size="1rem"
+                          // color="#A5BECC"
+                          cursor="pointer"
+                          style={{
+                            marginLeft: "0.1rem",
+                            marginRight: "0.3rem",
+                            transform: "rotate(90deg)",
+                          }}
+                        />{" "}
+                        {item.public_metrics.retweet_count}
+                      </a>
+                    </p>
+
+                    <p className="footer-tweets-card-menu-txt">
+                      <a
+                        href={`https://twitter.com/intent/like?tweet_id=${item.tweet_id}&related=DGAPPRD`}
+                        className="footer-tweets-card-menu-txt"
+                      >
+                        <i className="fi fi-heart" />
+                        <FiHeart
+                          className="footer-tweets-icons"
+                          size="1rem"
+                          // color="#A5BECC"
+                          cursor="pointer"
+                          style={{
+                            marginLeft: "0.1rem",
+                            marginRight: "0.3rem",
+                          }}
+                        />
+                        {item.public_metrics.like_count}
+                      </a>
+                    </p>
+                    <a
+                      href={`https://twitter.com/DGAPPRD/status/${item.tweet_id}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="footer-tweets-card-menu-txt"
+                    >
+                      <p>
+                        <i className="fa fa-Twitter" />
+                        <FaTwitter
+                          size="1.1rem"
+                          color="#1D9BF0"
+                          cursor="pointer"
+                        />
+                      </p>
+                    </a>
+                  </div>
+                  <hr
+                    style={{
+                      width: "100%",
+                      backgroundColor: "#7c4dff",
+                      height: 1,
+                      marginTop: "-0.6rem",
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="footer-instagram-container">
+            <p className="footer-grid-title">INSTAGRAM</p>
+            <hr
+              className="mb-4 mt-0 d-inline-block mx-auto"
+              style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
+            />
+            <input type="radio" name="slider" id="item-1" defaultChecked />
+            <input type="radio" name="slider" id="item-2" />
+            <input type="radio" name="slider" id="item-3" />
+            <div className="footer-instagram-cards">
+              <label
+                className="footer-instagram-card"
+                htmlFor="item-1"
+                id="song-1"
+              >
+                <img src={postInstagram[0]?.media_url} alt="song" />
+                <div className="footer-instagram-caption-cont">
+                  <a
+                    href="https://www.instagram.com/dgapprd/"
+                    className="footer-instagram-caption"
+                    // ref="item-1"
+                  >
+                    {postInstagram[0]?.caption}
+                  </a>
+                </div>
+              </label>
+              <label
+                className="footer-instagram-card"
+                htmlFor="item-2"
+                id="song-2"
+              >
+                <img src={postInstagram[1]?.media_url} alt="song" />
+                <div className="footer-instagram-caption-cont">
+                  <a
+                    href="https://www.instagram.com/dgapprd/"
+                    className="footer-instagram-caption"
+                    // ref="item-2"
+                  >
+                    {postInstagram[1]?.caption}
+                  </a>
+                </div>
+              </label>
+              <label
+                className="footer-instagram-card"
+                htmlFor="item-3"
+                id="song-3"
+              >
+                <img src={postInstagram[2]?.media_url} alt="song" />
+                <div className="footer-instagram-caption-cont">
+                  <a
+                    href="https://www.instagram.com/dgapprd/"
+                    className="footer-instagram-caption"
+                    // ref="item-3"
+                  >
+                    {postInstagram[2]?.caption}
+                  </a>
+                </div>
+              </label>
+            </div>
+
+            {/* <InstagramFeed
+              token="IGQVJWQklWa00tR0ktUjRzQ0wyTUgyRFRuY21Xa1d2UlUyWWs4WEF0UWFnRzRTbDRLbFN0MGt5cXFaNWNnTnRSUC1SN1pnSmRNeXVjODBicEFwQW9tc2oxQ1hOSzYxREtNQUU0ZADhkZAUNxZAV9qYWg4TwZDZD"
+              counter="3"
+            />*/}
+          </div>
+        </div>
       </footer>
     </>
   );

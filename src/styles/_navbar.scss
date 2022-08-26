@@ -24,7 +24,7 @@ nav ul li{
 
 nav ul li p{
     display: block;
-    color:white;
+    color: #113250;
     text-decoration: none;
     font-size: calc(0.1em + 0.9vw);
     height: 100%;
@@ -34,7 +34,7 @@ nav ul li p{
 
 nav ul li a{
     display: block;
-    color:white;
+    color: #113250;
     text-decoration: none;
     font-size: calc(0.1em + 0.9vw);
     height: 100%;
@@ -44,20 +44,20 @@ nav ul li a{
 
 nav ul ul a:hover{
     // background: #2e4957;
-    color: #122129;
+    color: #113250;
     font-weight: bold;
     margin-bottom: 0;
     cursor: pointer;
 }
 
 nav ul p:hover{
-    color: white;
+    color: #113250;
     cursor: pointer;
 }
 
 nav ul ul p:hover{
     // background: #2e4957;
-    color: #122129;
+    color: #113250;
     font-weight: bold;
     margin-bottom: 0;
     cursor: pointer;
@@ -73,7 +73,7 @@ nav ul li:hover > ul{
     padding: 0 0.5rem;
     padding-top: 0.5rem;
     // background-color: rgba(20, 30, 97, .96);
-    background-color: darkcyan;
+    background-color: white;
     // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -87,15 +87,25 @@ nav ul li::before {
     content: "";
     height: 3px;
     width: 0%;
-    background-color: #EEEEEE;
+    background-color:  #79ADD4;;
     position: absolute;
     left: 0;
-    bottom: 1px;
+    bottom: 0;
     transition: 0.4s ease-out;
 }
 
+.profile-dropdown{
+    li::before {
+        left: 2.8rem;
+    }
+    li:hover::before{
+        width: 30%;
+    }
+    
+}
+
 nav ul li:hover::before{
-    width: 100%;
+    width: 50%;
 }
 
 nav ul li ul li:hover::before{
@@ -121,10 +131,10 @@ nav ul li ul li:hover::before{
 
 .user-icon {
   width: 2.2rem;
-  margin-right: 0.4rem ;
+  margin-right: 0.4rem;
 }
 .user-text {
-  color: #75828d;
+    color: #113250;
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
@@ -143,9 +153,8 @@ nav ul li ul li:hover::before{
   }
 
 .bar_menu{
-    // background-color: #4B778D;
-    background-color: darkcyan;
-    height: 5rem; 
+    background-color: white;
+    height: 8rem; 
     width: 100vw;
     display: flex;
     justify-content: space-between;
@@ -154,7 +163,7 @@ nav ul li ul li:hover::before{
 }
 
 .logo_dgapp{
-    width: 6rem;
+    width: 9rem;
     margin-left: 1.5rem;
 }
 .btn_menu{
@@ -167,10 +176,10 @@ nav ul li ul li:hover::before{
 }
 
 .nav-user-img{
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
-    margin-top: 1rem;
+    margin-top: 0.3rem;
     // margin-left: 1.5rem;
     object-fit: cover;
     border: 0.2rem solid rgb(42, 52, 63);
@@ -185,7 +194,7 @@ nav ul li ul li:hover::before{
 }
 
 .nav-user-name{
-  color: white;
+  color: #113250;
   font-size: 1.5rem;
 //   margin-top: 2rem;
 //   cursor: pointer;
@@ -198,7 +207,7 @@ nav ul li ul li:hover::before{
     font-weight: bold;
 }
 .nav-user-close{
-    color: white;
+    color: #113250;
     font-size: 0.8rem;
     cursor: pointer;
     text-decoration: underline;
@@ -213,6 +222,10 @@ nav ul li ul li:hover::before{
 .dropdown-item{
     margin: 0;
     cursor: pointer;
+    color: #113250;
+    &:hover{
+        background-color: white;
+    }
 }
 
 .menu-left{

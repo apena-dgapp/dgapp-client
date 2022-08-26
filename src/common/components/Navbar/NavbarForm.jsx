@@ -141,7 +141,7 @@ const Navbar = ({
             <i className="md md-keyboard-arrow-down" />
             <MdKeyboardArrowDown
               size="2rem"
-              color="white"
+              color="#113250"
               className="dropdown-toggle"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -155,7 +155,10 @@ const Navbar = ({
               data-bs-toggle="dropdown"
               aria-expanded="false"
             />
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <ul
+              className="dropdown-menu profile-dropdown"
+              aria-labelledby="dropdownMenuButton1"
+            >
               <li>
                 <p
                   id={person.personId}
@@ -166,7 +169,7 @@ const Navbar = ({
                   <FaUserCog
                     style={{ marginRight: "0.5rem" }}
                     size="1.2rem"
-                    color="darkcyan"
+                    color="#113250"
                   />
                   Mi Prefil
                 </p>
@@ -177,7 +180,7 @@ const Navbar = ({
                   <FaUsers
                     style={{ marginRight: "0.5rem" }}
                     size="1.2rem"
-                    color="darkcyan"
+                    color="#113250"
                   />
                   Directorio de Empleados
                 </p>
@@ -188,7 +191,7 @@ const Navbar = ({
                   <ImTree
                     style={{ marginRight: "0.5rem" }}
                     size="1.2rem"
-                    color="darkcyan"
+                    color="#113250"
                   />
                   Organigrama
                 </p>
@@ -199,7 +202,7 @@ const Navbar = ({
                   <MdLogout
                     style={{ marginRight: "0.5rem" }}
                     size="1.2rem"
-                    color="darkcyan"
+                    color="#113250"
                   />
                   Cerrar sesión
                 </p>
