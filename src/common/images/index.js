@@ -27,7 +27,10 @@ import director from '../images/director.jpg';
 import curso from '../images/curso.png';
 import prueba from '../images/coffee-gd7dbd416f_1920.jpg';
 import prueba2 from '../images/pencils-g2b5492fdc_1920.jpg';
- 
+import noCake from './no-cake.png';
+import noCalendar from './calendar.png';
+import noad from './ad-blocker.png';
+
 const Images = {
     iconUser,
     flagUs,
@@ -56,7 +59,10 @@ const Images = {
     director,
     curso,
     prueba,
-    prueba2
+    prueba2,
+    noCake,
+    noCalendar,
+    noad
 }
 
 export default Images;

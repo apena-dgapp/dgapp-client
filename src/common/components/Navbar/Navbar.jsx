@@ -74,6 +74,10 @@ const Header = () => {
     history.push("./training");
   };
 
+  const createEvents = () => {
+    history.push("./createevents");
+  };
+
   const register = () => {
     history.push("./register");
   };
@@ -140,6 +144,7 @@ const Header = () => {
       location.pathname !== `${process.env.REACT_APP_RUTE}/chat` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/training` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/createevents` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/register`
         ? setIsHidden(true)
         : setIsHidden(false);
@@ -168,6 +173,7 @@ const Header = () => {
         goToFile={goToFile}
         training={training}
         register={register}
+        createEvents={createEvents}
       />
     </>
   );

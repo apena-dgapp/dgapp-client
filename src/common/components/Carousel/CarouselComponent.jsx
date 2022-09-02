@@ -41,11 +41,8 @@ const CarouselComponent = () => {
             <img alt="" src={item.image} />
             <div className="carousel-container-txt">
               <p className="carousel-title">{item.title}</p>
-              <p
-                // dangerouslySetInnerHTML={{ __html: item.description }}
-                className="carousel-inf"
-              >
-                {item.description}
+              <p className="carousel-inf">
+                {item.description.replace(/(<([^>]+)>)/gi, "")}
               </p>
             </div>
           </div>

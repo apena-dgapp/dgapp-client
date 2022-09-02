@@ -53,6 +53,7 @@ const Footer = () => {
       location.pathname !== `${process.env.REACT_APP_RUTE}/chat` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/training` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/createevents` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/register`
         ? setIsHidden(true)
         : setIsHidden(false);
@@ -69,7 +70,8 @@ const Footer = () => {
       });
 
     fetch(
-      `https://graph.instagram.com/me/media?fields=id,media_type,media_url,caption&limit=3&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+      `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
+      ?grant_type=ig_refresh_token&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -318,20 +320,40 @@ const Footer = () => {
             <input type="radio" name="slider" id="item-2" />
             <input type="radio" name="slider" id="item-3" />
             <div className="footer-instagram-cards">
+              {" "}
               <label
                 className="footer-instagram-card"
                 htmlFor="item-1"
                 id="song-1"
               >
-                <img src={postInstagram[0]?.media_url} alt="song" />
+                {postInstagram[0]?.media_type === "VIDEO" ? (
+                  <video
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      marginBottom: "-0.5rem",
+                    }}
+                    src={postInstagram[0]?.media_url}
+                    alt="song"
+                  />
+                ) : (
+                  <img src={postInstagram[0]?.media_url} alt="song" />
+                )}
+
+                {/* <img src={postInstagram[0]?.media_url} alt="song" /> */}
                 <div className="footer-instagram-caption-cont">
                   <a
-                    href="https://www.instagram.com/dgapprd/"
-                    className="footer-instagram-caption"
-                    // ref="item-1"
+                    href={postInstagram[0]?.permalink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-instagram-logo"
                   >
-                    {postInstagram[0]?.caption}
+                    <p>Ir a Instagram</p>
                   </a>
+                  <p className="footer-instagram-caption">
+                    {postInstagram[0]?.caption}
+                  </p>
                 </div>
               </label>
               <label
@@ -339,15 +361,34 @@ const Footer = () => {
                 htmlFor="item-2"
                 id="song-2"
               >
-                <img src={postInstagram[1]?.media_url} alt="song" />
+                {postInstagram[1]?.media_type === "VIDEO" ? (
+                  <video
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      marginBottom: "-0.5rem",
+                    }}
+                    src={postInstagram[1]?.media_url}
+                    alt="song"
+                  />
+                ) : (
+                  <img src={postInstagram[1]?.media_url} alt="song" />
+                )}
+
+                {/* <img src={postInstagram[1]?.media_url} alt="song" /> */}
                 <div className="footer-instagram-caption-cont">
                   <a
-                    href="https://www.instagram.com/dgapprd/"
-                    className="footer-instagram-caption"
-                    // ref="item-2"
+                    href={postInstagram[1]?.permalink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-instagram-logo"
                   >
-                    {postInstagram[1]?.caption}
+                    <p>Ir a Instagram</p>
                   </a>
+                  <p className="footer-instagram-caption">
+                    {postInstagram[1]?.caption}
+                  </p>
                 </div>
               </label>
               <label
@@ -355,15 +396,33 @@ const Footer = () => {
                 htmlFor="item-3"
                 id="song-3"
               >
-                <img src={postInstagram[2]?.media_url} alt="song" />
+                {postInstagram[2]?.media_type === "VIDEO" ? (
+                  <video
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      marginBottom: "-0.5rem",
+                    }}
+                    src={postInstagram[2]?.media_url}
+                    alt="song"
+                  />
+                ) : (
+                  <img src={postInstagram[2]?.media_url} alt="song" />
+                )}
+                {/* <img src={postInstagram[2]?.media_url} alt="song" /> */}
                 <div className="footer-instagram-caption-cont">
                   <a
-                    href="https://www.instagram.com/dgapprd/"
-                    className="footer-instagram-caption"
-                    // ref="item-3"
+                    href={postInstagram[2]?.permalink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="footer-instagram-logo"
                   >
-                    {postInstagram[2]?.caption}
+                    <p>Ir a Instagram</p>
                   </a>
+                  <p className="footer-instagram-caption">
+                    {postInstagram[2]?.caption}
+                  </p>
                 </div>
               </label>
             </div>

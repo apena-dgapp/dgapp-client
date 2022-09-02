@@ -25,6 +25,7 @@ import Building from "../common/components/Building/Building";
 import Chat from "../components/Chat/Chat";
 import ChatButton from "../common/components/ChatButton/ChatButton";
 import Training from "../components/Training/Training";
+import CreateEvents from "../components/CreateEvents/CreateEvents";
 
 const Routes = () => {
   const [contextState] = useContext(GlobalContext);
@@ -76,6 +77,10 @@ const Routes = () => {
         <Route
           path={`${process.env.REACT_APP_RUTE}/aboutus`}
           component={AboutUs}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/createevents`}
+          component={CreateEvents}
         />
         {/* <Route path={`${process.env.REACT_APP_RUTE}/employeechart`} component={EmployeeChart} /> */}
         <Route

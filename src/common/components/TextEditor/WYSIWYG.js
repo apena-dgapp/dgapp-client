@@ -26,6 +26,7 @@ const WYSIWYGEditor = props => {
           wrapperClassName="wrapper-class"
           editorClassName="editor-class"
           onEditorStateChange={onEditorStateChange}
+          placeholder="Escriba el texto aqui ..."
         />
       </div>
     </>

@@ -20,6 +20,7 @@ const Navbar = ({
   goToFile,
   training,
   register,
+  createEvents,
 }) => {
   const [contextState] = useContext(GlobalContext);
   const [active, setActive] = useState("menu_items");
@@ -117,6 +118,9 @@ const Navbar = ({
               <ul style={{ width: "13.5rem" }}>
                 <li>
                   <p onClick={createPost}>Crear Entradas</p>
+                </li>
+                <li>
+                  <p onClick={createEvents}>Crear Eventos</p>
                 </li>
                 <li>
                   <p onClick={employeeNew}>Nuevo Empleado</p>
