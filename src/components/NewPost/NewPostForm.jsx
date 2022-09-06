@@ -2,7 +2,7 @@ import React from "react";
 import Input from "../../common/components/Input/Input";
 import Images from "../../common/images/index";
 import { TiDelete } from "react-icons/ti";
-import WYSIWYGEditor from "../../common/components/TextEditor/WYSIWYG";
+import WYSIWYGEditor from "../../utils/WYSIWYG";
 import { useForm, Controller } from "react-hook-form";
 import Modal from "./NewPost.Modal";
 
@@ -68,11 +68,17 @@ const NewPostForm = ({
                     >
                       Elige una Categoria
                     </option>
-                    <option className="option-txt" value="Main Post">
+                    <option className="option-txt" value="Portada Principal">
                       Portada Principal
                     </option>
-                    <option className="option-txt" value="Featured Post">
-                      Noticias
+                    <option className="option-txt" value="Anuncio">
+                      Anuncio
+                    </option>
+                    <option className="option-txt" value="Noticia">
+                      Noticia
+                    </option>
+                    <option className="option-txt" value="Multimedia">
+                      Multimedia
                     </option>
                   </select>
                 </div>
@@ -129,113 +135,148 @@ const NewPostForm = ({
             </div>
 
             <div className="newPostToolsContainer">
-              <div className="newPostImgCont">
-                <figure>
-                  <p className="newPostImg-txt">Agregar Portada</p>
-                  <img
-                    name="image"
-                    onClick={actionHandler}
-                    className="newPostImg"
-                    src={
-                      actionInput === "image" ? Images.imgActive : Images.img
-                    }
-                    alt=".jpg, .jpeg, .jfif, .png"
-                  />
-                  {img ? (
-                    <div onClick={removeCover} className="remove-cont">
-                      <p style={{ fontWeight: "bold" }} className="p-0 m-0">
-                        (1)
-                      </p>
-                      <a
-                        style={{ color: "red" }}
-                        href="#/"
-                        className="text-white "
-                      >
-                        <i className="Md Delete-Forever" />
-                        <TiDelete size="1.8rem" color="red" />
-                      </a>
-                    </div>
-                  ) : null}
-                </figure>
-                <figure>
-                  <p className="newPostImg-txt">Agregar Imagenes</p>
-                  <img
-                    name="imagenes"
-                    onClick={actionHandler}
-                    className="newPostImg"
-                    src={
-                      actionInput === "imagenes"
-                        ? Images.galeryActive
-                        : Images.galery
-                    }
-                    alt=".jpg, .jpeg, .jfif, .png"
-                  />
-                  {qtyImg ? (
-                    <div onClick={removeGalery} className="remove-cont">
-                      <p style={{ fontWeight: "bold" }} className="p-0 m-0">
-                        ({qtyImg})
-                      </p>
-                      <a
-                        style={{ color: "red" }}
-                        href="#/"
-                        className="text-white "
-                      >
-                        <i className="Md Delete-Forever" />
-                        <TiDelete size="1.8rem" color="red" />
-                      </a>
-                    </div>
-                  ) : null}
-                </figure>
-                <figure>
-                  <p className="newPostImg-txt">Agregar PDF</p>
-                  <img
-                    name="pdf"
-                    onClick={actionHandler}
-                    className="newPostImg"
-                    src={actionInput === "pdf" ? Images.pdfActive : Images.pdf}
-                    alt=".pdf"
-                  />
-                  {qtyPdf ? (
-                    <div onClick={removePdf} className="remove-cont">
-                      <p style={{ fontWeight: "bold" }} className="p-0 m-0">
-                        ({qtyPdf})
-                      </p>
-                      <a href="#/" className="text-white ">
-                        <i className="Md Delete-Forever" />
-                        <TiDelete size="1.8rem" color="red" />
-                      </a>
-                    </div>
-                  ) : null}
-                </figure>
-                <figure>
-                  <p className="newPostImg-txt">Agregar Video</p>
-                  <img
-                    name="video"
-                    onClick={modalToggle}
-                    className="newPostImg"
-                    type="text"
-                    src={Images.video}
-                    alt=".mp4, .avi, .mkv, .mov"
-                    onChange={handlerInputChange}
-                    value={formData.video}
-                  />
-                  {formData.video ? (
-                    <div onClick={removeVideo} className="remove-cont">
-                      <p style={{ fontWeight: "bold" }} className="p-0 m-0">
-                        (1)
-                      </p>
-                      <a
-                        style={{ color: "red" }}
-                        href="#/"
-                        className="text-white "
-                      >
-                        <i className="Md Delete-Forever" />
-                        <TiDelete size="1.8rem" color="red" />
-                      </a>
-                    </div>
-                  ) : null}
-                </figure>
-              </div>
+              {formData.category !== "Multimedia" ? (
+                <div className="newPostImgCont">
+                  <figure>
+                    <p className="newPostImg-txt">Agregar Portada</p>
+                    <img
+                      name="image"
+                      onClick={actionHandler}
+                      className="newPostImg"
+                      src={
+                        actionInput === "image" ? Images.imgActive : Images.img
+                      }
+                      alt=".jpg, .jpeg, .jfif, .png"
+                    />
+                    {img ? (
+                      <div onClick={removeCover} className="remove-cont">
+                        <p style={{ fontWeight: "bold" }} className="p-0 m-0">
+                          (1)
+                        </p>
+                        <a
+                          style={{ color: "red" }}
+                          href="#/"
+                          className="text-white "
+                        >
+                          <i className="Md Delete-Forever" />
+                          <TiDelete size="1.8rem" color="red" />
+                        </a>
+                      </div>
+                    ) : null}
+                  </figure>
+                  <figure>
+                    <p className="newPostImg-txt">Agregar Imagenes</p>
+                    <img
+                      name="imagenes"
+                      onClick={actionHandler}
+                      className="newPostImg"
+                      src={
+                        actionInput === "imagenes"
+                          ? Images.galeryActive
+                          : Images.galery
+                      }
+                      alt=".jpg, .jpeg, .jfif, .png"
+                    />
+                    {qtyImg ? (
+                      <div onClick={removeGalery} className="remove-cont">
+                        <p style={{ fontWeight: "bold" }} className="p-0 m-0">
+                          ({qtyImg})
+                        </p>
+                        <a
+                          style={{ color: "red" }}
+                          href="#/"
+                          className="text-white "
+                        >
+                          <i className="Md Delete-Forever" />
+                          <TiDelete size="1.8rem" color="red" />
+                        </a>
+                      </div>
+                    ) : null}
+                  </figure>
+                  <figure>
+                    <p className="newPostImg-txt">Agregar PDF</p>
+                    <img
+                      name="pdf"
+                      onClick={actionHandler}
+                      className="newPostImg"
+                      src={
+                        actionInput === "pdf" ? Images.pdfActive : Images.pdf
+                      }
+                      alt=".pdf"
+                    />
+                    {qtyPdf ? (
+                      <div onClick={removePdf} className="remove-cont">
+                        <p style={{ fontWeight: "bold" }} className="p-0 m-0">
+                          ({qtyPdf})
+                        </p>
+                        <a href="#/" className="text-white ">
+                          <i className="Md Delete-Forever" />
+                          <TiDelete size="1.8rem" color="red" />
+                        </a>
+                      </div>
+                    ) : null}
+                  </figure>
+                  <figure>
+                    <p className="newPostImg-txt">Agregar Video</p>
+                    <img
+                      name="video"
+                      onClick={modalToggle}
+                      className="newPostImg"
+                      type="text"
+                      src={Images.video}
+                      alt=".mp4, .avi, .mkv, .mov"
+                      onChange={handlerInputChange}
+                      value={formData.video}
+                    />
+                    {formData.video ? (
+                      <div onClick={removeVideo} className="remove-cont">
+                        <p style={{ fontWeight: "bold" }} className="p-0 m-0">
+                          (1)
+                        </p>
+                        <a
+                          style={{ color: "red" }}
+                          href="#/"
+                          className="text-white "
+                        >
+                          <i className="Md Delete-Forever" />
+                          <TiDelete size="1.8rem" color="red" />
+                        </a>
+                      </div>
+                    ) : null}
+                  </figure>
+                </div>
+              ) : (
+                <div className="newPostImgCont">
+                  <figure>
+                    <p className="newPostImg-txt">Agregar Video</p>
+                    <img
+                      name="video"
+                      onClick={modalToggle}
+                      className="newPostImg"
+                      type="text"
+                      src={Images.video}
+                      alt=".mp4, .avi, .mkv, .mov"
+                      onChange={handlerInputChange}
+                      value={formData.video}
+                    />
+                    {formData.video ? (
+                      <div onClick={removeVideo} className="remove-cont">
+                        <p style={{ fontWeight: "bold" }} className="p-0 m-0">
+                          (1)
+                        </p>
+                        <a
+                          style={{ color: "red" }}
+                          href="#/"
+                          className="text-white "
+                        >
+                          <i className="Md Delete-Forever" />
+                          <TiDelete size="1.8rem" color="red" />
+                        </a>
+                      </div>
+                    ) : null}
+                  </figure>
+                </div>
+              )}
             </div>
             {!actionInput ? null : (
               <div className="newPostToolsContainer">

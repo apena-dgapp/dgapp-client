@@ -106,7 +106,7 @@ function EmployeeEditForm({
               </div>
 
               <div className="">
-                <p className="edit-input-title">Documento</p>
+                <p className="edit-input-title">Cédula</p>
                 <Input
                   // id="titleinput"
                   onChange={handlerInputChange}
@@ -252,9 +252,10 @@ function EmployeeEditForm({
                     value={profile?.departament}
                   >
                     <option
-                      defaultValue="Seleccionar una Departamento"
-                      disabled
-                      selected
+                      className="option-txt-placeholder"
+                      defaultValue={true}
+                      // disabled
+                      // selected
                     >
                       Seleccionar una Departamento
                     </option>

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-// Components
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";

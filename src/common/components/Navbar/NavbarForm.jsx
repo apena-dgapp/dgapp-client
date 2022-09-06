@@ -175,7 +175,7 @@ const Navbar = ({
                     size="1.2rem"
                     color="#113250"
                   />
-                  Mi Prefil
+                  Mi Perfil
                 </p>
               </li>
               <li>

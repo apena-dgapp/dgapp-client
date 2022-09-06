@@ -26,7 +26,7 @@
     border-radius: 0.6vw;
     width: 25rem;
     height: 2rem;
-    border: #141E61 solid 1px;
+    border: #2B4865 solid 1px;
     padding-left: 1rem;
     // font-style: italic;
     font-size: 0.9rem;
@@ -54,7 +54,7 @@
     margin: 0;
     font-size: 1rem;
     font-style: oblique;
-    color: #141E61;
+    color: #2B4865;
 }
 .edit-btn-cont{
     display: flex;
@@ -75,7 +75,7 @@
     height: 2.5rem;
     border: none;
     color: white;
-    background-color: green;
+    background-color: #3FA796;
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
@@ -92,7 +92,7 @@
     height: 2.5rem;
     border: none;
     color: white;
-    background-color: brown;
+    background-color: #F65A83;
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
@@ -169,7 +169,7 @@ margin-top:  -5rem;
     height: 7.5rem;
     border-radius: 4rem;
     object-fit: cover;
-    border: 0.2rem solid darkcyan;
+    border: 0.2rem solid #8CB2C4;
     }
     /* ESTILO DEL BOTÓN CON HOVER DE MOUSE */
     .boton-standar-rw:hover{
@@ -179,7 +179,7 @@ margin-top:  -5rem;
 
     .edit-img-text{
         margin-right: 0.3rem;
-        color: #141E61;
+        color: #113250;
         font-weight: bold;
     }
 
@@ -200,7 +200,7 @@ margin-top:  -5rem;
         background-color: white;
         position: absolute;
         border-radius: 0.5rem;
-        border: 1px solid darkcyan;
+        border: 1px solid #8CB2C4;
     }
 
     .new-btn-cont{
@@ -217,7 +217,7 @@ margin-top:  -5rem;
         height: 2.5rem;
         border: none;
         color: white;
-        background-color: #141E61;
+        background-color: #2B4865;
         text-align: center;
         font-size: 1.2rem;
         font-weight: bold;

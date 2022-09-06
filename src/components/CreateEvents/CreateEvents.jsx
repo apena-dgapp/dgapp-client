@@ -85,14 +85,19 @@ const CreateEvents = () => {
     setEventsArray([]);
     toast.success("Eventos enviados exitosamente!");
   };
-  const eventRemove = (e) => {
-    var arr = eventsArray;
-    if (e > -1) {
-      arr.splice(e, 1);
-      setEventsArray(arr);
-    }
-  };
+  // const eventRemove = (e) => {
+  //   var arr = eventsArray;
+  //   if (e > -1) {
+  //     arr.splice(e, 1);
+  //     setEventsArray(arr);
+  //   }
+  // };
 
+  const eventRemove = (indexItem) => {
+    setEventsArray((prevState) =>
+      prevState.filter((events, index) => index !== indexItem)
+    );
+  };
   console.log(eventsArray);
 
   return (

@@ -69,14 +69,34 @@ const Footer = () => {
         }
       });
 
-    fetch(
-      `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
-      ?grant_type=ig_refresh_token&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setPostInstagram(data.data);
-      });
+    // fetch(
+    //   `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
+    //   ?grant_type=ig_refresh_token&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     setPostInstagram(data.data);
+    //   });
+
+    if (!unmounted) {
+      fetch(
+        `https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          // setAccessToken(data.access_token);
+          // console.log(data);
+          fetch(
+            `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
+                ?grant_type=ig_refresh_token&access_token=${data.access_token}`
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              setPostInstagram(data.data);
+            });
+        });
+    }
 
     return () => {
       unmounted = true;
@@ -326,22 +346,7 @@ const Footer = () => {
                 htmlFor="item-1"
                 id="song-1"
               >
-                {postInstagram[0]?.media_type === "VIDEO" ? (
-                  <video
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      marginBottom: "-0.5rem",
-                    }}
-                    src={postInstagram[0]?.media_url}
-                    alt="song"
-                  />
-                ) : (
-                  <img src={postInstagram[0]?.media_url} alt="song" />
-                )}
-
-                {/* <img src={postInstagram[0]?.media_url} alt="song" /> */}
+                <img src={postInstagram[0]?.media_url} alt="song" />
                 <div className="footer-instagram-caption-cont">
                   <a
                     href={postInstagram[0]?.permalink}
@@ -361,22 +366,7 @@ const Footer = () => {
                 htmlFor="item-2"
                 id="song-2"
               >
-                {postInstagram[1]?.media_type === "VIDEO" ? (
-                  <video
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      marginBottom: "-0.5rem",
-                    }}
-                    src={postInstagram[1]?.media_url}
-                    alt="song"
-                  />
-                ) : (
-                  <img src={postInstagram[1]?.media_url} alt="song" />
-                )}
-
-                {/* <img src={postInstagram[1]?.media_url} alt="song" /> */}
+                <img src={postInstagram[1]?.media_url} alt="song" />
                 <div className="footer-instagram-caption-cont">
                   <a
                     href={postInstagram[1]?.permalink}
@@ -396,21 +386,7 @@ const Footer = () => {
                 htmlFor="item-3"
                 id="song-3"
               >
-                {postInstagram[2]?.media_type === "VIDEO" ? (
-                  <video
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                      marginBottom: "-0.5rem",
-                    }}
-                    src={postInstagram[2]?.media_url}
-                    alt="song"
-                  />
-                ) : (
-                  <img src={postInstagram[2]?.media_url} alt="song" />
-                )}
-                {/* <img src={postInstagram[2]?.media_url} alt="song" /> */}
+                <img src={postInstagram[2]?.media_url} alt="song" />
                 <div className="footer-instagram-caption-cont">
                   <a
                     href={postInstagram[2]?.permalink}

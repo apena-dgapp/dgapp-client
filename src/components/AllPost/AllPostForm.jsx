@@ -44,6 +44,7 @@ const AllPostForm = ({
                 img={post.image}
                 description={post.description}
                 date={post.createdAt}
+                author={post.author}
               />
             );
           })}

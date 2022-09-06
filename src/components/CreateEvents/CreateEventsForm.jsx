@@ -11,7 +11,6 @@ const CreateEventsForm = ({
   formData,
   eventRemove,
 }) => {
-  console.log(formData);
   return (
     <>
       <div className="createEvent-title-cont">
@@ -56,7 +55,7 @@ const CreateEventsForm = ({
                         </option>
                         <option id="1">Conferencias Dirección Ejecutiva</option>
                         <option id="2">Conferencias Piso 2</option>
-                        <option id="3">Conferencias Piso 23</option>
+                        <option id="3">Conferencias Piso 3</option>
                         <option id="4">Multiuso Piso 1</option>
                       </select>
                     </div>

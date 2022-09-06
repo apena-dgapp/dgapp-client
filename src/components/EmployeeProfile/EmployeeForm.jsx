@@ -195,7 +195,7 @@ const EmployeeForm = ({
               // onClick={(e) => goToDownload(e, "MIS DOCUMENTOS")}
               onClick={msgDisable}
               type="button"
-              className="btn btn-primary employee-btn"
+              className="employee-btn-documentation"
             >
               Documentacion
             </button>
@@ -203,7 +203,7 @@ const EmployeeForm = ({
               <button
                 onClick={edit}
                 type="button"
-                className="btn btn-warning employee-btn"
+                className="employee-btn-edit"
               >
                 Editar
               </button>

@@ -32,13 +32,13 @@ const Routes = () => {
 
   return (
     <BrowserRouter>
-      {contextState.token ? (
+      {/* {contextState.token ? (
         !contextState.isShowChat ? (
           <ChatButton />
         ) : (
           <Chat />
         )
-      ) : null}
+      ) : null} */}
 
       {contextState.isLoading ? <Spinner /> : null}
       <ScrollToTop />

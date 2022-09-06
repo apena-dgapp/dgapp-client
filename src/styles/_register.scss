@@ -11,6 +11,7 @@
   background-color: white;
   position: absolute;
   border-radius: 0.5rem;
+  border: 1px solid #8CB2C4;
 }
 .register-img-cont{
   display: flex;
@@ -25,7 +26,7 @@
     height: 7.5rem;
     border-radius: 4rem;
     object-fit: cover;
-    border: 0.2rem solid darkcyan;
+    border: 0.2rem solid #8CB2C4;
   }
   .register-img-txt{
     margin: 0;
@@ -75,7 +76,7 @@
   height: 2.5rem;
   border: none;
   color: white;
-  background-color: #313552;
+  background-color: #2B4865;
   text-align: center;
   font-size: 1.2rem;
   font-weight: bold;
@@ -146,7 +147,7 @@
 
       &:before {
         content: "";
-        background:#313552;
+        background:#3FA796;
         height: 100%;
         width: 100%;
         position: absolute;

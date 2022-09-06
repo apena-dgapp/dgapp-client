@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DashboardForm from "./DashboardForm";
-import { getPost } from "../../api/post";
+import { getPost, getPostMultimedia } from "../../api/post";
 import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
 
@@ -10,11 +10,12 @@ const Dashboard = () => {
   const [birthday, setBirthday] = useState([]);
   const [events, setEvents] = useState([]);
   const [eventDate, setEventDate] = useState([]);
+  const [multimedia, setMultimedia] = useState();
 
   useEffect(() => {
     let unmounted = false;
 
-    getPost("Portada", 3)
+    getPost("Anuncio", 3)
       .then((res) => {
         return res.json();
       })
@@ -34,6 +35,25 @@ const Dashboard = () => {
       .then((res) => {
         if (!unmounted) {
           setNews(res.posts);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    getPostMultimedia("Multimedia", 1)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          // setMultimedia(res[0]);
+          res.map((item, index) => {
+            return setMultimedia({
+              title: item.title,
+              url: item.FilesPosts[index].file,
+            });
+          });
         }
       })
       .catch((err) => {
@@ -80,8 +100,6 @@ const Dashboard = () => {
   //   }
   // }
 
-  // console.log(eventDate);
-
   return (
     <>
       <DashboardForm
@@ -90,6 +108,7 @@ const Dashboard = () => {
         birthday={birthday}
         events={events}
         eventDate={eventDate}
+        multimedia={multimedia}
       />
     </>
   );

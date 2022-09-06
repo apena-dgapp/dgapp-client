@@ -23,6 +23,18 @@ export const getPost = async (category,limit) => {
     })
 }
 
+export const getPostMultimedia = async (category,limit) => {
+    const body = {category, limit};
+    return fetch(`${process.env.REACT_APP_API}post/multimediapost`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }   
+    })
+}
+
 export const allPostApi = async () => {
     return fetch(`${process.env.REACT_APP_API}post/allpost`, {
         method: "GET",

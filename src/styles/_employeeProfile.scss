@@ -24,6 +24,7 @@
     background-color: white;
     position: fixed;
     border-radius: 0.5rem;
+    z-index: 2;
 }
 .employee-name{
     padding-top: 10rem;
@@ -50,9 +51,27 @@
     display: flex;
     margin-left: 1rem;
     margin-top: 2rem;   
+    // .btn-primary{
+    //     background-color: #525E75;
+    // }
 }
-.employee-btn{
+.employee-btn-documentation{
+    width: 10rem;
     margin-right: 0.8rem;
+    font-weight: bold;
+    background-color: #2B4865;
+    color: white;
+    border-radius: 0.3rem;
+    border: none;
+}
+.employee-btn-edit{
+    width: 7.5rem;
+    margin-right: 0.8rem;
+    font-weight: bold;
+    background-color: #FEB139;
+    color: white;
+    border-radius: 0.3rem;
+    border: none;
 }
 
 .employee-img{
@@ -182,7 +201,7 @@
 .onoffswitch1-inner:before {
     content: "Activo";
     // padding-left: 10px;
-    background-color: #08c450; color: #FFFFFF;
+    background-color: #3FA796; color: #FFFFFF;
     border-radius: 5px 0 0 5px;
     height: 2.4rem;
     text-align: center;
@@ -192,7 +211,7 @@
 .onoffswitch1-inner:after {
     content: "No Activo";
     // padding-right: 10px;
-    background-color: #c74343; color: white;
+    background-color: #FF7396; color: white;
     text-align: right;
     border-radius: 0 5px 5px 0;
     height: 2.4rem;

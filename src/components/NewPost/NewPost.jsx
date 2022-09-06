@@ -16,7 +16,6 @@ const NewPost = () => {
   const [qtyPdf, setQtyPdf] = useState("");
   const [namePdf, setNamePdf] = useState("");
   const [nameImg, setNameImg] = useState("");
-
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -26,6 +25,12 @@ const NewPost = () => {
     isActive: true,
     video: "",
   });
+  const [uploadFiles, setUploadFiles] = useState({
+    imagenes: "",
+    pdf: "",
+    video: "",
+  });
+
   const modalToggleAceppt = () => {
     if (formData.video) {
       setModalActive(!modalActive);
@@ -38,19 +43,11 @@ const NewPost = () => {
   };
   const modalToggleCancel = () => {
     setModalActive(!modalActive);
-    setFormData({
-      video: "",
-    });
+    setFormData({ ...formData, video: "" });
   };
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
-
-  const [uploadFiles, setUploadFiles] = useState({
-    imagenes: "",
-    pdf: "",
-    video: "",
-  });
 
   const handlerInputChange = (e) => {
     setFormData({
@@ -126,9 +123,7 @@ const NewPost = () => {
   };
 
   const removeVideo = () => {
-    setFormData({
-      video: "",
-    });
+    setFormData({ ...formData, video: "" });
   };
 
   const sendHandlerForm = async (editor_content) => {
@@ -140,7 +135,9 @@ const NewPost = () => {
       return toast.error("Por favor agregar un autor");
     } else if (!editor_content) {
       return toast.error("Por favor agregar una descripcion");
-    } else if (!img) {
+    } else if (!img && formData.category === "Portada Principal") {
+      return toast.error("Por favor agregar una imagen de portada");
+    } else if (!img && formData.category === "Noticia") {
       return toast.error("Por favor agregar una imagen de portada");
     }
     newPostApi(

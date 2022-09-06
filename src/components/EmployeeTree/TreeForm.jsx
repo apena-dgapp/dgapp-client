@@ -27,7 +27,7 @@ const useStyles = makeStyles(
   createStyles({
     button: {
       boxShadow: "none",
-      border: "1px solid darkcyan",
+      border: "1px solid #8CB2C4",
       borderRadius: "0.2rem",
       position: "relative",
       maxWidth: "10rem",
@@ -66,7 +66,7 @@ const useStyles = makeStyles(
       height: "5rem",
       borderRadius: "2.5rem",
       objectFit: "cover",
-      border: "3px solid darkcyan",
+      border: "3px solid #8CB2C4",
       top: "0",
       position: "absolute",
       marginTop: "0.5rem",
@@ -128,7 +128,7 @@ const renderForeignObjectNode = ({
               <MdKeyboardArrowDown
                 className="emDirectory-se"
                 size="2em"
-                color="darkcyan"
+                color="#8CB2C4"
               />
             </div>
           ) : (

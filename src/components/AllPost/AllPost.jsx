@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import AllPostForm from "./AllPostForm";
-import { allPostApi } from "../../api/post";
+import { getPost } from "../../api/post";
 import GlobalContext from "../../context/GlobalContext";
 
 const AllPost = () => {
@@ -14,7 +14,7 @@ const AllPost = () => {
   useEffect(() => {
     let unmounted = false;
 
-    allPostApi()
+    getPost("Noticia")
       .then((res) => {
         return res.json();
       })

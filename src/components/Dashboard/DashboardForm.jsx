@@ -10,7 +10,14 @@ import ReactPlayer from "react-player";
 import Images from "../../common/images/index";
 import { Calendar } from "react-multi-date-picker";
 
-const DashboardForm = ({ ad, news, birthday, events, eventDate }) => {
+const DashboardForm = ({
+  ad,
+  news,
+  birthday,
+  events,
+  eventDate,
+  multimedia,
+}) => {
   var optionsDate = { month: "long", day: "numeric" };
 
   // const [values, setValues] = useState([
@@ -67,22 +74,21 @@ const DashboardForm = ({ ad, news, birthday, events, eventDate }) => {
             {ad.length ? (
               ad?.map((item, index) => {
                 return (
-                  <div
-                    key={index}
-                    className="dashboard-first-seccion-news-content"
-                  >
-                    <div className="dashboard-first-seccion-news-content-txt">
-                      <div className="dashboard-first-seccion-news-content-txt-title">
-                        {item.title}
-                      </div>
-                      <div className="dashboard-first-seccion-news-content-txt-inf">
-                        {item.description.replace(/(<([^>]+)>)/gi, "")}
-                      </div>
-                      <div className="dashboard-first-seccion-news-content-txt-date">
-                        {new Date(item.createdAt).toLocaleDateString(
-                          "es-ES",
-                          optionsDate
-                        )}
+                  <div key={index} className="dashboard-ad-content-txt-cont">
+                    <div className="dashboard-first-seccion-news-content">
+                      <div className="dashboard-first-seccion-news-content-txt">
+                        <div className="dashboard-first-seccion-news-content-txt-title">
+                          {item.title}
+                        </div>
+                        <div className="dashboard-first-seccion-news-content-txt-inf">
+                          {item.description.replace(/(<([^>]+)>)/gi, "")}
+                        </div>
+                        <div className="dashboard-first-seccion-news-content-txt-date">
+                          {new Date(item.createdAt).toLocaleDateString(
+                            "es-ES",
+                            optionsDate
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -95,7 +101,7 @@ const DashboardForm = ({ ad, news, birthday, events, eventDate }) => {
               </div>
             )}
 
-            {birthday.length ? (
+            {ad.length ? (
               <div className="dashboard-first-seccion-news-content-btn">
                 <button type="button" className="dashboard-news-btn">
                   Ir a Todas
@@ -182,12 +188,10 @@ const DashboardForm = ({ ad, news, birthday, events, eventDate }) => {
               height="80%"
               style={{ marginTop: "0.5rem" }}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              url="https://www.youtube.com/watch?v=_nUlI4w8m0I"
+              url={multimedia?.url}
               controls
             />
-            <p className="dashboard-second-video-title">
-              Recorrido por Pedernales
-            </p>
+            <p className="dashboard-second-video-title">{multimedia?.title}</p>
           </div>
           <div className="dashboard-first-seccion-separation"></div>
           <div className="dashboard-news-board">
@@ -312,7 +316,7 @@ const DashboardForm = ({ ad, news, birthday, events, eventDate }) => {
                   multiple
                   value={eventDate}
                   // range
-                  // readOnly={true}
+                  readOnly={true}
                 />
               </div>
             </div>
