@@ -14,7 +14,7 @@ const AllPost = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getPost("Noticia")
+    getPost(["Noticia", "Portada Principal"])
       .then((res) => {
         return res.json();
       })

@@ -249,11 +249,13 @@ function EmployeeEditForm({
                     name="departament"
                     className="edit-input"
                     onChange={handlerdDepartament}
-                    value={profile?.departament}
+                    // value={profile?.departament}
+                    defaultValue={"DEFAULT"}
                   >
                     <option
-                      className="option-txt-placeholder"
-                      defaultValue={true}
+                      disabled
+                      value="DEFAULT"
+                      // defaultValue={true}
                       // disabled
                       // selected
                     >
@@ -282,9 +284,10 @@ function EmployeeEditForm({
                     name="reportto"
                     className="edit-input"
                     onChange={handlerdReportTo}
-                    value={reportsTo?.fullName}
+                    // value={reportsTo?.fullName}
+                    defaultValue={"DEFAULT"}
                   >
-                    <option value="" disabled selected>
+                    <option disabled value="DEFAULT">
                       Seleccionar un Empleado
                     </option>
                     {reportsTo
@@ -359,8 +362,9 @@ function EmployeeEditForm({
                     className="edit-input"
                     onChange={handlerInputChange}
                     //   value={person?.fullName}
+                    defaultValue={"DEFAULT"}
                   >
-                    <option value="" disabled selected>
+                    <option disabled value="DEFAULT">
                       Seleccionar el tipo de Contrato
                     </option>
                     <option id="1" value="Contratado">

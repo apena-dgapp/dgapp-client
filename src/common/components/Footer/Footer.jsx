@@ -69,34 +69,36 @@ const Footer = () => {
         }
       });
 
-    // fetch(
-    //   `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
-    //   ?grant_type=ig_refresh_token&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     setPostInstagram(data.data);
-    //   });
-
     if (!unmounted) {
       fetch(
-        `https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+        `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
+      ?grant_type=ig_refresh_token&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
       )
         .then((res) => res.json())
         .then((data) => {
-          // setAccessToken(data.access_token);
           // console.log(data);
-          fetch(
-            `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
-                ?grant_type=ig_refresh_token&access_token=${data.access_token}`
-          )
-            .then((res) => res.json())
-            .then((data) => {
-              setPostInstagram(data.data);
-            });
+          // setPostInstagram(data.data);
         });
     }
+
+    // if (!unmounted) {
+    //   fetch(
+    //     `https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=IGQVJYTldiSzF3MG1LQVRsRmdfeGJEejhDREhITjB5V1pxdm9uSFVVaE9sSG1aQXF0T2dwOE9HdTI0M1dXSnQ0djhCWllPQ3ZA3RVNCdXpQdy1mOXVpbXNNR3J2SldFdFhqOVh5RDhRMnlCZAHI1dkp0NgZDZD`
+    //   )
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       // setAccessToken(data.access_token);
+    //       console.log(data);
+    //       // fetch(
+    //       //   `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
+    //       //       ?grant_type=ig_refresh_token&access_token=${data.access_token}`
+    //       // )
+    //       //   .then((res) => res.json())
+    //       //   .then((data) => {
+    //       //     setPostInstagram(data.data);
+    //       //   });
+    //     });
+    // }
 
     return () => {
       unmounted = true;
@@ -104,6 +106,8 @@ const Footer = () => {
   }, [location.pathname]);
 
   // console.log(postInstagram);
+
+  // console.log(tweets);
 
   return (
     <>
@@ -238,10 +242,13 @@ const Footer = () => {
                   <div className="footer-twitter-date">
                     <p>{item.created_at}</p>
                   </div>
-                  <div className="footer-twitter-text">
+                  {/* <div className="footer-twitter-text">
                     {item.referenced_id !== ""
                       ? replaceTxt(item.referenced_text)
                       : replaceTxt(item.text)}
+                  </div> */}
+                  <div className="footer-twitter-text">
+                    {replaceTxt(item.text)}
                   </div>
                   <div className="footer-twitter-buttons">
                     <a
@@ -330,7 +337,7 @@ const Footer = () => {
             })}
           </div>
 
-          <div className="footer-instagram-container">
+          {/* <div className="footer-instagram-container">
             <p className="footer-grid-title">INSTAGRAM</p>
             <hr
               className="mb-4 mt-0 d-inline-block mx-auto"
@@ -402,12 +409,7 @@ const Footer = () => {
                 </div>
               </label>
             </div>
-
-            {/* <InstagramFeed
-              token="IGQVJWQklWa00tR0ktUjRzQ0wyTUgyRFRuY21Xa1d2UlUyWWs4WEF0UWFnRzRTbDRLbFN0MGt5cXFaNWNnTnRSUC1SN1pnSmRNeXVjODBicEFwQW9tc2oxQ1hOSzYxREtNQUU0ZADhkZAUNxZAV9qYWg4TwZDZD"
-              counter="3"
-            />*/}
-          </div>
+          </div> */}
         </div>
       </footer>
     </>

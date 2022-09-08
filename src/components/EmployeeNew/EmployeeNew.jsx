@@ -280,6 +280,7 @@ function EmployeeNew() {
         code={code}
         setEmail={setEmail}
         email={email}
+        // departament={departament}
       />
     </>
   );

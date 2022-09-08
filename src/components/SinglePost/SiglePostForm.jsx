@@ -16,8 +16,6 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
     });
   };
 
-  console.log(dataPost);
-
   const breakPoints = [
     { width: 1, itemsToShow: 1 },
     { width: 550, itemsToShow: 2 },

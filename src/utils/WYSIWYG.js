@@ -16,6 +16,14 @@ const WYSIWYGEditor = props => {
     );
   };
 
+  // console.log(editorState.getCurrentContent())
+  // if(props.klk==="klk" && props.value !==undefined){
+  //   setEditorState(EditorState.createEmpty())
+  // }
+  // useEffect(()=>{
+
+  // },[])
+
   return (
     <>
       <div className="editor">

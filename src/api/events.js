@@ -1,6 +1,5 @@
 
 export const newEvents = async (name, description, room, color, from, to, starttime, endingtime, createdby) => {
-    console.log(starttime)
     const body = {name, description, room, color, from, to, starttime, endingtime, createdby};
     return fetch(`${process.env.REACT_APP_API}events/newevent`, {
         method: "POST",

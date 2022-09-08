@@ -61,13 +61,9 @@ const NewPostForm = ({
                     value={formData.category}
                     onChange={handlerInputChange}
                     className="input-group"
+                    defaultValue={"DEFAULT"}
                   >
-                    <option
-                      className="option-txt-placeholder"
-                      defaultValue={true}
-                    >
-                      Elige una Categoria
-                    </option>
+                    <option value="DEFAULT">Elige una Categoria</option>
                     <option className="option-txt" value="Portada Principal">
                       Portada Principal
                     </option>

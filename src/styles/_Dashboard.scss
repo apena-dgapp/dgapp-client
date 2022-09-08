@@ -110,6 +110,11 @@
 .dashboard-first-seccion-news-content-txt-title{
     font-weight: bold;
     font-size: 0.6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .dashboard-first-seccion-news-content-txt-inf{
@@ -694,37 +699,37 @@
     padding: 0 !important;
 }
 .rmdp-week-day{
-    font-size: 0.7rem;
+    font-size: 0.7rem !important;
     color: #2B4865 !important; 
-    font-weight: bold; 
+    font-weight: bold !important; 
 }
 .rmdp-week, .rmdp-ym {
-    justify-content: space-evenly;
+    justify-content: space-evenly !important;
 }
 .rmdp-header{
-    display: flex;
-    justify-content: space-evenly;
-    background-color:#525E75;
-    margin: 0;
-    line-height: 0;
-    height: 1.5rem;
-    border-left: white solid 1px;
+    display: flex !important;
+    justify-content: space-evenly !important;
+    background-color:#525E75 !important;
+    margin: 0 !important;
+    line-height: 0 !important;
+    height: 1.5rem !important;
+    border-left: white solid 1px !important;
 }
 .rmdp-arrow{
-    border: solid white;
-    border-width: 0 2px 2px 0;
+    border: solid white !important;
+    border-width: 0 2px 2px 0 !important;
 }
 .rmdp-header-values{
-    font-weight: bold;
-    font-size: 1rem;
-    color: white;
-    padding-right: 10rem;
-    padding-left: 10rem;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+    color: white !important;
+    padding-right: 10rem !important;
+    padding-left: 10rem !important;
 }
 .rmdp-wrapper{
-    width: 100%;
-    background-color: transparent;
-    border-radius: 0 !important;
+    width: 100% !important;
+    background-color: transparent !important;
+    border-radius: 0 !important 
 }
 .rmdp-top-class {
     display: block !important;

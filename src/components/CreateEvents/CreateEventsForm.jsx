@@ -38,7 +38,6 @@ const CreateEventsForm = ({
                         placeholder="Escriba nombre de evento"
                         className="createEvent-card-add-input"
                         value={formData.name}
-                        // disabled={true}
                       />
                     </div>
                     <div className="">
@@ -49,14 +48,14 @@ const CreateEventsForm = ({
                         className="createEvent-card-add-input"
                         onChange={handlerInputChange}
                         value={formData.room}
+                        // defaultValue={"DEFAULT"}
                       >
-                        <option value="" disabled selected>
-                          Seleccionar un salon
-                        </option>
+                        <option value="DEFAULT">Seleccionar un salon</option>
                         <option id="1">Conferencias Dirección Ejecutiva</option>
                         <option id="2">Conferencias Piso 2</option>
                         <option id="3">Conferencias Piso 3</option>
                         <option id="4">Multiuso Piso 1</option>
+                        <option id="5">Virtual</option>
                       </select>
                     </div>
                   </div>
@@ -152,36 +151,42 @@ const CreateEventsForm = ({
                         name="color"
                         style={{ backgroundColor: "#21E1E1" }}
                         value="#21E1E1"
+                        readOnly
                       />
                       <input
                         onClick={handlerInputChange}
                         name="color"
                         style={{ backgroundColor: "#B93160" }}
                         value="#B93160"
+                        readOnly
                       />
                       <input
                         onClick={handlerInputChange}
                         name="color"
                         style={{ backgroundColor: "#59CE8F" }}
                         value="#59CE8F"
+                        readOnly
                       />
                       <input
                         onClick={handlerInputChange}
                         name="color"
                         style={{ backgroundColor: "#EAE509" }}
                         value="#EAE509"
+                        readOnly
                       />
                       <input
                         onClick={handlerInputChange}
                         name="color"
                         style={{ backgroundColor: "#7F5283" }}
                         value="#7F5283"
+                        readOnly
                       />
                       <input
                         onClick={handlerInputChange}
                         name="color"
                         style={{ backgroundColor: "#FEB139" }}
                         value="#FEB139"
+                        readOnly
                       />
                     </div>
                   </div>

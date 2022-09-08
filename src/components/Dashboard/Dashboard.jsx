@@ -3,8 +3,11 @@ import DashboardForm from "./DashboardForm";
 import { getPost, getPostMultimedia } from "../../api/post";
 import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
+import { viewUpdate } from "../../api/post";
+import { useHistory } from "react-router-dom";
 
 const Dashboard = () => {
+  const history = useHistory();
   const [ad, setAd] = useState([]);
   const [news, setNews] = useState([]);
   const [birthday, setBirthday] = useState([]);
@@ -94,11 +97,26 @@ const Dashboard = () => {
     };
   }, []);
 
-  // if (events > 0) {
-  //   for (let i = 0; i < events.length; i++) {
-  //     eventDate += events.from[i];
-  //   }
-  // }
+  const goToPost = (item) => {
+    viewUpdate(item.postId)
+      .then((res) => {
+        history.push({
+          pathname: "./siglepost",
+          state: {
+            id: item.postId,
+            title: item.title,
+            img: item.image,
+            description: item.description,
+            date: item.createdAt,
+            author: item.author,
+          },
+        });
+      })
+      .catch((err) => {
+        console.error(err.status);
+        return;
+      });
+  };
 
   return (
     <>
@@ -109,6 +127,7 @@ const Dashboard = () => {
         events={events}
         eventDate={eventDate}
         multimedia={multimedia}
+        goToPost={goToPost}
       />
     </>
   );

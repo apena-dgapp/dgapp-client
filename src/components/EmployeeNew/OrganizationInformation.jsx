@@ -100,9 +100,10 @@ function OrganizationInformation({
               name="departament"
               className="edit-input"
               onChange={handlerdDepartament}
-              //   value="Escriba el departamento"
+              // value={"Escriba el departamento"}
+              defaultValue={"DEFAULT"}
             >
-              <option value="" disabled selected>
+              <option disabled value="DEFAULT">
                 Seleccionar una Departamento
               </option>
               {departaments
@@ -130,8 +131,9 @@ function OrganizationInformation({
               className="edit-input"
               onChange={handlerdReportTo}
               //   value={person?.fullName}
+              defaultValue={"DEFAULT"}
             >
-              <option value="" disabled selected>
+              <option disabled value="DEFAULT">
                 Seleccionar un Empleado
               </option>
               {person
@@ -208,8 +210,9 @@ function OrganizationInformation({
               className="edit-input"
               onChange={handlerInputChange}
               //   value={person?.fullName}
+              defaultValue={"DEFAULT"}
             >
-              <option value="" disabled selected>
+              <option disabled value="DEFAULT">
                 Seleccionar el tipo de Contrato
               </option>
               <option id="1" value="Contratado">
@@ -231,7 +234,7 @@ function OrganizationInformation({
               classInput="edit-input"
               value={formData.contractexpiration}
             />
-            <div className="input-required">*</div>
+            {/* <div className="input-required">*</div> */}
           </div>
         </div>
       </div>

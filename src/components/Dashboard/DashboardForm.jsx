@@ -17,6 +17,7 @@ const DashboardForm = ({
   events,
   eventDate,
   multimedia,
+  goToPost,
 }) => {
   var optionsDate = { month: "long", day: "numeric" };
 
@@ -70,12 +71,14 @@ const DashboardForm = ({
                 Anuncios
               </div>
             </div>
-
-            {ad.length ? (
-              ad?.map((item, index) => {
-                return (
-                  <div key={index} className="dashboard-ad-content-txt-cont">
-                    <div className="dashboard-first-seccion-news-content">
+            <div className="dashboard-ad-content-txt-cont">
+              {ad.length ? (
+                ad?.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="dashboard-first-seccion-news-content"
+                    >
                       <div className="dashboard-first-seccion-news-content-txt">
                         <div className="dashboard-first-seccion-news-content-txt-title">
                           {item.title}
@@ -91,16 +94,15 @@ const DashboardForm = ({
                         </div>
                       </div>
                     </div>
-                  </div>
-                );
-              })
-            ) : (
-              <div className="dashboard-nodata-cont">
-                <img src={Images.noad} alt="" />
-                <p>No se registra nuevos anuncios</p>
-              </div>
-            )}
-
+                  );
+                })
+              ) : (
+                <div className="dashboard-nodata-cont">
+                  <img src={Images.noad} alt="" />
+                  <p>No se registran nuevos anuncios</p>
+                </div>
+              )}
+            </div>
             {ad.length ? (
               <div className="dashboard-first-seccion-news-content-btn">
                 <button type="button" className="dashboard-news-btn">
@@ -209,7 +211,11 @@ const DashboardForm = ({
             <div className="dashboard-news-content-container">
               {news?.map((item, index) => {
                 return (
-                  <div key={index} className="dashboard-news-content">
+                  <div
+                    key={index}
+                    onClick={() => goToPost(item)}
+                    className="dashboard-news-content"
+                  >
                     <img
                       className="dashboard-news-content-img"
                       src={item.image}
@@ -295,7 +301,7 @@ const DashboardForm = ({
                 ) : (
                   <div className="dashboard-nodata-cont">
                     <img src={Images.noCalendar} alt="" />
-                    <p>No se registra proximos eventos</p>
+                    <p>No se registran proximos eventos</p>
                   </div>
                 )}
               </div>
@@ -380,7 +386,7 @@ const DashboardForm = ({
               ) : (
                 <div className="dashboard-nodata-cont">
                   <img src={Images.noCake} alt="" />
-                  <p>No se registra cumpleaños para este mes</p>
+                  <p>No se registran cumpleaños para este mes</p>
                 </div>
               )}
 
