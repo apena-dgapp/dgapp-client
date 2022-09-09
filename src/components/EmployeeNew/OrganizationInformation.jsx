@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Input from "../../common/components/Input/Input";
 import { getLastCode, validationEmail } from "../../api/person";
 
@@ -14,6 +14,8 @@ function OrganizationInformation({
   setEmail,
   email,
 }) {
+  const count = useRef(1);
+
   useEffect(() => {
     let unmounted = false;
 
@@ -24,16 +26,14 @@ function OrganizationInformation({
       .then((res) => {
         if (!unmounted) {
           if (res === true) {
+            count.current = count.current + 1;
             setEmail(
-              formData.firstname.substring(0, 2).toUpperCase() +
+              formData.firstname.substring(0, count.current).toUpperCase() +
                 formData.lastname.split(" ")[0].toUpperCase() +
                 "@DGAPP.GOB.DO"
             );
           }
         }
-      })
-      .catch((err) => {
-        console.error(err.status);
       });
 
     getLastCode()
@@ -138,7 +138,7 @@ function OrganizationInformation({
               </option>
               {person
                 ? person.map((item, index) => {
-                    return (
+                    return item.isActive ? (
                       <option
                         id={item.personId}
                         key={index}
@@ -146,10 +146,11 @@ function OrganizationInformation({
                       >
                         {item.fullName}
                       </option>
-                    );
+                    ) : null;
                   })
                 : null}
             </select>
+            <div className="input-required">*</div>
           </div>
           <div className="">
             <p className="edit-input-title">Inicio Laboral</p>

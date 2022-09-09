@@ -30,6 +30,8 @@ import prueba2 from '../images/pencils-g2b5492fdc_1920.jpg';
 import noCake from './no-cake.png';
 import noCalendar from './calendar.png';
 import noad from './ad-blocker.png';
+import nonews from './fake-news.png';
+import icondgapp from './MicrosoftTeams-image.png';
 
 const Images = {
     iconUser,
@@ -62,7 +64,9 @@ const Images = {
     prueba2,
     noCake,
     noCalendar,
-    noad
+    noad,
+    icondgapp,
+    nonews
 }
 
 export default Images;

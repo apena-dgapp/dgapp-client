@@ -118,6 +118,23 @@ const Dashboard = () => {
       });
   };
 
+  const goToProfile = (id) => {
+    history.push({
+      pathname: "./employeeprofile",
+      state: id,
+    });
+  };
+  const employeeTree = () => {
+    history.push("./employeetree");
+  };
+  const employeedirectory = () => {
+    history.push("./employeedirectory");
+  };
+
+  const allPost = () => {
+    history.push("./allpost");
+  };
+
   return (
     <>
       <DashboardForm
@@ -128,6 +145,10 @@ const Dashboard = () => {
         eventDate={eventDate}
         multimedia={multimedia}
         goToPost={goToPost}
+        goToProfile={goToProfile}
+        employeeTree={employeeTree}
+        employeedirectory={employeedirectory}
+        allPost={allPost}
       />
     </>
   );

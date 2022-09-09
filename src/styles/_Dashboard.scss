@@ -74,13 +74,16 @@
 .dashboard-ad-content-txt-cont{
     width: 100%;
     height: 12rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     // background-color: red;
 }
 
 .dashboard-first-seccion-news-content{
     display: flex;
     align-items: center;
-    width: 95%;
+    width: 97%;
     height: 4rem;
     // margin-top: 0.2rem;
     cursor: pointer;
@@ -187,7 +190,7 @@
     justify-content: center;
     flex-direction: column;
 
-    width: 95%;
+    width: 98%;
     height: 4rem;
     font-size: 0.8rem;
     margin-top: 0.2rem;
@@ -294,7 +297,7 @@
     border-bottom: 1px solid gainsboro;
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 98%;
     height: 4.7rem;
     font-size: 0.8rem;
     margin-top: 0.2rem;
@@ -308,6 +311,10 @@
     width: 100%;
     height: 14.37rem;
     overflow: auto;
+    display: flex;
+    // justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
  .dashboard-calendar-container::-webkit-scrollbar {
@@ -384,6 +391,7 @@
     align-items: center;
     // margin-left: 0.5rem;
 }
+
 .dashboard-third-seccion-board-btn{
     width: 100%;
     height: 95%;
@@ -400,6 +408,7 @@
     &:hover{
         opacity: 10;
     }
+    text-decoration: none;
 }
 .dashboard-third-seccion-board-btn-txt{
     color: white;

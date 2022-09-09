@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { MdLocationPin } from "react-icons/md";
 import { FaClock } from "react-icons/fa";
 import { TiDelete } from "react-icons/ti";
+import { tConvert } from "../../utils/Time24To12";
 
 const CreateEventsForm = ({
   handlerInputChange,
@@ -67,7 +68,7 @@ const CreateEventsForm = ({
                         onChange={handlerInputChange}
                         name="from"
                         type="date"
-                        placeholder="Escriba nombre de evento"
+                        // placeholder="Escriba nombre de evento"
                         className="createEvent-card-add-input"
                         multiple
                         value={formData.from}
@@ -83,7 +84,7 @@ const CreateEventsForm = ({
                         onChange={handlerInputChange}
                         name="to"
                         type="date"
-                        placeholder="Escriba nombre de evento"
+                        // placeholder="Escriba nombre de evento"
                         className="createEvent-card-add-input"
                         multiple
                         value={formData.to}
@@ -253,8 +254,8 @@ const CreateEventsForm = ({
                                 />
                                 <span>Fecha:</span> {item.from} -{" "}
                                 {item.to ? item.to : item.from}{" "}
-                                <span>Hora:</span> {item.startTime} -{" "}
-                                {item.endingTime}
+                                <span>Hora:</span> {tConvert(item.startTime)} -{" "}
+                                {tConvert(item.endingTime)}
                               </p>
                             </div>
                             <div className="createEvent-card-grid-list-grid-btn-delete">

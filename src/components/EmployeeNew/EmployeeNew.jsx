@@ -162,7 +162,8 @@ function EmployeeNew() {
       formData.position === undefined ||
       departament === "" ||
       departament === undefined ||
-      // reportTo === "" &&
+      reportTo === "" ||
+      reportTo === undefined ||
       formData.startedon === "" ||
       formData.startedon === undefined ||
       // formData.phone === "" &&
@@ -202,7 +203,9 @@ function EmployeeNew() {
           formData.emergencynumber,
           formData.emergencyrelationship,
           formData.contracttype,
-          formData.contractexpiration ? formData.contractexpiration : null
+          formatDate(formData.contractexpiration)
+            ? formatDate(formData.contractexpiration)
+            : null
         )
           .then((res) => {
             if (res.status === 500) {

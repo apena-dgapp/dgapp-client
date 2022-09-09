@@ -5,10 +5,11 @@ import { FaBirthdayCake, FaConciergeBell, FaVideo } from "react-icons/fa";
 import { MdEventNote } from "react-icons/md";
 import { GiNewspaper, GiOrganigram, GiFullFolder } from "react-icons/gi";
 import { ImNewspaper } from "react-icons/im";
-import { MdSchool } from "react-icons/md";
+// import { MdSchool } from "react-icons/md";
 import ReactPlayer from "react-player";
 import Images from "../../common/images/index";
 import { Calendar } from "react-multi-date-picker";
+import { tConvert } from "../../utils/Time24To12";
 
 const DashboardForm = ({
   ad,
@@ -18,6 +19,10 @@ const DashboardForm = ({
   eventDate,
   multimedia,
   goToPost,
+  goToProfile,
+  employeeTree,
+  employeedirectory,
+  allPost,
 }) => {
   var optionsDate = { month: "long", day: "numeric" };
 
@@ -114,7 +119,25 @@ const DashboardForm = ({
         </div>
         <div className="dashboard-third-seccion-board">
           <div className="dashboard-third-seccion-board-grid">
-            <div className="dashboard-third-seccion-board-btn">
+            <div
+              onClick={allPost}
+              className="dashboard-third-seccion-board-btn"
+            >
+              <i className="im im-newspaper" />
+              <ImNewspaper
+                size="2.5rem"
+                color="white"
+                style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
+              />
+              <div className="dashboard-third-seccion-board-btn-txt">
+                <p>Noticias</p>
+              </div>
+            </div>
+            <a
+              className="dashboard-third-seccion-board-btn"
+              href="Boletin No.3 Julio 2022.html"
+              target="_blank"
+            >
               <i className="gi gi-newspaper" />
               <GiNewspaper
                 size="2.5rem"
@@ -124,8 +147,11 @@ const DashboardForm = ({
               <div className="dashboard-third-seccion-board-btn-txt">
                 <p>Boletin</p>
               </div>
-            </div>
-            <div className="dashboard-third-seccion-board-btn">
+            </a>
+            <div
+              onClick={employeeTree}
+              className="dashboard-third-seccion-board-btn"
+            >
               <i className="gi gi-organigram" />
               <GiOrganigram
                 size="2.5rem"
@@ -136,7 +162,10 @@ const DashboardForm = ({
                 <p>Organigrama</p>
               </div>
             </div>
-            <div className="dashboard-third-seccion-board-btn">
+            <div
+              onClick={employeedirectory}
+              className="dashboard-third-seccion-board-btn"
+            >
               <i className="gi gi-full-folder" />
               <GiFullFolder
                 size="2.5rem"
@@ -156,17 +185,6 @@ const DashboardForm = ({
               />
               <div className="dashboard-third-seccion-board-btn-txt">
                 <p>Solicitudes</p>
-              </div>
-            </div>
-            <div className="dashboard-third-seccion-board-btn">
-              <i className="md md-school" />
-              <MdSchool
-                size="2.5rem"
-                color="white"
-                style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
-              />
-              <div className="dashboard-third-seccion-board-btn-txt">
-                <p>Entrenamiento</p>
               </div>
             </div>
           </div>
@@ -209,35 +227,42 @@ const DashboardForm = ({
               </div>
             </div>
             <div className="dashboard-news-content-container">
-              {news?.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    onClick={() => goToPost(item)}
-                    className="dashboard-news-content"
-                  >
-                    <img
-                      className="dashboard-news-content-img"
-                      src={item.image}
-                      alt=""
-                    />
-                    <div className="dashboard-news-content-txt-cont">
-                      <p className="dashboard-news-content-title">
-                        {item.title}
-                      </p>
-                      <p className="dashboard-news-content-txt">
-                        {item.description.replace(/(<([^>]+)>)/gi, "")}
-                      </p>
-                      <p className="dashboard-news-content-txt-date">
-                        {new Date(item.createdAt).toLocaleDateString(
-                          "es-ES",
-                          optionsDate
-                        )}
-                      </p>
+              {news.length ? (
+                news?.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => goToPost(item)}
+                      className="dashboard-news-content"
+                    >
+                      <img
+                        className="dashboard-news-content-img"
+                        src={item.image}
+                        alt=""
+                      />
+                      <div className="dashboard-news-content-txt-cont">
+                        <p className="dashboard-news-content-title">
+                          {item.title}
+                        </p>
+                        <p className="dashboard-news-content-txt">
+                          {item.description.replace(/(<([^>]+)>)/gi, "")}
+                        </p>
+                        <p className="dashboard-news-content-txt-date">
+                          {new Date(item.createdAt).toLocaleDateString(
+                            "es-ES",
+                            optionsDate
+                          )}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+              ) : (
+                <div className="dashboard-nodata-cont">
+                  <img src={Images.nonews} alt="" />
+                  <p>No se registran noticias</p>
+                </div>
+              )}
             </div>
           </div>
 
@@ -290,7 +315,8 @@ const DashboardForm = ({
                             </div>
                             <div>
                               <p className="m-0">
-                                {item.startTime} - {item.endingTime}
+                                {tConvert(item.startTime)} -{" "}
+                                {tConvert(item.endingTime)}
                               </p>
                             </div>
                           </div>
@@ -343,60 +369,63 @@ const DashboardForm = ({
                   Cumpleaños
                 </div>
               </div>
-
-              {birthday.length ? (
-                birthday?.map((item, index) => {
-                  return (
-                    <div
-                      key={index}
-                      id={item.personId}
-                      className="dashboard-second-birth-employee"
-                    >
-                      <div className="dashboard-second-birth-employee-grid">
-                        <div className="dashboard-second-birth-employee-inf">
-                          <div>
-                            <img
-                              className="dashboard-second-birth-employee-photo"
-                              src={item.photo ? item.photo : Images.noImg}
-                              alt=""
-                            />
-                          </div>
-                          <div className="dashboard-second-birth-employee-name">
+              <div className="dashboard-calendar-container">
+                {birthday.length ? (
+                  birthday?.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        id={item.personId}
+                        onClick={() => goToProfile(item.personId)}
+                        className="dashboard-second-birth-employee"
+                      >
+                        <div className="dashboard-second-birth-employee-grid">
+                          <div className="dashboard-second-birth-employee-inf">
                             <div>
-                              <p className="m-0 fw-bold">{item.name}</p>
+                              <img
+                                className="dashboard-second-birth-employee-photo"
+                                src={item.photo ? item.photo : Images.noImg}
+                                alt=""
+                              />
+                            </div>
+                            <div className="dashboard-second-birth-employee-name">
+                              <div>
+                                <p className="m-0 fw-bold">{item.name}</p>
+                              </div>
+                              <div>
+                                <p className="m-0">{item.departament}</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="dashboard-employee-name-separator"></div>
+                          <div className="dashboard-second-birth-employee-day">
+                            <div>
+                              <p className="m-0 fs-2">
+                                {item.day.split("-")[0]}
+                              </p>
                             </div>
                             <div>
-                              <p className="m-0">{item.departament}</p>
+                              <p className="m-0">{item.day.split("-")[1]}</p>
                             </div>
-                          </div>
-                        </div>
-                        <div className="dashboard-employee-name-separator"></div>
-                        <div className="dashboard-second-birth-employee-day">
-                          <div>
-                            <p className="m-0 fs-2">{item.day.split("-")[0]}</p>
-                          </div>
-                          <div>
-                            <p className="m-0">{item.day.split("-")[1]}</p>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div className="dashboard-nodata-cont">
-                  <img src={Images.noCake} alt="" />
-                  <p>No se registran cumpleaños para este mes</p>
-                </div>
-              )}
-
-              {birthday.length ? (
+                    );
+                  })
+                ) : (
+                  <div className="dashboard-nodata-cont">
+                    <img src={Images.noCake} alt="" />
+                    <p>No se registran cumpleaños para este mes</p>
+                  </div>
+                )}
+              </div>
+              {/* {birthday.length ? (
                 <div className="dashboard-birth-content-btn">
                   <button type="button" className="dashboard-birth-btn">
                     Ver Todos
                   </button>
                 </div>
-              ) : null}
+              ) : null} */}
             </div>
           </div>
         </div>

@@ -100,7 +100,7 @@ const Navbar = ({
                   href="Boletin No.3 Julio 2022.html"
                   target="_blank"
                 >
-                  Botelin
+                  Boletin
                 </a>
               </li>
             </ul>

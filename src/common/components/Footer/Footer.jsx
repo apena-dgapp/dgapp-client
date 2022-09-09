@@ -3,7 +3,6 @@ import { getTweets } from "../../../api/tweets";
 import {
   FaFacebookF,
   FaTwitter,
-  FaGoogle,
   FaInstagram,
   FaYoutube,
   FaRegComment,
@@ -15,13 +14,14 @@ import {
 } from "react-router-dom/cjs/react-router-dom.min";
 import { replaceTxt } from "../../../utils/textLink.js";
 import "react-ig-feed/dist/index.css";
+import Images from "../../images/index";
 
 const Footer = () => {
   const history = useHistory();
   const location = useLocation();
   const [isHidden, setIsHidden] = useState(false);
   const [tweets, setTweets] = useState([]);
-  const [postInstagram, setPostInstagram] = useState([]);
+  // const [postInstagram, setPostInstagram] = useState([]);
 
   const aboutUSChange = (e, name) => {
     e.preventDefault();
@@ -69,17 +69,17 @@ const Footer = () => {
         }
       });
 
-    if (!unmounted) {
-      fetch(
-        `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
-      ?grant_type=ig_refresh_token&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(data);
-          // setPostInstagram(data.data);
-        });
-    }
+    // if (!unmounted) {
+    //   fetch(
+    //     `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
+    //   ?grant_type=ig_refresh_token&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+    //   )
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       // console.log(data);
+    //       // setPostInstagram(data.data);
+    //     });
+    // }
 
     // if (!unmounted) {
     //   fetch(
@@ -164,8 +164,13 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i className="fab fa-google" />
-                <FaGoogle size="2.5em" />
+                {/* <i className="fab fa-google" />
+                <FaGoogle size="2.5em" /> */}
+                <img
+                  className="footer-social-dgapp-icon"
+                  src={Images.icondgapp}
+                  alt=""
+                />
               </a>
             </div>
           </div>

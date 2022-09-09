@@ -24,6 +24,9 @@ function EmployeeEditForm({
     );
   }
 
+  console.log(profile);
+  console.log(formData);
+
   return (
     <>
       <div className="edit-card-container">
@@ -86,7 +89,9 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="firstname"
                   type="text"
-                  placeholder={profile?.firstName}
+                  placeholder={
+                    profile?.firstName ? profile?.firstName : "No definido!"
+                  }
                   classInput="edit-input"
                   value={formData.firstname}
                 />
@@ -99,7 +104,9 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="lastname"
                   type="text"
-                  placeholder={profile?.lastName}
+                  placeholder={
+                    profile?.lastName ? profile?.lastName : "No definido!"
+                  }
                   classInput="edit-input"
                   value={formData.lastName}
                 />
@@ -112,7 +119,9 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="documentid"
                   type="text"
-                  placeholder={profile?.documentId}
+                  placeholder={
+                    profile?.documentId ? profile?.documentId : "No definido!"
+                  }
                   classInput="edit-input"
                   value={formData.documentid}
                 />
@@ -124,7 +133,9 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="cel"
                   type="text"
-                  placeholder={profile?.celNumber}
+                  placeholder={
+                    profile?.celNumber ? profile?.celNumber : "No definido!"
+                  }
                   classInput="edit-input"
                   value={formData.cel}
                 />
@@ -134,11 +145,11 @@ function EmployeeEditForm({
                 <Input
                   // id="titleinput"
                   // value={date}
-                  onChange={handlerInputChange}
                   name="date"
                   type="date"
+                  onChange={handlerInputChange}
                   classInput="edit-input"
-                  value={formData.date}
+                  value={formData.date ? formData.date : profile.birthdayDate}
                 />
               </div>
               <div className="">
@@ -148,7 +159,9 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="blood"
                   type="text"
-                  placeholder={profile?.bloodType}
+                  placeholder={
+                    profile?.bloodType ? profile?.bloodType : "No definido!"
+                  }
                   classInput="edit-input"
                   value={formData.blood}
                 />
@@ -160,7 +173,11 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="emergencyname"
                   type="text"
-                  placeholder={profile?.emergencyName}
+                  placeholder={
+                    profile?.emergencyName
+                      ? profile?.emergencyName
+                      : "No definido!"
+                  }
                   classInput="edit-input"
                   value={formData.emergencyname}
                 />
@@ -174,7 +191,11 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="emergencynumber"
                   type="text"
-                  placeholder={profile?.emergencyNumber}
+                  placeholder={
+                    profile?.emergencyNumber
+                      ? profile?.emergencyNumber
+                      : "No definido!"
+                  }
                   classInput="edit-input"
                   value={formData.emergencynumber}
                 />
@@ -188,7 +209,11 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="emergencyrelationship"
                   type="text"
-                  placeholder={profile?.emergencyRelationship}
+                  placeholder={
+                    profile?.emergencyRelationship
+                      ? profile?.emergencyRelationship
+                      : "No definido!"
+                  }
                   classInput="edit-input"
                   value={formData.emergencyrelationship}
                 />
@@ -200,7 +225,9 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="career"
                   type="text"
-                  placeholder={profile?.career}
+                  placeholder={
+                    profile?.career ? profile?.career : "No definido!"
+                  }
                   classInput="edit-input"
                   value={formData.career}
                 />
@@ -224,7 +251,11 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="code"
                     type="text"
-                    placeholder={profile?.employeeCode}
+                    placeholder={
+                      profile?.employeeCode
+                        ? profile?.employeeCode
+                        : "No definido!"
+                    }
                     classInput="edit-input"
                     value={formData.code}
                   />
@@ -236,7 +267,9 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="position"
                     type="text"
-                    placeholder={profile?.position}
+                    placeholder={
+                      profile?.position ? profile?.position : "No definido!"
+                    }
                     classInput="edit-input"
                     value={formData.position}
                   />
@@ -259,7 +292,9 @@ function EmployeeEditForm({
                       // disabled
                       // selected
                     >
-                      Seleccionar una Departamento
+                      {profile.Departament?.name
+                        ? profile.Departament?.name
+                        : "Seleccionar una Departamento"}
                     </option>
                     {departaments
                       ? departaments.map((item, index) => {
@@ -288,11 +323,13 @@ function EmployeeEditForm({
                     defaultValue={"DEFAULT"}
                   >
                     <option disabled value="DEFAULT">
-                      Seleccionar un Empleado
+                      {profile?.reportname
+                        ? profile?.reportname
+                        : "Seleccionar un Empleado"}
                     </option>
                     {reportsTo
                       ? reportsTo.map((item, index) => {
-                          return (
+                          return item.isActive ? (
                             <option
                               id={item.personId}
                               key={index}
@@ -300,7 +337,7 @@ function EmployeeEditForm({
                             >
                               {item.fullName}
                             </option>
-                          );
+                          ) : null;
                         })
                       : null}
                   </select>
@@ -314,7 +351,11 @@ function EmployeeEditForm({
                     type="date"
                     placeholder="Por favor escriba la fecha que empezo a Laboral"
                     classInput="edit-input"
-                    value={formData.startedon}
+                    value={
+                      formData.startedon
+                        ? formData.startedon
+                        : profile.startedOn
+                    }
                   />
                 </div>
                 <div className="">
@@ -324,7 +365,11 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="phone"
                     type="text"
-                    placeholder={profile?.phoneNumber}
+                    placeholder={
+                      profile?.phoneNumber
+                        ? profile?.phoneNumber
+                        : "No definido!"
+                    }
                     classInput="edit-input"
                     value={formData.phone}
                   />
@@ -337,7 +382,9 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="email"
                     type="email"
-                    placeholder={profile?.email}
+                    placeholder={
+                      profile?.email ? profile?.email : "No definido!"
+                    }
                     classInput="edit-input"
                     value={formData.email}
                   />
@@ -349,7 +396,11 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="health"
                     type="text"
-                    placeholder={profile?.healthInsurance}
+                    placeholder={
+                      profile?.healthInsurance
+                        ? profile?.healthInsurance
+                        : "No definido!"
+                    }
                     classInput="edit-input"
                     value={formData.health}
                   />
@@ -365,7 +416,9 @@ function EmployeeEditForm({
                     defaultValue={"DEFAULT"}
                   >
                     <option disabled value="DEFAULT">
-                      Seleccionar el tipo de Contrato
+                      {profile?.contractType
+                        ? profile?.contractType
+                        : " Seleccionar el tipo de Contrato"}
                     </option>
                     <option id="1" value="Contratado">
                       Contratado
@@ -384,7 +437,11 @@ function EmployeeEditForm({
                     name="contractexpiration"
                     type="date"
                     classInput="edit-input"
-                    value={formData.contractexpiration}
+                    value={
+                      formData.contractexpiration
+                        ? formData.contractexpiration
+                        : profile.contractExpiration
+                    }
                   />
                 </div>
               </div>
