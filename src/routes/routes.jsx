@@ -52,65 +52,65 @@ const Routes = () => {
         <PrivateRoutes
           exct
           path={`${process.env.REACT_APP_RUTE}/home`}
-          component={Dashboard}
+          component={contextState.token ? Dashboard : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/siglepost`}
-          component={SinglePost}
+          component={contextState.token ? SinglePost : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/allpost`}
-          component={allPost}
+          component={contextState.token ? allPost : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/register`}
-          component={Register}
+          component={contextState.token ? Register : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/newpost`}
-          component={NewPost}
+          component={contextState.token ? NewPost : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/employee`}
-          component={Employee}
+          component={contextState.token ? Employee : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/aboutus`}
-          component={AboutUs}
+          component={contextState.token ? AboutUs : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/createevents`}
-          component={CreateEvents}
+          component={contextState.token ? CreateEvents : Login}
         />
         {/* <Route path={`${process.env.REACT_APP_RUTE}/employeechart`} component={EmployeeChart} /> */}
         <Route
           path={`${process.env.REACT_APP_RUTE}/employeetree`}
-          component={EmployeeTree}
+          component={contextState.token ? EmployeeTree : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/employeeedit`}
-          component={EmployeeEdit}
+          component={contextState.token ? EmployeeEdit : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/employeenew`}
-          component={EmployeeNew}
+          component={contextState.token ? EmployeeNew : Login}
         />
         <Route path={`${process.env.REACT_APP_RUTE}/pdf`} component={FilePdf} />
         <Route
           path={`${process.env.REACT_APP_RUTE}/building`}
-          component={Building}
+          component={contextState.token ? Building : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/employeeprofile`}
-          component={EmployeeProfile}
+          component={contextState.token ? EmployeeProfile : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/employeedirectory`}
-          component={EmployeeDirectory}
+          component={contextState.token ? EmployeeDirectory : Login}
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/training`}
-          component={Training}
+          component={contextState.token ? Training : Login}
         />
         <Route
           exact

@@ -22,4 +22,16 @@ export const existUser = async (id) => {
     })
 }
 
+export const existUsername = async (username) => {
+    const body = {username};
+    return fetch(`${process.env.REACT_APP_API}user/existusername`, {
+        method: "POST",
+         body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }   
+    })
+}
+
 

@@ -33,9 +33,9 @@ const Header = () => {
   };
 
   //funcion para setear lenguaje
-  const setLanguage = (lang) => {
-    contextMiddleware.implementationLang(lang);
-  };
+  // const setLanguage = (lang) => {
+  //   contextMiddleware.implementationLang(lang);
+  // };
 
   const home = () => {
     history.push("./home");
@@ -46,6 +46,10 @@ const Header = () => {
     contextMiddleware.signOut();
     contextMiddleware.setIsShowChat();
     history.push("./");
+    // window.localStorage.clear();
+
+    // console.log(contextState.token);
+    // console.log(localStorage);
   };
 
   const createPost = () => {
@@ -158,7 +162,7 @@ const Header = () => {
   return (
     <>
       <NavbarForm
-        handeleLang={setLanguage}
+        // handeleLang={setLanguage}
         logOut={logOut}
         createPost={createPost}
         person={person}

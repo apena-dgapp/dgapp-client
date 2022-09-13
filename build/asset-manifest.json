@@ -1,24 +1,26 @@
 {
   "files": {
-    "main.css": "/intranet/static/css/main.6bf9dbfb.chunk.css",
-    "main.js": "/intranet/static/js/main.a45b3b84.chunk.js",
-    "main.js.map": "/intranet/static/js/main.a45b3b84.chunk.js.map",
+    "main.css": "/intranet/static/css/main.dc275272.chunk.css",
+    "main.js": "/intranet/static/js/main.a6b06e2a.chunk.js",
+    "main.js.map": "/intranet/static/js/main.a6b06e2a.chunk.js.map",
     "runtime-main.js": "/intranet/static/js/runtime-main.4d9ab489.js",
     "runtime-main.js.map": "/intranet/static/js/runtime-main.4d9ab489.js.map",
     "static/css/2.ae8aad1a.chunk.css": "/intranet/static/css/2.ae8aad1a.chunk.css",
-    "static/js/2.923169b6.chunk.js": "/intranet/static/js/2.923169b6.chunk.js",
-    "static/js/2.923169b6.chunk.js.map": "/intranet/static/js/2.923169b6.chunk.js.map",
+    "static/js/2.bd2fbe7e.chunk.js": "/intranet/static/js/2.bd2fbe7e.chunk.js",
+    "static/js/2.bd2fbe7e.chunk.js.map": "/intranet/static/js/2.bd2fbe7e.chunk.js.map",
     "index.html": "/intranet/index.html",
     "static/css/2.ae8aad1a.chunk.css.map": "/intranet/static/css/2.ae8aad1a.chunk.css.map",
-    "static/css/main.6bf9dbfb.chunk.css.map": "/intranet/static/css/main.6bf9dbfb.chunk.css.map",
-    "static/js/2.923169b6.chunk.js.LICENSE.txt": "/intranet/static/js/2.923169b6.chunk.js.LICENSE.txt",
+    "static/css/main.dc275272.chunk.css.map": "/intranet/static/css/main.dc275272.chunk.css.map",
+    "static/js/2.bd2fbe7e.chunk.js.LICENSE.txt": "/intranet/static/js/2.bd2fbe7e.chunk.js.LICENSE.txt",
     "static/media/MicrosoftTeams-image (4).c3ea5a81.png": "/intranet/static/media/MicrosoftTeams-image (4).c3ea5a81.png",
+    "static/media/MicrosoftTeams-image.cdeadb1a.png": "/intranet/static/media/MicrosoftTeams-image.cdeadb1a.png",
     "static/media/index.scss": "/intranet/static/media/vintage-g347851f6b_1920.79897bf2.jpg",
     "static/media/ad-blocker.c213f9a9.png": "/intranet/static/media/ad-blocker.c213f9a9.png",
     "static/media/cumpleanos.7f0389eb.png": "/intranet/static/media/cumpleanos.7f0389eb.png",
     "static/media/curso.6f8bd9b7.png": "/intranet/static/media/curso.6f8bd9b7.png",
     "static/media/diagram.a56f9f37.png": "/intranet/static/media/diagram.a56f9f37.png",
     "static/media/director.7474ee95.jpg": "/intranet/static/media/director.7474ee95.jpg",
+    "static/media/fake-news.9a7be63c.png": "/intranet/static/media/fake-news.9a7be63c.png",
     "static/media/galeria-de-imagenes-active.d6ec8093.png": "/intranet/static/media/galeria-de-imagenes-active.d6ec8093.png",
     "static/media/galeria-de-imagenes.6efc1d30.png": "/intranet/static/media/galeria-de-imagenes.6efc1d30.png",
     "static/media/image-active.97cd6b9e.png": "/intranet/static/media/image-active.97cd6b9e.png",
@@ -37,8 +39,8 @@
   "entrypoints": [
     "static/js/runtime-main.4d9ab489.js",
     "static/css/2.ae8aad1a.chunk.css",
-    "static/js/2.923169b6.chunk.js",
-    "static/css/main.6bf9dbfb.chunk.css",
-    "static/js/main.a45b3b84.chunk.js"
+    "static/js/2.bd2fbe7e.chunk.js",
+    "static/css/main.dc275272.chunk.css",
+    "static/js/main.a6b06e2a.chunk.js"
   ]
 }

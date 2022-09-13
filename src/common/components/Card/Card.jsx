@@ -67,9 +67,11 @@ const CardForm = (props) => {
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
           <p
-            dangerouslySetInnerHTML={{ __html: props.description }}
+            // dangerouslySetInnerHTML={{ __html: props.description }}
             className="card-text"
-          ></p>
+          >
+            {props.description.replace(/(<([^>]+)>)/gi, "")}
+          </p>
         </div>
         <p className="card-date">
           <small className="text-muted">{fechaES}</small>

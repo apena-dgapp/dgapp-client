@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import RegisterForm from "./RegisterForm";
 import { getAllPersons, getOnePerson } from "../../api/person";
 import { singUp } from "../../api/auth";
-import { existUser } from "../../api/user";
+import { existUser, existUsername } from "../../api/user";
 import GlobalContext from "../../context/GlobalContext";
 import toast from "react-hot-toast";
 
@@ -32,27 +32,32 @@ const Register = () => {
         return res.json();
       })
       .then((res) => {
-        console.log(res);
-
         if (res !== null) {
           setExist(true);
-          setUserName(res.userName);
+          setUserName(res.userName.toUpperCase());
+          getOnePerson(id)
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              setUser(res);
+            });
         } else {
           setExist(false);
-        }
-      })
-      .catch((err) => {
-        console.error(err.status);
-      });
-
-    getOnePerson(id)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setUser(res);
-        if (exist === false) {
-          setUserName(res.firstName.split("")[0] + res.lastName.split(" ")[0]);
+          getOnePerson(id)
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              setUser(res);
+              setUserName(
+                res.firstName.split("")[0].toUpperCase() +
+                  res.lastName.split(" ")[0].toUpperCase()
+              );
+            })
+            .catch((err) => {
+              console.error(err.status);
+            });
         }
       })
       .catch((err) => {
@@ -90,6 +95,10 @@ const Register = () => {
   }, []);
 
   const createUser = () => {
+    if (exist) {
+      return toast.error("Este usuario ya se encuentra registrado!");
+    }
+
     if (autoName) {
       if (userName === "" || userName === undefined) {
         return toast.error("Por favor escriba un nombre de usuario");
@@ -111,20 +120,37 @@ const Register = () => {
       );
     }
 
-    singUp(
-      formData.id,
-      formData.username ? formData.username : userName,
-      formData.password,
-      contextState.userName,
-      formData.role
-    )
+    existUsername(formData.username ? formData.username : userName)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
-        console.log(res.status);
-        clearData();
-        return toast.success("El nuevo empleado fue registrado correctamente!");
+        if (res) {
+          return toast.error(
+            "Por favor elegir otro nombre de usuario dicho nombre ya esta en nuestra base de datos"
+          );
+        } else {
+          singUp(
+            formData.id,
+            formData.username ? formData.username : userName,
+            formData.password,
+            contextState.userName,
+            formData.role
+          )
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              console.log(res.status);
+              clearData();
+              return toast.success(
+                "El nuevo empleado fue registrado Exitosamente!"
+              );
+            })
+            .catch((err) => {
+              return toast.error("Error del servidor!");
+            });
+        }
       })
       .catch((err) => {
         console.error(err.status);

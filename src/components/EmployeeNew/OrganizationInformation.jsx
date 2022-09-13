@@ -15,10 +15,8 @@ function OrganizationInformation({
   email,
 }) {
   const count = useRef(1);
-
   useEffect(() => {
     let unmounted = false;
-
     validationEmail(email)
       .then((res) => {
         return res.json();
@@ -26,7 +24,7 @@ function OrganizationInformation({
       .then((res) => {
         if (!unmounted) {
           if (res === true) {
-            count.current = count.current + 1;
+            count.current++;
             setEmail(
               formData.firstname.substring(0, count.current).toUpperCase() +
                 formData.lastname.split(" ")[0].toUpperCase() +
@@ -88,7 +86,7 @@ function OrganizationInformation({
               type="text"
               placeholder="Escriba la posicion"
               classInput="edit-input"
-              value={formData.position}
+              value={formData.position.replace(/[^a-zA-ZñÑ ]/g, "")}
             />
             <div className="input-required">*</div>
           </div>
@@ -173,7 +171,7 @@ function OrganizationInformation({
               type="text"
               placeholder="Numbero de Extension"
               classInput="edit-input"
-              value={formData.phone}
+              value={formData.phone.replace(/[^0-9.]/g, "")}
             />
           </div>
 
@@ -200,7 +198,7 @@ function OrganizationInformation({
               type="text"
               placeholder="Numero de Seguro Medico"
               classInput="edit-input"
-              value={formData.health}
+              value={formData.health.replace(/[^0-9.]/g, "")}
             />
           </div>
           <div className="">

@@ -76,44 +76,16 @@ const RegisterForm = ({
                   </div>
                 )}
               </div>
-              {exist ? (
-                <input
-                  id="username"
-                  onChange={handlerInputChange}
-                  name="username"
-                  type="text"
-                  placeholder={userName}
-                  className="edit-input"
-                  value={formData.username}
-                />
-              ) : user ? (
-                <input
-                  id="username"
-                  onChange={handlerInputChange}
-                  name="username"
-                  type="text"
-                  placeholder={
-                    autoName
-                      ? user.firstName.split("")[0] +
-                        user.lastName.split(" ")[0]
-                      : "ej: crodirguez"
-                  }
-                  className="edit-input"
-                  disabled={autoName ? true : false}
-                  value={!autoName ? formData.username : userName}
-                />
-              ) : (
-                <input
-                  id="username"
-                  onChange={handlerInputChange}
-                  name="username"
-                  type="text"
-                  placeholder="ej: crodirguez"
-                  className="edit-input"
-                  disabled={autoName ? true : false}
-                  value={!autoName ? formData.username : userName}
-                />
-              )}
+              <input
+                id="username"
+                onChange={handlerInputChange}
+                name="username"
+                type="text"
+                placeholder={userName}
+                className="edit-input"
+                value={userName ? userName : formData.username}
+                disabled={autoName ? true : false}
+              />
             </div>
             <div className="mt-1">
               <p className="edit-input-title">Contraseña</p>
@@ -125,6 +97,7 @@ const RegisterForm = ({
                 placeholder="Escriba una contraseña facil de recordar"
                 className="edit-input"
                 value={formData.password || ""}
+                disabled={exist ? true : false}
               />
             </div>
             <div className="mt-1">
@@ -134,6 +107,7 @@ const RegisterForm = ({
                 className="edit-input"
                 onChange={handlerInputChange}
                 defaultValue={"DEFAULT"}
+                disabled={exist ? true : false}
                 // value={formData.role === "" ? "DEFAULT" : undefined}
               >
                 <option value="DEFAULT" disabled>

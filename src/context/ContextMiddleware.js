@@ -64,6 +64,9 @@ const ContextMiddleware = (props) => {
                 { token: '', personId:'', userName:'', isAdmin:false, isAuth:false, clients:'' }
             );
             setLocalCache(localContext);
+            // sessionStorage.clear()
+            // window.localStorage.clear()
+            console.log(contextState.token)
         };
 
            const newUserName = (personId, userName, role, isAuth,clients) =>{

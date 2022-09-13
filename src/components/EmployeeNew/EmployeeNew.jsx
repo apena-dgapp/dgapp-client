@@ -42,6 +42,21 @@ function EmployeeNew() {
   });
 
   const handlerInputChange = (e) => {
+    if (e.target.name === "documentid" && e.target.value.length > 10) {
+      fetch(
+        `https://api.digital.gob.do/v3/cedulas/${e.target.value}/validate`,
+        {
+          accept: "application/json",
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+        });
+    }
+
+    // console.log(e.target.name);
+    // console.log(e.target.value);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -96,22 +111,36 @@ function EmployeeNew() {
   };
 
   const next = () => {
-    if (
-      // photo === "" &&
-      formData.firstname === "" ||
-      formData.firstname === undefined ||
-      formData.lastname === "" ||
-      formData.lastname === undefined ||
+    if (formData.firstname === "" || formData.firstname === undefined) {
+      return toast.error(
+        "Por favor de llenar el campo NOMBRE antes de continuar"
+      );
+    } else if (formData.lastname === "" || formData.lastname === undefined) {
+      return toast.error(
+        "Por favor de llenar el campo APELLIDO antes de continuar"
+      );
+    } else if (
       formData.documentid === "" ||
-      formData.documentid === undefined ||
-      formData.cel === "" ||
-      formData.cel === undefined ||
-      formData.date === "" ||
-      formData.date === undefined
-      // formData.career === ""
+      formData.documentid === undefined
     ) {
       return toast.error(
-        "Debes completar todos los campos antes de continuar requeridos"
+        "Por favor de llenar el campo CEDULA antes de continuar"
+      );
+    } else if (formData.documentid.length < 11) {
+      return toast.error(
+        "El Campo CEDULA tiene que tener un minimo de 11 caracteres"
+      );
+    } else if (formData.cel === "" || formData.cel === undefined) {
+      return toast.error(
+        "Por favor de llenar el campo CELULAR antes de continuar"
+      );
+    } else if (formData.cel.length < 10) {
+      return toast.error(
+        "El Campo CELULAR tiene que tener un minimo de 10 caracteres"
+      );
+    } else if (formData.date === "" || formData.date === undefined) {
+      return toast.error(
+        "Por favor de llenar el campo FECHA DE NACIMIENTO antes de continuar"
       );
     } else {
       if (formData?.documentid) {
@@ -155,26 +184,32 @@ function EmployeeNew() {
   }
 
   const createHandlerForm = () => {
-    if (
-      code === "" ||
-      code === undefined ||
-      formData.position === "" ||
-      formData.position === undefined ||
-      departament === "" ||
-      departament === undefined ||
-      reportTo === "" ||
-      reportTo === undefined ||
-      formData.startedon === "" ||
-      formData.startedon === undefined ||
-      // formData.phone === "" &&
-      email === "" ||
-      email === undefined ||
+    if (formData.position === "" || formData.position === undefined) {
+      return toast.error(
+        "Por favor de llenar el campo POSICION antes de crear un nuevo empleado"
+      );
+    } else if (departament === "" || departament === undefined) {
+      return toast.error(
+        "Por favor de llenar el campo DEPARTAMENTO antes de crear un nuevo empleado"
+      );
+    } else if (reportTo === "" || reportTo === undefined) {
+      return toast.error(
+        "Por favor de llenar el campo SE REPORTA antes de crear un nuevo empleado"
+      );
+    } else if (formData.startedon === "" || formData.startedon === undefined) {
+      return toast.error(
+        "Por favor de llenar el campo INICIO LABORAL antes de crear un nuevo empleado"
+      );
+    } else if (email === "" || email === undefined) {
+      return toast.error(
+        "Por favor de llenar el campo EMAIL antes de crear un nuevo empleado"
+      );
+    } else if (
       formData.contracttype === "" ||
       formData.contracttype === undefined
-      // formData.health === ""
     ) {
       return toast.error(
-        "Debes completar todos los campos antes de continuar requeridos"
+        "Por favor de llenar el campo TIPO DE CONTRATO antes de crear un nuevo empleado"
       );
     } else {
       if (formData.date) {
@@ -203,7 +238,7 @@ function EmployeeNew() {
           formData.emergencynumber,
           formData.emergencyrelationship,
           formData.contracttype,
-          formatDate(formData.contractexpiration)
+          formData.contractexpiration
             ? formatDate(formData.contractexpiration)
             : null
         )
