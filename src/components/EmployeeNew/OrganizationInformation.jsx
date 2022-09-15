@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Input from "../../common/components/Input/Input";
+// import Input from "../../common/components/Input/Input";
 import { getLastCode, validationEmail } from "../../api/person";
 
 function OrganizationInformation({
@@ -65,13 +65,13 @@ function OrganizationInformation({
         <div className="edit-inputs">
           <div className="">
             <p className="edit-input-title">Codigo de Empleado</p>
-            <Input
+            <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="code"
               type="text"
               placeholder="Escriba el codigo de empleado"
-              classInput="edit-input"
+              className="edit-input"
               value={code}
               disabled={true}
             />
@@ -79,14 +79,14 @@ function OrganizationInformation({
           </div>
           <div className="">
             <p className="edit-input-title">Posición</p>
-            <Input
+            <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="position"
               type="text"
               placeholder="Escriba la posicion"
-              classInput="edit-input"
-              value={formData.position.replace(/[^a-zA-ZñÑ ]/g, "")}
+              className="edit-input"
+              value={formData.position?.replace(/[^a-zA-ZñÑ ]/g, "")}
             />
             <div className="input-required">*</div>
           </div>
@@ -152,38 +152,38 @@ function OrganizationInformation({
           </div>
           <div className="">
             <p className="edit-input-title">Inicio Laboral</p>
-            <Input
+            <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="startedon"
               type="date"
-              classInput="edit-input"
+              className="edit-input"
               value={formData.startedon}
             />
             <div className="input-required">*</div>
           </div>
           <div className="">
             <p className="edit-input-title">Extensión</p>
-            <Input
+            <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="phone"
               type="text"
               placeholder="Numbero de Extension"
-              classInput="edit-input"
-              value={formData.phone.replace(/[^0-9.]/g, "")}
+              className="edit-input"
+              value={formData.phone?.replace(/[^0-9.]/g, "")}
             />
           </div>
 
           <div className="">
             <p className="edit-input-title">Email</p>
-            <Input
+            <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="email"
               type="email"
               placeholder="Correo Electronico de la Institucion"
-              classInput="edit-input"
+              className="edit-input"
               value={email.toUpperCase()}
               disabled={true}
             />
@@ -191,14 +191,14 @@ function OrganizationInformation({
           </div>
           <div className="">
             <p className="edit-input-title">Seguro Medico</p>
-            <Input
+            <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="health"
               type="text"
               placeholder="Numero de Seguro Medico"
-              classInput="edit-input"
-              value={formData.health.replace(/[^0-9.]/g, "")}
+              className="edit-input"
+              value={formData.health?.replace(/[^0-9.]/g, "")}
             />
           </div>
           <div className="">
@@ -225,12 +225,12 @@ function OrganizationInformation({
           </div>
           <div className="">
             <p className="edit-input-title">Vencimiento de Contrato</p>
-            <Input
+            <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="contractexpiration"
               type="date"
-              classInput="edit-input"
+              className="edit-input"
               value={formData.contractexpiration}
             />
             {/* <div className="input-required">*</div> */}

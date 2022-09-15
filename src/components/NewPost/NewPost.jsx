@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 const NewPost = () => {
   const [contextState] = useContext(GlobalContext);
   const [modalActive, setModalActive] = useState(false);
-
   const [img, setImg] = useState("");
   const [actionInput, setActionInput] = useState("");
   const [accept, setAccept] = useState("");
@@ -25,6 +24,7 @@ const NewPost = () => {
     isActive: true,
     video: "",
   });
+
   const [uploadFiles, setUploadFiles] = useState({
     imagenes: "",
     pdf: "",
@@ -140,6 +140,7 @@ const NewPost = () => {
     } else if (!img && formData.category === "Noticia") {
       return toast.error("Por favor agregar una imagen de portada");
     }
+
     newPostApi(
       formData.title,
       editor_content,

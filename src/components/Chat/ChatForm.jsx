@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
-import { MdOutlineArrowForwardIos, MdSearch, MdCircle } from "react-icons/md";
+import { MdOutlineArrowForwardIos, MdCircle } from "react-icons/md";
 import { BiHide } from "react-icons/bi";
 import GlobalContext from "../../context/GlobalContext";
 import Images from "../../common/images";

@@ -1,10 +1,14 @@
 import React from "react";
-import Input from "../../common/components/Input/Input";
 import Images from "../../common/images/index";
 import { TiDelete } from "react-icons/ti";
 import WYSIWYGEditor from "../../utils/WYSIWYG";
 import { useForm, Controller } from "react-hook-form";
 import Modal from "./NewPost.Modal";
+
+// import { createEditor } from "slate";
+
+// // Import the Slate components and React plugin.
+// import { Slate, Editable, withReact } from "slate-react";
 
 const NewPostForm = ({
   sendHandlerForm,
@@ -56,14 +60,16 @@ const NewPostForm = ({
               <div className="d-flex justify-content-center">
                 <div className="select">
                   <select
-                    id="inputGroupSelect01"
+                    // id="inputGroupSelect01"
                     name="category"
-                    value={formData.category}
+                    // value={formData.category || ""}
                     onChange={handlerInputChange}
                     className="input-group"
                     defaultValue={"DEFAULT"}
                   >
-                    <option value="DEFAULT">Elige una Categoria</option>
+                    <option disabled value="DEFAULT">
+                      Elige una Categoria
+                    </option>
                     <option className="option-txt" value="Portada Principal">
                       Portada Principal
                     </option>
@@ -80,25 +86,25 @@ const NewPostForm = ({
                 </div>
               </div>
               <div>
-                <Input
+                <input
                   id="titleinput"
                   name="title"
                   type="text"
                   placeholder="Agregar un titulo"
-                  classInput="inputTitle"
+                  className="inputTitle"
                   onChange={handlerInputChange}
-                  value={formData.title}
+                  value={formData.title || ""}
                 />
               </div>
               <div>
-                <Input
+                <input
                   id="authorinput"
                   name="author"
                   type="text"
                   placeholder="Agregar un autor"
-                  classInput="inputTitle"
+                  className="inputTitle"
                   onChange={handlerInputChange}
-                  value={formData.author}
+                  value={formData.author || ""}
                 />
               </div>
               <div>
@@ -222,7 +228,7 @@ const NewPostForm = ({
                       src={Images.video}
                       alt=".mp4, .avi, .mkv, .mov"
                       onChange={handlerInputChange}
-                      value={formData.video}
+                      value={formData.video || ""}
                     />
                     {formData.video ? (
                       <div onClick={removeVideo} className="remove-cont">

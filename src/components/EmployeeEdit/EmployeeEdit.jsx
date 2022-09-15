@@ -6,12 +6,14 @@ import { getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
+// import { pdfjs } from "react-pdf";
 
 function EmployeeEdit(props) {
   const [contextState] = useContext(GlobalContext);
   const [departaments, setDepartaments] = useState("");
   const history = useHistory();
   const [person, setPerson] = useState("");
+  const [validateId, SetValidateId] = useState(false);
   const [photo, setPhoto] = useState("");
   const [departament, setDepartament] = useState("");
   const [reportTo, setReportTo] = useState("");
@@ -37,6 +39,24 @@ function EmployeeEdit(props) {
   });
 
   const handlerInputChange = (e) => {
+    if (e.target.name === "documentid" && e.target.value.length > 10) {
+      fetch(
+        `https://api.digital.gob.do/v3/cedulas/${e.target.value}/validate`,
+        {
+          accept: "application/json",
+        }
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.valid) {
+            SetValidateId(true);
+          } else {
+            SetValidateId(false);
+            return toast.error("Numero de cedula no valido!");
+          }
+        });
+    }
+
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -57,8 +77,16 @@ function EmployeeEdit(props) {
     setReportTo(...reportTo, option);
   };
   const seletedHandler = async (e) => {
+    // console.log(e.target.value);
     setPhoto(await getBase64(e.target.files[0]));
+    // if (!photo && e.target.value !== null) {
+    //   e.target.value = null;
+    // }
+
+    // console.log(photo);
   };
+
+  // console.log(validateCode);
 
   const removeImg = () => {
     setPhoto("");
@@ -98,6 +126,66 @@ function EmployeeEdit(props) {
 
   const updateHandlerForm = () => {
     const modifiedAt = new Date();
+
+    if (formData.documentid) {
+      if (!validateId) {
+        return toast.error(
+          "Por favor debes de digitar una CEDULA valida antes de continuar"
+        );
+      }
+    }
+
+    if (formData.documentid) {
+      if (formData.documentid.length < 11) {
+        return toast.error(
+          "El Campo CEDULA tiene que tener un minimo de 11 caracteres"
+        );
+      }
+    }
+
+    if (formData.cel) {
+      if (formData.cel.length < 10) {
+        return toast.error(
+          "El Campo CELULAR tiene que tener un minimo de 10 caracteres"
+        );
+      }
+    }
+
+    if (formData.code) {
+      const found = person.find(function (element) {
+        return element.employeeCode === formData.code;
+      });
+
+      if (found) {
+        return toast.error(
+          `Este CODIGO actulamente pertenece a: ${found.lastName} ${found.firstName}`
+        );
+      }
+    }
+    console.log(formData.email);
+
+    if (formData.email) {
+      var regex = /^[^\s@]+@DGAPP\.GOB\.DO$/;
+      var result = regex.test(formData.email.toLocaleUpperCase());
+      if (result !== true) {
+        return toast.error(
+          "formato de EMAIL no valido, por favor de revisar antes de actualizar"
+        );
+      }
+    }
+
+    if (formData.email) {
+      const found = person.find(function (element) {
+        return element.email === formData.email.toLocaleUpperCase();
+      });
+
+      if (found) {
+        return toast.error(
+          `Este EMAIL actulamente pertenece a: ${found.lastName} ${found.firstName}`
+        );
+      }
+    }
+
     if (
       photo === "" &&
       formData.firstname === "" &&
@@ -180,14 +268,6 @@ function EmployeeEdit(props) {
   useEffect(() => {
     let unmounted = false;
 
-    // const arroba = formData.email.includes("@");
-
-    // if(arroba){
-    //   setFormData({
-    //     email:{...formData.email, "DGAPP.COM"}
-    //   })
-    // }
-
     getAlldepartament()
       .then((res) => {
         return res.json();
@@ -236,6 +316,7 @@ function EmployeeEdit(props) {
         handlerdDepartament={handlerdDepartament}
         handlerdReportTo={handlerdReportTo}
         clearFormData={clearFormData}
+        validateId={validateId}
       />
     </>
   );

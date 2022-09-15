@@ -44,14 +44,14 @@ const CreateEventsForm = ({
                     <div className="">
                       <p className="createEvent-card-add-input-title">Salon</p>
                       <select
-                        // defaultValue="Seleccionar una Departamento"
                         name="room"
                         className="createEvent-card-add-input"
                         onChange={handlerInputChange}
-                        value={formData.room}
-                        // defaultValue={"DEFAULT"}
+                        defaultValue={"DEFAULT"}
                       >
-                        <option value="DEFAULT">Seleccionar un salon</option>
+                        <option disabled value="DEFAULT">
+                          Seleccionar un salon
+                        </option>
                         <option id="1">Conferencias Dirección Ejecutiva</option>
                         <option id="2">Conferencias Piso 2</option>
                         <option id="3">Conferencias Piso 3</option>

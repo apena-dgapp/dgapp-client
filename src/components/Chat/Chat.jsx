@@ -5,7 +5,7 @@ import { getAllPersons } from "../../api/person";
 import socket from "../../utils/socket";
 
 const Chat = () => {
-  const [contextState, , contextMiddleware] = useContext(GlobalContext);
+  const [contextState] = useContext(GlobalContext);
   const [arrayAllPersons, setArrayAllPersons] = useState();
   const [room, setRoom] = useState("");
   const [userHeader, setUserHeader] = useState({

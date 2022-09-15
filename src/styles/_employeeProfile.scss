@@ -4,7 +4,7 @@
 }
 .employee-header-container{
     width: 100%;
-    height: 35em;
+    height: 32rem;
     // background: rgb(85,132,172);
     // background: linear-gradient(0deg, rgba(85,132,172,1) 0%, rgba(34,87,126,1) 58%);
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/colleagues-giving-fist-bump.jpg");
@@ -17,10 +17,10 @@
     padding-right: 2rem;
 }
 .employee-img-container{
-    width: 20%;
-    max-height: 35em;
-    min-height: 35em;
-    margin-top: 10em;
+    width: 20rem;
+    // max-height: 45rem;
+    height: 36.5rem;
+    margin-top: 9rem;
     background-color: white;
     position: fixed;
     border-radius: 0.5rem;
@@ -76,7 +76,7 @@
 
 .employee-img{
     width: 100%;
-    height: 20em;
+    height: 22.5rem;
     object-fit: cover;
     border-radius: 0.5rem 0.5rem 0 0 ;
 }
@@ -91,17 +91,17 @@
     border-color: gainsboro;
 }
 .employee-report-to{
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     margin-left: 1.1rem;
     font-weight: bold;
     font-size: 1.2rem;
 }
 
 .employee-report-img{
-    width: 25%;
+    width: 5rem;
     margin-left: 0.5rem;
     border-radius: 0.3rem;
-    margin-top: 0.6rem;
+    // margin-top: 0.3rem;
     cursor: pointer;
 }
 

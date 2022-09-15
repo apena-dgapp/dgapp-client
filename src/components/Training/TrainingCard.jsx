@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import Images from "../../common/images/index";
-import { MdCircle } from "react-icons/md";
+// import { MdCircle } from "react-icons/md";
 import { BsClockFill } from "react-icons/bs";
-import GlobalContext from "../../context/GlobalContext";
+// import GlobalContext from "../../context/GlobalContext";
 
 const TrainingCard = (props) => {
-  const [contextState] = useContext(GlobalContext);
+  // const [contextState] = useContext(GlobalContext);
 
   return (
     <>

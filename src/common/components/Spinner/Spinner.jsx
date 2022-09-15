@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import ClipLoader from "react-spinners/ClipLoader";
-import GlobalContext from "../../../context/GlobalContext";
+// import GlobalContext from "../../../context/GlobalContext";
 
 const Spinner = ({ showSpinner }) => {
   // const [contextState, , contextMiddleware] = useContext(GlobalContext);

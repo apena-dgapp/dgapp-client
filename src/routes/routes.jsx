@@ -22,10 +22,11 @@ import EmployeeEdit from "../components/EmployeeEdit/EmployeeEdit";
 import EmployeeNew from "../components/EmployeeNew/EmployeeNew";
 import Spinner from "../common/components/Spinner/Spinner";
 import Building from "../common/components/Building/Building";
-import Chat from "../components/Chat/Chat";
-import ChatButton from "../common/components/ChatButton/ChatButton";
+// import Chat from "../components/Chat/Chat";
+// import ChatButton from "../common/components/ChatButton/ChatButton";
 import Training from "../components/Training/Training";
 import CreateEvents from "../components/CreateEvents/CreateEvents";
+import FoodOrder from "../components/FoodOrder/FoodOrder";
 
 const Routes = () => {
   const [contextState] = useContext(GlobalContext);
@@ -111,6 +112,10 @@ const Routes = () => {
         <Route
           path={`${process.env.REACT_APP_RUTE}/training`}
           component={contextState.token ? Training : Login}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/foodorder`}
+          component={contextState.token ? FoodOrder : Login}
         />
         <Route
           exact

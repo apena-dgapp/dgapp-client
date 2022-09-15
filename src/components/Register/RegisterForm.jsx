@@ -83,7 +83,7 @@ const RegisterForm = ({
                 type="text"
                 placeholder={userName}
                 className="edit-input"
-                value={userName ? userName : formData.username}
+                value={userName ? userName : formData.username || ""}
                 disabled={autoName ? true : false}
               />
             </div>

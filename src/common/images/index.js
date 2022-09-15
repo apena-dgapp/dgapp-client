@@ -32,6 +32,8 @@ import noCalendar from './calendar.png';
 import noad from './ad-blocker.png';
 import nonews from './fake-news.png';
 import icondgapp from './MicrosoftTeams-image.png';
+import iconArroz from './japanese-food.png';
+import iconCarne from './meat.png';
 
 const Images = {
     iconUser,
@@ -66,7 +68,9 @@ const Images = {
     noCalendar,
     noad,
     icondgapp,
-    nonews
+    nonews,
+    iconArroz,
+    iconCarne
 }
 
 export default Images;

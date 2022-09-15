@@ -23,6 +23,7 @@ function EmployeeNewForm({
   code,
   setEmail,
   email,
+  validateId,
 }) {
   //   const date = new Date("06/29/2022").toISOString().split("T")[0];
 
@@ -79,6 +80,7 @@ function EmployeeNewForm({
             <PersonalInformation
               handlerInputChange={handlerInputChange}
               formData={formData}
+              validateId={validateId}
             />
           ) : null}
 

@@ -44,7 +44,7 @@ const useStyles = makeStyles(
       },
     },
     departament: {
-      marginTop: "2rem",
+      marginTop: "3rem",
       fontSize: "0.5rem",
       fontWeight: "bolder",
       color: "gray",

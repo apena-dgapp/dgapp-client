@@ -14,6 +14,7 @@ function EmployeeNew() {
   const [contextState, , contextMiddleware] = useContext(GlobalContext);
   const [departaments, setDepartaments] = useState("");
   const [email, setEmail] = useState("");
+  const [validateId, SetValidateId] = useState(false);
   const [code, setCode] = useState("");
   const [person, setPerson] = useState("");
   const [photo, setPhoto] = useState("");
@@ -51,12 +52,15 @@ function EmployeeNew() {
       )
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
+          if (res.valid) {
+            SetValidateId(true);
+          } else {
+            SetValidateId(false);
+            return toast.error("Numero de cedula no valido!");
+          }
         });
     }
 
-    // console.log(e.target.name);
-    // console.log(e.target.value);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -125,6 +129,10 @@ function EmployeeNew() {
     ) {
       return toast.error(
         "Por favor de llenar el campo CEDULA antes de continuar"
+      );
+    } else if (!validateId) {
+      return toast.error(
+        "Por favor debes de digitar una CEDULA valida antes de continuar"
       );
     } else if (formData.documentid.length < 11) {
       return toast.error(
@@ -318,6 +326,7 @@ function EmployeeNew() {
         code={code}
         setEmail={setEmail}
         email={email}
+        validateId={validateId}
         // departament={departament}
       />
     </>
