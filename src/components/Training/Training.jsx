@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import TrainingForm from "./TrainingForm";
 import { getAllPersons } from "../../api/person";
 import { getAlldepartament } from "../../api/department";
 import { useHistory } from "react-router-dom";
-import GlobalContext from "../../context/GlobalContext";
 
 const Training = () => {
   const [arrayAllPersons, setArrayAllPersons] = useState([]);
@@ -12,7 +11,6 @@ const Training = () => {
   const [search, setSearch] = useState("");
   const [searchDep, setSearchDep] = useState("");
   const history = useHistory();
-  const [, , contextMiddleware] = useContext(GlobalContext);
   const [page, setPage] = useState(8);
   const [pageLength, setPageLength] = useState("");
 
@@ -24,13 +22,11 @@ const Training = () => {
         return res.json();
       })
       .then((res) => {
-        contextMiddleware.showSpinner(true);
         if (!unmounted) {
           setArrayDepartament(res);
         }
       })
       .catch((err) => {
-        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 
@@ -43,10 +39,8 @@ const Training = () => {
           setArrayAllPersons((arrayAllPersons) => [...arrayAllPersons, ...res]);
           setPageLength(res.length);
         }
-        contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
-        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 

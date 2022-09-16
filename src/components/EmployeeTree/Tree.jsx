@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import TreeForm from "./TreeForm";
 import { getEmployeeTree } from "./../../api/person";
-import GlobalContext from "../../context/GlobalContext";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Tree = () => {
+  const [loading, seLoading] = useState(false);
   const [persons, setPersons] = useState({
     name: "",
     children: "",
@@ -15,7 +16,20 @@ const Tree = () => {
     lastName: "",
   });
 
-  const [, , contextMiddleware] = useContext(GlobalContext);
+  useEffect(() => {
+    let unmounted = false;
+    if (!unmounted) {
+      seLoading(true);
+    }
+    setTimeout(() => {
+      if (!unmounted) {
+        seLoading(false);
+      }
+    }, 1500);
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
   useEffect(() => {
     let unmounted = false;
@@ -25,7 +39,6 @@ const Tree = () => {
         return res.json();
       })
       .then((res) => {
-        contextMiddleware.showSpinner(true);
         if (!unmounted) {
           const userFalt = res.reduce((acc, el, i) => {
             acc[el.personId] = i;
@@ -56,10 +69,8 @@ const Tree = () => {
             personId: root.personId,
           });
         }
-        contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
-        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 
@@ -70,30 +81,34 @@ const Tree = () => {
 
   return (
     <>
-      {/* <div className="tree-title">DGAPP ORGANIGRAMA</div> */}
-
-      <div className="tree-title">
-        {" "}
-        <div className="container-tree-title">
-          <div className="box">
-            <div className="title">
-              <span className="block" />
-              <h1>
-                DIRECCIÓN GENERAL DE ALIANZAS PÚBLICO-PRIVADAS
-                <span />
-              </h1>
-            </div>
-            <div className="role">
-              <div className="block" />
-              <p>Organigrama</p>
+      {loading ? (
+        <div className="spinner-container">
+          <ClipLoader color="#113250" loading={loading} size={150} />
+        </div>
+      ) : (
+        <>
+          <div className="tree-title">
+            <div className="container-tree-title">
+              <div className="box">
+                <div className="title">
+                  <span className="block" />
+                  <h1>
+                    DIRECCIÓN GENERAL DE ALIANZAS PÚBLICO-PRIVADAS
+                    <span />
+                  </h1>
+                </div>
+                <div className="role">
+                  <div className="block" />
+                  <p>Organigrama</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="tree-chart">
-        <TreeForm persons={persons} />
-      </div>
+          <div className="tree-chart">
+            <TreeForm persons={persons} />
+          </div>{" "}
+        </>
+      )}
     </>
   );
 };

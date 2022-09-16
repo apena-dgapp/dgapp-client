@@ -8,41 +8,75 @@ const FoodOrderForm = () => {
         <div className="new-card">
           <div className="foodorder-grid-cont">
             <div className="foodorder-menu">
-              <p>Menu-1</p>
-              <div className="foodorder-icon-com">
+              <div className="foodorder-icon-cont">
+                <div className="foodorder-header-title">
+                  <p>ARROZ</p>
+                </div>
                 <img className="foodorder-icon" src={Images.iconArroz} alt="" />
-              </div>
-              <div className="foodorder-list-com">
-                <p>-Arroz Blanco</p>
-                <p>-Morro de Habichuela Roja</p>
+                <div className="foodorder-list-cont">
+                  <p>- Arroz Blanco</p>
+                  <p>- Morro de Habichuela Roja</p>
+                </div>
               </div>
             </div>
             <div className="foodorder-menu">
-              <p>Menu-2</p>
-              <div className="foodorder-icon-com">
+              <div className="foodorder-icon-cont">
+                <div className="foodorder-header-title">
+                  <p>CARNE Y PESCADO</p>
+                </div>
                 <img className="foodorder-icon" src={Images.iconCarne} alt="" />
-              </div>
-              <div className="foodorder-list-com">
-                <p>-Pollo Frito</p>
-                <p>-Cerdo Asado</p>
-              </div>
-            </div>
-            <div className="foodorder-menu">
-              <p>Menu-3</p>
-              <div className="foodorder-icon-com">
-                <img className="foodorder-icon" src={Images.iconArroz} alt="" />
+                <div className="foodorder-list-cont">
+                  <p>- Pollo Frito</p>
+                  <p>- Cerdo Asado</p>
+                </div>
               </div>
             </div>
             <div className="foodorder-menu">
-              <p>Menu-4</p>
-              <div className="foodorder-icon-com">
-                <img className="foodorder-icon" src={Images.iconArroz} alt="" />
+              <div className="foodorder-icon-cont">
+                <div className="foodorder-header-title">
+                  <p>VIVIERES</p>
+                </div>
+                <img
+                  className="foodorder-icon"
+                  src={Images.iconPlatano}
+                  alt=""
+                />
+                <div className="foodorder-list-cont">
+                  <p>- Pollo Frito</p>
+                  <p>- Cerdo Asado</p>
+                </div>
               </div>
             </div>
             <div className="foodorder-menu">
-              <p>Menu-5</p>
-              <div className="foodorder-icon-com">
-                <img className="foodorder-icon" src={Images.iconArroz} alt="" />
+              <div className="foodorder-icon-cont">
+                <div className="foodorder-header-title">
+                  <p>GUISOS</p>
+                </div>
+                <img
+                  className="foodorder-icon"
+                  src={Images.iconHabichuela}
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="foodorder-menu">
+              <div className="foodorder-icon-cont">
+                <div className="foodorder-header-title">
+                  <p>ENSALADAS</p>
+                </div>
+                <img
+                  className="foodorder-icon"
+                  src={Images.iconEnsalda}
+                  alt=""
+                />
+              </div>
+            </div>
+            <div className="foodorder-menu">
+              <div className="foodorder-icon-cont">
+                <div className="foodorder-header-title">
+                  <p>SNACKS Y POSTRES</p>
+                </div>
+                <img className="foodorder-icon" src={Images.iconSnack} alt="" />
               </div>
             </div>
           </div>

@@ -114,3 +114,15 @@ export const getVideo = async (postid) => {
         }   
     })
 }
+
+export const addCommentPost = async (postid, text, createdby) => {
+    const body = {postid, text,  createdby};
+    return fetch(`${process.env.REACT_APP_API}post/addcomment`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }   
+    })
+}

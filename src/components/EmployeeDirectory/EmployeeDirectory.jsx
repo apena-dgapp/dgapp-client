@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import EmployeeDirectoryForm from "./EmployeeDirectoryForm";
 import { getAllPersons } from "../../api/person";
 import { getAlldepartament } from "../../api/department";
 import { useHistory } from "react-router-dom";
-import GlobalContext from "../../context/GlobalContext";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const EmployeeDirectory = () => {
   const [arrayAllPersons, setArrayAllPersons] = useState([]);
@@ -12,9 +12,24 @@ const EmployeeDirectory = () => {
   const [search, setSearch] = useState("");
   const [searchDep, setSearchDep] = useState("");
   const history = useHistory();
-  const [, , contextMiddleware] = useContext(GlobalContext);
   const [page, setPage] = useState(8);
   const [pageLength, setPageLength] = useState("");
+  const [loading, seLoading] = useState(false);
+
+  useEffect(() => {
+    let unmounted = false;
+    if (!unmounted) {
+      seLoading(true);
+    }
+    setTimeout(() => {
+      if (!unmounted) {
+        seLoading(false);
+      }
+    }, 1500);
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
   useEffect(() => {
     let unmounted = false;
@@ -24,13 +39,11 @@ const EmployeeDirectory = () => {
         return res.json();
       })
       .then((res) => {
-        contextMiddleware.showSpinner(true);
         if (!unmounted) {
           setArrayDepartament(res);
         }
       })
       .catch((err) => {
-        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 
@@ -43,10 +56,8 @@ const EmployeeDirectory = () => {
           setArrayAllPersons((arrayAllPersons) => [...arrayAllPersons, ...res]);
           setPageLength(res.length);
         }
-        contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
-        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 
@@ -130,19 +141,25 @@ const EmployeeDirectory = () => {
 
   return (
     <>
-      <EmployeeDirectoryForm
-        filteredArryPersons={filteredArryPersons}
-        nextPage={nextPage}
-        backPage={backPage}
-        onSearchChange={onSearchChange}
-        search={search}
-        goToProfile={goToProfile}
-        arrayDepartament={arrayDepartament}
-        filterDep={filterDep}
-        searchDep={searchDep}
-        pageLength={pageLength}
-        page={page}
-      />
+      {loading ? (
+        <div className="spinner-container">
+          <ClipLoader color="#113250" loading={loading} size={150} />
+        </div>
+      ) : (
+        <EmployeeDirectoryForm
+          filteredArryPersons={filteredArryPersons}
+          nextPage={nextPage}
+          backPage={backPage}
+          onSearchChange={onSearchChange}
+          search={search}
+          goToProfile={goToProfile}
+          arrayDepartament={arrayDepartament}
+          filterDep={filterDep}
+          searchDep={searchDep}
+          pageLength={pageLength}
+          page={page}
+        />
+      )}
     </>
   );
 };

@@ -15,7 +15,6 @@ const ContextMiddleware = (props) => {
         appMessage: LangSpanish,
         appLocale: 'en-DR',
         personId:'',
-        isLoading:false,
         isShowChat:false,
         clients:'',
     });
@@ -66,7 +65,7 @@ const ContextMiddleware = (props) => {
             setLocalCache(localContext);
             // sessionStorage.clear()
             // window.localStorage.clear()
-            console.log(contextState.token)
+            // console.log(contextState.token)
         };
 
            const newUserName = (personId, userName, role, isAuth,clients) =>{
@@ -74,15 +73,6 @@ const ContextMiddleware = (props) => {
                 {},
                 { ...localContext },
                 { personId:personId, userName: userName, isAdmin: role, isAuth: isAuth, clients:clients }
-            );
-            setLocalCache(localContext);
-        };
-
-        const showSpinner = (isLoading) =>{
-            localContext = Object.assign(
-                {},
-                { ...localContext },
-                { isLoading:isLoading }
             );
             setLocalCache(localContext);
         };
@@ -127,7 +117,7 @@ const ContextMiddleware = (props) => {
             setLocalCache(localContext);
         }
 
-        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setIsShowChat, showSpinner,setClients};
+        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang, setIsShowChat,setClients};
     };
 
     return (

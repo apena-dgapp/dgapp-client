@@ -5,7 +5,6 @@ import { FaBirthdayCake, FaConciergeBell, FaVideo } from "react-icons/fa";
 import { MdEventNote } from "react-icons/md";
 import { GiNewspaper, GiOrganigram, GiFullFolder } from "react-icons/gi";
 import { ImNewspaper } from "react-icons/im";
-// import { MdSchool } from "react-icons/md";
 import ReactPlayer from "react-player";
 import Images from "../../common/images/index";
 import { Calendar } from "react-multi-date-picker";

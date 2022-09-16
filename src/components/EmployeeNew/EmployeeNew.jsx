@@ -11,7 +11,7 @@ import { getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
 
 function EmployeeNew() {
-  const [contextState, , contextMiddleware] = useContext(GlobalContext);
+  const [contextState] = useContext(GlobalContext);
   const [departaments, setDepartaments] = useState("");
   const [email, setEmail] = useState("");
   const [validateId, SetValidateId] = useState(false);
@@ -221,7 +221,6 @@ function EmployeeNew() {
       );
     } else {
       if (formData.date) {
-        contextMiddleware.showSpinner(true);
         createPerson(
           code,
           formData.firstname,
@@ -252,17 +251,14 @@ function EmployeeNew() {
         )
           .then((res) => {
             if (res.status === 500) {
-              contextMiddleware.showSpinner(false);
               return toast.error("Error en el Servidor!");
             } else {
-              contextMiddleware.showSpinner(false);
               toast.success("Nuevo Perfil de empleado creado!");
               clearFormData();
               back();
             }
           })
           .catch((err) => {
-            contextMiddleware.showSpinner(false);
             console.error(err.status);
           });
       }

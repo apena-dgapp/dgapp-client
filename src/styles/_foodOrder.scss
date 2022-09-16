@@ -10,18 +10,36 @@
 .foodorder-grid-cont{
     width: 100%;
     display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-columns: 16% 16% 16% 16% 16% 16%;
 
 }
 .foodorder-grid-cont{
     width: 100%;
 }
-.foodorder-icon-com{
+.foodorder-icon-cont{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     width: 100%;
+    p:hover{
+        color: tomato;
+        cursor: pointer;
+    }
+}
+.foodorder-header-title{
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 0.2rem;
+    color: #315272;
+}
+.foodorder-list-cont{
+    font-size: 0.7rem;
+    color: #315272;
+    font-weight: bold;
 }
 .foodorder-icon{
     width: 5rem;
+    margin-bottom: 1rem;
 }

@@ -4,7 +4,14 @@ import Carousel from "react-elastic-carousel";
 import ReactPlayer from "react-player";
 import { useHistory } from "react-router-dom";
 
-const SiglePostForm = ({ dataPost, arrayImg, video }) => {
+const SiglePostForm = ({
+  dataPost,
+  arrayImg,
+  video,
+  handlerTextareaChange,
+  sendComment,
+  comment,
+}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visible, setVisible] = useState(false);
   const history = useHistory();
@@ -234,6 +241,31 @@ const SiglePostForm = ({ dataPost, arrayImg, video }) => {
               ) : null;
             })
           : null}
+        <div className="singlePost-addComent-cont">
+          <div className="singlePost-addComent-title">
+            <p>COMENTARIO</p>
+          </div>
+          <div className="singlePost-addComent-text">
+            <p>Dejanos saber lo que piensas, escriba un breve comentario.</p>
+          </div>
+          <div className="singlePost-addComent-textarea-cont">
+            <textarea
+              onChange={handlerTextareaChange}
+              className="singlePost-addComent-textarea"
+              maxLength={500}
+              placeholder="Escriba un breve comentario... Limite de caracteres 500"
+              value={comment}
+            />
+          </div>
+          <button
+            onClick={sendComment}
+            name="done"
+            className="createEvent-card-btn-Finalize"
+            type="submit"
+          >
+            Enviar
+          </button>
+        </div>
       </div>
     </>
   );

@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import PrivateRoutes from "../routes/Private.Routes";
@@ -20,7 +21,6 @@ import EmployeeDirectory from "../components/EmployeeDirectory/EmployeeDirectory
 import EmployeeTree from "../components/EmployeeTree/Tree";
 import EmployeeEdit from "../components/EmployeeEdit/EmployeeEdit";
 import EmployeeNew from "../components/EmployeeNew/EmployeeNew";
-import Spinner from "../common/components/Spinner/Spinner";
 import Building from "../common/components/Building/Building";
 // import Chat from "../components/Chat/Chat";
 // import ChatButton from "../common/components/ChatButton/ChatButton";
@@ -30,8 +30,28 @@ import FoodOrder from "../components/FoodOrder/FoodOrder";
 
 const Routes = () => {
   const [contextState] = useContext(GlobalContext);
+  const [loading, seLoading] = useState(false);
 
-  return (
+  useEffect(() => {
+    let unmounted = false;
+    if (!unmounted) {
+      seLoading(true);
+    }
+    setTimeout(() => {
+      if (!unmounted) {
+        seLoading(false);
+      }
+    }, 1500);
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  return loading ? (
+    <div className="spinner-container">
+      <ClipLoader color="#113250" loading={loading} size={150} />
+    </div>
+  ) : (
     <BrowserRouter>
       {/* {contextState.token ? (
         !contextState.isShowChat ? (
@@ -40,8 +60,6 @@ const Routes = () => {
           <Chat />
         )
       ) : null} */}
-
-      {contextState.isLoading ? <Spinner /> : null}
       <ScrollToTop />
       {contextState.token ? <Navbar /> : null}
       <Switch>

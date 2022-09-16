@@ -1,15 +1,30 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import AllPostForm from "./AllPostForm";
 import { getPost } from "../../api/post";
-import GlobalContext from "../../context/GlobalContext";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const AllPost = () => {
   const [arrayAllPost, setArrayAllPost] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState("");
-  const [, , contextMiddleware] = useContext(GlobalContext);
   const [page, setPage] = useState(8);
   const [pageLength, setPageLength] = useState("");
+  const [loading, seLoading] = useState(false);
+
+  useEffect(() => {
+    let unmounted = false;
+    if (!unmounted) {
+      seLoading(true);
+    }
+    setTimeout(() => {
+      if (!unmounted) {
+        seLoading(false);
+      }
+    }, 1500);
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
   useEffect(() => {
     let unmounted = false;
@@ -19,15 +34,12 @@ const AllPost = () => {
         return res.json();
       })
       .then((res) => {
-        contextMiddleware.showSpinner(true);
         if (!unmounted) {
           setArrayAllPost((arrayAllPost) => [...arrayAllPost, ...res.posts]);
           setPageLength(res.posts.length);
         }
-        contextMiddleware.showSpinner(false);
       })
       .catch((err) => {
-        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 
@@ -73,15 +85,21 @@ const AllPost = () => {
 
   return (
     <>
-      <AllPostForm
-        filteredArryPost={filteredArryPost}
-        nextPage={nextPage}
-        backPage={backPage}
-        onSearchChange={onSearchChange}
-        search={search}
-        page={page}
-        pageLength={pageLength}
-      />
+      {loading ? (
+        <div className="spinner-container">
+          <ClipLoader color="#113250" loading={loading} size={150} />
+        </div>
+      ) : (
+        <AllPostForm
+          filteredArryPost={filteredArryPost}
+          nextPage={nextPage}
+          backPage={backPage}
+          onSearchChange={onSearchChange}
+          search={search}
+          page={page}
+          pageLength={pageLength}
+        />
+      )}
     </>
   );
 };

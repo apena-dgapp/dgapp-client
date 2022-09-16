@@ -8,17 +8,26 @@ import { saveAs } from "file-saver";
 import { toast } from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 }
 
 const Employee = (props) => {
-  const [contextState, , contextMiddleware] = useContext(GlobalContext);
+  const [contextState] = useContext(GlobalContext);
   const id = props.location.state;
   const [profile, setProfile] = useState("");
   const [reportsTo, setReportsTo] = useState("");
   const history = useHistory();
+  const [loading, seLoading] = useState(false);
+
+  useEffect(() => {
+    seLoading(true);
+    setTimeout(() => {
+      seLoading(false);
+    }, 2000);
+  }, []);
 
   const msgDisable = () => {
     return toast.error(
@@ -47,7 +56,6 @@ const Employee = (props) => {
         return res.json();
       })
       .then((res) => {
-        contextMiddleware.showSpinner(true);
         if (!unmounted) {
           setProfile(res);
           getOnePerson(res.reportsTo)
@@ -58,16 +66,13 @@ const Employee = (props) => {
               if (!unmounted) {
                 setReportsTo(res);
               }
-              contextMiddleware.showSpinner(false);
             })
             .catch((err) => {
-              contextMiddleware.showSpinner(false);
               console.error(err.status);
             });
         }
       })
       .catch((err) => {
-        contextMiddleware.showSpinner(false);
         console.error(err.status);
       });
 
@@ -148,14 +153,20 @@ const Employee = (props) => {
 
   return (
     <>
-      <EmployeeForm
-        generateDocument={generateDocument}
-        reportsTo={reportsTo}
-        profile={profile}
-        msgDisable={msgDisable}
-        edit={edit}
-        handleIsActive={handleIsActive}
-      />
+      {loading ? (
+        <div className="spinner-container">
+          <ClipLoader color="#113250" loading={loading} size={150} />
+        </div>
+      ) : (
+        <EmployeeForm
+          generateDocument={generateDocument}
+          reportsTo={reportsTo}
+          profile={profile}
+          msgDisable={msgDisable}
+          edit={edit}
+          handleIsActive={handleIsActive}
+        />
+      )}
     </>
   );
 };

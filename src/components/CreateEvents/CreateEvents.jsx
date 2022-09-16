@@ -32,8 +32,12 @@ const CreateEvents = () => {
     if (!unmounted) {
       getEvents()
         .then((res) => res.json())
-        .then((res) => setEventsDB(res));
+        .then((res) => setEventsDB(res))
+        .catch((err) => {
+          console.error(err.status);
+        });
     }
+
     return () => {
       unmounted = true;
     };

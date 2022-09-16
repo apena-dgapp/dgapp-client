@@ -21,7 +21,7 @@ const Navbar = ({
   training,
   register,
   createEvents,
-  foodOrder,
+  // foodOrder,
 }) => {
   const [contextState] = useContext(GlobalContext);
   const [active, setActive] = useState("menu_items");
@@ -58,9 +58,9 @@ const Navbar = ({
               />
             </p>
             <ul style={{ width: "10.5rem" }}>
-              <li>
+              {/* <li>
                 <p onClick={foodOrder}>Ordenar Almuerzo</p>
-              </li>
+              </li> */}
               <li>
                 <p onClick={inConstruction}>Crear Ticket</p>
               </li>

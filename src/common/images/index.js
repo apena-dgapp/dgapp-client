@@ -33,7 +33,11 @@ import noad from './ad-blocker.png';
 import nonews from './fake-news.png';
 import icondgapp from './MicrosoftTeams-image.png';
 import iconArroz from './japanese-food.png';
-import iconCarne from './meat.png';
+import iconCarne from './fish.png';
+import iconPlatano from './banana.png';
+import iconHabichuela from './cooking-pot.png';
+import iconEnsalda from './salad.png';
+import iconSnack from './fast-food.png';
 
 const Images = {
     iconUser,
@@ -70,7 +74,11 @@ const Images = {
     icondgapp,
     nonews,
     iconArroz,
-    iconCarne
+    iconCarne,
+    iconPlatano,
+    iconHabichuela,
+    iconEnsalda,
+    iconSnack
 }
 
 export default Images;

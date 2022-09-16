@@ -44,7 +44,7 @@ const Header = () => {
   const logOut = () => {
     // socket.disconnect();
     contextMiddleware.signOut();
-    contextMiddleware.setIsShowChat();
+    // contextMiddleware.setIsShowChat();
     history.push("./");
     // window.localStorage.clear();
 
@@ -110,7 +110,6 @@ const Header = () => {
     let unmounted = false;
 
     if (contextState.personId) {
-      contextMiddleware.showSpinner(true);
       getOnePerson(contextState.personId)
         .then((res) => {
           return res.json();
@@ -126,11 +125,9 @@ const Header = () => {
               photo: res.photo,
             });
           }
-          contextMiddleware.showSpinner(false);
         })
         .catch((err) => {
           console.error(err.status);
-          contextMiddleware.showSpinner(false);
         });
     }
 

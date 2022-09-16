@@ -234,5 +234,27 @@ margin-bottom: 0;
 .siglepost-data-txt{
     color: gray;
 }
-
-
+.singlePost-addComent-cont{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10rem;
+}
+.singlePost-addComent-textarea{
+    width: 50rem;
+    height: 10rem;
+    resize: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    border-radius:0.3rem ;
+}
+.singlePost-addComent-title{
+    color: #113250;
+    font-weight: bolder;
+}
+.singlePost-addComent-text{
+    color: #113250;
+}
