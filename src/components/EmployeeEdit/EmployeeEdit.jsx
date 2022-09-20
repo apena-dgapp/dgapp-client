@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import EmployeeEditForm from "./EmployeeEditForm";
 import { getAlldepartament } from "../../api/department";
 import { getAllPersons, updatePerson } from "../../api/person";
@@ -37,6 +37,13 @@ function EmployeeEdit(props) {
     contracttype: "",
     contractexpiration: "",
   });
+
+  const refInput = useRef();
+
+  const clickRemove = () => {
+    refInput.current.value = "";
+    setPhoto("");
+  };
 
   const handlerInputChange = (e) => {
     if (e.target.name === "documentid" && e.target.value.length > 10) {
@@ -77,7 +84,7 @@ function EmployeeEdit(props) {
     setReportTo(...reportTo, option);
   };
   const seletedHandler = async (e) => {
-    // console.log(e.target.value);
+    console.log(e.target.value);
     setPhoto(await getBase64(e.target.files[0]));
     // if (!photo && e.target.value !== null) {
     //   e.target.value = null;
@@ -88,9 +95,6 @@ function EmployeeEdit(props) {
 
   // console.log(validateCode);
 
-  const removeImg = () => {
-    setPhoto("");
-  };
   const goToProfile = (id) => {
     history.push({
       pathname: "./employeeprofile",
@@ -152,7 +156,7 @@ function EmployeeEdit(props) {
     }
 
     if (formData.code) {
-      const found = person.find(function (element) {
+      const found = person.find(function(element) {
         return element.employeeCode === formData.code;
       });
 
@@ -162,7 +166,6 @@ function EmployeeEdit(props) {
         );
       }
     }
-    console.log(formData.email);
 
     if (formData.email) {
       var regex = /^[^\s@]+@DGAPP\.GOB\.DO$/;
@@ -175,7 +178,7 @@ function EmployeeEdit(props) {
     }
 
     if (formData.email) {
-      const found = person.find(function (element) {
+      const found = person.find(function(element) {
         return element.email === formData.email.toLocaleUpperCase();
       });
 
@@ -311,12 +314,13 @@ function EmployeeEdit(props) {
         person={person}
         seletedHandler={seletedHandler}
         photo={photo}
-        removeImg={removeImg}
         updateHandlerForm={updateHandlerForm}
         handlerdDepartament={handlerdDepartament}
         handlerdReportTo={handlerdReportTo}
         clearFormData={clearFormData}
         validateId={validateId}
+        refInput={refInput}
+        clickRemove={clickRemove}
       />
     </>
   );

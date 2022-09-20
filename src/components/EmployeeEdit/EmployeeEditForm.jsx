@@ -11,12 +11,13 @@ function EmployeeEditForm({
   person,
   seletedHandler,
   photo,
-  removeImg,
   updateHandlerForm,
   handlerdDepartament,
   handlerdReportTo,
   clearFormData,
   validateId,
+  refInput,
+  clickRemove,
 }) {
   // const date = new Date("06/29/2022").toISOString().split("T")[0];
   if (person) {
@@ -31,7 +32,7 @@ function EmployeeEditForm({
         <div className="edit-card">
           <div className="edit-img-cont">
             <div
-              onClick={photo ? removeImg : null}
+              onClick={photo ? clickRemove : null}
               className="upload-btn-wrapper"
             >
               {profile.photo ? (
@@ -54,12 +55,14 @@ function EmployeeEditForm({
                 className="upload-file-buton"
                 type="file"
                 accept=".jpg, .jpeg, .jfif, .png, .webp"
+                ref={refInput}
               />
               {photo ? (
                 <div className="d-flex">
-                  <p className="edit-img-text">Cargar Foto</p>
+                  <p className="edit-img-text">Remover Foto</p>
                   <i className="bs bs-dash-circle-dotted" />
                   <BsDashCircleDotted
+                    // onClick={clickRemove}
                     style={{ marginRight: "0.5rem" }}
                     size="1.5rem"
                     color="red"

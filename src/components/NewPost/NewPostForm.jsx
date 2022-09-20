@@ -1,14 +1,9 @@
 import React from "react";
 import Images from "../../common/images/index";
 import { TiDelete } from "react-icons/ti";
-import WYSIWYGEditor from "../../utils/WYSIWYG";
-import { useForm, Controller } from "react-hook-form";
 import Modal from "./NewPost.Modal";
-
-// import { createEditor } from "slate";
-
-// // Import the Slate components and React plugin.
-// import { Slate, Editable, withReact } from "slate-react";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const NewPostForm = ({
   sendHandlerForm,
@@ -31,12 +26,11 @@ const NewPostForm = ({
   modalToggle,
   modalToggleCancel,
   modalToggleAceppt,
+  setEditorState,
+  editorState,
 }) => {
-  const { handleSubmit, control } = useForm({
-    mode: "onChange",
-  });
-  const handleSubmitOnClick = ({ editor_content }) => {
-    sendHandlerForm(editor_content);
+  const handleEditorChange = (state) => {
+    setEditorState(state);
   };
 
   return (
@@ -60,9 +54,7 @@ const NewPostForm = ({
               <div className="d-flex justify-content-center">
                 <div className="select">
                   <select
-                    // id="inputGroupSelect01"
                     name="category"
-                    // value={formData.category || ""}
                     onChange={handlerInputChange}
                     className="input-group"
                     defaultValue={"DEFAULT"}
@@ -108,17 +100,21 @@ const NewPostForm = ({
                 />
               </div>
               <div>
-                <form
-                  className="newpost-form"
-                  onSubmit={handleSubmit(handleSubmitOnClick)}
-                >
-                  <Controller
-                    as={<WYSIWYGEditor />}
-                    name="editor_content"
-                    control={control}
-                  />
+                <div className="newpost-form">
+                  <div className="editor">
+                    <Editor
+                      editorState={editorState}
+                      onEditorStateChange={handleEditorChange}
+                      wrapperClassName="wrapper-class"
+                      editorClassName="editor-class"
+                      toolbarClassName="toolbar-class"
+                      placeholder="Escribir aqui..."
+                    />
+                  </div>
+
                   <div className="btn-publish-cont">
                     <button
+                      onClick={sendHandlerForm}
                       className="btn-publish"
                       name="btn-publish"
                       type="submit"
@@ -126,7 +122,7 @@ const NewPostForm = ({
                       Publicar
                     </button>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>
@@ -259,7 +255,7 @@ const NewPostForm = ({
                       src={Images.video}
                       alt=".mp4, .avi, .mkv, .mov"
                       onChange={handlerInputChange}
-                      value={formData.video}
+                      value={formData.video || ""}
                     />
                     {formData.video ? (
                       <div onClick={removeVideo} className="remove-cont">

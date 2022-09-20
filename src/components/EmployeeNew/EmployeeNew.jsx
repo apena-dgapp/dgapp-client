@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext, useState, useRef } from "react";
 import EmployeeNewForm from "./EmployeeNewForm";
 import { getAlldepartament } from "../../api/department";
 import {
@@ -42,6 +42,13 @@ function EmployeeNew() {
     contractexpiration: "",
   });
 
+  const refInput = useRef();
+
+  const clickRemove = () => {
+    refInput.current.value = "";
+    setPhoto("");
+  };
+
   const handlerInputChange = (e) => {
     if (e.target.name === "documentid" && e.target.value.length > 10) {
       fetch(
@@ -82,10 +89,6 @@ function EmployeeNew() {
   };
   const seletedHandler = async (e) => {
     setPhoto(await getBase64(e.target.files[0]));
-  };
-
-  const removeImg = () => {
-    setPhoto("");
   };
 
   const clearFormData = () => {
@@ -311,7 +314,6 @@ function EmployeeNew() {
         person={person}
         seletedHandler={seletedHandler}
         photo={photo}
-        removeImg={removeImg}
         createHandlerForm={createHandlerForm}
         handlerdDepartament={handlerdDepartament}
         handlerdReportTo={handlerdReportTo}
@@ -322,7 +324,8 @@ function EmployeeNew() {
         code={code}
         setEmail={setEmail}
         email={email}
-        validateId={validateId}
+        refInput={refInput}
+        clickRemove={clickRemove}
         // departament={departament}
       />
     </>

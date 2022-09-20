@@ -71,10 +71,6 @@ const SinglePost = (state) => {
     setComment(e.target.value || "");
   };
 
-  // const clearComment = () => {
-  //   setComment("");
-  // };
-
   const sendComment = () => {
     if (!comment) {
       return toast.error("Antes de enviar debes agregar un comentario");

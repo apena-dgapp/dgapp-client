@@ -66,10 +66,7 @@ const CardForm = (props) => {
         />
         <div className="card-body">
           <h5 className="card-title">{props.title}</h5>
-          <p
-            // dangerouslySetInnerHTML={{ __html: props.description }}
-            className="card-text"
-          >
+          <p className="card-text">
             {props.description.replace(/(<([^>]+)>)/gi, "")}
           </p>
         </div>

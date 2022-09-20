@@ -4,8 +4,13 @@ import NewPostForm from "./NewPostForm";
 import { newPostApi, postId, createFile } from "../../api/post";
 import { blobToBase64, getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
+import { EditorState } from "draft-js";
+import { convertToHTML } from "draft-convert";
 
 const NewPost = () => {
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
   const [contextState] = useContext(GlobalContext);
   const [modalActive, setModalActive] = useState(false);
   const [img, setImg] = useState("");
@@ -126,14 +131,16 @@ const NewPost = () => {
     setFormData({ ...formData, video: "" });
   };
 
-  const sendHandlerForm = async (editor_content) => {
+  const sendHandlerForm = () => {
+    let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
+
     if (!formData.category) {
       return toast.error("Por favor agregar un categoria");
     } else if (!formData.title) {
       return toast.error("Por favor agregar un titulo");
     } else if (!formData.author) {
       return toast.error("Por favor agregar un autor");
-    } else if (!editor_content) {
+    } else if (!currentContentAsHTML) {
       return toast.error("Por favor agregar una descripcion");
     } else if (!img && formData.category === "Portada Principal") {
       return toast.error("Por favor agregar una imagen de portada");
@@ -143,7 +150,7 @@ const NewPost = () => {
 
     newPostApi(
       formData.title,
-      editor_content,
+      currentContentAsHTML,
       formData.category,
       formData.author,
       img,
@@ -272,6 +279,8 @@ const NewPost = () => {
       pdf: "",
       video: "",
     });
+
+    setEditorState(EditorState.createEmpty());
   };
 
   return (
@@ -299,6 +308,8 @@ const NewPost = () => {
         modalToggle={modalToggle}
         modalToggleCancel={modalToggleCancel}
         modalToggleAceppt={modalToggleAceppt}
+        setEditorState={setEditorState}
+        editorState={editorState}
       />
     </>
   );

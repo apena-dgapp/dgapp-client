@@ -21,7 +21,7 @@ const Footer = () => {
   const location = useLocation();
   const [isHidden, setIsHidden] = useState(false);
   const [tweets, setTweets] = useState([]);
-  // const [postInstagram, setPostInstagram] = useState([]);
+  const [postInstagram, setPostInstagram] = useState([]);
 
   const aboutUSChange = (e, name) => {
     e.preventDefault();
@@ -72,31 +72,48 @@ const Footer = () => {
 
     // if (!unmounted) {
     //   fetch(
-    //     `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
-    //   ?grant_type=ig_refresh_token&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+    //     `https://graph.facebook.com/v14.0/oauth/access_token?
+    //       grant_type=fb_exchange_token&
+    //       client_id=1144301632820999&
+    //       client_secret=ee1a50ee89a7d51192d8ac2252d9571c&
+    //       fb_exchange_token=IGQVJXV0hFV1F2b0NraXhmeFlEUnM0eS1PbUQwZAE15ODh5cnViWTlxaXpIZAkhoSnZAmM2pMaV93cFpVUm5NM1Y1WnltaWg3eUJRNkh5QnRRa1RQNzdvUmhkcWk5UEctakE1bUpvNW1KR3V3elA3S0syUgZDZD`
     //   )
     //     .then((res) => res.json())
     //     .then((data) => {
-    //       // console.log(data);
+    //       console.log(data);
     //       // setPostInstagram(data.data);
     //     });
     // }
 
+    if (!unmounted) {
+      fetch(
+        `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          setPostInstagram(data.data);
+        });
+    }
+
     // if (!unmounted) {
     //   fetch(
-    //     `https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=IGQVJYTldiSzF3MG1LQVRsRmdfeGJEejhDREhITjB5V1pxdm9uSFVVaE9sSG1aQXF0T2dwOE9HdTI0M1dXSnQ0djhCWllPQ3ZA3RVNCdXpQdy1mOXVpbXNNR3J2SldFdFhqOVh5RDhRMnlCZAHI1dkp0NgZDZD`
+    //     `https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=IGQVJVZA0F3TEdhbkxxWGh2UHFXVWlfU2hkR3dvU2FmY3BIdkoyNDRfN0JyeHcxTmstR3FOaDc4aGlGdF9oTXRieV96QjNRZAzNiTldoNExlR3I1azhHQ0gxNnkyR2xzeklfbFY4eGFYa3hnMUtidkl3YwZDZD`
+    //     // `https://graph.instagram.com/access_token?grant_type=ig_exchange_token&&client_secret=ee1a50ee89a7d51192d8ac2252d9571c&access_token=IGQVJVNFBLeFpKXzdqckVkYUVJZAHoxTUZA0QzJ3ZATdaRnNNTkt4UkEzTlNncjJHcG0zZAzdQcjZASNFVyazR1clN2c2hNM0drTUM3MzdlOGthaDdKdjlsaHJpQ3ZAsb19zTEt5cHRMcDlPc05zYjBJY1lYWgZDZD`
     //   )
     //     .then((res) => res.json())
     //     .then((data) => {
     //       // setAccessToken(data.access_token);
     //       console.log(data);
+    //       // const token = data.access_token;
     //       // fetch(
     //       //   `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&refresh_access_token
-    //       //       ?grant_type=ig_refresh_token&access_token=${data.access_token}`
+    //       //       ?grant_type=ig_refresh_token&access_token=${token}`
     //       // )
     //       //   .then((res) => res.json())
     //       //   .then((data) => {
-    //       //     setPostInstagram(data.data);
+    //       //     console.log(data);
+    //       //     // setPostInstagram(data.data);
     //       //   });
     //     });
     // }
@@ -343,7 +360,7 @@ const Footer = () => {
             })}
           </div>
 
-          {/* <div className="footer-instagram-container">
+          <div className="footer-instagram-container">
             <p className="footer-grid-title">INSTAGRAM</p>
             <hr
               className="mb-4 mt-0 d-inline-block mx-auto"
@@ -415,7 +432,7 @@ const Footer = () => {
                 </div>
               </label>
             </div>
-          </div> */}
+          </div>
         </div>
       </footer>
     </>

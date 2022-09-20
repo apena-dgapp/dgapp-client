@@ -5,8 +5,10 @@ import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
 import { viewUpdate } from "../../api/post";
 import { useHistory } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
+  const [loading, seLoading] = useState(false);
   const history = useHistory();
   const [ad, setAd] = useState([]);
   const [news, setNews] = useState([]);
@@ -14,6 +16,21 @@ const Dashboard = () => {
   const [events, setEvents] = useState([]);
   const [eventDate, setEventDate] = useState([]);
   const [multimedia, setMultimedia] = useState();
+
+  useEffect(() => {
+    let unmounted = false;
+    if (!unmounted) {
+      seLoading(true);
+    }
+    setTimeout(() => {
+      if (!unmounted) {
+        seLoading(false);
+      }
+    }, 1500);
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
   useEffect(() => {
     let unmounted = false;
@@ -137,19 +154,25 @@ const Dashboard = () => {
 
   return (
     <>
-      <DashboardForm
-        ad={ad}
-        news={news}
-        birthday={birthday}
-        events={events}
-        eventDate={eventDate}
-        multimedia={multimedia}
-        goToPost={goToPost}
-        goToProfile={goToProfile}
-        employeeTree={employeeTree}
-        employeedirectory={employeedirectory}
-        allPost={allPost}
-      />
+      {loading ? (
+        <div className="spinner-container">
+          <ClipLoader color="#113250" loading={loading} size={150} />
+        </div>
+      ) : (
+        <DashboardForm
+          ad={ad}
+          news={news}
+          birthday={birthday}
+          events={events}
+          eventDate={eventDate}
+          multimedia={multimedia}
+          goToPost={goToPost}
+          goToProfile={goToProfile}
+          employeeTree={employeeTree}
+          employeedirectory={employeedirectory}
+          allPost={allPost}
+        />
+      )}
     </>
   );
 };

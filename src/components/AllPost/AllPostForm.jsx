@@ -11,8 +11,6 @@ const AllPostForm = ({
   page,
   pageLength,
 }) => {
-  // console.log(page);
-  // console.log(pageLength);
   return (
     <>
       <div className="allPostTitle-cont">

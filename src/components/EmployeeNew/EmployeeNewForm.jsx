@@ -12,7 +12,6 @@ function EmployeeNewForm({
   person,
   seletedHandler,
   photo,
-  removeImg,
   createHandlerForm,
   handlerdDepartament,
   handlerdReportTo,
@@ -24,6 +23,8 @@ function EmployeeNewForm({
   setEmail,
   email,
   validateId,
+  refInput,
+  clickRemove,
 }) {
   //   const date = new Date("06/29/2022").toISOString().split("T")[0];
 
@@ -33,7 +34,7 @@ function EmployeeNewForm({
         <div className="new-card">
           <div className="edit-img-cont">
             <div
-              onClick={photo ? removeImg : null}
+              onClick={photo ? clickRemove : null}
               className="upload-btn-wrapper"
             >
               <img
@@ -47,10 +48,11 @@ function EmployeeNewForm({
                 className="upload-file-buton"
                 type="file"
                 accept=".jpg, .jpeg, .jfif, .png, .webp"
+                ref={refInput}
               />
               {photo ? (
                 <div className="d-flex">
-                  <p className="edit-img-text">Cargar Foto</p>
+                  <p className="edit-img-text">Remover Foto</p>
                   <i className="bs bs-dash-circle-dotted" />
                   <BsDashCircleDotted
                     style={{

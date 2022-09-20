@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
+import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import PrivateRoutes from "../routes/Private.Routes";
@@ -30,28 +29,8 @@ import FoodOrder from "../components/FoodOrder/FoodOrder";
 
 const Routes = () => {
   const [contextState] = useContext(GlobalContext);
-  const [loading, seLoading] = useState(false);
 
-  useEffect(() => {
-    let unmounted = false;
-    if (!unmounted) {
-      seLoading(true);
-    }
-    setTimeout(() => {
-      if (!unmounted) {
-        seLoading(false);
-      }
-    }, 1500);
-    return () => {
-      unmounted = true;
-    };
-  }, []);
-
-  return loading ? (
-    <div className="spinner-container">
-      <ClipLoader color="#113250" loading={loading} size={150} />
-    </div>
-  ) : (
+  return (
     <BrowserRouter>
       {/* {contextState.token ? (
         !contextState.isShowChat ? (

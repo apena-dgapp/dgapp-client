@@ -3,6 +3,7 @@ import Viewer from "react-viewer";
 import Carousel from "react-elastic-carousel";
 import ReactPlayer from "react-player";
 import { useHistory } from "react-router-dom";
+import DOMPurify from "dompurify";
 
 const SiglePostForm = ({
   dataPost,
@@ -21,6 +22,12 @@ const SiglePostForm = ({
       pathname: "./pdf",
       state: pdf,
     });
+  };
+
+  const createMarkup = (html) => {
+    return {
+      __html: DOMPurify.sanitize(html),
+    };
   };
 
   const breakPoints = [
@@ -119,7 +126,8 @@ const SiglePostForm = ({
           <img className="singlePost-img" src={dataPost.img} alt="" />
           <div className="singlePostDescp-container">
             <p
-              dangerouslySetInnerHTML={{ __html: dataPost.description }}
+              // dangerouslySetInnerHTML={{ __html: dataPost.description }}
+              dangerouslySetInnerHTML={createMarkup(dataPost.description)}
               className="singlePostDescp"
             ></p>
             {foundImg ? (
