@@ -10,7 +10,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 const Dashboard = () => {
   const [loading, seLoading] = useState(false);
   const history = useHistory();
-  // const [ad, setAd] = useState([]);
+  const [ad, setAd] = useState([]);
   const [news, setNews] = useState([]);
   const [birthday, setBirthday] = useState([]);
   const [events, setEvents] = useState([]);
@@ -35,20 +35,20 @@ const Dashboard = () => {
   useEffect(() => {
     let unmounted = false;
 
-    // getPost("Anuncio", 3)
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((res) => {
-    //     if (!unmounted) {
-    //       setAd(res.posts);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.error(err.status);
-    //   });
+    getPost("Anuncio", 3)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setAd(res.posts);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
 
-    getPost("Noticia", 3)
+    getPost("Noticia", 2)
       .then((res) => {
         return res.json();
       })
@@ -160,7 +160,7 @@ const Dashboard = () => {
         </div>
       ) : (
         <DashboardForm
-          // ad={ad}
+          ad={ad}
           news={news}
           birthday={birthday}
           events={events}

@@ -26,6 +26,7 @@ import Building from "../common/components/Building/Building";
 import Training from "../components/Training/Training";
 import CreateEvents from "../components/CreateEvents/CreateEvents";
 import FoodOrder from "../components/FoodOrder/FoodOrder";
+import TicketSystem from "../components/TicketSystem/TicketSystem";
 
 const Routes = () => {
   const [contextState] = useContext(GlobalContext);
@@ -113,6 +114,10 @@ const Routes = () => {
         <Route
           path={`${process.env.REACT_APP_RUTE}/foodorder`}
           component={contextState.token ? FoodOrder : Login}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/ticket`}
+          component={contextState.token ? TicketSystem : Login}
         />
         <Route
           exact

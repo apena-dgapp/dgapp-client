@@ -12,7 +12,7 @@ const CarouselComponent = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getPost("Portada Principal", 4)
+    getPost("Portada Principal", 3)
       .then((res) => {
         return res.json();
       })

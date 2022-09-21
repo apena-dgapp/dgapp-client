@@ -15,7 +15,6 @@ nav ul{
 }
 
 nav ul li{
-    // background-color: rgba(20, 30, 97, .9);
     position: relative;
     list-style: none;
     display: inline-block;
@@ -24,10 +23,9 @@ nav ul li{
 
 nav ul li p{
     display: block;
-    // background-color: white;
-    color: #113250;
+    color: #0B2C4B;
     text-decoration: none;
-    font-size: calc(0.1em + 0.9vw);
+    font-size: 0.9rem;
     height: 100%;
     margin-bottom: 0;
     cursor: pointer;
@@ -35,30 +33,37 @@ nav ul li p{
 
 nav ul li a{
     display: block;
-    color: #113250;
+    color: #0B2C4B;
     text-decoration: none;
-    font-size: calc(0.1em + 0.9vw);
+    font-size: 0.9rem;
     height: 100%;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+nav ul li p:hover{
+    // background: #2e4957;
+    color: #0B2C4B;
+    font-weight: bold;
     margin-bottom: 0;
     cursor: pointer;
 }
 
 nav ul ul a:hover{
     // background: #2e4957;
-    color: #113250;
+    color: #0B2C4B;
     font-weight: bold;
     margin-bottom: 0;
     cursor: pointer;
 }
 
 nav ul p:hover{
-    color: #113250;
+    color: #0B2C4B;
     cursor: pointer;
 }
 
 nav ul ul p:hover{
     // background: #2e4957;
-    color: #113250;
+    color: #0B2C4B;
     font-weight: bold;
     margin-bottom: 0;
     cursor: pointer;
@@ -120,8 +125,12 @@ nav ul li ul li:hover::before{
 }
 
 .class-list{
-    margin-left: 2rem;
-    margin-right: 2rem;
+    // background-color: red;
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+    // p{
+    //     width: 10rem;
+    // }
 }
 
 .container-menu-right{
@@ -155,12 +164,12 @@ nav ul li ul li:hover::before{
 
 .bar_menu{
     background-color: white;
-    height: 8rem; 
-    width: 100vw;
+    height: 11rem; 
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 5px 0 10px rgba(0, 0, 0, .6) ;
+    box-shadow: 5px 0 15px rgba(11, 44, 75, .9) ;
 }
 
 .logo_dgapp{
@@ -183,7 +192,7 @@ nav ul li ul li:hover::before{
     margin-top: 0.3rem;
     // margin-left: 1.5rem;
     object-fit: cover;
-    border: 0.2rem solid rgb(42, 52, 63);
+    border: 0.2rem solid #75AAD3;
     cursor: pointer;
     // margin-right: 5rem;
 }
@@ -195,8 +204,9 @@ nav ul li ul li:hover::before{
 }
 
 .nav-user-name{
-  color: #113250;
-  font-size: 1.5rem;
+  color: #0B2C4B;
+  font-size: 1rem;
+  font-weight: bold;
 //   margin-top: 2rem;
 //   cursor: pointer;
 }

@@ -55,6 +55,7 @@ const Footer = () => {
       location.pathname !== `${process.env.REACT_APP_RUTE}/training` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/createevents` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/foodorder` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/ticket` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/register`
         ? setIsHidden(true)
         : setIsHidden(false);
@@ -85,16 +86,16 @@ const Footer = () => {
     //     });
     // }
 
-    if (!unmounted) {
-      fetch(
-        `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(data);
-          setPostInstagram(data.data);
-        });
-    }
+    // if (!unmounted) {
+    //   fetch(
+    //     `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,caption&limit=3&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+    //   )
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       console.log(data);
+    //       setPostInstagram(data.data);
+    //     });
+    // }
 
     // if (!unmounted) {
     //   fetch(
@@ -360,79 +361,81 @@ const Footer = () => {
             })}
           </div>
 
-          <div className="footer-instagram-container">
-            <p className="footer-grid-title">INSTAGRAM</p>
-            <hr
-              className="mb-4 mt-0 d-inline-block mx-auto"
-              style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
-            />
-            <input type="radio" name="slider" id="item-1" defaultChecked />
-            <input type="radio" name="slider" id="item-2" />
-            <input type="radio" name="slider" id="item-3" />
-            <div className="footer-instagram-cards">
-              {" "}
-              <label
-                className="footer-instagram-card"
-                htmlFor="item-1"
-                id="song-1"
-              >
-                <img src={postInstagram[0]?.media_url} alt="song" />
-                <div className="footer-instagram-caption-cont">
-                  <a
-                    href={postInstagram[0]?.permalink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="footer-instagram-logo"
-                  >
-                    <p>Ir a Instagram</p>
-                  </a>
-                  <p className="footer-instagram-caption">
-                    {postInstagram[0]?.caption}
-                  </p>
-                </div>
-              </label>
-              <label
-                className="footer-instagram-card"
-                htmlFor="item-2"
-                id="song-2"
-              >
-                <img src={postInstagram[1]?.media_url} alt="song" />
-                <div className="footer-instagram-caption-cont">
-                  <a
-                    href={postInstagram[1]?.permalink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="footer-instagram-logo"
-                  >
-                    <p>Ir a Instagram</p>
-                  </a>
-                  <p className="footer-instagram-caption">
-                    {postInstagram[1]?.caption}
-                  </p>
-                </div>
-              </label>
-              <label
-                className="footer-instagram-card"
-                htmlFor="item-3"
-                id="song-3"
-              >
-                <img src={postInstagram[2]?.media_url} alt="song" />
-                <div className="footer-instagram-caption-cont">
-                  <a
-                    href={postInstagram[2]?.permalink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="footer-instagram-logo"
-                  >
-                    <p>Ir a Instagram</p>
-                  </a>
-                  <p className="footer-instagram-caption">
-                    {postInstagram[2]?.caption}
-                  </p>
-                </div>
-              </label>
+          {postInstagram.length > 0 ? (
+            <div className="footer-instagram-container">
+              <p className="footer-grid-title">INSTAGRAM</p>
+              <hr
+                className="mb-4 mt-0 d-inline-block mx-auto"
+                style={{ width: 60, backgroundColor: "#7c4dff", height: 2 }}
+              />
+              <input type="radio" name="slider" id="item-1" defaultChecked />
+              <input type="radio" name="slider" id="item-2" />
+              <input type="radio" name="slider" id="item-3" />
+              <div className="footer-instagram-cards">
+                {" "}
+                <label
+                  className="footer-instagram-card"
+                  htmlFor="item-1"
+                  id="song-1"
+                >
+                  <img src={postInstagram[0]?.media_url} alt="song" />
+                  <div className="footer-instagram-caption-cont">
+                    <a
+                      href={postInstagram[0]?.permalink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="footer-instagram-logo"
+                    >
+                      <p>Ir a Instagram</p>
+                    </a>
+                    <p className="footer-instagram-caption">
+                      {postInstagram[0]?.caption}
+                    </p>
+                  </div>
+                </label>
+                <label
+                  className="footer-instagram-card"
+                  htmlFor="item-2"
+                  id="song-2"
+                >
+                  <img src={postInstagram[1]?.media_url} alt="song" />
+                  <div className="footer-instagram-caption-cont">
+                    <a
+                      href={postInstagram[1]?.permalink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="footer-instagram-logo"
+                    >
+                      <p>Ir a Instagram</p>
+                    </a>
+                    <p className="footer-instagram-caption">
+                      {postInstagram[1]?.caption}
+                    </p>
+                  </div>
+                </label>
+                <label
+                  className="footer-instagram-card"
+                  htmlFor="item-3"
+                  id="song-3"
+                >
+                  <img src={postInstagram[2]?.media_url} alt="song" />
+                  <div className="footer-instagram-caption-cont">
+                    <a
+                      href={postInstagram[2]?.permalink}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="footer-instagram-logo"
+                    >
+                      <p>Ir a Instagram</p>
+                    </a>
+                    <p className="footer-instagram-caption">
+                      {postInstagram[2]?.caption}
+                    </p>
+                  </div>
+                </label>
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
       </footer>
     </>

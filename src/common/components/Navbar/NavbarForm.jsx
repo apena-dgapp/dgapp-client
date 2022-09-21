@@ -21,6 +21,7 @@ const Navbar = ({
   training,
   register,
   createEvents,
+  ticketSystem,
   // foodOrder,
 }) => {
   const [contextState] = useContext(GlobalContext);
@@ -62,7 +63,23 @@ const Navbar = ({
                 <p onClick={foodOrder}>Ordenar Almuerzo</p>
               </li> */}
               <li>
-                <p onClick={inConstruction}>Crear Ticket</p>
+                <p onClick={ticketSystem}>
+                  Ticket
+                  <img
+                    style={{ transform: "rotate(270deg)" }}
+                    className="icondown"
+                    src={Images.icondown}
+                    alt=""
+                  />
+                </p>
+                <ul className="menu-left">
+                  <li>
+                    <p>Crear Ticket</p>
+                  </li>
+                  <li>
+                    <p>Ver Tickets</p>
+                  </li>
+                </ul>
               </li>
               <li>
                 <p>
@@ -148,7 +165,7 @@ const Navbar = ({
           <div className="dropdown">
             <i className="md md-keyboard-arrow-down" />
             <MdKeyboardArrowDown
-              size="2rem"
+              size="1.5rem"
               color="#113250"
               className="dropdown-toggle"
               data-bs-toggle="dropdown"

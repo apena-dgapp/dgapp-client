@@ -1,0 +1,129 @@
+.ticket-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.ticket-card{
+    width: 40%;
+    // max-height: 50em;
+    height: 34rem;
+    margin-top: 18rem;
+    background-color: white;
+    position: absolute;
+    border-radius: 0.5rem;
+    border: 1px solid #8CB2C4;
+}
+
+.ticket-header-container{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 35rem;
+    margin-bottom: 20rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../common/images/work-4051777_1920.jpg");
+  }
+
+  .ticket-header-title{
+    padding-top: 10rem;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.ticket-input-cont{
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.ticket-input-title{
+    padding: 0;
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #000000 !important;
+    cursor:default !important;
+}
+.ticket-input{
+    border-radius: 0.6vw;
+    width: 25rem;
+    height: 2rem;
+    border: #2B4865 solid 1px;
+    padding-left: 1rem;
+    font-size: 0.9rem;
+    outline: none;
+    margin-bottom: 0.8rem;
+}
+.ticket-textarea{
+    border-radius: 0.6vw;
+    width: 25rem;
+    height: 10rem;
+    border: #2B4865 solid 1px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.9rem;
+    outline: none;
+    // margin-bottom: 0.8rem;
+    resize: none;
+}
+
+.ticket-qualify-cont{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        font-size: 0.8rem;
+        margin: 0;
+        margin-left: 0.5rem;
+        margin-right: 0.2rem;
+        font-weight: bold;
+        color: #2B4865;
+        cursor: pointer;
+    }
+}
+.ticket-input-color{
+    display: flex;
+    justify-content: space-between;
+
+} 
+
+.ticket-qualify-color{
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    border: 2px solid #000000;
+    cursor: pointer;
+}
+
+.ticket-priority-cont{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+}
+
+.ticket-btn-add {
+    border-radius: 0.6rem;
+    width: 15rem;
+    height: 2.5rem;
+    border: none;
+    color: white;
+    background-color: #2B4865;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+  
+    &:hover {
+      color: white;
+      background-color: #525E75;
+    }
+  }
