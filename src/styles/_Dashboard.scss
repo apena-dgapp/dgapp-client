@@ -1,7 +1,9 @@
+//carousel y noticias
 .dashboard-container{
     width: 100%;
-    height: 43rem;
+    height: 140rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -11,6 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 5rem;
 }
 .dashboard-section-1-grid{
    display: grid;
@@ -22,16 +25,14 @@
     height: 18rem;
     box-shadow: -5px 5px 10px #75AAD3;
     cursor: pointer;
-    // background-color: red;
 }
 .dashboard-section-1-news{
     width: 100%;
-    // background-color: blue;
     height: 18rem;
 }
 .dashboard-section-1-news-header{
     p{
-        color: #0B2C4B;
+        color: #113250;
         font-size: 1.2rem;
         font-weight: bold;
         margin: 0;
@@ -46,15 +47,11 @@
     margin-bottom: 0.5rem;
 }
 
-///@at-root
-.dashboard-first-seccion-news-content{
+.dashboard-section-1-news-content{
     display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // text-align: center;
+    text-align: justify;
     width: 100%;
     height: 4.5rem;
-    // margin-top: 0.2rem;
     cursor: pointer;
     border-bottom: 1px solid gainsboro;
     &:hover{
@@ -62,19 +59,7 @@
         color: white;
     }
 }
-
-.dashboard-first-seccion-news-content-txt{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    text-align: justify;
-    // background-color: white;
-}
-
-.dashboard-first-seccion-news-content-txt-title{
+.dashboard-section-1-news-content-txt{
     font-weight: bold;
     font-size: 0.72rem;
     overflow: hidden;
@@ -82,17 +67,273 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    // padding-left: 1rem;
+    // padding-right: 1rem;
+    &:hover{
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+.dashboard-section-1-news-btn-container{
+    width: 100%;
+    height: 1.8rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.dashboard-section-1-news-btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 7.5rem;
+    height: 1.3rem;
+    border-radius: 1rem;
+    background-color: #75AAD3;
+    p{
+        font-size: 0.8rem;
+        color: white;
+        font-weight: normal;
+    }
+   
 }
 
-// .dashboard-first-seccion-news-content-txt-inf{
-//     width: 98%;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//     display: -webkit-box;
-//     -webkit-line-clamp: 2;
-//     -webkit-box-orient: vertical;
-//     font-size: 0.7rem;
-//     // margin-top: 0.2rem;
+//dashboard botones
+.dashboard-section-2{
+    width: 87%;
+    height: 14rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dashboard-section-btn-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10rem;
+}
+.dashboard-section-btn{
+    width: 10rem;
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    p{
+        font-size: 1rem;
+        font-weight: bold;
+        margin: 0;
+        color: #113250;
+        text-align: center;
+    }
+}
+.dashboard-section-btn-img{
+    width: 8rem;
+    margin-bottom: 0.5rem;
+}
+
+//avisos y educapp
+.dashboard-section-3-header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 87%;
+    height: 8rem;
+    margin-top: 8rem;
+ }
+ .dashboard-section-3-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 33rem;
+    height: 8rem; 
+ }
+ .dashboard-section-3-img-ad{
+    width: 15rem;
+ }
+ .dashboard-section-3-img-educ{
+    width: 16.8rem;
+ }
+.dashboard-section-3{
+    width: 87%;
+    height: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.dashboard-section-3-cont{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+ }
+
+.dashboard-section-3-figure{
+    width: 87%;
+    height: 40%;
+    background-color: #BCD3E6;
+    position: absolute;
+}
+.dashboard-section-3-ad-educ{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    z-index: 2;
+}
+.dashboard-section-3-ad{
+    width: 33rem;
+    height: 30rem;
+    border: #75AAD3 1rem solid;
+}
+
+
+
+
+
+
+//cumpleanos y calendario
+.dashboard-section-4{
+    width: 87%;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+    background-color: gray;
+}
+.dashboard-section-4-grid{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 42% 5% 53%;
+ }
+ .dashboard-section-4-birhtday{
+    width: 100%;
+    height: 100%;
+    // background-color: yellow;
+ }
+//  .dashboard-section-4-birhtday::-webkit-scrollbar {
+//     width: 10px;
+// 	background-color: #F5F5F5;
+//  }
+ 
+//  .dashboard-section-4-birhtday::-webkit-scrollbar-track {
+//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+// 	background-color: #F5F5F5;
+// 	// border-radius: 10px;
+//  }
+ 
+//  .dashboard-section-4-birhtday::-webkit-scrollbar-thumb {
+//     // border-radius: 10px;
+// 	background-image: -webkit-gradient(linear,
+//     left bottom,
+//     left top,
+//     color-stop(0.44, rgb(159, 172, 196)),
+//     color-stop(0.72, rgb(97, 111, 136)),
+//     color-stop(0.86, rgb(82, 94, 117)));
+//  }
+//  ​
+ .dashboard-section-4-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    background-color: #75AAD3;
+    color: white;
+    font-size: 1.5rem;
+    border: #BCD3E6 0.3rem solid;
+ }
+//  .dashboard-section-4-content{
+//     display: flex;
+//     text-align: justify;
+//     width: 100%;
+//     height: 4.5rem;
+//     cursor: pointer;
+//     border-bottom: 1px solid gainsboro;
+//     &:hover{
+//         background-color: #2B4865;
+//         color: white;
+//     }
 // }
+.dashboard-section-4-content{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    justify-content: center;
+    align-items: center;
+    // text-align: justify;
+    width: 100%;
+    height: 5rem;
+    cursor: pointer;
+    border-bottom: 1px solid gainsboro;
+    p{
+        margin: 0;
+    }
+    // overflow: auto;
+    // &:hover{
+    //     background-color: #2B4865;
+    //     color: white;
+    // }
+}
+
+.dashboard-section-4-date{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // background-color: red;
+}
+.dashboard-section-4-employee{
+    display: flex;
+    display: flex;
+    align-items: center;
+}
+.dashboard-section-4-employee-img{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0.2rem solid #75AAD3;  
+    margin-left: 2rem; 
+}
+.dashboard-section-4-text{
+    margin-left: 0.5rem; 
+    // background-color: blue;
+    
+}
+
+
+
+
+.dashboard-nodata-cont{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    // margin-top: 2rem;
+    img{
+        width: 8rem;
+        height: 8rem;
+        margin-bottom: 1rem;
+    }
+    p{
+        font-size: 1rem;
+        text-align: center;
+        font-weight: bold;
+        color: #113250;
+        margin: 0;
+    }
+}

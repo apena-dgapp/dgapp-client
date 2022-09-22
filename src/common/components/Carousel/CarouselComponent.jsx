@@ -52,12 +52,19 @@ const CarouselComponent = () => {
   };
   return (
     <Carousel
-      autoPlay
-      interval="5000"
+      // swipeScrollTolerance={5}
+      thumbWidth={100}
+      stopOnHover={true}
+      autoPlay={true}
+      swipeable={true}
+      dynamicHeight={true}
+      emulateTouch={true}
+      interval={4000}
       infiniteLoop
-      transitionTime="2000"
+      transitionTime={2000}
       showThumbs={false}
       showStatus={false}
+      showArrows={false}
     >
       {arrayCarousel?.map((item, index) => {
         return (
@@ -67,12 +74,12 @@ const CarouselComponent = () => {
             className="carousel-container"
           >
             <img alt="" src={item.image} />
-            <div className="carousel-container-txt">
+            {/* <div className="carousel-container-txt">
               <p className="carousel-title">{item.title}</p>
               <p className="carousel-inf">
                 {item.description.replace(/(<([^>]+)>)/gi, "")}
               </p>
-            </div>
+            </div> */}
           </div>
         );
       })}

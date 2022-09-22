@@ -2,7 +2,7 @@
 import iconUser from '../images/user-profile.png';
 import flagUs from '../images/united-states.png';
 import flagSpain from '../images/spain.png';
-import dgappLogo from '../images/image-removebg-preview.png';
+import dgappLogo from '../images/wetransfer_recursos_2022-09-21_1856/Recursos/intraapp.png';
 import dgappLogo2 from '../images/MicrosoftTeams-image (4).png';
 import sad from '../images/sad.png';
 import add from '../images/add.png';
@@ -38,6 +38,16 @@ import iconPlatano from './banana.png';
 import iconHabichuela from './cooking-pot.png';
 import iconEnsalda from './salad.png';
 import iconSnack from './fast-food.png';
+import induccion from './wetransfer_recursos_2022-09-21_1856/Recursos/induccion.png'
+import directorio from './wetransfer_recursos_2022-09-21_1856/Recursos/directorio.png'
+import capacitacion from './wetransfer_recursos_2022-09-21_1856/Recursos/capacitacion.png'
+import politicas from './wetransfer_recursos_2022-09-21_1856/Recursos/politicas.png'
+import recursos from './wetransfer_recursos_2022-09-21_1856/Recursos/recursos.png'
+import solicitudes from './wetransfer_recursos_2022-09-21_1856/Recursos/solicitudes.png'
+import avisos from './wetransfer_recursos_2022-09-21_1856/Recursos/avisos.png'
+import educ from './wetransfer_recursos_2022-09-21_1856/Recursos/educ.png'
+import birth from './wetransfer_recursos_2022-09-21_1856/Recursos/cumpleanos.png'
+import calendar from './wetransfer_recursos_2022-09-21_1856/Recursos/calendario.png'
 
 const Images = {
     iconUser,
@@ -78,7 +88,18 @@ const Images = {
     iconPlatano,
     iconHabichuela,
     iconEnsalda,
-    iconSnack
+    iconSnack,
+    induccion,
+    directorio,
+    capacitacion,
+    politicas,
+    recursos,
+    solicitudes,
+    avisos,
+    educ,
+    birth,
+    calendar
+    
 }
 
 export default Images;

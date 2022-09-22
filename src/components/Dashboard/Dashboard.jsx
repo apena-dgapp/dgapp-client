@@ -85,6 +85,7 @@ const Dashboard = () => {
         return res.json();
       })
       .then((res) => {
+        console.log(res);
         if (!unmounted) {
           setBirthday(res);
         }
