@@ -326,6 +326,7 @@ function EmployeeNew() {
         email={email}
         refInput={refInput}
         clickRemove={clickRemove}
+        validateId={validateId}
         // departament={departament}
       />
     </>

@@ -6,10 +6,10 @@ import { MdOutlineDoubleArrow } from "react-icons/md";
 // import { MdEventNote } from "react-icons/md";
 // import { GiNewspaper, GiOrganigram, GiFullFolder } from "react-icons/gi";
 // import { ImNewspaper } from "react-icons/im";
-// import ReactPlayer from "react-player";
+import ReactPlayer from "react-player";
 import Images from "../../common/images/index";
 // import { Calendar } from "react-multi-date-picker";
-// import { tConvert } from "../../utils/Time24To12";
+import { tConvert } from "../../utils/Time24To12";
 
 const DashboardForm = ({
   // ad,
@@ -24,6 +24,9 @@ const DashboardForm = ({
   employeedirectory,
   allPost,
 }) => {
+  console.log(events);
+  var optionsDate = { month: "long", day: "numeric" };
+
   return (
     <>
       <div className="dashboard-container">
@@ -165,39 +168,44 @@ const DashboardForm = ({
                   alt=""
                 />
               </div>
-              {birthday.length ? (
-                birthday?.map((item, index) => {
-                  return (
-                    <div key={index} className="dashboard-section-4-content">
-                      <div className="dashboard-section-4-date">
-                        <p className="dashboard-section-4-day">
-                          {item.day?.split("-")[0]}
-                        </p>
-                        <p className="dashboard-section-4-month">
-                          {item.day?.split("-")[1]}
-                        </p>
-                      </div>
-                      <div className="dashboard-section-4-employee">
-                        <img
-                          className="dashboard-section-4-employee-img"
-                          src={item?.photo ? item.photo : Images.noImg}
-                          alt=""
-                        />
-                        <div className="dashboard-section-4-text">
-                          {" "}
-                          <p>{item?.name}</p>
-                          <p>{item?.position}</p>
+              <div className="dashboard-section-4-scroll">
+                {birthday.length ? (
+                  birthday?.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="dashboard-section-4-content-birth"
+                      >
+                        <div className="dashboard-section-4-date">
+                          <p className="dashboard-section-4-day">
+                            {item.day?.split("-")[0]}
+                          </p>
+                          <p className="dashboard-section-4-month">
+                            {item.day?.split("-")[1]}
+                          </p>
+                        </div>
+                        <div className="dashboard-section-4-employee">
+                          <img
+                            className="dashboard-section-4-employee-img"
+                            src={item?.photo ? item.photo : Images.noImg}
+                            alt=""
+                          />
+                          <div className="dashboard-section-4-text">
+                            {" "}
+                            <p style={{ fontWeight: "bold" }}>{item?.name}</p>
+                            <p>{item?.position}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div className="dashboard-nodata-cont">
-                  <img src={Images.noCake} alt="" />
-                  <p>No se registran cumpleaños para este mes</p>
-                </div>
-              )}
+                    );
+                  })
+                ) : (
+                  <div className="dashboard-nodata-cont">
+                    <img src={Images.noCake} alt="" />
+                    <p>No se registran cumpleaños para este mes</p>
+                  </div>
+                )}
+              </div>
             </div>
             <div></div>
             <div className="dashboard-section-4-birhtday">
@@ -207,6 +215,76 @@ const DashboardForm = ({
                   src={Images.calendar}
                   alt=""
                 />
+              </div>
+              <div className="dashboard-section-4-scroll">
+                {events.length ? (
+                  events?.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className="dashboard-section-4-content-calendar"
+                      >
+                        <div className="dashboard-section-4-event">
+                          <p className="dashboard-section-4-event-txt">
+                            {item.name}
+                          </p>
+                        </div>
+                        <div className="dashboard-section-4-employee">
+                          <div className="dashboard-section-4-text">
+                            <div className="dashboard-section-4-event-date-cont">
+                              <p className="dashboard-section-4-event-date">
+                                {new Date(item.from).toLocaleDateString(
+                                  "es-ES",
+                                  optionsDate
+                                )}
+                              </p>
+                              <p className="dashboard-section-4-event-time">
+                                {tConvert(item.startTime)} -{" "}
+                                {tConvert(item.endingTime)}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })
+                ) : (
+                  <div className="dashboard-nodata-cont">
+                    <img src={Images.noCalendar} alt="" />
+                    <p>No se registran proximos eventos</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* multimedia */}
+        <div className="dashboard-section-5">
+          <div className="dashboard-section-5-container">
+            <div className="dashboard-section-5-header">
+              <p>MULTIMEDIA</p>
+              <div className="dashboard-section-5-line"></div>
+            </div>
+            <div className="dashboard-section-5-grid">
+              <div className="dashboard-section-5-video">
+                {" "}
+                <ReactPlayer
+                  width="90%"
+                  height="90%"
+                  // style={{ marginTop: "0.5rem" }}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  url={multimedia?.url}
+                  controls
+                />
+              </div>
+              <div className=""></div>
+              <div className="dashboard-section-5-galery">
+                <div className="dashboard-section-5-galery-grid">
+                  <div className="dashboard-section-5-galery-grid-1">1</div>
+                  <div className="dashboard-section-5-galery-grid-2">2</div>
+                  <div className="dashboard-section-5-galery-grid-3">3</div>
+                  <div className="dashboard-section-5-galery-grid-4">4</div>
+                </div>
               </div>
             </div>
           </div>

@@ -60,6 +60,12 @@ const CreateEvents = () => {
       return toast.error("Por favor elegir la hora final");
     }
 
+    // if (formData.to === "") {
+    //   setFormData({
+    //     to: formData.from,
+    //   });
+    // }
+
     if (formData.to) {
       if (formData.from > formData.to) {
         return toast.error("Formato entre fecha incorrecto!");
@@ -75,8 +81,6 @@ const CreateEvents = () => {
         "El maximo de eventos permitidos por seccion son 6, por favor de finalizar esta lista y luego seguir agregando eventos en una nueva."
       );
     }
-
-    // console.log(formData);
 
     var x;
     var y;

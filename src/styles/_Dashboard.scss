@@ -1,7 +1,7 @@
 //carousel y noticias
 .dashboard-container{
     width: 100%;
-    height: 140rem;
+    height: 168rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -51,28 +51,24 @@
     display: flex;
     text-align: justify;
     width: 100%;
-    height: 4.5rem;
+    height: 4.6rem;
     cursor: pointer;
     border-bottom: 1px solid gainsboro;
     &:hover{
-        background-color: #2B4865;
-        color: white;
+        background-color: #BCD3E6;
+        // color: white;
     }
 }
 .dashboard-section-1-news-content-txt{
     font-weight: bold;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    // padding-left: 1rem;
-    // padding-right: 1rem;
-    &:hover{
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
+    // padding-left: 0.5rem;
+    // padding-right: 0.5rem;
 }
 .dashboard-section-1-news-btn-container{
     width: 100%;
@@ -189,15 +185,10 @@
     z-index: 2;
 }
 .dashboard-section-3-ad{
-    width: 33rem;
-    height: 30rem;
+    width: 35rem;
+    height: 32rem;
     border: #75AAD3 1rem solid;
 }
-
-
-
-
-
 
 //cumpleanos y calendario
 .dashboard-section-4{
@@ -208,7 +199,7 @@
     justify-content: center;
     align-items: center;
     margin-top: 6rem;
-    background-color: gray;
+    // background-color: gray;
 }
 .dashboard-section-4-grid{
     display: grid;
@@ -221,27 +212,7 @@
     height: 100%;
     // background-color: yellow;
  }
-//  .dashboard-section-4-birhtday::-webkit-scrollbar {
-//     width: 10px;
-// 	background-color: #F5F5F5;
-//  }
- 
-//  .dashboard-section-4-birhtday::-webkit-scrollbar-track {
-//     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-// 	background-color: #F5F5F5;
-// 	// border-radius: 10px;
-//  }
- 
-//  .dashboard-section-4-birhtday::-webkit-scrollbar-thumb {
-//     // border-radius: 10px;
-// 	background-image: -webkit-gradient(linear,
-//     left bottom,
-//     left top,
-//     color-stop(0.44, rgb(159, 172, 196)),
-//     color-stop(0.72, rgb(97, 111, 136)),
-//     color-stop(0.86, rgb(82, 94, 117)));
-//  }
-//  ​
+
  .dashboard-section-4-header{
     display: flex;
     justify-content: center;
@@ -253,19 +224,25 @@
     font-size: 1.5rem;
     border: #BCD3E6 0.3rem solid;
  }
-//  .dashboard-section-4-content{
-//     display: flex;
-//     text-align: justify;
-//     width: 100%;
-//     height: 4.5rem;
-//     cursor: pointer;
-//     border-bottom: 1px solid gainsboro;
-//     &:hover{
-//         background-color: #2B4865;
-//         color: white;
-//     }
-// }
-.dashboard-section-4-content{
+
+ .dashboard-section-4-scroll{
+    height: 15rem;
+    overflow-y: scroll;
+}
+ .dashboard-section-4-scroll::-webkit-scrollbar {
+    width: 10px;
+	background-color: #F5F5F5;
+ } 
+ .dashboard-section-4-scroll::-webkit-scrollbar-track {
+	background-color: #F5F5F5;
+ }
+
+ .dashboard-section-4-scroll::-webkit-scrollbar-thumb {
+    background-color: #75AAD3;
+    border-radius: 0.5rem;
+ }
+
+.dashboard-section-4-content-birth{
     display: grid;
     grid-template-columns: 20% 80%;
     justify-content: center;
@@ -278,13 +255,29 @@
     p{
         margin: 0;
     }
-    // overflow: auto;
-    // &:hover{
-    //     background-color: #2B4865;
-    //     color: white;
-    // }
+    &:hover{
+        background-color: #BCD3E6;
+        color: white;
+    }
 }
-
+.dashboard-section-4-content-calendar{
+    display: grid;
+    grid-template-columns: 75% 25%;
+    justify-content: center;
+    align-items: center;
+    // text-align: justify;
+    width: 100%;
+    height: 5rem;
+    cursor: pointer;
+    border-bottom: 1px solid gainsboro;
+    p{
+        margin: 0;
+    }
+    &:hover{
+        background-color: #BCD3E6;
+        color: white;
+    }
+}
 .dashboard-section-4-date{
     width: 100%;
     height: 100%;
@@ -292,7 +285,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // background-color: red;
+    p{
+        margin: 0;
+    }
+}
+.dashboard-section-4-day{
+    font-size: 2rem;
+    font-weight: bold;
+    color: #113250;
+}
+.dashboard-section-4-month{
+    color: #113250;
 }
 .dashboard-section-4-employee{
     display: flex;
@@ -309,11 +312,45 @@
 }
 .dashboard-section-4-text{
     margin-left: 0.5rem; 
-    // background-color: blue;
-    
+    p{
+        font-size: 1rem;
+        color: #113250;
+    }
 }
 
-
+.dashboard-section-4-event{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+    margin-left: 0.5rem;
+    p{
+        margin: 0;
+    }
+}
+.dashboard-section-4-event-txt{
+    font-size: 1rem;
+    color: #113250;
+    font-weight: bold;
+}
+.dashboard-section-4-event-date-cont{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.dashboard-section-4-event-date{
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #113250;
+}
+.dashboard-section-4-event-time{
+    font-size: 0.8rem;
+    color: #113250;
+}
 
 
 .dashboard-nodata-cont{
@@ -336,4 +373,87 @@
         color: #113250;
         margin: 0;
     }
+}
+
+.dashboard-section-5{
+    width: 85%;
+    height: 18rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12rem;
+}
+.dashboard-section-5-container{
+    width: 100%;
+    height: 35rem;
+    background-color: #75AAD3;
+    border: #BCD3E6 0.3rem solid;
+}
+.dashboard-section-5-header{
+    width: 100%;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    p{
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 0;
+    }
+}
+.dashboard-section-5-line{
+    content: "";
+    width: 3.5rem;
+    height: 0.5rem;
+    background-color: white;
+    margin-bottom: 0.5rem;
+}
+.dashboard-section-5-grid{
+    width: 100%;
+    height: 22rem;
+    display: grid;
+    grid-template-columns: 48% 4% 48% ;
+}
+.dashboard-section-5-video{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.dashboard-section-5-galery{
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+}
+.dashboard-section-5-galery-grid{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1;
+}
+.dashboard-section-5-galery-grid-1{
+    width: 100%;
+    height: 100%;
+    background-color: red;
+}
+.dashboard-section-5-galery-grid-2{
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+}
+.dashboard-section-5-galery-grid-3{
+    width: 100%;
+    height: 100%;
+    background-color: yellow;
+}
+.dashboard-section-5-galery-grid-4{
+    width: 100%;
+    height: 100%;
+    background-color: green;
 }

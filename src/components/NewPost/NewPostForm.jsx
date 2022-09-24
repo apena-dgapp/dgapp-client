@@ -62,16 +62,16 @@ const NewPostForm = ({
                     <option disabled value="DEFAULT">
                       Elige una Categoria
                     </option>
-                    <option className="option-txt" value="Portada Principal">
+                    <option className="option-txt" value={formData.room}>
                       Portada Principal
                     </option>
-                    <option className="option-txt" value="Anuncio">
+                    <option className="option-txt" value={formData.room}>
                       Anuncio
                     </option>
-                    <option className="option-txt" value="Noticia">
+                    <option className="option-txt" value={formData.room}>
                       Noticia
                     </option>
-                    <option className="option-txt" value="Multimedia">
+                    <option className="option-txt" value={formData.room}>
                       Multimedia
                     </option>
                   </select>

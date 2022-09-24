@@ -3,6 +3,7 @@ import React from "react";
 // import Input from "../../common/components/Input/Input";
 
 function PersonalInformation({ handlerInputChange, formData, validateId }) {
+  console.log(validateId);
   return (
     <>
       <div className="edit-subtitle-cont">
