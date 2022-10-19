@@ -1,6 +1,8 @@
 import React from "react";
 import CarouselComponent from "../../common/components/Carousel/CarouselComponent";
+import CarouselAd from "../../common/components/Carousel/CarouselAd";
 import { MdOutlineDoubleArrow } from "react-icons/md";
+import { IoMdImages } from "react-icons/io";
 // import { GoMegaphone } from "react-icons/go";
 // import { FaBirthdayCake, FaConciergeBell, FaVideo } from "react-icons/fa";
 // import { MdEventNote } from "react-icons/md";
@@ -8,7 +10,6 @@ import { MdOutlineDoubleArrow } from "react-icons/md";
 // import { ImNewspaper } from "react-icons/im";
 import ReactPlayer from "react-player";
 import Images from "../../common/images/index";
-// import { Calendar } from "react-multi-date-picker";
 import { tConvert } from "../../utils/Time24To12";
 
 const DashboardForm = ({
@@ -23,8 +24,8 @@ const DashboardForm = ({
   employeeTree,
   employeedirectory,
   allPost,
+  multimediaMain
 }) => {
-  console.log(events);
   var optionsDate = { month: "long", day: "numeric" };
 
   return (
@@ -40,12 +41,15 @@ const DashboardForm = ({
             <div className="dashboard-section-1-news">
               <div className="dashboard-section-1-news-header">
                 <p>NOTICIAS RECIENTES</p>
+              </div>
                 <div className="dashboard-section-1-news-title-line"></div>
+                <div className="dashboard-section-1-news-multi">
                 {news.length ? (
                   news?.map((item, index) => {
                     return (
                       <div
                         key={index}
+                        onClick={() => goToPost(item)}
                         className="dashboard-section-1-news-content"
                       >
                         <div className="dashboard-section-1-news-content-txt">
@@ -56,13 +60,15 @@ const DashboardForm = ({
                   })
                 ) : (
                   <div className="dashboard-nodata-cont">
-                    <img src={Images.nonews} alt="" />
-                    <p>No se encuentran noticias recientes</p>
+                    <img src={Images.nodata} alt="" />
+                    <p>No se encuentran noticias</p>
                   </div>
                 )}
+                </div>
+      
                 {news.length ? (
                   <div className="dashboard-section-1-news-btn-container">
-                    <div type="button" className="dashboard-section-1-news-btn">
+                    <div onClick={allPost} type="button" className="dashboard-section-1-news-btn">
                       <i className="md md-outline-double-arrow" />
                       <p>Ir a Noticias</p>
                       <MdOutlineDoubleArrow
@@ -74,7 +80,7 @@ const DashboardForm = ({
                   </div>
                 ) : null}
               </div>
-            </div>
+            
           </div>
         </div>
         {/* botones */}
@@ -88,7 +94,7 @@ const DashboardForm = ({
               />
               <p>INDUCCION</p>
             </div>
-            <div className="dashboard-section-btn">
+            <div onClick={employeedirectory} className="dashboard-section-btn">
               <img
                 className="dashboard-section-btn-img"
                 src={Images.directorio}
@@ -131,6 +137,7 @@ const DashboardForm = ({
           </div>
         </div>
 
+        {/* avisos y educapp */}
         <div className="dashboard-section-3-header">
           <div className="dashboard-section-3-title">
             <img
@@ -147,13 +154,17 @@ const DashboardForm = ({
             />
           </div>
         </div>
-        {/* avisos y educapp */}
+       
         <div className="dashboard-section-3">
           <div className="dashboard-section-3-cont">
-            <div className="dashboard-section-3-figure"> </div>
+            <div className="dashboard-section-3-figure"></div>
             <div className="dashboard-section-3-ad-educ">
-              <div className="dashboard-section-3-ad"></div>
-              <div className="dashboard-section-3-ad"></div>
+              <div className="dashboard-section-3-ad">
+              <CarouselAd category="Aviso"/>
+              </div>
+              <div className="dashboard-section-3-ad">
+              <CarouselAd category="EducAPP"/>
+              </div>
             </div>
           </div>
         </div>
@@ -173,6 +184,7 @@ const DashboardForm = ({
                   birthday?.map((item, index) => {
                     return (
                       <div
+                        onClick={() => goToProfile(item.personId)}
                         key={index}
                         className="dashboard-section-4-content-birth"
                       >
@@ -201,7 +213,7 @@ const DashboardForm = ({
                   })
                 ) : (
                   <div className="dashboard-nodata-cont">
-                    <img src={Images.noCake} alt="" />
+                    <img src={Images.nodata} alt="" />
                     <p>No se registran cumpleaños para este mes</p>
                   </div>
                 )}
@@ -250,7 +262,7 @@ const DashboardForm = ({
                   })
                 ) : (
                   <div className="dashboard-nodata-cont">
-                    <img src={Images.noCalendar} alt="" />
+                    <img src={Images.nodata} alt="" />
                     <p>No se registran proximos eventos</p>
                   </div>
                 )}
@@ -265,30 +277,122 @@ const DashboardForm = ({
               <p>MULTIMEDIA</p>
               <div className="dashboard-section-5-line"></div>
             </div>
+          {
+            multimedia.length ?    
             <div className="dashboard-section-5-grid">
-              <div className="dashboard-section-5-video">
+           <div className="dashboard-section-5-video">
                 {" "}
                 <ReactPlayer
                   width="90%"
-                  height="90%"
-                  // style={{ marginTop: "0.5rem" }}
+                  height="85%"
+                  style={{ marginBottom: "0.5rem" }}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  url={multimedia?.url}
+                  url={multimediaMain?.url}
                   controls
                 />
+                <p>{multimediaMain?.title}</p>
               </div>
               <div className=""></div>
               <div className="dashboard-section-5-galery">
                 <div className="dashboard-section-5-galery-grid">
-                  <div className="dashboard-section-5-galery-grid-1">1</div>
-                  <div className="dashboard-section-5-galery-grid-2">2</div>
-                  <div className="dashboard-section-5-galery-grid-3">3</div>
-                  <div className="dashboard-section-5-galery-grid-4">4</div>
+                  {
+                    multimedia?.map((item, key)=>{
+                      return(
+                        item.FilesPosts[0].type ==="URL" ? 
+                          <div key={key} className="dashboard-section-5-galery-grid-mult">
+                            <ReactPlayer
+                              width="80%"
+                              height="80%"
+                              // style={{ marginTop: "0.5rem" }}
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              url={item.FilesPosts[0].file}
+                              controls
+                            />
+                            <p>{item.title}</p>
+                          </div> : <div onClick={() => goToPost(item)} key={key} className="dashboard-section-5-galery-grid-mult">
+                              <i className="io io-md-images" />
+                                <IoMdImages
+                                  size="1.2rem"
+                                  color="white"
+                                  className="dashboard-section-5-galery-icon"
+                                />
+                                <div className="dashboard-section-5-galery-img-cont">
+                                  <img className="dashboard-section-5-galery-img" src={item.FilesPosts[0].file} alt="" />
+                                </div>
+                                <p>{item.title}</p>
+                            </div>
+                      )
+                    })
+                  }
+                
+                  
+                  {/* <div className="dashboard-section-5-galery-grid-mult">
+                    <ReactPlayer
+                      width="80%"
+                      height="80%"
+                      // style={{ marginTop: "0.5rem" }}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      url={multimedia?.url}
+                      controls
+                    />
+                     <p>Almuerzo con Sigmund Freund Almuerzo con Sigmund Freund Almuerzo con Sigmund Freund</p>
+                  </div>
+                  <div className="dashboard-section-5-galery-grid-mult">
+                    <ReactPlayer
+                      width="80%"
+                      height="80%"
+                      // style={{ marginTop: "0.5rem" }}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      url={multimedia?.url}
+                      controls
+                    />
+                    <p>Almuerzo con Sigmund Freund</p>
+                  </div>          */}
                 </div>
               </div>
-            </div>
+            </div>: 
+            <div className="dashboard-nodata-cont">
+              <img src={Images.nodata} alt="" />
+              <p>No se registran informacion multimedia</p>
+            </div> }     
           </div>
         </div>
+
+         {/* logo */}
+         <div className="dashboard-section-6"> 
+          <div className="dashboard-section-6-logo">
+            <img className="dashboard-section-6-logo-icon" src={Images.dgappicon} alt="" />
+            <p className="dashboard-section-6-logo-name">Dirección General de Alianzas Público Privadas</p>
+            <p className="dashboard-section-6-logo-mention">@DGAPPDR</p>
+          </div>
+         </div>
+
+          {/* social */}
+            {/* <div className="dashboard-section-7">   
+              <div className="dashboard-section-7-grid">
+                <div className="dashboard-section-7-section">
+                    <p>TWITTER</p>
+                  <div className="dashboard-section-7-section-cont">
+                     <div className="dashboard-section-7-section-twitter">
+                      </div>
+                      <div className="dashboard-section-7-section-twitter">
+                      </div>
+                  </div>
+                </div>
+                <div className="dashboard-section-7-section-line">
+                  <span></span>
+                </div>
+                <div className="dashboard-section-7-section">
+                    <p>INSTAGRAM</p>
+                  <div className="dashboard-section-7-section-cont">
+                     <div className="dashboard-section-7-section-twitter">
+                      </div>
+                      <div className="dashboard-section-7-section-twitter">
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div> */}
       </div>
     </>
   );

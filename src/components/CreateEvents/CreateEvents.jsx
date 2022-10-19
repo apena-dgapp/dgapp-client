@@ -19,6 +19,29 @@ const CreateEvents = () => {
     color: "",
   });
 
+  const options = [
+    {
+      id: "1",
+      value: "Conferencias Dirección Ejecutiva",
+    },
+    {
+      id: "2",
+      value: "Conferencias Piso 2",
+    },
+    {
+      id: "3",
+      value: "Conferencias Piso 3",
+    },
+    {
+      id: "4",
+      value: "Multiuso Piso 1",
+    },
+    {
+      id: "5",
+      value: "Virtual",
+    },
+  ];
+
   const handlerInputChange = (e) => {
     setFormData({
       ...formData,
@@ -215,6 +238,7 @@ const CreateEvents = () => {
         sendEvent={sendEvent}
         formData={formData}
         eventRemove={eventRemove}
+        options={options}
       />
     </>
   );

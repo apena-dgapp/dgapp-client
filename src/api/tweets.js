@@ -4,6 +4,7 @@ export const getTweets = async () => {
         headers: {
             "Content-Type": "application/json",
             Authorization: 'Bearer',
-        }   
+        }
     })
 }
+

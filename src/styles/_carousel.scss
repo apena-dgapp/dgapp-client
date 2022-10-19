@@ -1,46 +1,63 @@
-.carousel.carousel-slider{
-    min-height: 18rem;
-    max-height: 18rem; 
+.carousel.carousel-slider {
+    min-height: 22rem;
+    max-height: 22rem;
 }
-.carousel-container{
+
+.carousel-container {
     width: 100%;
-    height: 18rem; 
-    img{
+    height: 22rem;
+
+    img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 }
-.carousel .slider-wrapper{
-    height: 18rem;
+
+.carouselad-container {
+    width: 100%;
+    height: 29.6rem;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
-.carousel .slider-wrapper.axis-horizontal .slider{
-    height: 18rem;
+
+.carousel .slider-wrapper {
+    height: 22rem;
 }
-.carousel-container-txt{
+
+.carousel .slider-wrapper.axis-horizontal .slider {
+    height: 22rem;
+}
+
+.carousel-container-txt {
     position: absolute;
     bottom: 6.2rem;
     width: 100%;
     height: 3.5rem;
 }
-.carousel-title{
+
+.carousel-title {
     width: 100%;
     font-size: 2rem;
     font-weight: bold;
-    color:white;
+    color: white;
     margin-top: 0.1rem;
     background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.5);
     transition: .5s ease;
-    opacity:0;
+    opacity: 0;
     padding-right: 2rem;
     padding-left: 2rem;
 }
 
-.carousel-inf{
+.carousel-inf {
     width: 100%;
     display: flex;
-    color:white;
+    color: white;
     margin-top: -0.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -52,11 +69,32 @@
     background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.5);
     transition: .5s ease;
-    opacity:0;
+    opacity: 0;
     padding-right: 2rem;
     padding-left: 2rem;
 }
 
-// .carousel-container:hover p {
-//     opacity: 1;
-//   }
+.alice-carousel__dots {
+    margin: 0;
+    padding: 0;
+    margin-top: -1.5rem;
+    position: absolute;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.alice-carousel__dots-item:not(.__custom) {
+    width: 0.8rem;
+    height: 0.8rem;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: gray;
+}
+
+.alice-carousel__dots-item:not(.__custom):hover,
+.alice-carousel__dots-item:not(.__custom).__active {
+    background-color: #413F42;
+}

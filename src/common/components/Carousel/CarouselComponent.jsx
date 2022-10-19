@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+import 'react-alice-carousel/lib/alice-carousel.css';
+import AliceCarousel from 'react-alice-carousel';
 import { getPost } from "../../../api/post";
 import { useHistory } from "react-router-dom";
 import { viewUpdate } from "../../../api/post";
+import { MdSubtitlesOff } from "react-icons/md";
+import Images from "../../images";
 
 const CarouselComponent = () => {
   const history = useHistory();
@@ -51,20 +53,18 @@ const CarouselComponent = () => {
       });
   };
   return (
-    <Carousel
+   arrayCarousel.length ? <AliceCarousel
       // swipeScrollTolerance={5}
-      thumbWidth={100}
-      stopOnHover={true}
-      autoPlay={true}
-      swipeable={true}
-      dynamicHeight={true}
-      emulateTouch={true}
-      interval={4000}
-      infiniteLoop
-      transitionTime={2000}
-      showThumbs={false}
-      showStatus={false}
-      showArrows={false}
+      autoPlay
+        // autoPlayControls
+        autoPlayStrategy="none"
+        autoPlayInterval={2500}
+        animationDuration={2500}
+        animationType="fadeout"
+        infinite
+        touchTracking={false}
+        // disableDotsControls
+        disableButtonsControls
     >
       {arrayCarousel?.map((item, index) => {
         return (
@@ -83,7 +83,11 @@ const CarouselComponent = () => {
           </div>
         );
       })}
-    </Carousel>
+    </AliceCarousel>: 
+    <div className="dashboard-nodata-cont">
+      <img src={Images.nodata} alt="" />
+      <p>No se encuentran portadas</p>
+    </div>
   );
 };
 

@@ -28,6 +28,7 @@ const NewPostForm = ({
   modalToggleAceppt,
   setEditorState,
   editorState,
+  options
 }) => {
   const handleEditorChange = (state) => {
     setEditorState(state);
@@ -55,25 +56,14 @@ const NewPostForm = ({
                 <div className="select">
                   <select
                     name="category"
-                    onChange={handlerInputChange}
                     className="input-group"
-                    defaultValue={"DEFAULT"}
+                    value={formData.category || ""}
+                    onChange={handlerInputChange}
                   >
-                    <option disabled value="DEFAULT">
-                      Elige una Categoria
-                    </option>
-                    <option className="option-txt" value={formData.room}>
-                      Portada Principal
-                    </option>
-                    <option className="option-txt" value={formData.room}>
-                      Anuncio
-                    </option>
-                    <option className="option-txt" value={formData.room}>
-                      Noticia
-                    </option>
-                    <option className="option-txt" value={formData.room}>
-                      Multimedia
-                    </option>
+                    <option disabled={true} value="">Elige una Categoria</option>
+                    {options?.map(({ value, id }) => {
+                      return <option key={id} value={value}>{value}</option>;
+                    })}
                   </select>
                 </div>
               </div>
@@ -245,6 +235,35 @@ const NewPostForm = ({
                 </div>
               ) : (
                 <div className="newPostImgCont">
+                  <figure>
+                    <p className="newPostImg-txt">Agregar Imagenes</p>
+                    <img
+                      name="imagenes"
+                      onClick={actionHandler}
+                      className="newPostImg"
+                      src={
+                        actionInput === "imagenes"
+                          ? Images.galeryActive
+                          : Images.galery
+                      }
+                      alt=".jpg, .jpeg, .jfif, .png"
+                    />
+                    {qtyImg ? (
+                      <div onClick={removeGalery} className="remove-cont">
+                        <p style={{ fontWeight: "bold" }} className="p-0 m-0">
+                          ({qtyImg})
+                        </p>
+                        <a
+                          style={{ color: "red" }}
+                          href="#/"
+                          className="text-white "
+                        >
+                          <i className="Md Delete-Forever" />
+                          <TiDelete size="1.8rem" color="red" />
+                        </a>
+                      </div>
+                    ) : null}
+                  </figure>
                   <figure>
                     <p className="newPostImg-txt">Agregar Video</p>
                     <img

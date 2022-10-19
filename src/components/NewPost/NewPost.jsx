@@ -29,6 +29,28 @@ const NewPost = () => {
     isActive: true,
     video: "",
   });
+  const options = [
+    {
+      id: "1",
+      value: "Portada Principal",
+    },
+    {
+      id: "2",
+      value: "Noticia",
+    },
+    {
+      id: "3",
+      value: "Aviso",
+    },
+    {
+      id: "4",
+      value: "EducAPP",
+    },
+    {
+      id: "5",
+      value: "Multimedia",
+    },
+  ];
 
   const [uploadFiles, setUploadFiles] = useState({
     imagenes: "",
@@ -145,6 +167,10 @@ const NewPost = () => {
     } else if (!img && formData.category === "Portada Principal") {
       return toast.error("Por favor agregar una imagen de portada");
     } else if (!img && formData.category === "Noticia") {
+      return toast.error("Por favor agregar una imagen de portada");
+    }else if (!img && formData.category === "Aviso") {
+      return toast.error("Por favor agregar una imagen de portada");
+    }else if (!img && formData.category === "EducAPP") {
       return toast.error("Por favor agregar una imagen de portada");
     }
 
@@ -310,6 +336,7 @@ const NewPost = () => {
         modalToggleAceppt={modalToggleAceppt}
         setEditorState={setEditorState}
         editorState={editorState}
+        options={options}
       />
     </>
   );

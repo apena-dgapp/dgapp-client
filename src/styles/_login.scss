@@ -12,19 +12,23 @@
   position: absolute;
   transform: translate(-50%, -50%);
 }
-.login-dgappLogo-container{
+
+.login-dgappLogo-container {
   width: 100%;
 }
-.login-dgappLogo-img{
- width: 11%; 
- margin-left: 0.5rem;
- margin-top: 0.5rem;
+
+.login-dgappLogo-img {
+  width: 12%;
+  margin-left: 1rem;
+  margin-top: 1rem;
 }
+
 .txt-title {
   color: #787A91;
   font-family: "Work Sans", Sans-serif;
   font-size: 70px;
 }
+
 .txt-subtitle {
   color: #113250;
   font-family: "Work Sans", Sans-serif;
@@ -32,30 +36,31 @@
   font-weight: bold;
 }
 
-.container-btn-login{
+.container-btn-login {
   margin-top: 28px;
 }
 
-.container-input-user{
+.container-input-user {
   margin-bottom: 2rem;
 }
 
-.login-input{
-    border-radius: 0.6rem;
-    width: 27rem;
-    height: 3rem;
-    border: #566573 solid 1px;
-    padding-left: 1rem;
-    font-style: italic;
-    font-size: 1.2rem;
-    outline: none;
-  }
+.login-input {
+  border-radius: 0.6rem;
+  width: 27rem;
+  height: 3rem;
+  border: #566573 solid 1px;
+  padding-left: 1rem;
+  font-style: italic;
+  font-size: 1.2rem;
+  outline: none;
+}
 
-  input:-webkit-autofill,
-  input:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
-  }
-.container-input{
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+.container-input {
   margin-top: 3rem;
   background-color: white;
   width: 500px;
@@ -63,8 +68,9 @@
   display: flex;
   align-content: center;
   border-radius: 10px;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
+
 .txt-forgot {
   color: #113250;
   font-style: italic;
@@ -89,6 +95,7 @@
     background-color: #787A91;
   }
 }
+
 .btn-create {
   border-radius: 0.6rem;
   border: #2B4865 solid 1px;
@@ -101,17 +108,19 @@
   font-weight: bold;
 }
 
-.flag-menu{
+.flag-menu {
   display: flex;
   width: 100%;
   justify-content: flex-end;
   margin-top: 0.3rem;
 }
-.flag-us-login{
+
+.flag-us-login {
   width: 2.5rem;
   z-index: 1;
 }
-.flag-spain-login{
+
+.flag-spain-login {
   width: 2.5rem;
   margin: 0 1.6rem;
   z-index: 1;
@@ -121,42 +130,45 @@
   .container-login {
     transform: translate(-50%, -50%);
   }
+
   .txt-title {
     font-size: 30px;
     margin-top: 4rem;
   }
+
   .txt-subtitle {
     font-size: 15px;
   }
 
-  .container-btn-login{
+  .container-btn-login {
     margin-top: 20px;
   }
 
-  .container-input-user{
+  .container-input-user {
     margin-bottom: 0.8rem;
   }
-  
-  .login-input{
-      border-radius: 6px;
-      width: 20rem;
-      height: 2rem;
-      border: #566573 solid 1px;
-      font-size: 0.8rem;
-    }
 
-  .container-input{
+  .login-input {
+    border-radius: 6px;
+    width: 20rem;
+    height: 2rem;
+    border: #566573 solid 1px;
+    font-size: 0.8rem;
+  }
+
+  .container-input {
     margin-top: 0.5rem;
     width: 350px;
     height: 420px;
     border-radius: 10px;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
   }
+
   .txt-forgot {
     font-size: 10px;
     width: 350px;
   }
-  
+
   .btn-login {
     border-radius: 0.6rem;
     width: 12rem;
@@ -164,6 +176,7 @@
     font-size: 15px;
     margin-top: 1.5rem;
   }
+
   .btn-create {
     border-radius: 0.6rem;
     width: 12rem;
@@ -171,17 +184,19 @@
     font-size: 15px;
   }
 
-  .flag-menu{
+  .flag-menu {
     margin-top: 0.3rem;
   }
-  .flag-us-login{
+
+  .flag-us-login {
     width: 2rem;
   }
-  .flag-spain-login{
+
+  .flag-spain-login {
     width: 2rem;
     margin: 0 1rem;
   }
-   
+
 }
 
 @media screen and (min-width: 401px) and (max-width: 720px) {
@@ -189,113 +204,122 @@
     font-size: 35px;
     margin-top: 3rem;
   }
+
   .txt-subtitle {
     font-size: 18px;
   }
 
-  .container-btn-login{
+  .container-btn-login {
     margin-top: 25px;
   }
 
-  .container-input-user{
+  .container-input-user {
     margin-bottom: 0.8rem;
   }
-  
-  .login-input{
-      border-radius: 0.6rem;
-      width: 22rem;
-      height: 2.4rem;
-      font-size: 0.8rem;
-    }
-  
-  .container-input{
+
+  .login-input {
+    border-radius: 0.6rem;
+    width: 22rem;
+    height: 2.4rem;
+    font-size: 0.8rem;
+  }
+
+  .container-input {
     width: 420px;
     height: 460px;
     margin-top: 1rem;
   }
+
   .txt-forgot {
     font-size: 12px;
     width: 22rem;
     margin-bottom: 2rem;
   }
-  
+
   .btn-login {
     border-radius: 0.6rem;
     width: 13rem;
     height: 2.5rem;
     font-size: 15px;
   }
+
   .btn-create {
     border-radius: 0.6rem;
     width: 13rem;
     height: 2.5rem;
     font-size: 15px
   }
-  .flag-menu{
+
+  .flag-menu {
     margin-top: 0.3rem;
   }
-  .flag-us-login{
+
+  .flag-us-login {
     width: 2rem;
   }
-  .flag-spain-login{
+
+  .flag-spain-login {
     width: 2rem;
     margin: 0 1rem;
   }
-  
-  
+
+
 }
 
 @media screen and (min-width: 721px) and (max-width: 1280px) {
   .txt-title {
     font-size: 50px;
   }
+
   .txt-subtitle {
     font-size: 18px;
   }
 
-  .container-btn-login{
+  .container-btn-login {
     margin-top: 25px;
   }
-  .container-input-user{
+
+  .container-input-user {
     margin-bottom: 0.8rem;
   }
-  
-  .login-input{
-      border-radius: 0.6rem;
-      width: 23rem;
-      height: 2.6rem;
-      border: #566573 solid 1px;
-      font-size: 0.8rem;
-    }
-  
-  .container-input{
+
+  .login-input {
+    border-radius: 0.6rem;
+    width: 23rem;
+    height: 2.6rem;
+    border: #566573 solid 1px;
+    font-size: 0.8rem;
+  }
+
+  .container-input {
     width: 440px;
     height: 460px;
     border-radius: 8px;
     margin-top: 0.8rem;
   }
+
   .txt-forgot {
     font-size: 12px;
     width: 23rem;
     margin-bottom: 2rem;
   }
-  
+
   .btn-login {
     border-radius: 0.6rem;
     width: 13rem;
     height: 2.5rem;
     font-size: 16px;
   }
+
   .btn-create {
     border-radius: 0.6rem;
     width: 13rem;
     height: 2.5rem;
     font-size: 16px;
   }
-  
+
 }
 
 // @media screen and (min-width: 1281px) and (max-width: 1440px) {
 
 // }
-

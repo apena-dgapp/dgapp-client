@@ -56,7 +56,7 @@ const CardForm = (props) => {
               <MdPhoneInTalk
                 style={{ marginRight: "0.5rem" }}
                 size="1.5em"
-                color="#3FA796"
+                color="#8CB2C4"
               />
               {props.phone ? props.phone : "No definido!"}
             </p>
@@ -67,7 +67,7 @@ const CardForm = (props) => {
               <MdSmartphone
                 style={{ marginRight: "0.5rem" }}
                 size="1.5em"
-                color="#3FA796"
+                color="#8CB2C4"
               />
               {props.cel ? props.cel : "No definido!"}
             </p>
@@ -78,7 +78,7 @@ const CardForm = (props) => {
               <MdEmail
                 style={{ marginRight: "0.5rem" }}
                 size="1.5em"
-                color="#3FA796"
+                color="#8CB2C4"
               />
               {props.email ? props.email : "No definido!"}
             </p>

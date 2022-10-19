@@ -313,7 +313,7 @@ const EmployeeForm = ({
               <div className="employee-info-container">
                 <i className="md md-phone-in-talk mt-5" />
                 <MdPhoneInTalk size="1.5em" color="gray" />
-                <p className="employee-upcoming-birthday">Telefono:</p>
+                <p className="employee-upcoming-birthday">Extension:</p>
                 <p className="employee-contact-email">
                   {profile.phoneNumber ? profile.phoneNumber : null}
                 </p>
@@ -321,7 +321,7 @@ const EmployeeForm = ({
               <div className="employee-info-container">
                 <i className="md md-smart-phone" />
                 <MdSmartphone size="1.5em" color="gray" />
-                <p className="employee-upcoming-birthday">Telefono:</p>
+                <p className="employee-upcoming-birthday">Celular:</p>
                 <p className="employee-contact-email">
                   {profile.celNumber ? profile.celNumber : null}
                 </p>

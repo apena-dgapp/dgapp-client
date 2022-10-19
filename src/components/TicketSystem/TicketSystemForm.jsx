@@ -1,20 +1,13 @@
 import React from "react";
 import ReactTooltip from "react-tooltip";
 import { FaUndoAlt } from "react-icons/fa";
+import DatePicker  from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-const TicketSystemForm = ({ priority, setPriority }) => {
-  var color;
-  if (priority === "") {
-    color = "#000000";
-  } else if (priority === "") {
-    color = "lightblue";
-  } else if (priority === "") {
-    color = "yellow";
-  } else if (priority === "") {
-    color = "red";
-  }
-
+const TicketSystemForm = ({ priority, setPriority, color, undoPriority,handlerInputChange, formData, addTicket, options,setStartDate, startDate }) => {
+ console.log("klk")
   return (
+
     <>
       {" "}
       <ReactTooltip multiline={true} />
@@ -24,13 +17,12 @@ const TicketSystemForm = ({ priority, setPriority }) => {
             <div className="">
               <p className="ticket-input-title">Asunto</p>
               <input
-                // id="titleinput"
-                //   onChange={handlerInputChange}
-                name="code"
+                onChange={handlerInputChange}
+                name="issueName"
                 type="text"
                 placeholder="Escriba el asunto del problema"
                 className="ticket-input"
-                //   value={code}
+                value={formData?.issueName || ""}
                 //   disabled={true}
               />
               <div className="input-required">*</div>
@@ -38,51 +30,41 @@ const TicketSystemForm = ({ priority, setPriority }) => {
             <div className="">
               <p className="ticket-input-title">Departamento</p>
               <select
-                // defaultValue="Seleccionar un Empleado"
-                name="contracttype"
+                name="departament"
                 className="ticket-input"
-                //   onChange={handlerInputChange}
-                //   value={person?.fullName}
-                defaultValue={"DEFAULT"}
+                value={formData.departament || ""}
+                onChange={handlerInputChange}
               >
-                <option disabled value="DEFAULT">
-                  Departamento que recibira el ticket
-                </option>
-                <option id="1" value="Contratado">
-                  Contratado
-                </option>
-                <option id="2" value="Fijo">
-                  Fijo
-                </option>
+                <option disabled={true} value="">Departamento que recibira el ticket</option>
+                {options?.map(({ value, id }) => {
+                  return <option key={id} value={value}>{value}</option>;
+                })}
               </select>
               <div className="input-required">*</div>
             </div>
             <div className="">
-              <p className="ticket-input-title">Problema Encontrado en</p>
-              <input
-                // id="titleinput"
-                //   onChange={handlerInputChange}
-                name="code"
-                type="date"
-                // placeholder="Escriba el codigo de empleado"
+              <p className="ticket-input-title">Problema Encontrado el</p>
+              <DatePicker 
+                onChange={(date) => setStartDate(date)}
+                disabledKeyboardNavigation
+                placeholderText="Seleccionar la fecha en que fue encontrado el problema"
                 className="ticket-input"
-                //   value={code}
-                //   disabled={true}
+                selected={startDate}
+                showTimeSelect
+                dateFormat="MMMM d, yyyy h:mm aa"
               />
               <div className="input-required">*</div>
             </div>
             <div className="">
               <p className="ticket-input-title">Detalles</p>
               <textarea
-                // id="titleinput"
-                //   onChange={handlerInputChange}
-                name="code"
+                onChange={handlerInputChange}
+                name="detail"
                 type="text"
                 placeholder="Escriba un breve detalle del problema"
                 className="ticket-textarea"
                 maxLength={330}
-                //   value={code}
-                //   disabled={true}
+                value={formData.detail || ""}
               />
               <div className="input-required">*</div>
             </div>
@@ -105,16 +87,16 @@ const TicketSystemForm = ({ priority, setPriority }) => {
                   <p
                     onClick={() => setPriority("Inmediata")}
                     data-tip="Por favor no seleccionar esta opccion<br/>
-                 si el requerimiento o problema no es muy urgente,<br/> 
-                 usar con criterio!"
+                    si el requerimiento o problema no es muy urgente,<br/> 
+                    usar con criterio!"
                   >
                     Inmediata
                   </p>
                   <div
                     onClick={() => setPriority("Inmediata")}
                     data-tip="Por favor no seleccionar esta opccion<br/>
-                   si el requerimiento o problema no es muy urgente,<br/> 
-                   usar con criterio!"
+                    si el requerimiento o problema no es muy urgente,<br/> 
+                    usar con criterio!"
                     style={{ backgroundColor: "red" }}
                     className="ticket-qualify-color"
                   ></div>
@@ -122,20 +104,21 @@ const TicketSystemForm = ({ priority, setPriority }) => {
               </div>
             ) : (
               <div className="ticket-priority-cont">
-                <p>PRIORIDAD:</p>
-                <p style={{ color: { color } }}>{priority}</p>
+                <p style={{marginRight:"0.2rem"}}>PRIORIDAD:</p>
+                <p>{priority}</p>
                 <i className="fa fa-undo-alt" />
                 <FaUndoAlt
+                  onClick={undoPriority}
                   size="1rem"
-                  color="#2B4865"
-                  style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
+                  color={color}
+                  style={{ cursor:"pointer", marginLeft: "0.8rem", marginRight: "0.8rem" }}
                 />
               </div>
             )}
           </div>
           <div className="createEvent-card-btn-add-cont">
             <button
-              //   onClick={addEvent}
+              onClick={addTicket}
               name="add"
               className="ticket-btn-add"
               type="submit"

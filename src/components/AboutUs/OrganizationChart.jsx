@@ -1,7 +1,7 @@
 import React from "react";
 import Images from "../../common/images/index";
 
-const OroganizationChart = () => {
+const OrganizationChart = () => {
   return (
     <>
       <div className="chart-container">
@@ -15,4 +15,4 @@ const OroganizationChart = () => {
   );
 };
 
-export default OroganizationChart;
+export default OrganizationChart;

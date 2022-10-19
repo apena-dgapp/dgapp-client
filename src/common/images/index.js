@@ -48,6 +48,16 @@ import avisos from './wetransfer_recursos_2022-09-21_1856/Recursos/avisos.png'
 import educ from './wetransfer_recursos_2022-09-21_1856/Recursos/educ.png'
 import birth from './wetransfer_recursos_2022-09-21_1856/Recursos/cumpleanos.png'
 import calendar from './wetransfer_recursos_2022-09-21_1856/Recursos/calendario.png'
+import dgappicon from './wetransfer_recursos_2022-09-21_1856/Recursos/dgappicon.png'
+import abouticon from './wetransfer_recursos_2022-09-21_1856/Recursos/aboutus.png'
+import socialicon from './wetransfer_recursos_2022-09-21_1856/Recursos/social.png'
+import logoicon from './wetransfer_recursos_2022-09-21_1856/Recursos/logo.png'
+import twitter from './wetransfer_recursos_2022-09-21_1856/Recursos/twitter.png'
+import instagram from './wetransfer_recursos_2022-09-21_1856/Recursos/instagram.png'
+import facebook from './wetransfer_recursos_2022-09-21_1856/Recursos/facebook.png'
+import ind from './wetransfer_recursos_2022-09-21_1856/Recursos/in.png'
+import youtube from './wetransfer_recursos_2022-09-21_1856/Recursos/youtube.png'
+import nodata from './documents.png'
 
 const Images = {
     iconUser,
@@ -98,8 +108,18 @@ const Images = {
     avisos,
     educ,
     birth,
-    calendar
-    
+    calendar,
+    dgappicon,
+    abouticon,
+    socialicon,
+    logoicon,
+    twitter,
+    instagram,
+    facebook,
+    youtube,
+    ind,
+    nodata
+
 }
 
 export default Images;

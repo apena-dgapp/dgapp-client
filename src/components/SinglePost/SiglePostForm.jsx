@@ -12,6 +12,7 @@ const SiglePostForm = ({
   handlerTextareaChange,
   sendComment,
   comment,
+  comments,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visible, setVisible] = useState(false);
@@ -115,10 +116,10 @@ const SiglePostForm = ({
     <>
       <div className="singlePostContainer">
         <div className="singlePostTitle">
-          <div className="singlePostTxt">
-            <h2 className="">{fechaES}</h2>
-            <h1 className="">{dataPost.title}</h1>
-            <h2 className="">Por {dataPost.author}</h2>
+          <div className="singlePostTxt">   
+            <p className="new-title">{dataPost.title}</p>
+            <p className="new-by">Por {dataPost.author}</p>
+            <p className="new-date">{fechaES}</p>
           </div>
         </div>
 
@@ -250,11 +251,11 @@ const SiglePostForm = ({
             })
           : null}
         <div className="singlePost-addComent-cont">
-          <div className="singlePost-addComent-title">
+          {/* <div className="singlePost-addComent-title">
             <p>COMENTARIO</p>
-          </div>
+          </div> */}
           <div className="singlePost-addComent-text">
-            <p>Dejanos saber lo que piensas, escriba un breve comentario.</p>
+            <p>Dejanos saber lo que piensas</p>
           </div>
           <div className="singlePost-addComent-textarea-cont">
             <textarea
@@ -273,6 +274,31 @@ const SiglePostForm = ({
           >
             Enviar
           </button>
+          {
+            comments.comments?.length ? <div className="singlePost-comment-list-cont">
+            <div className="singlePost-comment-list-header">
+              <p>Comentarios</p>
+            </div>
+            <div className="singlePost-comment-list-container">
+              {
+                comments.comments?.map((item,key)=>{
+                  return(
+                    <div key={key} className="singlePost-comment-list">
+                      <div className="singlePost-comment-list-user">
+                        <img src={item.Person.photo} alt="" />
+                        <p>{item.Person.firstName.split(" ", 1) + " " + item.Person.lastName.split(" ", 1)}</p>
+                      </div>
+                      <div className="singlePost-comment-lis-text">
+                        <p>{item.text}</p>
+                      </div>
+                    </div>
+                  )
+                })
+              }
+            </div>
+          </div>:null
+          }
+         
         </div>
       </div>
     </>

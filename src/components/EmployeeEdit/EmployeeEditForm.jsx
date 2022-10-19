@@ -116,7 +116,7 @@ function EmployeeEditForm({
                     profile?.lastName ? profile?.lastName : "No definido!"
                   }
                   className="edit-input"
-                  value={formData.lastName?.replace(/[^a-zA-ZñÑ ]/g, "") || ""}
+                  value={formData.lastname?.replace(/[^a-zA-ZñÑ ]/g, "") || ""}
                 />
               </div>
 

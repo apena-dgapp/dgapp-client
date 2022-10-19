@@ -4,7 +4,7 @@
 @import "./page404";
 @import "./register";
 @import "./navbar";
-@import "./dashboard"; 
+@import "./dashboard";
 @import "./newpost";
 @import "./singlepost";
 @import "./carousel";
@@ -24,7 +24,9 @@
 @import "./foodOrder";
 @import "./ticketSystem";
 
-*, *:before, *:after{
+*,
+*:before,
+*:after {
   margin: 0;
   padding: 0;
   outline: 0;
@@ -37,16 +39,16 @@ body {
   // background-repeat: no-repeat;
   background-size: cover;
   // background-color: #EEEEEE;
-  overflow-x: hidden;  
-  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+  font-family: 'PT Sans', sans-serif;
 }
 
-body::-webkit-scrollbar{
-  background-color: white;
+body::-webkit-scrollbar {
+  background-color: transparent;
   width: 20px;
 }
 
-body::-webkit-scrollbar-thumb{
-  background-color: rgb(42, 52, 63);
+body::-webkit-scrollbar-thumb {
+  background-color: #113250;
   border-radius: 7px;
 }

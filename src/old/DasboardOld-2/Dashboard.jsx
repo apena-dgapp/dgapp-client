@@ -35,7 +35,7 @@ const Dashboard = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getPost("Anuncio", 3)
+    getPost("Aviso", 3)
       .then((res) => {
         return res.json();
       })

@@ -1,4 +1,5 @@
 import React from "react";
+import { GoMegaphone } from "react-icons/go";
 import Card from "../../common/components/Card/Card";
 import Input from "../../common/components/Input/Input";
 
@@ -14,7 +15,19 @@ const AllPostForm = ({
   return (
     <>
       <div className="allPostTitle-cont">
-        <div className="allPostTitle">NOTICIAS</div>
+        <div className="allPostTitle">
+          <span>
+            <i className="go go-megaphone" />
+            <GoMegaphone
+              size="3rem"
+              color="#79ADD4"
+              style={{transform: "rotate(-10deg)", marginBottom:"0.5rem"}}
+            />
+          </span>
+          <p>
+            NOTICIAS
+          </p>     
+          </div>
       </div>
 
       <div className="allpost-input-cont">

@@ -38,6 +38,8 @@ function ChatForm({ socket, username, room, persons, getRoom, userHeader }) {
     }
   }
 
+  console.log("klk")
+
   useEffect(() => {
     socket.on("receive_message", (data) => {
       setMessageList((list) => [...list, data]);

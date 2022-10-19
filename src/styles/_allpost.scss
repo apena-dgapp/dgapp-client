@@ -1,46 +1,56 @@
-.allPost-Container{
+.allPost-Container {
     display: flex;
     justify-content: center;
     width: 100%;
     align-items: center;
 }
 
-.allPostTitle-cont{
+.allPostTitle-cont {
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 15rem;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/colleagues-giving-fist-bump.jpg");
+    height: 20rem;
+    // background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/colleagues-giving-fist-bump.jpg");
 }
-.allPostTitle{
+
+.allPostTitle {
     display: flex;
     justify-content: center;
-    color: white;
-    font-size: 2rem;
+    color: #113250;
+    font-size: 2.5rem;
     font-weight: bold;
-    margin-top: 8.5rem;
+    margin-top: 14rem;
     width: 80%;
+
+    p {
+        margin-left: 0.8rem;
+    }
 }
-.grid-container{
+
+.grid-container {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     width: 80%;
 }
-.grid-card:hover{
+
+.grid-card:hover {
     border: blue solid 15px;
 }
-.allpost-input-cont{
+
+.allpost-input-cont {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 2rem;
 }
-.allpost-input{
+
+.allpost-input {
     display: flex;
     width: 80%;
     margin-bottom: 2rem;
 }
-.allpost-input-search{
+
+.allpost-input-search {
     border-radius: 0.6vw;
     width: 25rem;
     height: 2rem;
@@ -49,14 +59,16 @@
     font-size: 1rem;
     outline: none;
 }
-.allpost-btn-cont{
+
+.allpost-btn-cont {
     display: flex;
     width: 100%;
     justify-content: center;
     align-items: center;
     margin-bottom: 3rem;
 }
-.allpost-btns{
+
+.allpost-btns {
     display: flex;
     width: 80%;
     justify-content: space-evenly;
@@ -72,14 +84,14 @@
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
-  
-    &:hover {
-      color: white;
-      background-color: #787A91;
-    }
-  }
 
-  .btn-back {
+    &:hover {
+        color: white;
+        background-color: #787A91;
+    }
+}
+
+.btn-back {
     border-radius: 0.6rem;
     width: 13rem;
     height: 2.5rem;
@@ -89,14 +101,31 @@
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
-  
-    &:hover {
-      color: white;
-      background-color: #787A91;
-    }
-  }
 
-  .btn-disabled {
+    &:hover {
+        color: white;
+        background-color: #787A91;
+    }
+}
+
+.btn-active {
+    border-radius: 0.6rem;
+    width: 13rem;
+    height: 2.5rem;
+    border: none;
+    color: white;
+    background-color: #113250;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    &:hover {
+        color: white;
+        background-color: #787A91;
+    }
+}
+
+.btn-disabled {
     border-radius: 0.6rem;
     width: 13rem;
     height: 2.5rem;
@@ -106,4 +135,4 @@
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
-  }
+}

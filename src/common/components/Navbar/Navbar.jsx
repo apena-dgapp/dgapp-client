@@ -22,6 +22,15 @@ const Header = () => {
     photo: "",
   });
 
+  const aboutUSChange = (e, name) => {
+    e.preventDefault();
+
+    history.push({
+      pathname: "./aboutus",
+      state: name,
+    });
+  };
+
   // const [file, setFile] = useState("");
 
   const employeeProfile = (e) => {
@@ -44,8 +53,10 @@ const Header = () => {
   const logOut = () => {
     // socket.disconnect();
     contextMiddleware.signOut();
-    // contextMiddleware.setIsShowChat();
     history.push("./");
+    localStorage.clear();
+    // contextMiddleware.setIsShowChat();
+    
     // window.localStorage.clear();
 
     // console.log(contextState.token);
@@ -60,7 +71,12 @@ const Header = () => {
     history.push("./building");
   };
   const allPost = () => {
-    history.push("./allpost");
+    history.push({
+      pathname:"./allpost",
+      state:{
+        category: "Noticia"
+      }
+    });  
   };
 
   const employeedirectory = () => {
@@ -131,6 +147,7 @@ const Header = () => {
           }
         })
         .catch((err) => {
+          logOut();
           console.error(err.status);
         });
     }
@@ -187,6 +204,7 @@ const Header = () => {
         createEvents={createEvents}
         foodOrder={foodOrder}
         ticketSystem={ticketSystem}
+        aboutUSChange={aboutUSChange}
       />
     </>
   );

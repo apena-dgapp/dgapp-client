@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DashboardForm from "./DashboardForm";
-import { getPost, getPostMultimedia } from "../../api/post";
+import { getPost, getPostMultimedia,getPostMultimediaMain } from "../../api/post";
 import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
 import { viewUpdate } from "../../api/post";
@@ -15,7 +15,8 @@ const Dashboard = () => {
   const [birthday, setBirthday] = useState([]);
   const [events, setEvents] = useState([]);
   const [eventDate, setEventDate] = useState([]);
-  const [multimedia, setMultimedia] = useState();
+  const [multimedia, setMultimedia] = useState([]);
+  const [multimediaMain, setMultimediaMain] = useState();
 
   useEffect(() => {
     let unmounted = false;
@@ -26,7 +27,7 @@ const Dashboard = () => {
       if (!unmounted) {
         seLoading(false);
       }
-    }, 1500);
+    }, 3500);
     return () => {
       unmounted = true;
     };
@@ -61,21 +62,34 @@ const Dashboard = () => {
         console.error(err.status);
       });
 
-    getPostMultimedia("Multimedia", 1)
+      getPostMultimediaMain("Multimedia", 1)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
         if (!unmounted) {
-          // setMultimedia(res[0]);
+          setMultimedia(res[0]);
           res.map((item, index) => {
-            return setMultimedia({
+            return setMultimediaMain({
               title: item.title,
               url: item.FilesPosts[index].file,
             });
           });
         }
       })
+      .catch((err) => {
+        console.error(err.status);
+      });
+    
+       getPostMultimedia("Multimedia", 4)
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          if (!unmounted) {
+            setMultimedia(res);
+          }
+        })
       .catch((err) => {
         console.error(err.status);
       });
@@ -115,6 +129,7 @@ const Dashboard = () => {
   }, []);
 
   const goToPost = (item) => {
+    console.log(item)
     viewUpdate(item.postId)
       .then((res) => {
         history.push({
@@ -149,7 +164,12 @@ const Dashboard = () => {
   };
 
   const allPost = () => {
-    history.push("./allpost");
+    history.push({
+      pathname:"./allpost",
+      state:{
+        category: "Noticia"
+      }
+    });  
   };
 
   return (
@@ -166,6 +186,7 @@ const Dashboard = () => {
           events={events}
           eventDate={eventDate}
           multimedia={multimedia}
+          multimediaMain={multimediaMain}
           goToPost={goToPost}
           goToProfile={goToProfile}
           employeeTree={employeeTree}

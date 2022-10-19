@@ -47,18 +47,18 @@ const useStyles = makeStyles(
       marginTop: "3rem",
       fontSize: "0.5rem",
       fontWeight: "bolder",
-      color: "gray",
+      color: "#79ADD4",
       fontFamily: "Montserrat",
     },
     name: {
       fontSize: "0.6rem",
       fontWeight: "bolder",
-      color: "navy",
+      color: "#113250",
       fontFamily: "Montserrat",
     },
     position: {
       fontSize: "0.5rem",
-      color: "gray",
+      color: "grey",
       fontFamily: "Montserrat",
     },
     photo: {
@@ -138,7 +138,7 @@ const renderForeignObjectNode = ({
               <MdKeyboardArrowUp
                 className="emDirectory-se"
                 size="2em"
-                color="gray"
+                color="#113250"
               />
             </div>
           )

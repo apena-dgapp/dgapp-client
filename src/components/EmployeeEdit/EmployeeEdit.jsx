@@ -6,7 +6,6 @@ import { getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
 import { useHistory } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
-// import { pdfjs } from "react-pdf";
 
 function EmployeeEdit(props) {
   const [contextState] = useContext(GlobalContext);
@@ -212,7 +211,7 @@ function EmployeeEdit(props) {
       formData.contracttype === "" &&
       formData.contractexpiration === ""
     ) {
-      return toast.error("Por el momento no hay datos para actulizar");
+      return toast.error("Por el momento no hay datos para actualizar");
     }
 
     updatePerson(
@@ -259,7 +258,7 @@ function EmployeeEdit(props) {
         if (res.status === 500) {
           return toast.error("Error en el Servidor!");
         } else {
-          toast.success("Perfil de empleado actulizado!");
+          toast.success("Perfil de empleado actualizado!");
           goToProfile(props.location.state.personId);
         }
       })

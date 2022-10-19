@@ -3,13 +3,15 @@ import AllPostForm from "./AllPostForm";
 import { getPost } from "../../api/post";
 import ClipLoader from "react-spinners/ClipLoader";
 
-const AllPost = () => {
+const AllPost = (props) => {
   const [arrayAllPost, setArrayAllPost] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(8);
   const [pageLength, setPageLength] = useState("");
   const [loading, seLoading] = useState(false);
+
+  const category = props.location.state.category;
 
   useEffect(() => {
     let unmounted = false;
@@ -29,7 +31,7 @@ const AllPost = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getPost(["Noticia", "Portada Principal"])
+    getPost(category)
       .then((res) => {
         return res.json();
       })
@@ -46,7 +48,7 @@ const AllPost = () => {
     return () => {
       unmounted = true;
     };
-  }, []);
+  }, [category]);
 
   const filteredArryPost = () => {
     if (search.length === 0)

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Input from "../../common/components/Input/Input";
 import CardEmployee from "./EmployeeDirectoryCard";
 import { MdSearch } from "react-icons/md";
+import { ImUsers } from "react-icons/im";
 import GlobalContext from "../../context/GlobalContext";
 
 const EmployeeDirectoryForm = ({
@@ -21,9 +22,24 @@ const EmployeeDirectoryForm = ({
 
   return (
     <>
-      <div className="emDirectory-cont">
-        <div className="emDirectory">DIRECTORIO DE EMPLEADOS</div>
+     <div className="allPostTitle-cont">
+        <div className="allPostTitle">
+          <span>
+            <i className="im im-users" />
+            <ImUsers
+              size="3rem"
+              color="#79ADD4"
+              style={{ marginBottom:"1.5rem"}}
+            />
+          </span>
+          <p>
+            DIRECTORIO DE EMPLEADOS
+          </p>     
+          </div>
       </div>
+      {/* <div className="emDirectory-cont">
+        <div className="emDirectory">DIRECTORIO DE EMPLEADOS</div>
+      </div> */}
       <div className="emDirectory-input-search-cont">
         <i className="md md-arrow-forward-ios" />
         <MdSearch
@@ -42,7 +58,7 @@ const EmployeeDirectoryForm = ({
         >
           Filtrar por Area
         </p>
-        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <ul className="dropdown-menu dropdown-menu-employee" aria-labelledby="dropdownMenuButton1">
           <li>
             <div onClick={() => filterDep("todos")} className="dropdown-item">
               Todos

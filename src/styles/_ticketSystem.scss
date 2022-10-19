@@ -1,10 +1,11 @@
-.ticket-container{
+.ticket-container {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
 }
-.ticket-card{
+
+.ticket-card {
     width: 40%;
     // max-height: 50em;
     height: 34rem;
@@ -15,22 +16,22 @@
     border: 1px solid #8CB2C4;
 }
 
-.ticket-header-container{
+.ticket-header-container {
     display: flex;
     justify-content: center;
     width: 100%;
     height: 35rem;
     margin-bottom: 20rem;
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("../common/images/work-4051777_1920.jpg");
-  }
+}
 
-  .ticket-header-title{
+.ticket-header-title {
     padding-top: 10rem;
     color: white;
     font-size: 2.5rem;
 }
 
-.ticket-input-cont{
+.ticket-input-cont {
     width: 100%;
     flex-direction: column;
     display: flex;
@@ -39,15 +40,16 @@
     margin-top: 2rem;
 }
 
-.ticket-input-title{
+.ticket-input-title {
     padding: 0;
     margin: 0;
     font-size: 0.8rem;
     font-weight: bold;
     color: #000000 !important;
-    cursor:default !important;
+    cursor: default !important;
 }
-.ticket-input{
+
+.ticket-input {
     border-radius: 0.6vw;
     width: 25rem;
     height: 2rem;
@@ -57,7 +59,8 @@
     outline: none;
     margin-bottom: 0.8rem;
 }
-.ticket-textarea{
+
+.ticket-textarea {
     border-radius: 0.6vw;
     width: 25rem;
     height: 10rem;
@@ -70,12 +73,13 @@
     resize: none;
 }
 
-.ticket-qualify-cont{
+.ticket-qualify-cont {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    p{
+
+    p {
         font-size: 0.8rem;
         margin: 0;
         margin-left: 0.5rem;
@@ -85,13 +89,14 @@
         cursor: pointer;
     }
 }
-.ticket-input-color{
+
+.ticket-input-color {
     display: flex;
     justify-content: space-between;
 
-} 
+}
 
-.ticket-qualify-color{
+.ticket-qualify-color {
     width: 1.2rem;
     height: 1.2rem;
     border-radius: 50%;
@@ -99,12 +104,13 @@
     cursor: pointer;
 }
 
-.ticket-priority-cont{
+.ticket-priority-cont {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    p{
+
+    p {
         margin: 0;
         font-size: 0.8rem;
         font-weight: bold;
@@ -121,9 +127,9 @@
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
-  
+
     &:hover {
-      color: white;
-      background-color: #525E75;
+        color: white;
+        background-color: #525E75;
     }
-  }
+}

@@ -11,6 +11,7 @@ const CreateEventsForm = ({
   sendEvent,
   formData,
   eventRemove,
+  options
 }) => {
   return (
     <>
@@ -43,21 +44,17 @@ const CreateEventsForm = ({
                     </div>
                     <div className="">
                       <p className="createEvent-card-add-input-title">Salon</p>
-                      <select
-                        name="room"
-                        className="createEvent-card-add-input"
-                        onChange={handlerInputChange}
-                        defaultValue={"DEFAULT"}
-                      >
-                        <option disabled value="DEFAULT">
-                          Seleccionar un salon
-                        </option>
-                        <option id="1">Conferencias Dirección Ejecutiva</option>
-                        <option id="2">Conferencias Piso 2</option>
-                        <option id="3">Conferencias Piso 3</option>
-                        <option id="4">Multiuso Piso 1</option>
-                        <option id="5">Virtual</option>
-                      </select>
+                        <select
+                          name="room"
+                          className="createEvent-card-add-input"
+                          value={formData.room || ""}
+                          onChange={handlerInputChange}
+                        >
+                          <option disabled={true} value="">Seleccionar un salon</option>
+                          {options?.map(({ value, id }) => {
+                            return <option key={id} value={value}>{value}</option>;
+                          })}
+                        </select>
                     </div>
                   </div>
                   <div className="createEvent-card-add-form">

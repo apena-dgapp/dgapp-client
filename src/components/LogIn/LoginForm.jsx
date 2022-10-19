@@ -10,7 +10,7 @@ const LoginForm = ({
   return (
     <>
       <div className="login-dgappLogo-container">
-        <img className="login-dgappLogo-img" src={Images.dgappLogo2} alt="" />
+        <img className="login-dgappLogo-img" src={Images.dgappLogo} alt="" />
       </div>
       <div className="container-login">
         <div className="d-flex justify-content-center">

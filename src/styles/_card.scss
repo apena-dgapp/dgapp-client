@@ -1,9 +1,10 @@
-.card{
+.card {
     width: 18rem;
     cursor: pointer;
     margin-bottom: 3rem;
 }
-.card-text{
+
+.card-text {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -11,25 +12,27 @@
     -webkit-box-orient: vertical;
     font-size: 1rem;
 }
-.card-costum{
+
+.card-costum {
     width: 80vw;
     height: 58vh;
 }
 
-.img-costum{
+.img-costum {
     height: 79%;
     object-fit: cover;
 }
-.card-xl{
+
+.card-xl {
     margin-bottom: 8rem;
 }
 
-.btn-group{
-       margin-top: 5rem; 
-       margin-left: 25.5rem;
+.btn-group {
+    margin-top: 5rem;
+    margin-left: 25.5rem;
 }
 
-.container-column-title{
+.container-column-title {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -39,27 +42,29 @@
     margin-bottom: 2rem;
     margin-top: 5rem;
 }
-.column-title{
+
+.column-title {
     width: 90%;
     height: 10vh;
-    border-bottom: solid 1px #0F044C;
+    border-bottom: solid 1px #113250;
     display: flex;
     align-items: flex-end;
     margin-bottom: 1rem;
 }
-.column-txt{
+
+.column-txt {
     margin: 0;
     text-align: center;
     font-size: 1rem;
 }
 
-.card-header{
+.card-header {
     font-size: 1rem;
-    color: #141E61;
+    color: #113250;
     font-weight: bold;
 }
 
-.card-title{
+.card-title {
     text-align: center;
     margin-bottom: 1.5rem;
     font-weight: bold;
@@ -67,19 +72,20 @@
     font-size: 1rem;
 }
 
-.card-date{
+.card-date {
     margin-left: 0.5rem;
     font-style: initial;
 }
-.birtday-today-txt{
+
+.birtday-today-txt {
     margin-bottom: 0;
     margin-left: 0.5rem;
-    color:chocolate;
+    color: chocolate;
     text-decoration: underline;
     cursor: pointer;
 }
 
-.img-costum-card-featured{
+.img-costum-card-featured {
     max-width: 17.8rem !important;
     max-height: 12rem !important;
     min-width: 17.8rem !important;
@@ -87,4 +93,6 @@
     object-fit: cover !important;
 }
 
-
+.btn-dark {
+    background-color: #113250 !important;
+}
