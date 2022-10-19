@@ -1,36 +1,32 @@
-import React, { useState} from 'react';
-import {IntlProvider} from 'react-intl';
+import React, { useState } from 'react';
+import { IntlProvider } from 'react-intl';
 import { Toaster } from 'react-hot-toast';
 import GlobalContext from '../context/GlobalContext';
 import LangEnglish from '../common/lang/en-US.json';
 import LangSpanish from '../common/lang/es-DR.json';
+// import io from "socket.io-client";
 
 const ContextMiddleware = (props) => {
-    const [contextState, setContextState] = useState(getLocalCache() ||{
+    const [contextState, setContextState] = useState(getLocalCache() || {
         token: '',
         userName: '',
         isAdmin: false,
         isAuth: false,
-        appMessage: LangEnglish,
-        appLocale: 'en-US'
+        appMessage: LangSpanish,
+        appLocale: 'en-DR',
+        personId: '',
+        isShowChat: false,
     });
 
-    function getLocalCache () {
+
+    function getLocalCache() {
         let localContextCached = localStorage.getItem("localContext");
         return localContextCached === null ? null : JSON.parse(localContextCached);
     };
 
-    // useEffect(() => {
-    //     const localContextCached = getLocalCache();
-    //     if (localContextCached !== null) {
-    //         setContextState(localContextCached);
-    //     }
-    // }, []);
-
-
-    const langError = () =>{
-      if(contextState.appLocale && contextState.appMessage){
-         } else {
+    const langError = () => {
+        if (contextState.appLocale && contextState.appMessage) {
+        } else {
         }
     }
     const middleware = (state, setState) => {
@@ -50,11 +46,11 @@ const ContextMiddleware = (props) => {
             setLocalCache(localContext);
         };
 
-        const newToken = (newToken) =>{
+        const newToken = (newToken) => {
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                {  token: newToken}
+                { token: newToken }
             );
             setLocalCache(localContext);
         };
@@ -63,43 +59,64 @@ const ContextMiddleware = (props) => {
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                { token: '', userName:'', isAdmin:false, isAuth:false }
+                { token: '', personId: '', userName: '', isAdmin: false, isAuth: false, clients: '' }
             );
             setLocalCache(localContext);
+            // sessionStorage.clear()
+            // window.localStorage.clear()
+            // console.log(contextState.token)
         };
 
-           const newUserName = (userName, role, isAuth) =>{
+        const newUserName = (personId, userName, role, isAuth) => {
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                {  userName: userName, isAdmin: role, isAuth: isAuth }
+                { personId: personId, userName: userName, isAdmin: role, isAuth: isAuth }
             );
             setLocalCache(localContext);
         };
 
-        const implementationLang =(language)=>{
-            switch (language){
+        const implementationLang = (language) => {
+            switch (language) {
                 case 'es-DR':
-                    setLanguage(LangSpanish,'es-DR')
+                    setLanguage(LangSpanish, 'es-DR')
                     break;
                 case 'en-US':
-                    setLanguage(LangEnglish,'en-US')
-                    break; 
+                    setLanguage(LangEnglish, 'en-US')
+                    break;
                 default:
-                    setLanguage(LangEnglish,'en-US')
+                    setLanguage(LangEnglish, 'en-DR')
             }
         }
 
-        const setLanguage = (appMessage,appLocale) => {
+        const setLanguage = (appMessage, appLocale) => {
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                {  appMessage: appMessage, appLocale: appLocale}
+                { appMessage: appMessage, appLocale: appLocale }
             );
             setLocalCache(localContext);
         }
 
-        return {signIn, signOut, newToken, newUserName, setLanguage,implementationLang};
+        const setIsShowChat = (isShowChat) => {
+            localContext = Object.assign(
+                {},
+                { ...localContext },
+                { isShowChat: isShowChat }
+            );
+            setLocalCache(localContext);
+        }
+
+        const setClients = (clients) => {
+            localContext = Object.assign(
+                {},
+                { ...localContext },
+                { clients: clients }
+            );
+            setLocalCache(localContext);
+        }
+
+        return { signIn, signOut, newToken, newUserName, setLanguage, implementationLang, setIsShowChat, setClients };
     };
 
     return (
@@ -111,31 +128,31 @@ const ContextMiddleware = (props) => {
             ]}
         >
             <IntlProvider locale={contextState.appLocale} messages={contextState.appMessage} onError={langError}  >
-                {props.children}    
+                {props.children}
             </IntlProvider>
 
-           <Toaster position="top-center"
-            reverseOrder={false}
-            gutter={8}
-            containerClassName=""
-            containerStyle={{}}
-            toastOptions={{
-                // Define default options
-                className: '',
-                duration: 5000,
-                style: {
-                background: '#627485',
-                color: '#fff',
-                },
-                // Default options for specific types
-                success: {
-                duration: 3000,
-                theme: {
-                    primary: 'green',
-                    secondary: 'black',
-                },
-                },
-            }}/>
+            <Toaster position="top-center"
+                reverseOrder={false}
+                gutter={8}
+                containerClassName=""
+                containerStyle={{}}
+                toastOptions={{
+                    // Define default options
+                    className: '',
+                    duration: 5000,
+                    style: {
+                        background: '#627485',
+                        color: '#fff',
+                    },
+                    // Default options for specific types
+                    success: {
+                        duration: 3000,
+                        theme: {
+                            primary: 'green',
+                            secondary: 'black',
+                        },
+                    },
+                }} />
         </GlobalContext.Provider>
     );
 };

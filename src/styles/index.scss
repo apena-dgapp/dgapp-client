@@ -1,29 +1,54 @@
 @import "./login";
-@import "./createperson";
 @import "./header";
-@import "./mainMenu";
 @import "./modal";
 @import "./page404";
 @import "./register";
+@import "./navbar";
+@import "./dashboard";
+@import "./newpost";
+@import "./singlepost";
+@import "./carousel";
+@import "./card";
+@import "./allpost";
+@import "./footer";
+@import "./birthday";
+@import "./employeeProfile";
+@import "./WYSIWYG";
+@import "./aboutus";
+@import "./regulations";
+@import "./employeeDirectory";
+@import "./employeeEdit";
+@import "./chat";
+@import "./training";
+@import "./createEvents";
+@import "./foodOrder";
+@import "./ticketSystem";
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
 
 html,
 body {
-  height: 100%;
-  // background: rgb(21, 43, 67);
-  background-image: linear-gradient(337deg, #152b43, black);
-  overflow: hidden;
+  background-image: url("../common/images/Fondo.png");
+  // background-repeat: no-repeat;
+  background-size: cover;
+  // background-color: #EEEEEE;
+  overflow-x: hidden;
+  font-family: 'PT Sans', sans-serif;
 }
-figure {
-  margin: 0;
+
+body::-webkit-scrollbar {
+  background-color: transparent;
+  width: 20px;
 }
-// .h100 {
-//   height: 100%;
-// }
-// #root {
-//   height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-// }
-// #main-container {
-//   overflow: hidden;
-// }
+
+body::-webkit-scrollbar-thumb {
+  background-color: #113250;
+  border-radius: 7px;
+}

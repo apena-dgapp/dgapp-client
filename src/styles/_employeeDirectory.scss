@@ -1,0 +1,195 @@
+.emDirectory-Container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.emDirectory-cont {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 20rem;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/office-work-3293203_960_720.jpg");
+}
+
+.emDirectory {
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 14rem;
+    margin-bottom: 4rem;
+    // border-bottom: solid 0.2rem;
+    width: 80%;
+}
+
+.grid-container {
+    display: grid;
+    // background-color: red;
+    grid-template-columns: 25% 25% 25% 25%;
+    width: 80%;
+}
+
+.grid-card:hover {
+    border: blue solid 15px;
+}
+
+.emDirectory-input-cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+}
+
+.emDirectory-input {
+    display: flex;
+    width: 80%;
+    margin-bottom: 2rem;
+    // z-index: 1;
+}
+
+.emDirectory-input-search {
+    border-radius: 0.6vw;
+    width: 99%;
+    height: 2.5rem;
+    border: gray solid 1px;
+    padding-left: 2rem;
+    font-size: 1rem;
+    outline: none;
+}
+
+.emDirectory-btn-cont {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.emDirectory-btns {
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+}
+
+.emDirectory-input-search-cont {
+    // text-align:start;
+    margin-left: 9.9rem;
+    position: absolute;
+    width: 1.5rem;
+    margin-top: 2.9rem;
+    // margin-left: 0.3rem;
+    // background-color: red;
+}
+
+.emDirectory-input-search {
+    padding-right: 1rem;
+}
+
+///employee card 
+.emDirectory-card {
+    width: 18rem;
+    // height: 30rem;
+    margin-bottom: 3rem;
+}
+
+.emDirectory-card-cont {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: gainsboro solid 1px;
+    min-height: 28rem;
+    max-height: 28rem;
+    background-color: white;
+}
+
+.emDirectory-card-img {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 5rem;
+    margin-top: 1rem;
+    // margin-right: 1.5rem;
+    object-fit: cover;
+    border: 0.2rem solid #8CB2C4;
+    cursor: pointer;
+}
+
+.emDirectory-card-name {
+    text-align: center;
+    // margin-bottom: 1.5rem;
+    font-weight: bold;
+    color: #113250;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.emDirectory-card-departament {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical;
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 0;
+    font-weight: bold;
+    color: gray;
+}
+
+.emDirectory-card-position {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 0;
+    color: gray;
+}
+
+.emDirectory-card-btn {
+    width: 100%;
+    border: none;
+    background-color: #113250;
+    color: white;
+}
+
+.emDirectory-card-text-contact {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 0;
+    color: #8CB2C4;
+    // text-decoration: underline;
+    cursor: pointer;
+}
+
+.emDirectory-dropdown {
+    position: absolute;
+    width: 89%;
+    display: flex;
+    justify-content: end;
+    margin-top: 0.9rem;
+    // margin-bottom: 0.5rem;
+}
+
+.emDirectory-filter-dep {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.emDirectory-filter-txt {
+    width: 80%;
+    display: flex;
+    // justify-content: end;
+}

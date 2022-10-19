@@ -1,0 +1,85 @@
+.footer-container {
+    width: 100%;
+    height: 20rem;
+}
+
+.footer-section-1-grid {
+    display: grid;
+    width: 100%;
+    height: 80%;
+    grid-template-columns: 33% 34% 33%;
+    background-color: #113250;
+}
+
+.footer-section-1-cont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+    p {
+        margin: 0;
+    }
+
+    // background-color: blue;
+}
+
+
+.footer-section-1-mentions {
+    font-size: 0.8rem;
+}
+
+.footer-section-1-img {
+    width: 55%;
+    // height: 12rem;
+}
+
+.footer-section-1-img-logo {
+    width: 35%;
+    // height: 12rem;
+}
+
+.footer-section-1-icon-con {
+    width: 50%;
+    height: 3rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    // margin-bottom: 1rem;
+    // background-color: red;
+}
+
+.footer-section-1-text {
+    margin-bottom: 1.5rem;
+}
+
+.footer-section-1-icon {
+    width: 2rem;
+}
+
+.footer-section-1-icon-instagram {
+    width: 1.8rem;
+}
+
+.footer-section-1-icon-facebook {
+    width: 1rem;
+}
+
+.footer-section-1-icon-youtube {
+    width: 2rem;
+    margin-top: 0.6rem;
+}
+
+.footer-section-2 {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #79ADD4;
+    color: white;
+    font-weight: bold;
+}

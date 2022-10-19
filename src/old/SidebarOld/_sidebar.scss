@@ -1,0 +1,63 @@
+.sideBarContainer{
+    position:absolute;
+    top:0;
+    right:0;
+    width:18rem;
+    height:100%;
+    margin-right: 2rem;
+}
+
+.sidebarTitle{
+    margin-bottom: 0.5rem;
+    border-top: 1px solid #0F044C;
+    border-bottom: 1px solid #0F044C;
+    font-family: 'Montserrat', sans-serif;
+    color: #787A91;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sideImg{
+    width: 18rem;
+}
+
+.aboutUs-txt{
+    font-family: 'Montserrat', sans-serif;
+    text-align: justify;
+    color: #141E61;
+    font-size: 1rem; 
+    margin-top: 1rem;  
+}
+
+.sidebarList{
+    list-style: none; 
+}
+
+.sideRage{
+    margin-top: 7.5rem;
+}
+
+.sidebarListItems{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #141E61;
+    font-size: 1rem;
+    display: inline-block;
+    width: 50%;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+.container-chat{
+    display: flex;
+    justify-content: center;
+}
+
+.img-chat{
+    width: 3rem;
+    margin-top: 0.5rem;
+    margin-right: 2rem;
+    cursor: pointer;
+}
+

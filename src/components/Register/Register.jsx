@@ -1,80 +1,190 @@
-import React, { useState, useContext } from 'react'
-import GlobalContext from '../../context/GlobalContext';
-import RegisterForm from './RegisterForm'
-import Modal from '../../common/components/Modal/Modal';
-import { useHistory } from 'react-router-dom'
-import toast from 'react-hot-toast';
-import { getOnePerson } from '../../api/person';
+import React, { useState, useEffect, useContext } from "react";
+import RegisterForm from "./RegisterForm";
+import { getAllPersons, getOnePerson } from "../../api/person";
+import { singUp } from "../../api/auth";
+import { existUser, existUsername } from "../../api/user";
+import GlobalContext from "../../context/GlobalContext";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const [contextState] = useContext(GlobalContext);
+  const [person, setPerson] = useState("");
+  const [user, setUser] = useState("");
+  const [autoName, setAutoName] = useState(true);
+  const [exist, setExist] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [formData, setFormData] = useState({
+    id: "",
+    username: "",
+    password: "",
+    role: "",
+  });
 
-    const history = useHistory()
-    const btnCancel = () => {
-        history.push('./')
-    };
+  const getPerson = (e) => {
+    const index = e.target.selectedIndex;
+    const el = e.target.childNodes[index];
+    const id = el.getAttribute("id");
 
-    // //ContexState
-    const [contextState] = useContext(GlobalContext)
+    setFormData({ id: id });
 
-    //Estado de tipo objeto resgister  que tendra como propiedades los valores de los campos del formulario
-    const [registerForm, setRegisterForm] = useState({
-        username: '',
-        email: '',
-        password: ''
+    existUser(id)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res !== null) {
+          setExist(true);
+          setUserName(res.userName.toUpperCase());
+          getOnePerson(id)
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              setUser(res);
+            });
+        } else {
+          setExist(false);
+          getOnePerson(id)
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              setUser(res);
+              setUserName(
+                res.firstName.split("")[0].toUpperCase() +
+                  res.lastName.split(" ")[0].toUpperCase()
+              );
+            })
+            .catch((err) => {
+              console.error(err.status);
+            });
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  };
+
+  const handlerInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
     });
+  };
 
-    //function que sera el controlador que se encargara de setear los valores del estado register.
-    const handleRegisterForm = (e) => {
-        setRegisterForm({
-            ...registerForm,
-            [e.target.name]: e.target.value
-        })
+  useEffect(() => {
+    let unmounted = false;
+
+    getAllPersons()
+      .then((res) => {
+        return res.json();
+      })
+
+      .then((res) => {
+        if (!unmounted) {
+          setPerson(res);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  const createUser = () => {
+    if (exist) {
+      return toast.error("Este usuario ya se encuentra registrado!");
     }
 
-    //funcion encargada de crear usuario
-    const handeleCreateUser = (e) => {
-        e.preventDefault();
-
-        // if (registerForm.username === "") {
-        //     return toast.error('');
-        // } else if (registerForm.email === "") {
-        //     return toast.error('');
-        // } else if (registerForm.password === "") {
-        //     return toast.error('');
-        // };
-
-        console.log(contextState.token)
-        console.log(registerForm.email)
-
-        getOnePerson(contextState.token, registerForm.email)
-            .then(res => {
-                // if (res.status >= 400) throw new toast.error('');
-                return res.json();
-
-            })
-
-            .then(res => {
-                console.log(res)
-
-            })
-            .catch(err => {
-                console.log(err.status);
-                // throw new toast.error('');
-            })
-
+    if (autoName) {
+      if (userName === "" || userName === undefined) {
+        return toast.error("Por favor escriba un nombre de usuario");
+      }
+    }
+    if (!autoName) {
+      if (formData.username === "" || formData.username === undefined) {
+        return toast.error("Por favor escriba un nombre de usuario");
+      }
     }
 
-    return (
-        <>
-            <RegisterForm
-                registerForm={registerForm}
-                handleRegisterForm={handleRegisterForm}
-                handeleCreateUser={handeleCreateUser}
-                btnCancel={btnCancel}
-            />
-        </>
+    if (formData.password === "" || formData.password === undefined) {
+      return toast.error("Por favor escriba una contraseña");
+    }
 
-    )
-}
+    if (formData.role === "" || formData.role === undefined) {
+      return toast.error(
+        "Por favor eliga el privilegio que debe tener el empleado"
+      );
+    }
 
-export default Register
+    existUsername(formData.username ? formData.username : userName)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res) {
+          return toast.error(
+            "Por favor elegir otro nombre de usuario dicho nombre ya esta en nuestra base de datos"
+          );
+        } else {
+          singUp(
+            formData.id,
+            formData.username ? formData.username : userName,
+            formData.password,
+            contextState.userName,
+            formData.role
+          )
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              console.log(res.status);
+              clearData();
+              return toast.success(
+                "El nuevo empleado fue registrado Exitosamente!"
+              );
+            })
+            .catch((err) => {
+              return toast.error("Error del servidor!");
+            });
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  };
+
+  const clearData = () => {
+    setUser("");
+    setFormData({
+      id: "",
+      username: "",
+      password: "",
+      role: "Seleccionar privilegio",
+    });
+    setUserName("");
+    setAutoName(true);
+  };
+
+  return (
+    <>
+      <RegisterForm
+        person={person}
+        getPerson={getPerson}
+        user={user}
+        formData={formData}
+        handlerInputChange={handlerInputChange}
+        setAutoName={setAutoName}
+        autoName={autoName}
+        createUser={createUser}
+        userName={userName}
+        exist={exist}
+      />
+    </>
+  );
+};
+
+export default Register;

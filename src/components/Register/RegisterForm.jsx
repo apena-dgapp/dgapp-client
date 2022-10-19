@@ -1,113 +1,142 @@
-import React from 'react'
-import { FormattedMessage, injectIntl } from 'react-intl';
-import Input from '../../common/components/Input/Input';
-import Button from '../../common/components/Button/Button';
+import React from "react";
+import Images from "../../common/images";
+const RegisterForm = ({
+  person,
+  getPerson,
+  user,
+  handlerInputChange,
+  setAutoName,
+  autoName,
+  createUser,
+  formData,
+  userName,
+  exist,
+}) => {
+  return (
+    <>
+      <div className="register-card-container">
+        <div className="register-card">
+          <div className="register-img-cont">
+            <div>
+              <img
+                className="register-img"
+                src={user.photo ? user.photo : Images.noImg}
+                alt="..."
+              />
 
-const RegisterForm = ({ intl, btnCancel, registerForm, handleRegisterForm, handeleCreateUser }) => {
-
-    const userName = intl.formatMessage({ id: 'register.username', defaultMessage: 'Enter a Username' });
-    const email = intl.formatMessage({ id: 'register.email', defaultMessage: 'Enter an email address' });
-    const password = intl.formatMessage({ id: 'register.password', defaultMessage: 'Enter a Password' });
-    const confirmPass = intl.formatMessage({ id: 'register.confirmpass', defaultMessage: 'Please confirm the password' });
-
-    return (
-        <>
-            <div className="">
-
-                <div className="d-flex justify-content-center">
-                    <p className="txt-title">
-                        <FormattedMessage id="register.title" defaultMessage="REGISTER" />
-                    </p>
-                </div>
-
-                <div className="d-flex justify-content-center">
-                    <p className="txt-subtitle">
-                        <FormattedMessage id="register.subtitle" defaultMessage="Please complete all the fields to create a new user" />
-                    </p>
-                </div>
-
-                <form className="registerform" name="registerform" action="" method="post" /*onSubmit={handeleSignIn}*/>
-                    <div className='register-container-input'>
-                        <div className='inputs'>
-
-                            <div className="mb-4">
-                                <Input
-                                    name="username"
-                                    type="text"
-                                    placeholder={userName}
-                                    minLength="4"
-                                    maxLength="10"
-                                    required
-                                    onChange={handleRegisterForm}
-                                    value={registerForm.username}
-                                />
-
-                            </div>
-                            <div className="mb-4">
-                                <Input
-                                    name="email"
-                                    type="email"
-                                    placeholder={email}
-                                    // minLength="4"
-                                    // maxLength="8"
-                                    required
-                                    onChange={handleRegisterForm}
-                                    value={registerForm.email}
-                                />
-                            </div>
-                            <div className="">
-                                <Input
-                                    name="password"
-                                    type="password"
-                                    placeholder={password}
-                                    minLength="4"
-                                    maxLength="8"
-                                    required
-                                    onChange={handleRegisterForm}
-                                    value={registerForm.password}
-                                />
-                            </div>
-                            <div className="">
-                                <Input
-                                    name="confirmpassword"
-                                    type="password"
-                                    placeholder={confirmPass}
-                                    minLength="4"
-                                    maxLength="8"
-                                    required
-                                // onChange={profileInputs}
-                                // value={profile.password}
-                                />
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className="d-flex justify-content-evenly mt-4">
-                        <Button
-                            className="btn-apply"
-                            name="btn-Apply"
-                            type="button"
-                            formatMsgId="modal.btn.apply"
-                            formatMsgDefault="Apply"
-                            onClick={handeleCreateUser}
-                        >
-                        </Button>
-
-                        <Button
-                            className="btn-cancel"
-                            name="btn-cancel"
-                            type="button"
-                            formatMsgId="modal.btn.cancel"
-                            formatMsgDefault="Cancel"
-                            onClick={btnCancel}
-                        >
-                        </Button>
-                    </div>
-                </form>
+              <p className="register-img-txt">{exist ? "Registrado" : null}</p>
             </div>
-        </>
+          </div>
+          <div className="register-inputs-cont">
+            <div className="register-input-list">
+              <p className="edit-input-title">Lista de Empleados</p>
+              <select
+                name="employees"
+                className="edit-input"
+                onChange={getPerson}
+                defaultValue={"DEFAULT"}
+                // value={reportsTo?.fullName}
+              >
+                <option disabled value="DEFAULT">
+                  Seleccionar un Empleado
+                </option>
+                {person
+                  ? person.map((item, index) => {
+                      return (
+                        <option
+                          id={item.personId}
+                          key={index}
+                          value={{
+                            user: {
+                              firstName: item.firstName,
+                              lastName: item.lastName,
+                              photo: item.photo,
+                            },
+                          }}
+                        >
+                          {item.fullName}
+                        </option>
+                      );
+                    })
+                  : null}
+              </select>
+            </div>
+            <div className="">
+              <div className="register-switch-cont">
+                <p className="edit-input-title">Nombre de Usuario</p>
+                {exist ? null : (
+                  <div
+                    onClick={() => setAutoName((autoName) => !autoName)}
+                    className="switch-button"
+                  >
+                    <input className="switch-button-checkbox" type="checkbox" />
+                    <label className="switch-button-label" htmlFor="">
+                      <span className="switch-button-label-span">Auto</span>
+                    </label>
+                  </div>
+                )}
+              </div>
+              <input
+                id="username"
+                onChange={handlerInputChange}
+                name="username"
+                type="text"
+                placeholder={userName}
+                className="edit-input"
+                value={userName ? userName : formData.username || ""}
+                disabled={autoName ? true : false}
+              />
+            </div>
+            <div className="mt-1">
+              <p className="edit-input-title">Contraseña</p>
+              <input
+                id="password"
+                onChange={handlerInputChange}
+                name="password"
+                type="password"
+                placeholder="Escriba una contraseña facil de recordar"
+                className="edit-input"
+                value={formData.password || ""}
+                disabled={exist ? true : false}
+              />
+            </div>
+            <div className="mt-1">
+              <p className="edit-input-title">Privilegio</p>
+              <select
+                name="role"
+                className="edit-input"
+                onChange={handlerInputChange}
+                defaultValue={"DEFAULT"}
+                disabled={exist ? true : false}
+                // value={formData.role === "" ? "DEFAULT" : undefined}
+              >
+                <option value="DEFAULT" disabled>
+                  Seleccionar privilegio
+                </option>
+                <option value="1">Administrador</option>
+                <option value="3">Editar</option>
+                <option value="2">Usuario</option>
+              </select>
+            </div>
+          </div>
 
-    )
-}
+          <div className="register-btn">
+            <button
+              onClick={createUser}
+              className="register-btn-done"
+              name="btn-done"
+              type="submit"
+            >
+              Crear Usuario
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="register-header-container">
+        <div className="register-header-title">REGISTRAR EMPLEADO</div>
+      </div>
+    </>
+  );
+};
 
-export default injectIntl(RegisterForm);
+export default RegisterForm;

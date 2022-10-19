@@ -1,13 +1,201 @@
-import React from 'react'
-import DashboardForm from '../Dashboard/DashboardForm';
+import React, { useEffect, useState } from "react";
+import DashboardForm from "./DashboardForm";
+import { getPost, getPostMultimedia,getPostMultimediaMain } from "../../api/post";
+import { getBirthday } from "../../api/person";
+import { getEvents } from "../../api/events";
+import { viewUpdate } from "../../api/post";
+import { useHistory } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
-    return (
-        <>
-            <DashboardForm />
-        </>
+  const [loading, seLoading] = useState(false);
+  const history = useHistory();
+  // const [ad, setAd] = useState([]);
+  const [news, setNews] = useState([]);
+  const [birthday, setBirthday] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [eventDate, setEventDate] = useState([]);
+  const [multimedia, setMultimedia] = useState([]);
+  const [multimediaMain, setMultimediaMain] = useState();
 
-    )
-}
+  useEffect(() => {
+    let unmounted = false;
+    if (!unmounted) {
+      seLoading(true);
+    }
+    setTimeout(() => {
+      if (!unmounted) {
+        seLoading(false);
+      }
+    }, 3500);
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
-export default Dashboard
+  useEffect(() => {
+    let unmounted = false;
+
+    // getPost("Anuncio", 3)
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((res) => {
+    //     if (!unmounted) {
+    //       setAd(res.posts);
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.error(err.status);
+    //   });
+
+    getPost("Noticia", 3)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setNews(res.posts);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+      getPostMultimediaMain("Multimedia", 1)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setMultimedia(res[0]);
+          res.map((item, index) => {
+            return setMultimediaMain({
+              title: item.title,
+              url: item.FilesPosts[index].file,
+            });
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+    
+       getPostMultimedia("Multimedia", 4)
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          if (!unmounted) {
+            setMultimedia(res);
+          }
+        })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    getBirthday()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setBirthday(res);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    getEvents()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setEvents(res);
+          res?.map((item) => {
+            return setEventDate((eventDate) => [...eventDate, item.from]);
+          });
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  const goToPost = (item) => {
+    console.log(item)
+    viewUpdate(item.postId)
+      .then((res) => {
+        history.push({
+          pathname: "./siglepost",
+          state: {
+            id: item.postId,
+            title: item.title,
+            img: item.image,
+            description: item.description,
+            date: item.createdAt,
+            author: item.author,
+          },
+        });
+      })
+      .catch((err) => {
+        console.error(err.status);
+        return;
+      });
+  };
+
+  const goToProfile = (id) => {
+    history.push({
+      pathname: "./employeeprofile",
+      state: id,
+    });
+  };
+  const employeeTree = () => {
+    history.push("./employeetree");
+  };
+  const employeedirectory = () => {
+    history.push("./employeedirectory");
+  };
+
+  const allPost = () => {
+    history.push({
+      pathname:"./allpost",
+      state:{
+        category: "Noticia"
+      }
+    });  
+  };
+
+  return (
+    <>
+      {loading ? (
+        <div className="spinner-container">
+          <ClipLoader color="#113250" loading={loading} size={150} />
+        </div>
+      ) : (
+        <DashboardForm
+          // ad={ad}
+          news={news}
+          birthday={birthday}
+          events={events}
+          eventDate={eventDate}
+          multimedia={multimedia}
+          multimediaMain={multimediaMain}
+          goToPost={goToPost}
+          goToProfile={goToProfile}
+          employeeTree={employeeTree}
+          employeedirectory={employeedirectory}
+          allPost={allPost}
+        />
+      )}
+    </>
+  );
+};
+
+export default Dashboard;

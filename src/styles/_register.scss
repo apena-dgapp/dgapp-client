@@ -1,15 +1,178 @@
-.registerform {
-  width: 1200px;
-  margin: auto;
+.register-card-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.register-container-input {
-  height: 400px;
-  //   width: 1180px;
+.register-card {
+  width: 33%;
+  height: 32rem;
+  margin-top: 22rem;
+  background-color: white;
+  position: absolute;
+  border-radius: 0.5rem;
+  border: 1px solid #8CB2C4;
 }
-.inputs {
+
+.register-img-cont {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  flex-flow: wrap;
+  position: absolute;
+  width: 100%;
+  margin-top: -5rem;
+}
+
+.register-img {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 4rem;
+  object-fit: cover;
+  border: 0.2rem solid #8CB2C4;
+}
+
+.register-img-txt {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: red;
+}
+
+.register-header-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 38rem;
+  margin-bottom: 30rem;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/technology-g0481aca92_1920.jpg");
+}
+
+.register-header-title {
+  padding-top: 12rem;
+  color: white;
+  font-size: 2.5rem;
+}
+
+.register-inputs-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 28rem;
+  // background-color: red;
+  // margin-top: 6rem;
+}
+
+.register-input-list {
+  // margin-bottom: 3.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.register-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin-top: 2rem;
+}
+
+.register-btn-done {
+  border-radius: 0.6rem;
+  width: 15rem;
+  height: 2.5rem;
+  border: none;
+  color: white;
+  background-color: #2B4865;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+
+  &:hover {
+    color: white;
+    background-color: #787A91;
+  }
+}
+
+.register-switch-cont {
+  display: flex;
+}
+
+///switc
+.switch-button {
+  background: rgba(255, 255, 255, 0.56);
+  border-radius: 30px;
+  overflow: hidden;
+  width: 170px;
+  height: 1.5rem;
+  text-align: center;
+  font-size: 1rem;
+  // letter-spacing: 1px;
+  color: white;
+  font-weight: bold;
+  position: relative;
+  padding-right: 85px;
+  position: relative;
+  background-color: gainsboro;
+  margin-left: 4.5rem;
+  margin-bottom: 0.1rem;
+
+  &:before {
+    content: "Manual";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  &-checkbox {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 2;
+
+    &:checked+.switch-button-label:before {
+      transform: translateX(90px);
+      transition: transform 300ms linear;
+    }
+
+    &+.switch-button-label {
+      position: relative;
+      // padding: 10px 0;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+
+      &:before {
+        content: "";
+        background: #3FA796;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        // top: 2;
+        border-radius: 30px;
+        transform: translateX(0);
+        transition: transform 300ms;
+      }
+
+      .switch-button-label-span {
+        position: relative;
+      }
+    }
+  }
 }

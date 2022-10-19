@@ -1,12 +1,18 @@
-const apiAuth = async (username, password) => {
+export const apiAuth = async (username, password) => {
     const body = {username, password};
-    return fetch("http://localhost:4500/api/v1/auth/signin", {
+    return fetch(`${process.env.REACT_APP_API}auth/signin`, {
         method: "POST",
         headers:{"Content-Type": "application/json"},
         body: JSON.stringify(body)
     })
 }
 
-module.exports = {
-    apiAuth,
-};
+export const singUp = async (personId,userName, password,createdBy,roleId) => {
+    const body = {personId,userName, password,createdBy,roleId};
+    return fetch(`${process.env.REACT_APP_API}auth/signup`, {
+        method: "POST",
+        headers:{"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+    })
+}
+
