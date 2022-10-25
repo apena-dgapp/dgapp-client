@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
-import { getPost } from "../../../api/post";
+import { getPost } from "../../api/post";
 // import { useHistory } from "react-router-dom";
 // import { viewUpdate } from "../../../api/post";
-import Images from "../../images";
+import Images from "../../common/images";
 
 const CarouselAd = ({category}) => {
   // const history = useHistory();
@@ -76,11 +76,11 @@ const CarouselAd = ({category}) => {
           </div>
         );
       })}
-    </AliceCarousel>: 
-    <div className="dashboard-nodata-cont">
-      <img src={Images.nodata} alt="" />
-      <p>{`No se encuentran ${category} recientes`}</p>
-    </div>
+    </AliceCarousel>: null
+    // <div className="dashboard-nodata-cont">
+    //   <img src={Images.nodata} alt="" />
+    //   <p>{`No se encuentran ${category} recientes`}</p>
+    // </div>
   );
 };
 
