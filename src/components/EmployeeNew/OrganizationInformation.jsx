@@ -64,13 +64,13 @@ function OrganizationInformation({
       <div className="edit-input-cont">
         <div className="edit-inputs">
           <div className="">
-            <p className="edit-input-title">Codigo de Empleado</p>
+            <p className="edit-input-title">Código de Empleado</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="code"
               type="text"
-              placeholder="Escriba el codigo de empleado"
+              placeholder="Escriba el código de empleado"
               className="edit-input"
               value={code}
               disabled={true}
@@ -84,7 +84,7 @@ function OrganizationInformation({
               onChange={handlerInputChange}
               name="position"
               type="text"
-              placeholder="Escriba la posicion"
+              placeholder="Escriba la posición"
               className="edit-input"
               value={formData.position?.replace(/[^a-zA-ZñÑ ]/g, "")}
             />
@@ -102,7 +102,7 @@ function OrganizationInformation({
               defaultValue={"DEFAULT"}
             >
               <option disabled value="DEFAULT">
-                Seleccionar una Departamento
+                Seleccionar un Departamento
               </option>
               {departaments
                 ? departaments.map((item, index) => {
@@ -169,7 +169,7 @@ function OrganizationInformation({
               onChange={handlerInputChange}
               name="phone"
               type="text"
-              placeholder="Numbero de Extension"
+              placeholder="Número de extensión"
               className="edit-input"
               value={formData.phone?.replace(/[^0-9.]/g, "")}
             />
@@ -182,7 +182,7 @@ function OrganizationInformation({
               onChange={handlerInputChange}
               name="email"
               type="email"
-              placeholder="Correo Electronico de la Institucion"
+              placeholder="Correo Electrónico de la Institución"
               className="edit-input"
               value={email.toUpperCase()}
               disabled={true}
@@ -190,13 +190,13 @@ function OrganizationInformation({
             <div className="input-required">*</div>
           </div>
           <div className="">
-            <p className="edit-input-title">Seguro Medico</p>
+            <p className="edit-input-title">Seguro Médico</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="health"
               type="text"
-              placeholder="Numero de Seguro Medico"
+              placeholder="Número del Seguro Medico"
               className="edit-input"
               value={formData.health?.replace(/[^0-9.]/g, "")}
             />

@@ -1,15 +1,15 @@
 import React from 'react'
 import CarouselMain from "./CarouselMain";
-import Images from "../../common/images/index";
+// import Images from "../../common/images/index";
 import { MdOutlineDoubleArrow } from "react-icons/md";
 
-const DashboardSection1 = ({news, goToPost,  allPost,}) => {
+const DashboardSection1 = ({news, goToPost,  allPost, arrayCarousel}) => {
   return (
     <>
         <div className="dashboard-section-1">
           <div className="dashboard-section-1-grid">
             <div className="dashboard-section-1-carousel">
-              <CarouselMain />
+              <CarouselMain arrayCarousel={arrayCarousel} />
             </div>
             <div className="dashboard-section-1-div"></div>
             <div className="dashboard-section-1-news">

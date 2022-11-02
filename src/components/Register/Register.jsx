@@ -17,6 +17,7 @@ const Register = () => {
     id: "",
     username: "",
     password: "",
+    confirm:"",
     role: "",
   });
 
@@ -120,6 +121,10 @@ const Register = () => {
       );
     }
 
+    if (formData.password !== formData.confirm) {
+      return toast.error("Las contraseñas no coinciden");
+    }
+
     existUsername(formData.username ? formData.username : userName)
       .then((res) => {
         return res.json();
@@ -127,12 +132,12 @@ const Register = () => {
       .then((res) => {
         if (res) {
           return toast.error(
-            "Por favor elegir otro nombre de usuario dicho nombre ya esta en nuestra base de datos"
+            "Por favor elegir otro nombre de usuario, dicho nombre ya está en nuestra base de datos"
           );
         } else {
           singUp(
             formData.id,
-            formData.username ? formData.username : userName,
+            autoName ? userName : formData.username,
             formData.password,
             contextState.userName,
             formData.role

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DashboardForm from "./DashboardForm";
-import { getPost, getPostMultimedia,getPostMultimediaMain } from "../../api/post";
+import { getPost, getDataCarousel, getPostMultimedia,getPostMultimediaMain } from "../../api/post";
 import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
 import { viewUpdate } from "../../api/post";
@@ -17,17 +17,32 @@ const Dashboard = () => {
   const [eventDate, setEventDate] = useState([]);
   const [multimedia, setMultimedia] = useState([]);
   const [multimediaMain, setMultimediaMain] = useState();
+  const [arrayCarousel, setArrayCarousel] = useState([]);
 
   useEffect(() => {
     let unmounted = false;
+
     if (!unmounted) {
       seLoading(true);
     }
-    setTimeout(() => {
-      if (!unmounted) {
-        seLoading(false);
-      }
-    }, 3500);
+
+    getDataCarousel("Portada Principal", 3)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setArrayCarousel(res.posts);
+          setTimeout(() => {
+            if (arrayCarousel) {
+              seLoading(false);
+            }
+          }, 1000);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
     return () => {
       unmounted = true;
     };
@@ -133,7 +148,7 @@ const Dashboard = () => {
     viewUpdate(item.postId)
       .then((res) => {
         history.push({
-          pathname: "./siglepost",
+          pathname: "./contenido",
           state: {
             id: item.postId,
             title: item.title,
@@ -152,25 +167,45 @@ const Dashboard = () => {
 
   const goToProfile = (id) => {
     history.push({
-      pathname: "./employeeprofile",
+      pathname: "./perfil",
       state: id,
     });
   };
   const employeeTree = () => {
-    history.push("./employeetree");
+    history.push("./organigrama");
   };
   const employeedirectory = () => {
-    history.push("./employeedirectory");
+    history.push("./directorio");
   };
 
   const allPost = () => {
     history.push({
-      pathname:"./allpost",
+      pathname:"./noticias",
       state:{
         category: "Noticia"
       }
     });  
   };
+
+  const inConstruction = () => {
+    history.push("./construccion");
+  };
+
+  // useEffect(() => {
+  //   let unmounted = false;
+  //   if (!unmounted) {
+  //     seLoading(true);
+  //   }
+  //   setTimeout(() => {
+  //     if (!unmounted) {
+  //       seLoading(false);
+  //     }
+  //   }, 3500);
+  //   return () => {
+  //     unmounted = true;
+  //   };
+  // }, [arrayCarousel]);
+
 
   return (
     <>
@@ -192,6 +227,8 @@ const Dashboard = () => {
           employeeTree={employeeTree}
           employeedirectory={employeedirectory}
           allPost={allPost}
+          arrayCarousel={arrayCarousel}
+          inConstruction={inConstruction}
         />
       )}
     </>

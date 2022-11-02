@@ -3,7 +3,6 @@ import React from "react";
 // import Input from "../../common/components/Input/Input";
 
 function PersonalInformation({ handlerInputChange, formData, validateId }) {
-  console.log(validateId);
   return (
     <>
       <div className="edit-subtitle-cont">
@@ -40,13 +39,13 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
           </div>
 
           <div className="">
-            <p className="edit-input-title">Cedula</p>
+            <p className="edit-input-title">cédula</p>
             <div className="new-employee-documentid">
               <input
                 onChange={handlerInputChange}
                 name="documentid"
                 type="text"
-                placeholder="Escriba la cedula"
+                placeholder="Escriba la cédula"
                 className="edit-input new-employee-inputid"
                 value={formData.documentid?.replace(/[^0-9.]/g, "")}
                 maxLength={11}
@@ -67,7 +66,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
               onChange={handlerInputChange}
               name="cel"
               type="text"
-              placeholder="Numero de celular"
+              placeholder="Número de celular"
               className="edit-input"
               value={formData.cel?.replace(/[^0-9.]/g, "")}
               maxLength={10}
@@ -128,37 +127,37 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
             />
           </div>
           <div className="">
-            <p className="edit-input-title">Nombre Conctato de Emergencia</p>
+            <p className="edit-input-title">Nombre Contacto de Emergencia</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="emergencyname"
               type="text"
-              placeholder="Escriba el nonbre de el conctato de emergencia"
+              placeholder="Escriba el nombre de el contacto de emergencia"
               className="edit-input"
               value={formData.emergencyname?.replace(/[^a-zA-ZñÑ ]/g, "")}
             />
           </div>
           <div className="">
-            <p className="edit-input-title">Numero Conctato de Emergencia</p>
+            <p className="edit-input-title">Número Contacto de Emergencia</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}
               name="emergencynumber"
               type="text"
-              placeholder="Escriba el numero de el conctato de emergencia"
+              placeholder="Escriba el número de el contacto de emergencia"
               className="edit-input"
               value={formData.emergencynumber?.replace(/[^0-9.]/g, "")}
               maxLength={10}
             />
           </div>
           <div className="">
-            <p className="edit-input-title">Relacion Conctato de Emergencia</p>
+            <p className="edit-input-title">Relación Contacto de Emergencia</p>
             <input
               onChange={handlerInputChange}
               name="emergencyrelationship"
               type="text"
-              placeholder="tipo de relacion de el conctato de emergencia"
+              placeholder="tipo de relación de el contacto de emergencia"
               className="edit-input"
               value={formData.emergencyrelationship?.replace(
                 /[^a-zA-ZñÑ ]/g,

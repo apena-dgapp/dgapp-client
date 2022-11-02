@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
-import { getPost } from "../../api/post";
+import { getDataCarousel } from "../../api/post";
 // import { useHistory } from "react-router-dom";
 // import { viewUpdate } from "../../../api/post";
-import Images from "../../common/images";
+// import Images from "../../common/images";
 
 const CarouselAd = ({category}) => {
   // const history = useHistory();
@@ -13,7 +13,7 @@ const CarouselAd = ({category}) => {
   useEffect(() => {
     let unmounted = false;
 
-    getPost(category, 3)
+    getDataCarousel(category, 3)
       .then((res) => {
         return res.json();
       })
@@ -35,7 +35,7 @@ const CarouselAd = ({category}) => {
   //   viewUpdate(item.postId)
   //     .then((res) => {
   //       history.push({
-  //         pathname: "./siglepost",
+  //         pathname: "./contenido",
   //         state: {
   //           id: item.postId,
   //           title: item.title,

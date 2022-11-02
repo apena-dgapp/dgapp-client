@@ -75,9 +75,14 @@ const DashboardSection4 = ({  birthday, events, goToProfile}) => {
                     key={index}
                     className="dashboard-section-4-content-calendar"
                     >
+                    <div style={{backgroundColor:item.color ? item.color :null}} className="dashboard-section-4-event-num">
+                        <p  className="dashboard-section-4-event-txt">
+                            {index + 1}
+                        </p>
+                    </div>
                     <div className="dashboard-section-4-event">
                         <p className="dashboard-section-4-event-txt">
-                        {item.name}
+                            {item.name}
                         </p>
                     </div>
                     <div className="dashboard-section-4-employee">

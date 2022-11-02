@@ -46,7 +46,7 @@ const NewPostForm = ({
       />
       <div className="post-container">
         <div className="post-title">
-          <p className="Post-title-text">CREAR UNA NUEVA PUBLICACION</p>
+          <p className="Post-title-text">CREAR UNA NUEVA PUBLICACIÓN</p>
         </div>
 
         <div className="newPostContainerGrid">
@@ -60,7 +60,7 @@ const NewPostForm = ({
                     value={formData.category || ""}
                     onChange={handlerInputChange}
                   >
-                    <option disabled={true} value="">Elige una Categoria</option>
+                    <option disabled={true} value="">Elige una Categoría</option>
                     {options?.map(({ value, id }) => {
                       return <option key={id} value={value}>{value}</option>;
                     })}
@@ -72,7 +72,7 @@ const NewPostForm = ({
                   id="titleinput"
                   name="title"
                   type="text"
-                  placeholder="Agregar un titulo"
+                  placeholder="Agregar un Título"
                   className="inputTitle"
                   onChange={handlerInputChange}
                   value={formData.title || ""}
@@ -98,7 +98,7 @@ const NewPostForm = ({
                       wrapperClassName="wrapper-class"
                       editorClassName="editor-class"
                       toolbarClassName="toolbar-class"
-                      placeholder="Escribir aqui..."
+                      placeholder="Escribir aquí..."
                     />
                   </div>
 
@@ -119,7 +119,7 @@ const NewPostForm = ({
 
           <div className="newPostContainer">
             <div className="newpost-tools-title">
-              <p>Seleccionar una accion</p>
+              <p>Seleccionar una acción</p>
             </div>
 
             <div className="newPostToolsContainer">
@@ -153,7 +153,7 @@ const NewPostForm = ({
                     ) : null}
                   </figure>
                   <figure>
-                    <p className="newPostImg-txt">Agregar Imagenes</p>
+                    <p className="newPostImg-txt">Agregar Imágenes</p>
                     <img
                       name="imagenes"
                       onClick={actionHandler}

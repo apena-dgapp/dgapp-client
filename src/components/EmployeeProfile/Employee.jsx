@@ -16,7 +16,7 @@ function loadFile(url, callback) {
 
 const Employee = (props) => {
   const [contextState] = useContext(GlobalContext);
-  const id = props.location.state;
+  const id = props.location.state ? props.location.state : contextState.personId;
   const [profile, setProfile] = useState("");
   const [reportsTo, setReportsTo] = useState("");
   const history = useHistory();
@@ -31,7 +31,7 @@ const Employee = (props) => {
 
   const msgDisable = () => {
     return toast.error(
-      "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
+      "Lo sentimos, por el momento esta opción está deshabilita. Estamos trabajando en ello."
     );
     //history.push('./')
   };
@@ -43,7 +43,7 @@ const Employee = (props) => {
 
     const newProfile = Object.assign(profile, reportName);
     history.push({
-      pathname: "./employeeedit",
+      pathname: "./editar-empleado",
       state: newProfile,
     });
   };

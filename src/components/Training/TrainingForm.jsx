@@ -92,7 +92,7 @@ const TrainingForm = ({
       <div className="training-Container">
         <div className="training-grid-container">
           {filteredArryPersons().map((person) => {
-            if (contextState.isAdmin === false) {
+            if (contextState.userRole === 1) {
               return person.isActive ? (
                 <TrainingCard
                   key={person.personId}

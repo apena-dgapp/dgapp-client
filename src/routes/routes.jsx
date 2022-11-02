@@ -1,4 +1,4 @@
-import React, { useContext, lazy, Suspense } from "react";
+import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import PrivateRoutes from "../routes/Private.Routes";
@@ -12,7 +12,7 @@ import NewPost from "../components/NewPost/NewPost";
 import Register from "../components/Register/Register";
 import Page404 from "../common/components/404/Page404";
 import ScrollToTop from "../utils/scrollToTop";
-import Employee from "../components/EmployeeProfile/Employee";
+// import Employee from "../components/EmployeeProfile/Employee";
 import AboutUs from "../components/AboutUs/AboutUs";
 import EmployeeProfile from "../components/EmployeeProfile/Employee";
 import FilePdf from "../common/components/FilePdf/FilePdf";
@@ -46,7 +46,6 @@ const Routes = () => {
       ) : null} */}
       <ScrollToTop/>
       {contextState.token ? <Navbar /> : null}
-      <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route
             exact
@@ -55,61 +54,94 @@ const Routes = () => {
           />
           <PrivateRoutes
             exct
-            path={`${process.env.REACT_APP_RUTE}/home`}
+            path={`${process.env.REACT_APP_RUTE}/inicio`}
             component={contextState.token ? Dashboard : Login}
           />
           <Route
-            path={`${process.env.REACT_APP_RUTE}/siglepost`}
+            path={`${process.env.REACT_APP_RUTE}/contenido`}
             component={contextState.token ? SinglePost : Login}
           />
           <Route
-            path={`${process.env.REACT_APP_RUTE}/allpost`}
+            path={`${process.env.REACT_APP_RUTE}/noticias`}
             component={contextState.token ? allPost : Login}
           />
+
+         {contextState.userRole === 1  ?
           <Route
-            path={`${process.env.REACT_APP_RUTE}/register`}
+            path={`${process.env.REACT_APP_RUTE}/registrar`}
             component={contextState.token ? Register : Login}
-          />
+          />:<Route
+          exact
+          path={`${process.env.REACT_APP_RUTE}*`}
+          component={Page404}
+          />}
+
+          {contextState.userRole === 1 || contextState.userRole === 3  ?
           <Route
-            path={`${process.env.REACT_APP_RUTE}/newpost`}
+            path={`${process.env.REACT_APP_RUTE}/crear-entrada`}
             component={contextState.token ? NewPost : Login}
-          />
-          <Route
+          />:<Route
+          exact
+          path={`${process.env.REACT_APP_RUTE}*`}
+          component={Page404}
+          />}
+          
+          {/* <Route
             path={`${process.env.REACT_APP_RUTE}/employee`}
             component={contextState.token ? Employee : Login}
-          />
+          /> */}
           <Route
-            path={`${process.env.REACT_APP_RUTE}/aboutus`}
+            path={`${process.env.REACT_APP_RUTE}/nosotros`}
             component={contextState.token ? AboutUs : Login}
           />
+
+          {contextState.userRole === 1 || contextState.userRole === 3  ?
           <Route
-            path={`${process.env.REACT_APP_RUTE}/createevents`}
+            path={`${process.env.REACT_APP_RUTE}/crear-evento`}
             component={contextState.token ? CreateEvents : Login}
-          />
+          />:<Route
+          exact
+          path={`${process.env.REACT_APP_RUTE}*`}
+          component={Page404}
+          />}
+
           {/* <Route path={`${process.env.REACT_APP_RUTE}/employeechart`} component={EmployeeChart} /> */}
           <Route
-            path={`${process.env.REACT_APP_RUTE}/employeetree`}
+            path={`${process.env.REACT_APP_RUTE}/organigrama`}
             component={contextState.token ? EmployeeTree : Login}
           />
+
+          {contextState.userRole === 1  ?
           <Route
-            path={`${process.env.REACT_APP_RUTE}/employeeedit`}
+            path={`${process.env.REACT_APP_RUTE}/editar-empleado`}
             component={contextState.token ? EmployeeEdit : Login}
-          />
+          />:<Route
+          exact
+          path={`${process.env.REACT_APP_RUTE}*`}
+          component={Page404}
+          />}
+
+          {contextState.userRole === 1 ?
           <Route
-            path={`${process.env.REACT_APP_RUTE}/employeenew`}
+            path={`${process.env.REACT_APP_RUTE}/nuevo-empleado`}
             component={contextState.token ? EmployeeNew : Login}
-          />
+          />:<Route
+          exact
+          path={`${process.env.REACT_APP_RUTE}*`}
+          component={Page404}
+          />}
+
           <Route path={`${process.env.REACT_APP_RUTE}/pdf`} component={FilePdf} />
           <Route
-            path={`${process.env.REACT_APP_RUTE}/building`}
+            path={`${process.env.REACT_APP_RUTE}/construccion`}
             component={contextState.token ? Building : Login}
           />
           <Route
-            path={`${process.env.REACT_APP_RUTE}/employeeprofile`}
+            path={`${process.env.REACT_APP_RUTE}/perfil`}
             component={contextState.token ? EmployeeProfile : Login}
           />
           <Route
-            path={`${process.env.REACT_APP_RUTE}/employeedirectory`}
+            path={`${process.env.REACT_APP_RUTE}/directorio`}
             component={contextState.token ? EmployeeDirectory : Login}
           />
           <Route
@@ -130,7 +162,6 @@ const Routes = () => {
             component={Page404}
           />
         </Switch>
-      </Suspense>
       {contextState.token ? <Footer /> : null}
     </BrowserRouter>
   );

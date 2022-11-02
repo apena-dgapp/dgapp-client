@@ -1,41 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
-import { getPost, viewUpdate } from "../../api/post";
+import { viewUpdate } from "../../api/post";
 import { useHistory } from "react-router-dom";
 // import { MdSubtitlesOff } from "react-icons/md";
-import Images from "../../common/images";
+// import Images from "../../common/images";
 
-const CarouselMain = () => {
+const CarouselMain = ({arrayCarousel}) => {
   const history = useHistory();
-  const [arrayCarousel, setArrayCarousel] = useState([]);
+  // const [arrayCarousel, setArrayCarousel] = useState([]);
 
-  useEffect(() => {
-    let unmounted = false;
+  // useEffect(() => {
+  //   let unmounted = false;
 
-    getPost("Portada Principal", 3)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        if (!unmounted) {
-          setArrayCarousel(res.posts);
-        }
-      })
-      .catch((err) => {
-        console.error(err.status);
-      });
+  //   getPost("Portada Principal", 3)
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((res) => {
+  //       if (!unmounted) {
+  //         setArrayCarousel(res.posts);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.error(err.status);
+  //     });
 
-    return () => {
-      unmounted = true;
-    };
-  }, []);
+  //   return () => {
+  //     unmounted = true;
+  //   };
+  // }, []);
 
   const goToPost = (item) => {
     viewUpdate(item.postId)
       .then((res) => {
         history.push({
-          pathname: "./siglepost",
+          pathname: "./contenido",
           state: {
             id: item.postId,
             title: item.title,
@@ -52,18 +52,18 @@ const CarouselMain = () => {
       });
   };
   return (
-   arrayCarousel.length ? <AliceCarousel
+    arrayCarousel.length ? <AliceCarousel
       // swipeScrollTolerance={5}
       autoPlay
-        // autoPlayControls
-        autoPlayStrategy="none"
-        autoPlayInterval={2500}
-        animationDuration={2500}
-        animationType="fadeout"
-        infinite
-        touchTracking={false}
-        // disableDotsControls
-        disableButtonsControls
+      // autoPlayControls
+      autoPlayStrategy="none"
+      autoPlayInterval={2500}
+      animationDuration={2500}
+      animationType="fadeout"
+      infinite
+      touchTracking={false}
+      // disableDotsControls
+      disableButtonsControls
     >
       {arrayCarousel?.map((item, index) => {
         return (

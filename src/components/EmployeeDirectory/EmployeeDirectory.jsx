@@ -107,6 +107,7 @@ const EmployeeDirectory = () => {
       return filtered.slice(currentPage, currentPage + 8);
     }
   };
+
   const nextPage = () => {
     setPage(page + 8);
     if (
@@ -133,7 +134,7 @@ const EmployeeDirectory = () => {
     if (id !== 0) {
       e.preventDefault();
       history.push({
-        pathname: "./employeeprofile",
+        pathname: "./perfil",
         state: id,
       });
     }

@@ -88,7 +88,7 @@ const NewPost = () => {
 
   const msgDisabled = () => {
     return toast.error(
-      "Lo sentimos por el momento esta opción esta deshabilita. Estamos trabajando en ello."
+      "Lo sentimos, por el momento esta opción está deshabilita. Estamos trabajando en ello."
     );
   };
 
@@ -157,13 +157,13 @@ const NewPost = () => {
     let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
 
     if (!formData.category) {
-      return toast.error("Por favor agregar un categoria");
+      return toast.error("Por favor agregar un categoría");
     } else if (!formData.title) {
-      return toast.error("Por favor agregar un titulo");
+      return toast.error("Por favor agregar un título");
     } else if (!formData.author) {
       return toast.error("Por favor agregar un autor");
     } else if (!currentContentAsHTML) {
-      return toast.error("Por favor agregar una descripcion");
+      return toast.error("Por favor agregar una descripción");
     } else if (!img && formData.category === "Portada Principal") {
       return toast.error("Por favor agregar una imagen de portada");
     } else if (!img && formData.category === "Noticia") {
@@ -277,7 +277,7 @@ const NewPost = () => {
           .catch((err) => {
             // toast.dismiss(loadingId);
             console.error(err.status);
-            toast.error("Error al intentar guardar la publicacion!");
+            toast.error("Error al intentar guardar la publicación!");
           });
       })
       .catch((err) => {

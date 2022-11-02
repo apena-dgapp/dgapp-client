@@ -83,7 +83,7 @@ const RegisterForm = ({
                 type="text"
                 placeholder={userName}
                 className="edit-input"
-                value={userName ? userName : formData.username || ""}
+                value={autoName ? userName : formData.username || ""}
                 disabled={autoName ? true : false}
               />
             </div>
@@ -97,6 +97,19 @@ const RegisterForm = ({
                 placeholder="Escriba una contraseña facil de recordar"
                 className="edit-input"
                 value={formData.password || ""}
+                disabled={exist ? true : false}
+              />
+            </div>
+            <div className="mt-1">
+              <p className="edit-input-title">Confirmar Contraseña</p>
+              <input
+                id="confirm"
+                onChange={handlerInputChange}
+                name="confirm"
+                type="password"
+                placeholder="Escriba nuevamente la contraseña"
+                className="edit-input"
+                value={formData.confirm || ""}
                 disabled={exist ? true : false}
               />
             </div>

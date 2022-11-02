@@ -7,7 +7,7 @@ const CardCarousel = (props) => {
 
   const singleCarousel = () => {
     history.push({
-      pathname: "./siglepost",
+      pathname: "./contenido",
       state: props,
     });
   };

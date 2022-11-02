@@ -107,13 +107,14 @@ const EmployeeDirectoryForm = ({
       <div className="emDirectory-Container">
         <div className="grid-container">
           {filteredArryPersons().map((person) => {
-            if (contextState.isAdmin === false) {
+            if (contextState.userRole === 1) {
               return person.isActive ? (
                 <CardEmployee
                   key={person.personId}
                   id={person.personId}
-                  name={person.fullName}
-                  img={person.photo}
+                  name={person.firstName.split(" ")[0] + " " + person.lastName.split(" ")[0]}
+                  // name={person.fullName}
+                  // img={()=> personPhoto(person?.personId)}
                   position={person.position}
                   departament={person.Departament.name}
                   email={person.email.toLowerCase()}
@@ -128,8 +129,10 @@ const EmployeeDirectoryForm = ({
                 <CardEmployee
                   key={person.personId}
                   id={person.personId}
-                  name={person.fullName}
-                  img={person.photo}
+                  name={person.firstName.split(" ")[0] + " " + person.lastName.split(" ")[0]}
+                  // name={person.fullName}
+                  // img={()=> personPhoto(person?.personId)}
+                  // img={person.photo}
                   position={person.position}
                   departament={person.Departament.name}
                   email={person.email.toLowerCase()}

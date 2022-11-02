@@ -63,7 +63,7 @@ function EmployeeNew() {
             SetValidateId(true);
           } else {
             SetValidateId(false);
-            return toast.error("Numero de cedula no valido!");
+            return toast.error("Número de cédula no válido!");
           }
         });
     }
@@ -131,15 +131,15 @@ function EmployeeNew() {
       formData.documentid === undefined
     ) {
       return toast.error(
-        "Por favor de llenar el campo CEDULA antes de continuar"
+        "Por favor de llenar el campo CÉDULA antes de continuar"
       );
     } else if (!validateId) {
       return toast.error(
-        "Por favor debes de digitar una CEDULA valida antes de continuar"
+        "Por favor debes de digitar una CÉDULA válida antes de continuar"
       );
     } else if (formData.documentid.length < 11) {
       return toast.error(
-        "El Campo CEDULA tiene que tener un minimo de 11 caracteres"
+        "El Campo CÉDULA tiene que tener un mínimo de 11 caracteres"
       );
     } else if (formData.cel === "" || formData.cel === undefined) {
       return toast.error(
@@ -147,7 +147,7 @@ function EmployeeNew() {
       );
     } else if (formData.cel.length < 10) {
       return toast.error(
-        "El Campo CELULAR tiene que tener un minimo de 10 caracteres"
+        "El Campo CELULAR tiene que tener un mínimo de 10 caracteres"
       );
     } else if (formData.date === "" || formData.date === undefined) {
       return toast.error(
@@ -161,7 +161,7 @@ function EmployeeNew() {
           })
           .then((res) => {
             if (res) {
-              return toast.error("Este numero de cedula ya esta en el sistema");
+              return toast.error("Este Número de cédula ya está en el sistema");
             } else {
               setEmail(
                 formData.firstname.split("")[0].toUpperCase() +
@@ -197,7 +197,7 @@ function EmployeeNew() {
   const createHandlerForm = () => {
     if (formData.position === "" || formData.position === undefined) {
       return toast.error(
-        "Por favor de llenar el campo POSICION antes de crear un nuevo empleado"
+        "Por favor de llenar el campo POSICIÓN antes de crear un nuevo empleado"
       );
     } else if (departament === "" || departament === undefined) {
       return toast.error(
@@ -256,7 +256,7 @@ function EmployeeNew() {
             if (res.status === 500) {
               return toast.error("Error en el Servidor!");
             } else {
-              toast.success("Nuevo Perfil de empleado creado!");
+              toast.success("Nuevo perfil de empleado creado!");
               clearFormData();
               back();
             }

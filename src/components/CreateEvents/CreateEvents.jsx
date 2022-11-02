@@ -70,8 +70,8 @@ const CreateEvents = () => {
     if (formData.name === "") {
       return toast.error("Por favor de escribir el nombre del evento");
     }
-    if (formData.room === "" || formData.room === "Seleccionar un salon") {
-      return toast.error("Por favor elegir el nombre del salon");
+    if (formData.room === "" || formData.room === "Seleccionar un salón") {
+      return toast.error("Por favor elegir el nombre del salón");
     }
     if (formData.from === "") {
       return toast.error("Por favor elegir la fecha inicial");
@@ -101,7 +101,7 @@ const CreateEvents = () => {
 
     if (eventsArray.length === 6) {
       return toast.error(
-        "El maximo de eventos permitidos por seccion son 6, por favor de finalizar esta lista y luego seguir agregando eventos en una nueva."
+        "El máximo de eventos permitidos por sección son 6, por favor de finalizar está lista y luego seguir agregando eventos en una nueva."
       );
     }
 
@@ -164,12 +164,12 @@ const CreateEvents = () => {
 
     if (x) {
       return toast.error(
-        `Actualmente se encuentra un evento agregado a la lista que conincide con la fecha, hora y salon digitado.`
+        `Actualmente, se encuentra un evento agregado a la lista que coincide con la fecha, hora y salón digitado.`
       );
     }
     if (y) {
       return toast.error(
-        `Actualmente se encuentra un evento programdo que coincide con esta fecha, hora y salon. EVENTO: ${eventName}.`
+        `Actualmente, se encuentra un evento programado que coincide con esta fecha, hora y salón. EVENTO: ${eventName}.`
       );
     }
 

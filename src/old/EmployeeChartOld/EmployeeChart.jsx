@@ -87,7 +87,7 @@
 //     if (id !== 0) {
 //       e.preventDefault();
 //       history.push({
-//         pathname: "./employeeprofile",
+//         pathname: "./perfil",
 //         state: id,
 //       });
 //     }

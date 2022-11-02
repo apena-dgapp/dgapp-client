@@ -10,14 +10,14 @@ const ContextMiddleware = (props) => {
     const [contextState, setContextState] = useState(getLocalCache() || {
         token: '',
         userName: '',
-        isAdmin: false,
+        userRole: '',
         isAuth: false,
         appMessage: LangSpanish,
         appLocale: 'en-DR',
         personId: '',
         isShowChat: false,
     });
-   
+
 
 
     function getLocalCache() {
@@ -60,7 +60,7 @@ const ContextMiddleware = (props) => {
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                { token: '', personId: '', userName: '', isAdmin: false, isAuth: false, clients: '' }
+                { token: '', personId: '', userName: '', userRole: '', isAuth: false, clients: '' }
             );
             setLocalCache(localContext);
             // sessionStorage.clear()
@@ -72,7 +72,7 @@ const ContextMiddleware = (props) => {
             localContext = Object.assign(
                 {},
                 { ...localContext },
-                { personId: personId, userName: userName, isAdmin: role, isAuth: isAuth }
+                { personId: personId, userName: userName, userRole: role, isAuth: isAuth }
             );
             setLocalCache(localContext);
         };

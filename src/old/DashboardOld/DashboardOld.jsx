@@ -62,13 +62,13 @@ const Dashboard = () => {
     };
 
     history.push({
-      pathname: "./siglepost",
+      pathname: "./contenido",
       state: interestNewObj,
     });
   };
 
   const allPost = () => {
-    history.push("./allpost");
+    history.push("./noticias");
   };
 
   return (

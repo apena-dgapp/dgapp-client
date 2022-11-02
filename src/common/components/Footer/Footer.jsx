@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { getTweets } from "../../../api/tweets";
+// import { getTweets } from "../../../api/tweets";
 import Images from '../../images'
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
 const Footer = () => {
-  const [tweets, setTweets] = useState([]);
+  // const [tweets, setTweets] = useState([]);
   const location = useLocation();
   const [isHidden, setIsHidden] = useState(false);
 
@@ -14,25 +14,25 @@ const Footer = () => {
     if (!unmounted) {
       location.pathname !== `${process.env.REACT_APP_RUTE}` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/home` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/siglepost` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/allpost` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/inicio` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/contenido` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/noticias` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/userregister` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/newpost` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/crear-entrada` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/employee` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/aboutus` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeetree` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeeedit` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeenew` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/nosotros` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/organigrama` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/editar-empleado` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/nuevo-empleado` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/docdynamic` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeeprofile` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/perfil` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/chat` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/directorio` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/training` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/createevents` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/crear-evento` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/foodorder` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/ticket` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/register`
+      location.pathname !== `${process.env.REACT_APP_RUTE}/registrar`
         ? setIsHidden(true)
         : setIsHidden(false);
     }
@@ -91,7 +91,7 @@ const Footer = () => {
           </div>
           <div className="footer-section-1-cont">
             <div className="footer-section-1-text">
-              <p>SIGUENOS EN NUESTRAS<br/> PLATAFORMAS DIGITALES</p>
+              <p>SÍGUENOS EN NUESTRAS<br/> PLATAFORMAS DIGITALES</p>
             </div>
             
             <div className="footer-section-1-icon-con">
@@ -121,7 +121,7 @@ const Footer = () => {
           </a>
         </div> 
         <div className="footer-section-2">
-          <p>WWW.DGAPP.GOD.DO</p>
+          <p>WWW.DGAPP.GOB.DO</p>
         </div>
       </div>
     </>

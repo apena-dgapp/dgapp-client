@@ -58,7 +58,7 @@ function EmployeeEdit(props) {
             SetValidateId(true);
           } else {
             SetValidateId(false);
-            return toast.error("Numero de cedula no valido!");
+            return toast.error("Número de cédula no valido!");
           }
         });
     }
@@ -83,7 +83,6 @@ function EmployeeEdit(props) {
     setReportTo(...reportTo, option);
   };
   const seletedHandler = async (e) => {
-    console.log(e.target.value);
     setPhoto(await getBase64(e.target.files[0]));
     // if (!photo && e.target.value !== null) {
     //   e.target.value = null;
@@ -96,7 +95,7 @@ function EmployeeEdit(props) {
 
   const goToProfile = (id) => {
     history.push({
-      pathname: "./employeeprofile",
+      pathname: "./perfil",
       state: id,
     });
   };
@@ -141,7 +140,7 @@ function EmployeeEdit(props) {
     if (formData.documentid) {
       if (formData.documentid.length < 11) {
         return toast.error(
-          "El Campo CEDULA tiene que tener un minimo de 11 caracteres"
+          "El Campo CÉDULA tiene que tener un mínimo de 11 caracteres"
         );
       }
     }
@@ -149,7 +148,7 @@ function EmployeeEdit(props) {
     if (formData.cel) {
       if (formData.cel.length < 10) {
         return toast.error(
-          "El Campo CELULAR tiene que tener un minimo de 10 caracteres"
+          "El Campo CELULAR tiene que tener un mínimo de 10 caracteres"
         );
       }
     }
@@ -161,7 +160,7 @@ function EmployeeEdit(props) {
 
       if (found) {
         return toast.error(
-          `Este CODIGO actulamente pertenece a: ${found.lastName} ${found.firstName}`
+          `Este CÓDIGO actualmente pertenece a: ${found.lastName} ${found.firstName}`
         );
       }
     }
@@ -171,7 +170,7 @@ function EmployeeEdit(props) {
       var result = regex.test(formData.email.toLocaleUpperCase());
       if (result !== true) {
         return toast.error(
-          "formato de EMAIL no valido, por favor de revisar antes de actualizar"
+          "Formato de EMAIL no valido, por favor de revisar antes de actualizar"
         );
       }
     }
@@ -183,7 +182,7 @@ function EmployeeEdit(props) {
 
       if (found) {
         return toast.error(
-          `Este EMAIL actulamente pertenece a: ${found.lastName} ${found.firstName}`
+          `Este EMAIL actualmente pertenece a: ${found.lastName} ${found.firstName}`
         );
       }
     }

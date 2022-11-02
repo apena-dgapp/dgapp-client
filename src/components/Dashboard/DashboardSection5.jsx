@@ -1,5 +1,5 @@
 import React from 'react'
-import Images from "../../common/images/index";
+// import Images from "../../common/images/index";
 import { IoMdImages } from "react-icons/io";
 import ReactPlayer from "react-player";
 

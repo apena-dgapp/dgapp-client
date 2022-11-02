@@ -182,7 +182,7 @@ const SiglePostForm = ({
             <div className="siglepost-header-grid">
               <div className="siglepost-grid-1">
                 <div className="siglepost-nav-container">
-                  <div className="siglepost-nav-txt">Titulo</div>
+                  <div className="siglepost-nav-txt">Título</div>
                 </div>
               </div>
               <div className="siglepost-grid-2">
@@ -255,7 +255,7 @@ const SiglePostForm = ({
             <p>COMENTARIO</p>
           </div> */}
           <div className="singlePost-addComent-text">
-            <p>Dejanos saber lo que piensas</p>
+            <p>Déjanos saber lo que piensas</p>
           </div>
           <div className="singlePost-addComent-textarea-cont">
             <textarea

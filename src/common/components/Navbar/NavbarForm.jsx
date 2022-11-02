@@ -18,7 +18,7 @@ const Navbar = ({
   employeeTree,
   isHidden,
   goToFile,
-  training,
+  // training,
   register,
   createEvents,
   ticketSystem,
@@ -60,7 +60,7 @@ const Navbar = ({
               </p>
               <ul style={{ width: "11rem" }}>
                 <li>
-                  <p onClick={(e) => aboutUSChange(e, "MISION, VISION Y VALORES")}>Mision, Vision y Valores</p>
+                  <p onClick={(e) => aboutUSChange(e, "MISIÓN, VISIÓN Y VALORES")}>Misión, Visión y Valores</p>
                 </li>
                 <li>
                   <p onClick={(e) => aboutUSChange(e, "FUNCIONES")}>Funciones</p>
@@ -165,34 +165,44 @@ const Navbar = ({
                     href="Boletin No.9.html"
                     target="_blank"
                   >
-                    Boletin
+                    Boletín
                   </a>
                 </li>
               </ul>
             </li>
 
             <li className="class-list">
-              <p onClick={training}>Entrenamiento</p>
+              {/* <p onClick={training}>Entrenamiento</p> */}
+              <p onClick={inConstruction}>Entrenamiento</p>
             </li>
-            {contextState.isAdmin ? (
+            {contextState.userRole === 1 || contextState.userRole === 3  ? (
               <li className="class-list">
                 <p>
                   Administración
                   <img className="icondown" src={Images.icondown} alt="" />
                 </p>
                 <ul style={{ width: "13.5rem" }}>
+                {contextState.userRole === 1 || contextState.userRole === 3 ?
+                  <>
                   <li>
-                    <p onClick={createPost}>Crear Entradas</p>
-                  </li>
-                  <li>
-                    <p onClick={createEvents}>Crear Eventos</p>
-                  </li>
-                  <li>
-                    <p onClick={employeeNew}>Nuevo Empleado</p>
-                  </li>
-                  <li>
-                    <p onClick={register}>Crear usuario</p>
-                  </li>
+                      <p onClick={createPost}>Crear Entrada</p>
+                    </li>
+                    <li>
+                      <p onClick={createEvents}>Crear Evento</p>
+                    </li>
+                  </>
+                  : null}
+                  {contextState.userRole === 1 ? 
+                  <>
+                    <li>
+                      <p onClick={employeeNew}>Nuevo Empleado</p>
+                    </li>
+                    <li>
+                      <p onClick={register}>Crear usuario</p>
+                    </li>
+                  </>
+                  : null}
+                 
                 </ul>
               </li>
             ) : null}

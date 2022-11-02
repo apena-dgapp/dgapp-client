@@ -149,3 +149,27 @@ export const getComments = async (postid) => {
         }
     })
 }
+
+export const getImage = async (id) => {
+    const body = { id }
+    return fetch(`${process.env.REACT_APP_API}post/getimage`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const getDataCarousel = async (category, limit) => {
+    const body = { category, limit };
+    return fetch(`${process.env.REACT_APP_API}post/datacarousel`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}

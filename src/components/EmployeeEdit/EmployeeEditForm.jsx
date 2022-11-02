@@ -223,7 +223,7 @@ function EmployeeEditForm({
               </div>
               <div className="">
                 <p className="edit-input-title">
-                  Numero Contacto de Emergencia
+                  Número Contacto de Emergencia
                 </p>
                 <input
                   onChange={handlerInputChange}
@@ -243,7 +243,7 @@ function EmployeeEditForm({
               </div>
               <div className="">
                 <p className="edit-input-title">
-                  Relacion Contacto de Emergencia
+                  Relación Contacto de Emergencia
                 </p>
                 <input
                   onChange={handlerInputChange}
@@ -289,7 +289,7 @@ function EmployeeEditForm({
             <div className="edit-input-cont">
               <div className="edit-inputs">
                 <div className="">
-                  <p className="edit-input-title">Codigo de Empleado</p>
+                  <p className="edit-input-title">Código de Empleado</p>
                   <input
                     // disabled
                     onChange={handlerInputChange}
@@ -391,7 +391,7 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="startedon"
                     type="date"
-                    placeholder="Por favor escriba la fecha que empezo a Laboral"
+                    placeholder="Por favor escriba la fecha que empezó a Laboral"
                     className="edit-input"
                     value={
                       formData.startedon
@@ -430,7 +430,7 @@ function EmployeeEditForm({
                   />
                 </div>
                 <div className="">
-                  <p className="edit-input-title">Seguro Medico</p>
+                  <p className="edit-input-title">Seguro Médico</p>
                   <input
                     onChange={handlerInputChange}
                     name="health"
@@ -468,7 +468,7 @@ function EmployeeEditForm({
                   </select>
                 </div>
                 <div className="">
-                  <p className="edit-input-title">Expiracion de Contrato</p>
+                  <p className="edit-input-title">Expiración de Contrato</p>
                   <input
                     // value={date}
                     onChange={handlerInputChange}

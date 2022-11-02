@@ -1,15 +1,41 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import { viewUpdate } from "../../../api/post";
 import { useHistory } from "react-router-dom";
+import { getImage } from "../../../api/post";
 
 const CardForm = (props) => {
   const history = useHistory();
+  const [image, setImage] = useState([]);
+
+  const id = props.id;
+
+  useEffect(() => {
+
+    let unmounted = false;
+
+    if (!unmounted) {
+      getImage(id)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setImage(res);
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+    }
+
+    return () => {
+      unmounted = true;
+    };
+  }, [id]);
 
   const click = () => {
     viewUpdate(props.id)
       .then((res) => {
         history.push({
-          pathname: "./siglepost",
+          pathname: "./contenido",
           state: props,
         });
       })
@@ -60,7 +86,7 @@ const CardForm = (props) => {
     <>
       <div className="card" onClick={click}>
         <img
-          src={props.img}
+          src={image?.image}
           className="card-img-top img-costum-card-featured"
           alt="..."
         />
@@ -73,7 +99,7 @@ const CardForm = (props) => {
         <p className="card-date">
           <small className="text-muted">{fechaES}</small>
         </p>
-        <button className="btn-dark">Leer mas</button>
+        <button className="btn-dark">Leer más</button>
       </div>
     </>
   );

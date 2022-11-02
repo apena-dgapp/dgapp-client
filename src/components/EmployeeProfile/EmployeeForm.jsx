@@ -80,7 +80,7 @@ const EmployeeForm = ({
 
   const goToProfileReportTo = () => {
     history.push({
-      pathname: "./employeeprofile",
+      pathname: "./perfil",
       state: reportsTo.personId,
     });
   };
@@ -197,9 +197,9 @@ const EmployeeForm = ({
               type="button"
               className="employee-btn-documentation"
             >
-              Documentacion
+              Documentación
             </button>
-            {contextState.isAdmin ? (
+            {contextState.userRole === 1 ? (
               <button
                 onClick={edit}
                 type="button"
@@ -216,7 +216,7 @@ const EmployeeForm = ({
             >
               Chatear
             </button> */}
-            {contextState.isAdmin ? (
+            {contextState.userRole === 1 ? (
               <div className="onoffswitch1">
                 <input
                   onClick={handleIsActive}
@@ -238,7 +238,7 @@ const EmployeeForm = ({
         {contextState.personId === profile.personId ? (
           <>
             <div className="employee-updates-container">
-              <div className="employee-updates-title">Informacion personal</div>
+              <div className="employee-updates-title">Información personal</div>
               <div className="employe-line-container">
                 <p className="employee-line" style={{ width: "97%" }}></p>
               </div>
@@ -247,7 +247,7 @@ const EmployeeForm = ({
               <div className="employee-info-container">
                 <i className="md md-Email mt-5" />
                 <MdEmail size="1.5em" color="gray" />
-                <p className="employee-upcoming-birthday">Seguro medico:</p>
+                <p className="employee-upcoming-birthday">Seguro medicó:</p>
                 <p className="employee-contact-email">
                   {profile.healthInsurance
                     ? profile.healthInsurance
@@ -275,7 +275,7 @@ const EmployeeForm = ({
         ) : (
           <>
             <div className="employee-updates-container">
-              <div className="employee-updates-title">Informacion</div>
+              <div className="employee-updates-title">Información</div>
               <div className="employe-line-container">
                 <p className="employee-line" style={{ width: "97%" }}></p>
               </div>
@@ -291,7 +291,7 @@ const EmployeeForm = ({
               </div>
               <div className="employee-info-container">
                 <p className="employee-upcoming-wishing">
-                  "Deseale a {firstNSplit} un feliz cumpleaños!"
+                  "Deséale a {firstNSplit} un feliz cumpleaños!"
                 </p>
               </div>
             </div>
@@ -313,19 +313,21 @@ const EmployeeForm = ({
               <div className="employee-info-container">
                 <i className="md md-phone-in-talk mt-5" />
                 <MdPhoneInTalk size="1.5em" color="gray" />
-                <p className="employee-upcoming-birthday">Extension:</p>
+                <p className="employee-upcoming-birthday">Extensión:</p>
                 <p className="employee-contact-email">
                   {profile.phoneNumber ? profile.phoneNumber : null}
                 </p>
               </div>
-              <div className="employee-info-container">
-                <i className="md md-smart-phone" />
-                <MdSmartphone size="1.5em" color="gray" />
-                <p className="employee-upcoming-birthday">Celular:</p>
-                <p className="employee-contact-email">
-                  {profile.celNumber ? profile.celNumber : null}
-                </p>
-              </div>
+              {contextState.userRole === 1 ? 
+                <div className="employee-info-container">
+                  <i className="md md-smart-phone" />
+                  <MdSmartphone size="1.5em" color="gray" />
+                  <p className="employee-upcoming-birthday">Celular:</p>
+                  <p className="employee-contact-email">
+                    {profile.celNumber ? profile.celNumber : null}
+                  </p>
+                </div>:
+              null}
             </div>
           </>
         )}

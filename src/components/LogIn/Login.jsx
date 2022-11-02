@@ -26,7 +26,7 @@ const Login = () => {
   };
 
   const inConstruction = () => {
-    history.push("./building");
+    history.push("./construccion");
   };
 
   //funcion para llamar un boton con el evento key
@@ -55,11 +55,11 @@ const Login = () => {
         contextMiddleware.newUserName(
           res.user.personId,
           profile.username.toUpperCase(),
-          res.user.UserRoles[0].roleId === 1 ? true : false,
+          res.user.UserRoles[0].roleId,
           (profile.isAuth = true)
         );
 
-        history.push("./home");
+        history.push("./inicio");
       })
       .catch((err) => {
         return console.log(err.status);

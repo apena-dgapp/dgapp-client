@@ -118,7 +118,7 @@ const Dashboard = () => {
     viewUpdate(item.postId)
       .then((res) => {
         history.push({
-          pathname: "./siglepost",
+          pathname: "./contenido",
           state: {
             id: item.postId,
             title: item.title,
@@ -137,19 +137,19 @@ const Dashboard = () => {
 
   const goToProfile = (id) => {
     history.push({
-      pathname: "./employeeprofile",
+      pathname: "./perfil",
       state: id,
     });
   };
   const employeeTree = () => {
-    history.push("./employeetree");
+    history.push("./organigrama");
   };
   const employeedirectory = () => {
-    history.push("./employeedirectory");
+    history.push("./directorio");
   };
 
   const allPost = () => {
-    history.push("./allpost");
+    history.push("./noticias");
   };
 
   return (

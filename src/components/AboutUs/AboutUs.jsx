@@ -8,6 +8,7 @@ import OrganizationChart from "./OrganizationChart";
 const AboutUs = (state) => {
   const [getModule, setGetModule] = useState("");
   const [getMargin, setGetMargin] = useState("");
+
   useEffect(() => {
     if (state.location.state) {
       if (state.location.state === "MISION, VISION Y VALORES") {
@@ -26,6 +27,9 @@ const AboutUs = (state) => {
         setGetModule(<OrganizationChart />);
         setGetMargin("47em");
       }
+    }else{
+      setGetModule(<StrategicMap />);
+      setGetMargin("30em");
     }
   }, [state.location.state]);
 
@@ -39,7 +43,7 @@ const AboutUs = (state) => {
         className="aboutus-header-container"
       >
         <div className="aboutus-header-title">
-          {state.location.state.toUpperCase()}
+          {state.location.state ? state.location.state.toUpperCase():"MISION, VISION Y VALORES"}
         </div>
       </div>
     </>

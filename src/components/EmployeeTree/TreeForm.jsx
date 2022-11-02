@@ -93,6 +93,7 @@ const renderForeignObjectNode = ({
   foreignObjectProps,
   classes,
 }) => (
+
   <>
     <foreignObject {...foreignObjectProps}>
       <Button
@@ -103,10 +104,11 @@ const renderForeignObjectNode = ({
         <img
           onClick={employeeProfile}
           id={nodeDatum.personId}
-          src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}
+          src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}    
           className={classes.photo}
           alt="..."
         />
+       
         {!nodeDatum.Departament ? (
           <div className={classes.departament}>No Definido</div>
         ) : (
@@ -156,9 +158,11 @@ export default function TreeForm({ persons }) {
   const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: -80 };
 
   history = useHistory();
+
   return (
     <div style={containerStyles} ref={containerRef}>
       <Tree
+        initialDepth={1}
         data={persons}
         translate={translate}
         nodeSize={nodeSize}

@@ -25,7 +25,7 @@ const Tree = () => {
       if (!unmounted) {
         seLoading(false);
       }
-    }, 1500);
+    }, 2500);
     return () => {
       unmounted = true;
     };
@@ -40,34 +40,7 @@ const Tree = () => {
       })
       .then((res) => {
         if (!unmounted) {
-          const userFalt = res.reduce((acc, el, i) => {
-            acc[el.personId] = i;
-            return acc;
-          }, {});
-
-          let root;
-          res.forEach((el) => {
-            if (el.reportsTo === null) {
-              root = el;
-              return;
-            }
-            const parentEl = res[userFalt[el.reportsTo]];
-            parentEl.children = [...(parentEl.children || []), el];
-          });
-
-          setPersons({
-            name:
-              root.firstName.split(" ")[0] + " " + root.lastName.split(" ")[0],
-            children: root.children,
-            Departament: {
-              name: root.Departament.name,
-            },
-            position: root.position,
-            photo: root.photo,
-            firstName: root.firstName.split(" ")[0],
-            lastName: root.lastName.split(" ")[0],
-            personId: root.personId,
-          });
+          setPersons(res);
         }
       })
       .catch((err) => {
@@ -81,6 +54,7 @@ const Tree = () => {
 
   return (
     <>
+
       {loading ? (
         <div className="spinner-container">
           <ClipLoader color="#113250" loading={loading} size={150} />

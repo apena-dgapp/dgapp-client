@@ -1,7 +1,7 @@
 import React from 'react'
 import Images from "../../common/images/index";
 
-const DashboardSection2 = ({employeedirectory}) => {
+const DashboardSection2 = ({employeedirectory, inConstruction}) => {
   return (
     <>
         <div className="dashboard-section-2">
@@ -12,7 +12,7 @@ const DashboardSection2 = ({employeedirectory}) => {
                 src={Images.induccion}
                 alt=""
               />
-              <p>INDUCCION</p>
+              <p onClick={inConstruction}>INDUCCIÓN</p>
             </div>
             <div onClick={employeedirectory} className="dashboard-section-btn">
               <img
@@ -28,7 +28,7 @@ const DashboardSection2 = ({employeedirectory}) => {
                 src={Images.capacitacion}
                 alt=""
               />
-              <p>CAPACITACION</p>
+              <p onClick={inConstruction}>CAPACITACIÓN</p>
             </div>
             <div className="dashboard-section-btn">
               <img
@@ -36,7 +36,7 @@ const DashboardSection2 = ({employeedirectory}) => {
                 src={Images.politicas}
                 alt=""
               />
-              <p>POLITICAS INSTITUCIONALES</p>
+              <p onClick={inConstruction}>POLÍTICAS INSTITUCIONALES</p>
             </div>
             <div className="dashboard-section-btn">
               <img
@@ -44,7 +44,7 @@ const DashboardSection2 = ({employeedirectory}) => {
                 src={Images.recursos}
                 alt=""
               />
-              <p>RECURSOS</p>
+              <p onClick={inConstruction}>RECURSOS</p>
             </div>
             <div className="dashboard-section-btn">
               <img
@@ -52,7 +52,7 @@ const DashboardSection2 = ({employeedirectory}) => {
                 src={Images.solicitudes}
                 alt=""
               />
-              <p>SOLICITUDES</p>
+              <p onClick={inConstruction}>SOLICITUDES</p>
             </div>
           </div>
         </div>

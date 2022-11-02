@@ -11,7 +11,7 @@ const AllPost = (props) => {
   const [pageLength, setPageLength] = useState("");
   const [loading, seLoading] = useState(false);
 
-  const category = props.location.state.category;
+  const category = props.location.state ? props.location.state.category : "Noticia";
 
   useEffect(() => {
     let unmounted = false;

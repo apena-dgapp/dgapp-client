@@ -43,14 +43,14 @@ const CreateEventsForm = ({
                       />
                     </div>
                     <div className="">
-                      <p className="createEvent-card-add-input-title">Salon</p>
+                      <p className="createEvent-card-add-input-title">Salón</p>
                         <select
                           name="room"
                           className="createEvent-card-add-input"
                           value={formData.room || ""}
                           onChange={handlerInputChange}
                         >
-                          <option disabled={true} value="">Seleccionar un salon</option>
+                          <option disabled={true} value="">Seleccionar un salón</option>
                           {options?.map(({ value, id }) => {
                             return <option key={id} value={value}>{value}</option>;
                           })}
@@ -126,7 +126,7 @@ const CreateEventsForm = ({
                   <div className="createEvent-card-add-form">
                     <div className="">
                       <p className="createEvent-card-add-input-title">
-                        Descripcion
+                        Descripción
                       </p>
 
                       <textarea
@@ -134,7 +134,7 @@ const CreateEventsForm = ({
                         onChange={handlerInputChange}
                         name="description"
                         type="text"
-                        placeholder="Escriba una breve descripcion del evento (Opcional)"
+                        placeholder="Escriba una breve descripción del evento (Opcional)"
                         className="createEvent-card-add-area"
                         maxLength={450}
                         value={formData.description}

@@ -26,7 +26,7 @@ const Header = () => {
     e.preventDefault();
 
     history.push({
-      pathname: "./aboutus",
+      pathname: "./nosotros",
       state: name,
     });
   };
@@ -36,7 +36,7 @@ const Header = () => {
   const employeeProfile = (e) => {
     const employeeId = e.currentTarget.id;
     history.push({
-      pathname: "./employee",
+      pathname: "./perfil",
       state: employeeId,
     });
   };
@@ -47,7 +47,7 @@ const Header = () => {
   // };
 
   const home = () => {
-    history.push("./home");
+    history.push("./inicio");
   };
 
   const logOut = () => {
@@ -64,15 +64,15 @@ const Header = () => {
   };
 
   const createPost = () => {
-    history.push("./newpost");
+    history.push("./crear-entrada");
   };
 
   const inConstruction = () => {
-    history.push("./building");
+    history.push("./construccion");
   };
   const allPost = () => {
     history.push({
-      pathname:"./allpost",
+      pathname:"./noticias",
       state:{
         category: "Noticia"
       }
@@ -80,14 +80,14 @@ const Header = () => {
   };
 
   const employeedirectory = () => {
-    history.push("./employeedirectory");
+    history.push("./directorio");
   };
   const employeeNew = () => {
-    history.push("./employeenew");
+    history.push("./nuevo-empleado");
   };
 
   const employeeTree = () => {
-    history.push("./employeetree");
+    history.push("./organigrama");
   };
 
   const training = () => {
@@ -95,11 +95,11 @@ const Header = () => {
   };
 
   const createEvents = () => {
-    history.push("./createevents");
+    history.push("./crear-evento");
   };
 
   const register = () => {
-    history.push("./register");
+    history.push("./registrar");
   };
 
   const foodOrder = () => {
@@ -155,25 +155,25 @@ const Header = () => {
     if (!unmounted) {
       location.pathname !== `${process.env.REACT_APP_RUTE}` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/home` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/siglepost` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/allpost` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/inicio` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/contenido` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/noticias` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/userregister` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/newpost` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/crear-entrada` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/employee` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/aboutus` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeetree` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeeedit` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeenew` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/nosotros` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/organigrama` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/editar-empleado` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/nuevo-empleado` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/docdynamic` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeeprofile` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/perfil` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/chat` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employeedirectory` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/directorio` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/training` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/createevents` &&
+      location.pathname !== `${process.env.REACT_APP_RUTE}/crear-evento` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/foodorder` &&
       location.pathname !== `${process.env.REACT_APP_RUTE}/ticket` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/register`
+      location.pathname !== `${process.env.REACT_APP_RUTE}/registrar`
         ? setIsHidden(true)
         : setIsHidden(false);
     }

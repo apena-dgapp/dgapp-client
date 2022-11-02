@@ -1,15 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Images from "../../common/images/index";
 import { MdEmail, MdPhoneInTalk, MdCircle, MdSmartphone } from "react-icons/md";
 import GlobalContext from "../../context/GlobalContext";
+import { getPhotos } from "../../api/person";
+
 const CardForm = (props) => {
   const [contextState] = useContext(GlobalContext);
+  const [photo, setPhoto] = useState([]);
+
+  const id =props.id;
+
+  useEffect(() => {
+
+    let unmounted = false;
+
+    if (!unmounted) {
+      getPhotos(id)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+          setPhoto(res);
+ 
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+    }
+
+    return () => {
+      unmounted = true;
+    };
+  }, [id]);
 
   return (
     <>
       <div className="emDirectory-card">
         <div className="emDirectory-card-cont">
-          {contextState.isAdmin === true ? (
+          {contextState.userRole === 1 ? (
             props.isActive ? (
               <div className="d-flex">
                 <p style={{ fontWeight: "bold", color: "green" }}>Activo</p>
@@ -34,7 +62,7 @@ const CardForm = (props) => {
           ) : null}
 
           <img
-            src={props.img ? props.img : Images.noImg}
+            src={photo?.photo ? photo?.photo : Images.noImg }
             className="emDirectory-card-img"
             alt="..."
             onClick={(e) => props.goToProfile(e, props.id)}
@@ -61,7 +89,8 @@ const CardForm = (props) => {
               {props.phone ? props.phone : "No definido!"}
             </p>
           </div>
-          <div className="mb-2">
+          {
+            contextState.userRole === 1 ? <div className="mb-2">
             <p className="emDirectory-card-text-contact">
               <i className="md md-smart-phone" />
               <MdSmartphone
@@ -71,7 +100,8 @@ const CardForm = (props) => {
               />
               {props.cel ? props.cel : "No definido!"}
             </p>
-          </div>
+            </div>:null
+          }  
           <div className="mb-2">
             <p className="emDirectory-card-text-contact">
               <i className="md md-Email" />
