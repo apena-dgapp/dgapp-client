@@ -11,7 +11,7 @@ const AboutUs = (state) => {
 
   useEffect(() => {
     if (state.location.state) {
-      if (state.location.state === "MISION, VISION Y VALORES") {
+      if (state.location.state === "MISIÓN, VISIÓN Y VALORES") {
         setGetModule(<StrategicMap />);
         setGetMargin("30em");
       } else if (state.location.state === "FUNCIONES") {

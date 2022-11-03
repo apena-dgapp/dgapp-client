@@ -52,7 +52,7 @@ const CarouselMain = ({arrayCarousel}) => {
       });
   };
   return (
-    arrayCarousel.length ? <AliceCarousel
+    arrayCarousel?.length ? <AliceCarousel
       // swipeScrollTolerance={5}
       autoPlay
       // autoPlayControls

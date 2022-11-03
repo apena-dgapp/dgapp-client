@@ -198,7 +198,7 @@ const Navbar = ({
                       <p onClick={employeeNew}>Nuevo Empleado</p>
                     </li>
                     <li>
-                      <p onClick={register}>Crear usuario</p>
+                      <p onClick={register}>Crear Usuario</p>
                     </li>
                   </>
                   : null}

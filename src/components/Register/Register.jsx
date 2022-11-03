@@ -16,8 +16,8 @@ const Register = () => {
   const [formData, setFormData] = useState({
     id: "",
     username: "",
-    password: "",
-    confirm:"",
+    // password: "",
+    // confirm:"",
     role: "",
   });
 
@@ -111,9 +111,9 @@ const Register = () => {
       }
     }
 
-    if (formData.password === "" || formData.password === undefined) {
-      return toast.error("Por favor escriba una contraseña");
-    }
+    // if (formData.password === "" || formData.password === undefined) {
+    //   return toast.error("Por favor escriba una contraseña");
+    // }
 
     if (formData.role === "" || formData.role === undefined) {
       return toast.error(
@@ -121,9 +121,9 @@ const Register = () => {
       );
     }
 
-    if (formData.password !== formData.confirm) {
-      return toast.error("Las contraseñas no coinciden");
-    }
+    // if (formData.password !== formData.confirm) {
+    //   return toast.error("Las contraseñas no coinciden");
+    // }
 
     existUsername(formData.username ? formData.username : userName)
       .then((res) => {
@@ -138,7 +138,7 @@ const Register = () => {
           singUp(
             formData.id,
             autoName ? userName : formData.username,
-            formData.password,
+            "000",
             contextState.userName,
             formData.role
           )
@@ -146,7 +146,6 @@ const Register = () => {
               return res.json();
             })
             .then((res) => {
-              console.log(res.status);
               clearData();
               return toast.success(
                 "El nuevo empleado fue registrado Exitosamente!"
@@ -167,7 +166,7 @@ const Register = () => {
     setFormData({
       id: "",
       username: "",
-      password: "",
+      // password: "",
       role: "Seleccionar privilegio",
     });
     setUserName("");

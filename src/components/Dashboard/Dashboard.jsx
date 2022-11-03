@@ -206,7 +206,6 @@ const Dashboard = () => {
   //   };
   // }, [arrayCarousel]);
 
-
   return (
     <>
       {loading ? (

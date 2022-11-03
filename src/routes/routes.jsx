@@ -65,73 +65,18 @@ const Routes = () => {
             path={`${process.env.REACT_APP_RUTE}/noticias`}
             component={contextState.token ? allPost : Login}
           />
-
-         {contextState.userRole === 1  ?
-          <Route
-            path={`${process.env.REACT_APP_RUTE}/registrar`}
-            component={contextState.token ? Register : Login}
-          />:<Route
-          exact
-          path={`${process.env.REACT_APP_RUTE}*`}
-          component={Page404}
-          />}
-
-          {contextState.userRole === 1 || contextState.userRole === 3  ?
-          <Route
-            path={`${process.env.REACT_APP_RUTE}/crear-entrada`}
-            component={contextState.token ? NewPost : Login}
-          />:<Route
-          exact
-          path={`${process.env.REACT_APP_RUTE}*`}
-          component={Page404}
-          />}
           
-          {/* <Route
-            path={`${process.env.REACT_APP_RUTE}/employee`}
-            component={contextState.token ? Employee : Login}
-          /> */}
           <Route
             path={`${process.env.REACT_APP_RUTE}/nosotros`}
             component={contextState.token ? AboutUs : Login}
           />
 
-          {contextState.userRole === 1 || contextState.userRole === 3  ?
-          <Route
-            path={`${process.env.REACT_APP_RUTE}/crear-evento`}
-            component={contextState.token ? CreateEvents : Login}
-          />:<Route
-          exact
-          path={`${process.env.REACT_APP_RUTE}*`}
-          component={Page404}
-          />}
-
-          {/* <Route path={`${process.env.REACT_APP_RUTE}/employeechart`} component={EmployeeChart} /> */}
           <Route
             path={`${process.env.REACT_APP_RUTE}/organigrama`}
             component={contextState.token ? EmployeeTree : Login}
           />
-
-          {contextState.userRole === 1  ?
-          <Route
-            path={`${process.env.REACT_APP_RUTE}/editar-empleado`}
-            component={contextState.token ? EmployeeEdit : Login}
-          />:<Route
-          exact
-          path={`${process.env.REACT_APP_RUTE}*`}
-          component={Page404}
-          />}
-
-          {contextState.userRole === 1 ?
-          <Route
-            path={`${process.env.REACT_APP_RUTE}/nuevo-empleado`}
-            component={contextState.token ? EmployeeNew : Login}
-          />:<Route
-          exact
-          path={`${process.env.REACT_APP_RUTE}*`}
-          component={Page404}
-          />}
-
-          <Route path={`${process.env.REACT_APP_RUTE}/pdf`} component={FilePdf} />
+               <Route path={`${process.env.REACT_APP_RUTE}/pdf`} component={FilePdf} />
+          
           <Route
             path={`${process.env.REACT_APP_RUTE}/construccion`}
             component={contextState.token ? Building : Login}
@@ -156,6 +101,67 @@ const Routes = () => {
             path={`${process.env.REACT_APP_RUTE}/ticket`}
             component={contextState.token ? TicketSystem : Login}
           />
+
+         {
+            contextState.userRole === 1  ?
+              <Route
+                path={`${process.env.REACT_APP_RUTE}/registrar`}
+                component={contextState.token ? Register : Login}
+              />:<Route
+              exact
+              path={`${process.env.REACT_APP_RUTE}*`}
+              component={Page404}
+            />
+          }
+
+          {
+            contextState.userRole === 1 || contextState.userRole === 3  ?
+              <Route
+                path={`${process.env.REACT_APP_RUTE}/crear-entrada`}
+                component={contextState.token ? NewPost : Login}
+              />:<Route
+              exact
+              path={`${process.env.REACT_APP_RUTE}*`}
+              component={Page404}
+            />
+          }
+
+          {
+            contextState.userRole === 1 || contextState.userRole === 3  ?
+              <Route
+                path={`${process.env.REACT_APP_RUTE}/crear-evento`}
+                component={contextState.token ? CreateEvents : Login}
+              />:<Route
+              exact
+              path={`${process.env.REACT_APP_RUTE}*`}
+              component={Page404}
+            />
+          }
+
+          {
+            contextState.userRole === 1  ?
+              <Route
+                path={`${process.env.REACT_APP_RUTE}/editar-empleado`}
+                component={contextState.token ? EmployeeEdit : Login}
+              />:<Route
+              exact
+              path={`${process.env.REACT_APP_RUTE}*`}
+              component={Page404}
+              />
+          }
+
+          {
+            contextState.userRole === 1 ?
+              <Route
+                path={`${process.env.REACT_APP_RUTE}/nuevo-empleado`}
+                component={contextState.token ? EmployeeNew : Login}
+              />:<Route
+              exact
+              path={`${process.env.REACT_APP_RUTE}*`}
+              component={Page404}
+              />
+          }
+
           <Route
             exact
             path={`${process.env.REACT_APP_RUTE}*`}

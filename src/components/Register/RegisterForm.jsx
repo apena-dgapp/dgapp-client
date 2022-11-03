@@ -87,7 +87,7 @@ const RegisterForm = ({
                 disabled={autoName ? true : false}
               />
             </div>
-            <div className="mt-1">
+            {/* <div className="mt-1">
               <p className="edit-input-title">Contraseña</p>
               <input
                 id="password"
@@ -112,7 +112,7 @@ const RegisterForm = ({
                 value={formData.confirm || ""}
                 disabled={exist ? true : false}
               />
-            </div>
+            </div> */}
             <div className="mt-1">
               <p className="edit-input-title">Privilegio</p>
               <select
