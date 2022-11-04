@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TrainingForm from "./TrainingForm";
-import { getAllPersons } from "../../api/person";
+import { getCourses } from "../../api/course";
 import { getAlldepartament } from "../../api/department";
 import { useHistory } from "react-router-dom";
 
@@ -30,7 +30,7 @@ const Training = () => {
         console.error(err.status);
       });
 
-    getAllPersons()
+      getCourses()
       .then((res) => {
         return res.json();
       })

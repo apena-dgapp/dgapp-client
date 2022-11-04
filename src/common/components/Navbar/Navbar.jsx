@@ -6,7 +6,7 @@ import { getOnePerson } from "../../../api/person";
 import { apiOneFile } from "../../../api/files";
 // import io from "socket.io-client";
 
-const Header = () => {
+const Navbar = () => {
   const history = useHistory();
   const location = useLocation();
   const [isHidden, setIsHidden] = useState(false);
@@ -210,4 +210,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

@@ -5,7 +5,7 @@ import { ImTree } from "react-icons/im";
 import { MdLogout, MdKeyboardArrowDown } from "react-icons/md";
 import { FaUserCog, FaUsers } from "react-icons/fa";
 
-const Navbar = ({
+const NavbarForm = ({
   logOut,
   createPost,
   person,
@@ -306,4 +306,4 @@ const Navbar = ({
   );
 };
 
-export default Navbar;
+export default NavbarForm;

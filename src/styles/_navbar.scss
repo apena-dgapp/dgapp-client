@@ -6,16 +6,27 @@
     // background-color: red;
 }
 
+.menu_items_show {
+    display: none;
+    // margin-left: 2.8rem;
+    // width: 45%;
+    // background-color: red;
+}
+
+
 nav {
     position: fixed;
     z-index: 3;
     top: 0;
+
+    figure {
+        margin: 0;
+    }
 }
 
 nav ul {
     padding: 0;
     margin: 0;
-    background-color: none;
 }
 
 nav ul li {
@@ -24,7 +35,7 @@ nav ul li {
     position: relative;
     list-style: none;
     display: inline-block;
-    margin-bottom: 1rem;
+    // margin-bottom: 1rem;
 }
 
 nav ul li p {
@@ -192,24 +203,12 @@ nav ul li ul li:hover::before {
     font-weight: bold;
 }
 
-.flag-us {
-    width: 2.2rem;
-    margin-right: 2.3rem;
-    cursor: pointer;
-}
-
-.flag-spain {
-    width: 2.2rem;
-    margin-right: 2.8rem;
-    cursor: pointer;
-}
-
 .bar_menu {
     background-color: white;
     height: 10.5rem;
     width: 100%;
     display: grid;
-    grid-template-columns: 20% 60% 60%;
+    grid-template-columns: 20% 60% 20%;
     // justify-content: center;
     align-items: center;
     box-shadow: 0 8px 5px rgba(51, 77, 131, 0.205);
@@ -249,8 +248,8 @@ nav ul li ul li:hover::before {
 }
 
 .btn_menu {
-    cursor: pointer;
     display: none;
+    cursor: pointer;
 }
 
 .btn_menu-img {
@@ -319,3 +318,269 @@ nav ul li ul li:hover::before {
     top: -0.5rem;
     width: 10rem;
 }
+
+
+//MEDIAS QUERIES
+
+//Phone X
+@media screen and (max-width:420px) {
+    .bar_menu {
+        height: 5rem;
+        width: 100%;
+        display: flex;
+        grid-template-columns: none;
+        align-items: center;
+        text-align: center;
+    }
+
+    .nav-senction-logo {
+        // background-color: blue;
+        display: flex;
+        // width: 8rem;
+        justify-content: center;
+    }
+
+    .logo_dgapp {
+        width: 6.5rem;
+    }
+
+    .nav-senction-items {
+        // background-color: red;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        // margin-top: 10rem;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .menu_items {
+        display: none;
+        flex-direction: column;
+        flex-wrap: none;
+        margin-top: 5rem;
+        background-color: #113250;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+    }
+
+    .menu_items_show {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: none;
+        margin-top: 5rem;
+        background-color: #113250;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+    }
+
+    .nav-senction-user {
+        // background-color: blue;
+        display: flex;
+        // width: 5rem;
+        justify-content: center !important;
+    }
+
+    .btn_menu {
+        display: flex;
+    }
+
+    .btn_menu-img {
+        margin-right: 0;
+    }
+
+    nav ul li p {
+        color: white;
+        font-size: 2rem;
+        letter-spacing: 2px;
+        margin-top: 2rem;
+    }
+
+    nav ul li::before {
+        display: none;
+    }
+
+    nav ul li:hover>ul {
+        display: none;
+    }
+
+    .icondown {
+        display: none;
+    }
+
+    .btn_menu {
+        cursor: pointer;
+        display: block;
+    }
+
+    .nav-senction-user {
+        figure {
+            display: none;
+        }
+    }
+
+
+}
+
+//Phone 12/13 Pro Mas
+@media screen and (min-width: 421px) and (max-width: 720px) {
+    .bar_menu {
+        height: 5rem;
+        width: 100%;
+        display: flex;
+        grid-template-columns: none;
+        align-items: center;
+        text-align: center;
+    }
+
+    .nav-senction-logo {
+        // background-color: blue;
+        display: flex;
+        // width: 8rem;
+        justify-content: center;
+    }
+
+    .logo_dgapp {
+        width: 6.5rem;
+    }
+
+    .nav-senction-items {
+        // background-color: red;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        // margin-top: 10rem;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .menu_items {
+        display: none;
+        flex-direction: column;
+        flex-wrap: none;
+        margin-top: 5rem;
+        background-color: #113250;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+    }
+
+    .menu_items_show {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: none;
+        margin-top: 5rem;
+        background-color: #113250;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+    }
+
+    .nav-senction-user {
+        // background-color: blue;
+        display: flex;
+        // width: 5rem;
+        justify-content: center !important;
+    }
+
+    .btn_menu {
+        display: flex;
+    }
+
+    .btn_menu-img {
+        margin-right: 0;
+    }
+
+    nav ul li p {
+        color: white;
+        font-size: 2rem;
+        letter-spacing: 2px;
+        margin-top: 2rem;
+    }
+
+    nav ul li::before {
+        display: none;
+    }
+
+    nav ul li:hover>ul {
+        display: none;
+    }
+
+    .icondown {
+        display: none;
+    }
+
+    .btn_menu {
+        cursor: pointer;
+        display: block;
+    }
+
+    .nav-senction-user {
+        figure {
+            display: none;
+        }
+    }
+}
+
+//Ipad
+@media screen and (min-width: 721px) and (max-width: 1020px) {
+    .bar_menu {
+        height: 8.5rem;
+        grid-template-columns: 18% 82%;
+        box-shadow: 0 8px 5px rgba(51, 77, 131, 0.205);
+    }
+
+    // .nav-senction-items {
+    //     margin-left: 0.5rem;
+    // }
+
+    .logo_dgapp {
+        width: 8rem;
+    }
+
+    .nav-senction-items {
+        margin-left: 0;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-senction-user {
+        display: none;
+    }
+
+    // .container-menu-right {
+    //     flex-direction: column-reverse;
+    // }
+
+    // .nav-user-img {
+    //     width: 4rem;
+    //     height: 4rem;
+    //     border-radius: 50%;
+    //     object-fit: cover;
+    //     border: 0.2rem solid #75AAD3;
+    //     cursor: pointer;
+    // }
+
+    // .nav-user-name {
+    //     font-size: 0.8rem;
+    // }
+
+    // .nav-user-img {
+    //     width: 3rem;
+    //     height: 3rem;
+    // }
+
+    nav ul li p {
+        font-size: 0.9rem;
+    }
+
+    .class-list {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+}
+
+//laptop generic
+@media screen and (min-width: 421px) and (max-width: 720px) {}
