@@ -319,6 +319,10 @@ nav ul li ul li:hover::before {
     width: 10rem;
 }
 
+.admin-hiden {
+    display: list-item;
+}
+
 
 //MEDIAS QUERIES
 
@@ -421,7 +425,9 @@ nav ul li ul li:hover::before {
         }
     }
 
-
+    .admin-hiden {
+        display: none;
+    }
 }
 
 //Phone 12/13 Pro Mas
@@ -522,13 +528,17 @@ nav ul li ul li:hover::before {
             display: none;
         }
     }
+
+    .admin-hiden {
+        display: none;
+    }
 }
 
 //Ipad
 @media screen and (min-width: 721px) and (max-width: 1020px) {
     .bar_menu {
-        height: 8.5rem;
-        grid-template-columns: 18% 82%;
+        height: 6.5rem;
+        grid-template-columns: 16% 65% 19%;
         box-shadow: 0 8px 5px rgba(51, 77, 131, 0.205);
     }
 
@@ -537,7 +547,7 @@ nav ul li ul li:hover::before {
     // }
 
     .logo_dgapp {
-        width: 8rem;
+        width: 6.5rem;
     }
 
     .nav-senction-items {
@@ -546,26 +556,28 @@ nav ul li ul li:hover::before {
         justify-content: center;
     }
 
-    .nav-senction-user {
-        display: none;
-    }
+    // .nav-senction-user {
+    //     display: none;
+    // }
 
     // .container-menu-right {
     //     flex-direction: column-reverse;
     // }
 
-    // .nav-user-img {
-    //     width: 4rem;
-    //     height: 4rem;
-    //     border-radius: 50%;
-    //     object-fit: cover;
-    //     border: 0.2rem solid #75AAD3;
-    //     cursor: pointer;
-    // }
+    .nav-user-img {
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 0.15rem solid #75AAD3;
+    }
 
-    // .nav-user-name {
-    //     font-size: 0.8rem;
-    // }
+    .nav-user-name {
+        font-size: 0.8rem;
+    }
+
+    img,
+    svg {
+        width: 1rem;
+    }
 
     // .nav-user-img {
     //     width: 3rem;
@@ -573,14 +585,47 @@ nav ul li ul li:hover::before {
     // }
 
     nav ul li p {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .class-list {
         margin-left: 0.5rem;
         margin-right: 0.5rem;
     }
+
+    .admin-hiden {
+        display: none;
+    }
+
 }
 
 //laptop generic
-@media screen and (min-width: 421px) and (max-width: 720px) {}
+@media screen and (min-width: 1021px) and (max-width: 1320px) {
+    .bar_menu {
+        height: 5.5;
+        grid-template-columns: 16% 67% 17%;
+    }
+
+    nav ul li p {
+        font-size: 0.9rem;
+    }
+
+    .nav-senction-items {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+    .logo_dgapp {
+        width: 8rem;
+    }
+
+    .nav-user-img {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .nav-user-name {
+        font-size: 0.8rem;
+    }
+
+}

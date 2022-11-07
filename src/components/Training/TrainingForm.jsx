@@ -6,7 +6,7 @@ import GlobalContext from "../../context/GlobalContext";
 import Images from "../../common/images/index";
 
 const TrainingForm = ({
-  filteredArryPersons,
+  filterArrayCourses,
   nextPage,
   backPage,
   onSearchChange,
@@ -91,40 +91,20 @@ const TrainingForm = ({
       </div>
       <div className="training-Container">
         <div className="training-grid-container">
-          {filteredArryPersons().map((person) => {
-            if (contextState.userRole === 1) {
-              return person.isActive ? (
+          {filterArrayCourses().map((course, index) => {
+              return  (
                 <TrainingCard
-                  key={person.personId}
-                  id={person.personId}
-                  name="Reglas y Normas"
-                  img={Images.curso}
+                  key={index}
+                  id={course.id}
+                  title={course.title}
+                  img={course.image}
                   position="Is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley"
-                  departament="Raiza Batista"
-                  email={person.email.toLowerCase()}
-                  phone="40 Horas"
+                  description={course.description}
+                  madeby={course.madeby}
+                  duration={course.duration}
                   cel="Obligatorio"
-                  goToProfile={goToProfile}
-                  isActive={person.isActive}
                 />
-              ) : null;
-            } else {
-              return (
-                <TrainingCard
-                  key={person.personId}
-                  id={person.personId}
-                  name={person.fullName}
-                  img={Images.curso}
-                  position={person.position}
-                  departament={person.Departament.name}
-                  email={person.email.toLowerCase()}
-                  phone={person.phoneNumber}
-                  cel={person.celNumber}
-                  goToProfile={goToProfile}
-                  isActive={person.isActive}
-                />
-              );
-            }
+              ) 
           })}
         </div>
       </div>

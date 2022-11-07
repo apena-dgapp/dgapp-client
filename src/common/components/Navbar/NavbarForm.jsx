@@ -18,7 +18,7 @@ const NavbarForm = ({
   employeeTree,
   isHidden,
   goToFile,
-  // training,
+  training,
   register,
   createEvents,
   ticketSystem,
@@ -172,11 +172,11 @@ const NavbarForm = ({
             </li>
 
             <li className="class-list">
-              {/* <p onClick={training}>Entrenamiento</p> */}
-              <p onClick={inConstruction}>Entrenamiento</p>
+              <p onClick={training}>Entrenamiento</p>
+              {/* <p onClick={inConstruction}>Entrenamiento</p> */}
             </li>
             {contextState.userRole === 1 || contextState.userRole === 3  ? (
-              <li className="class-list">
+              <li className="class-list admin-hiden">
                 <p>
                   Administración
                   <img className="icondown" src={Images.icondown} alt="" />

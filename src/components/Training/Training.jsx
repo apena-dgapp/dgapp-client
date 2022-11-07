@@ -5,7 +5,7 @@ import { getAlldepartament } from "../../api/department";
 import { useHistory } from "react-router-dom";
 
 const Training = () => {
-  const [arrayAllPersons, setArrayAllPersons] = useState([]);
+  const [courses, setCourses] = useState([]);
   const [arrayDepartament, setArrayDepartament] = useState();
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState("");
@@ -36,7 +36,7 @@ const Training = () => {
       })
       .then((res) => {
         if (!unmounted) {
-          setArrayAllPersons((arrayAllPersons) => [...arrayAllPersons, ...res]);
+          setCourses((courses) => [...courses, ...res]);
           setPageLength(res.length);
         }
       })
@@ -55,18 +55,18 @@ const Training = () => {
     }
   };
 
-  const filteredArryPersons = () => {
+  const filterArrayCourses = () => {
     if (searchDep === "todos" || searchDep === "" || searchDep === undefined) {
       if (search.length === 0)
-        return arrayAllPersons.slice(currentPage, currentPage + 8);
-      const filtered = arrayAllPersons.filter((persons) =>
-        persons.fullName.toLowerCase().includes(search)
+        return courses.slice(currentPage, currentPage + 8);
+      const filtered = courses.filter((course) =>
+        course.title.toLowerCase().includes(search)
       );
       return filtered.slice(currentPage, currentPage + 8);
     } else {
       let filterDeparatment = [];
-      for (let i = 0; i < arrayAllPersons.length; i++) {
-        var currentNumber = arrayAllPersons[i];
+      for (let i = 0; i < courses.length; i++) {
+        var currentNumber = courses[i];
         if (currentNumber.Departament.name === searchDep) {
           filterDeparatment.push(currentNumber);
         }
@@ -83,7 +83,7 @@ const Training = () => {
   const nextPage = () => {
     setPage(page + 8);
     if (
-      arrayAllPersons.filter((persons) =>
+      courses.filter((persons) =>
         persons.fullName.toLowerCase().includes(search)
       ).length >
       currentPage + 8
@@ -115,7 +115,7 @@ const Training = () => {
   return (
     <>
       <TrainingForm
-        filteredArryPersons={filteredArryPersons}
+        filterArrayCourses={filterArrayCourses}
         nextPage={nextPage}
         backPage={backPage}
         onSearchChange={onSearchChange}

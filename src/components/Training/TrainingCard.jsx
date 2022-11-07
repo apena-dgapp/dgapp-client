@@ -7,6 +7,8 @@ import { BsClockFill } from "react-icons/bs";
 const TrainingCard = (props) => {
   // const [contextState] = useContext(GlobalContext);
 
+  console.log(props)
+
   return (
     <>
       <div className="training-card">
@@ -22,10 +24,10 @@ const TrainingCard = (props) => {
               {props.departament ? props.departament : "No definido!"}
             </p>
             <h5 className="emDirectory-card-name">
-              {props.name ? props.name : "No definido!"}
+              {props.title ? props.title : "No definido!"}
             </h5>
             <p className="training-card-position">
-              {props.position ? props.position : "No definido!"}
+              {props.description ? props.description : "No definido!"}
             </p>
           </div>
           <div className="mb-2">
@@ -36,7 +38,7 @@ const TrainingCard = (props) => {
                 size="1.5em"
                 color="darkcyan"
               />
-              {props.phone ? props.phone : "No definido!"}
+              {props.duration ? props.duration : "No definido!"}
             </p>
           </div>
 
