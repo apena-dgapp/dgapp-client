@@ -48,13 +48,14 @@ nav ul li p {
     height: 100%;
     margin-bottom: 0;
     cursor: pointer;
+
 }
 
 nav ul li p:hover {
     // background: #2e4957;
     color: #0B2C4B;
     // font-weight: bold;
-    margin-bottom: 0;
+    // margin-bottom: 0;
     cursor: pointer;
 }
 
@@ -64,7 +65,7 @@ nav ul li a {
     text-decoration: none;
     font-size: 1rem;
     height: 100%;
-    margin-bottom: 0;
+    // margin-bottom: 0;
     cursor: pointer;
 }
 
@@ -72,7 +73,7 @@ nav ul ul a:hover {
     // background: #2e4957;
     color: #0B2C4B;
     // font-weight: bold;
-    margin-bottom: 0;
+    // margin-bottom: 0;
     cursor: pointer;
 }
 
@@ -85,7 +86,7 @@ nav ul ul p:hover {
     // background: #2e4957;
     color: #0B2C4B;
     // font-weight: bold;
-    margin-bottom: 0;
+    // margin-bottom: 0;
     cursor: pointer;
 }
 
@@ -101,6 +102,7 @@ nav ul li:hover>ul {
     // background-color: rgba(20, 30, 97, .96);
     background-color: white;
     // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    line-height: 2rem;
 }
 
 nav ul ul li {
@@ -123,6 +125,8 @@ nav ul li::before {
 
 .dropdown-menu {
     width: 15rem;
+
+    // line-height: 3rem;
     // height: 25rem;
     // overflow-x: hidden;
     // overflow-y: auto;
@@ -399,7 +403,12 @@ nav ul li ul li:hover::before {
         color: white;
         font-size: 2rem;
         letter-spacing: 2px;
-        margin-top: 2rem;
+        margin-top: 1rem;
+
+        // height: 4.5rem;
+        &:hover {
+            color: #75AAD3;
+        }
     }
 
     nav ul li::before {
@@ -407,12 +416,25 @@ nav ul li ul li:hover::before {
     }
 
     nav ul li:hover>ul {
-        display: none;
+        // display: none;
+        width: 100% !important;
+        height: 35rem !important;
+        background-color: #113250;
+        z-index: 5;
+        margin-top: -1rem;
+
+
+        p {
+            font-size: 1rem;
+            line-height: 0.5rem;
+            margin-top: 1rem;
+            height: 2rem;
+        }
     }
 
-    .icondown {
-        display: none;
-    }
+    // .icondown {
+    //     display: none;
+    // }
 
     .btn_menu {
         cursor: pointer;
@@ -504,6 +526,10 @@ nav ul li ul li:hover::before {
         font-size: 2rem;
         letter-spacing: 2px;
         margin-top: 2rem;
+
+        &:hover {
+            color: #75AAD3;
+        }
     }
 
     nav ul li::before {

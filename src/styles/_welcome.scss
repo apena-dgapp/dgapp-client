@@ -74,3 +74,86 @@
     backdrop-filter: blur(2px);
     z-index: 4;
 }
+
+//MEDIAS QUERIES
+
+//Phone X
+@media screen and (max-width:420px) {
+
+    .welcome-window {
+        width: 22rem;
+        height: 15.5rem;
+    }
+
+    .welcome-modal-title {
+        font-size: 1rem;
+    }
+
+    .welcome-input-title {
+        font-size: 0.8rem;
+        width: 18rem;
+    }
+
+    .welcome-modal-input {
+        border-radius: 0.5rem;
+        width: 18rem;
+        height: 1.8rem;
+        padding-left: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .btn-apply-newpost {
+        width: 8rem;
+        height: 2rem;
+        font-size: 16px;
+    }
+
+    .btn-cancel-newpost {
+        width: 8rem;
+        height: 2rem;
+        font-size: 16px;
+    }
+}
+
+//Phone 12/13 Pro Mas
+@media screen and (min-width: 421px) and (max-width: 720px) {
+    .welcome-window {
+        width: 25rem;
+        height: 16.5rem;
+    }
+
+    .welcome-modal-title {
+        font-size: 1.2rem;
+    }
+
+    .welcome-input-title {
+        font-size: 0.9rem;
+        width: 19rem;
+    }
+
+    .welcome-modal-input {
+        border-radius: 0.5rem;
+        width: 19rem;
+        height: 1.9rem;
+        padding-left: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-apply-newpost {
+        width: 8.3rem;
+        height: 2.3rem;
+        font-size: 18px;
+    }
+
+    .btn-cancel-newpost {
+        width: 8.3rem;
+        height: 2.3rem;
+        font-size: 18px;
+    }
+}
+
+//Ipad
+@media screen and (min-width: 721px) and (max-width: 1020px) {}
+
+//laptop generic
+@media screen and (min-width: 1021px) and (max-width: 1320px) {}

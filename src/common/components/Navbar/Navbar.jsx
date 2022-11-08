@@ -10,6 +10,12 @@ const Navbar = () => {
   const history = useHistory();
   const location = useLocation();
   const [isHidden, setIsHidden] = useState(false);
+  const [active, setActive] = useState("menu_items");
+  const navToggle = () => {
+    active === "menu_items"
+      ? setActive("menu_items_show")
+      : setActive("menu_items");
+  };
 
   //InitialState - ContexState
   const [contextState, , contextMiddleware] = useContext(GlobalContext);
@@ -24,6 +30,10 @@ const Navbar = () => {
 
   const aboutUSChange = (e, name) => {
     e.preventDefault();
+
+    if(active === "menu_items_show"){
+      setActive("menu_items");
+    }
     
     history.push({
       pathname: "./nosotros",
@@ -47,6 +57,11 @@ const Navbar = () => {
   // };
 
   const home = () => {
+
+    if(active === "menu_items_show"){
+      setActive("menu_items");
+    }
+
     history.push("./inicio");
   };
 
@@ -91,6 +106,11 @@ const Navbar = () => {
   };
 
   const training = () => {
+
+    if(active === "menu_items_show"){
+      setActive("menu_items");
+    }
+    
     history.push("./training");
   };
 
@@ -205,6 +225,8 @@ const Navbar = () => {
         foodOrder={foodOrder}
         ticketSystem={ticketSystem}
         aboutUSChange={aboutUSChange}
+        active={active}
+        navToggle={navToggle}
       />
     </>
   );

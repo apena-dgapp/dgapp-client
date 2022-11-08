@@ -378,6 +378,7 @@
 .director-img-container {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -403,3 +404,86 @@
   margin-top: 3.6rem;
   text-align: justify;
 }
+
+//MEDIAS QUERIES
+
+//Phone X
+@media screen and (max-width:420px) {
+  .aboutus-card {
+    width: 90%;
+    margin-top: 11em;
+  }
+
+  .aboutus-header-title {
+    padding-top: 6.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .aboutus-header-container {
+    height: 62em;
+    margin-bottom: 175rem !important;
+  }
+
+  .director-container-grid {
+    display: flex;
+    grid-template-columns: none;
+    flex-direction: column;
+  }
+
+  .director-img {
+    width: 20rem;
+    margin-top: 0.5rem;
+  }
+
+  .director-content {
+    width: 100%;
+    margin-top: 2rem;
+    text-align: justify;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .chart {
+    width: 100%;
+  }
+}
+
+//Phone 12/13 Pro Mas
+@media screen and (min-width: 421px) and (max-width: 720px) {
+  .aboutus-card {
+    width: 90%;
+    margin-top: 12em;
+  }
+
+  .aboutus-header-title {
+    padding-top: 6.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .aboutus-header-container {
+    height: 52em;
+    margin-bottom: 155rem !important;
+  }
+}
+
+//Ipad
+@media screen and (min-width: 721px) and (max-width: 1020px) {
+
+  .aboutus-card {
+    margin-top: 15em;
+  }
+
+  .aboutus-header-title {
+    padding-top: 8.5rem;
+  }
+
+  .aboutus-header-container {
+    height: 40em;
+    margin-bottom: 99rem !important;
+  }
+}
+
+//laptop generic
+@media screen and (min-width: 1021px) and (max-width: 1320px) {}

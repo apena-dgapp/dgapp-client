@@ -13,19 +13,19 @@ const AboutUs = (state) => {
     if (state.location.state) {
       if (state.location.state === "MISIÓN, VISIÓN Y VALORES") {
         setGetModule(<StrategicMap />);
-        setGetMargin("30em");
+        setGetMargin("30rem");
       } else if (state.location.state === "FUNCIONES") {
         setGetModule(<Functions />);
-        setGetMargin("77em");
+        setGetMargin("77rem");
       } else if (state.location.state === "MARCO INSTITUCIONAL") {
         setGetModule(<InstitutionalFramework />);
-        setGetMargin("35em");
+        setGetMargin("35rem");
       } else if (state.location.state === "DIRECTOR GENERAL") {
         setGetModule(<Director />);
-        setGetMargin("28em");
+        setGetMargin("28rem");
       } else if (state.location.state === "ORGANIGRAMA") {
         setGetModule(<OrganizationChart />);
-        setGetMargin("47em");
+        setGetMargin("47rem");
       }
     }else{
       setGetModule(<StrategicMap />);

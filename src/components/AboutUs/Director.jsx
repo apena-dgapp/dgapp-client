@@ -8,6 +8,9 @@ function Director() {
         <div className="director-container-grid">
           <div className="director-img-container">
             <img className="director-img" src={Images.director} alt="" />
+            <div className="director-img-container">
+              <p className="director-name">SIGMUND FREUND</p>
+            </div>
           </div>
           <div className="director-content-conatiner">
             <div className="director-content">
@@ -26,9 +29,6 @@ function Director() {
               de grado y postgrado y ocupa el cargo de director legal del
               Partido Revolucionario Moderno (PRM).
             </div>
-          </div>
-          <div className="director-img-container">
-            <p className="director-name">SIGMUND FREUND</p>
           </div>
         </div>
       </div>

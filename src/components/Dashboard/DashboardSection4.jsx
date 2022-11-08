@@ -13,7 +13,7 @@ const DashboardSection4 = ({  birthday, events, goToProfile}) => {
             <div className="dashboard-section-4-birhtday">
             <div className="dashboard-section-4-header">
             <img
-                className="dashboard-section-3-img-ad"
+                className="dashboard-section-4-img-birhtday"
                 src={Images.birth}
                 alt=""
             />
@@ -62,7 +62,7 @@ const DashboardSection4 = ({  birthday, events, goToProfile}) => {
         <div className="dashboard-section-4-birhtday">
             <div className="dashboard-section-4-header">
             <img
-                className="dashboard-section-3-img-ad"
+                className="dashboard-section-4-img-birhtday"
                 src={Images.calendar}
                 alt=""
             />

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import Images from "../../images";
 import GlobalContext from "../../../context/GlobalContext";
 import { ImTree } from "react-icons/im";
@@ -23,15 +23,11 @@ const NavbarForm = ({
   createEvents,
   ticketSystem,
   // foodOrder,
-  aboutUSChange
+  aboutUSChange,
+  active,
+  navToggle
 }) => {
   const [contextState] = useContext(GlobalContext);
-  const [active, setActive] = useState("menu_items");
-  const navToggle = () => {
-    active === "menu_items"
-      ? setActive("menu_items_show")
-      : setActive("menu_items");
-  };
 
   return (
     <>
@@ -54,10 +50,10 @@ const NavbarForm = ({
             </li>
 
             <li className="class-list">
-              <p>
-                Nosotros
-                <img className="icondown" src={Images.icondown} alt="" />
-              </p>
+                <p>
+                  Nosotros
+                  <img className="icondown" src={Images.icondown} alt="" />
+                </p>
               <ul style={{ width: "11rem" }}>
                 <li>
                   <p onClick={(e) => aboutUSChange(e, "MISIÓN, VISIÓN Y VALORES")}>Misión, Visión y Valores</p>
@@ -74,7 +70,6 @@ const NavbarForm = ({
                 <li>
                   <p  onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}>Organigrama</p>
                 </li>
-              
               </ul>
             </li>
 

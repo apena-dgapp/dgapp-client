@@ -1,4 +1,5 @@
 import React from "react";
+import Images from "../../common/images";
 
 const InstitutionalFramework = () => {
   return (
@@ -18,44 +19,12 @@ const InstitutionalFramework = () => {
         </div>
       </div>
 
-      <div className="container">
-        <div className="level-1 rectangle">DGAPP</div>
-        <ol className="level-2-wrapper">
-          <li className="list-unstyled">
-            <div className="level-2 rectangle">
-              CONSEJO NACIONAL DE ALIANZAS PÚBLICO PRIVADAS
-            </div>
-            <ol className="level-3-wrapper">
-              <li className="list-unstyled">
-                <div className="level-3 rectangle">
-                  <p className="m-0">
-                    Ministro de la presidencia, quien lo preside
-                  </p>
-                  <p className="m-0">Ministro de Hacienda</p>
-                  <p className="m-0">
-                    Ministro de Economía, Planificación y Desarrollo
-                  </p>
-                  <p className="m-0">Consultor Jurídico del Poder Ejecutivo</p>
-                  <p className="m-0">
-                    Dirección General de Contrataciones Públicas
-                  </p>
-                  <p className="m-0">
-                    Director General de la Dirección General de
-                  </p>
-                  <p className="m-0">
-                    Alianzas Públicas Privadas, con voz pero sin voto
-                  </p>
-                </div>
-              </li>
-            </ol>
-          </li>
-          <li className="list-unstyled">
-            <div className="level-2 rectangle">DIRECTOR EJECUTIVO</div>
-            <p className="m-0" style={{ fontWeight: "bold" }}>
-              Designado por el decreto Presidencial
-            </p>
-          </li>
-        </ol>
+      <div className="chart-container">
+        <div>
+          <figure>
+            <img className="chart" src={Images.consejo} alt="" />
+          </figure>
+        </div>
       </div>
     </>
   );
