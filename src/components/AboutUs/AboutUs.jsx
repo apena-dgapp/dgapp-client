@@ -4,10 +4,14 @@ import Functions from "./Functions";
 import InstitutionalFramework from "./InstitutionalFramework";
 import Director from "./Director";
 import OrganizationChart from "./OrganizationChart";
+import useScreenSize from "../../hooks/useScreenSize";
+
+
 
 const AboutUs = (state) => {
   const [getModule, setGetModule] = useState("");
   const [getMargin, setGetMargin] = useState("");
+  const {width, height} = useScreenSize();
 
   useEffect(() => {
     if (state.location.state) {
@@ -16,22 +20,22 @@ const AboutUs = (state) => {
         setGetMargin("30rem");
       } else if (state.location.state === "FUNCIONES") {
         setGetModule(<Functions />);
-        setGetMargin("77rem");
+        setGetMargin(width <= 721 ? "175rem":"77rem");
       } else if (state.location.state === "MARCO INSTITUCIONAL") {
         setGetModule(<InstitutionalFramework />);
-        setGetMargin("35rem");
+        setGetMargin(width <= 721 ? "6rem":"35rem");
       } else if (state.location.state === "DIRECTOR GENERAL") {
         setGetModule(<Director />);
-        setGetMargin("28rem");
+        setGetMargin(width <= 721 ? "15rem":"28rem");
       } else if (state.location.state === "ORGANIGRAMA") {
         setGetModule(<OrganizationChart />);
-        setGetMargin("47rem");
+        setGetMargin(width <= 721 ? "6rem":"47rem");
       }
     }else{
       setGetModule(<StrategicMap />);
       setGetMargin("30em");
     }
-  }, [state.location.state]);
+  }, [state.location.state, width]);
 
   return (
     <>
