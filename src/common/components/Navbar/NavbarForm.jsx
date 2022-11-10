@@ -25,8 +25,13 @@ const NavbarForm = ({
   // foodOrder,
   aboutUSChange,
   active,
-  navToggle
+  navToggle,
+  show,
+  hidenToggle,
+  action,
+  width
 }) => {
+
   const [contextState] = useContext(GlobalContext);
 
   return (
@@ -48,13 +53,18 @@ const NavbarForm = ({
             <li onClick={home} className="class-list">
               <p>Inicio</p>
             </li>
+            {
+              width <= 721 ? <li className="class-list">
+              <p id={person.personId} onClick={employeeProfile}>Mi Perfil</p>
+              </li>:null
+            }
 
             <li className="class-list">
-                <p>
+                <p onClick={()=>hidenToggle("Nosotros")}>
                   Nosotros
                   <img className="icondown" src={Images.icondown} alt="" />
                 </p>
-              <ul style={{ width: "11rem" }}>
+              <ul className={action === "Nosotros" ? show:null} style={{ width: "12rem" }}>
                 <li>
                   <p onClick={(e) => aboutUSChange(e, "MISIÓN, VISIÓN Y VALORES")}>Misión, Visión y Valores</p>
                 </li>
@@ -74,7 +84,7 @@ const NavbarForm = ({
             </li>
 
             <li className="class-list">
-              <p>
+              <p onClick={()=>hidenToggle("Servicios")}>
                 Servicios
                 <img
                   // style={{ marginRight: "1.5rem" }}
@@ -83,7 +93,7 @@ const NavbarForm = ({
                   alt=""
                 />
               </p>
-              <ul style={{ width: "10.5rem" }}>
+              <ul className={action === "Servicios" ? show:null} style={{ width: "10.5rem" }}>
                 {/* <li>
                   <p onClick={foodOrder}>Ordenar Almuerzo</p>
                 </li> */}
@@ -108,10 +118,12 @@ const NavbarForm = ({
                   </p>
                   <ul className="menu-left">
                     <li>
-                      <p onClick={inConstruction}>Crear Ticket</p>
+                      {/* <p onClick={inConstruction}>Crear Ticket</p> */}
+                      <p>Crear Ticket</p>
                     </li>
                     <li>
-                      <p onClick={inConstruction}>Ver Tickets</p>
+                      {/* <p onClick={inConstruction}>Ver Tickets</p> */}
+                      <p>Ver Ticket</p>
                     </li>
                   </ul>
                 </li>
@@ -144,11 +156,11 @@ const NavbarForm = ({
             </li>
 
             <li className="class-list">
-              <p>
+              <p onClick={()=>hidenToggle("Publicaciones")}>
                 Publicaciones
                 <img className="icondown" src={Images.icondown} alt="" />
               </p>
-              <ul style={{ width: "11rem" }}>
+              <ul className={action === "Publicaciones" ? show:null} style={{ width: "11rem" }}>
                 <li>
                   <p onClick={allPost}>Noticias</p>
                 </li>
@@ -170,6 +182,13 @@ const NavbarForm = ({
               <p onClick={training}>Entrenamiento</p>
               {/* <p onClick={inConstruction}>Entrenamiento</p> */}
             </li>
+            {
+              width <= 721 ? <li className="class-list">
+              <p onClick={() => logOut()}>Cerrar sesión</p>
+              {/* <p onClick={inConstruction}>Entrenamiento</p> */}
+              </li>:null
+            }
+           
             {contextState.userRole === 1 || contextState.userRole === 3  ? (
               <li className="class-list admin-hiden">
                 <p>

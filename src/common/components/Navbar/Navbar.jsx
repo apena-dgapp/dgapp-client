@@ -4,6 +4,7 @@ import GlobalContext from "../../../context/GlobalContext";
 import NavbarForm from "./NavbarForm";
 import { getOnePerson } from "../../../api/person";
 import { apiOneFile } from "../../../api/files";
+import useScreenSize from "../../../hooks/useScreenSize";
 // import io from "socket.io-client";
 
 const Navbar = () => {
@@ -11,10 +12,30 @@ const Navbar = () => {
   const location = useLocation();
   const [isHidden, setIsHidden] = useState(false);
   const [active, setActive] = useState("menu_items");
+  const [show, setShow] = useState("menu_hiden");
+  const [action, setAction] = useState("");
+  const {width, height} = useScreenSize();
+
   const navToggle = () => {
+
+    if(show === "menu_hiden_show"){
+      setShow("menu_hiden");
+    }
+
+    if(show === "menu_hiden_show"){
+      setShow("menu_hiden");
+    }
+
     active === "menu_items"
       ? setActive("menu_items_show")
       : setActive("menu_items");
+  };
+
+  const hidenToggle = (action) => {
+    setAction(action);
+    show === "menu_hiden"
+      ? setShow("menu_hiden_show")
+      : setShow("menu_hiden");
   };
 
   //InitialState - ContexState
@@ -44,6 +65,13 @@ const Navbar = () => {
   // const [file, setFile] = useState("");
 
   const employeeProfile = (e) => {
+    if(active === "menu_items_show"){
+      setActive("menu_items");
+    }
+    if(active === "menu_items_show"){
+      setActive("menu_items");
+    }
+
     const employeeId = e.currentTarget.id;
     history.push({
       pathname: "./perfil",
@@ -83,9 +111,28 @@ const Navbar = () => {
   };
 
   const inConstruction = () => {
+
+    if(active === "menu_items_show"){
+      setActive("menu_items");
+    }
+
+    if(show === "menu_hiden_show"){
+      setShow("menu_hiden");
+    }
+
     history.push("./construccion");
   };
+
   const allPost = () => {
+
+    if(active === "menu_items_show"){
+      setActive("menu_items");
+    }
+
+    if(show === "menu_hiden_show"){
+      setShow("menu_hiden");
+    }
+
     history.push({
       pathname:"./noticias",
       state:{
@@ -127,6 +174,11 @@ const Navbar = () => {
   };
 
   const ticketSystem = () => {
+
+    if(active === "menu_items_show"){
+      setActive("menu_items");
+    }
+
     history.push("./ticket");
   };
 
@@ -227,6 +279,10 @@ const Navbar = () => {
         aboutUSChange={aboutUSChange}
         active={active}
         navToggle={navToggle}
+        show={show}
+        hidenToggle={hidenToggle}
+        action={action}
+        width={width}
       />
     </>
   );

@@ -300,3 +300,203 @@
 .onoffswitch1-checkbox:checked+.onoffswitch1-label .onoffswitch1-switch {
     right: 0px;
 }
+
+.employee-img-con-cel {
+    display: none;
+}
+
+//MEDIAS QUERIES
+
+//Phone X
+@media screen and (max-width:420px) {
+    .employee-card-container {
+        display: none;
+    }
+
+    .employee-header-container {
+        margin-top: 5rem;
+        height: 24rem;
+    }
+
+    .employee-img-con-cel {
+        // background-color: red;
+        width: 100%;
+        height: 7rem;
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 0.5rem;
+        padding-right: 0.5rem;
+        position: absolute;
+    }
+
+    .employee-img-cel {
+        width: 5rem;
+        height: 5rem;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        border: gainsboro solid 1px;
+        // margin-top: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+
+    .employee-name {
+        font-size: 1.8rem;
+        padding-top: 2rem;
+        margin-left: 1.5rem;
+    }
+
+    .employee-btn-documentation {
+        width: 8rem;
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .employee-btn-edit {
+        width: 6rem;
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .onoffswitch1-label {
+        width: 6rem;
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .onoffswitch1-inner:before {
+        font-size: 0.8rem;
+        padding-top: 0;
+    }
+
+    .onoffswitch1-inner:after {
+        font-size: 0.8rem;
+        padding-top: 0;
+    }
+
+    .employee-updates-title {
+        font-size: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .employee-upcoming-birthday {
+        font-size: 1rem;
+    }
+
+    .employee-info-container {
+
+        img,
+        svg {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+    }
+
+    .employee-contact-email {
+        font-size: 1rem;
+    }
+
+}
+
+//Phone 12/13 Pro Mas
+@media screen and (min-width: 421px) and (max-width: 720px) {
+
+    .employee-card-container {
+        display: none;
+    }
+
+    .employee-header-container {
+        margin-top: 5rem;
+        height: 24rem;
+    }
+
+    .employee-img-con-cel {
+        // background-color: red;
+        width: 100%;
+        height: 7rem;
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 0.5rem;
+        padding-right: 0.5rem;
+        position: absolute;
+    }
+
+    .employee-img-cel {
+        width: 5rem;
+        height: 5rem;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        border: gainsboro solid 1px;
+        // margin-top: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+
+    .employee-name {
+        font-size: 1.8rem;
+        padding-top: 2rem;
+        margin-left: 1.5rem;
+    }
+
+    .employee-btn-documentation {
+        width: 8rem;
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .employee-btn-edit {
+        width: 6rem;
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .onoffswitch1-label {
+        width: 6rem;
+        height: 2rem;
+        font-size: 0.8rem;
+    }
+
+    .onoffswitch1-inner:before {
+        font-size: 0.8rem;
+        padding-top: 0;
+    }
+
+    .onoffswitch1-inner:after {
+        font-size: 0.8rem;
+        padding-top: 0;
+    }
+
+    .employee-updates-title {
+        font-size: 1rem;
+        margin-top: 1.5rem;
+    }
+
+    .employee-upcoming-birthday {
+        font-size: 1rem;
+    }
+
+    .employee-info-container {
+
+        img,
+        svg {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+    }
+
+    .employee-contact-email {
+        font-size: 1rem;
+    }
+}
+
+//Ipad
+@media screen and (min-width: 721px) and (max-width: 1020px) {
+    .employee-img-container {
+        width: 18rem;
+    }
+
+    .employee-img {
+        height: 18rem;
+    }
+}
+
+//laptop generic
+@media screen and (min-width: 1021px) and (max-width: 1320px) {}

@@ -124,7 +124,7 @@ const SiglePostForm = ({
         </div>
 
         <div className="singlePost-img-cont">
-          <img className="singlePost-img" src={dataPost.img} alt="" />
+          <img className="singlePost-img" src={dataPost.image} alt="" />
           <div className="singlePostDescp-container">
             <p
               // dangerouslySetInnerHTML={{ __html: dataPost.description }}

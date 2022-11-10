@@ -136,3 +136,168 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
+
+//MEDIAS QUERIES
+
+//Phone X
+@media screen and (max-width:420px) {
+
+    .allPostTitle-cont {
+        height: 9rem;
+    }
+
+    .allPostTitle {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        margin-top: 6rem;
+
+        width: 77%;
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        img,
+        svg {
+            width: 1.2rem;
+            margin-bottom: 0 !important;
+        }
+    }
+
+    .allpost-btns {
+        display: flex;
+        width: 77%;
+        justify-content: space-between;
+
+        button {
+            width: 8rem;
+            height: 2rem;
+            font-size: 1rem;
+        }
+    }
+
+    .grid-container {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        grid-template-columns: none !important;
+    }
+}
+
+//Phone 12/13 Pro Mas
+@media screen and (min-width: 421px) and (max-width: 720px) {
+    .allPostTitle-cont {
+        height: 9rem;
+    }
+
+    .allPostTitle {
+        display: flex;
+        align-items: center;
+        font-size: 1.2rem;
+        margin-top: 6rem;
+
+        width: 77%;
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        img,
+        svg {
+            width: 1.2rem;
+            margin-bottom: 0 !important;
+        }
+    }
+
+    .allpost-btns {
+        display: flex;
+        width: 68%;
+        justify-content: space-between;
+
+        button {
+            width: 8rem;
+            height: 2rem;
+            font-size: 1rem;
+        }
+    }
+
+    .grid-container {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        grid-template-columns: none !important;
+    }
+}
+
+//Ipad
+@media screen and (min-width: 721px) and (max-width: 1020px) {
+    .allPostTitle-cont {
+        height: 12rem;
+    }
+
+    .allPostTitle {
+        display: flex;
+        align-items: center;
+        font-size: 2rem;
+        margin-top: 8rem;
+
+        width: 77%;
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        img,
+        svg {
+            width: 2rem;
+            margin-bottom: 0 !important;
+        }
+    }
+
+    .grid-container {
+        grid-template-columns: 49% 49% !important;
+        grid-gap: 2rem !important;
+        width: 80% !important;
+    }
+
+    .card {
+        // height: 30rem !important;
+        margin-bottom: 0;
+    }
+
+    .card-title {
+        // margin-bottom: 1.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+
+    .allpost-btn-cont {
+        margin-top: 2rem;
+        margin-left: 0.5rem;
+    }
+
+    .allpost-btns {
+        display: flex;
+        width: 70%;
+        justify-content: space-between;
+
+        // button {
+        //     width: 8rem;
+        //     height: 2rem;
+        //     font-size: 1rem;
+        // }
+    }
+
+}
+
+//laptop generic
+@media screen and (min-width: 1021px) and (max-width: 1320px) {}

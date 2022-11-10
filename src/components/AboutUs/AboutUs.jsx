@@ -20,16 +20,16 @@ const AboutUs = (state) => {
         setGetMargin("30rem");
       } else if (state.location.state === "FUNCIONES") {
         setGetModule(<Functions />);
-        setGetMargin(width <= 721 ? "175rem":"77rem");
+        setGetMargin(width <= 1021 ? "175rem":"77rem");
       } else if (state.location.state === "MARCO INSTITUCIONAL") {
         setGetModule(<InstitutionalFramework />);
-        setGetMargin(width <= 721 ? "6rem":"35rem");
+        setGetMargin(width <= 1021 ? "9rem":"35rem");
       } else if (state.location.state === "DIRECTOR GENERAL") {
         setGetModule(<Director />);
-        setGetMargin(width <= 721 ? "15rem":"28rem");
+        setGetMargin(width <= 1021 ? "15rem":"28rem");
       } else if (state.location.state === "ORGANIGRAMA") {
         setGetModule(<OrganizationChart />);
-        setGetMargin(width <= 721 ? "6rem":"47rem");
+        setGetMargin(width <= 1021 ? "9rem":"47rem");
       }
     }else{
       setGetModule(<StrategicMap />);

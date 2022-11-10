@@ -161,6 +161,13 @@ const EmployeeForm = ({
           </div>
         </div>
         <div className="employee-header-container">
+          <div className="employee-img-con-cel">
+              <img
+                className="employee-img-cel"
+                src={profile.photo ? profile.photo : Images.noImg}
+                alt=""
+              />
+          </div>
           <div className="employee-name">{firstNSplit + " " + lastNSplit}</div>
           <div className="employee-position">
             {/* {profile.career ? profile.career : "No definido!"} */}

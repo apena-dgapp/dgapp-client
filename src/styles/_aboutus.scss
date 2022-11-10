@@ -453,18 +453,41 @@
 @media screen and (min-width: 421px) and (max-width: 720px) {
   .aboutus-card {
     width: 90%;
-    margin-top: 12em;
+    margin-top: 11em;
   }
 
   .aboutus-header-title {
     padding-top: 6.5rem;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     text-align: center;
   }
 
   .aboutus-header-container {
-    height: 52em;
-    margin-bottom: 155rem !important;
+    height: 62em;
+    // margin-bottom: 175rem !important;
+  }
+
+  .director-container-grid {
+    display: flex;
+    grid-template-columns: none;
+    flex-direction: column;
+  }
+
+  .director-img {
+    width: 20rem;
+    margin-top: 0.5rem;
+  }
+
+  .director-content {
+    width: 100%;
+    margin-top: 2rem;
+    text-align: justify;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .chart {
+    width: 100%;
   }
 }
 
@@ -472,16 +495,48 @@
 @media screen and (min-width: 721px) and (max-width: 1020px) {
 
   .aboutus-card {
-    margin-top: 15em;
-  }
-
-  .aboutus-header-title {
-    padding-top: 8.5rem;
+    width: 95%;
+    margin-top: 13em;
+    min-height: 30em;
   }
 
   .aboutus-header-container {
-    height: 40em;
-    margin-bottom: 99rem !important;
+    // height: 62em;
+    // margin-bottom: 9rem !important;
+  }
+
+  .aboutus-header-title {
+    padding-top: 8rem;
+  }
+
+  .director-img-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .director-content {
+    font-size: 0.9rem;
+  }
+
+  .director-img {
+    width: 20rem;
+    margin-top: 4rem;
+  }
+
+  .director-name {
+    margin-top: 0;
+  }
+
+  .chart-container {
+    figure {
+      display: flex;
+      justify-content: center;
+    }
+
+  }
+
+  .chart {
+    width: 50%;
   }
 }
 

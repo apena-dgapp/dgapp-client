@@ -82,4 +82,78 @@
     background-color: #79ADD4;
     color: white;
     font-weight: bold;
+
+    p {
+        margin: 0;
+    }
+
 }
+
+//MEDIAS QUERIES
+
+//Phone X
+@media screen and (max-width:420px) {
+
+    // .dashboard-section-6-logo {
+    //     margin-top: 5rem;
+    // }
+
+    // .footer-container {
+    //     margin-top: 6rem;
+    // }
+
+    // .footer-section-1-grid {
+    //     height: 50%;
+    // }
+
+    .footer-section-1-icon {
+        width: 1.5rem;
+    }
+
+    .footer-section-1-icon-instagram {
+        width: 1.5rem;
+    }
+
+    .footer-section-1-icon-facebook {
+        width: 0.8rem;
+    }
+
+    .footer-section-1-icon-youtube {
+        width: 1.5rem;
+    }
+
+    .footer-section-1-icon-con {
+        margin-bottom: 0.5rem;
+    }
+
+}
+
+//Phone 12/13 Pro Mas
+@media screen and (min-width: 421px) and (max-width: 720px) {
+
+    .footer-section-1-icon {
+        width: 1.8rem;
+    }
+
+    .footer-section-1-icon-instagram {
+        width: 1.8rem;
+    }
+
+    .footer-section-1-icon-facebook {
+        width: 1rem;
+    }
+
+    .footer-section-1-icon-youtube {
+        width: 1.8rem;
+    }
+
+    .footer-section-1-icon-con {
+        margin-bottom: 0.8rem;
+    }
+}
+
+//Ipad
+@media screen and (min-width: 721px) and (max-width: 1020px) {}
+
+//laptop generic
+@media screen and (min-width: 1021px) and (max-width: 1320px) {}

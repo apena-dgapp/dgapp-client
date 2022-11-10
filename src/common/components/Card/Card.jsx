@@ -3,7 +3,7 @@ import { viewUpdate } from "../../../api/post";
 import { useHistory } from "react-router-dom";
 import { getImage } from "../../../api/post";
 
-const CardForm = (props) => {
+const Card = (props) => {
   const history = useHistory();
   const [image, setImage] = useState([]);
 
@@ -36,7 +36,7 @@ const CardForm = (props) => {
       .then((res) => {
         history.push({
           pathname: "./contenido",
-          state: props,
+          state: Object.assign({}, props , image)
         });
       })
       .catch((err) => {
@@ -105,4 +105,4 @@ const CardForm = (props) => {
   );
 };
 
-export default CardForm;
+export default Card;

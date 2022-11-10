@@ -315,6 +315,12 @@ nav ul li ul li:hover::before {
     &:hover {
         background-color: white;
     }
+
+    padding-top: 1rem;
+
+    p {
+        margin: 0;
+    }
 }
 
 .menu-left {
@@ -326,6 +332,15 @@ nav ul li ul li:hover::before {
 .admin-hiden {
     display: list-item;
 }
+
+.menu_hiden {
+    display: none !important;
+}
+
+.menu_hiden_show {
+    display: block !important;
+}
+
 
 
 //MEDIAS QUERIES
@@ -432,9 +447,40 @@ nav ul li ul li:hover::before {
         }
     }
 
-    // .icondown {
-    //     display: none;
-    // }
+    nav ul li a {
+        color: white;
+        font-size: 1rem;
+    }
+
+    nav ul ul a:hover {
+        color: #75AAD3;
+    }
+
+    nav ul p:hover {
+        cursor: pointer;
+    }
+
+    nav ul ul p:hover {
+        color: #75AAD3;
+    }
+
+    .menu-left {
+        left: 0;
+        top: 0;
+        // width: 10rem;
+    }
+
+    nav ul ul li {
+        // float: none;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        color: white;
+    }
+
+    .icondown {
+        display: none;
+    }
 
     .btn_menu {
         cursor: pointer;
@@ -525,8 +571,9 @@ nav ul li ul li:hover::before {
         color: white;
         font-size: 2rem;
         letter-spacing: 2px;
-        margin-top: 2rem;
+        margin-top: 1rem;
 
+        // height: 4.5rem;
         &:hover {
             color: #75AAD3;
         }
@@ -537,7 +584,51 @@ nav ul li ul li:hover::before {
     }
 
     nav ul li:hover>ul {
-        display: none;
+        // display: none;
+        width: 100% !important;
+        height: 35rem !important;
+        background-color: #113250;
+        z-index: 5;
+        margin-top: -1rem;
+
+
+        p {
+            font-size: 1rem;
+            line-height: 0.5rem;
+            margin-top: 1rem;
+            height: 2rem;
+        }
+    }
+
+    nav ul li a {
+        color: white;
+        font-size: 1rem;
+    }
+
+    nav ul ul a:hover {
+        color: #75AAD3;
+    }
+
+    nav ul p:hover {
+        cursor: pointer;
+    }
+
+    nav ul ul p:hover {
+        color: #75AAD3;
+    }
+
+    .menu-left {
+        left: 0;
+        top: 0;
+        // width: 10rem;
+    }
+
+    nav ul ul li {
+        // float: none;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        color: white;
     }
 
     .icondown {

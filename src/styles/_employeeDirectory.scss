@@ -193,3 +193,95 @@
     display: flex;
     // justify-content: end;
 }
+
+//MEDIAS QUERIES
+
+//Phone X
+@media screen and (max-width:420px) {
+
+    .emDirectory-cont {
+        height: 9rem;
+    }
+
+    .emDirectory-dropdown {
+        margin-top: 1.5rem !important;
+    }
+
+    .dropdown-toggle {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+    }
+
+    .emDirectory-input-search {
+        height: 2rem !important;
+        font-size: 0.8rem !important;
+    }
+
+    .emDirectory-input-search-cont {
+        margin-left: 2.9rem !important;
+        margin-top: 2.7rem !important;
+    }
+
+    .emDirectory-btns {
+        display: flex;
+        width: 77%;
+        justify-content: space-between;
+
+        button {
+            width: 8rem;
+            height: 2rem;
+            font-size: 1rem;
+        }
+    }
+
+}
+
+//Phone 12/13 Pro Mas
+@media screen and (min-width: 421px) and (max-width: 720px) {
+    .emDirectory-cont {
+        height: 9rem;
+    }
+
+    .emDirectory-dropdown {
+        margin-top: 1.5rem !important;
+    }
+
+    .dropdown-toggle {
+        font-size: 0.8rem;
+        margin-bottom: 0;
+    }
+
+    .emDirectory-input-search {
+        height: 2rem !important;
+        font-size: 0.8rem !important;
+    }
+
+    .emDirectory-input-search-cont {
+        margin-left: 2.9rem !important;
+        margin-top: 2.7rem !important;
+    }
+
+    .emDirectory-btns {
+        display: flex;
+        width: 68%;
+        justify-content: space-between;
+
+        button {
+            width: 8rem;
+            height: 2rem;
+            font-size: 1rem;
+        }
+    }
+
+}
+
+//Ipad
+@media screen and (min-width: 721px) and (max-width: 1020px) {
+    .emDirectory-input-search-cont {
+        margin-left: 5.5rem !important;
+        margin-top: 2.9rem !important;
+    }
+}
+
+//laptop generic
+@media screen and (min-width: 1021px) and (max-width: 1320px) {}
