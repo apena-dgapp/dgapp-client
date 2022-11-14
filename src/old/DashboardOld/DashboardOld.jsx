@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 import DashboardForm from "./DashboardForm";
 import { getPost, interestPost } from "../../api/post";
 
 const Dashboard = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [arrayPost, setArrayPost] = useState([]);
   const [interest, setInterest] = useState("");
@@ -61,14 +61,13 @@ const Dashboard = () => {
       author: interest.author,
     };
 
-    history.push({
-      pathname: "./contenido",
+    navigate("/contenido",{
       state: interestNewObj,
     });
   };
 
   const allPost = () => {
-    history.push("./noticias");
+    navigate("/noticias");
   };
 
   return (

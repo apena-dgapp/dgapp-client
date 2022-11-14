@@ -1,10 +1,10 @@
 import React,{useState, useEffect} from "react";
 import { viewUpdate } from "../../../api/post";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 import { getImage } from "../../../api/post";
 
 const Card = (props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [image, setImage] = useState([]);
 
   const id = props.id;
@@ -31,13 +31,10 @@ const Card = (props) => {
     };
   }, [id]);
 
-  const click = () => {
+   const click = () => {
     viewUpdate(props.id)
       .then((res) => {
-        history.push({
-          pathname: "./contenido",
-          state: Object.assign({}, props , image)
-        });
+        navigate(`/noticia/${props.title.toLowerCase()}`, {state: Object.assign({}, props , image)}); 
       })
       .catch((err) => {
         console.error(err.status);

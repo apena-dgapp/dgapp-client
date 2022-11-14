@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import GlobalContext from "../../../context/GlobalContext";
 import NavbarForm from "./NavbarForm";
 import { getOnePerson } from "../../../api/person";
@@ -8,7 +8,7 @@ import useScreenSize from "../../../hooks/useScreenSize";
 // import io from "socket.io-client";
 
 const Navbar = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const [isHidden, setIsHidden] = useState(false);
   const [active, setActive] = useState("menu_items");
@@ -56,10 +56,7 @@ const Navbar = () => {
       setActive("menu_items");
     }
     
-    history.push({
-      pathname: "./nosotros",
-      state: name,
-    });
+    navigate(`/nosotros/${name}`,{state: name,});
   };
 
   // const [file, setFile] = useState("");
@@ -73,10 +70,7 @@ const Navbar = () => {
     }
 
     const employeeId = e.currentTarget.id;
-    history.push({
-      pathname: "./perfil",
-      state: employeeId,
-    });
+    navigate(`/perfil/yo`,{state: employeeId,});
   };
 
   //funcion para setear lenguaje
@@ -90,13 +84,13 @@ const Navbar = () => {
       setActive("menu_items");
     }
 
-    history.push("./inicio");
+    navigate("/inicio");
   };
 
   const logOut = () => {
     // socket.disconnect();
     contextMiddleware.signOut();
-    history.push("./");
+    navigate("./");
     localStorage.clear();
     // contextMiddleware.setIsShowChat();
     
@@ -107,7 +101,7 @@ const Navbar = () => {
   };
 
   const createPost = () => {
-    history.push("./crear-entrada");
+    navigate("/crear-entrada");
   };
 
   const inConstruction = () => {
@@ -120,7 +114,7 @@ const Navbar = () => {
       setShow("menu_hiden");
     }
 
-    history.push("./construccion");
+    navigate("/construccion");
   };
 
   const allPost = () => {
@@ -133,23 +127,18 @@ const Navbar = () => {
       setShow("menu_hiden");
     }
 
-    history.push({
-      pathname:"./noticias",
-      state:{
-        category: "Noticia"
-      }
-    });  
+    navigate("/noticias",{state:{category: "Noticia"}});  
   };
 
   const employeedirectory = () => {
-    history.push("./directorio");
+    navigate("/directorio");
   };
   const employeeNew = () => {
-    history.push("./nuevo-empleado");
+    navigate("/nuevo-empleado");
   };
 
   const employeeTree = () => {
-    history.push("./organigrama");
+    navigate("/organigrama");
   };
 
   const training = () => {
@@ -158,19 +147,19 @@ const Navbar = () => {
       setActive("menu_items");
     }
     
-    history.push("./entrenamiento");
+    navigate("/entrenamiento");
   };
 
   const createEvents = () => {
-    history.push("./crear-evento");
+    navigate("/crear-evento");
   };
 
   const register = () => {
-    history.push("./registrar");
+    navigate("/registrar");
   };
 
   const foodOrder = () => {
-    history.push("./foodorder");
+    navigate("/foodorder");
   };
 
   const ticketSystem = () => {
@@ -179,7 +168,7 @@ const Navbar = () => {
       setActive("menu_items");
     }
 
-    history.push("./ticket");
+    navigate("/ticket");
   };
 
   const goToFile = (name) => {
@@ -188,10 +177,7 @@ const Navbar = () => {
         return res.json();
       })
       .then((res) => {
-        history.push({
-          pathname: "./pdf",
-          state: res[0].file,
-        });
+        navigate("/pdf",{state: res[0].file,});
       })
       .catch((err) => {
         console.error(err.status);

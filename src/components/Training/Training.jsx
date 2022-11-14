@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TrainingForm from "./TrainingForm";
 import { getCourses } from "../../api/course";
 import { getAlldepartament } from "../../api/department";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 import ClipLoader from "react-spinners/ClipLoader";
 import Cookies from "universal-cookie";
 // import useGetData from "../../hooks/useGetData";
@@ -14,7 +14,7 @@ const Training = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState("");
   const [searchDep, setSearchDep] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
   const [page, setPage] = useState(8);
   const [pageLength, setPageLength] = useState("");
   const [loading, seLoading] = useState(false);
@@ -155,19 +155,19 @@ const Training = () => {
 
 
   const goToNew = () => { 
-      history.push("/entrenamiento/curso/crear");
+      navigate("/entrenamiento/curso/crear");
   };
 
   const goToCourse = (props) => {
     let videoCookie = cookies.get(`courseId:${props.id}:lastVideo`);
     if(videoCookie) {
-      history.push(`/entrenamiento/curso/${props.id}/${videoCookie}`)
+      navigate(`/entrenamiento/curso/${props.id}/${videoCookie}`)
     } 
     else {
       axios.get(`${process.env.REACT_APP_API}/video/firstVideo/${props.id}`)
       .then(res => {
         const url = getVideoId(res.data[0].link);
-        history.push(`/entrenamiento/curso/${props.id}/${url}`)
+        navigate(`/entrenamiento/curso/${props.id}/${url}`)
       })
     }
     
@@ -176,7 +176,7 @@ const Training = () => {
   }
 
   const goToEdit = (id) => { 
-    history.push(`/entrenamiento/curso/${id}/edit`);
+    navigate(`/entrenamiento/curso/${id}/edit`);
   };
 
   return (

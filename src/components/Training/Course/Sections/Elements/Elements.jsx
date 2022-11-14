@@ -1,15 +1,15 @@
 import { useContext, useState, useEffect } from "react";
 import { TrainingContext, SectionsContext } from "../../../TrainingContext";
 import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 import Cookies from "universal-cookie"
 import useUpdateRecord from "../../../../../hooks/useUpdateRecord";
 import ElementsForm from "./ElementsForm"
 
 const Elements = (props) => {
-  const { courseId, videolink } = useParams()
-  const cookies = new Cookies()
-  const history = useHistory()
+  const { courseId, videolink } = useParams();
+  const cookies = new Cookies();
+  const navigate = useNavigate();
   const videoId = getVideoId(props.video.link)
 
 
@@ -69,7 +69,7 @@ const Elements = (props) => {
     cookies.set(`courseId:${courseId}:lastVideo`, `${videoId}`, {
       path: `/`,
     });
-    history.push(`/entrenamiento/curso/${courseId}/${videoId}`);
+    navigate(`/entrenamiento/curso/${courseId}/${videoId}`);
   }
 
   //////////////////////////////////////////////

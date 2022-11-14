@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 import GlobalContext from "../../context/GlobalContext";
 import { apiAuth } from "../../api/auth";
 import { passUpdate } from "../../api/user";
@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import Welcome from "../Welcome/Welcome";
 
 const Login = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   //InitialState - ContexState
   const [, , contextMiddleware] = useContext(GlobalContext);
 
@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   const inConstruction = () => {
-    history.push("./construccion");
+    navigate("/construccion");
   };
 
   //funcion para llamar un boton con el evento key
@@ -72,7 +72,7 @@ const Login = () => {
           res.user.UserRoles[0].roleId,
           (profile.isAuth = true)
         );
-          history.push("./inicio");
+          navigate("/inicio");
         }
       })
       .catch((err) => {
@@ -108,7 +108,6 @@ const Login = () => {
 
   const modalToggle = () => {
     setModalActive(!modalActive);
-    // history.push("./inicio");
   };
 
   const modalToggleCancel = () => {

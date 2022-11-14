@@ -65,7 +65,7 @@ const CardForm = (props) => {
             src={photo?.photo ? photo?.photo : Images.noImg }
             className="emDirectory-card-img"
             alt="..."
-            onClick={(e) => props.goToProfile(e, props.id)}
+            onClick={() => props.goToProfile({id: props.id, name: props?.name})}
           />
           <div className="card-body">
             <p className="emDirectory-card-departament">
@@ -114,7 +114,7 @@ const CardForm = (props) => {
             </p>
           </div>
           <button
-            onClick={(e) => props.goToProfile(e, props.id)}
+            onClick={() => props.goToProfile({id: props.id, name: props?.name})}
             className="emDirectory-card-btn"
           >
             Ir al Perfil

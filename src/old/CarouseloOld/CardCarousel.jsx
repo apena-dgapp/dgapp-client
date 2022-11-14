@@ -1,13 +1,12 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 import Birthday from "../../common/components/Birthday/Birthday";
 
 const CardCarousel = (props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const singleCarousel = () => {
-    history.push({
-      pathname: "./contenido",
+    navigate("/contenido",{
       state: props,
     });
   };

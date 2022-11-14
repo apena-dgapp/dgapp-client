@@ -6,7 +6,7 @@ import PizZip from "pizzip";
 import PizZipUtils from "pizzip/utils/index.js";
 import { saveAs } from "file-saver";
 import { toast } from "react-hot-toast";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";  
 import GlobalContext from "../../context/GlobalContext";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -14,12 +14,13 @@ function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 }
 
-const Employee = (props) => {
+const Employee = () => {
   const [contextState] = useContext(GlobalContext);
-  const id = props.location.state ? props.location.state : contextState.personId;
   const [profile, setProfile] = useState("");
   const [reportsTo, setReportsTo] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const id = location.state ? location.state : contextState.personId;
   const [loading, seLoading] = useState(false);
 
   useEffect(() => {
@@ -33,7 +34,6 @@ const Employee = (props) => {
     return toast.error(
       "Lo sentimos, por el momento esta opción está deshabilita. Estamos trabajando en ello."
     );
-    //history.push('./')
   };
 
   const edit = () => {
@@ -42,8 +42,7 @@ const Employee = (props) => {
     };
 
     const newProfile = Object.assign(profile, reportName);
-    history.push({
-      pathname: "./editar-empleado",
+    navigate(`/editar/${profile.firstName.split(" ")[0] + " " + profile.lastName.split(" ")[0]}`,{
       state: newProfile,
     });
   };

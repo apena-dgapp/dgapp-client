@@ -5,6 +5,7 @@ import InstitutionalFramework from "./InstitutionalFramework";
 import Director from "./Director";
 import OrganizationChart from "./OrganizationChart";
 import useScreenSize from "../../hooks/useScreenSize";
+import { useLocation } from "react-router-dom";
 
 
 
@@ -13,21 +14,23 @@ const AboutUs = (state) => {
   const [getMargin, setGetMargin] = useState("");
   const {width, height} = useScreenSize();
 
+  const location = useLocation();
+
   useEffect(() => {
-    if (state.location.state) {
-      if (state.location.state === "MISIÓN, VISIÓN Y VALORES") {
+    if (location.state) {
+      if (location.state === "MISIÓN, VISIÓN Y VALORES") {
         setGetModule(<StrategicMap />);
         setGetMargin("30rem");
-      } else if (state.location.state === "FUNCIONES") {
+      } else if (location.state === "FUNCIONES") {
         setGetModule(<Functions />);
         setGetMargin(width <= 1021 ? "175rem":"77rem");
-      } else if (state.location.state === "MARCO INSTITUCIONAL") {
+      } else if (location.state === "MARCO INSTITUCIONAL") {
         setGetModule(<InstitutionalFramework />);
         setGetMargin(width <= 1021 ? "9rem":"35rem");
-      } else if (state.location.state === "DIRECTOR GENERAL") {
+      } else if (location.state === "DIRECTOR GENERAL") {
         setGetModule(<Director />);
         setGetMargin(width <= 1021 ? "15rem":"28rem");
-      } else if (state.location.state === "ORGANIGRAMA") {
+      } else if (location.state === "ORGANIGRAMA") {
         setGetModule(<OrganizationChart />);
         setGetMargin(width <= 1021 ? "9rem":"47rem");
       }
@@ -35,7 +38,7 @@ const AboutUs = (state) => {
       setGetModule(<StrategicMap />);
       setGetMargin("30em");
     }
-  }, [state.location.state, width]);
+  }, [location.state, width]);
 
   return (
     <>
@@ -47,7 +50,7 @@ const AboutUs = (state) => {
         className="aboutus-header-container"
       >
         <div className="aboutus-header-title">
-          {state.location.state ? state.location.state.toUpperCase():"MISION, VISION Y VALORES"}
+          {location.state ? location.state.toUpperCase():"MISION, VISION Y VALORES"}
         </div>
       </div>
     </>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import EmployeeDirectoryForm from "./EmployeeDirectoryForm";
 import { getAllPersons } from "../../api/person";
 import { getAlldepartament } from "../../api/department";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 import ClipLoader from "react-spinners/ClipLoader";
 
 const EmployeeDirectory = () => {
@@ -11,7 +11,7 @@ const EmployeeDirectory = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState("");
   const [searchDep, setSearchDep] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
   const [page, setPage] = useState(8);
   const [pageLength, setPageLength] = useState("");
   const [loading, seLoading] = useState(false);
@@ -130,12 +130,11 @@ const EmployeeDirectory = () => {
     setSearch(e.target.value.toLowerCase());
   };
 
-  const goToProfile = (e, id) => {
-    if (id !== 0) {
-      e.preventDefault();
-      history.push({
-        pathname: "./perfil",
-        state: id,
+  const goToProfile = (props) => {
+    console.log(props)
+    if (props.id !== 0) {
+      navigate(`/perfil/${props.name}`,{
+        state: props.id,
       });
     }
   };

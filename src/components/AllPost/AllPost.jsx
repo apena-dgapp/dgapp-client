@@ -2,16 +2,20 @@ import React, { useState, useEffect } from "react";
 import AllPostForm from "./AllPostForm";
 import { getPost } from "../../api/post";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useLocation } from "react-router-dom";
 
-const AllPost = (props) => {
+const AllPost = () => {
   const [arrayAllPost, setArrayAllPost] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(8);
   const [pageLength, setPageLength] = useState("");
   const [loading, seLoading] = useState(false);
+  const location = useLocation();
 
-  const category = props.location.state ? props.location.state.category : "Noticia";
+  const category = location.state ? location.state.category : "Noticia";
+
+  // console.log(props)
 
   useEffect(() => {
     let unmounted = false;

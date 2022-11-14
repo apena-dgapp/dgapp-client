@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import BirthdayForm from "./BirthdayForm";
 import { getBirthday } from "../../../api/person";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Birthday = () => {
   const [arrayBirthday, setArrayBirthday] = useState([]);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [modalActive, setModalActive] = useState(false);
   // const [isToday, setIsToday] = useState(false);
 
@@ -48,12 +48,10 @@ const Birthday = () => {
   //     // console.log(date + " /// " + day);
   //   });
   // }
+
   const employeeProfile = (e) => {
     const employeeId = e.currentTarget.id;
-    history.push({
-      pathname: "./employee",
-      state: employeeId,
-    });
+    navigate("/employee",{state:employeeId})
   };
   // console.log(isToday);
   return (

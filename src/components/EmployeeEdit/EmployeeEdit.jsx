@@ -4,13 +4,14 @@ import { getAlldepartament } from "../../api/department";
 import { getAllPersons, updatePerson } from "../../api/person";
 import { getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";  
 import GlobalContext from "../../context/GlobalContext";
 
-function EmployeeEdit(props) {
+function EmployeeEdit() {
   const [contextState] = useContext(GlobalContext);
   const [departaments, setDepartaments] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [person, setPerson] = useState("");
   const [validateId, SetValidateId] = useState(false);
   const [photo, setPhoto] = useState("");
@@ -93,13 +94,11 @@ function EmployeeEdit(props) {
 
   // console.log(validateCode);
 
-  const goToProfile = (id) => {
-    history.push({
-      pathname: "./perfil",
-      state: id,
+  const goToProfile = (props) => {
+    navigate(`/perfil/${props.name}`,{
+      state: props.id,
     });
   };
-
   const clearFormData = () => {
     setFormData({
       firstname: "",
@@ -214,51 +213,51 @@ function EmployeeEdit(props) {
     }
 
     updatePerson(
-      props.location.state.personId,
-      photo ? photo : props.location.state.photo,
-      formData.firstname ? formData.firstname : props.location.state.firstName,
-      formData.lastname ? formData.lastname : props.location.state.lastName,
+      location.state.personId,
+      photo ? photo : location.state.photo,
+      formData.firstname ? formData.firstname : location.state.firstName,
+      formData.lastname ? formData.lastname : location.state.lastName,
       formData.documentid
         ? formData.documentid
-        : props.location.state.documentId,
-      formData.cel ? formData.cel : props.location.state.celNumber,
-      formData.date ? formData.date : props.location.state.birthdayDate,
-      formData.career ? formData.career : props.location.state.career,
-      formData.code ? formData.code : props.location.state.employeeCode,
-      formData.position ? formData.position : props.location.state.position,
-      departament ? Number(departament) : props.location.state.departamentId,
-      reportTo ? Number(reportTo) : props.location.state.reportsTo,
-      formData.startedon ? formData.startedon : props.location.state.startedOn,
-      formData.phone ? formData.phone : props.location.state.phoneNumber,
+        : location.state.documentId,
+      formData.cel ? formData.cel : location.state.celNumber,
+      formData.date ? formData.date : location.state.birthdayDate,
+      formData.career ? formData.career : location.state.career,
+      formData.code ? formData.code : location.state.employeeCode,
+      formData.position ? formData.position : location.state.position,
+      departament ? Number(departament) : location.state.departamentId,
+      reportTo ? Number(reportTo) : location.state.reportsTo,
+      formData.startedon ? formData.startedon : location.state.startedOn,
+      formData.phone ? formData.phone : location.state.phoneNumber,
       formData.email
         ? formData.email.toUpperCase()
-        : props.location.state.email.toUpperCase(),
-      formData.health ? formData.health : props.location.state.healthInsurance,
+        : location.state.email.toUpperCase(),
+      formData.health ? formData.health : location.state.healthInsurance,
       contextState.userName,
       modifiedAt,
-      formData.blood ? formData.blood : props.location.state.bloodType,
+      formData.blood ? formData.blood : location.state.bloodType,
       formData.emergencyname
         ? formData.emergencyname
-        : props.location.state.emergencyName,
+        : location.state.emergencyName,
       formData.emergencynumber
         ? formData.emergencynumber
-        : props.location.state.emergencyNumber,
+        : location.state.emergencyNumber,
       formData.emergencyrelationship
         ? formData.emergencyrelationship
-        : props.location.state.emergencyRelationship,
+        : location.state.emergencyRelationship,
       formData.contracttype
         ? formData.contracttype
-        : props.location.state.contractType,
+        : location.state.contractType,
       formData.contractexpiration
         ? formData.contractexpiration
-        : props.location.state.contractExpiration
+        : location.state.contractExpiration
     )
       .then((res) => {
         if (res.status === 500) {
           return toast.error("Error en el Servidor!");
         } else {
           toast.success("Perfil de empleado actualizado!");
-          goToProfile(props.location.state.personId);
+          goToProfile({id:location.state.personId,name: location.state.firstName.split(" ")[0] + " " + location.state.lastName.split(" ")[0]} );
         }
       })
       .catch((err) => {
@@ -305,7 +304,7 @@ function EmployeeEdit(props) {
   return (
     <>
       <EmployeeEditForm
-        profile={props.location.state}
+        profile={location.state}
         departaments={departaments}
         handlerInputChange={handlerInputChange}
         formData={formData}

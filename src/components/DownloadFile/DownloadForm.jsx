@@ -1,11 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 
 function DownloadForm({ title, arrayFiles }) {
-  const history = useHistory();
-  const goToPDF = (pdf) => {
-    history.push({
-      pathname: "./pdf",
+  const navigate = useNavigate();
+
+    const goToPDF = (pdf) => {
+    navigate("/pdf",{
       state: pdf,
     });
   };

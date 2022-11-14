@@ -4,6 +4,7 @@ import { getFiles, getVideo, addCommentPost, getComments } from "../../api/post"
 import ClipLoader from "react-spinners/ClipLoader";
 import toast from "react-hot-toast";
 import GlobalContext from "../../context/GlobalContext";
+import { useLocation } from "react-router-dom";
 // import { getOnePerson } from "../../api/person";
 
 const SinglePost = (state) => {
@@ -14,7 +15,8 @@ const SinglePost = (state) => {
   const [loading, seLoading] = useState(false);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
-  const dataPost = state.location.state;
+  const location = useLocation();
+  const dataPost = location.state;
   // const [person, setPerson] = useState();
 
   // const [person, setPerson] = useState({

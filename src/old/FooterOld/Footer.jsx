@@ -6,32 +6,21 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import {
-  useHistory,
-  useLocation,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { useNavigate, useLocation } from "react-router-dom";  
 
 const Footer = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const [isHidden, setIsHidden] = useState(false);
 
   const aboutUSChange = (e, name) => {
     e.preventDefault();
 
-    history.push({
-      pathname: "./nosotros",
+    navigate("/nosotros",{
       state: name,
     });
   };
-  // const goToDownload = (e, name) => {
-  //   e.preventDefault();
-  //   history.push({
-  //     pathname: "./download",
-  //     state: name,
-  //   });
-  // };
-
+  
   useEffect(() => {
     let unmounted = false;
 

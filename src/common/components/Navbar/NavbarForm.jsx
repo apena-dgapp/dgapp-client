@@ -60,7 +60,7 @@ const NavbarForm = ({
             }
 
             <li className="class-list">
-                <p onClick={()=>hidenToggle("Nosotros")}>
+                <p onClick={width <= 721 ? ()=>hidenToggle("Nosotros") : null}>
                   Nosotros
                   <img className="icondown" src={Images.icondown} alt="" />
                 </p>
@@ -84,7 +84,7 @@ const NavbarForm = ({
             </li>
 
             <li className="class-list">
-              <p onClick={()=>hidenToggle("Servicios")}>
+              <p onClick={width <= 721 ? ()=>hidenToggle("Servicios") : null}>
                 Servicios
                 <img
                   // style={{ marginRight: "1.5rem" }}
@@ -156,7 +156,7 @@ const NavbarForm = ({
             </li>
 
             <li className="class-list">
-              <p onClick={()=>hidenToggle("Publicaciones")}>
+              <p onClick={width <= 721 ? ()=>hidenToggle("Publicaciones") : null}>
                 Publicaciones
                 <img className="icondown" src={Images.icondown} alt="" />
               </p>

@@ -4,12 +4,12 @@ import { getPost, getPostMultimedia } from "../../api/post";
 import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
 import { viewUpdate } from "../../api/post";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
   const [loading, seLoading] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
   const [ad, setAd] = useState([]);
   const [news, setNews] = useState([]);
   const [birthday, setBirthday] = useState([]);
@@ -117,8 +117,7 @@ const Dashboard = () => {
   const goToPost = (item) => {
     viewUpdate(item.postId)
       .then((res) => {
-        history.push({
-          pathname: "./contenido",
+        navigate("/contenido",{
           state: {
             id: item.postId,
             title: item.title,
@@ -136,20 +135,19 @@ const Dashboard = () => {
   };
 
   const goToProfile = (id) => {
-    history.push({
-      pathname: "./perfil",
+    navigate("/perfil",{
       state: id,
     });
   };
   const employeeTree = () => {
-    history.push("./organigrama");
+    navigate("/organigrama");
   };
   const employeedirectory = () => {
-    history.push("./directorio");
+    navigate("/directorio");
   };
 
   const allPost = () => {
-    history.push("./noticias");
+    navigate("/noticias");
   };
 
   return (

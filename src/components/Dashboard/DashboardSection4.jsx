@@ -23,7 +23,7 @@ const DashboardSection4 = ({  birthday, events, goToProfile}) => {
                 birthday?.map((item, index) => {
                 return (
                     <div
-                    onClick={() => goToProfile(item.personId)}
+                    onClick={() => goToProfile({id: item?.personId, name: item?.name})}
                     key={index}
                     className="dashboard-section-4-content-birth"
                     >

@@ -9,7 +9,7 @@ import {
   MdSmartphone,
 } from "react-icons/md";
 import { FaBirthdayCake } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 import Images from "../../common/images/index";
 import GlobalContext from "../../context/GlobalContext";
 
@@ -20,7 +20,7 @@ const EmployeeForm = ({
   edit,
   handleIsActive,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [contextState] = useContext(GlobalContext);
 
   if (profile) {
@@ -79,8 +79,7 @@ const EmployeeForm = ({
   ]);
 
   const goToProfileReportTo = () => {
-    history.push({
-      pathname: "./perfil",
+    navigate(`/perfil/${reportsTofirstN + " " + reportsTolastN}`,{
       state: reportsTo.personId,
     });
   };

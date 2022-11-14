@@ -8,16 +8,13 @@ import {
   FaRegComment,
 } from "react-icons/fa";
 import { FiRepeat, FiHeart } from "react-icons/fi";
-import {
-  useHistory,
-  useLocation,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { useNavigate, useLocation } from "react-router-dom";  
 import { replaceTxt } from "../../../utils/textLink.js";
 import "react-ig-feed/dist/index.css";
 import Images from "../../images/index";
 
 const Footer = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const [isHidden, setIsHidden] = useState(false);
   const [tweets, setTweets] = useState([]);
@@ -26,8 +23,7 @@ const Footer = () => {
   const aboutUSChange = (e, name) => {
     e.preventDefault();
 
-    history.push({
-      pathname: "./nosotros",
+    navigate("/nosotros",{
       state: name,
     });
   };

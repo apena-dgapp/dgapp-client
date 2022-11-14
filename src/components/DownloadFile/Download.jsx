@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import DownloadForm from "./DownloadForm";
 import { apiFiles } from "../../api/files";
+import { useLocation } from "react-router-dom";
 
 const Download = (state) => {
   const [arrayFiles, setArrayFiles] = useState("");
-  const title = state.location.state;
+  const location = useLocation();
+  const title = location.state;
 
   useEffect(() => {
     apiFiles("PERSONAL DOCUMENT")

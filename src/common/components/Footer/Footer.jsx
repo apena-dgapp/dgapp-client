@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { getTweets } from "../../../api/tweets";
 import Images from '../../images'
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
   // const [tweets, setTweets] = useState([]);

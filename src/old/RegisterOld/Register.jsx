@@ -2,14 +2,14 @@ import React, { useState } from "react";
 // import GlobalContext from '../../context/GlobalContext';
 import RegisterForm from "./RegisterForm";
 // import Modal from '../../common/components/Modal/Modal';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 // import toast from 'react-hot-toast';
 import { getOnePerson } from "../../api/person";
 
 const Register = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const btnCancel = () => {
-    history.push("./");
+    navigate("/");
   };
 
   // //ContexState

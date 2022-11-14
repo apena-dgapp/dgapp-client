@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Viewer from "react-viewer";
 import Carousel from "react-elastic-carousel";
 import ReactPlayer from "react-player";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 import DOMPurify from "dompurify";
 
 const SiglePostForm = ({
@@ -16,11 +16,10 @@ const SiglePostForm = ({
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visible, setVisible] = useState(false);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const goToPDF = (pdf) => {
-    history.push({
-      pathname: "./pdf",
+    navigate("/pdf",{
       state: pdf,
     });
   };

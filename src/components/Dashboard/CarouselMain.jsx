@@ -2,12 +2,12 @@ import React from "react";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
 import { viewUpdate } from "../../api/post";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
 // import { MdSubtitlesOff } from "react-icons/md";
 // import Images from "../../common/images";
 
 const CarouselMain = ({arrayCarousel}) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   // const [arrayCarousel, setArrayCarousel] = useState([]);
 
   // useEffect(() => {
@@ -31,11 +31,11 @@ const CarouselMain = ({arrayCarousel}) => {
   //   };
   // }, []);
 
+
   const goToPost = (item) => {
     viewUpdate(item.postId)
       .then((res) => {
-        history.push({
-          pathname: "./contenido",
+        navigate(`/${item.category.toLowerCase()}/${item.title.toLowerCase()}`,{
           state: {
             id: item.postId,
             title: item.title,
@@ -51,6 +51,7 @@ const CarouselMain = ({arrayCarousel}) => {
         return;
       });
   };
+  
   return (
     arrayCarousel?.length ? <AliceCarousel
       // swipeScrollTolerance={5}

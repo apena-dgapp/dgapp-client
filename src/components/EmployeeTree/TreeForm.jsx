@@ -5,7 +5,8 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import Images from "../../common/images/index";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";  
+
 
 const containerStyles = {
   width: "130vw",
@@ -13,12 +14,11 @@ const containerStyles = {
   // background: "#eee",
 };
 
-var history;
+var navigate;
 
 const employeeProfile = (e) => {
   const employeeId = e.currentTarget.id;
-  history.push({
-    pathname: "./employee",
+  navigate("/employee",{
     state: employeeId,
   });
 };
@@ -157,7 +157,7 @@ export default function TreeForm({ persons }) {
   const separation = { siblings: 1, nonSiblings: 1 };
   const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: -80 };
 
-  history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <div style={containerStyles} ref={containerRef}>

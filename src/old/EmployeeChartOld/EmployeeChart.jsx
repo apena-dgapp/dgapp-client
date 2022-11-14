@@ -1,6 +1,6 @@
 // import React, { useEffect, useState } from "react";
 // import { getFollowers } from "../../api/person";
-// import { useHistory } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";  
 // import Images from "../../common/images";
 // import { getOnePerson } from "../../api/person";
 
@@ -21,7 +21,7 @@
 //     photoReportTo: "",
 //   });
 
-//   const history = useHistory();
+//   const navigate = useNavigate();
 
 //   useEffect(() => {
 //     let unmounted = false;
