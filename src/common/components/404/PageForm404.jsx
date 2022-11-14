@@ -7,7 +7,7 @@ const PageForm404 = () => {
     <>
       <div className="container-page404">
         <i className="bs bs-emojifrown" />
-        <BsEmojiFrown size="10rem" color="#787A91" />
+        <BsEmojiFrown size="8rem" color="#787A91" />
         <p className="title-page404">
           <FormattedMessage id={"page404.title"} defaultMessage={"404"} />
         </p>

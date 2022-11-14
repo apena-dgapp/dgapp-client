@@ -12,12 +12,21 @@
   // background-color: red;
   margin-top: 13rem;
 }
+
 .title-page404 {
   color: #787A91;
-  font-size: 75px;
+  font-size: 4.5rem;
 }
+
 .subtitle-page404 {
   color: #141E61;
-  font-size: 25px;
+  font-size: 1.5rem;
   margin-bottom: 5rem;
+}
+
+@media screen and (min-width: 721px) and (max-width: 1020px) {
+  .container-page404 {
+    margin-top: 21rem;
+  }
+
 }

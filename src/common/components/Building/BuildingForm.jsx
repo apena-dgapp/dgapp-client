@@ -4,12 +4,12 @@ import { MdConstruction } from "react-icons/md";
 const BuildingForm = () => {
   return (
     <>
-      <div className="container-page404">
+      <div className="container-inconstruction">
         <i className="bs bs-emojifrown" />
-        <MdConstruction size="10rem" color="#787A91" />
-        <p className="title-page404">PÁGINA EN CONSTRUCCIÓN</p>
-        <p className="subtitle-page404">
-          Lo sentimos por el momento estamos trabajando en ello!
+        <MdConstruction size="8rem" color="#787A91" />
+        <p className="title-inconstruction">PÁGINA EN CONSTRUCCIÓN</p>
+        <p className="subtitle-inconstruction">
+          Lo sentimos, por el momento estamos trabajando en ello!
         </p>
       </div>
     </>

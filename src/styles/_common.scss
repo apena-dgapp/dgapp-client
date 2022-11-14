@@ -186,9 +186,6 @@
 }
 
 
-
-
-
 @keyframes mainBlock {
   0% {
     width: 0%;
@@ -317,3 +314,68 @@
     bottom: 0px;
   }
 }
+
+
+
+//IN CONSTRUCTION
+.container-inconstruction {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  // top: 50%;
+  // left: 50%;
+  // position: absolute;
+  // transform: translate(-50%, -50%);
+  // background-color: red;
+  margin-top: 13rem;
+}
+
+.title-inconstruction {
+  color: #787A91;
+  font-size: 4.5rem;
+  text-align: center;
+}
+
+.subtitle-inconstruction {
+  color: #141E61;
+  font-size: 1.5rem;
+  margin-bottom: 5rem;
+  text-align: center;
+}
+
+//MEDIAS QUERIES
+
+//Phone X
+@media screen and (max-width:420px) {
+  .title-inconstruction {
+    font-size: 2rem;
+  }
+
+  .subtitle-inconstruction {
+    font-size: 0.8rem;
+  }
+}
+
+//Phone 12/13 Pro Mas
+@media screen and (min-width: 421px) and (max-width: 720px) {
+  .title-inconstruction {
+    font-size: 2rem;
+  }
+
+  .subtitle-inconstruction {
+    font-size: 0.8rem;
+  }
+}
+
+//Ipad
+@media screen and (min-width: 721px) and (max-width: 1020px) {
+  .container-inconstruction {
+    margin-top: 15rem;
+  }
+}
+
+//laptop generic
+@media screen and (min-width: 1021px) and (max-width: 1320px) {}
