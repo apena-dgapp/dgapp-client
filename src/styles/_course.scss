@@ -1,0 +1,244 @@
+//////body/////
+
+// body {
+//     margin: 0;
+// }
+
+
+
+////////////////Training card///////////////@at-root
+
+.menu-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin: 4rem;
+}
+
+.card {
+    margin: auto;
+    margin-bottom: 2rem;
+}
+
+.links-btn {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: center;
+}
+
+/////////////////////Course-bar///////////////////
+
+.course-bar {
+    // background-color: #1c1d1f;
+    // background-color: #79ADD4;
+    background-color: #113250;
+    display: flex;
+    padding: 0.5rem 0;
+    color: white;
+
+    h4 {
+        font-size: 1.4rem;
+        margin: auto 0 auto 3rem;
+        width: 72%;
+        user-select: none;
+    }
+
+    label {
+        position: relative;
+        right: 1.6rem;
+        margin: auto 0;
+    }
+}
+
+.show-progress {
+    display: block;
+    width: 275px;
+    height: 100px;
+    position: absolute;
+    top: 2.5rem;
+    // left: 1rem;
+    right: -3.5rem;
+    background-color: white;
+    color: black;
+    box-shadow: 1px 1px 1px 1px #d1d1d1;
+    text-align: center;
+    transition-delay: 2s;
+
+    p {
+        margin: 0.8rem 0;
+    }
+
+    label {
+        position: absolute;
+        left: 0;
+        // margin-top: 1rem;
+        margin: 1rem 0 0 1rem;
+    }
+}
+
+.hide-progress {
+    display: none;
+}
+
+.progress-bar-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    position: relative;
+    width: 13.5rem;
+    user-select: none
+}
+
+.icon-progress {
+    position: relative;
+    left: 0.4rem;
+    font-size: 0.8rem;
+}
+
+.circular-progress {
+    width: 35px;
+    height: 35px;
+}
+
+
+///////////////////////Left side ///////////////////////////////
+
+
+hr {
+    margin: auto;
+    width: 97%;
+}
+
+tr {
+    margin: 2rem;
+}
+
+.container-course {
+    width: 90%;
+    background-color: red;
+    display: grid;
+    grid-template-columns: 75% 25%;
+    margin-top: 10rem;
+}
+
+.about-container p {
+    width: 80%;
+}
+
+.about-video-title {
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.description-video {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    margin-top: 2rem;
+}
+
+.description-video p {
+    width: 90%;
+}
+
+.info-container {
+    margin: 2.5rem;
+}
+
+.video-container {
+    height: 35rem;
+    width: 100%;
+}
+
+///////////////////////Right side ///////////////////////////////
+
+.right-container-video {
+    border: 1px;
+    border-style: none none none solid;
+    border-color: rgb(197, 197, 197);
+}
+
+
+///////////////////////Sections////////////////////
+
+.form-check {
+    padding: 0;
+}
+
+.icon-play {
+    font-size: 0.85rem;
+    margin-right: 0.3rem;
+    position: relative;
+    bottom: 1px;
+}
+
+
+input[type="checkbox"] {
+    // appearance: auto;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.05em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    position: relative;
+    top: 7px;
+    left: 8px;
+}
+
+
+.sections h4 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.sections {
+    padding: 1.2rem;
+    border: 1px;
+    border-bottom-width: 90%;
+    border-style: none none solid none;
+    border-color: rgb(197, 197, 197);
+}
+
+.sections:hover {
+    background-color: rgb(236, 236, 236);
+    transition: 0.2s;
+}
+
+.section-element {
+    // margin-left: 1rem;
+    // padding: 1rem;
+    padding: 1.1rem 1.1rem 1.1rem 2.5rem;
+
+    .form-check-label {
+        position: relative;
+        left: 0.4rem;
+    }
+
+    .duration-video {
+        position: relative;
+        left: 0.5rem;
+        top: 0.2rem;
+    }
+}
+
+.section-element:hover {
+    background-color: rgb(219, 219, 219);
+    transition: 0.2s;
+}
+
+.show-elements {
+    display: block;
+    user-select: none;
+}
+
+.hide-elements {
+    display: none;
+}
+
+.sections h4 {
+    user-select: none;
+    /* Standard syntax */
+    cursor: default
+}

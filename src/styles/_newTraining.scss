@@ -1,0 +1,272 @@
+.hide {
+    display: none;
+}
+
+.create-course-title {
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 4rem;
+    margin-bottom: 5rem;
+
+    
+}
+
+.label-details {
+    margin: auto 0;
+}
+
+
+.course-details {
+    // margin-top: 4rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 3.5rem 4rem;
+}
+
+.select-image {
+    text-align: center;
+    font-weight: bold;
+    width: 8rem;
+    height: 8rem;
+    font-size: 1.3rem;
+    // position: absolute;
+    // top: 45%;
+    color: rgb(165, 165, 165);
+}
+
+.delete-icon {
+    position: absolute;
+    right: -1.5rem;
+    top: -2rem;
+    color: rgb(165, 0, 0);
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.image-uploader {
+    // background-color: blue;
+    position: relative;
+    // margin: auto;
+    // border: 4px dashed rgb(165, 165, 165);
+    margin: auto;
+    // width: 100%;
+
+    img {
+        border-radius: 1rem;
+        width: 40rem;
+        height: 25rem;
+    }
+
+}
+
+.input-container {
+
+    input {
+        position: relative;
+        right: 3rem;
+    }
+
+    textarea {
+        position: relative;
+        right: 3rem;
+    }
+}
+
+.input-course {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin-top: 1.5rem;
+    // text-align: c;
+}
+
+
+//////////////Sections details////////////////
+
+.section-details {
+    margin: 7rem 4rem;
+
+    table {
+        width: 60%;
+        margin: 6rem auto;
+        font-size: 1.2rem;
+
+        th {
+            text-align: center;
+            border: 1px solid;
+        }
+    }
+}
+
+.section-details-container {
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    width: 80%;
+    margin: 8.5rem auto;
+    
+}
+
+.section-input-container {
+    display: grid;
+    grid-template-columns: 4rem 30rem 7rem;
+    position: absolute;
+    top: 3rem;
+    left: 27%;
+
+}
+
+
+
+.input-newSection {
+    border: none;
+    margin-left: 1.5rem;
+}
+
+.input-newSection:focus {
+    border: none;
+    outline: none;
+}
+
+
+
+//////////////Video details////////////
+/// 
+/// 
+
+.video-tab {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+}
+
+.video-details-container {
+   
+    
+    .video-details-grid {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+    }
+
+    .order-details-grid {
+        // display: inline-block;
+        // background-color: red;
+        input {
+            text-align: center;
+            width: 2rem;
+            margin-left: 1rem;
+            // margin: 0 3rem 0 1rem
+        }
+    }
+
+    .title-details-grid {
+        // display: inline-block;
+        // grid-template-columns: 20% 80%;
+        // background-color: blue;
+        input {
+            width: 25rem;
+            margin-left: 1rem;
+            // margin: 0 3rem 0 1rem
+        }
+    }
+
+    .link-details-grid {
+        // display:inline-block;
+        // background-color: green;
+        input {
+            margin-left: 1rem;
+            // margin: 0 3rem 0 1rem
+        }
+    }
+
+    margin: 2rem 0 2rem 2rem
+}
+
+.btn-training {
+    appearance: button;
+    backface-visibility: hidden;
+    background-color: rgba(71, 129, 255, 0.808);
+    border-radius: 6px;
+    border-width: 0;
+    box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .1) 0 2px 5px 0, rgba(0, 0, 0, .07) 0 1px 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+    font-size: 100%;
+    height: 44px;
+    line-height: 1.15;
+    outline: none;
+    overflow: hidden;
+    padding: 0 25px;
+    // position: relative;
+    text-align: center;
+    text-transform: none;
+    transform: translateZ(0);
+    transition: all .2s, box-shadow .08s ease-in;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.publish-videos-btn {
+    position: fixed;
+    right: 2rem;
+    top: 2rem;
+    z-index: 3;
+}
+
+.publish-videos-btn:hover {
+    background-color: #405cf5;
+}
+
+.adding-videos-btn {
+    position: relative;
+    left: 45%;
+    margin: 1.5rem 0 2rem 0;
+}
+
+.adding-videos-btn:hover {
+    background-color: #405cf5;
+}
+
+.delete-video-btn {
+    display: inline-block;
+    background-color: rgba(247, 29, 29, 0.61);
+    line-height: normal;
+    height: 2.3rem;
+    margin: 0 3rem 0 1rem;
+    width: 6rem;
+}
+
+.delete-video-btn:hover {
+    background-color: rgb(247, 29, 29);
+}
+
+.input-section {
+    border: none;
+    outline: none;
+    width: 10rem;
+    text-align: center;
+    cursor: pointer;
+    caret-color: transparent;
+}
+
+.input-section-edit {
+    border: none;
+    outline: none;
+    caret-color: black;
+}
+
+.edit-icon {
+    display: inline-block;
+    font-size: 1.2rem;
+    position: relative;
+    left: 0.5rem;
+}
+
+// .show-icon {
+//     display: inline-block;
+// }
+
+.hide-icon {
+    display: none
+}

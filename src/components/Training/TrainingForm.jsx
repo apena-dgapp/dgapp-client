@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import Input from "../../common/components/Input/Input";
 import TrainingCard from "./TrainingCard";
-import { MdSearch } from "react-icons/md";
-import GlobalContext from "../../context/GlobalContext";
-import Images from "../../common/images/index";
+import { MdSearch, MdModelTraining } from "react-icons/md";
+// import Images from "../../common/images/index";
 
 const TrainingForm = ({
   filterArrayCourses,
@@ -11,20 +10,36 @@ const TrainingForm = ({
   backPage,
   onSearchChange,
   search,
-  goToProfile,
   arrayDepartament,
   filterDep,
   searchDep,
   pageLength,
   page,
+  goToNew,
+  goToEdit,
+  goToCourse
 }) => {
-  const [contextState] = useContext(GlobalContext);
 
   return (
     <>
-      <div className="training-cont">
-        <div className="training">ENTRANAMIENTO</div>
+      <div className="allPostTitle-cont">
+      <div className="allPostTitle">
+          <span>
+            <i className="md md-model-training" />
+            <MdModelTraining
+              size="3rem"
+              color="#79ADD4"
+              style={{ marginBottom:"1.5rem"}}
+            />
+          </span>
+          <p>
+            ENTRENAMIENTO
+          </p>     
+          </div>
       </div>
+      {/* <div className="emDirectory-cont">
+        <div className="emDirectory">DIRECTORIO DE EMPLEADOS</div>
+      </div> */}
       <div className="emDirectory-input-search-cont">
         <i className="md md-arrow-forward-ios" />
         <MdSearch
@@ -43,7 +58,12 @@ const TrainingForm = ({
         >
           Filtrar por Area
         </p>
-        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <div className="training-new-text">  
+        <p onClick={goToNew}>
+          Nuevo +
+        </p>
+        </div>
+        <ul className="dropdown-menu dropdown-menu-employee" aria-labelledby="dropdownMenuButton1">
           <li>
             <div onClick={() => filterDep("todos")} className="dropdown-item">
               Todos
@@ -77,7 +97,7 @@ const TrainingForm = ({
         </div>
       </div>
       <div className="emDirectory-filter-dep">
-        <div className="training-filter-txt">
+        <div className="emDirectory-filter-txt">
           <div
             style={{
               color: "#2a343f",
@@ -89,8 +109,8 @@ const TrainingForm = ({
           </div>
         </div>
       </div>
-      <div className="training-Container">
-        <div className="training-grid-container">
+      <div className="emDirectory-Container">
+        <div className="grid-container">
           {filterArrayCourses().map((course, index) => {
               return  (
                 <TrainingCard
@@ -98,11 +118,12 @@ const TrainingForm = ({
                   id={course.id}
                   title={course.title}
                   img={course.image}
-                  position="Is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley"
                   description={course.description}
-                  madeby={course.madeby}
+                  madeby={course.madeBy}
                   duration={course.duration}
-                  cel="Obligatorio"
+                  collaborators={course.collaborators}
+                  edit={goToEdit}
+                  goToCourse={goToCourse}
                 />
               ) 
           })}

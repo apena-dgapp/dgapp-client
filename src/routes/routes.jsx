@@ -24,6 +24,8 @@ import Building from "../common/components/Building/Building";
 // import Chat from "../components/Chat/Chat";
 // import ChatButton from "../common/components/ChatButton/ChatButton";
 import Training from "../components/Training/Training";
+import Course from "../components/Training/Course/Course";
+import NewCourse from "../components/Training/NewCourse";
 import CreateEvents from "../components/CreateEvents/CreateEvents";
 import FoodOrder from "../components/FoodOrder/FoodOrder";
 import TicketSystem from "../components/TicketSystem/TicketSystem";
@@ -75,7 +77,8 @@ const Routes = () => {
             path={`${process.env.REACT_APP_RUTE}/organigrama`}
             component={contextState.token ? EmployeeTree : Login}
           />
-               <Route path={`${process.env.REACT_APP_RUTE}/pdf`} component={FilePdf} />
+          
+          <Route path={`${process.env.REACT_APP_RUTE}/pdf`} component={FilePdf} />
           
           <Route
             path={`${process.env.REACT_APP_RUTE}/construccion`}
@@ -90,8 +93,24 @@ const Routes = () => {
             component={contextState.token ? EmployeeDirectory : Login}
           />
           <Route
-            path={`${process.env.REACT_APP_RUTE}/training`}
+            exact path={`${process.env.REACT_APP_RUTE}/entrenamiento`}
             component={contextState.token ? Training : Login}
+          />
+          <Route
+            exact path={`${process.env.REACT_APP_RUTE}/entrenamiento/curso/crear`}
+            component={contextState.token ? NewCourse : Login}
+          />
+          <Route
+            path={`${process.env.REACT_APP_RUTE}/entrenamiento/curso/:courseId/edit`}
+            component={contextState.token ? NewCourse : Login}
+          />
+          <Route
+            exact path={`${process.env.REACT_APP_RUTE}/entrenamiento/curso/:courseId`}
+            component={contextState.token ? Course : Login}
+          />
+          <Route
+            exact path={`${process.env.REACT_APP_RUTE}/entrenamiento/curso/:courseId/:videolink`}
+            component={contextState.token ? Course : Login}
           />
           <Route
             path={`${process.env.REACT_APP_RUTE}/foodorder`}
