@@ -23,75 +23,7 @@ const NewCourseForm = (props) => {
 
   return (
     <>
-      {props.courseId === undefined ? (
-        <button
-          className="btn-training publish-videos-btn"
-          onClick={() => {
-            const globalOptions = {
-              labels: {
-                success: "Exito!",
-                confirm: "¿Deseas publicar este curso?",
-                confirmOk: "Si",
-                confirmCancel: "Cancelar",
-              },
-            };
-            const notifier = new AWN(globalOptions);
-
-            notifier.confirm(
-              " ",
-              () => {
-                props.postNewCourse();
-              },
-              (() => {}, globalOptions)
-            );
-          }}
-        >
-          Publicar
-        </button>
-      ) : (
-        <button
-          className="btn-training publish-videos-btn"
-          onClick={() => {
-            const globalOptions = {
-              labels: {
-                success: "Exito!",
-                confirm: "¿Deseas actualizar este curso?",
-                confirmOk: "Si",
-                confirmCancel: "Cancelar",
-              },
-            };
-            const notifier = new AWN(globalOptions);
-
-            notifier.confirm(
-              " ",
-              () => {
-                if (
-                  !props.checkEmptyValue(videoData) &&
-                  !props.checkEmptyValue(sectionData)
-                ) {
-                  props.postNewCourse();
-                } else {
-                  const globalOptions = {
-                    position: "bottom-left",
-                    labels: {
-                      warning: "Error",
-                    },
-                  };
-                  const notifier = new AWN(globalOptions);
-                  notifier.warning(
-                    "Verifique de no dejar ningún elemento vacio.",
-                    globalOptions
-                  );
-                }
-              },
-              (() => {}, globalOptions)
-            );
-          }}
-        >
-          Actualizar
-        </button>
-      )}
-      <h2 className="create-course-title">Detalles del curso</h2>
+      <h2 className="create-course-title">DETALLES DEL CURSO</h2>
       <div className="course-details">
         <div className="input-container">
           <div className="input-course">
@@ -107,8 +39,9 @@ const NewCourseForm = (props) => {
           <div className="input-course">
             <p className="label-details">Descripción:</p>
             <textarea
-              rows="5"
-              cols="60"
+              // rows="5"
+              // cols="60"
+              maxLength={450}
               name="description"
               value={courseData[0].description}
               onChange={(e) => {
@@ -118,7 +51,7 @@ const NewCourseForm = (props) => {
               }}
             />
           </div>
-          <div className="input-course">
+          {/* <div className="input-course">
             <p className="label-details">Información adicional:</p>
             <textarea
               rows="2"
@@ -131,7 +64,7 @@ const NewCourseForm = (props) => {
                 ]);
               }}
             />
-          </div>
+          </div> */}
           <div className="input-course">
             <p className="label-details">Creado por:</p>
             <input
@@ -154,6 +87,7 @@ const NewCourseForm = (props) => {
           </div>
         </div>
         <div className="image-uploader" htmlFor="getImage">
+          <p style={{display: img !== null ? "none":"block"}}>Click para agregar una image de portada</p>
           <input
             id="getImage"
             className={"hide"}
@@ -183,11 +117,11 @@ const NewCourseForm = (props) => {
             Selecciona tu portada
           </label> */}
 
-          <img src={img} alt=" " />
+          <img style={{display: img !== null ? "block":"contents"}} src={img} alt=" " />
         </div>
       </div>
       <div className="section-details-container">
-        <h2 className="create-course-title">Detalle de las secciones</h2>
+        <h2 className="create-course-title">DETALLES DE LA SECCIONES</h2>
         <Tabs
           selectedIndex={tabIndex}
           onSelect={(e) => {
@@ -462,7 +396,7 @@ const NewCourseForm = (props) => {
           })}
 
           <button
-            className="btn-training adding-videos-btn"
+            className="btn-training-add adding-videos-btn"
             onClick={() => {
               setVideoData(
                 props.addLocalId([
@@ -478,6 +412,79 @@ const NewCourseForm = (props) => {
           </button>
         </Tabs>
       </div>
+      {props.courseId === undefined ? (
+        <div className="trainig-btn-publish-cont">
+           <button
+            className="btn-training"
+            onClick={() => {
+              const globalOptions = {
+                labels: {
+                  success: "Exito!",
+                  confirm: "¿Deseas publicar este curso?",
+                  confirmOk: "Si",
+                  confirmCancel: "Cancelar",
+                },
+              };
+              const notifier = new AWN(globalOptions);
+
+              notifier.confirm(
+                " ",
+                () => {
+                  props.postNewCourse();
+                },
+                (() => {}, globalOptions)
+              );
+            }}
+          >
+            Publicar
+          </button>
+        </div>
+       
+      ) : (
+        <div className="trainig-btn-publish-cont">
+          <button
+            className="btn-training"
+            onClick={() => {
+              const globalOptions = {
+                labels: {
+                  success: "Exito!",
+                  confirm: "¿Deseas actualizar este curso?",
+                  confirmOk: "Si",
+                  confirmCancel: "Cancelar",
+                },
+              };
+              const notifier = new AWN(globalOptions);
+
+              notifier.confirm(
+                " ",
+                () => {
+                  if (
+                    !props.checkEmptyValue(videoData) &&
+                    !props.checkEmptyValue(sectionData)
+                  ) {
+                    props.postNewCourse();
+                  } else {
+                    const globalOptions = {
+                      position: "bottom-left",
+                      labels: {
+                        warning: "Error",
+                      },
+                    };
+                    const notifier = new AWN(globalOptions);
+                    notifier.warning(
+                      "Verifique de no dejar ningún elemento vacio.",
+                      globalOptions
+                    );
+                  }
+                },
+                (() => {}, globalOptions)
+              );
+            }}
+          >
+            Actualizar
+          </button>
+        </div>
+      )}
     </>
   );
 };

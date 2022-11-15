@@ -1,34 +1,24 @@
-import React from "react";
+import React, {useContext} from "react";
 import Images from "../../common/images/index";
-import { TbEdit } from "react-icons/tb";
+import { RiEditBoxFill } from "react-icons/ri";
 import { BsClockFill } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
-// import GlobalContext from "../../context/GlobalContext";
+import { MdDeleteForever } from "react-icons/md";
+import GlobalContext from "../../context/GlobalContext";
 
 const TrainingCard = (props) => {
+
+  const [contextState] = useContext(GlobalContext);
+
   return (
     <>
-      <div className="emDirectory-card">
+      <div className={contextState.userRole === 1  ? "training-card":"emDirectory-card"}>
         <div className="emDirectory-card-cont">
-          <div className="training-icon-edit">
-            <i className="tb tb-Edit" />
-            <TbEdit
-              style={{ marginRight: "0.5rem" }}
-              size="1.5rem"
-              color="darkcyan"
-            />
-             <i className="tb tb-Edit" />
-            <TbEdit
-              style={{ marginRight: "0.5rem" }}
-              size="1.5rem"
-              color="darkcyan"
-            />
-          </div>
           <img
             src={props.img ? props.img : Images.noImg}
             className="training-card-img"
             alt="..."
-            onClick={() => props.goToCourse(props.id)}
+            onClick={() => props.goToCourse(props)}
           />
           <div className="card-body">
             <p className="emDirectory-card-departament">
@@ -41,37 +31,65 @@ const TrainingCard = (props) => {
               {props.description ? props.description : "No definido!"}
             </p>
           </div>
-          <div className="mb-2">
-            <p className="training-card-text-contact">
-              <i className="fa fa-users" />
-              <FaUsers
-                style={{ marginRight: "0.5rem" }}
-                size="1.5rem"
-                color="darkcyan"
-              />
-              {props.collaborators ? props.collaborators : "No definido!"}
-            </p>
+          <div className="training-card-icon-cont">
+            <div className="training-icon-card">
+              <p className="training-card-text-contact">
+                <i className="fa fa-users" />
+                <FaUsers
+                  style={{ marginRight: "0.5rem" }}
+                  size="1.5rem"
+                  color="#BCD3E6"
+                />
+                {props.collaborators ? props.collaborators : "No definido!"}
+              </p>
+            </div>
+            <div className="training-icon-card">
+              <p className="training-card-text-contact">
+                <i className="bs bs-clock-fill" />
+                <BsClockFill
+                  style={{ marginRight: "0.5rem" }}
+                  size="1.2rem"
+                  color="#BCD3E6"
+                />
+                {props.duration ? props.duration : "No definido!"}
+              </p>
+            </div>    
           </div>
-          <div className="mb-2">
-            <p className="training-card-text-contact">
-              <i className="bs bs-clock-fill" />
-              <BsClockFill
-                style={{ marginRight: "0.5rem" }}
-                size="1.5rem"
-                color="darkcyan"
-              />
-              {props.duration ? props.duration : "No definido!"}
-            </p>
-          </div>
-          <button onClick={()=>props.edit(props.id)}>Edit</button>
           <button
             onClick={() => props.goToCourse(props)}
-            // onClick={(e) => props.goToProfile(e, props.id)}
             className="emDirectory-card-btn"
           >
             Ir al Curso
           </button>
         </div>
+        {contextState.userRole === 1  ?
+
+        
+        <div className="training-actions-icon">
+          <div>
+             <p onClick={()=>props.edit(props.id)} className="training-card-text-edit">
+              <i className="ri ri-edit-box-fill" />
+                <RiEditBoxFill
+                  // style={{ marginRight: "0.5rem" }}
+                  size="1.4rem"
+                  color="#FBB454"
+                />
+                Editar
+              </p>
+          </div>
+          <div>
+            <p className="training-card-text-delete">
+              <i className="md md-delete-forever" />
+              <MdDeleteForever
+                // style={{ marginRight: "0.5rem" }}
+                size="1.6rem"
+                color="#FB2576"
+              />
+              Eliminar
+            </p>  
+          </div>            
+        </div>:null
+        }
       </div>
     </>
   );

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 function DownloadForm({ title, arrayFiles }) {
   const navigate = useNavigate();
 
+  console.log(arrayFiles)
+
     const goToPDF = (pdf) => {
     navigate("/pdf",{
       state: pdf,
@@ -38,7 +40,7 @@ function DownloadForm({ title, arrayFiles }) {
         </div>
         <div className="regulations-card">
           {arrayFiles
-            ? arrayFiles.files.map((file) => {
+            ? arrayFiles?.map((file) => {
                 return (
                   <div key={file.fileId} id={file.fileId}>
                     <div className="regulations-data-grid">

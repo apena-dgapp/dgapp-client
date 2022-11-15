@@ -177,7 +177,7 @@ const SiglePostForm = ({
           <div className="siglepost-download-title">
             <p className="">ZONA DE DESCARGA</p>
           </div>
-          <div className="siglepost-scroll-cont mb-2">
+          <div className="siglepost-scroll-cont">
             <div className="siglepost-header-grid">
               <div className="siglepost-grid-1">
                 <div className="siglepost-nav-container">
@@ -212,21 +212,21 @@ const SiglePostForm = ({
                   <div className="regulations-data-grid">
                     <div className="regulations-grid-1">
                       <div className="regulations-data-container">
-                        <div className="regulations-data-txt">
+                        <div className="siglePost-data-txt">
                           {file.name.toLowerCase().split(".")[0]}
                         </div>
                       </div>
                     </div>
                     <div className="regulations-grid-2">
                       <div className="regulations-data-container">
-                        <div className="regulations-data-txt">
+                        <div className="siglePost-data-txt">
                           {bytesToSize(file.size)}
                         </div>
                       </div>
                     </div>
                     <div className="regulations-grid-3">
                       <div className="regulations-data-container">
-                        <div className="regulations-data-txt">
+                        <div className="siglePost-data-txt">
                           {/* {new Date(file.publicationDate).toDateString()} */}
                           {file.type}
                         </div>
@@ -237,7 +237,7 @@ const SiglePostForm = ({
                         <button
                           id={file.fileId}
                           type="button"
-                          className="btn btn-success btn-sm"
+                          className="btn btn-success btn-sm btn-success-down"
                           onClick={() => goToPDF(file.src)}
                         >
                           Descargar

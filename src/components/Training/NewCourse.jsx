@@ -246,7 +246,7 @@ const NewCourse = () => {
       setVideoData(addLocalId(fetchVideoData));
     }
     // window.scrollTo(0, 0);
-    console.log(fetchCourseData);
+    // console.log(fetchCourseData);
   }, [fetchCourseData, fetchSectionData, fetchVideoData]);
 
   return (

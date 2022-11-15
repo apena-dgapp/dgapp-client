@@ -72,13 +72,13 @@ const TrainingForm = (props) => {
             <hr />
 
             <div className="description-video">
-              <p>
+              {/* <p>
                 <strong>Información adicional:</strong>{" "}
                 {props.course[0]?.additional_info}
-              </p>
+              </p> */}
               <div>
                 <p>
-                  <strong>Duración: </strong> {props.globalDuration()}min
+                  <strong>Duración:</strong> {props.globalDuration()} min
                 </p>
                 <p>
                   <strong>Vistas:</strong> {props.course[0]?.views}

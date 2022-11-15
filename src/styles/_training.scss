@@ -27,8 +27,8 @@
 .training-grid-container {
     display: grid;
     // background-color: red;
-    grid-template-columns: 25% 25% 25% 25%;
-    width: 90%;
+    grid-template-columns: 35% 30% 35%;
+    width: 80%;
 }
 
 .grid-card:hover {
@@ -107,7 +107,7 @@
 }
 
 .training-card-img {
-    width: 90%;
+    width: 100%;
     height: 10rem;
     object-fit: cover;
     cursor: pointer;
@@ -170,9 +170,7 @@
     font-size: 0.8rem;
     // text-align: center;
     margin: 0;
-    color: darkcyan;
-    // text-decoration: underline;
-    cursor: pointer;
+    color: #BCD3E6;
 }
 
 .emDirectory-dropdown {
@@ -217,3 +215,149 @@
         color: #79ADD4;
     }
 }
+
+.training-card-icon-cont {
+    width: 100%;
+    // background-color: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.training-actions-icon {
+    display: flex;
+    flex-direction: column;
+    width: 10rem;
+    height: 10rem;
+    // background-color: #FB2576;
+}
+
+.training-card-text-edit {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: 0.8rem;
+    // text-align: center;
+    margin: 0;
+    color: #FBB454;
+    // text-decoration: underline;
+    cursor: pointer;
+}
+
+.training-card-text-delete {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-size: 0.8rem;
+    // text-align: center;
+    margin: 0;
+    color: #FB2576;
+    // text-decoration: underline;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.training-card {
+    width: 25rem;
+    display: flex;
+    margin-bottom: 3rem;
+}
+
+.training-icon-card {
+    width: 8rem;
+    margin-top: 1rem;
+}
+
+//MEDIAS QUERIES
+
+//Phone X
+@media screen and (max-width:420px) {
+    .training-grid-container {
+        display: flex;
+        flex-direction: column;
+        grid-template-columns: none;
+    }
+
+    .training-card {
+        width: 23rem;
+    }
+
+    .training-card-text-edit {
+        font-size: 0.68rem;
+
+        img,
+        svg {
+            width: 1rem;
+        }
+    }
+
+    .training-card-text-delete {
+        font-size: 0.68rem;
+
+        img,
+        svg {
+            width: 1.2rem;
+        }
+
+        margin-top: 0.5rem;
+    }
+
+    .training-new-text P {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+}
+
+//Phone 12/13 Pro Mas
+@media screen and (min-width: 421px) and (max-width: 720px) {}
+
+//Ipad
+@media screen and (min-width: 721px) and (max-width: 1020px) {
+    .training-grid-container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        width: 80%;
+    }
+
+    .training-card {
+        width: 22rem;
+    }
+
+    .training-card-text-edit {
+        font-size: 0.68rem;
+
+        img,
+        svg {
+            width: 1rem;
+        }
+    }
+
+    .training-card-text-delete {
+        font-size: 0.68rem;
+
+        img,
+        svg {
+            width: 1.2rem;
+        }
+
+        margin-top: 0.5rem;
+    }
+
+    .training-new-text P {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+}
+
+//laptop generic
+@media screen and (min-width: 1021px) and (max-width: 1320px) {}

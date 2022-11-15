@@ -87,32 +87,7 @@ const RegisterForm = ({
                 disabled={autoName ? true : false}
               />
             </div>
-            {/* <div className="mt-1">
-              <p className="edit-input-title">Contraseña</p>
-              <input
-                id="password"
-                onChange={handlerInputChange}
-                name="password"
-                type="password"
-                placeholder="Escriba una contraseña facil de recordar"
-                className="edit-input"
-                value={formData.password || ""}
-                disabled={exist ? true : false}
-              />
-            </div>
-            <div className="mt-1">
-              <p className="edit-input-title">Confirmar Contraseña</p>
-              <input
-                id="confirm"
-                onChange={handlerInputChange}
-                name="confirm"
-                type="password"
-                placeholder="Escriba nuevamente la contraseña"
-                className="edit-input"
-                value={formData.confirm || ""}
-                disabled={exist ? true : false}
-              />
-            </div> */}
+  
             <div className="mt-1">
               <p className="edit-input-title">Privilegio</p>
               <select

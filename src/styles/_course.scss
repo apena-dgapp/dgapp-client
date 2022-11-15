@@ -34,6 +34,7 @@
     display: flex;
     padding: 0.5rem 0;
     color: white;
+    margin-top: 11rem;
 
     h4 {
         font-size: 1.4rem;
@@ -116,7 +117,8 @@ tr {
     // background-color: red;
     display: grid;
     grid-template-columns: 75% 25%;
-    margin-top: 10rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
 }
 
 .about-container p {
@@ -126,6 +128,7 @@ tr {
 .about-video-title {
     font-weight: bold;
     font-size: 1.8rem;
+    color: #113250;
 }
 
 .description-video {
@@ -167,30 +170,37 @@ tr {
     margin-right: 0.3rem;
     position: relative;
     bottom: 1px;
+
+    color: #54BAB9;
 }
 
 
-input[type="checkbox"] {
-    // appearance: auto;
-    background-color: #fff;
-    margin: 0;
-    font: inherit;
-    color: currentColor;
-    width: 1.05em;
-    height: 1.15em;
-    border: 0.15em solid currentColor;
-    border-radius: 0.15em;
-    transform: translateY(-0.075em);
-    position: relative;
-    top: 7px;
-    left: 8px;
-}
+// input[type="checkbox"] {
+//     // appearance: auto;
+//     background-color: #fff;
+//     margin: 0;
+//     font: inherit;
+//     color: currentColor;
+//     width: 1.05em;
+//     height: 1.15em;
+//     border: 0.15em solid currentColor;
+//     border-radius: 0.15em;
+//     transform: translateY(-0.075em);
+//     position: relative;
+//     top: 7px;
+//     left: 8px;
+// }
 
 
 .sections h4 {
     margin: 0;
     font-weight: bold;
     font-size: 1rem;
+    color: #113250;
+}
+
+.sections label {
+    color: #79ADD4;
 }
 
 .sections {
@@ -242,3 +252,17 @@ input[type="checkbox"] {
     /* Standard syntax */
     cursor: default
 }
+
+//MEDIAS QUERIES
+
+//Phone X
+@media screen and (max-width:420px) {}
+
+//Phone 12/13 Pro Mas
+@media screen and (min-width: 421px) and (max-width: 720px) {}
+
+//Ipad
+@media screen and (min-width: 721px) and (max-width: 1020px) {}
+
+//laptop generic
+@media screen and (min-width: 1021px) and (max-width: 1320px) {}

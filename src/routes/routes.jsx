@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
-import PrivateRoutes from "../routes/Private.Routes";
+// import PrivateRoutes from "../routes/Private.Routes";
 import Login from "../components/LogIn/Login";
 import Navbar from "../common/components/Navbar/Navbar";
 import Dashboard from "../components/Dashboard/Dashboard";
@@ -29,7 +29,7 @@ import NewCourse from "../components/Training/NewCourse";
 import CreateEvents from "../components/CreateEvents/CreateEvents";
 import FoodOrder from "../components/FoodOrder/FoodOrder";
 import TicketSystem from "../components/TicketSystem/TicketSystem";
-
+import Documents from "../components/DownloadFile/Download";
 // const Navbar = lazy(()=> import("../common/components/Navbar/Navbar"));
 // const Dashboard = lazy(()=> import("../components/Dashboard/Dashboard"));
 // const Footer = lazy(()=> import("../common/components/Footer/Footer"));
@@ -86,6 +86,21 @@ const RoutesComponent = () => {
           <Route
             path={`${process.env.REACT_APP_RUTE}/perfil/:name`}
             element={contextState.token ? <EmployeeProfile/> : <Login/>}
+          />
+          {
+            contextState.userRole === 1  ?
+              <Route
+               path={`${process.env.REACT_APP_RUTE}/perfil/editar/:name`}
+                element={contextState.token ? <EmployeeEdit/> : <Login/>}
+              />:<Route 
+              path={`${process.env.REACT_APP_RUTE}*`}
+              element={<Page404/>}
+              />
+          }
+
+          <Route
+            path={`${process.env.REACT_APP_RUTE}/perfil/documentos/:name`}
+            element={contextState.token ? <Documents/> : <Login/>}
           />
           <Route
             path={`${process.env.REACT_APP_RUTE}/directorio`}
@@ -154,17 +169,6 @@ const RoutesComponent = () => {
           }
 
           {
-            contextState.userRole === 1  ?
-              <Route
-               path={`${process.env.REACT_APP_RUTE}/editar/:name`}
-                element={contextState.token ? <EmployeeEdit/> : <Login/>}
-              />:<Route 
-              path={`${process.env.REACT_APP_RUTE}*`}
-              element={<Page404/>}
-              />
-          }
-
-          {
             contextState.userRole === 1 ?
               <Route
                 path={`${process.env.REACT_APP_RUTE}/nuevo-empleado`}
@@ -175,7 +179,6 @@ const RoutesComponent = () => {
               element={<Page404/>}
               />
           }
-
           <Route
             path={`${process.env.REACT_APP_RUTE}*`}
             element={<Page404/>}

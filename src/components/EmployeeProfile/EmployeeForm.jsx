@@ -19,6 +19,7 @@ const EmployeeForm = ({
   msgDisable,
   edit,
   handleIsActive,
+  goTodocuments
 }) => {
   const navigate = useNavigate();
   const [contextState] = useContext(GlobalContext);
@@ -198,8 +199,7 @@ const EmployeeForm = ({
 
           <div className="employee-btn-container">
             <button
-              // onClick={(e) => goToDownload(e, "MIS DOCUMENTOS")}
-              onClick={msgDisable}
+              onClick={() => goTodocuments("MIS DOCUMENTOS")}
               type="button"
               className="employee-btn-documentation"
             >

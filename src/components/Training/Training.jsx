@@ -107,8 +107,8 @@ const Training = () => {
     if (searchDep === "todos" || searchDep === "" || searchDep === undefined) {
       if (search.length === 0)
         return courses.slice(currentPage, currentPage + 8);
-      const filtered = courses.filter((persons) =>
-        persons.fullName.toLowerCase().includes(search)
+      const filtered = courses.filter((course) =>
+      course.title.toLowerCase().includes(search)
       );
       return filtered.slice(currentPage, currentPage + 8);
     } else {
@@ -134,8 +134,8 @@ const Training = () => {
   const nextPage = () => {
     setPage(page + 8);
     if (
-      courses.filter((persons) =>
-        persons.fullName.toLowerCase().includes(search)
+      courses.filter((course) =>
+      course.title.toLowerCase().includes(search)
       ).length >
       currentPage + 8
     )

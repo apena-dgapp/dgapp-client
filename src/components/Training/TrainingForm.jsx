@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Input from "../../common/components/Input/Input";
 import TrainingCard from "./TrainingCard";
 import { MdSearch, MdModelTraining } from "react-icons/md";
-// import Images from "../../common/images/index";
+import GlobalContext from "../../context/GlobalContext";
 
 const TrainingForm = ({
   filterArrayCourses,
@@ -19,6 +19,8 @@ const TrainingForm = ({
   goToEdit,
   goToCourse
 }) => {
+
+  const [contextState] = useContext(GlobalContext);
 
   return (
     <>
@@ -56,13 +58,15 @@ const TrainingForm = ({
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          Filtrar por Area
+          Filtrar por categoria
         </p>
-        <div className="training-new-text">  
-        <p onClick={goToNew}>
-          Nuevo +
-        </p>
-        </div>
+        {contextState.userRole === 1  ?
+          <div className="training-new-text">  
+          <p onClick={goToNew}>
+            Nuevo <strong>+</strong>
+          </p>
+          </div>:
+        null}
         <ul className="dropdown-menu dropdown-menu-employee" aria-labelledby="dropdownMenuButton1">
           <li>
             <div onClick={() => filterDep("todos")} className="dropdown-item">
@@ -89,7 +93,7 @@ const TrainingForm = ({
             id="search"
             name="searchpost"
             type="text"
-            placeholder="Buscar empleados por nombre..."
+            placeholder="Buscar curso por titulo..."
             classInput="emDirectory-input-search"
             value={search}
             onChange={onSearchChange}
@@ -110,7 +114,7 @@ const TrainingForm = ({
         </div>
       </div>
       <div className="emDirectory-Container">
-        <div className="grid-container">
+        <div className={contextState.userRole === 1  ? "training-grid-container":"grid-container"}>
           {filterArrayCourses().map((course, index) => {
               return  (
                 <TrainingCard
