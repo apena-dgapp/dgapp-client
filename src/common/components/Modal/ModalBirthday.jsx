@@ -13,8 +13,8 @@ const ModalBirthday = ({
     <Portal>
       {modalActive && (
         <div className="wrapper-birthday">
-          <div className="window-birthday" onClick={modalToggle}>
-            <div className="birthdayModal-text-content">
+          <div className="window-birthday">
+            <div className="birthdayModal-text-content" onClick={modalToggle}>
               <BirthdayCard
                 arrayBirthday={arrayBirthday}
                 modalToggle={modalToggle}

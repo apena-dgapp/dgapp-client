@@ -131,7 +131,7 @@ const RoutesComponent = () => {
             element={contextState.token ? <FoodOrder/> : <Login/>}
           />
           <Route
-            path={`${process.env.REACT_APP_RUTE}/ticket`}
+            path={`${process.env.REACT_APP_RUTE}/ticket/:action`}
             element={contextState.token ? <TicketSystem/> : <Login/>}
           />
 

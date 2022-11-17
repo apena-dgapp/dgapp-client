@@ -93,7 +93,7 @@ const NavbarForm = ({
                   alt=""
                 />
               </p>
-              <ul className={action === "Servicios" ? show:null} style={{ width: "10.5rem" }}>
+              <ul className={action === "Servicios" ? show:null} style={{ width: "8rem" }}>
                 {/* <li>
                   <p onClick={foodOrder}>Ordenar Almuerzo</p>
                 </li> */}
@@ -118,12 +118,12 @@ const NavbarForm = ({
                   </p>
                   <ul className="menu-left">
                     <li>
-                      {/* <p onClick={inConstruction}>Crear Ticket</p> */}
-                      <p>Crear Ticket</p>
+                      <p onClick={()=>ticketSystem("crear")}>Crear Ticket</p>
+                      {/* <p>Crear Ticket</p> */}
                     </li>
                     <li>
-                      {/* <p onClick={inConstruction}>Ver Tickets</p> */}
-                      <p>Ver Ticket</p>
+                      <p onClick={()=>ticketSystem("ver")}>Ver Tickets</p>
+                      {/* <p>Ver Ticket</p> */}
                     </li>
                   </ul>
                 </li>

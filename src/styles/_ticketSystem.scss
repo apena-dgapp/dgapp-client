@@ -1,3 +1,4 @@
+//CREATE TICKET
 .ticket-container {
     width: 100%;
     height: 100%;
@@ -8,7 +9,7 @@
 .ticket-card {
     width: 40%;
     // max-height: 50em;
-    height: 34rem;
+    height: 35rem;
     margin-top: 18rem;
     background-color: white;
     position: absolute;
@@ -26,7 +27,7 @@
 }
 
 .ticket-header-title {
-    padding-top: 10rem;
+    margin-top: 12rem;
     color: white;
     font-size: 2.5rem;
 }
@@ -132,4 +133,239 @@
         color: white;
         background-color: #525E75;
     }
+}
+
+//MENU TICKET
+.ticketmenu-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    // align-items: center;
+}
+
+.ticketmenu-title {
+    display: flex;
+    justify-content: center;
+    color: #113250;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 12rem;
+    // margin-bottom: 20rem;
+    width: 100%;
+
+    p {
+        margin-left: 0.8rem;
+    }
+}
+
+.ticketmenu-list-cont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.ticketmenu-list {
+    display: flex;
+    width: 25rem;
+    // height: 3rem;
+    // margin-bottom: 0.5rem;
+    // cursor: pointer;
+
+    p {
+        font-size: 0.8rem;
+    }
+}
+
+.ticket-datagrid-cont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.ticket-datagrid-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 15% 15% 15% 15% 15% 15%;
+    color: #113250;
+
+    &:hover {
+        background-color: #BCD3E6;
+    }
+
+    &:hover {
+        color: gray;
+    }
+
+}
+
+.ticket-datagrid-grid-section-header {
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gainsboro;
+
+}
+
+.ticket-datagrid-grid-header {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #113250;
+}
+
+.ticket-datagrid-grid-section-data {
+    width: 100%;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    // background-color: #2B4865;
+}
+
+.ticket-datagrid-grid-data {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+//modal
+.ticket-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ticket-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(20, 20, 20, 0.5);
+    // opacity: 0.4;
+    backdrop-filter: blur(2px);
+    z-index: 4;
+}
+
+.ticket-window {
+    position: relative;
+    background: white;
+    // background-image: url("../common/images/Fondo.png");
+    border-radius: 0.5rem;
+    // padding: 15px;
+    box-shadow: rgb(0, 0, 0) 2px 2px 10px;
+    z-index: 10;
+    overflow: hidden;
+    width: 60rem;
+    height: 30.5rem;
+    margin: auto;
+}
+
+.ticket-modal-title {
+    color: #113250;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    margin-top: 0.8rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.ticket-modal-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+.ticket-modal-details-cont-text {
+    // background-color: red;
+    width: 100%;
+    display: flex;
+    margin-left: 1rem;
+    // flex-direction: column;
+}
+
+.ticket-modal-details-text {
+    // background-color: blue;
+    width: 20rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    margin: 0;
+}
+
+.ticket-modal-grid-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    // background-color: red;
+}
+
+.ticket-modal-button {
+    width: 20rem;
+    height: 5rem;
+    border-radius: 0.6rem;
+    border: #113250 solid 1px;
+    color: #113250;
+    font-size: 1.5rem;
+    background: none;
+    text-align: center;
+
+    &:hover {
+        color: white;
+        background-color: #113250;
+    }
+}
+
+.ticket-modal-description {
+    width: 100%;
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // background-color: red;
+}
+
+.ticket-modal-description-title {
+    width: 40rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    p {
+        margin: 0;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    // background-color: blue;
+}
+
+.ticket-modal-description-text {
+    width: 40rem;
+    height: 13rem;
+    // background-color: green;
+    border-radius: 0.6rem;
+    border: #113250 solid 1px;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
 }

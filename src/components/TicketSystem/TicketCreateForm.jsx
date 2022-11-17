@@ -4,10 +4,8 @@ import { FaUndoAlt } from "react-icons/fa";
 import DatePicker  from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const TicketSystemForm = ({ priority, setPriority, color, undoPriority,handlerInputChange, formData, addTicket, options,setStartDate, startDate }) => {
- console.log("klk")
+const TicketCreateForm = ({ priority, setPriority, color, undoPriority,handlerInputChange, formData, addTicket, options,setStartDate, startDate }) => {
   return (
-
     <>
       {" "}
       <ReactTooltip multiline={true} />
@@ -20,6 +18,7 @@ const TicketSystemForm = ({ priority, setPriority, color, undoPriority,handlerIn
                 onChange={handlerInputChange}
                 name="issueName"
                 type="text"
+                maxLength={45}
                 placeholder="Escriba el asunto del problema"
                 className="ticket-input"
                 value={formData?.issueName || ""}
@@ -135,4 +134,4 @@ const TicketSystemForm = ({ priority, setPriority, color, undoPriority,handlerIn
   );
 };
 
-export default TicketSystemForm;
+export default TicketCreateForm;

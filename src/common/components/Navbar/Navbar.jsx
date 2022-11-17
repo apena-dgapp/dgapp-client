@@ -47,6 +47,7 @@ const Navbar = () => {
     position: "",
     birthday: "",
     photo: "",
+    email:""
   });
 
   const aboutUSChange = (e, name) => {
@@ -162,13 +163,17 @@ const Navbar = () => {
     navigate("/foodorder");
   };
 
-  const ticketSystem = () => {
+  const ticketSystem = (action) => {
+
+    const state = Object.assign({action}, person);
 
     if(active === "menu_items_show"){
       setActive("menu_items");
     }
 
-    navigate("/ticket");
+    navigate(`/ticket/${action}`,{
+      state:state
+    });
   };
 
   const goToFile = (name) => {
@@ -201,6 +206,7 @@ const Navbar = () => {
               position: res.position,
               birthday: res.birthday,
               photo: res.photo,
+              email: res.email,
             });
           }
         })

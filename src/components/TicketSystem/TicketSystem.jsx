@@ -1,30 +1,46 @@
-import React, { useState, useEffect, useContext } from "react";
-import TicketSystemForm from "./TicketSystemForm";
-import { newTicket } from "../../api/ticket";
+import React, { useState, useEffect } from "react";
+import TicketCreateForm from "./TicketCreateForm";
+import TicketMenuForm from "./TicketMenuForm";
+import TicketModal from "./TicketModal";
+import { newTicket, getTickes } from "../../api/ticket";
+import { sendEmail } from "../../api/email";
 import toast from "react-hot-toast";
-import GlobalContext from "../../context/GlobalContext";
+import { useLocation } from "react-router-dom";
 
 const TicketSystem = () => {
-  const [contextState] = useContext(GlobalContext);
+  const location = useLocation();
   const [priority, setPriority] = useState("");
+  const [opened, setOpened] = useState([]);
+  const [closed, setClosed] = useState([]);
+  const [removed, setRemoved] = useState([]);
+  const [ticket, setTicket] = useState("");
   const [color, setColor] = useState("");
   const [startDate, setStartDate] = useState(null);
-  const [formData, setFormData] = useState({
-    issueName: "",
-    departament: "",
-    detail: "",
+ const [modalActive, setModalActive] = useState(false);
+ const [formData, setFormData] = useState({
+  issueName: "",
+  departament: "",
+  detail: "",
+});
+  const [formDataModal, setFormDataModal] = useState({
+    id:"",
+    password: "",
+    confirm: ""
   });
+  const state = location.state;
 
   const options = [
     {
       id: "1",
       value: "Departamento Tecnología",
     },
-    {
-      id: "2",
-      value: "Servicios Generales",
-    },
+    // {
+    //   id: "2",
+    //   value: "Servicios Generales",
+    // },
   ];
+
+ 
 
   const handlerInputChange = (e) => {
     setFormData({
@@ -53,6 +69,69 @@ const TicketSystem = () => {
     };
   }, [priority]);
 
+  useEffect(() => {
+    let unmounted = false;
+
+    getTickes("Abierto","Departamento Tecnología")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setOpened(res);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let unmounted = false;
+
+    getTickes("Cerrado","Departamento Tecnología")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setClosed(res);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let unmounted = false;
+
+    getTickes("Eliminado","Departamento Tecnología")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setRemoved(res);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
   const undoPriority = () => {
     setColor("");
     setPriority("");
@@ -76,17 +155,31 @@ const TicketSystem = () => {
       return toast.error("Por favor elegir la prioridad");
     }
 
-    newTicket(contextState.personId, formData.issueName, formData.departament, startDate, formData.detail, priority, contextState.userName)
+    newTicket(state?.email, formData.issueName, formData.departament, startDate, formData.detail, priority, state?.fullName)
     .then((res) => {
       if(res.status !== 200 ){
-        toast.error("Error al intentar crear el ticket!");
+        return toast.error("Error al intentar crear el ticket!");
       }else{
-        toast.success("Ticket creado exitosamente!");
-        setFormData("");
-        setPriority("");
-        setColor("");
-        setStartDate(null)
-      }    
+        return res.json();
+      }
+    })
+    .then((data)=>{  
+      sendEmail("cespinosa@dgapp.gob.do","apena@dgapp.gob.do",`Nuevo ticket - ticket-${data.ticketId}:`, formData.issueName)
+        .then((res) => {
+          if(res.status !== 200 ){
+            return toast.error("Error al intentar crear el ticket!");
+          }else{
+            toast.success("Ticket creado exitosamente!");
+            setFormData({
+            issueName: "",
+            departament: "",
+            detail: ""
+          });
+            setPriority("");
+            setColor("");
+            setStartDate(null);
+          }    
+      })   
     })
     .catch((err) => {
       console.error(err.status);
@@ -94,10 +187,56 @@ const TicketSystem = () => {
     });
   }
 
-  console.log(startDate)
+  const modalToggleAceppt = () => {
+    // if (!formData.password) {
+    //   return toast.error("Por favor digitar una nueva contraseña");
+    // } else  if (!formData.confirm) {
+    //   return toast.error("Por favor de confirmar la contraseña");
+    // } else  if (formData.password !== formData.confirm) {
+    //   return toast.error("Las contraseñas no coinciden");
+    // } else  if (formData.password === "000") {
+    //   return toast.error("Esta contraseña no es valida por favor de digitar otra");
+    // }else{
+    //   passUpdate(formData?.id, formData.password)
+    //   .then((res) => {
+    //     return res.json();
+    //   })
+    //   .then((res) => {
+    //     setModalActive(!modalActive);
+    //     setProfile({username:"", password:""});
+    //     setFormData({password: "", confirm:""});
+    //     return toast.success("Contraseña guardada exitosamente, puedes logearte con tu nueva contraseña");
+    //   })
+    //   .catch((err) => {
+    //     return console.log(err.status);
+    //   });
+    // } 
+  };
+
+  const modalToggle = () => {
+    setModalActive(!modalActive);
+  };
+
+  const modalToggleCancel = () => {
+    setModalActive(!modalActive);
+    setFormData({password: "", confirm:""});
+  };
+
+  const modalInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const viewTicket = (item) =>{
+    setTicket(item)
+    setModalActive(true);
+  }
 
   return (
-    <TicketSystemForm 
+   
+    state?.action ==="crear" ? <TicketCreateForm 
       priority={priority} 
       setPriority={setPriority} 
       color={color}
@@ -109,7 +248,37 @@ const TicketSystem = () => {
       options={options}
       startDate={startDate}
       setStartDate={setStartDate}
-    />)
+    />:
+    <>
+      <TicketModal
+        modalToggle={modalToggle}
+        modalActive={modalActive}
+        formDataModal={formDataModal}
+        setFormData={setFormDataModal}
+        modalToggleCancel={modalToggleCancel}
+        modalToggleAceppt={modalToggleAceppt}
+        modalInputChange={modalInputChange}
+        ticket={ticket}
+      />
+      <TicketMenuForm 
+        priority={priority} 
+        setPriority={setPriority} 
+        color={color}
+        setColor={setColor}
+        undoPriority={undoPriority}
+        handlerInputChange={handlerInputChange}
+        formData={formData}
+        addTicket={addTicket}
+        options={options}
+        startDate={startDate}
+        setStartDate={setStartDate}
+        opened={opened}
+        closed={closed}
+        removed={removed}
+        modalToggle={modalToggle}
+        viewTicket={viewTicket}
+      />
+    </>)
   
 };
 
