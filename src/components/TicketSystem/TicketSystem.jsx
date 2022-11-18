@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 const TicketSystem = () => {
   const location = useLocation();
   const [priority, setPriority] = useState("");
+  const [action, setAction] = useState("Abierto");
   const [opened, setOpened] = useState([]);
   const [closed, setClosed] = useState([]);
   const [removed, setRemoved] = useState([]);
@@ -39,8 +40,6 @@ const TicketSystem = () => {
     //   value: "Servicios Generales",
     // },
   ];
-
- 
 
   const handlerInputChange = (e) => {
     setFormData({
@@ -137,6 +136,10 @@ const TicketSystem = () => {
     setPriority("");
   }
 
+  const changeAction = (e) => {
+    setAction(e);
+  }
+
   const addTicket = () =>{
 
     if (formData.issueName === "") {
@@ -164,7 +167,7 @@ const TicketSystem = () => {
       }
     })
     .then((data)=>{  
-      sendEmail("cespinosa@dgapp.gob.do","apena@dgapp.gob.do",`Nuevo ticket - ticket-${data.ticketId}:`, formData.issueName)
+      sendEmail("cespinosa@dgapp.gob.do", state?.email.toLowerCase(),`Nuevo ticket - ticket-${data.ticketId}:`, formData.issueName)
         .then((res) => {
           if(res.status !== 200 ){
             return toast.error("Error al intentar crear el ticket!");
@@ -275,8 +278,9 @@ const TicketSystem = () => {
         opened={opened}
         closed={closed}
         removed={removed}
-        modalToggle={modalToggle}
         viewTicket={viewTicket}
+        action={action}
+        changeAction={changeAction}
       />
     </>)
   

@@ -2,6 +2,7 @@ import React,{useState, useEffect} from "react";
 import { viewUpdate } from "../../../api/post";
 import { useNavigate } from "react-router-dom";  
 import { getImage } from "../../../api/post";
+import { shortDate } from "../../../utils/shortDate";
 
 const Card = (props) => {
   const navigate = useNavigate();
@@ -42,43 +43,6 @@ const Card = (props) => {
       });
   };
 
-  // Creamos array con los meses del año
-  const meses = [
-    "enero",
-    "febrero",
-    "marzo",
-    "abril",
-    "mayo",
-    "junio",
-    "julio",
-    "agosto",
-    "septiembre",
-    "octubre",
-    "noviembre",
-    "diciembre",
-  ];
-  // Creamos array con los días de la semana
-  const dias_semana = [
-    "Domingo",
-    "Lunes",
-    "martes",
-    "Miércoles",
-    "Jueves",
-    "Viernes",
-    "Sábado",
-  ];
-  // Creamos el objeto fecha instanciándolo con la clase Date
-  const fecha = new Date(props.date);
-  // Construimos el formato de salida
-  const fechaES =
-    dias_semana[fecha.getDay()] +
-    ", " +
-    fecha.getDate() +
-    " de " +
-    meses[fecha.getMonth()] +
-    " de " +
-    fecha.getUTCFullYear();
-
   return (
     <>
       <div className="card" onClick={click}>
@@ -94,7 +58,7 @@ const Card = (props) => {
           </p>
         </div>
         <p className="card-date">
-          <small className="text-muted">{fechaES}</small>
+          <small className="text-muted">{shortDate(props.date)}</small>
         </p>
         <button className="btn-dark">Leer más</button>
       </div>

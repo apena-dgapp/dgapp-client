@@ -1,24 +1,41 @@
 import React from 'react'
 import { FaListAlt } from "react-icons/fa";
 import { TbTicket, TbTicketOff, TbClock, TbTrash } from "react-icons/tb";
+import { BiCheck } from "react-icons/bi";
+import { shortDate } from '../../utils/shortDate';
 
-const TicketMenuForm = ({opened, closed, removed, modalToggle, viewTicket}) => {
+const TicketMenuForm = ({opened, closed, removed, viewTicket, action, changeAction}) => {
+
+    const data =()=>{
+        if(action==="Abierto"){
+            return opened
+        } else if(action==="Cerrado"){
+            return closed
+        } else if(action==="Eliminado"){
+            return removed
+        }
+    }
   return (
     <>
         <div className='ticketmenu-container'>
-        <div className="ticketmenu-title">
-          <span>
-            <i className="fa fa-listalt" />
-            <FaListAlt
-              size="2.2rem"
-              color="#79ADD4"
-              style={{ marginBottom:"0.5rem"}}
-            />
-          </span>
-          <p>
-            LISTA DE TICKETS
-          </p>     
-          </div>
+            <div className="ticketmenu-title">
+                <span>
+                    <i className="fa fa-listalt" />
+                    <FaListAlt
+                    size="2.2rem"
+                    color="#79ADD4"
+                    style={{ marginBottom:"0.5rem"}}
+                    />
+                </span>
+                <p>
+                    LISTA DE TICKETS
+                </p>     
+            </div>
+            <div className="ticketmenu-subtitle">
+                <p style={{color:action ==="Abierto" ?"#59CE8F":(action ==="Cerrado" ? "#47B5FF":"#FF74B1")}}>
+                    {action?.toUpperCase()}
+                </p>     
+            </div>
 
           <div className="ticketmenu-list-cont">
             <div className="ticketmenu-list">
@@ -30,23 +47,17 @@ const TicketMenuForm = ({opened, closed, removed, modalToggle, viewTicket}) => {
                 style={{ marginBottom:"1rem", marginRight:"0.5rem"}}
                 />
                 </span>
-                <p>
+                <p onClick={()=>changeAction("Abierto")}>
                     <strong>Tickets pendientes =</strong> {opened?.length}
+                    { action === "Abierto" ? <> <i className="tb tb-ticket-off" />
+                    <BiCheck
+                    size="1rem"
+                    color="#5FD068"
+                    style={{ marginBottom:"0.4rem", marginRight:"0.5rem"}}
+                    /></>:null  
+                    }
                 </p>     
             </div>
-            {/* <div className="ticketmenu-list">
-                <span>
-                <i className="tb tb-clock" />
-                <TbClock
-                size="1rem"
-                color="#FF884B"
-                style={{ marginBottom:"1rem", marginRight:"0.5rem"}}
-                />
-                </span>
-                <p>
-                    <strong>Tickets pendientes antiguos =</strong> 5
-                </p>     
-            </div> */}
             <div className="ticketmenu-list">
                 <span>
                 <i className="tb tb-ticket-off" />
@@ -56,8 +67,15 @@ const TicketMenuForm = ({opened, closed, removed, modalToggle, viewTicket}) => {
                 style={{ marginBottom:"1rem", marginRight:"0.5rem"}}
                 />
                 </span>
-                <p>
+                <p onClick={()=>changeAction("Cerrado")}>
                     <strong>Tickets resueltos =</strong> {closed?.length}
+                    { action === "Cerrado" ? <> <i className="tb tb-ticket-off" />
+                    <BiCheck
+                    size="1rem"
+                    color="#5FD068"
+                    style={{ marginBottom:"0.4rem", marginRight:"0.5rem"}}
+                    /></>:null  
+                    }
                 </p>     
             </div>
             <div className="ticketmenu-list">
@@ -69,8 +87,15 @@ const TicketMenuForm = ({opened, closed, removed, modalToggle, viewTicket}) => {
                 style={{ marginBottom:"1rem", marginRight:"0.5rem"}}
                 />
                 </span>
-                <p>
+                <p onClick={()=>changeAction("Eliminado")}>
                     <strong>Basura =</strong> {removed?.length}
+                    { action === "Eliminado" ? <> <i className="tb tb-ticket-off" />
+                    <BiCheck
+                    size="1rem"
+                    color="#5FD068"
+                    style={{ marginBottom:"0.4rem", marginRight:"0.5rem"}}
+                    /></>:null  
+                    }
                 </p>     
             </div>
             <div className="ticket-datagrid-cont">
@@ -119,7 +144,7 @@ const TicketMenuForm = ({opened, closed, removed, modalToggle, viewTicket}) => {
                     </div>
                 </div>
                 {
-                    opened?.map((item, key)=>{
+                    data()?.map((item, key)=>{
                         return(
                             <>
                                 <div onClick={()=>viewTicket(item)} className="ticket-datagrid-grid">
@@ -156,7 +181,7 @@ const TicketMenuForm = ({opened, closed, removed, modalToggle, viewTicket}) => {
                                     {/* CREADO */}
                                     <div className="ticket-datagrid-grid-section-data">
                                         <div key={key} className="ticket-datagrid-grid-data">
-                                            {item.createdAt}
+                                            {shortDate(item.createdAt)}
                                         </div>
                                     </div>
                                     {/* CREADO POR */}
