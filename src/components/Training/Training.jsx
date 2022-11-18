@@ -40,6 +40,10 @@ const Training = () => {
     return id[0];
   }
 
+  function disableCourse(courseId) {
+    axios.put(`${process.env.REACT_APP_API}course/disable/${courseId}`)
+  }
+
   useEffect(() => {
     let unmounted = false;
     if (!unmounted) {
@@ -200,6 +204,7 @@ const Training = () => {
         goToNew={goToNew}
         goToEdit={goToEdit}
         goToCourse={goToCourse}
+        disableCourse={disableCourse}
       />
       )}
     </>

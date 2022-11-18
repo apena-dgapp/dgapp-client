@@ -196,7 +196,7 @@ const NewCourseForm = (props) => {
                         " ",
                         () => {
                           if (data.id !== undefined) {
-                            props.deleteElement("section", data);
+                            props.disableElement("section/disable", data);
                           }
                           const filteredSections = sectionData.filter(
                             (section) => section.localId !== data.localId
@@ -283,26 +283,6 @@ const NewCourseForm = (props) => {
                       <div key={index}>
                         <div className="video-details-container">
                           <div className="video-details-grid">
-                            {/* <div className="order-details-grid">
-                              <label>Orden: </label>
-                              <input
-                                value={data.order}
-                                onChange={(e) => {
-                                  const currentVideo = {
-                                    ...videoData[index],
-                                    order: e.target.value,
-                                  };
-                                  const filtered = videoData.filter(
-                                    (video) => video.localId !== data.localId
-                                  );
-                                  setVideoData(
-                                    [...filtered, currentVideo].sort((a, b) => {
-                                      return a.localId - b.localId;
-                                    })
-                                  );
-                                }}
-                              />
-                            </div> */}
                             <div className="title-details-grid">
                               <label>Título del video: </label>
                               <input
@@ -359,7 +339,7 @@ const NewCourseForm = (props) => {
                                   " ",
                                   () => {
                                     if (data.id !== undefined) {
-                                      props.deleteElement("video", data);
+                                      props.disableElement("video/disable", data);
                                     }
 
                                     const filtered = videoData.filter(

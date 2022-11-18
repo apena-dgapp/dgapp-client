@@ -78,7 +78,9 @@ const TrainingCard = (props) => {
               </p>
           </div>
           <div>
-            <p className="training-card-text-delete">
+            <p onClick={()=>{
+                props.disableCourse(props.id)
+            }} className="training-card-text-delete">
               <i className="md md-delete-forever" />
               <MdDeleteForever
                 // style={{ marginRight: "0.5rem" }}

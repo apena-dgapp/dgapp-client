@@ -57,15 +57,18 @@ const NewCourse = () => {
     return false
   }
 
-  function deleteElement(element, data) {
-    axios({
-      method: "put",
-      url: `${urlApi}/${element}/${data.id}`,
-      data: {
-        isActive: false,
-      },
-    }).then((res) => {
-    });
+  async function disableElement(element, data) {
+    try {
+      await axios({
+        method: "put",
+        url: `${urlApi}/${element}/${data.id}`,
+        data: {
+          isActive: false,
+        },
+      })
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async function selectedHandler(e) {
@@ -94,7 +97,6 @@ const NewCourse = () => {
     })
       .then((res) => {
         sectionData.map((section) => {
-          let hasCourseId = courseId === undefined ? res.data : courseId;
           axios({
             method: section.id === undefined ? "post" : "put",
             url:
@@ -102,7 +104,7 @@ const NewCourse = () => {
                 ? `${urlApi}/section/`
                 : `${urlApi}/section/${section.id}`,
             data: {
-              courseId: section.id === undefined ? hasCourseId : section.id,
+              courseId: courseId === undefined ? res.data : courseId,
               title: section.title,
               order: 1,
               createdBy: "Admin",
@@ -271,7 +273,7 @@ const NewCourse = () => {
           defaultVideo={defaultVideo}
           selectedHandler={selectedHandler}
           postNewCourse={postNewCourse}
-          deleteElement={deleteElement}
+          disableElement={disableElement}
           addLocalId={addLocalId}
           checkEmptyValue={checkEmptyValue}
         />

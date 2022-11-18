@@ -17,7 +17,8 @@ const TrainingForm = ({
   page,
   goToNew,
   goToEdit,
-  goToCourse
+  goToCourse,
+  disableCourse
 }) => {
 
   const [contextState] = useContext(GlobalContext);
@@ -128,6 +129,7 @@ const TrainingForm = ({
                   collaborators={course.collaborators}
                   edit={goToEdit}
                   goToCourse={goToCourse}
+                  disableCourse={disableCourse}
                 />
               ) 
           })}
