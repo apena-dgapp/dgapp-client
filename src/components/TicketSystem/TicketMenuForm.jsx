@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaListAlt } from "react-icons/fa";
-import { TbTicket, TbTicketOff, TbClock, TbTrash } from "react-icons/tb";
+import { TbTicket, TbTicketOff, TbTrash } from "react-icons/tb";
 import { BiCheck } from "react-icons/bi";
 import { shortDate } from '../../utils/shortDate';
 

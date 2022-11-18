@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TicketCreateForm from "./TicketCreateForm";
 import TicketMenuForm from "./TicketMenuForm";
 import TicketModal from "./TicketModal";
-import { newTicket, getTickes } from "../../api/ticket";
+import { newTicket, getTickes, toAssign, remove } from "../../api/ticket";
 import { sendEmail } from "../../api/email";
 import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
@@ -23,11 +23,7 @@ const TicketSystem = () => {
   departament: "",
   detail: "",
 });
-  const [formDataModal, setFormDataModal] = useState({
-    id:"",
-    password: "",
-    confirm: ""
-  });
+
   const state = location.state;
 
   const options = [
@@ -87,7 +83,7 @@ const TicketSystem = () => {
     return () => {
       unmounted = true;
     };
-  }, []);
+  }, [modalActive]);
 
   useEffect(() => {
     let unmounted = false;
@@ -108,7 +104,7 @@ const TicketSystem = () => {
     return () => {
       unmounted = true;
     };
-  }, []);
+  }, [modalActive]);
 
   useEffect(() => {
     let unmounted = false;
@@ -129,7 +125,7 @@ const TicketSystem = () => {
     return () => {
       unmounted = true;
     };
-  }, []);
+  }, [modalActive]);
 
   const undoPriority = () => {
     setColor("");
@@ -190,51 +186,49 @@ const TicketSystem = () => {
     });
   }
 
-  const modalToggleAceppt = () => {
-    // if (!formData.password) {
-    //   return toast.error("Por favor digitar una nueva contraseña");
-    // } else  if (!formData.confirm) {
-    //   return toast.error("Por favor de confirmar la contraseña");
-    // } else  if (formData.password !== formData.confirm) {
-    //   return toast.error("Las contraseñas no coinciden");
-    // } else  if (formData.password === "000") {
-    //   return toast.error("Esta contraseña no es valida por favor de digitar otra");
-    // }else{
-    //   passUpdate(formData?.id, formData.password)
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((res) => {
-    //     setModalActive(!modalActive);
-    //     setProfile({username:"", password:""});
-    //     setFormData({password: "", confirm:""});
-    //     return toast.success("Contraseña guardada exitosamente, puedes logearte con tu nueva contraseña");
-    //   })
-    //   .catch((err) => {
-    //     return console.log(err.status);
-    //   });
-    // } 
-  };
-
   const modalToggle = () => {
     setModalActive(!modalActive);
-  };
-
-  const modalToggleCancel = () => {
-    setModalActive(!modalActive);
-    setFormData({password: "", confirm:""});
-  };
-
-  const modalInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
   };
 
   const viewTicket = (item) =>{
     setTicket(item)
     setModalActive(true);
+  }
+
+  const assignTicket = (id)=>{
+    toAssign(state?.fullName,id)
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      if(res !== 200 ){
+        return toast.error("Error al intentar asignar el ticket!");
+      }else{
+        setModalActive(!modalActive);
+        return toast.success("El ticket se asigno exitosamente!");
+      }
+    })
+    .catch((err) => {
+      console.error(err.status);
+    });
+  }
+
+  const removeTicket = (id)=>{
+    remove("Eliminado",id)
+    .then((res) => {
+      return res.json();
+    })
+    .then((res) => {
+      if(res !== 200 ){
+        return toast.error("Error al intentar eliminar el ticket!");
+      }else{
+        setModalActive(!modalActive);
+        return toast.success("El ticket se eliminar exitosamente!");
+      }
+    })
+    .catch((err) => {
+      console.error(err.status);
+    });
   }
 
   return (
@@ -256,12 +250,9 @@ const TicketSystem = () => {
       <TicketModal
         modalToggle={modalToggle}
         modalActive={modalActive}
-        formDataModal={formDataModal}
-        setFormData={setFormDataModal}
-        modalToggleCancel={modalToggleCancel}
-        modalToggleAceppt={modalToggleAceppt}
-        modalInputChange={modalInputChange}
         ticket={ticket}
+        assignTicket={assignTicket}
+        removeTicket={removeTicket}
       />
       <TicketMenuForm 
         priority={priority} 

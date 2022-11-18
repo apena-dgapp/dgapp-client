@@ -1,18 +1,15 @@
 import React from "react";
 import Portal from "../../utils/Portal";
+import { shortDate } from "../../utils/shortDate";
 
 const TicketModal = ({
     children,
     modalActive,
     modalToggle,
-    formData,
-    modalToggleCancel,
-    modalToggleAceppt,
-    modalInputChange,
-    ticket
+    ticket,
+    assignTicket,
+    removeTicket
   }) => {
-
-    console.log(ticket)
 
     return (
       <Portal>
@@ -30,11 +27,11 @@ const TicketModal = ({
                       <p className="ticket-modal-details-text"><strong>Tema:&nbsp;</strong>{ticket?.issueName}</p>
                     </div>
                     <div className="ticket-modal-details-cont-text">
-                      <p className="ticket-modal-details-text"><strong>Encontrado el:&nbsp;</strong>{ticket?.issueStart}</p>
+                      <p className="ticket-modal-details-text"><strong>Encontrado el:&nbsp;</strong>{shortDate(ticket?.issueStart)}</p>
                       <p className="ticket-modal-details-text"><strong>Creado por:&nbsp;</strong>{ticket?.createdBy}</p>
                     </div>
                     <div className="ticket-modal-details-cont-text">
-                      <p className="ticket-modal-details-text"><strong>Creado en:&nbsp;</strong>{ticket?.createdAt}</p>
+                      <p className="ticket-modal-details-text"><strong>Creado en:&nbsp;</strong>{shortDate(ticket?.createdAt)}</p>
                       <p className="ticket-modal-details-text"><strong>Asignado:&nbsp;</strong>{ticket?.assigned}</p>
                     </div>
                     <div className="ticket-modal-details-cont-text">
@@ -43,7 +40,8 @@ const TicketModal = ({
                     </div>
                   </div>
                   <div className="ticket-modal-grid-button">
-                    <button className="ticket-modal-button">{ticket?.status === "Abierto" ? "ASIGNARME TICKET":(ticket?.status === "En Proceso" ? "CERRAR TICKET":"CERRADO")}</button>
+                    <button onClick={()=>assignTicket(ticket?.ticketId)} className="ticket-modal-button">{ticket?.status === "Abierto" ? "ASIGNARME TICKET":(ticket?.status === "En Proceso" ? "CERRAR TICKET":"CERRADO")}</button>
+                    <button onClick={()=>removeTicket(ticket?.ticketId)} className="ticket-modal-button-remove">ELIMINAR</button>
                   </div>
                 </div>
                 <div className="ticket-modal-description">
