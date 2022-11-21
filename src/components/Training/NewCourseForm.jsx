@@ -267,8 +267,10 @@ const NewCourseForm = (props) => {
                             <div className="link-details-grid">
                               <label>Link del video: </label>
                               <input
+                                id={`input-link-${index}`}
                                 value={data.link}
                                 onChange={(e) => {
+                                  props.validVideo(e.target.value, index)
                                   const currentVideo = {
                                     ...videoData[index],
                                     link: e.target.value,

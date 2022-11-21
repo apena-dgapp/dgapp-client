@@ -13,16 +13,17 @@ const TicketSystem = () => {
   const [action, setAction] = useState("Abierto");
   const [opened, setOpened] = useState([]);
   const [closed, setClosed] = useState([]);
+  const [inProcess, setInProcess] = useState([]);
   const [removed, setRemoved] = useState([]);
   const [ticket, setTicket] = useState("");
   const [color, setColor] = useState("");
   const [startDate, setStartDate] = useState(null);
- const [modalActive, setModalActive] = useState(false);
- const [formData, setFormData] = useState({
-  issueName: "",
-  departament: "",
-  detail: "",
-});
+  const [modalActive, setModalActive] = useState(false);
+  const [formData, setFormData] = useState({
+    issueName: "",
+    departament: "",
+    detail: "",
+  });
 
   const state = location.state;
 
@@ -67,7 +68,7 @@ const TicketSystem = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getTickes("Abierto","Departamento Tecnología")
+    getTickes("Abierto", "Departamento Tecnología")
       .then((res) => {
         return res.json();
       })
@@ -88,7 +89,7 @@ const TicketSystem = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getTickes("Cerrado","Departamento Tecnología")
+    getTickes("Cerrado", "Departamento Tecnología")
       .then((res) => {
         return res.json();
       })
@@ -109,13 +110,34 @@ const TicketSystem = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getTickes("Eliminado","Departamento Tecnología")
+    getTickes("Eliminado", "Departamento Tecnología")
       .then((res) => {
         return res.json();
       })
       .then((res) => {
         if (!unmounted) {
           setRemoved(res);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, [modalActive]);
+
+  useEffect(() => {
+    let unmounted = false;
+
+    getTickes("En Proceso", "Departamento Tecnología")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setInProcess(res);
         }
       })
       .catch((err) => {
@@ -136,7 +158,7 @@ const TicketSystem = () => {
     setAction(e);
   }
 
-  const addTicket = () =>{
+  const addTicket = () => {
 
     if (formData.issueName === "") {
       return toast.error("Por favor de escribir el asunto");
@@ -155,87 +177,98 @@ const TicketSystem = () => {
     }
 
     newTicket(state?.email, formData.issueName, formData.departament, startDate, formData.detail, priority, state?.fullName)
-    .then((res) => {
-      if(res.status !== 200 ){
-        return toast.error("Error al intentar crear el ticket!");
-      }else{
-        return res.json();
-      }
-    })
-    .then((data)=>{  
-      sendEmail("cespinosa@dgapp.gob.do", state?.email.toLowerCase(),`Nuevo ticket - ticket-${data.ticketId}:`, formData.issueName)
-        .then((res) => {
-          if(res.status !== 200 ){
-            return toast.error("Error al intentar crear el ticket!");
-          }else{
-            toast.success("Ticket creado exitosamente!");
-            setFormData({
-            issueName: "",
-            departament: "",
-            detail: ""
-          });
-            setPriority("");
-            setColor("");
-            setStartDate(null);
-          }    
-      })   
-    })
-    .catch((err) => {
-      console.error(err.status);
-      toast.error("Error al intentar crear el ticket!");
-    });
+      .then((res) => {
+        if (res.status !== 200) {
+          return toast.error("Error al intentar crear el ticket!");
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        sendEmail(state?.email.toLowerCase(), `Nuevo ticket - Ticket - ${data.ticketId}`, `
+        - Ticket abierto: ${data.ticketId}
+        - Tema: ${formData.issueName}`)
+          .then((res) => {
+            if (res.status !== 200) {
+              return toast.error("Error al intentar crear el ticket!");
+            } else {
+              toast.success("Ticket creado exitosamente!");
+              setFormData({
+                issueName: "",
+                departament: "",
+                detail: ""
+              });
+              setPriority("");
+              setColor("");
+              setStartDate(null);
+            }
+          })
+      })
+      .catch((err) => {
+        console.error(err.status);
+        toast.error("Error al intentar crear el ticket!");
+      });
   }
 
   const modalToggle = () => {
     setModalActive(!modalActive);
   };
 
-  const viewTicket = (item) =>{
+  const viewTicket = (item) => {
     setTicket(item)
     setModalActive(true);
   }
 
-  const assignTicket = (id)=>{
-    toAssign(state?.fullName,id)
-    .then((res) => {
-      return res.json();
-    })
-    .then((res) => {
-      if(res !== 200 ){
-        return toast.error("Error al intentar asignar el ticket!");
-      }else{
-        setModalActive(!modalActive);
-        return toast.success("El ticket se asigno exitosamente!");
-      }
-    })
-    .catch((err) => {
-      console.error(err.status);
-    });
+  const assignTicket = (id, issueName, email) => {
+    toAssign(state?.fullName, id)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res !== 200) {
+          return toast.error("Error al intentar asignar el ticket!");
+        } else {
+          sendEmail(email.toLowerCase(), `Ticket asignado - Ticket - ${id}`, `
+          - Ticket en proceso: ${id}
+          - Tema: ${issueName}  
+          - Asignado a: ${state?.fullName}`)
+          setModalActive(!modalActive);
+          return toast.success("El ticket se asigno exitosamente!");
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
   }
 
-  const removeTicket = (id)=>{
-    remove("Eliminado",id)
-    .then((res) => {
-      return res.json();
-    })
-    .then((res) => {
-      if(res !== 200 ){
-        return toast.error("Error al intentar eliminar el ticket!");
-      }else{
-        setModalActive(!modalActive);
-        return toast.success("El ticket se eliminar exitosamente!");
-      }
-    })
-    .catch((err) => {
-      console.error(err.status);
-    });
+  const removeTicket = (id, action, issueName, email) => {
+    remove(action, id)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res !== 200) {
+          return action === "Cerrado" ? toast.error("Error al intentar cerrar el ticket!") : toast.error("Error al intentar eliminar el ticket!")
+        } else {
+          sendEmail(email.toLowerCase(), `Ticket cerrado - Ticket - ${id}`, `
+          - Ticket cerrado: ${id}
+          - Tema: ${issueName}
+          - Asistió a: ${state?.fullName}`)
+          setModalActive(!modalActive);
+          return action === "Cerrado" ? toast.success("El ticket se cerró exitosamente!") : toast.success("El ticket se elimino exitosamente!")
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
   }
+
 
   return (
-   
-    state?.action ==="crear" ? <TicketCreateForm 
-      priority={priority} 
-      setPriority={setPriority} 
+
+    state?.action === "crear" ? <TicketCreateForm
+      priority={priority}
+      setPriority={setPriority}
       color={color}
       setColor={setColor}
       undoPriority={undoPriority}
@@ -245,36 +278,37 @@ const TicketSystem = () => {
       options={options}
       startDate={startDate}
       setStartDate={setStartDate}
-    />:
-    <>
-      <TicketModal
-        modalToggle={modalToggle}
-        modalActive={modalActive}
-        ticket={ticket}
-        assignTicket={assignTicket}
-        removeTicket={removeTicket}
-      />
-      <TicketMenuForm 
-        priority={priority} 
-        setPriority={setPriority} 
-        color={color}
-        setColor={setColor}
-        undoPriority={undoPriority}
-        handlerInputChange={handlerInputChange}
-        formData={formData}
-        addTicket={addTicket}
-        options={options}
-        startDate={startDate}
-        setStartDate={setStartDate}
-        opened={opened}
-        closed={closed}
-        removed={removed}
-        viewTicket={viewTicket}
-        action={action}
-        changeAction={changeAction}
-      />
-    </>)
-  
+    /> :
+      <>
+        <TicketModal
+          modalToggle={modalToggle}
+          modalActive={modalActive}
+          ticket={ticket}
+          assignTicket={assignTicket}
+          removeTicket={removeTicket}
+        />
+        <TicketMenuForm
+          priority={priority}
+          setPriority={setPriority}
+          color={color}
+          setColor={setColor}
+          undoPriority={undoPriority}
+          handlerInputChange={handlerInputChange}
+          formData={formData}
+          addTicket={addTicket}
+          options={options}
+          startDate={startDate}
+          setStartDate={setStartDate}
+          opened={opened}
+          closed={closed}
+          removed={removed}
+          inProcess={inProcess}
+          viewTicket={viewTicket}
+          action={action}
+          changeAction={changeAction}
+        />
+      </>)
+
 };
 
 export default TicketSystem;

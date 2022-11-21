@@ -47,7 +47,7 @@ const NavbarForm = ({
             />
           </figure>
         </div>
-    
+
         <div className="nav-senction-items">
           <ul className={active}>
             <li onClick={home} className="class-list">
@@ -55,16 +55,16 @@ const NavbarForm = ({
             </li>
             {
               width <= 721 ? <li className="class-list">
-              <p id={person.personId} onClick={employeeProfile}>Mi Perfil</p>
-              </li>:null
+                <p id={person.personId} onClick={employeeProfile}>Mi Perfil</p>
+              </li> : null
             }
 
             <li className="class-list">
-                <p onClick={width <= 721 ? ()=>hidenToggle("Nosotros") : null}>
-                  Nosotros
-                  <img className="icondown" src={Images.icondown} alt="" />
-                </p>
-              <ul className={action === "Nosotros" ? show:null} style={{ width: "12rem" }}>
+              <p onClick={width <= 721 ? () => hidenToggle("Nosotros") : null}>
+                Nosotros
+                <img className="icondown" src={Images.icondown} alt="" />
+              </p>
+              <ul className={action === "Nosotros" ? show : null} style={{ width: "12rem" }}>
                 <li>
                   <p onClick={(e) => aboutUSChange(e, "MISIÓN, VISIÓN Y VALORES")}>Misión, Visión y Valores</p>
                 </li>
@@ -78,13 +78,13 @@ const NavbarForm = ({
                   <p onClick={(e) => aboutUSChange(e, "DIRECTOR GENERAL")}> Director General</p>
                 </li>
                 <li>
-                  <p  onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}>Organigrama</p>
+                  <p onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}>Organigrama</p>
                 </li>
               </ul>
             </li>
 
             <li className="class-list">
-              <p onClick={width <= 721 ? ()=>hidenToggle("Servicios") : null}>
+              <p onClick={width <= 721 ? () => hidenToggle("Servicios") : null}>
                 Servicios
                 <img
                   // style={{ marginRight: "1.5rem" }}
@@ -93,20 +93,76 @@ const NavbarForm = ({
                   alt=""
                 />
               </p>
-              <ul className={action === "Servicios" ? show:null} style={{ width: "8rem" }}>
-                {/* <li>
-                  <p onClick={foodOrder}>Ordenar Almuerzo</p>
-                </li> */}
+              <ul className={action === "Servicios" ? show : null} style={{ width: "12rem" }}>
                 <li>
-                  {/* <p onClick={ticketSystem}>
-                    Ticket
+                  <p>
+                    Tecnología
                     <img
                       style={{ transform: "rotate(270deg)" }}
                       className="icondown"
                       src={Images.icondown}
                       alt=""
                     />
-                  </p> */}
+                  </p>
+                  <ul className="menu-left">
+                    <li>
+                      <p>
+                        Ticket
+                        <img
+                          style={{ transform: "rotate(270deg)" }}
+                          className="icondown"
+                          src={Images.icondown}
+                          alt=""
+                        />
+                      </p>
+                      <ul style={{ left: "4.5rem" }} className="menu-left">
+                        <li>
+                          <p onClick={() => ticketSystem("crear")}>Crear Ticket</p>
+                        </li>
+                        <li>
+                          <p onClick={() => ticketSystem("ver")}>Ver Tickets</p>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <p>
+                    Recursos Humanos
+                    <img
+                      style={{ transform: "rotate(270deg)" }}
+                      className="icondown"
+                      src={Images.icondown}
+                      alt=""
+                    />
+                  </p>
+                  <ul style={{ marginLeft: "3.5rem" }} className="menu-left">
+                    <li>
+                      <p>
+                        Solicitudes
+                        <img
+                          style={{ transform: "rotate(270deg)" }}
+                          className="icondown"
+                          src={Images.icondown}
+                          alt=""
+                        />
+                      </p>
+                      <ul className="menu-left">
+                        <li>
+                          <p onClick={inConstruction}>Formularios</p>
+                        </li>
+                        <li>
+                          <p onClick={inConstruction}> Carta Laboral</p>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
+
+
+
+                {/* <li>
                   <p>
                     Ticket
                     <img
@@ -119,15 +175,14 @@ const NavbarForm = ({
                   <ul className="menu-left">
                     <li>
                       <p onClick={()=>ticketSystem("crear")}>Crear Ticket</p>
-                      {/* <p>Crear Ticket</p> */}
                     </li>
                     <li>
                       <p onClick={()=>ticketSystem("ver")}>Ver Tickets</p>
-                      {/* <p>Ver Ticket</p> */}
                     </li>
                   </ul>
-                </li>
-                <li>
+                </li> */}
+
+                {/* <li>
                   <p>
                     Solicitudes
                     <img
@@ -139,28 +194,25 @@ const NavbarForm = ({
                   </p>
                   <ul className="menu-left">
                     <li>
-                      {/* <p onClick={() => goToFile("carta-laboral")}>Formularios</p> */}
                       <p onClick={inConstruction}>Formularios</p>
                     </li>
                     <li>
-                      {/* <p onClick={() => goToFile("carta-laboral")}>
-                        Carta Laboral
-                      </p> */}
                       <p onClick={inConstruction}>
                         Carta Laboral
                       </p>
                     </li>
                   </ul>
-                </li>
+                </li> */}
+
               </ul>
             </li>
 
             <li className="class-list">
-              <p onClick={width <= 721 ? ()=>hidenToggle("Publicaciones") : null}>
+              <p onClick={width <= 721 ? () => hidenToggle("Publicaciones") : null}>
                 Publicaciones
                 <img className="icondown" src={Images.icondown} alt="" />
               </p>
-              <ul className={action === "Publicaciones" ? show:null} style={{ width: "11rem" }}>
+              <ul className={action === "Publicaciones" ? show : null} style={{ width: "11rem" }}>
                 <li>
                   <p onClick={allPost}>Noticias</p>
                 </li>
@@ -184,51 +236,50 @@ const NavbarForm = ({
             </li>
             {
               width <= 721 ? <li className="class-list">
-              <p onClick={() => logOut()}>Cerrar sesión</p>
-              {/* <p onClick={inConstruction}>Entrenamiento</p> */}
-              </li>:null
+                <p onClick={() => logOut()}>Cerrar sesión</p>
+                {/* <p onClick={inConstruction}>Entrenamiento</p> */}
+              </li> : null
             }
-           
-            {contextState.userRole === 1 || contextState.userRole === 3  ? (
+
+            {contextState.userRole === 1 || contextState.userRole === 3 ? (
               <li className="class-list admin-hiden">
                 <p>
                   Administración
                   <img className="icondown" src={Images.icondown} alt="" />
                 </p>
                 <ul style={{ width: "13.5rem" }}>
-                {contextState.userRole === 1 || contextState.userRole === 3 ?
-                  <>
-                  <li>
-                      <p onClick={createPost}>Crear Entrada</p>
-                    </li>
-                    <li>
-                      <p onClick={createEvents}>Crear Evento</p>
-                    </li>
-                  </>
-                  : null}
-                  {contextState.userRole === 1 ? 
-                  <>
-                    <li>
-                      <p onClick={employeeNew}>Nuevo Empleado</p>
-                    </li>
-                    <li>
-                      <p onClick={register}>Crear Usuario</p>
-                    </li>
-                  </>
-                  : null}
-                 
+                  {contextState.userRole === 1 || contextState.userRole === 3 ?
+                    <>
+                      <li>
+                        <p onClick={createPost}>Crear Entrada</p>
+                      </li>
+                      <li>
+                        <p onClick={createEvents}>Crear Evento</p>
+                      </li>
+                    </>
+                    : null}
+                  {contextState.userRole === 1 ?
+                    <>
+                      <li>
+                        <p onClick={employeeNew}>Nuevo Empleado</p>
+                      </li>
+                      <li>
+                        <p onClick={register}>Crear Usuario</p>
+                      </li>
+                    </>
+                    : null}
+
                 </ul>
               </li>
             ) : null}
           </ul>
         </div>
-        
+
         <div className="nav-senction-user">
           <figure className="container-menu-right">
             <div className="nav-user-txt-cont">
-              <div id={person.personId} className="nav-user-name">{`Hola, ${
-                person.fullName.split(" ")[0]
-              }`}</div>
+              <div id={person.personId} className="nav-user-name">{`Hola, ${person.fullName.split(" ")[0]
+                }`}</div>
               {/* <div className="nav-user-position">{person.position}</div> */}
               {/* <div className="nav-user-notf-cont"></div> */}
             </div>

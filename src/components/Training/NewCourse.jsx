@@ -46,8 +46,12 @@ const NewCourse = () => {
   //////////////functions//////////////////////
 
   function getVideoId(url) {
-    const id = url?.split("v=")[1]?.split("&");
-    return id[0];
+    try {
+      const id = url?.split("v=")[1]?.split("&");
+      return id[0];
+    } catch (error) {
+
+    }
   }
 
   function checkEmptyValue(object) {
@@ -163,7 +167,7 @@ const NewCourse = () => {
         `https://www.googleapis.com/youtube/v3/videos?id=${id}&part=contentDetails&key=${tokenApi}`
       )
       .then((res) => {
-        if (res.data.items[0] !== undefined) {
+        if (Object?.keys(res?.data?.items)?.length > 0 && res.data.items[0] !== undefined) {
           duration = res.data.items[0].contentDetails.duration
             .split("M")[0]
             .split("PT")[1];
@@ -182,6 +186,9 @@ const NewCourse = () => {
               createdBy: "admin",
             },
           });
+        } else {
+          console.log(Object?.keys(res?.data?.items)?.length);
+          return toast.error(`Por favor introducir un link valido para el video ${video.title}`)
         }
       });
   }
@@ -221,6 +228,22 @@ const NewCourse = () => {
       return null
     });
     return newArray;
+  }
+
+  async function validVideo(url, index) {
+    let videoId = getVideoId(url);
+    const tokenApi = "AIzaSyBjrn-Egkd4ZHF1JjZ9QQG7gVQuLzSnZ-0";
+    await axios
+      .get(
+        `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${tokenApi}`
+      )
+      .then((res) => {
+        if (Object?.keys(res?.data?.items)?.length === 0) {
+          document.getElementById(`input-link-${index}`).classList.add("invalid-url")
+        } else {
+          document.getElementById(`input-link-${index}`).classList.remove("invalid-url")
+        }
+      });
   }
 
 
@@ -291,6 +314,7 @@ const NewCourse = () => {
           modalInfo={modalInfo}
           setModalInfo={setModalInfo}
           setDataElement={setDataElement}
+          validVideo={validVideo}
         />
       </TrainingContext.Provider>
     </>

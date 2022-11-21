@@ -1,10 +1,10 @@
 import React from "react";
 import ReactTooltip from "react-tooltip";
 import { FaUndoAlt } from "react-icons/fa";
-import DatePicker  from "react-datepicker";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const TicketCreateForm = ({ priority, setPriority, color, undoPriority,handlerInputChange, formData, addTicket, options,setStartDate, startDate }) => {
+const TicketCreateForm = ({ priority, setPriority, color, undoPriority, handlerInputChange, formData, addTicket, options, setStartDate, startDate }) => {
   return (
     <>
       {" "}
@@ -22,7 +22,7 @@ const TicketCreateForm = ({ priority, setPriority, color, undoPriority,handlerIn
                 placeholder="Escriba el asunto del problema"
                 className="ticket-input"
                 value={formData?.issueName || ""}
-                //   disabled={true}
+              //   disabled={true}
               />
               <div className="input-required">*</div>
             </div>
@@ -43,7 +43,7 @@ const TicketCreateForm = ({ priority, setPriority, color, undoPriority,handlerIn
             </div>
             <div className="">
               <p className="ticket-input-title">Problema Encontrado el</p>
-              <DatePicker 
+              <DatePicker
                 onChange={(date) => setStartDate(date)}
                 disabledKeyboardNavigation
                 placeholderText="Seleccionar la fecha en que fue encontrado el problema"
@@ -52,7 +52,7 @@ const TicketCreateForm = ({ priority, setPriority, color, undoPriority,handlerIn
                 showTimeSelect
                 dateFormat="MMMM d, yyyy h:mm aa"
               />
-              <div className="input-required">*</div>
+              {/* <div className="input-required">*</div> */}
             </div>
             <div className="">
               <p className="ticket-input-title">Detalles</p>
@@ -103,14 +103,14 @@ const TicketCreateForm = ({ priority, setPriority, color, undoPriority,handlerIn
               </div>
             ) : (
               <div className="ticket-priority-cont">
-                <p style={{marginRight:"0.2rem"}}>PRIORIDAD:</p>
+                <p style={{ marginRight: "0.2rem" }}>PRIORIDAD:</p>
                 <p>{priority}</p>
                 <i className="fa fa-undo-alt" />
                 <FaUndoAlt
                   onClick={undoPriority}
                   size="1rem"
                   color={color}
-                  style={{ cursor:"pointer", marginLeft: "0.8rem", marginRight: "0.8rem" }}
+                  style={{ cursor: "pointer", marginLeft: "0.8rem", marginRight: "0.8rem" }}
                 />
               </div>
             )}

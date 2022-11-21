@@ -24,8 +24,15 @@ const NotificationModal = ({
             modalToggle()
             return toast.success('El video ha sido eliminado correctamente')
         } else {
+            const filtered = modalInfo.videoData.filter(
+                (video) => video.localId !== data.localId
+            );
+            modalInfo.setVideoData(
+                [...filtered].sort((a, b) => {
+                    return a.localId - b.localId;
+                })
+            );
             modalToggle()
-            return toast.error('Error al eliminar el video.')
         }
     }
 
