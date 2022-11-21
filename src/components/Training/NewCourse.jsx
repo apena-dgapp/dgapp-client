@@ -6,10 +6,17 @@ import axios from "axios";
 import AWN from "awesome-notifications";
 import { useParams } from "react-router";
 import useGetData from "../../hooks/useGetData";
+import toast from "react-hot-toast";
 
 const NewCourse = () => {
   const urlApi = process.env.REACT_APP_API;
   const { courseId } = useParams();
+  const [modalActive, setModalActive] = useState(false);
+  const [modalInfo, setModalInfo] = useState({
+    title: "",
+    content: ""
+  });
+
 
   ///////////////declaring states//////////////////////
   const [img, setImg] = useState(null);
@@ -19,6 +26,7 @@ const NewCourse = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [refresh, setRefresh] = useState(false);
   const [edit, setEdit] = useState(courseId !== undefined ? true : false);
+  const [dataElement, setDataElement] = useState(null)
 
   ////////////////states with the data///////////////////////////
 
@@ -47,8 +55,8 @@ const NewCourse = () => {
     for (let i = 0; i < array.length; i++) {
       const newArray = Object.values(array[i])
       for (let y = 0; y < newArray.length; y++) {
-        if(typeof newArray[y] === "string") {
-          if(newArray[y].trim() === "") {
+        if (typeof newArray[y] === "string") {
+          if (newArray[y].trim() === "") {
             return true
           }
         }
@@ -123,35 +131,21 @@ const NewCourse = () => {
               }
               return null
             });
-            
+
           })
           return null
         });
       })
       .then(() => {
-        const globalOptions = {
-          position: "bottom-left",
-          labels: {
-            success: "Exito!",
-          },
-        };
-        const notifier = new AWN(globalOptions);
-
         if (courseId === undefined) {
           setCourseData([defaultCourse()]);
           setVideoData([defaultVideo()]);
           setSectionData([defaultSection("Sección 1", 0)]);
           setImg(null);
           setTabIndex(0);
-          notifier.success(
-            "El curso ha sido públicado con éxito.",
-            globalOptions
-          );
+          toast.success("El curso ha sido públicado con éxito.")
         } else {
-          notifier.success(
-            "El curso ha sido modificado con éxito.",
-            globalOptions
-          );
+          toast.success("El curso ha sido modificado con éxito.")
         }
       })
       .catch((err) => {
@@ -229,6 +223,8 @@ const NewCourse = () => {
     return newArray;
   }
 
+
+
   /////////////////////////////////////////////////////////
 
   useEffect(() => {
@@ -250,6 +246,18 @@ const NewCourse = () => {
     // window.scrollTo(0, 0);
     // console.log(fetchCourseData);
   }, [fetchCourseData, fetchSectionData, fetchVideoData]);
+
+  const modalToggleAceppt = (props) => {
+    // if (formData.video) {
+    //   setModalActive(!modalActive);
+    // } else {
+    //   return toast.error("Por favor de agregar el enlace del video");
+    // }
+  };
+  const modalToggle = () => {
+    setModalActive(!modalActive);
+  };
+
 
   return (
     <>
@@ -276,6 +284,13 @@ const NewCourse = () => {
           disableElement={disableElement}
           addLocalId={addLocalId}
           checkEmptyValue={checkEmptyValue}
+          modalToggle={modalToggle}
+          modalToggleAceppt={modalToggleAceppt}
+          setModalActive={setModalActive}
+          modalActive={modalActive}
+          modalInfo={modalInfo}
+          setModalInfo={setModalInfo}
+          setDataElement={setDataElement}
         />
       </TrainingContext.Provider>
     </>

@@ -1,11 +1,12 @@
+import { useContext } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { TrainingContext } from "./TrainingContext";
-import { useContext } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa";
 import { BsDashCircleFill, BsImage } from "react-icons/bs";
 import AWN from "awesome-notifications";
+import NotificationModal from "../../common/components/Notification/NotificationModal";
 
 const NewCourseForm = (props) => {
   const [
@@ -21,8 +22,17 @@ const NewCourseForm = (props) => {
     { img, setImg },
   ] = useContext(TrainingContext);
 
+
+
   return (
     <>
+      <NotificationModal
+        modalToggle={props.modalToggle}
+        modalActive={props.modalActive}
+        modalToggleCancel={props.modalToggleCancel}
+        modalToggleAccept={props.modalToggleAccept}
+        modalInfo={props.modalInfo}
+      />
       <h2 className="create-course-title">DETALLES DEL CURSO</h2>
       <div className="course-details">
         <div className="input-container">
@@ -87,7 +97,7 @@ const NewCourseForm = (props) => {
           </div>
         </div>
         <div className="image-uploader" htmlFor="getImage">
-          <p style={{display: img !== null ? "none":"block"}}>Click para agregar una image de portada</p>
+          <p style={{ display: img !== null ? "none" : "block" }}>Click para agregar una image de portada</p>
           <input
             id="getImage"
             className={"hide"}
@@ -117,7 +127,7 @@ const NewCourseForm = (props) => {
             Selecciona tu portada
           </label> */}
 
-          <img style={{display: img !== null ? "block":"contents"}} src={img} alt=" " />
+          <img style={{ display: img !== null ? "block" : "contents" }} src={img} alt=" " />
         </div>
       </div>
       <div className="section-details-container">
@@ -180,70 +190,21 @@ const NewCourseForm = (props) => {
                       data.localId === tabIndex ? "show-icon" : "hide-icon"
                     }
                     onClick={() => {
-                      const globalOptions = {
-                        position: "bottom-left",
-                        labels: {
-                          confirmOk: "Si",
-                          confirmCancel: "Cancelar",
-                          success: "Exito!",
-                          confirm: "¿Deseas eliminar esta sección?",
-                        },
-                      };
-
-                      const notifier = new AWN(globalOptions);
-
-                      notifier.confirm(
-                        " ",
-                        () => {
-                          if (data.id !== undefined) {
-                            props.disableElement("section/disable", data);
-                          }
-                          const filteredSections = sectionData.filter(
-                            (section) => section.localId !== data.localId
-                          );
-
-                          let sections = [...filteredSections].sort((a, b) => {
-                            return a.localId - b.localId;
-                          });
-
-                          const filteredVideos = videoData.filter(
-                            (video) => video.sectionId !== data.localId
-                          );
-
-                          let videos = [...filteredVideos].sort((a, b) => {
-                            return a.localId - b.localId;
-                          });
-
-                          sections.map((section, index) => {
-                            videos.map((video) => {
-                              if (section.localId === video.sectionId) {
-                                video.sectionId = index;
-                              }
-                              return null;
-                            });
-                            section.localId = index;
-                            return null;
-                          });
-
-                          setSectionData(sections);
-                          setVideoData(videos);
-                          setSectionCount(sectionCount - 1);
-
-                          setSectionData(
-                            [...filteredSections].sort((a, b) => {
-                              return a.localId - b.localId;
-                            })
-                          );
-                          setTabIndex(0);
-                          setRefresh(true);
-                          notifier.success(
-                            "La sección ha sido eliminada.",
-                            globalOptions
-                          );
-                        },
-                        () => {},
-                        globalOptions
-                      );
+                      props.setModalActive(true)
+                      props.setModalInfo({
+                        type: "Section",
+                        title: "Eliminar seccion",
+                        content: "Estas seguro de eliminar esta sección?",
+                        data: data,
+                        sectionData: sectionData,
+                        videoData: videoData,
+                        setSectionData: setSectionData,
+                        setSectionCount: setSectionCount,
+                        setVideoData: setVideoData,
+                        setTabIndex: setTabIndex,
+                        setRefresh: setRefresh,
+                        disableElement: props.disableElement
+                      })
                     }}
                   />
                 </Tab>
@@ -271,10 +232,10 @@ const NewCourseForm = (props) => {
               value={newInputSection}
             />
           </TabList>
-          {sectionData.map((section, i) => {
+          {sectionData?.map((section, i) => {
             return (
               <TabPanel key={i}>
-                {videoData.map((data, index) => {
+                {videoData?.map((data, index) => {
                   if (
                     data.sectionId === section.id ||
                     data.sectionId === section.localId
@@ -325,44 +286,21 @@ const NewCourseForm = (props) => {
                             </div>
                             <button
                               onClick={() => {
-                                const globalOptions = {
-                                  position: "bottom-left",
-                                  labels: {
-                                    success: "Exito!",
-                                    confirm: "¿Deseas eliminar este video?",
-                                  },
-                                };
-
-                                const notifier = new AWN(globalOptions);
-
-                                notifier.confirm(
-                                  " ",
-                                  () => {
-                                    if (data.id !== undefined) {
-                                      props.disableElement("video/disable", data);
-                                    }
-
-                                    const filtered = videoData.filter(
-                                      (video) => video.localId !== data.localId
-                                    );
-                                    setVideoData(
-                                      [...filtered].sort((a, b) => {
-                                        return a.localId - b.localId;
-                                      })
-                                    );
-
-                                    notifier.success(
-                                      "El video ha sido eliminado.",
-                                      globalOptions
-                                    );
-                                  },
-                                  () => {},
-                                  globalOptions
-                                );
+                                props.setModalActive(true)
+                                props.setModalInfo({
+                                  type: "Video",
+                                  title: "Eliminar video",
+                                  content: "Estas seguro de eliminar este video?",
+                                  data: data,
+                                  method: props.deleteVideo,
+                                  videoData: videoData,
+                                  setVideoData: setVideoData,
+                                  disableElement: props.disableElement
+                                })
                               }}
                               className="btn-training delete-video-btn"
                             >
-                              Delete
+                              Borrar
                             </button>
                           </div>
                         </div>
@@ -394,71 +332,38 @@ const NewCourseForm = (props) => {
       </div>
       {props.courseId === undefined ? (
         <div className="trainig-btn-publish-cont">
-           <button
+          <button
             className="btn-training"
             onClick={() => {
-              const globalOptions = {
-                labels: {
-                  success: "Exito!",
-                  confirm: "¿Deseas publicar este curso?",
-                  confirmOk: "Si",
-                  confirmCancel: "Cancelar",
-                },
-              };
-              const notifier = new AWN(globalOptions);
-
-              notifier.confirm(
-                " ",
-                () => {
-                  props.postNewCourse();
-                },
-                (() => {}, globalOptions)
-              );
+              props.setModalActive(true)
+              props.setModalInfo({
+                type: "Publicar",
+                title: "¿Deseas publicar este curso?",
+                postNewCourse: props.postNewCourse,
+                checkEmptyValue: props.checkEmptyValue,
+                videoData: videoData,
+                sectionData: sectionData,
+              })
             }}
           >
             Publicar
           </button>
         </div>
-       
+
       ) : (
         <div className="trainig-btn-publish-cont">
           <button
             className="btn-training"
             onClick={() => {
-              const globalOptions = {
-                labels: {
-                  success: "Exito!",
-                  confirm: "¿Deseas actualizar este curso?",
-                  confirmOk: "Si",
-                  confirmCancel: "Cancelar",
-                },
-              };
-              const notifier = new AWN(globalOptions);
-
-              notifier.confirm(
-                " ",
-                () => {
-                  if (
-                    !props.checkEmptyValue(videoData) &&
-                    !props.checkEmptyValue(sectionData)
-                  ) {
-                    props.postNewCourse();
-                  } else {
-                    const globalOptions = {
-                      position: "bottom-left",
-                      labels: {
-                        warning: "Error",
-                      },
-                    };
-                    const notifier = new AWN(globalOptions);
-                    notifier.warning(
-                      "Verifique de no dejar ningún elemento vacio.",
-                      globalOptions
-                    );
-                  }
-                },
-                (() => {}, globalOptions)
-              );
+              props.setModalActive(true)
+              props.setModalInfo({
+                title: "Actualizar el curso",
+                content: "¿Deseas actualizar este curso?",
+                postNewCourse: props.postNewCourse,
+                checkEmptyValue: props.checkEmptyValue,
+                videoData: videoData,
+                sectionData: sectionData,
+              })
             }}
           >
             Actualizar
