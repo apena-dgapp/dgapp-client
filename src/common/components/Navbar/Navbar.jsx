@@ -14,15 +14,15 @@ const Navbar = () => {
   const [active, setActive] = useState("menu_items");
   const [show, setShow] = useState("menu_hiden");
   const [action, setAction] = useState("");
-  const {width, height} = useScreenSize();
+  const { width, height } = useScreenSize();
 
   const navToggle = () => {
 
-    if(show === "menu_hiden_show"){
+    if (show === "menu_hiden_show") {
       setShow("menu_hiden");
     }
 
-    if(show === "menu_hiden_show"){
+    if (show === "menu_hiden_show") {
       setShow("menu_hiden");
     }
 
@@ -47,31 +47,31 @@ const Navbar = () => {
     position: "",
     birthday: "",
     photo: "",
-    email:""
+    email: ""
   });
 
   const aboutUSChange = (e, name) => {
     e.preventDefault();
 
-    if(active === "menu_items_show"){
+    if (active === "menu_items_show") {
       setActive("menu_items");
     }
-    
-    navigate(`/nosotros/${name}`,{state: name,});
+
+    navigate(`/nosotros/${name}`, { state: name, });
   };
 
   // const [file, setFile] = useState("");
 
   const employeeProfile = (e) => {
-    if(active === "menu_items_show"){
+    if (active === "menu_items_show") {
       setActive("menu_items");
     }
-    if(active === "menu_items_show"){
+    if (active === "menu_items_show") {
       setActive("menu_items");
     }
 
     const employeeId = e.currentTarget.id;
-    navigate(`/perfil/yo`,{state: employeeId,});
+    navigate(`/perfil/yo`, { state: employeeId, });
   };
 
   //funcion para setear lenguaje
@@ -81,7 +81,7 @@ const Navbar = () => {
 
   const home = () => {
 
-    if(active === "menu_items_show"){
+    if (active === "menu_items_show") {
       setActive("menu_items");
     }
 
@@ -94,7 +94,7 @@ const Navbar = () => {
     navigate("./");
     localStorage.clear();
     // contextMiddleware.setIsShowChat();
-    
+
     // window.localStorage.clear();
 
     // console.log(contextState.token);
@@ -102,16 +102,18 @@ const Navbar = () => {
   };
 
   const createPost = () => {
-    navigate("/crear-entrada");
+    navigate("/crear-entrada", {
+      state: person
+    });
   };
 
   const inConstruction = () => {
 
-    if(active === "menu_items_show"){
+    if (active === "menu_items_show") {
       setActive("menu_items");
     }
 
-    if(show === "menu_hiden_show"){
+    if (show === "menu_hiden_show") {
       setShow("menu_hiden");
     }
 
@@ -120,15 +122,15 @@ const Navbar = () => {
 
   const allPost = () => {
 
-    if(active === "menu_items_show"){
+    if (active === "menu_items_show") {
       setActive("menu_items");
     }
 
-    if(show === "menu_hiden_show"){
+    if (show === "menu_hiden_show") {
       setShow("menu_hiden");
     }
 
-    navigate("/noticias",{state:{category: "Noticia"}});  
+    navigate("/noticias", { state: { category: "Noticia" } });
   };
 
   const employeedirectory = () => {
@@ -144,10 +146,10 @@ const Navbar = () => {
 
   const training = () => {
 
-    if(active === "menu_items_show"){
+    if (active === "menu_items_show") {
       setActive("menu_items");
     }
-    
+
     navigate("/entrenamiento");
   };
 
@@ -165,14 +167,14 @@ const Navbar = () => {
 
   const ticketSystem = (action) => {
 
-    const state = Object.assign({action}, person);
+    const state = Object.assign({ action }, person);
 
-    if(active === "menu_items_show"){
+    if (active === "menu_items_show") {
       setActive("menu_items");
     }
 
-    navigate(`/ticket/${action}`,{
-      state:state
+    navigate(`/ticket/${action}`, {
+      state: state
     });
   };
 
@@ -182,7 +184,7 @@ const Navbar = () => {
         return res.json();
       })
       .then((res) => {
-        navigate("/pdf",{state: res[0].file,});
+        navigate("/pdf", { state: res[0].file, });
       })
       .catch((err) => {
         console.error(err.status);
@@ -217,7 +219,7 @@ const Navbar = () => {
     }
 
     if (!unmounted) {
-        location.pathname === `${process.env.REACT_APP_RUTE}/pdf` 
+      location.pathname === `${process.env.REACT_APP_RUTE}/pdf`
         ? setIsHidden(true)
         : setIsHidden(false);
     }

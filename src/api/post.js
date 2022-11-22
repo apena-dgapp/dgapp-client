@@ -1,6 +1,6 @@
 
-export const newPostApi = async (title, description, category, author, image, views, isactive, createdby, modifiedby) => {
-    const body = { title, description, category, author, image, views, isactive, createdby, modifiedby };
+export const newPostApi = async (title, description, category, author, image, views, isactive, createdby, createdat) => {
+    const body = { title, description, category, author, image, views, isactive, createdby, createdat };
     return fetch(`${process.env.REACT_APP_API}post/newpost`, {
         method: "POST",
         body: JSON.stringify(body),

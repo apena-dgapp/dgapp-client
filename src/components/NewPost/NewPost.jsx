@@ -1,17 +1,18 @@
-import React, { useState, useContext } from "react";
-import GlobalContext from "../../context/GlobalContext";
+import React, { useState, useRef } from "react";
 import NewPostForm from "./NewPostForm";
 import { newPostApi, postId, createFile } from "../../api/post";
 import { blobToBase64, getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
 import { EditorState } from "draft-js";
 import { convertToHTML } from "draft-convert";
+import { useLocation } from "react-router-dom";
 
 const NewPost = () => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-  const [contextState] = useContext(GlobalContext);
+  const location = useLocation();
+  const state = location.state;
   const [modalActive, setModalActive] = useState(false);
   const [img, setImg] = useState("");
   const [actionInput, setActionInput] = useState("");
@@ -28,7 +29,19 @@ const NewPost = () => {
     views: 0,
     isActive: true,
     video: "",
+    date: "",
   });
+
+  const refInput = useRef();
+
+  const inputDate = () => {
+    refInput.current.type = "date";
+  };
+
+  const inputText = () => {
+    refInput.current.type = "text";
+  };
+
   const options = [
     {
       id: "1",
@@ -162,15 +175,17 @@ const NewPost = () => {
       return toast.error("Por favor agregar un título");
     } else if (!formData.author) {
       return toast.error("Por favor agregar un autor");
+    } else if (!formData.date) {
+      return toast.error("Por favor agregar una fecha");
     } else if (!currentContentAsHTML) {
       return toast.error("Por favor agregar una descripción");
     } else if (!img && formData.category === "Portada Principal") {
       return toast.error("Por favor agregar una imagen de portada");
     } else if (!img && formData.category === "Noticia") {
       return toast.error("Por favor agregar una imagen de portada");
-    }else if (!img && formData.category === "Aviso") {
+    } else if (!img && formData.category === "Aviso") {
       return toast.error("Por favor agregar una imagen de portada");
-    }else if (!img && formData.category === "EducAPP") {
+    } else if (!img && formData.category === "EducAPP") {
       return toast.error("Por favor agregar una imagen de portada");
     }
 
@@ -182,15 +197,14 @@ const NewPost = () => {
       img,
       formData.views,
       formData.isActive,
-      contextState.userName,
-      ""
+      state?.fullName,
+      formData.date
     )
       .then((res) => {
         return res.json();
       })
       .then((res) => {
-        console.log(res.status);
-
+        console.log(res)
         postId(formData.title, formData.category, formData.author)
           .then((res) => {
             return res.json();
@@ -292,6 +306,7 @@ const NewPost = () => {
       views: 0,
       isActive: true,
       video: "",
+      date: ""
     });
     setImg("");
     setAccept("");
@@ -337,6 +352,9 @@ const NewPost = () => {
         setEditorState={setEditorState}
         editorState={editorState}
         options={options}
+        refInput={refInput}
+        inputDate={inputDate}
+        inputText={inputText}
       />
     </>
   );

@@ -1,8 +1,21 @@
 .card {
     width: 18rem;
     height: 32rem;
-    cursor: pointer;
     margin-bottom: 3rem;
+}
+
+.card-btn-cont {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // background-color: red;
+
+    p {
+        font-size: 0.8rem;
+        font-weight: bold;
+        margin: 0;
+    }
 }
 
 .card-text {
@@ -92,6 +105,7 @@
 }
 
 .img-costum-card-featured {
+    cursor: pointer;
     max-width: 17.8rem !important;
     max-height: 12rem !important;
     min-width: 17.8rem !important;

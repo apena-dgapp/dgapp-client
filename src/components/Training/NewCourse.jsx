@@ -88,73 +88,111 @@ const NewCourse = () => {
     setImg(await getBase64(e.target.files[0]));
   }
 
+  async function invalidVideoClass(url, index) {
+    let videoId = getVideoId(url);
+    const tokenApi = "AIzaSyBjrn-Egkd4ZHF1JjZ9QQG7gVQuLzSnZ-0";
+    await axios
+      .get(
+        `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${tokenApi}`
+      )
+      .then((res) => {
+        if (Object?.keys(res?.data?.items)?.length === 0) {
+          document.getElementById(`input-link-${index}`).classList.add("invalid-url")
+        } else {
+          document.getElementById(`input-link-${index}`).classList.remove("invalid-url")
+        }
+      });
+  }
+
+  function validData() {
+    let bool = true
+    if (
+      checkEmptyValue(courseData) ||
+      checkEmptyValue(videoData) ||
+      checkEmptyValue(sectionData)
+    ) {
+      bool = false
+    }
+    videoData.forEach((video) => {
+      let videoId = getVideoId(video.link)
+      if (videoId.length < 11) {
+        bool = false
+      }
+    })
+    return bool
+  }
   /////////////////axios function////////////////////////
 
   async function postNewCourse() {
-    axios({
-      method: courseId === undefined ? "post" : "put",
-      url:
-        courseId === undefined
-          ? `${urlApi}/course/create`
-          : `${urlApi}/course/${courseId}`,
-      data: {
-        title: courseData[0].title,
-        description: courseData[0].description,
-        additional_info: courseData[0].additional_info,
-        image: img,
-        madeBy: courseData[0].madeBy,
-        createdBy: "admin", ////here go the rol
-        collaborators: courseData[0].collaborators,
-      },
-    })
-      .then((res) => {
-        sectionData.map((section) => {
-          axios({
-            method: section.id === undefined ? "post" : "put",
-            url:
-              section.id === undefined
-                ? `${urlApi}/section/`
-                : `${urlApi}/section/${section.id}`,
-            data: {
-              courseId: courseId === undefined ? res.data : courseId,
-              title: section.title,
-              order: 1,
-              createdBy: "Admin",
-            },
-          }).then((response) => {
-            videoData.map((video) => {
-              if (
-                section.localId === video.sectionId ||
-                section.id === video.sectionId
-              ) {
-                uploadVideo(
-                  video,
-                  section.id === undefined ? response.data : section.id,
-                  courseId === undefined ? res.data : courseId
-                );
-              }
-              return null
-            });
+    if (validData()) {
+      axios({
+        method: courseId === undefined ? "post" : "put",
+        url:
+          courseId === undefined
+            ? `${urlApi}/course/create`
+            : `${urlApi}/course/${courseId}`,
+        data: {
+          title: courseData[0].title,
+          description: courseData[0].description,
+          additional_info: courseData[0].additional_info,
+          image: img,
+          madeBy: courseData[0].madeBy,
+          createdBy: "admin", ////here go the rol
+          collaborators: courseData[0].collaborators,
+        },
+      })
+        .then((res) => {
+          sectionData.map((section) => {
+            axios({
+              method: section.id === undefined ? "post" : "put",
+              url:
+                section.id === undefined
+                  ? `${urlApi}/section/`
+                  : `${urlApi}/section/${section.id}`,
+              data: {
+                courseId: courseId === undefined ? res.data : courseId,
+                title: section.title,
+                order: 1,
+                createdBy: "Admin",
+              },
+            }).then((response) => {
+              videoData.map((video) => {
+                if (
+                  section.localId === video.sectionId ||
+                  section.id === video.sectionId
+                ) {
+                  uploadVideo(
+                    video,
+                    section.id === undefined ? response.data : section.id,
+                    courseId === undefined ? res.data : courseId
+                  );
+                }
+                return null
+              });
 
-          })
-          return null
+            })
+            return null
+          });
+        })
+        .then(() => {
+          if (courseId === undefined) {
+            setCourseData([defaultCourse()]);
+            setVideoData([defaultVideo()]);
+            setSectionData([defaultSection("Sección 1", 0)]);
+            setImg(null);
+            setTabIndex(0);
+            toast.success("El curso ha sido públicado con éxito.")
+          } else {
+            toast.success("El curso ha sido modificado con éxito.")
+          }
+        })
+        .catch((err) => {
+          console.error(err);
         });
-      })
-      .then(() => {
-        if (courseId === undefined) {
-          setCourseData([defaultCourse()]);
-          setVideoData([defaultVideo()]);
-          setSectionData([defaultSection("Sección 1", 0)]);
-          setImg(null);
-          setTabIndex(0);
-          toast.success("El curso ha sido públicado con éxito.")
-        } else {
-          toast.success("El curso ha sido modificado con éxito.")
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    }
+    else {
+      return toast.error("Por favor validar los campos antes de publicar el curso.")
+    }
   }
 
   async function uploadVideo(video, section_id, course_id) {
@@ -230,24 +268,6 @@ const NewCourse = () => {
     return newArray;
   }
 
-  async function validVideo(url, index) {
-    let videoId = getVideoId(url);
-    const tokenApi = "AIzaSyBjrn-Egkd4ZHF1JjZ9QQG7gVQuLzSnZ-0";
-    await axios
-      .get(
-        `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${tokenApi}`
-      )
-      .then((res) => {
-        if (Object?.keys(res?.data?.items)?.length === 0) {
-          document.getElementById(`input-link-${index}`).classList.add("invalid-url")
-        } else {
-          document.getElementById(`input-link-${index}`).classList.remove("invalid-url")
-        }
-      });
-  }
-
-
-
   /////////////////////////////////////////////////////////
 
   useEffect(() => {
@@ -314,7 +334,7 @@ const NewCourse = () => {
           modalInfo={modalInfo}
           setModalInfo={setModalInfo}
           setDataElement={setDataElement}
-          validVideo={validVideo}
+          invalidVideoClass={invalidVideoClass}
         />
       </TrainingContext.Provider>
     </>

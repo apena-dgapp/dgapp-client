@@ -270,7 +270,7 @@ const NewCourseForm = (props) => {
                                 id={`input-link-${index}`}
                                 value={data.link}
                                 onChange={(e) => {
-                                  props.validVideo(e.target.value, index)
+                                  props.invalidVideoClass(e.target.value, index)
                                   const currentVideo = {
                                     ...videoData[index],
                                     link: e.target.value,

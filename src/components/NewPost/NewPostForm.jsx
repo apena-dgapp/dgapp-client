@@ -28,7 +28,10 @@ const NewPostForm = ({
   modalToggleAceppt,
   setEditorState,
   editorState,
-  options
+  options,
+  refInput,
+  inputDate,
+  inputText
 }) => {
   const handleEditorChange = (state) => {
     setEditorState(state);
@@ -87,6 +90,20 @@ const NewPostForm = ({
                   className="inputTitle"
                   onChange={handlerInputChange}
                   value={formData.author || ""}
+                />
+              </div>
+              <div>
+                <input
+                  id="date"
+                  name="date"
+                  type="text"
+                  onBlur={inputText}
+                  onFocus={inputDate}
+                  className="inputTitle"
+                  placeholder="Agregar una fecha"
+                  onChange={handlerInputChange}
+                  value={formData.date || ""}
+                  ref={refInput}
                 />
               </div>
               <div>
