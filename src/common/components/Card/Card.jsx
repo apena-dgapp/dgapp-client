@@ -1,16 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { viewUpdate } from "../../../api/post";
 import { useNavigate } from "react-router-dom";
 import { getImage } from "../../../api/post";
 import { shortDate } from "../../../utils/shortDate";
 import { FiEdit } from "react-icons/fi";
 import { CiSquareRemove } from "react-icons/ci";
+import GlobalContext from "../../../context/GlobalContext";
+import EditCardModal from "./EditCardModal";
 
 const Card = (props) => {
   const navigate = useNavigate();
   const [image, setImage] = useState([]);
+  const [data, setData] = useState("");
+  const [contextState] = useContext(GlobalContext);
+  const [modalActive, setModalActive] = useState(false);
 
   const id = props.id;
+
+  const modalToggle = (item, img) => {
+    const state = Object.assign({ item }, { img });
+    setData(state)
+    setModalActive(!modalActive);
+  };
 
   useEffect(() => {
 
@@ -47,10 +58,15 @@ const Card = (props) => {
 
   return (
     <>
+      <EditCardModal
+        modalToggle={modalToggle}
+        modalActive={modalActive}
+        data={data}
+      />
       <div className="card">
-        <div className="card-btn-cont">
-          <p onClick={() => props.edit(props.id)} className="">
-            <i className="ri ri-edit-box-fill" />
+        {contextState.userRole === 1 ? <div className="card-btn-cont">
+          <p onClick={() => modalToggle(props, image?.image)} className="">
+            <i className="fi fi-edit" />
             <FiEdit
               style={{ cursor: "pointer" }}
               size="1.1rem"
@@ -58,14 +74,15 @@ const Card = (props) => {
             />
           </p>
           <p onClick={() => { props.disableCourse(props.id) }} className="">
-            <i className="md md-delete-forever" />
+            <i className="ci ci-square-remove" />
             <CiSquareRemove
               style={{ cursor: "pointer" }}
               size="1.2rem"
               color="#FB2576"
             />
           </p>
-        </div>
+        </div> : null}
+
         <img
           onClick={click}
           src={image?.image}
