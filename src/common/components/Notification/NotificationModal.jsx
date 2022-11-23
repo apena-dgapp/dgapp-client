@@ -6,7 +6,7 @@ const NotificationModal = ({
     children,
     modalActive,
     modalToggle,
-    modalInfo
+    modalInfo,
 }) => {
 
     function deleteVideo() {

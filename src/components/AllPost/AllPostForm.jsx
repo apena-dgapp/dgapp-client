@@ -21,13 +21,13 @@ const AllPostForm = ({
             <GoMegaphone
               size="3rem"
               color="#79ADD4"
-              style={{transform: "rotate(-10deg)", marginBottom:"0.5rem"}}
+              style={{ transform: "rotate(-10deg)", marginBottom: "0.5rem" }}
             />
           </span>
           <p>
             NOTICIAS
-          </p>     
-          </div>
+          </p>
+        </div>
       </div>
 
       <div className="allpost-input-cont">
@@ -53,6 +53,7 @@ const AllPostForm = ({
                 id={post.postId}
                 title={post.title}
                 img={post.image}
+                createdby={post.createdBy}
                 description={post.description}
                 date={post.createdAt}
                 author={post.author}

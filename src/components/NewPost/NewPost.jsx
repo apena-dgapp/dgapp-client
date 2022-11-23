@@ -173,8 +173,8 @@ const NewPost = () => {
       return toast.error("Por favor agregar un categoría");
     } else if (!formData.title) {
       return toast.error("Por favor agregar un título");
-    } else if (!formData.author) {
-      return toast.error("Por favor agregar un autor");
+      // } else if (!formData.author) {
+      //   return toast.error("Por favor agregar un autor");
     } else if (!formData.date) {
       return toast.error("Por favor agregar una fecha");
     } else if (!currentContentAsHTML) {

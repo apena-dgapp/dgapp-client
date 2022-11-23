@@ -1,12 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
-import { viewUpdate } from "../../../api/post";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { viewUpdate, getImage, updatePost, disabledPost } from "../../../api/post";
 import { useNavigate } from "react-router-dom";
-import { getImage } from "../../../api/post";
 import { shortDate } from "../../../utils/shortDate";
 import { FiEdit } from "react-icons/fi";
 import { CiSquareRemove } from "react-icons/ci";
 import GlobalContext from "../../../context/GlobalContext";
 import EditCardModal from "./EditCardModal";
+import { EditorState } from "draft-js";
+import { convertToHTML } from "draft-convert";
+import toast from "react-hot-toast";
+import { getBase64 } from "../../../utils/blobManager";
+import Message from "../../Message/Message";
 
 const Card = (props) => {
   const navigate = useNavigate();
@@ -14,13 +18,90 @@ const Card = (props) => {
   const [data, setData] = useState("");
   const [contextState] = useContext(GlobalContext);
   const [modalActive, setModalActive] = useState(false);
+  const [message, setMessage] = useState({
+    title: "",
+    text: "",
+    isActive: false
+  });
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    image: "",
+    author: "",
+    date: "",
+  });
+
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty()
+  );
 
   const id = props.id;
+
+  const handlerInputChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const seletedHandler = async (e) => {
+    setFormData({ image: (await getBase64(e.target.files[0])) });
+  };
 
   const modalToggle = (item, img) => {
     const state = Object.assign({ item }, { img });
     setData(state)
     setModalActive(!modalActive);
+    setFormData({
+      title: "",
+      description: "",
+      image: "",
+      author: "",
+      date: "",
+    });
+  };
+  const messageToggle = () => {
+    setMessage({ title: "ELIMINAR PUBLICACIÓN", text: "Seguro que desea eliminar esta publicación?", isActive: !message.isActive })
+  };
+
+  const btnConfirmm = () => {
+    disabledPost(props.id)
+      .then((res) => {
+        if (res.status !== 200) {
+          return toast.error("Error al intentar eliminar la publicación");
+        } else {
+          navigate(0);
+          return toast.success("La publicación se elimino exitosamente!");
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  }
+
+  const btnCancel = () => {
+    setMessage({ title: "", text: "", isActive: !message.isActive })
+  };
+
+  const refInput = useRef();
+
+  const refBtnImg = useRef();
+
+  const inputDate = () => {
+    refInput.current.type = "date";
+  };
+
+  const inputText = () => {
+    refInput.current.type = "text";
+  };
+
+  const changeImg = () => {
+    refBtnImg.current.click();
+  }
+
+  const removeImg = () => {
+    refBtnImg.current.value = "";
+    setFormData({ image: "" })
   };
 
   useEffect(() => {
@@ -56,12 +137,59 @@ const Card = (props) => {
       });
   };
 
+  const sendHandlerForm = () => {
+    let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
+
+    updatePost(props.id, formData.title === "" || formData.title === undefined ? props.title : formData.title
+      , currentContentAsHTML === "<p></p>" ? props.description : currentContentAsHTML
+      , formData.author === "" || formData.author === undefined ? props.author : formData.author
+      , formData.image === "" || formData.image === undefined ? image.image : formData.image
+      , formData.date === "" || formData.date === undefined ? props.date : formData.date)
+      .then((res) => {
+        if (res.status !== 200) {
+          return toast.error("Error al intentar actualizar");
+        } else {
+          setFormData({
+            title: "",
+            description: "",
+            image: "",
+            author: "",
+            date: "",
+          });
+          setEditorState(EditorState.createEmpty());
+          setModalActive(false);
+          navigate(0);
+          return toast.success("Se realizo la actualizo exitosamente!");
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  }
+
   return (
     <>
       <EditCardModal
         modalToggle={modalToggle}
         modalActive={modalActive}
         data={data}
+        setEditorState={setEditorState}
+        editorState={editorState}
+        refInput={refInput}
+        inputDate={inputDate}
+        inputText={inputText}
+        handlerInputChange={handlerInputChange}
+        formData={formData}
+        sendHandlerForm={sendHandlerForm}
+        refBtnImg={refBtnImg}
+        changeImg={changeImg}
+        removeImg={removeImg}
+        seletedHandler={seletedHandler}
+      />
+      <Message
+        message={message}
+        btnConfirmm={btnConfirmm}
+        btnCancel={btnCancel}
       />
       <div className="card">
         {contextState.userRole === 1 ? <div className="card-btn-cont">
@@ -73,7 +201,7 @@ const Card = (props) => {
               color="#FBB454"
             />
           </p>
-          <p onClick={() => { props.disableCourse(props.id) }} className="">
+          <p onClick={messageToggle} className="">
             <i className="ci ci-square-remove" />
             <CiSquareRemove
               style={{ cursor: "pointer" }}
@@ -98,7 +226,10 @@ const Card = (props) => {
         <p className="card-date">
           <small className="text-muted">{shortDate(props.date)}</small>
         </p>
-        <button className="btn-dark">Leer más</button>
+        {/* <p className="card-date">
+          <small className="text-muted">{`Autor: ${props.createdby}`}</small>
+        </p> */}
+        <button onClick={click} className="btn-dark">Leer más</button>
       </div>
     </>
   );

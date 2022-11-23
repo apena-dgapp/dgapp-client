@@ -106,8 +106,19 @@ const NewCourse = () => {
 
   function validData() {
     let bool = true
+    const checkCourseData = () => {
+      if (
+        courseData[0].title.trim() === "" ||
+        courseData[0].description.trim() === "" ||
+        courseData[0].image.trim() === "" ||
+        courseData[0].madeBy.trim() === ""
+      ) {
+        bool = false
+      }
+    }
+    checkCourseData()
+
     if (
-      checkEmptyValue(courseData) ||
       checkEmptyValue(videoData) ||
       checkEmptyValue(sectionData)
     ) {
@@ -225,7 +236,6 @@ const NewCourse = () => {
             },
           });
         } else {
-          console.log(Object?.keys(res?.data?.items)?.length);
           return toast.error(`Por favor introducir un link valido para el video ${video.title}`)
         }
       });
@@ -286,17 +296,9 @@ const NewCourse = () => {
     if (fetchVideoData !== null && fetchVideoData.length > 0) {
       setVideoData(addLocalId(fetchVideoData));
     }
-    // window.scrollTo(0, 0);
-    // console.log(fetchCourseData);
   }, [fetchCourseData, fetchSectionData, fetchVideoData]);
 
-  const modalToggleAceppt = (props) => {
-    // if (formData.video) {
-    //   setModalActive(!modalActive);
-    // } else {
-    //   return toast.error("Por favor de agregar el enlace del video");
-    // }
-  };
+
   const modalToggle = () => {
     setModalActive(!modalActive);
   };
@@ -328,7 +330,6 @@ const NewCourse = () => {
           addLocalId={addLocalId}
           checkEmptyValue={checkEmptyValue}
           modalToggle={modalToggle}
-          modalToggleAceppt={modalToggleAceppt}
           setModalActive={setModalActive}
           modalActive={modalActive}
           modalInfo={modalInfo}

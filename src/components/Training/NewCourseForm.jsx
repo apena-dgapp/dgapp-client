@@ -30,7 +30,6 @@ const NewCourseForm = (props) => {
         modalToggle={props.modalToggle}
         modalActive={props.modalActive}
         modalToggleCancel={props.modalToggleCancel}
-        modalToggleAccept={props.modalToggleAccept}
         modalInfo={props.modalInfo}
       />
       <h2 className="create-course-title">DETALLES DEL CURSO</h2>

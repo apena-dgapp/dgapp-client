@@ -173,3 +173,27 @@ export const getDataCarousel = async (category, limit) => {
         }
     })
 }
+
+export const updatePost = async (id, title, description, author, image, date) => {
+    const body = { id, title, description, author, image, date };
+    return fetch(`${process.env.REACT_APP_API}post/updatepost`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const disabledPost = async (id) => {
+    const body = { id };
+    return fetch(`${process.env.REACT_APP_API}post/disabledpost`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}

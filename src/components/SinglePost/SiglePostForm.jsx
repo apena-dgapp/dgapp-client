@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Viewer from "react-viewer";
 import Carousel from "react-elastic-carousel";
 import ReactPlayer from "react-player";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import DOMPurify from "dompurify";
 
 const SiglePostForm = ({
@@ -19,7 +19,7 @@ const SiglePostForm = ({
   const navigate = useNavigate();
 
   const goToPDF = (pdf) => {
-    navigate("/pdf",{
+    navigate("/pdf", {
       state: pdf,
     });
   };
@@ -115,10 +115,14 @@ const SiglePostForm = ({
     <>
       <div className="singlePostContainer">
         <div className="singlePostTitle">
-          <div className="singlePostTxt">   
+          <div className="singlePostTxt">
             <p className="new-title">{dataPost.title}</p>
-            <p className="new-by">Por {dataPost.author}</p>
-            <p className="new-date">{fechaES}</p>
+            <p className="new-by">{`Por ${dataPost.createdby}`}</p>
+            <p className="new-date m-0">{fechaES}</p>
+            {
+              dataPost.author ? <p className="new-date">{`Autor: ${dataPost.author}`}</p> : null
+            }
+
           </div>
         </div>
 
@@ -207,47 +211,47 @@ const SiglePostForm = ({
       <div style={{ marginBottom: "8rem" }}>
         {arrayImg
           ? arrayImg.files.map((file) => {
-              return file.type === "pdf" ? (
-                <div key={file.filesId} id={file.filesId}>
-                  <div className="regulations-data-grid">
-                    <div className="regulations-grid-1">
-                      <div className="regulations-data-container">
-                        <div className="siglePost-data-txt">
-                          {file.name.toLowerCase().split(".")[0]}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="regulations-grid-2">
-                      <div className="regulations-data-container">
-                        <div className="siglePost-data-txt">
-                          {bytesToSize(file.size)}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="regulations-grid-3">
-                      <div className="regulations-data-container">
-                        <div className="siglePost-data-txt">
-                          {/* {new Date(file.publicationDate).toDateString()} */}
-                          {file.type}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="regulations-grid-4">
-                      <div className="regulations-data-container">
-                        <button
-                          id={file.fileId}
-                          type="button"
-                          className="btn btn-success btn-sm btn-success-down"
-                          onClick={() => goToPDF(file.src)}
-                        >
-                          Descargar
-                        </button>
+            return file.type === "pdf" ? (
+              <div key={file.filesId} id={file.filesId}>
+                <div className="regulations-data-grid">
+                  <div className="regulations-grid-1">
+                    <div className="regulations-data-container">
+                      <div className="siglePost-data-txt">
+                        {file.name.toLowerCase().split(".")[0]}
                       </div>
                     </div>
                   </div>
+                  <div className="regulations-grid-2">
+                    <div className="regulations-data-container">
+                      <div className="siglePost-data-txt">
+                        {bytesToSize(file.size)}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="regulations-grid-3">
+                    <div className="regulations-data-container">
+                      <div className="siglePost-data-txt">
+                        {/* {new Date(file.publicationDate).toDateString()} */}
+                        {file.type}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="regulations-grid-4">
+                    <div className="regulations-data-container">
+                      <button
+                        id={file.fileId}
+                        type="button"
+                        className="btn btn-success btn-sm btn-success-down"
+                        onClick={() => goToPDF(file.src)}
+                      >
+                        Descargar
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              ) : null;
-            })
+              </div>
+            ) : null;
+          })
           : null}
         <div className="singlePost-addComent-cont">
           {/* <div className="singlePost-addComent-title">
@@ -275,29 +279,29 @@ const SiglePostForm = ({
           </button>
           {
             comments.comments?.length ? <div className="singlePost-comment-list-cont">
-            <div className="singlePost-comment-list-header">
-              <p>Comentarios</p>
-            </div>
-            <div className="singlePost-comment-list-container">
-              {
-                comments.comments?.map((item,key)=>{
-                  return(
-                    <div key={key} className="singlePost-comment-list">
-                      <div className="singlePost-comment-list-user">
-                        <img src={item.Person.photo} alt="" />
-                        <p>{item.Person.firstName.split(" ", 1) + " " + item.Person.lastName.split(" ", 1)}</p>
+              <div className="singlePost-comment-list-header">
+                <p>Comentarios</p>
+              </div>
+              <div className="singlePost-comment-list-container">
+                {
+                  comments.comments?.map((item, key) => {
+                    return (
+                      <div key={key} className="singlePost-comment-list">
+                        <div className="singlePost-comment-list-user">
+                          <img src={item.Person.photo} alt="" />
+                          <p>{item.Person.firstName.split(" ", 1) + " " + item.Person.lastName.split(" ", 1)}</p>
+                        </div>
+                        <div className="singlePost-comment-lis-text">
+                          <p>{item.text}</p>
+                        </div>
                       </div>
-                      <div className="singlePost-comment-lis-text">
-                        <p>{item.text}</p>
-                      </div>
-                    </div>
-                  )
-                })
-              }
-            </div>
-          </div>:null
+                    )
+                  })
+                }
+              </div>
+            </div> : null
           }
-         
+
         </div>
       </div>
     </>
