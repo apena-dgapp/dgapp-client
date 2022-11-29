@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import DashboardForm from "./DashboardForm";
-import { getPost, getDataCarousel, getPostMultimedia,getPostMultimediaMain } from "../../api/post";
+import { getPost, getDataCarousel, getPostMultimedia, getPostMultimediaMain } from "../../api/post";
 import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
 import { viewUpdate } from "../../api/post";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
@@ -77,7 +77,7 @@ const Dashboard = () => {
         console.error(err.status);
       });
 
-      getPostMultimediaMain("Multimedia", 1)
+    getPostMultimediaMain("Multimedia", 1)
       .then((res) => {
         return res.json();
       })
@@ -95,16 +95,16 @@ const Dashboard = () => {
       .catch((err) => {
         console.error(err.status);
       });
-    
-       getPostMultimedia("Multimedia", 4)
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          if (!unmounted) {
-            setMultimedia(res);
-          }
-        })
+
+    getPostMultimedia("Multimedia", 4)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setMultimedia(res);
+        }
+      })
       .catch((err) => {
         console.error(err.status);
       });
@@ -142,12 +142,12 @@ const Dashboard = () => {
       unmounted = true;
     };
   }, []);
-  
+
   const goToPost = (item) => {
     // console.log(item)
     viewUpdate(item.postId)
       .then((res) => {
-        navigate(`/${item.category.toLowerCase()}/${item.title.toLowerCase()}`,{
+        navigate(`/${item.category.toLowerCase()}/${item.title.toLowerCase()}`, {
           state: {
             id: item.postId,
             title: item.title,
@@ -165,7 +165,7 @@ const Dashboard = () => {
   };
 
   const goToProfile = (props) => {
-    navigate(`/perfil/${props.name}`,{
+    navigate(`/perfil/${props.name}`, {
       state: props.id,
     });
   };
@@ -177,11 +177,11 @@ const Dashboard = () => {
   };
 
   const allPost = () => {
-    navigate("/noticias",{
-      state:{
+    navigate("/publicaciones/noticias", {
+      state: {
         category: "Noticia"
       }
-    });  
+    });
   };
 
   const inConstruction = () => {

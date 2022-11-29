@@ -47,7 +47,8 @@ const Navbar = () => {
     position: "",
     birthday: "",
     photo: "",
-    email: ""
+    email: "",
+    departament: ""
   });
 
   const aboutUSChange = (e, name) => {
@@ -84,7 +85,6 @@ const Navbar = () => {
     if (active === "menu_items_show") {
       setActive("menu_items");
     }
-
     navigate("/inicio");
   };
 
@@ -102,7 +102,7 @@ const Navbar = () => {
   };
 
   const createPost = () => {
-    navigate("/crear-entrada", {
+    navigate("/administracion/crear-entrada", {
       state: person
     });
   };
@@ -130,14 +130,14 @@ const Navbar = () => {
       setShow("menu_hiden");
     }
 
-    navigate("/noticias", { state: { category: "Noticia" } });
+    navigate("/publicaciones/noticias", { state: { category: "Noticia" } });
   };
 
   const employeedirectory = () => {
     navigate("/directorio");
   };
   const employeeNew = () => {
-    navigate("/nuevo-empleado");
+    navigate("/administracion/nuevo-empleado");
   };
 
   const employeeTree = () => {
@@ -154,11 +154,11 @@ const Navbar = () => {
   };
 
   const createEvents = () => {
-    navigate("/crear-evento");
+    navigate("/administracion/crear-evento");
   };
 
   const register = () => {
-    navigate("/registrar");
+    navigate("/administracion/registrar");
   };
 
   const foodOrder = () => {
@@ -173,23 +173,32 @@ const Navbar = () => {
       setActive("menu_items");
     }
 
-    navigate(`/ticket/${action}`, {
+    navigate(`/servicios/tecnologia/ticket/${action}`, {
       state: state
     });
+
+    // refreshPage()
+  };
+  const formTemple = (title) => {
+    navigate("/servicios/recursoshumanos/solicitudes/vaciones", { state: { title: title } });
   };
 
-  const goToFile = (name) => {
-    apiOneFile(name)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        navigate("/pdf", { state: res[0].file, });
-      })
-      .catch((err) => {
-        console.error(err.status);
-      });
-  };
+  // const goToFile = (name) => {
+  //   apiOneFile(name)
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((res) => {
+  //       navigate("/pdf", { state: res[0].file, });
+  //     })
+  //     .catch((err) => {
+  //       console.error(err.status);
+  //     });
+  // };
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   useEffect(() => {
     let unmounted = false;
@@ -209,6 +218,7 @@ const Navbar = () => {
               birthday: res.birthday,
               photo: res.photo,
               email: res.email,
+              departament: res.Departament.name
             });
           }
         })
@@ -244,7 +254,7 @@ const Navbar = () => {
         employeeNew={employeeNew}
         employeeTree={employeeTree}
         isHidden={isHidden}
-        goToFile={goToFile}
+        // goToFile={goToFile}
         training={training}
         register={register}
         createEvents={createEvents}
@@ -257,6 +267,7 @@ const Navbar = () => {
         hidenToggle={hidenToggle}
         action={action}
         width={width}
+        formTemple={formTemple}
       />
     </>
   );

@@ -20,6 +20,16 @@ export const getAllPersons = async () => {
     })
 }
 
+export const getPersonIt = async () => {
+    return fetch(`${process.env.REACT_APP_API}person/gepersonit`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
 export const getEmployeeTree = async () => {
     return fetch(`${process.env.REACT_APP_API}person/employeetree`, {
         method: "GET",

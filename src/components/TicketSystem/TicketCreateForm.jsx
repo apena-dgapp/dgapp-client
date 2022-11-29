@@ -1,10 +1,8 @@
 import React from "react";
 import ReactTooltip from "react-tooltip";
 import { FaUndoAlt } from "react-icons/fa";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
-const TicketCreateForm = ({ priority, setPriority, color, undoPriority, handlerInputChange, formData, addTicket, options, setStartDate, startDate }) => {
+const TicketCreateForm = ({ priority, setPriority, color, undoPriority, handlerInputChange, formData, addTicket, options }) => {
   return (
     <>
       {" "}
@@ -27,32 +25,19 @@ const TicketCreateForm = ({ priority, setPriority, color, undoPriority, handlerI
               <div className="input-required">*</div>
             </div>
             <div className="">
-              <p className="ticket-input-title">Departamento</p>
+              <p className="ticket-input-title">Categoria</p>
               <select
-                name="departament"
+                name="category"
                 className="ticket-input"
-                value={formData.departament || ""}
+                value={formData.category || ""}
                 onChange={handlerInputChange}
               >
-                <option disabled={true} value="">Departamento que recibira el ticket</option>
+                <option disabled={true} value="">Seleccionar una categoria</option>
                 {options?.map(({ value, id }) => {
                   return <option key={id} value={value}>{value}</option>;
                 })}
               </select>
               <div className="input-required">*</div>
-            </div>
-            <div className="">
-              <p className="ticket-input-title">Problema Encontrado el</p>
-              <DatePicker
-                onChange={(date) => setStartDate(date)}
-                disabledKeyboardNavigation
-                placeholderText="Seleccionar la fecha en que fue encontrado el problema"
-                className="ticket-input"
-                selected={startDate}
-                showTimeSelect
-                dateFormat="MMMM d, yyyy h:mm aa"
-              />
-              {/* <div className="input-required">*</div> */}
             </div>
             <div className="">
               <p className="ticket-input-title">Detalles</p>

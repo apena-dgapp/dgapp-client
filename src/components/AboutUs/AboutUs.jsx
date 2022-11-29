@@ -9,10 +9,10 @@ import { useLocation } from "react-router-dom";
 
 
 
-const AboutUs = (state) => {
+const AboutUs = () => {
   const [getModule, setGetModule] = useState("");
   const [getMargin, setGetMargin] = useState("");
-  const {width, height} = useScreenSize();
+  const { width, height } = useScreenSize();
 
   const location = useLocation();
 
@@ -23,18 +23,18 @@ const AboutUs = (state) => {
         setGetMargin("30rem");
       } else if (location.state === "FUNCIONES") {
         setGetModule(<Functions />);
-        setGetMargin(width <= 1021 ? "175rem":"77rem");
+        setGetMargin(width <= 1021 ? "175rem" : "77rem");
       } else if (location.state === "MARCO INSTITUCIONAL") {
         setGetModule(<InstitutionalFramework />);
-        setGetMargin(width <= 1021 ? "9rem":"35rem");
+        setGetMargin(width <= 1021 ? "9rem" : "35rem");
       } else if (location.state === "DIRECTOR GENERAL") {
         setGetModule(<Director />);
-        setGetMargin(width <= 1021 ? "15rem":"28rem");
+        setGetMargin(width <= 1021 ? "15rem" : "28rem");
       } else if (location.state === "ORGANIGRAMA") {
         setGetModule(<OrganizationChart />);
-        setGetMargin(width <= 1021 ? "9rem":"47rem");
+        setGetMargin(width <= 1021 ? "9rem" : "47rem");
       }
-    }else{
+    } else {
       setGetModule(<StrategicMap />);
       setGetMargin("30em");
     }
@@ -50,7 +50,7 @@ const AboutUs = (state) => {
         className="aboutus-header-container"
       >
         <div className="aboutus-header-title">
-          {location.state ? location.state.toUpperCase():"MISION, VISION Y VALORES"}
+          {location.state ? location.state.toUpperCase() : "MISION, VISION Y VALORES"}
         </div>
       </div>
     </>

@@ -4,7 +4,7 @@ import { getPost, getPostMultimedia } from "../../api/post";
 import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
 import { viewUpdate } from "../../api/post";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
@@ -117,7 +117,7 @@ const Dashboard = () => {
   const goToPost = (item) => {
     viewUpdate(item.postId)
       .then((res) => {
-        navigate("/contenido",{
+        navigate("/contenido", {
           state: {
             id: item.postId,
             title: item.title,
@@ -135,7 +135,7 @@ const Dashboard = () => {
   };
 
   const goToProfile = (id) => {
-    navigate("/perfil",{
+    navigate("/perfil", {
       state: id,
     });
   };
@@ -147,7 +147,7 @@ const Dashboard = () => {
   };
 
   const allPost = () => {
-    navigate("/noticias");
+    navigate("/publicaciones/noticias");
   };
 
   return (

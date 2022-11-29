@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import TicketCreateForm from "./TicketCreateForm";
 import TicketMenuForm from "./TicketMenuForm";
 import TicketModal from "./TicketModal";
-import { newTicket, getTickes, toAssign, remove } from "../../api/ticket";
+import { newTicket, getTickes, toAssign, remove, apiTicketUpdate } from "../../api/ticket";
+import { getPersonIt } from "../../api/person";
 import { sendEmail } from "../../api/email";
 import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
@@ -11,18 +12,20 @@ const TicketSystem = () => {
   const location = useLocation();
   const [priority, setPriority] = useState("");
   const [action, setAction] = useState("Abierto");
+  const [personIt, setPersonIt] = useState([]);
   const [opened, setOpened] = useState([]);
   const [closed, setClosed] = useState([]);
   const [inProcess, setInProcess] = useState([]);
   const [removed, setRemoved] = useState([]);
   const [ticket, setTicket] = useState("");
   const [color, setColor] = useState("");
-  const [startDate, setStartDate] = useState(null);
   const [modalActive, setModalActive] = useState(false);
   const [formData, setFormData] = useState({
     issueName: "",
-    departament: "",
+    category: "",
     detail: "",
+    assigned: "",
+    priority: "",
   });
 
   const state = location.state;
@@ -30,13 +33,64 @@ const TicketSystem = () => {
   const options = [
     {
       id: "1",
-      value: "Departamento Tecnología",
+      value: "Software",
     },
-    // {
-    //   id: "2",
-    //   value: "Servicios Generales",
-    // },
+    {
+      id: "2",
+      value: "Hardware",
+    },
+    {
+      id: "3",
+      value: "Impresora",
+    },
+    {
+      id: "4",
+      value: "Red",
+    },
+    {
+      id: "5",
+      value: "Microfono",
+    },
+    {
+      id: "6",
+      value: "Proyector",
+    },
+    {
+      id: "7",
+      value: "Actualización e Instalación",
+    },
+
   ];
+
+  const optionsPriority = [
+    {
+      id: "1",
+      value: "Normal",
+    },
+    {
+      id: "2",
+      value: "Urgente",
+    },
+    {
+      id: "3",
+      value: "Inmediata",
+    }
+  ];
+
+  // const optionsAssigned = [
+  //   {
+  //     id: "1",
+  //     value: "Angel Peña",
+  //   },
+  //   {
+  //     id: "2",
+  //     value: "Cesar Guerrero",
+  //   },
+  //   {
+  //     id: "3",
+  //     value: "Claudio Espinosa",
+  //   }
+  // ];
 
   const handlerInputChange = (e) => {
     setFormData({
@@ -149,6 +203,27 @@ const TicketSystem = () => {
     };
   }, [modalActive]);
 
+  useEffect(() => {
+    let unmounted = false;
+
+    getPersonIt()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setPersonIt(res);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
   const undoPriority = () => {
     setColor("");
     setPriority("");
@@ -163,11 +238,8 @@ const TicketSystem = () => {
     if (formData.issueName === "") {
       return toast.error("Por favor de escribir el asunto");
     }
-    if (formData.departament === "") {
-      return toast.error("Por favor elegir el nombre del departamento");
-    }
-    if (startDate === "") {
-      return toast.error("Por favor elegir la fecha inicial del asunto o problema");
+    if (formData.category === "") {
+      return toast.error("Por favor elegir una categoria");
     }
     if (formData.detail === "") {
       return toast.error("Por favor Escribir un breve detalle del asunto o problema");
@@ -176,7 +248,7 @@ const TicketSystem = () => {
       return toast.error("Por favor elegir la prioridad");
     }
 
-    newTicket(state?.email, formData.issueName, formData.departament, startDate, formData.detail, priority, state?.fullName)
+    newTicket(state?.email, formData.issueName, "Departamento Tecnología", formData.category, formData.detail, priority, state?.fullName)
       .then((res) => {
         if (res.status !== 200) {
           return toast.error("Error al intentar crear el ticket!");
@@ -186,7 +258,7 @@ const TicketSystem = () => {
       })
       .then((data) => {
         sendEmail(state?.email.toLowerCase(), `Nuevo ticket - Ticket - ${data.ticketId}`, `
-        - Ticket abierto: ${data.ticketId}
+        - Ticket Abierto: ${data.ticketId}
         - Tema: ${formData.issueName}`)
           .then((res) => {
             if (res.status !== 200) {
@@ -195,12 +267,13 @@ const TicketSystem = () => {
               toast.success("Ticket creado exitosamente!");
               setFormData({
                 issueName: "",
-                departament: "",
-                detail: ""
+                category: "",
+                detail: "",
+                assigned: "",
+                priority: ""
               });
               setPriority("");
               setColor("");
-              setStartDate(null);
             }
           })
       })
@@ -219,21 +292,25 @@ const TicketSystem = () => {
     setModalActive(true);
   }
 
-  const assignTicket = (id, issueName, email) => {
-    toAssign(state?.fullName, id)
+  const assignTicket = (id, issueName, email, assigned, reassigned) => {
+    toAssign(assigned, id)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
         if (res !== 200) {
-          return toast.error("Error al intentar asignar el ticket!");
+          return toast.error(`Error al intentar ${reassigned ? "reasignado" : "asignado"} el ticket!`);
         } else {
-          sendEmail(email.toLowerCase(), `Ticket asignado - Ticket - ${id}`, `
+          sendEmail(email.toLowerCase(), `Ticket ${reassigned ? "reasignado" : "asignado"} - Ticket - ${id}`, `
           - Ticket en proceso: ${id}
           - Tema: ${issueName}  
-          - Asignado a: ${state?.fullName}`)
-          setModalActive(!modalActive);
-          return toast.success("El ticket se asigno exitosamente!");
+          - ${reassigned ? "Reasignado" : "Asignado"} a: ${assigned}`)
+
+          if (!reassigned) {
+            setModalActive(!modalActive);
+          }
+
+          return toast.success(`El ticket se ${reassigned ? "reasignado" : "asignado"} exitosamente!`);
         }
       })
       .catch((err) => {
@@ -241,7 +318,24 @@ const TicketSystem = () => {
       });
   }
 
-  const removeTicket = (id, action, issueName, email) => {
+  const ticketUpdate = (id, action, value) => {
+    apiTicketUpdate(id, action, value)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res !== 200) {
+          return toast.error("Error al intentar actualizar el ticket!");
+        } else {
+          return toast.success("El ticket se actualizó exitosamente!");
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  }
+
+  const removeTicket = (id, action, issueName, email, assigned) => {
     remove(action, id)
       .then((res) => {
         return res.json();
@@ -250,10 +344,13 @@ const TicketSystem = () => {
         if (res !== 200) {
           return action === "Cerrado" ? toast.error("Error al intentar cerrar el ticket!") : toast.error("Error al intentar eliminar el ticket!")
         } else {
-          sendEmail(email.toLowerCase(), `Ticket cerrado - Ticket - ${id}`, `
+          if (action === "Cerrado") {
+            sendEmail(email.toLowerCase(), `Ticket cerrado - Ticket - ${id}`, `
           - Ticket cerrado: ${id}
           - Tema: ${issueName}
-          - Asistió a: ${state?.fullName}`)
+          - Asistió: ${assigned}`)
+          }
+
           setModalActive(!modalActive);
           return action === "Cerrado" ? toast.success("El ticket se cerró exitosamente!") : toast.success("El ticket se elimino exitosamente!")
         }
@@ -263,9 +360,7 @@ const TicketSystem = () => {
       });
   }
 
-
   return (
-
     state?.action === "crear" ? <TicketCreateForm
       priority={priority}
       setPriority={setPriority}
@@ -276,8 +371,6 @@ const TicketSystem = () => {
       formData={formData}
       addTicket={addTicket}
       options={options}
-      startDate={startDate}
-      setStartDate={setStartDate}
     /> :
       <>
         <TicketModal
@@ -286,6 +379,13 @@ const TicketSystem = () => {
           ticket={ticket}
           assignTicket={assignTicket}
           removeTicket={removeTicket}
+          options={options}
+          optionsPriority={optionsPriority}
+          optionsAssigned={personIt}
+          handlerInputChange={handlerInputChange}
+          formData={formData}
+          ticketUpdate={ticketUpdate}
+          state={state}
         />
         <TicketMenuForm
           priority={priority}
@@ -297,8 +397,6 @@ const TicketSystem = () => {
           formData={formData}
           addTicket={addTicket}
           options={options}
-          startDate={startDate}
-          setStartDate={setStartDate}
           opened={opened}
           closed={closed}
           removed={removed}

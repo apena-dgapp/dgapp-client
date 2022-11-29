@@ -22,14 +22,14 @@ const NavbarForm = ({
   register,
   createEvents,
   ticketSystem,
-  // foodOrder,
   aboutUSChange,
   active,
   navToggle,
   show,
   hidenToggle,
   action,
-  width
+  width,
+  formTemple
 }) => {
 
   const [contextState] = useContext(GlobalContext);
@@ -120,7 +120,9 @@ const NavbarForm = ({
                           <p onClick={() => ticketSystem("crear")}>Crear Ticket</p>
                         </li>
                         <li>
-                          <p onClick={() => ticketSystem("ver")}>Ver Tickets</p>
+                          {
+                            person.departament === "Departamento Tecnología" ? <p onClick={() => ticketSystem("ver")}>Ver Tickets</p> : null
+                          }
                         </li>
                       </ul>
                     </li>
@@ -149,7 +151,8 @@ const NavbarForm = ({
                       </p>
                       <ul className="menu-left">
                         <li>
-                          <p onClick={inConstruction}>Formularios</p>
+                          {/* <p onClick={() => formTemple("Vacaciones")}>Vacaciones</p> */}
+                          <p onClick={inConstruction}>Vacaciones</p>
                         </li>
                         <li>
                           <p onClick={inConstruction}> Carta Laboral</p>
@@ -158,52 +161,6 @@ const NavbarForm = ({
                     </li>
                   </ul>
                 </li>
-
-
-
-
-                {/* <li>
-                  <p>
-                    Ticket
-                    <img
-                      style={{ transform: "rotate(270deg)" }}
-                      className="icondown"
-                      src={Images.icondown}
-                      alt=""
-                    />
-                  </p>
-                  <ul className="menu-left">
-                    <li>
-                      <p onClick={()=>ticketSystem("crear")}>Crear Ticket</p>
-                    </li>
-                    <li>
-                      <p onClick={()=>ticketSystem("ver")}>Ver Tickets</p>
-                    </li>
-                  </ul>
-                </li> */}
-
-                {/* <li>
-                  <p>
-                    Solicitudes
-                    <img
-                      style={{ transform: "rotate(270deg)" }}
-                      className="icondown"
-                      src={Images.icondown}
-                      alt=""
-                    />
-                  </p>
-                  <ul className="menu-left">
-                    <li>
-                      <p onClick={inConstruction}>Formularios</p>
-                    </li>
-                    <li>
-                      <p onClick={inConstruction}>
-                        Carta Laboral
-                      </p>
-                    </li>
-                  </ul>
-                </li> */}
-
               </ul>
             </li>
 

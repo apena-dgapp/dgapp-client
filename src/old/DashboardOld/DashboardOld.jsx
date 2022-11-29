@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import DashboardForm from "./DashboardForm";
 import { getPost, interestPost } from "../../api/post";
 
@@ -61,13 +61,13 @@ const Dashboard = () => {
       author: interest.author,
     };
 
-    navigate("/contenido",{
+    navigate("/contenido", {
       state: interestNewObj,
     });
   };
 
   const allPost = () => {
-    navigate("/noticias");
+    navigate("/publicaciones/noticias");
   };
 
   return (

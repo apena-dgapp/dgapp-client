@@ -23,6 +23,7 @@ const TicketMenuForm = ({ opened, closed, removed, inProcess, viewTicket, action
     function refreshPage() {
         window.location.reload(false);
     }
+
     return (
         <>
             <div className='ticketmenu-container'>
@@ -61,7 +62,7 @@ const TicketMenuForm = ({ opened, closed, removed, inProcess, viewTicket, action
                             />
                         </span>
                         <p onClick={() => changeAction("En Proceso")}>
-                            <strong>Tickets pendientes =</strong> {inProcess?.length}
+                            <strong>Tickets en proceso =</strong> {inProcess?.length}
                             {action === "En Proceso" ? <> <i className="tb tb-ticket-off" />
                                 <BiCheck
                                     size="1rem"
@@ -81,7 +82,7 @@ const TicketMenuForm = ({ opened, closed, removed, inProcess, viewTicket, action
                             />
                         </span>
                         <p onClick={() => changeAction("Abierto")}>
-                            <strong>Tickets pendientes =</strong> {opened?.length}
+                            <strong>Tickets abiertos =</strong> {opened?.length}
                             {action === "Abierto" ? <> <i className="tb tb-ticket-off" />
                                 <BiCheck
                                     size="1rem"
@@ -168,6 +169,12 @@ const TicketMenuForm = ({ opened, closed, removed, inProcess, viewTicket, action
                                     PRIORIDAD
                                 </div>
                             </div>
+                            {/* CATEGORIA */}
+                            <div className="ticket-datagrid-grid-section-header">
+                                <div className="ticket-datagrid-grid-header">
+                                    CATEGORIA
+                                </div>
+                            </div>
                             {/* ASIGNADO */}
                             <div className="ticket-datagrid-grid-section-header">
                                 <div className="ticket-datagrid-grid-header">
@@ -214,6 +221,12 @@ const TicketMenuForm = ({ opened, closed, removed, inProcess, viewTicket, action
                                             <div className="ticket-datagrid-grid-section-data">
                                                 <div key={key} style={{ color: item.priority === "Normal" ? "#34B3F1" : (item.priority === "Urgente" ? "#FBB454" : "red") }} className="ticket-datagrid-grid-data">
                                                     {item.priority}
+                                                </div>
+                                            </div>
+                                            {/* CATEGORIA */}
+                                            <div className="ticket-datagrid-grid-section-data">
+                                                <div key={key} className="ticket-datagrid-grid-data">
+                                                    {item.category}
                                                 </div>
                                             </div>
                                             {/* ASIGNADO */}
