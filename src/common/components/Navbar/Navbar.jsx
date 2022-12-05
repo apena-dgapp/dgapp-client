@@ -48,7 +48,10 @@ const Navbar = () => {
     birthday: "",
     photo: "",
     email: "",
-    departament: ""
+    departament: "",
+    documentId: "",
+    reportsTo: "",
+    startedOn: ""
   });
 
   const aboutUSChange = (e, name) => {
@@ -180,7 +183,10 @@ const Navbar = () => {
     // refreshPage()
   };
   const formTemple = (title) => {
-    navigate("/servicios/recursoshumanos/solicitudes/vaciones", { state: { title: title } });
+    const state = Object.assign({ title }, person);
+    navigate("/servicios/recursoshumanos/solicitudes/vacaciones", {
+      state: state
+    });
   };
 
   // const goToFile = (name) => {
@@ -196,9 +202,9 @@ const Navbar = () => {
   //     });
   // };
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
+  // function refreshPage() {
+  //   window.location.reload(false);
+  // }
 
   useEffect(() => {
     let unmounted = false;
@@ -218,7 +224,10 @@ const Navbar = () => {
               birthday: res.birthday,
               photo: res.photo,
               email: res.email,
-              departament: res.Departament.name
+              departament: res.Departament.name,
+              documentId: res.documentId,
+              reportsTo: res.reportsTo,
+              startedOn: res.startedOn
             });
           }
         })

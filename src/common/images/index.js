@@ -58,7 +58,7 @@ import facebook from './wetransfer_recursos_2022-09-21_1856/Recursos/facebook.pn
 import ind from './wetransfer_recursos_2022-09-21_1856/Recursos/in.png';
 import youtube from './wetransfer_recursos_2022-09-21_1856/Recursos/youtube.png';
 import nodata from './documents.png';
-import consejo from './consejo.png'
+import consejo from './consejo.png';
 
 const Images = {
     iconUser,
@@ -121,7 +121,6 @@ const Images = {
     ind,
     nodata,
     consejo
-
 }
 
 export default Images;

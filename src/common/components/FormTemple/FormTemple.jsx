@@ -1,15 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import Vacation from './Vacation'
 import { useLocation } from "react-router-dom";
+import { apiOneFile } from "../../../api/files.js"
 
 const FormTemple = () => {
+    const [img, setImg] = useState("");
     const location = useLocation();
     const [getModule, setGetModule] = useState("");
 
     useEffect(() => {
+
+        let unmounted = false;
+
+        if (!unmounted) {
+            apiOneFile("DRH-FO-002 -Formulario Solicitud de Vacaciones. V.0")
+                .then((res) => {
+                    return res.json();
+                })
+                .then((res) => {
+                    setImg(res.file)
+                })
+                .catch((err) => {
+                    console.error(err.status);
+                });
+        }
+
+        return () => {
+            unmounted = true;
+        };
+    }, []);
+
+    useEffect(() => {
         if (location.state.title) {
             if (location.state.title === "Vacaciones") {
-                setGetModule(<Vacation />);
+                setGetModule(<Vacation img={img} profile={location.state} />);
             } else if (location.state.title === "FUNCIONES") {
                 // setGetModule(<Functions />);
             } else if (location.state.title === "MARCO INSTITUCIONAL") {
@@ -20,7 +44,7 @@ const FormTemple = () => {
                 // setGetModule(<OrganizationChart />);
             }
         }
-    }, [location.state]);
+    }, [location.state, img]);
 
     return (
         <>

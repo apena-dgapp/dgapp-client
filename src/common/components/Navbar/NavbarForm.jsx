@@ -151,8 +151,8 @@ const NavbarForm = ({
                       </p>
                       <ul className="menu-left">
                         <li>
-                          {/* <p onClick={() => formTemple("Vacaciones")}>Vacaciones</p> */}
-                          <p onClick={inConstruction}>Vacaciones</p>
+                          <p onClick={() => formTemple("Vacaciones")}>Vacaciones</p>
+                          {/* <p onClick={inConstruction}>Vacaciones</p> */}
                         </li>
                         <li>
                           <p onClick={inConstruction}> Carta Laboral</p>

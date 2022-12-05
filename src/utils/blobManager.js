@@ -1,5 +1,4 @@
 export const blobToBase64 = async (files) => {
-    
     const promises = []
     Array.from(files).forEach(file => promises.push(getBase64(file)))
     return await Promise.all(promises)
@@ -11,11 +10,11 @@ export const getBase64 = (file) => {
         reader.onload = base64 => {
             resolve(base64.target.result)
         }
-       
-        if(file){
-           reader.readAsDataURL(file); 
+
+        if (file) {
+            reader.readAsDataURL(file);
         }
-              
+
     })
 }
 
