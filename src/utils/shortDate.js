@@ -29,7 +29,7 @@ export const shortDate = (date) => {
     const fechaES =
         dias_semana[fecha.getDay()] +
         ", " +
-        fecha.getDate() +
+        fecha.getUTCDate() +
         " de " +
         meses[fecha.getMonth()] +
         " de " +

@@ -7,7 +7,7 @@ import GlobalContext from "../../context/GlobalContext";
 import { useLocation } from "react-router-dom";
 // import { getOnePerson } from "../../api/person";
 
-const SinglePost = (state) => {
+const SinglePost = () => {
   const [contextState] = useContext(GlobalContext);
   const [visible, setVisible] = useState(false);
   const [arrayImg, setArrayImg] = useState("");
@@ -25,6 +25,9 @@ const SinglePost = (state) => {
   //   position: "",
   //   photo: "",
   // });
+
+
+  console.log(dataPost)
 
   useEffect(() => {
     let unmounted = false;
@@ -80,7 +83,7 @@ const SinglePost = (state) => {
         console.error(err.status);
       });
 
-      getComments(dataPost.id)
+    getComments(dataPost.id)
       .then((res) => {
         return res.json();
       })
@@ -124,20 +127,20 @@ const SinglePost = (state) => {
     if (!comment) {
       return toast.error("Antes de enviar debes agregar un comentario");
     }
-    addCommentPost(dataPost.id,contextState.personId, comment)
+    addCommentPost(dataPost.id, contextState.personId, comment)
       .then((res) => {
         if (res.status !== 500) {
           setComment("");
           getComments(dataPost.id)
-          .then((res) => {
-            return res.json();
-          })
-          .then((res) => {
-            setComments(res);
-          })
-          .catch((err) => {
-            console.error(err.status);
-          });
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              setComments(res);
+            })
+            .catch((err) => {
+              console.error(err.status);
+            });
           return toast.success("Su mensaje fue enviado exitosamente!");
         } else {
           return toast.error("Error del servidor");
@@ -149,18 +152,18 @@ const SinglePost = (state) => {
       });
   };
 
-      // const getPerson = (id)=>{
-      //   getOnePerson(id)
-      //   .then((res) => {
-      //     return res.json();
-      //   })
-      //   .then((res) => {
-      //     setPerson(res)
-      //   })
+  // const getPerson = (id)=>{
+  //   getOnePerson(id)
+  //   .then((res) => {
+  //     return res.json();
+  //   })
+  //   .then((res) => {
+  //     setPerson(res)
+  //   })
 
-      // }
-       
-      // console.log(person)
+  // }
+
+  // console.log(person)
 
   return (
     <>

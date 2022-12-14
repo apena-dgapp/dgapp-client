@@ -118,12 +118,13 @@ const NavbarForm = ({
                       <ul style={{ left: "4.5rem" }} className="menu-left">
                         <li>
                           <p onClick={() => ticketSystem("crear")}>Crear Ticket</p>
+                          {/* <p onClick={inConstruction}>Crear Ticket</p> */}
                         </li>
-                        <li>
+                        {/* <li>
                           {
                             person.departament === "Departamento Tecnología" ? <p onClick={() => ticketSystem("ver")}>Ver Tickets</p> : null
                           }
-                        </li>
+                        </li> */}
                       </ul>
                     </li>
                   </ul>

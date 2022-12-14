@@ -2,11 +2,11 @@ import React from "react";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
 import { viewUpdate } from "../../api/post";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 // import { MdSubtitlesOff } from "react-icons/md";
 // import Images from "../../common/images";
 
-const CarouselMain = ({arrayCarousel}) => {
+const CarouselMain = ({ arrayCarousel }) => {
   const navigate = useNavigate();
   // const [arrayCarousel, setArrayCarousel] = useState([]);
 
@@ -35,14 +35,15 @@ const CarouselMain = ({arrayCarousel}) => {
   const goToPost = (item) => {
     viewUpdate(item.postId)
       .then((res) => {
-        navigate(`/${item.category.toLowerCase()}/${item.title.toLowerCase()}`,{
+        navigate(`/${item.category.toLowerCase()}/${item.title.toLowerCase()}`, {
           state: {
             id: item.postId,
             title: item.title,
-            img: item.image,
+            image: item.image,
             description: item.description,
             date: item.createdAt,
             author: item.author,
+            createdby: item.createdBy
           },
         });
       })
@@ -51,7 +52,7 @@ const CarouselMain = ({arrayCarousel}) => {
         return;
       });
   };
-  
+
   return (
     arrayCarousel?.length ? <AliceCarousel
       // swipeScrollTolerance={5}
@@ -83,7 +84,7 @@ const CarouselMain = ({arrayCarousel}) => {
           </div>
         );
       })}
-    </AliceCarousel>: null
+    </AliceCarousel> : null
     // <div className="dashboard-nodata-cont">
     //   <img src={Images.nodata} alt="" />
     //   <p>No se encuentran portadas</p>

@@ -257,7 +257,7 @@ const TicketSystem = () => {
         }
       })
       .then((data) => {
-        sendEmail(state?.email.toLowerCase(), `Nuevo ticket - Ticket - ${data.ticketId}`, `
+        sendEmail(state?.email.toLowerCase(), "", `Nuevo ticket - Ticket - ${data.ticketId}`, `
         - Ticket Abierto: ${data.ticketId}
         - Tema: ${formData.issueName}`)
           .then((res) => {
@@ -301,7 +301,7 @@ const TicketSystem = () => {
         if (res !== 200) {
           return toast.error(`Error al intentar ${reassigned ? "reasignado" : "asignado"} el ticket!`);
         } else {
-          sendEmail(email.toLowerCase(), `Ticket ${reassigned ? "reasignado" : "asignado"} - Ticket - ${id}`, `
+          sendEmail(email.toLowerCase(), "", `Ticket ${reassigned ? "reasignado" : "asignado"} - Ticket - ${id}`, `
           - Ticket en proceso: ${id}
           - Tema: ${issueName}  
           - ${reassigned ? "Reasignado" : "Asignado"} a: ${assigned}`)
@@ -345,7 +345,7 @@ const TicketSystem = () => {
           return action === "Cerrado" ? toast.error("Error al intentar cerrar el ticket!") : toast.error("Error al intentar eliminar el ticket!")
         } else {
           if (action === "Cerrado") {
-            sendEmail(email.toLowerCase(), `Ticket cerrado - Ticket - ${id}`, `
+            sendEmail(email.toLowerCase(), "", `Ticket cerrado - Ticket - ${id}`, `
           - Ticket cerrado: ${id}
           - Tema: ${issueName}
           - Asistió: ${assigned}`)

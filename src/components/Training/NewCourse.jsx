@@ -108,10 +108,10 @@ const NewCourse = () => {
     let bool = true
     const checkCourseData = () => {
       if (
-        courseData[0].title.trim() === "" ||
-        courseData[0].description.trim() === "" ||
-        courseData[0].image.trim() === "" ||
-        courseData[0].madeBy.trim() === ""
+        courseData[0]?.title?.trim() === "" ||
+        courseData[0]?.description?.trim() === "" ||
+        courseData[0]?.image?.trim() === "" ||
+        courseData[0]?.madeBy?.trim() === ""
       ) {
         bool = false
       }
@@ -125,8 +125,8 @@ const NewCourse = () => {
       bool = false
     }
     videoData.forEach((video) => {
-      let videoId = getVideoId(video.link)
-      if (videoId.length < 11) {
+      let videoId = getVideoId(video?.link)
+      if (videoId?.length < 11) {
         bool = false
       }
     })

@@ -3,9 +3,10 @@ import Portal from "../../../utils/Portal";
 import { Editor } from "react-draft-wysiwyg";
 
 const EditCardModal = ({
+  setModalActive,
   modalActive,
   modalToggle,
-  data,
+  // data,
   setEditorState,
   editorState,
   refInput,
@@ -38,11 +39,11 @@ const EditCardModal = ({
                     onChange={handlerInputChange}
                     name="title"
                     type="text"
-                    placeholder={
-                      data?.item.title ? data?.item.title : "Escriba un título"
-                    }
+                    // placeholder={
+                    //   data?.item.title ? data?.item.title : "Escriba un título"
+                    // }
                     className="edit-input"
-                    value={formData.title || ""}
+                    value={formData.title}
                   />
                 </div>
                 <div className="">
@@ -51,11 +52,11 @@ const EditCardModal = ({
                     onChange={handlerInputChange}
                     name="author"
                     type="text"
-                    placeholder={
-                      data?.item.author ? data?.item.author : "Escriba un author"
-                    }
+                    // placeholder={
+                    //   data?.item.author ? data?.item.author : "Escriba un author"
+                    // }
                     className="edit-input"
-                    value={formData.author || ""}
+                    value={formData.author}
                   />
                 </div>
                 <div className="">
@@ -67,13 +68,13 @@ const EditCardModal = ({
                     onBlur={inputText}
                     onFocus={inputDate}
                     ref={refInput}
-                    placeholder={
-                      data?.item.date ? new Date(data?.item.date)
-                        .toLocaleString('en-us', { year: 'numeric', month: '2-digit', day: '2-digit' })
-                        .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : "Escriba un author"
-                    }
+                    // placeholder={
+                    //   data?.item.date ? new Date(data?.item.date)
+                    //     .toLocaleString('en-us', { year: 'numeric', month: '2-digit', day: '2-digit' })
+                    //     .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : "Escriba un author"
+                    // }
                     className="edit-input"
-                    value={formData.date || ""}
+                    value={formData.date}
                   />
                 </div>
                 <div className="">
@@ -85,10 +86,12 @@ const EditCardModal = ({
                       wrapperClassName="wrapper-class"
                       editorClassName="card-edit-editor-class"
                       toolbarClassName="toolbar-class"
-                      placeholder={
-                        data?.item.description ? data?.item.description.replace(/<[^>]*>/g, '') : "Escriba una descripción"
-                      }
+                    // placeholder={
+                    //   data?.item.description ? data?.item.description.replace(/<[^>]*>/g, '') : "Escriba una descripción"
+                    // }
                     />
+
+
                   </div>
                 </div>
               </div>
@@ -101,7 +104,7 @@ const EditCardModal = ({
                   accept=".jpg, .jpeg, .jfif, .png, .webp"
                   ref={refBtnImg}
                 />
-                <img className="card-edit-img-modal" src={formData.image ? formData.image : data.img} alt="" />
+                <img className="card-edit-img-modal" src={formData.image} alt="" />
                 <div className="card-edit-img-btn-cont">
                   <button onClick={formData.image ? removeImg : changeImg}>{formData.image ? "REMOVER" : "CAMBIAR"}</button>
                 </div>
@@ -121,7 +124,7 @@ const EditCardModal = ({
 
             {/* <div>{children}</div> */}
           </div>
-          <div className="ticket-background" onClick={modalToggle}></div>
+          <div className="ticket-background" onClick={() => setModalActive(!modalActive)}></div>
         </div>
       )}
     </Portal>

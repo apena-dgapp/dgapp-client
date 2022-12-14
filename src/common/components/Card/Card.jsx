@@ -6,7 +6,7 @@ import { FiEdit } from "react-icons/fi";
 import { CiSquareRemove } from "react-icons/ci";
 import GlobalContext from "../../../context/GlobalContext";
 import EditCardModal from "./EditCardModal";
-import { EditorState } from "draft-js";
+import { EditorState, ContentState, convertFromHTML } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import toast from "react-hot-toast";
 import { getBase64 } from "../../../utils/blobManager";
@@ -15,7 +15,7 @@ import Message from "../../Message/Message";
 const Card = (props) => {
   const navigate = useNavigate();
   const [image, setImage] = useState([]);
-  const [data, setData] = useState("");
+  // const [data, setData] = useState("");
   const [contextState] = useContext(GlobalContext);
   const [modalActive, setModalActive] = useState(false);
   const [message, setMessage] = useState({
@@ -31,9 +31,7 @@ const Card = (props) => {
     date: "",
   });
 
-  const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
-  );
+  const [editorState, setEditorState] = useState();
 
   const id = props.id;
 
@@ -49,15 +47,20 @@ const Card = (props) => {
   };
 
   const modalToggle = (item, img) => {
-    const state = Object.assign({ item }, { img });
-    setData(state)
+    // const state = Object.assign({ item }, { img });
+    setEditorState(EditorState.createWithContent(
+      ContentState.createFromBlockArray(
+        convertFromHTML(item?.description)
+      ),
+    ),)
+    // setData(state)
     setModalActive(!modalActive);
     setFormData({
-      title: "",
-      description: "",
-      image: "",
-      author: "",
-      date: "",
+      title: item?.title,
+      description: item?.description,
+      image: img,
+      author: item?.author,
+      date: item?.date,
     });
   };
   const messageToggle = () => {
@@ -172,7 +175,8 @@ const Card = (props) => {
       <EditCardModal
         modalToggle={modalToggle}
         modalActive={modalActive}
-        data={data}
+        setModalActive={setModalActive}
+        // data={data}
         setEditorState={setEditorState}
         editorState={editorState}
         refInput={refInput}
@@ -192,7 +196,7 @@ const Card = (props) => {
         btnCancel={btnCancel}
       />
       <div className="card">
-        {contextState.userRole === 1 ? <div className="card-btn-cont">
+        {contextState.userRole === 1 || contextState.userRole === 3 ? <div className="card-btn-cont">
           <p onClick={() => modalToggle(props, image?.image)} className="">
             <i className="fi fi-edit" />
             <FiEdit

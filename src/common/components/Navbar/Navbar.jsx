@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import GlobalContext from "../../../context/GlobalContext";
 import NavbarForm from "./NavbarForm";
 import { getOnePerson } from "../../../api/person";
-import { apiOneFile } from "../../../api/files";
+// import { apiOneFile } from "../../../api/files";
 import useScreenSize from "../../../hooks/useScreenSize";
 // import io from "socket.io-client";
 
@@ -182,11 +182,9 @@ const Navbar = () => {
 
     // refreshPage()
   };
-  const formTemple = (title) => {
-    const state = Object.assign({ title }, person);
-    navigate("/servicios/recursoshumanos/solicitudes/vacaciones", {
-      state: state
-    });
+  const formTemple = () => {
+    // const state = Object.assign({ title }, person);
+    navigate("/servicios/recursoshumanos/solicitudes/vacaciones");
   };
 
   // const goToFile = (name) => {
@@ -221,7 +219,7 @@ const Navbar = () => {
               fullName:
                 res.firstName.split(" ", 1) + " " + res.lastName.split(" ", 1),
               position: res.position,
-              birthday: res.birthday,
+              birthday: res.birthdayDate,
               photo: res.photo,
               email: res.email,
               departament: res.Departament.name,

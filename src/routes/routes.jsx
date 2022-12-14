@@ -26,7 +26,7 @@ import CreateEvents from "../components/CreateEvents/CreateEvents";
 import FoodOrder from "../components/FoodOrder/FoodOrder";
 import TicketSystem from "../components/TicketSystem/TicketSystem";
 import Documents from "../components/DownloadFile/Download";
-import FormTemple from "../common/components/FormTemple/FormTemple";
+import FormTemple from "../components/FormTemple/FormTemple";
 
 const RoutesComponent = () => {
   const [contextState] = useContext(GlobalContext);
@@ -83,6 +83,10 @@ const RoutesComponent = () => {
         />
         <Route
           path={`${process.env.REACT_APP_RUTE}/servicios/recursoshumanos/solicitudes/:name`}
+          element={contextState.token ? <FormTemple /> : <Login />}
+        />
+        <Route
+          path={`${process.env.REACT_APP_RUTE}/servicios/recursoshumanos/solicitudes/:name/:id`}
           element={contextState.token ? <FormTemple /> : <Login />}
         />
         {
