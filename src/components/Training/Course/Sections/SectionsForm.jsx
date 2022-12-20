@@ -7,7 +7,7 @@ function SectionsForm(props) {
     <>
       <div className="sections" onClick={props.HandleClick}>
         <h4>
-          Section {props.number}: {props.section.title}
+          Sección {props.number}: {props.section.title}
         </h4>
         <label>
           {props.checkCount}/{props.videos.length} | {props.duration}min

@@ -17,6 +17,7 @@ const DashboardForm = ({
   allPost,
   multimediaMain,
   arrayCarousel,
+  requestMenu,
   inConstruction
 }) => {
 
@@ -24,26 +25,26 @@ const DashboardForm = ({
     <>
       <div className="dashboard-container">
         {/* carousel y noticias */}
-        <DashboardSection1 arrayCarousel={arrayCarousel} news={news} goToPost={goToPost} allPost={allPost}/>
-    
+        <DashboardSection1 arrayCarousel={arrayCarousel} news={news} goToPost={goToPost} allPost={allPost} />
+
         {/* botones */}
-        <DashboardSection2 employeedirectory={employeedirectory} inConstruction={inConstruction}/>
+        <DashboardSection2 employeedirectory={employeedirectory} requestMenu={requestMenu} inConstruction={inConstruction} />
 
         {/* avisos y educapp */}
-        <DashboardSection3/>
-        
+        <DashboardSection3 />
+
         {/* cumpleanos y calendario */}
-        <DashboardSection4 birthday={birthday} events={events} goToProfile={goToProfile}/>
-        
+        <DashboardSection4 birthday={birthday} events={events} goToProfile={goToProfile} />
+
         {/* multimedia */}
-        <DashboardSection5 multimedia={multimedia} multimediaMain={multimediaMain} goToPost={goToPost}/>
-        
+        <DashboardSection5 multimedia={multimedia} multimediaMain={multimediaMain} goToPost={goToPost} />
+
         {/* logo */}
-        <DashboardSection6/>
-          
+        <DashboardSection6 />
+
         {/* social */}
         {/* <DashboardSection7/> */}
-            
+
       </div>
     </>
   );

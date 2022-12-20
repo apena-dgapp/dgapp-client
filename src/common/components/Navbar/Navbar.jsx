@@ -236,7 +236,7 @@ const Navbar = () => {
     }
 
     if (!unmounted) {
-      location.pathname === `${process.env.REACT_APP_RUTE}/pdf`
+      location.pathname === `/pdf`
         ? setIsHidden(true)
         : setIsHidden(false);
     }

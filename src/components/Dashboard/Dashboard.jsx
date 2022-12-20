@@ -184,6 +184,10 @@ const Dashboard = () => {
     });
   };
 
+  const requestMenu = () => {
+    navigate("/servicios/recursoshumanos/solicitudes");
+  };
+
   const inConstruction = () => {
     navigate("/construccion");
   };
@@ -224,6 +228,7 @@ const Dashboard = () => {
           employeedirectory={employeedirectory}
           allPost={allPost}
           arrayCarousel={arrayCarousel}
+          requestMenu={requestMenu}
           inConstruction={inConstruction}
         />
       )}

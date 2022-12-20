@@ -12,10 +12,10 @@ const Footer = () => {
     let unmounted = false;
 
     if (!unmounted) {
-      location.pathname === `${process.env.REACT_APP_RUTE}/pdf` 
-      ? setIsHidden(true)
-      : setIsHidden(false);
-  }
+      location.pathname === `/pdf`
+        ? setIsHidden(true)
+        : setIsHidden(false);
+    }
 
     // const token ="AAAAAAAAAAAAAAAAAAAAAEZIfwEAAAAATfBPZ8E7Swa0MX4vcfnTrt2ii%2BA%3DYPOIK0eqJTisuEf5w4f5ii9dR5zDYDCQ1XivJOxhVsstGd7TqX"
 
@@ -43,7 +43,7 @@ const Footer = () => {
     //     }
     //   });
     // }
-  
+
     // if (!unmounted) {
     //   fetch(
     //     'https://api.twitter.com/2/users?ids=1295813947518590976&user.fields=created_at,description,entities,id,location,name,pinned_tweet_id,profile_image_url,protected,url,username,verified,withheld&expansions=pinned_tweet_id',
@@ -55,7 +55,7 @@ const Footer = () => {
     //     });
     // }
 
-    
+
 
     return () => {
       unmounted = true;
@@ -64,16 +64,16 @@ const Footer = () => {
 
   return (
     <>
-      <div style={{ display: isHidden ? "none" : null }} className="footer-container"> 
+      <div style={{ display: isHidden ? "none" : null }} className="footer-container">
         <div className="footer-section-1-grid">
           <div className="footer-section-1-cont">
             <img className='footer-section-1-img' src={Images.abouticon} alt="" />
           </div>
           <div className="footer-section-1-cont">
             <div className="footer-section-1-text">
-              <p>SÍGUENOS EN NUESTRAS<br/> PLATAFORMAS DIGITALES</p>
+              <p>SÍGUENOS EN NUESTRAS<br /> PLATAFORMAS DIGITALES</p>
             </div>
-            
+
             <div className="footer-section-1-icon-con">
               <a href="https://twitter.com/dgapprd/" target="_blank" rel="noreferrer">
                 <img className="footer-section-1-icon" src={Images.twitter} alt="" />
@@ -95,11 +95,11 @@ const Footer = () => {
             {/* <img className='footer-section-1-img' src={Images.socialicon} alt="" /> */}
           </div>
           <a href="https://dgapp.gob.do/" target="_blank" rel="noreferrer">
-          <div className="footer-section-1-cont">
+            <div className="footer-section-1-cont">
               <img className='footer-section-1-img-logo' src={Images.logoicon} alt="" />
-          </div>
+            </div>
           </a>
-        </div> 
+        </div>
         <div className="footer-section-2">
           <p>WWW.DGAPP.GOB.DO</p>
         </div>

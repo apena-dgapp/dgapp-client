@@ -125,8 +125,8 @@ const NewCourse = () => {
       bool = false
     }
     videoData.forEach((video) => {
-      let videoId = getVideoId(video?.link)
-      if (videoId?.length < 11) {
+      let videoId = getVideoId(video.link)
+      if (videoId.length < 11) {
         bool = false
       }
     })
@@ -143,13 +143,13 @@ const NewCourse = () => {
             ? `${urlApi}/course/create`
             : `${urlApi}/course/${courseId}`,
         data: {
-          title: courseData[0].title,
-          description: courseData[0].description,
-          additional_info: courseData[0].additional_info,
+          title: courseData[0]?.title,
+          description: courseData[0]?.description,
+          additional_info: courseData[0]?.additional_info,
           image: img,
-          madeBy: courseData[0].madeBy,
+          madeBy: courseData[0]?.madeBy,
           createdBy: "admin", ////here go the rol
-          collaborators: courseData[0].collaborators,
+          collaborators: courseData[0]?.collaborators,
         },
       })
         .then((res) => {
@@ -304,8 +304,11 @@ const NewCourse = () => {
   };
 
 
+  console.log(videoData)
+  // console.log(sectionData)
   return (
     <>
+    
       <TrainingContext.Provider
         value={[
           { courseData, setCourseData },

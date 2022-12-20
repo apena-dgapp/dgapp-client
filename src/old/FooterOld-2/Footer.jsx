@@ -8,7 +8,7 @@ import {
   FaRegComment,
 } from "react-icons/fa";
 import { FiRepeat, FiHeart } from "react-icons/fi";
-import { useNavigate, useLocation } from "react-router-dom";  
+import { useNavigate, useLocation } from "react-router-dom";
 import { replaceTxt } from "../../../utils/textLink.js";
 import "react-ig-feed/dist/index.css";
 import Images from "../../images/index";
@@ -23,7 +23,7 @@ const Footer = () => {
   const aboutUSChange = (e, name) => {
     e.preventDefault();
 
-    navigate("/nosotros",{
+    navigate("/nosotros", {
       state: name,
     });
   };
@@ -32,27 +32,27 @@ const Footer = () => {
     let unmounted = false;
 
     if (!unmounted) {
-      location.pathname !== `${process.env.REACT_APP_RUTE}` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/inicio` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/contenido` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/noticias` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/userregister` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/crear-entrada` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/employee` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/nosotros` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/organigrama` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/editar-empleado` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/nuevo-empleado` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/docdynamic` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/perfil` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/chat` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/directorio` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/training` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/crear-evento` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/foodorder` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/ticket` &&
-      location.pathname !== `${process.env.REACT_APP_RUTE}/registrar`
+      location.pathname !== `` &&
+        location.pathname !== `/` &&
+        location.pathname !== `/inicio` &&
+        location.pathname !== `/contenido` &&
+        location.pathname !== `/noticias` &&
+        location.pathname !== `/userregister` &&
+        location.pathname !== `/crear-entrada` &&
+        location.pathname !== `/employee` &&
+        location.pathname !== `/nosotros` &&
+        location.pathname !== `/organigrama` &&
+        location.pathname !== `/editar-empleado` &&
+        location.pathname !== `/nuevo-empleado` &&
+        location.pathname !== `/docdynamic` &&
+        location.pathname !== `/perfil` &&
+        location.pathname !== `/chat` &&
+        location.pathname !== `/directorio` &&
+        location.pathname !== `/training` &&
+        location.pathname !== `/crear-evento` &&
+        location.pathname !== `/foodorder` &&
+        location.pathname !== `/ticket` &&
+        location.pathname !== `/registrar`
         ? setIsHidden(true)
         : setIsHidden(false);
     }

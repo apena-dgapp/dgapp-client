@@ -59,7 +59,7 @@ const FormTemple = () => {
         return () => {
             unmounted = true;
         };
-    }, [contextState.personId, location.pathname]);
+    }, [contextState.personId]);
 
     useEffect(() => {
 
@@ -87,39 +87,54 @@ const FormTemple = () => {
 
         let unmounted = false;
 
-        if (!unmounted) {
+        if (!unmounted && location.pathname?.split("/")[5]) {
             getFormVacation(location.pathname?.split("/")[5])
                 .then((res) => {
                     return res.json();
                 })
                 .then((data) => {
-                    if (location.pathname?.split("/")[5] && !data) {
-                        navigate("/404")
-                        return toast.error("Esta solicitud ya fue cerrado o no existe!");
-                    } else {
-                        if (location.pathname?.split("/")[4] === "vacaciones") {
-                            // console.log(request)
-                            setGetModule(<Vacation img={img} profile={person} request={data} />);
-                        } else if (location.pathname?.split("/")[4] === "FUNCIONES") {
-                            // setGetModule(<Functions />);
-                        } else if (location.pathname?.split("/")[4] === "MARCO INSTITUCIONAL") {
-                            // setGetModule(<InstitutionalFramework />);
-                        } else if (location.pathname?.split("/")[4] === "DIRECTOR GENERAL") {
-                            // setGetModule(<Director />);
-                        } else if (location.pathname?.split("/")[4] === "ORGANIGRAMA") {
-                            // setGetModule(<OrganizationChart />);
+                    if (!unmounted) {
+                        if (location.pathname?.split("/")[5] && !data) {
+                            navigate("/404")
+                            return toast.error("Esta solicitud ya fue cerrado o no existe!");
+                        } else {
+                            if (location.pathname?.split("/")[4] === "vacaciones") {
+                                // console.log(request)
+                                setGetModule(<Vacation img={img} profile={person} request={data} />);
+                            } else if (location.pathname?.split("/")[4] === "FUNCIONES") {
+                                // setGetModule(<Functions />);
+                            } else if (location.pathname?.split("/")[4] === "MARCO INSTITUCIONAL") {
+                                // setGetModule(<InstitutionalFramework />);
+                            } else if (location.pathname?.split("/")[4] === "DIRECTOR GENERAL") {
+                                // setGetModule(<Director />);
+                            } else if (location.pathname?.split("/")[4] === "ORGANIGRAMA") {
+                                // setGetModule(<OrganizationChart />);
+                            }
                         }
                     }
                 })
                 .catch((err) => {
                     console.error(err.status);
                 });
+        } else {
+            if (location.pathname?.split("/")[4] === "vacaciones") {
+                // console.log(request)
+                setGetModule(<Vacation img={img} profile={person} request="" />);
+            } else if (location.pathname?.split("/")[4] === "FUNCIONES") {
+                // setGetModule(<Functions />);
+            } else if (location.pathname?.split("/")[4] === "MARCO INSTITUCIONAL") {
+                // setGetModule(<InstitutionalFramework />);
+            } else if (location.pathname?.split("/")[4] === "DIRECTOR GENERAL") {
+                // setGetModule(<Director />);
+            } else if (location.pathname?.split("/")[4] === "ORGANIGRAMA") {
+                // setGetModule(<OrganizationChart />);
+            }
         }
 
         return () => {
             unmounted = true;
         };
-    }, [img, person, navigate]);
+    }, [img, person, navigate, location]);
 
     return (
         <>

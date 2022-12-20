@@ -59,6 +59,10 @@ import ind from './wetransfer_recursos_2022-09-21_1856/Recursos/in.png';
 import youtube from './wetransfer_recursos_2022-09-21_1856/Recursos/youtube.png';
 import nodata from './documents.png';
 import consejo from './consejo.png';
+import btnVacation from "./btn-vacation.png";
+import btnLicense from "./btn-license.png";
+import btnBill from "./btn-bill.png";
+import btnCarnet from "./btn-carnet.png";
 
 const Images = {
     iconUser,
@@ -120,7 +124,11 @@ const Images = {
     youtube,
     ind,
     nodata,
-    consejo
+    consejo,
+    btnVacation,
+    btnLicense,
+    btnBill,
+    btnCarnet
 }
 
 export default Images;

@@ -134,6 +134,7 @@ const NewCourseForm = (props) => {
         <Tabs
           selectedIndex={tabIndex}
           onSelect={(e) => {
+            console.log(e)
             setTabIndex(e);
           }}
         >
@@ -237,8 +238,9 @@ const NewCourseForm = (props) => {
                 {videoData?.map((data, index) => {
                   if (
                     data.sectionId === section.id ||
-                    data.sectionId === section.localId
+                    ((data.sectionId === section.localId) && !data.id)
                   ) {
+                    
                     return (
                       <div key={index}>
                         <div className="video-details-container">
@@ -317,6 +319,7 @@ const NewCourseForm = (props) => {
           <button
             className="btn-training-add adding-videos-btn"
             onClick={() => {
+              console.log(tabIndex);
               setVideoData(
                 props.addLocalId([
                   ...videoData,
