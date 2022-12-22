@@ -22,9 +22,21 @@ export const approveSupervisor = async (vacationId, requestStatus, requiresSubst
     })
 }
 
-export const closeRRHH = async (vacationId, signatureRRHH, rrhhFirstDaysAvailable, rrhhSecondDaysAvailable, rrhhFirstYearAvailable, rrhhSecondYearAvailable, rrhhTotalDaysAvailable, rrhhTotalDaysPending, rrhhName, blobPdf) => {
-    const body = { vacationId, signatureRRHH, rrhhFirstDaysAvailable, rrhhSecondDaysAvailable, rrhhFirstYearAvailable, rrhhSecondYearAvailable, rrhhTotalDaysAvailable, rrhhTotalDaysPending, rrhhName, blobPdf };
+export const revisionRRHH = async (vacationId, rrhhFirstDaysAvailable, rrhhSecondDaysAvailable, rrhhFirstYearAvailable, rrhhSecondYearAvailable, rrhhTotalDaysAvailable, rrhhTotalDaysPending, rrhhName) => {
+    const body = { vacationId, rrhhFirstDaysAvailable, rrhhSecondDaysAvailable, rrhhFirstYearAvailable, rrhhSecondYearAvailable, rrhhTotalDaysAvailable, rrhhTotalDaysPending, rrhhName };
     return fetch(`${process.env.REACT_APP_API}form/closevacation`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const apiApproveRRHH = async (vacationId, signatureRRHH, blobPdf) => {
+    const body = {vacationId, signatureRRHH, blobPdf};
+    return fetch(`${process.env.REACT_APP_API}form/approverrhh`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: {

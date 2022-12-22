@@ -21,7 +21,7 @@
     height: 6rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
     border: #113250 solid 3px;
     border-radius: 0.5rem;
@@ -42,6 +42,24 @@
     &:hover {
         background-color: gainsboro;
     }
+}
+
+.requestmain-btn-img{
+    width: 5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-color: #F24A72;
+}
+
+.requestmain-btn-text{
+    width: 5rem;
+    height: 2.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-color: blue;
 }
 
 .form-container {
@@ -391,7 +409,7 @@
     width: 20rem;
     position: absolute;
     left: 38rem;
-    margin-top: -12rem;
+    margin-top: -10rem;
 }
 
 .vacation-section5 {
@@ -406,6 +424,18 @@
     display: flex;
 
     input {
+        width: 8rem;
+        height: 2rem;
+        border-radius: 0.5rem;
+        border: gainsboro solid 1px;
+        padding-left: 0.2rem;
+
+        &:focus {
+            border: #79ADD4 solid 1px;
+        }
+    }
+
+    select {
         width: 8rem;
         height: 2rem;
         border-radius: 0.5rem;
@@ -453,6 +483,7 @@
         margin-right: 0.5rem;
         margin-left: 0.5rem;
     }
+    
 }
 
 //MODAL

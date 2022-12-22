@@ -31,28 +31,52 @@ const RequestMenu = () => {
             <div className="requestmain-container">
                 <div className="requestmain-buttons-container">
                     <div onClick={() => FormTemple("vacaciones")} className="requestmain-button">
-                        <img src={Images.btnVacation} alt="" />
-                        <p>Vacaciones</p>
+                        <div className="requestmain-btn-img">
+                            <img src={Images.btnVacation} alt="" />
+                        </div>
+                        <div className="requestmain-btn-text">
+                            <p>Vacaciones</p>
+                        </div>
+                    </div>
+                    <div onClick={() => FormTemple("asistencia")} className="requestmain-button">
+                        <div className="requestmain-btn-img">
+                            <img src={Images.btnAttendance} alt="" />
+                        </div>
+                        <div className="requestmain-btn-text">
+                            <p>Asistencia</p>
+                        </div>
                     </div>
                     <div className="requestmain-button">
-                        <img src={Images.btnBill} alt="" />
-                        <p>Minutas</p>
+                        <div className="requestmain-btn-img">
+                            <img src={Images.btnLicense} alt="" />
+                        </div>
+                        <div className="requestmain-btn-text">
+                            <p>Licencias y Permisos</p>
+                        </div>
                     </div>
                     <div className="requestmain-button">
-                        <img src={Images.btnLicense} alt="" />
-                        <p>Licencias y Permisos</p>
+                        <div className="requestmain-btn-img">
+                            <img src={Images.btnCarnet} alt="" />
+                        </div>
+                        <div className="requestmain-btn-text">
+                            <p>Engrega de carnet</p>
+                        </div>
                     </div>
                     <div className="requestmain-button">
-                        <img src={Images.btnCarnet} alt="" />
-                        <p>Engrega de carnet</p>
+                        <div className="requestmain-btn-img">
+                            <img src={Images.btnLicense} alt="" />
+                        </div>
+                        <div className="requestmain-btn-text">
+                            <p>Licencias y Permisos</p>
+                        </div>
                     </div>
                     <div className="requestmain-button">
-                        <img src={Images.btnLicense} alt="" />
-                        <p>Licencias y Permisos</p>
-                    </div>
-                    <div className="requestmain-button">
-                        <img src={Images.btnCarnet} alt="" />
-                        <p>Engrega de carnet</p>
+                        <div className="requestmain-btn-img">
+                            <img src={Images.btnCarnet} alt="" />
+                        </div>
+                        <div className="requestmain-btn-text">
+                            <p>Engrega de carnet</p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -63,6 +63,10 @@ import btnVacation from "./btn-vacation.png";
 import btnLicense from "./btn-license.png";
 import btnBill from "./btn-bill.png";
 import btnCarnet from "./btn-carnet.png";
+import btnAttendance from "./btn-task.png";
+import mision from "./Misión.jpg";
+import vision from "./Visión.jpg";
+import valores from "./Valores.jpg";
 
 const Images = {
     iconUser,
@@ -128,7 +132,11 @@ const Images = {
     btnVacation,
     btnLicense,
     btnBill,
-    btnCarnet
+    btnCarnet,
+    btnAttendance,
+    mision,
+    vision,
+    valores
 }
 
 export default Images;

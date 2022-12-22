@@ -46,12 +46,12 @@ const AboutUs = () => {
         <div className="aboutus-card">{getModule}</div>
       </div>
       <div
-        style={{ marginBottom: getMargin }}
+        // style={{ marginBottom: getMargin }}
         className="aboutus-header-container"
       >
-        <div className="aboutus-header-title">
+        {/* <div className="aboutus-header-title">
           {location.state ? location.state.toUpperCase() : "MISION, VISION Y VALORES"}
-        </div>
+        </div> */}
       </div>
     </>
   );

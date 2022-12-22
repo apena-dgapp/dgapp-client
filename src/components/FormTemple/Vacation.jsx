@@ -1,26 +1,26 @@
 import React, { useEffect, useState, useRef } from 'react'
 import * as jsPDF from 'jspdf'
 import { getOnePerson } from "../../api/person"
-import { optionsType, optionsDay, optionsMonth, optionsYear } from "../../utils/optionsArrays"
+import { optionsDay, optionsMonth, optionsYear } from "../../utils/optionsArrays"
 import { getElapsedDate } from "../../utils/ElapsedDate"
 import moment from "moment-business-days"
 import toast from 'react-hot-toast';
-import { createVacation, approveSupervisor, closeRRHH } from '../../api/form';
+import { createVacation, approveSupervisor, revisionRRHH, apiApproveRRHH } from '../../api/form';
 import { sendEmail } from "../../api/email";
 import ImageCrop from './ImageCrop';
 // import { TbUpload } from "react-icons/tb";
-// import { getBase64 } from "../../utils/blobManager";
 // import { signatureRRHH } from "../../utils/signatureRRHH"
 import { useNavigate } from "react-router-dom";
 import { SlPencil } from "react-icons/sl";
 
-const Vacation = ({ img, profile, request }) => {
+const Vacation = ({ img, profile, directorRRHH, request }) => {
     const navigate = useNavigate();
     const [modalActive, setModalActive] = useState(false);
     const [totalDays, setTotalDays] = useState("");
     const currentDate = new Date().toISOString().slice(0, 10);
     const pdf = new jsPDF.jsPDF('p', 'pt', 'letter', 'a4', true);
     const [image, setImage] = useState("");
+    const [status, setStatus] = useState("");
     const [signature, setSignature] = useState("");
     const [reportTo, setReportTo] = useState({
         name: "",
@@ -42,6 +42,9 @@ const Vacation = ({ img, profile, request }) => {
         rrhhSecondDaysAvailable: "",
         rrhhFirstYearAvailable: "",
         rrhhSecondYearAvailable: "",
+    });
+
+    const [resultsRRHH, setResultsRRHH] = useState({
         rrhhTotalDaysAvailable: "",
         rrhhTotalDaysPending: ""
     });
@@ -51,7 +54,6 @@ const Vacation = ({ img, profile, request }) => {
         month: "",
         year: "",
     });
-
     const modalToggle = () => {
         setModalActive(!modalActive);
     };
@@ -61,7 +63,13 @@ const Vacation = ({ img, profile, request }) => {
             ...formData,
             [e.target.name]: e.target.value,
         });
+
+        // if (e.target.name === "rrhhFirstDaysAvailable" || e.target.name === "rrhhSecondDaysAvailable") {
+        //     setFormData({ rrhhTotalDaysAvailable: Number(formData.rrhhFirstDaysAvailable) + Number(formData.rrhhSecondDaysAvailable) })
+        // }
+
     };
+
 
     const refInput = useRef();
 
@@ -73,10 +81,6 @@ const Vacation = ({ img, profile, request }) => {
     const requestMenu = () => {
         navigate("/servicios/recursoshumanos/solicitudes");
     };
-
-    // const seletedHandler = async (e) => {
-    //     setImage(await getBase64(e.target.files[0]));
-    // };
 
     function calcBusinessDays(startDate, endDate) {
         var day = moment(startDate);
@@ -118,7 +122,6 @@ const Vacation = ({ img, profile, request }) => {
         };
     }, [profile]);
 
-
     useEffect(() => {
 
         let unmounted = false;
@@ -130,13 +133,6 @@ const Vacation = ({ img, profile, request }) => {
                 var fecha2 = `${formData.yearEnd}-${dayNum(formData.monthEnd)}-${formData.dayEnd}`;
 
                 setTotalDays(calcBusinessDays(fecha1, fecha2) + " Días Laborables");
-
-                // if (fecha1 >= fecha2) {
-                //     setFormData({ dayEnd: "" })
-                //     return toast.error("Formato entre fecha incorrector por faovor verificar!");
-                // } else {
-                //     setTotalDays(calcBusinessDays(fecha1, fecha2) + " Días Laborables");
-                // }
             }
         }
 
@@ -144,6 +140,45 @@ const Vacation = ({ img, profile, request }) => {
             unmounted = true;
         };
     }, [formData.dayStart, formData.monthStart, formData.yearStart, formData.dayEnd, formData.monthEnd, formData.yearEnd]);
+
+    useEffect(() => {
+
+        let unmounted = false;
+
+        if (!unmounted) {
+
+            if (formData.rrhhFirstDaysAvailable && formData.rrhhSecondDaysAvailable) {
+                setResultsRRHH({
+                    rrhhTotalDaysAvailable: Number(formData.rrhhFirstDaysAvailable) + Number(formData.rrhhSecondDaysAvailable),
+                    rrhhTotalDaysPending: (Number(formData.rrhhFirstDaysAvailable) + Number(formData.rrhhSecondDaysAvailable) - Number(request.totalDaysRequested.split(" ")[0]))
+                })
+            }
+        }
+
+        return () => {
+            unmounted = true;
+        };
+    }, [formData.rrhhFirstDaysAvailable, formData.rrhhSecondDaysAvailable, request.totalDaysRequested]);
+
+    useEffect(() => {
+
+        let unmounted = false;
+
+        if (!unmounted) {
+
+            if (request.step === "Pending Supervisor") {
+                setStatus("aprobación y firma del Supervisor")
+            } else if (request.step === "Pending RRHH") {
+                setStatus("a revición y obsercación por el departamento de Recursos Humanos")
+            } else if (request.step === "Pending Approval") {
+                setStatus("aprobacion y firma de la Directora de Recursos Humanos")
+            }
+        }
+
+        return () => {
+            unmounted = true;
+        };
+    }, [request.step]);
 
     function dayNum(month) {
         if (month === "enero") {
@@ -175,9 +210,7 @@ const Vacation = ({ img, profile, request }) => {
 
     const sendFormApplicant = () => {
 
-        if (formData.type === "") {
-            return toast.error("Por favor seleccionar el tipo de vaciones");
-        } else if (formData.dayStart === "") {
+        if (formData.dayStart === "") {
             return toast.error("Por favor seleccionar el dia de la fecha de inicio");
         } else if (formData.monthStart === "") {
             return toast.error("Por favor seleccionar el mes de la fecha de inicio");
@@ -201,7 +234,7 @@ const Vacation = ({ img, profile, request }) => {
             reportTo.email,
             profile.departament,
             currentDate,
-            formData.type,
+            "Vacaciones anuales",
             profile.startedOn,
             `${elapsedDate.year} Años, ${elapsedDate.month} Meses, ${elapsedDate.day} Dias `,
             `${formData.yearStart}-${dayNum(formData.monthStart)}-${formData.dayStart}`,
@@ -309,19 +342,59 @@ const Vacation = ({ img, profile, request }) => {
     }
 
     const sendFormRRHH = () => {
-        // if (formData.rrhhFirstDaysAvailable === "") {
-        //     return toast.error("Por favor digitar los días de vacaciones disponibles del primer año");
-        // } else if (formData.rrhhSecondDaysAvailable === "") {
-        //     return toast.error("Por favor seleccionar el dia de la fecha de inicio");
-        // } else if (formData.rrhhFirstYearAvailable === "") {
-        //     return toast.error("Por favor seleccionar el mes de la fecha de inicio");
-        // } else if (formData.rrhhSecondYearAvailable === "") {
-        //     return toast.error("Por favor seleccionar el año de la fecha de inicio");
-        // } else if (formData.rrhhTotalDaysAvailable === "") {
-        //     return toast.error("Por favor seleccionar el dia de la fecha de fin");
-        // } else if (formData.rrhhTotalDaysPending === "") {
-        //     return toast.error("Por favor seleccionar el mes de la fecha de fin");
-        // }
+        if (formData.rrhhFirstDaysAvailable === "") {
+            return toast.error("Por favor digitar los días de vacaciones disponibles del primer año");
+        } else if (formData.rrhhFirstYearAvailable === "") {
+            return toast.error("Por favor digitar el primer año de vacaciones disponibles");
+        } else if (formData.rrhhSecondDaysAvailable === "") {
+            return toast.error("Por favor digitar los días de vacaciones disponibles del segundo año");
+        } else if (formData.rrhhSecondYearAvailable === "") {
+            return toast.error("Por favor digitar el segundo año de vacaciones disponibles");
+        }
+
+        revisionRRHH(
+            request.vacationId,
+            formData.rrhhFirstDaysAvailable,
+            formData.rrhhSecondDaysAvailable,
+            formData.rrhhFirstYearAvailable,
+            formData.rrhhSecondYearAvailable,
+            resultsRRHH.rrhhTotalDaysAvailable,
+            resultsRRHH.rrhhTotalDaysPending,
+            profile.fullName,
+        )
+            .then((res) => {
+                if (res.status !== 200) {
+                    return toast.error("Error al intentar enviar la solicitud");
+                } else {
+                    return res.json();
+                }
+            })
+            .then((data) => {
+                sendEmail("CALVAREZ@DGAPP.GOB.DO", [request.email, "RESTRELLA@DGAPP.GOB.DO", request.reportToEmail], `Solicitud de Vacaciones - ${request.name}-${request.requirementDate}`, `
+                Saludos Wendy Núñez,
+
+                La solicitud realizada por el empleado ${request.name}, el dia ${request.requirementDate}, se han hechos las observaciones y evaluaciones correspondientes.
+
+                Por favor de verificar el documento para su finalización.
+                
+                Click aquí para finalizar el proceso de solicitud: ${process.env.REACT_APP_RUTE}/servicios/recursoshumanos/solicitudes/vacaciones/${request.vacationId}`)
+                    .then((res) => {
+                        if (res.status !== 200) {
+                            return toast.error("Error al intentar enviar la solicitud");
+                        } else {
+                            toast.success("La solicitud se envío exitosamente!");
+                            requestMenu();
+                        }
+                    })
+            })
+            .catch((err) => {
+                console.error(err.status);
+                toast.error("Error al intentar enviar el formulario");
+            });
+
+    }
+
+    const approveRRHH = () => {
 
         pdf.addImage(img, 'PNG', 10, -30, 585, 830, 'undefined', 'FAST');
         pdf.setFontSize(10);
@@ -372,29 +445,22 @@ const Vacation = ({ img, profile, request }) => {
         pdf.text(profile.fullName, 280, 563);
         pdf.addImage(profile.signature, 'PNG', 230, 495, 150, 80);
 
-        pdf.text(formData.rrhhFirstDaysAvailable, 235, 629);
-        pdf.text(formData.rrhhSecondDaysAvailable, 235, 645);
+        pdf.text(request.rrhhFirstYearDaysAvailable.split("-")[0], 235, 629);
+        pdf.text(request.rrhhSecondYearDaysAvailable.split("-")[0], 235, 645);
 
-        pdf.text(formData.rrhhFirstYearAvailable, 455, 629);
-        pdf.text(formData.rrhhSecondYearAvailable, 455, 645);
+        pdf.text(request.rrhhFirstYearDaysAvailable.split("-")[1], 455, 629);
+        pdf.text(request.rrhhSecondYearDaysAvailable.split("-")[1], 455, 645);
 
-        pdf.text(formData.rrhhTotalDaysAvailable, 455, 660);
-        pdf.text(formData.rrhhTotalDaysPending, 455, 680);
+        pdf.text(request.rrhhTotalDaysAvailable, 455, 660);
+        pdf.text(request.rrhhTotalDaysPending, 455, 680);
 
         var btoa = require('btoa');
         var out = pdf.output();
         let url = btoa(out);
 
-        closeRRHH(
+        apiApproveRRHH(
             request.vacationId,
             profile.signature,
-            formData.rrhhFirstDaysAvailable,
-            formData.rrhhSecondDaysAvailable,
-            formData.rrhhFirstYearAvailable,
-            formData.rrhhSecondYearAvailable,
-            formData.rrhhTotalDaysAvailable,
-            formData.rrhhTotalDaysPending,
-            profile.fullName,
             "data:application/pdf;base64," + url
         )
             .then((res) => {
@@ -445,14 +511,7 @@ const Vacation = ({ img, profile, request }) => {
             <div className='vacation-container'>
                 {/* SECTION-1 */}
                 <div className="vacation-status">
-                    {
-                        request.step === "Pending Supervisor" ? <p>Actualmente, esta solicitud está pendiente aprobación y firma del supervisor</p> : null
-                    }
-
-                    {
-                        // request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? <button>Eliminar Solicitud</button> : null
-                    }
-
+                    <p>Actualmente, esta solicitud está pendiente {status}</p> : null
                 </div>
                 <div className="vacation-header">
                     <p>Información del Personal Solicitante</p>
@@ -460,81 +519,65 @@ const Vacation = ({ img, profile, request }) => {
                 <div className="vacation-content">
                     <div className="vacation-inputs">
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Nombre y Apellido:</p>
-                            <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly name='name' type="text" defaultValue={request.name ? request.name : profile.fullName} />
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Nombre y Apellido:</p>
+                            <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly name='name' type="text" defaultValue={request.name ? request.name : profile.fullName} />
                         </div>
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Puesto:</p>
-                            <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.position ? request.position : profile.position} />
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Puesto:</p>
+                            <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.position ? request.position : profile.position} />
                         </div>
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Cédula:</p>
-                            <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.documentId ? request.documentId : profile.documentId} />
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Cédula:</p>
+                            <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.documentId ? request.documentId : profile.documentId} />
                         </div>
                     </div>
                     <div className="vacation-inputs">
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Supervisor/a:</p>
-                            <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.reportToName ? request.reportToName : reportTo.name} />
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Supervisor/a:</p>
+                            <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.reportToName ? request.reportToName : reportTo.name} />
                         </div>
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Departamento:</p>
-                            <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.departament ? request.departament : profile.departament} />
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Departamento:</p>
+                            <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.departament ? request.departament : profile.departament} />
                         </div>
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Fecha de la Solicitud:</p>
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Fecha de la Solicitud:</p>
                             <div className="vacation-input-date">
-                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.requirementDate ? request.requirementDate.split("-")[2] : currentDate.split("-")[2]} />
-                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.requirementDate ? request.requirementDate.split("-")[1] : currentDate.split("-")[1]} />
-                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.requirementDate ? request.requirementDate.split("-")[0] : currentDate.split("-")[0]} />
+                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.requirementDate ? request.requirementDate.split("-")[2] : currentDate.split("-")[2]} />
+                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.requirementDate ? request.requirementDate.split("-")[1] : currentDate.split("-")[1]} />
+                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.requirementDate ? request.requirementDate.split("-")[0] : currentDate.split("-")[0]} />
                             </div>
                         </div>
                     </div>
                 </div>
                 {/* SECTION-2 */}
                 <div className="vacation-header">
-                    <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Solicitud de Vacaciones</p>
+                    <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Solicitud de Vacaciones</p>
                 </div>
                 <div className="vacation-content">
                     <div className="vacation-inputs">
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Tipo de Vacaciones:</p>
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Tipo de Vacaciones:</p>
                             {
-                                request.type ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.type} /> :
-                                    <>
-                                        <select
-                                            name="type"
-                                            value={formData.type || ""}
-                                            onChange={handlerInputChange}
-                                        >
-                                            <option disabled={true} value="">Seleccione el tipo de Vacaciones</option>
-                                            {optionsType?.map(({ value, id }) => {
-                                                return <option key={id} value={value}>{value}</option>;
-                                            })}
-                                        </select>
 
-                                        <i className="hi hi-outline-pencil-square" />
-                                        <SlPencil
-                                            size="1.2rem"
-                                            style={{ marginLeft: "0.3rem", marginTop: "0.3rem" }}
-                                            color="green"
-                                        />
-                                    </>
+                                <>
+                                    <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue="Vacaciones anuales" />
+                                </>
                             }
 
                         </div>
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Fecha de Ingreso a DGAPP:</p>
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Fecha de Ingreso a DGAPP:</p>
                             <div className="vacation-input-date">
-                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.startedOn ? request.startedOn.split("-")[2] : profile.startedOn.split("-")[2]} />
-                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.startedOn ? request.startedOn.split("-")[1] : profile.startedOn.split("-")[1]} />
-                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.startedOn ? request.startedOn.split("-")[0] : profile.startedOn.split("-")[0]} />
+                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.startedOn ? request.startedOn.split("-")[2] : profile.startedOn.split("-")[2]} />
+                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.startedOn ? request.startedOn.split("-")[1] : profile.startedOn.split("-")[1]} />
+                                <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.startedOn ? request.startedOn.split("-")[0] : profile.startedOn.split("-")[0]} />
                             </div>
                         </div>
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Tiempo Total en DGAPP:</p>
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Tiempo Total en DGAPP:</p>
                             <input
-                                disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false}
+                                disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false}
                                 readOnly
                                 type="text"
                                 value={request?.totalTime ? request?.totalTime : `${elapsedDate.year} Años, ${elapsedDate.month} Meses, ${elapsedDate.day} Dias `}
@@ -544,10 +587,10 @@ const Vacation = ({ img, profile, request }) => {
                     </div>
                     <div className="vacation-inputs">
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Fecha de Inicio:</p>
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Fecha de Inicio:</p>
                             <div className="vacation-input-date">
                                 {
-                                    request.startDate ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.startDate.split("-")[2]} /> :
+                                    request.startDate ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.startDate.split("-")[2]} /> :
                                         <select
                                             name="dayStart"
                                             value={formData.dayStart || ""}
@@ -563,7 +606,7 @@ const Vacation = ({ img, profile, request }) => {
                                 }
 
                                 {
-                                    request.startDate ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.startDate.split("-")[1]} /> :
+                                    request.startDate ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.startDate.split("-")[1]} /> :
                                         <select
                                             name="monthStart"
                                             value={formData.monthStart || ""}
@@ -578,7 +621,7 @@ const Vacation = ({ img, profile, request }) => {
                                 }
 
                                 {
-                                    request.startDate ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.startDate.split("-")[0]} /> :
+                                    request.startDate ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.startDate.split("-")[0]} /> :
                                         <>
                                             <select
                                                 name="yearStart"
@@ -604,10 +647,10 @@ const Vacation = ({ img, profile, request }) => {
                             </div>
                         </div>
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Fecha de Fin:</p>
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Fecha de Fin:</p>
                             <div className="vacation-input-date">
                                 {
-                                    request.endDate ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.endDate.split("-")[2]} /> :
+                                    request.endDate ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.endDate.split("-")[2]} /> :
                                         <select
                                             name="dayEnd"
                                             value={formData.dayEnd || ""}
@@ -624,7 +667,7 @@ const Vacation = ({ img, profile, request }) => {
                                 {
                                     request.endDate ?
                                         <input
-                                            disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false}
+                                            disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false}
                                             readOnly type="text"
                                             defaultValue={request.endDate.split("-")[1]}
                                         /> :
@@ -642,7 +685,7 @@ const Vacation = ({ img, profile, request }) => {
                                 }
 
                                 {
-                                    request.endDate ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.endDate.split("-")[0]} /> :
+                                    request.endDate ? <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.endDate.split("-")[0]} /> :
                                         <>
                                             <select
                                                 name="yearEnd"
@@ -669,8 +712,8 @@ const Vacation = ({ img, profile, request }) => {
                             </div>
                         </div>
                         <div className="vacation-input">
-                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Total de Días Solicitados:</p>
-                            <input style={{ backgroundColor: "#BCD3E6", fontWeight: "bold" }} disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.totalDaysRequested ? request.totalDaysRequested : totalDays} />
+                            <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Total de Días Solicitados:</p>
+                            <input style={{ backgroundColor: "#BCD3E6", fontWeight: "bold" }} disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.totalDaysRequested ? request.totalDaysRequested : totalDays} />
                         </div>
                     </div>
                 </div>
@@ -693,7 +736,7 @@ const Vacation = ({ img, profile, request }) => {
                                 }} htmlFor='approve'>Aprobada</label>
                                 <i className="hi hi-outline-pencil-square" />
                                 {
-                                    request.step === "Pending Supervisor" ? <>
+                                    request.step === "Pending Supervisor" && request.reportToName === profile.fullName ? <>
                                         <i className="hi hi-outline-pencil-square" />
                                         <SlPencil
                                             size="1.2rem"
@@ -711,7 +754,7 @@ const Vacation = ({ img, profile, request }) => {
                                         ? null : "gainsboro"
                                 }} htmlFor='reject'>Rechazada</label>
                                 {
-                                    request.step === "Pending Supervisor" ? <>
+                                    request.step === "Pending Supervisor" && request.reportToName === profile.fullName ? <>
                                         <i className="hi hi-outline-pencil-square" />
                                         <SlPencil
                                             size="1.2rem"
@@ -749,7 +792,7 @@ const Vacation = ({ img, profile, request }) => {
                                             ? null : "gainsboro"
                                     }} htmlFor='no'>No</label>
                                     {
-                                        request.step === "Pending Supervisor" ? <>
+                                        request.step === "Pending Supervisor" && request.reportToName === profile.fullName ? <>
                                             <i className="hi hi-outline-pencil-square" />
                                             <SlPencil
                                                 size="1.2rem"
@@ -775,7 +818,7 @@ const Vacation = ({ img, profile, request }) => {
                                     defaultValue={request.motivesSubstitute ? request.motivesSubstitute : null}
                                 />
                                 {
-                                    request.step === "Pending Supervisor" ? <>
+                                    request.step === "Pending Supervisor" && request.reportToName === profile.fullName ? <>
                                         <i className="hi hi-outline-pencil-square" />
                                         <SlPencil
                                             size="1.2rem"
@@ -798,9 +841,7 @@ const Vacation = ({ img, profile, request }) => {
                         {
                             request.signatureApplicant ? <img className='vacation-signature-applicant' src={request.signatureApplicant} alt='signature' /> : <img className='vacation-signature-applicant' src={profile.signature} alt='signature' />
                         }
-                        {/* {
-                            !request.signatureApplicant && !profile.signature ? null : (request.signatureApplicant ? <img className='vacation-signature-applicant' src={request.signatureApplicant} alt='signature' /> : <img className='vacation-signature-applicant' src={profile.signature} alt='signature' />)
-                        } */}
+
                         <span style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>{request.name ? request.name : profile.fullName} </span>
                         <div className="vacacion-section4-canvas"></div>
                         <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null, backgroundColor: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Firma de la Persona Solicitante</p>
@@ -808,17 +849,12 @@ const Vacation = ({ img, profile, request }) => {
                     <div className="vacation-section4-line vacacion-section4-mt mb-5">
 
                         {
-                            request.signatureRRHH ? <img className='vacation-signature-rrhh' src={request.signatureRRHH} alt='signature' /> : (request.step === "Pending RRHH" && profile.departament === "Recursos Humanos" ?
-                                <img className='vacation-signature-rrhh' src={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? profile.signature : null} alt='signature' /> : null)
+                            request.signatureRRHH ? <img className='vacation-signature-rrhh' src={request.signatureRRHH} alt='signature' /> : (request.step === "Pending Approval" && profile.position === "Directora de Recursos Humanos" ?
+                                <img className='vacation-signature-rrhh' src={profile.position === "Directora de Recursos Humanos" && request.step === "Pending Approval" ? profile.signature : null} alt='signature' /> : null)
                         }
-
-
-                        {/* {
-                            !request.signatureRRHH && !profile.signature ? null : (request.step === "Pending RRHH" && profile.departament === "Recursos Humanos" ? <img className='vacation-signature-rrhh' src={profile.signature} alt='signature' /> : null)
-                        } */}
-                        <span style={{ color: profile.departament !== "Recursos Humanos" || request.step !== "Pending RRHH" ? "gainsboro" : null }}>{request.step === "Pending RRHH" && profile.departament === "Recursos Humanos" ? profile.fullName : null}</span>
+                        <span style={{ color: profile.position !== "Directora de Recursos Humanos" || request.step !== "Pending Approval" ? "gainsboro" : null }}>{request.step === "Pending Approval" && profile.position === "Directora de Recursos Humanos" ? profile.fullName : null}</span>
                         <div className="vacacion-section4-canvas"></div>
-                        <p style={{ color: profile.departament !== "Recursos Humanos" || request.step !== "Pending RRHH" ? "gainsboro" : null, backgroundColor: profile.departament !== "Recursos Humanos" || request.step !== "Pending RRHH" ? "gainsboro" : null }}>Departamento de Recursos Humanos</p>
+                        <p style={{ color: profile.position !== "Directora de Recursos Humanos" || request.step !== "Pending Approval" ? "gainsboro" : null, backgroundColor: profile.position !== "Directora de Recursos Humanos" || request.step !== "Pending Approval" ? "gainsboro" : null }}>Departamento de Recursos Humanos</p>
                     </div>
 
                     <div className="vacation-section4-line">
@@ -826,9 +862,7 @@ const Vacation = ({ img, profile, request }) => {
                             request.signatureSupervisor ? <img className='vacation-signature-supervisor' src={request.signatureSupervisor} alt='signature' /> : (request.step === "Pending Supervisor" && request.reportToName === profile.fullName ?
                                 <img className='vacation-signature-supervisor' src={profile.signature} alt='signature' /> : null)
                         }
-                        {/* {
-                            !request.signatureSupervisor && !profile.signature ? null : (request.signatureSupervisor ? <img className='vacation-signature-supervisor' src={request.signatureSupervisor} alt='signature' /> : <img className='vacation-signature-supervisor' src={profile.signature} alt='signature' />)
-                        } */}
+
                         <span style={{ color: request.reportToName !== profile.fullName || request.step !== "Pending Supervisor" ? "gainsboro" : null }}>{request.reportToName ? request.reportToName : reportTo.name} </span>
                         <div className="vacacion-section4-canvas"></div>
                         <p style={{
@@ -847,27 +881,62 @@ const Vacation = ({ img, profile, request }) => {
                         </div>
                         <div className="vacation-section5-days-avalibable-inputs">
                             <div className='vacation-section5-days-avalibable-inputs-section'>
-                                <input name='rrhhFirstDaysAvailable' disabled={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? false : true}
-                                    value={formData.rrhhFirstDaysAvailable || ""} onChange={handlerInputChange}
-                                />
+                                {
+                                    request.rrhhFirstYearDaysAvailable ? <input name="rrhhFirstDaysAvailable" disabled readOnly type="text" defaultValue={request.rrhhFirstYearDaysAvailable.split("-")[0]} /> :
+                                        <select
+                                            name="rrhhFirstDaysAvailable"
+                                            value={formData.rrhhFirstDaysAvailable || ""}
+                                            onChange={handlerInputChange}
+                                            disabled={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? false : true}
+                                        >
+                                            <option disabled={true} value="">Día</option>
+                                            {optionsDay?.map(({ value, id }) => {
+                                                return <option key={id} value={value}>{value}</option>;
+                                            })}
+                                        </select>
+                                }
+
                                 <p style={{ color: profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? null : "gainsboro" }}>Días Laborables</p>
                             </div>
 
                             <div className='vacation-section5-days-avalibable-inputs-section'>
-                                <input name='rrhhSecondDaysAvailable' disabled={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? false : true}
-                                    value={formData.rrhhSecondDaysAvailable || ""} onChange={handlerInputChange}
-                                />
+                                {
+                                    request.rrhhSecondYearDaysAvailable ? <input name="rrhhSecondDaysAvailable" disabled readOnly type="text" defaultValue={request.rrhhSecondYearDaysAvailable.split("-")[0]} /> :
+                                        <select
+                                            name="rrhhSecondDaysAvailable"
+                                            value={formData.rrhhSecondDaysAvailable || ""}
+                                            onChange={handlerInputChange}
+                                            disabled={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? false : true}
+                                        >
+                                            <option disabled={true} value="">Día</option>
+                                            {optionsDay?.map(({ value, id }) => {
+                                                return <option key={id} value={value}>{value}</option>;
+                                            })}
+                                        </select>
+                                }
                                 <p style={{ color: profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? null : "gainsboro" }}>Días Laborables</p>
                             </div>
                         </div>
                         <div className="vacation-section5-days-avalibable-inputs">
                             <div className='vacation-section5-days-avalibable-inputs-section'>
                                 <p style={{ color: profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? null : "gainsboro" }}>del año</p>
-                                <input name='rrhhFirstYearAvailable' disabled={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? false : true}
-                                    value={formData.rrhhFirstYearAvailable || ""} onChange={handlerInputChange}
-                                />
                                 {
-                                    request.step === "Pending RRHH" ? <>
+                                    request.rrhhFirstYearDaysAvailable ? <input name="rrhhFirstYearAvailable" disabled readOnly type="text" defaultValue={request.rrhhFirstYearDaysAvailable.split("-")[1]} /> :
+                                        <select
+                                            name="rrhhFirstYearAvailable"
+                                            value={formData.rrhhFirstYearAvailable || ""}
+                                            onChange={handlerInputChange}
+                                            disabled={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? false : true}
+                                        >
+                                            <option disabled={true} value="">Año</option>
+                                            {optionsYear?.map(({ value, id }) => {
+                                                return <option key={id} value={value}>{value}</option>;
+                                            })}
+                                        </select>
+                                }
+
+                                {
+                                    request.step === "Pending RRHH" && profile.departament === "Recursos Humanos" ? <>
                                         <i className="hi hi-outline-pencil-square" />
                                         <SlPencil
                                             size="1.2rem"
@@ -880,23 +949,34 @@ const Vacation = ({ img, profile, request }) => {
 
                             <div className='vacation-section5-days-avalibable-inputs-section'>
                                 <p style={{ color: profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? null : "gainsboro" }}>del año</p>
-                                <input name='rrhhSecondYearAvailable' disabled={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? false : true}
-                                    value={formData.rrhhSecondYearAvailable || ""} onChange={handlerInputChange}
-                                />
+                                {
+                                    request.rrhhSecondYearDaysAvailable ? <input name="rrhhSecondYearAvailable" disabled readOnly type="text" defaultValue={request.rrhhSecondYearDaysAvailable.split("-")[1]} /> :
+                                        <select
+                                            name="rrhhSecondYearAvailable"
+                                            value={formData.rrhhSecondYearAvailable || ""}
+                                            onChange={handlerInputChange}
+                                            disabled={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? false : true}
+                                        >
+                                            <option disabled={true} value="">Año</option>
+                                            {optionsYear?.map(({ value, id }) => {
+                                                return <option key={id} value={value}>{value}</option>;
+                                            })}
+                                        </select>
+                                }
                             </div>
                         </div>
                         <div className="vacation-section5-days-avalibable-inputs">
                             <div className='vacation-section5-days-avalibable-inputs-section'>
                                 <p style={{ color: profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? null : "gainsboro" }}>Total de Días Disponibles:</p>
                                 <input style={{ backgroundColor: "#BCD3E6", fontWeight: "bold", width: "15rem" }} name='rrhhTotalDaysAvailable' disabled={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? false : true}
-                                    value={formData.rrhhTotalDaysAvailable || ""} onChange={handlerInputChange}
+                                    defaultValue={request.rrhhTotalDaysAvailable ? request.rrhhTotalDaysAvailable : resultsRRHH.rrhhTotalDaysAvailable}
                                 />
                             </div>
 
                             <div className='vacation-section5-days-avalibable-inputs-section'>
                                 <p style={{ color: profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? null : "gainsboro" }}>Total de Días Laborables Pendientes a Disfrutar:</p>
                                 <input style={{ backgroundColor: "#BCD3E6", fontWeight: "bold", width: "15rem" }} name='rrhhTotalDaysPending' disabled={profile.departament === "Recursos Humanos" && request.step === "Pending RRHH" ? false : true}
-                                    value={formData.rrhhTotalDaysPending || ""} onChange={handlerInputChange}
+                                    defaultValue={request.rrhhTotalDaysPending ? request.rrhhTotalDaysPending : resultsRRHH.rrhhTotalDaysPending}
                                 />
                             </div>
                         </div>
@@ -904,13 +984,20 @@ const Vacation = ({ img, profile, request }) => {
                 </div>
             </div>
             <div>
-                <button
-                    onClick={request.step === "Pending Supervisor" ? sendFormSupervisor : (request.step === "Pending RRHH" ? sendFormRRHH : sendFormApplicant)}
-                    className={request.step === "Pending Supervisor" && request.reportToName !== profile.fullName ? "btn-disabled" : (request.step === "Pending RRHH" && profile.departament !== "Recursos Humanos" ? "btn-disabled" : "btn-active")}
-                    disabled={request.step === "Pending Supervisor" && request.reportToName !== profile.fullName ? true : (request.step === "Pending RRHH" && profile.departament !== "Recursos Humanos" ? true : false)}
-                >
-                    ENVIAR
-                </button>
+                {
+                    request.step !== "Pending Approval" ? <button
+                        onClick={request.step === "Pending Supervisor" ? sendFormSupervisor : (request.step === "Pending RRHH" ? sendFormRRHH : sendFormApplicant)}
+                        className={request.step === "Pending Supervisor" && request.reportToName !== profile.fullName ? "btn-disabled" : (request.step === "Pending RRHH" && profile.departament !== "Recursos Humanos" ? "btn-disabled" : "btn-active")}
+                        disabled={request.step === "Pending Supervisor" && request.reportToName !== profile.fullName ? true : (request.step === "Pending RRHH" && profile.departament !== "Recursos Humanos" ? true : false)}
+                    >
+                        ENVIAR
+                    </button> : <button
+                        onClick={approveRRHH}
+                        className={profile.position !== "Directora de Recursos Humanos" ? "btn-disabled" : "btn-active"}
+                        disabled={profile.position !== "Directora de Recursos Humanos" ? true : false}
+                    >APROBAR</button>
+                }
+
             </div>
         </>
     )

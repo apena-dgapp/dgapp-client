@@ -182,9 +182,9 @@ const Navbar = () => {
 
     // refreshPage()
   };
-  const formTemple = () => {
-    // const state = Object.assign({ title }, person);
-    navigate("/servicios/recursoshumanos/solicitudes/vacaciones");
+
+  const formTemple = (module) => {
+    navigate(`/servicios/recursoshumanos/solicitudes/${module}`);
   };
 
   // const goToFile = (name) => {

@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Vacation from './Vacation'
+import Attendance from './Attendance';
 import { useLocation, useNavigate } from "react-router-dom";
 import { apiOneFile } from "../../api/files"
 import { getFormVacation } from "../../api/form"
@@ -25,6 +26,12 @@ const FormTemple = () => {
         reportsTo: "",
         startedOn: "",
         signature: ""
+    });
+
+    const [header, setHeader] = useState({
+        code: "",
+        date: "",
+        version: "",
     });
 
     useEffect(() => {
@@ -87,48 +94,37 @@ const FormTemple = () => {
 
         let unmounted = false;
 
-        if (!unmounted && location.pathname?.split("/")[5]) {
-            getFormVacation(location.pathname?.split("/")[5])
-                .then((res) => {
-                    return res.json();
-                })
-                .then((data) => {
-                    if (!unmounted) {
-                        if (location.pathname?.split("/")[5] && !data) {
-                            navigate("/404")
-                            return toast.error("Esta solicitud ya fue cerrado o no existe!");
-                        } else {
-                            if (location.pathname?.split("/")[4] === "vacaciones") {
-                                // console.log(request)
+        if (location.pathname?.split("/")[4] === "vacaciones") {
+            if (!unmounted && location.pathname?.split("/")[5]) {
+                getFormVacation(location.pathname?.split("/")[5])
+                    .then((res) => {
+                        return res.json();
+                    })
+                    .then((data) => {
+                        if (!unmounted) {
+                            if (location.pathname?.split("/")[5] && !data) {
+                                navigate("/404")
+                                return toast.error("Esta solicitud ya fue cerrado o no existe!");
+                            } else {
                                 setGetModule(<Vacation img={img} profile={person} request={data} />);
-                            } else if (location.pathname?.split("/")[4] === "FUNCIONES") {
-                                // setGetModule(<Functions />);
-                            } else if (location.pathname?.split("/")[4] === "MARCO INSTITUCIONAL") {
-                                // setGetModule(<InstitutionalFramework />);
-                            } else if (location.pathname?.split("/")[4] === "DIRECTOR GENERAL") {
-                                // setGetModule(<Director />);
-                            } else if (location.pathname?.split("/")[4] === "ORGANIGRAMA") {
-                                // setGetModule(<OrganizationChart />);
                             }
                         }
-                    }
-                })
-                .catch((err) => {
-                    console.error(err.status);
-                });
-        } else {
-            if (location.pathname?.split("/")[4] === "vacaciones") {
-                // console.log(request)
+                    })
+                    .catch((err) => {
+                        console.error(err.status);
+                    });
+            } else {
                 setGetModule(<Vacation img={img} profile={person} request="" />);
-            } else if (location.pathname?.split("/")[4] === "FUNCIONES") {
-                // setGetModule(<Functions />);
-            } else if (location.pathname?.split("/")[4] === "MARCO INSTITUCIONAL") {
-                // setGetModule(<InstitutionalFramework />);
-            } else if (location.pathname?.split("/")[4] === "DIRECTOR GENERAL") {
-                // setGetModule(<Director />);
-            } else if (location.pathname?.split("/")[4] === "ORGANIGRAMA") {
-                // setGetModule(<OrganizationChart />);
             }
+
+        } else if (location.pathname?.split("/")[4].replace("%20", " ") === "asistencia") {
+            setGetModule(<Attendance profile={person} setHeader={setHeader} />);
+        } else if (location.pathname?.split("/")[4] === "MARCO INSTITUCIONAL") {
+            // setGetModule(<InstitutionalFramework />);
+        } else if (location.pathname?.split("/")[4] === "DIRECTOR GENERAL") {
+            // setGetModule(<Director />);
+        } else if (location.pathname?.split("/")[4] === "ORGANIGRAMA") {
+            // setGetModule(<OrganizationChart />);
         }
 
         return () => {
@@ -136,25 +132,50 @@ const FormTemple = () => {
         };
     }, [img, person, navigate, location]);
 
+    useEffect(() => {
+
+        let unmounted = false;
+
+        if (!unmounted) {
+            if (location.pathname?.split("/")[4] === "vacaciones") {
+                setHeader({
+                    code: "DRH-FO-002",
+                    date: "9/8/2022",
+                    version: "0"
+                })
+            } else if (location.pathname?.split("/")[4].replace("%20", " ") === "asistencia") {
+                setHeader({
+                    code: "No definido",
+                    date: "No definido",
+                    version: "No definido"
+                })
+            }
+        }
+
+        return () => {
+            unmounted = true;
+        };
+    }, [location.pathname]);
+
     return (
         <>
             <div className='form-container'>
                 <div className="form-header">
                     <div className="form-header-title">
-                        <p>{`SOLICITUD DE ${location.pathname.split("/")[4].toUpperCase()}`}</p>
+                        <p>{`SOLICITUD DE ${location.pathname.split("/")[4].toUpperCase().replace("%20", " ")} `}</p>
                     </div>
                     <div className="form-header-menu">
                         <div className="form-header-menu-text">
                             <p style={{ fontWeight: "bold" }}>Codigo:</p>
-                            <p>DRH-FO-002</p>
+                            <p>{header.code}</p>
                         </div>
                         <div className="form-header-menu-text">
                             <p style={{ fontWeight: "bold" }}>Fecha de Emisión:</p>
-                            <p>9/8/2022</p>
+                            <p>{header.date}</p>
                         </div>
                         <div className="form-header-menu-text">
                             <p style={{ fontWeight: "bold" }}>Versión:</p>
-                            <p>0</p>
+                            <p>{header.version}</p>
                         </div>
                     </div>
                 </div>

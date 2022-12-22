@@ -68,7 +68,7 @@ const NavbarForm = ({
                 <li>
                   <p onClick={(e) => aboutUSChange(e, "MISIÓN, VISIÓN Y VALORES")}>Misión, Visión y Valores</p>
                 </li>
-                <li>
+                {/* <li>
                   <p onClick={(e) => aboutUSChange(e, "FUNCIONES")}>Funciones</p>
                 </li>
                 <li>
@@ -79,7 +79,7 @@ const NavbarForm = ({
                 </li>
                 <li>
                   <p onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}>Organigrama</p>
-                </li>
+                </li> */}
               </ul>
             </li>
 
@@ -152,11 +152,10 @@ const NavbarForm = ({
                       </p>
                       <ul className="menu-left">
                         <li>
-                          <p onClick={() => formTemple("Vacaciones")}>Vacaciones</p>
-                          {/* <p onClick={inConstruction}>Vacaciones</p> */}
+                          <p onClick={() => formTemple("vacaciones")}>Vacaciones</p>
                         </li>
                         <li>
-                          <p onClick={inConstruction}> Carta Laboral</p>
+                          <p onClick={() => formTemple("asistencia")}>Asistencia</p>
                         </li>
                       </ul>
                     </li>

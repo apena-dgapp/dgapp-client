@@ -1,11 +1,8 @@
-export const optionsType = [
-    {
-        id: "1",
-        value: "Vacaciones anuales",
-    }
-];
-
 export const optionsDay = [
+    {
+        id: "0",
+        value: "0",
+    },
     {
         id: "1",
         value: "1",
@@ -186,46 +183,46 @@ export const optionsMonth = [
 export const optionsYear = [
     {
         id: "1",
-        value: "2022",
+        value: "2020",
     },
     {
         id: "2",
-        value: "2023",
+        value: "2021",
     },
     {
         id: "3",
-        value: "2024",
+        value: "2022",
     },
     {
         id: "4",
-        value: "2025",
+        value: "2023",
     },
     {
         id: "5",
-        value: "2026",
+        value: "2024",
     },
     {
         id: "6",
-        value: "2027",
+        value: "2025",
     },
     {
         id: "7",
-        value: "2028",
+        value: "2026",
     },
     {
         id: "8",
-        value: "2029",
+        value: "2027",
     },
     {
         id: "9",
-        value: "2030",
+        value: "2028",
     },
     {
         id: "10",
-        value: "2031",
+        value: "2029",
     },
     {
         id: "11",
-        value: "2032",
+        value: "2030",
     }
 ];
