@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
-  const [loading, seLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   // const [ad, setAd] = useState([]);
   const [news, setNews] = useState([]);
@@ -21,10 +21,21 @@ const Dashboard = () => {
 
   useEffect(() => {
     let unmounted = false;
-
     if (!unmounted) {
-      seLoading(true);
+      setLoading(true);
     }
+    setTimeout(() => {
+      if (!unmounted) {
+        setLoading(false);
+      }
+    }, 1500);
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let unmounted = false;
 
     getDataCarousel("Portada Principal", 3)
       .then((res) => {
@@ -33,11 +44,6 @@ const Dashboard = () => {
       .then((res) => {
         if (!unmounted) {
           setArrayCarousel(res.posts);
-          setTimeout(() => {
-            if (arrayCarousel) {
-              seLoading(false);
-            }
-          }, 1000);
         }
       })
       .catch((err) => {
@@ -50,19 +56,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     let unmounted = false;
-
-    // getPost("Anuncio", 3)
-    //   .then((res) => {
-    //     return res.json();
-    //   })
-    //   .then((res) => {
-    //     if (!unmounted) {
-    //       setAd(res.posts);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.error(err.status);
-    //   });
 
     getPost("Noticia", 3)
       .then((res) => {
@@ -191,21 +184,6 @@ const Dashboard = () => {
   const inConstruction = () => {
     navigate("/construccion");
   };
-
-  // useEffect(() => {
-  //   let unmounted = false;
-  //   if (!unmounted) {
-  //     seLoading(true);
-  //   }
-  //   setTimeout(() => {
-  //     if (!unmounted) {
-  //       seLoading(false);
-  //     }
-  //   }, 3500);
-  //   return () => {
-  //     unmounted = true;
-  //   };
-  // }, [arrayCarousel]);
 
   return (
     <>

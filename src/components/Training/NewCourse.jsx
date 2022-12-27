@@ -3,7 +3,7 @@ import NewCourseForm from "./NewCourseForm.jsx";
 import { getBase64 } from "../../utils/blobManager";
 import { TrainingContext } from "./TrainingContext";
 import axios from "axios";
-import AWN from "awesome-notifications";
+// import AWN from "awesome-notifications";
 import { useParams } from "react-router";
 import useGetData from "../../hooks/useGetData";
 import toast from "react-hot-toast";
@@ -26,7 +26,7 @@ const NewCourse = () => {
   const [tabIndex, setTabIndex] = useState(0);
   const [refresh, setRefresh] = useState(false);
   const [edit, setEdit] = useState(courseId !== undefined ? true : false);
-  const [dataElement, setDataElement] = useState(null)
+  // const [dataElement, setDataElement] = useState(null)
 
   ////////////////states with the data///////////////////////////
 
@@ -308,7 +308,7 @@ const NewCourse = () => {
   // console.log(sectionData)
   return (
     <>
-    
+
       <TrainingContext.Provider
         value={[
           { courseData, setCourseData },
@@ -337,7 +337,7 @@ const NewCourse = () => {
           modalActive={modalActive}
           modalInfo={modalInfo}
           setModalInfo={setModalInfo}
-          setDataElement={setDataElement}
+          // setDataElement={setDataElement}
           invalidVideoClass={invalidVideoClass}
         />
       </TrainingContext.Provider>

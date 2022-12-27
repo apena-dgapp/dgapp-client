@@ -64,9 +64,9 @@ import btnLicense from "./btn-license.png";
 import btnBill from "./btn-bill.png";
 import btnCarnet from "./btn-carnet.png";
 import btnAttendance from "./btn-task.png";
-import mision from "./Misión.jpg";
-import vision from "./Visión.jpg";
-import valores from "./Valores.jpg";
+import mision from "./Misión.png";
+import vision from "./Visión.png";
+import valores from "./Valores.png";
 
 const Images = {
     iconUser,

@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import GlobalContext from "../../../context/GlobalContext";
 import NavbarForm from "./NavbarForm";
 import { getOnePerson } from "../../../api/person";
-// import { apiOneFile } from "../../../api/files";
 import useScreenSize from "../../../hooks/useScreenSize";
-// import io from "socket.io-client";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -14,7 +12,20 @@ const Navbar = () => {
   const [active, setActive] = useState("menu_items");
   const [show, setShow] = useState("menu_hiden");
   const [action, setAction] = useState("");
-  const { width, height } = useScreenSize();
+  const { width } = useScreenSize();
+  const [contextState, , contextMiddleware] = useContext(GlobalContext);
+  const [person, setPerson] = useState({
+    personId: "",
+    fullName: "",
+    position: "",
+    birthday: "",
+    photo: "",
+    email: "",
+    departament: "",
+    documentId: "",
+    reportsTo: "",
+    startedOn: ""
+  });
 
   const navToggle = () => {
 
@@ -38,22 +49,6 @@ const Navbar = () => {
       : setShow("menu_hiden");
   };
 
-  //InitialState - ContexState
-  const [contextState, , contextMiddleware] = useContext(GlobalContext);
-
-  const [person, setPerson] = useState({
-    personId: "",
-    fullName: "",
-    position: "",
-    birthday: "",
-    photo: "",
-    email: "",
-    departament: "",
-    documentId: "",
-    reportsTo: "",
-    startedOn: ""
-  });
-
   const aboutUSChange = (e, name) => {
     e.preventDefault();
 
@@ -63,8 +58,6 @@ const Navbar = () => {
 
     navigate(`/nosotros/${name}`, { state: name, });
   };
-
-  // const [file, setFile] = useState("");
 
   const employeeProfile = (e) => {
     if (active === "menu_items_show") {
@@ -78,11 +71,6 @@ const Navbar = () => {
     navigate(`/perfil/yo`, { state: employeeId, });
   };
 
-  //funcion para setear lenguaje
-  // const setLanguage = (lang) => {
-  //   contextMiddleware.implementationLang(lang);
-  // };
-
   const home = () => {
 
     if (active === "menu_items_show") {
@@ -91,18 +79,11 @@ const Navbar = () => {
     navigate("/inicio");
   };
 
-  const logOut = () => {
-    // socket.disconnect();
+  const logOut = useCallback(() => {
     contextMiddleware.signOut();
     navigate("./");
     localStorage.clear();
-    // contextMiddleware.setIsShowChat();
-
-    // window.localStorage.clear();
-
-    // console.log(contextState.token);
-    // console.log(localStorage);
-  };
+  }, [contextMiddleware, navigate]);
 
   const createPost = () => {
     navigate("/administracion/crear-entrada", {
@@ -180,29 +161,11 @@ const Navbar = () => {
       state: state
     });
 
-    // refreshPage()
   };
 
   const formTemple = (module) => {
     navigate(`/servicios/recursoshumanos/solicitudes/${module}`);
   };
-
-  // const goToFile = (name) => {
-  //   apiOneFile(name)
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((res) => {
-  //       navigate("/pdf", { state: res[0].file, });
-  //     })
-  //     .catch((err) => {
-  //       console.error(err.status);
-  //     });
-  // };
-
-  // function refreshPage() {
-  //   window.location.reload(false);
-  // }
 
   useEffect(() => {
     let unmounted = false;
@@ -230,7 +193,7 @@ const Navbar = () => {
           }
         })
         .catch((err) => {
-          logOut();
+          logOut()
           console.error(err.status);
         });
     }
@@ -244,7 +207,7 @@ const Navbar = () => {
     return () => {
       unmounted = true;
     };
-  }, [contextState.personId, location.pathname]);
+  }, [contextState.personId, location.pathname, logOut]);
 
   return (
     <>

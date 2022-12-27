@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
-import { TrainingContext, SectionsContext } from "../../../TrainingContext";
+import { SectionsContext } from "../../../TrainingContext";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie"
 import useUpdateRecord from "../../../../../hooks/useUpdateRecord";
 import ElementsForm from "./ElementsForm"
@@ -25,7 +25,7 @@ const Elements = (props) => {
 
   function getVideoId(url) {
     const id = url?.split("v=")[1]?.split("&")
-    if(id !== undefined) {
+    if (id !== undefined) {
       return id
     }
     return url
@@ -65,7 +65,7 @@ const Elements = (props) => {
 
   function HandleCookie() {
     props.setLastVideo(videoId);
-    
+
     cookies.set(`courseId:${courseId}:lastVideo`, `${videoId}`, {
       path: `/`,
     });
@@ -76,8 +76,8 @@ const Elements = (props) => {
   useEffect(() => {
     if (videolink === videoId) {
       setShow(true);
-    } 
-  }, [videolink, videoId, setShow]); 
+    }
+  }, [videolink, videoId, setShow]);
 
   return (
     <>

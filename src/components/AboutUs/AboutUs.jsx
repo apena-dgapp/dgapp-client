@@ -11,8 +11,8 @@ import { useLocation } from "react-router-dom";
 
 const AboutUs = () => {
   const [getModule, setGetModule] = useState("");
-  const [getMargin, setGetMargin] = useState("");
-  const { width, height } = useScreenSize();
+  // const [getMargin, setGetMargin] = useState("");
+  const { width } = useScreenSize();
 
   const location = useLocation();
 
@@ -20,23 +20,23 @@ const AboutUs = () => {
     if (location.state) {
       if (location.state === "MISIÓN, VISIÓN Y VALORES") {
         setGetModule(<StrategicMap />);
-        setGetMargin("30rem");
+        // setGetMargin("30rem");
       } else if (location.state === "FUNCIONES") {
         setGetModule(<Functions />);
-        setGetMargin(width <= 1021 ? "175rem" : "77rem");
+        // setGetMargin(width <= 1021 ? "175rem" : "77rem");
       } else if (location.state === "MARCO INSTITUCIONAL") {
         setGetModule(<InstitutionalFramework />);
-        setGetMargin(width <= 1021 ? "9rem" : "35rem");
+        // setGetMargin(width <= 1021 ? "9rem" : "35rem");
       } else if (location.state === "DIRECTOR GENERAL") {
         setGetModule(<Director />);
-        setGetMargin(width <= 1021 ? "15rem" : "28rem");
+        // setGetMargin(width <= 1021 ? "15rem" : "28rem");
       } else if (location.state === "ORGANIGRAMA") {
         setGetModule(<OrganizationChart />);
-        setGetMargin(width <= 1021 ? "9rem" : "47rem");
+        // setGetMargin(width <= 1021 ? "9rem" : "47rem");
       }
     } else {
       setGetModule(<StrategicMap />);
-      setGetMargin("30em");
+      // setGetMargin("30em");
     }
   }, [location.state, width]);
 

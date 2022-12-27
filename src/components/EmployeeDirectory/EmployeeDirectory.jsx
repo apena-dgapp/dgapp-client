@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import EmployeeDirectoryForm from "./EmployeeDirectoryForm";
 import { getAllPersons } from "../../api/person";
 import { getAlldepartament } from "../../api/department";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const EmployeeDirectory = () => {
@@ -14,16 +14,16 @@ const EmployeeDirectory = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(8);
   const [pageLength, setPageLength] = useState("");
-  const [loading, seLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let unmounted = false;
     if (!unmounted) {
-      seLoading(true);
+      setLoading(true);
     }
     setTimeout(() => {
       if (!unmounted) {
-        seLoading(false);
+        setLoading(false);
       }
     }, 1500);
     return () => {
@@ -133,7 +133,7 @@ const EmployeeDirectory = () => {
   const goToProfile = (props) => {
     console.log(props)
     if (props.id !== 0) {
-      navigate(`/perfil/${props.name}`,{
+      navigate(`/perfil/${props.name}`, {
         state: props.id,
       });
     }

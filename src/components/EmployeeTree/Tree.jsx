@@ -4,7 +4,7 @@ import { getEmployeeTree } from "./../../api/person";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const Tree = () => {
-  const [loading, seLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [persons, setPersons] = useState({
     name: "",
     children: "",
@@ -19,11 +19,11 @@ const Tree = () => {
   useEffect(() => {
     let unmounted = false;
     if (!unmounted) {
-      seLoading(true);
+      setLoading(true);
     }
     setTimeout(() => {
       if (!unmounted) {
-        seLoading(false);
+        setLoading(false);
       }
     }, 2500);
     return () => {
@@ -52,9 +52,10 @@ const Tree = () => {
     };
   }, []);
 
+  console.log(persons);
+
   return (
     <>
-
       {loading ? (
         <div className="spinner-container">
           <ClipLoader color="#113250" loading={loading} size={150} />

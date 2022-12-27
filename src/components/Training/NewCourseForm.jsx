@@ -5,7 +5,7 @@ import { TrainingContext } from "./TrainingContext";
 import { AiFillEdit } from "react-icons/ai";
 import { FaTrash } from "react-icons/fa";
 import { BsDashCircleFill, BsImage } from "react-icons/bs";
-import AWN from "awesome-notifications";
+// import AWN from "awesome-notifications";
 import NotificationModal from "../../common/components/Notification/NotificationModal";
 
 const NewCourseForm = (props) => {
@@ -240,7 +240,7 @@ const NewCourseForm = (props) => {
                     data.sectionId === section.id ||
                     ((data.sectionId === section.localId) && !data.id)
                   ) {
-                    
+
                     return (
                       <div key={index}>
                         <div className="video-details-container">

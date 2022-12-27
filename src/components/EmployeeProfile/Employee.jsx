@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import EmployeeForm from "./EmployeeForm";
 import { getOnePerson, isActivePerson } from "../../api/person";
 import { toast } from "react-hot-toast";
-import { useNavigate, useLocation } from "react-router-dom";  
+import { useNavigate, useLocation } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -13,12 +13,12 @@ const Employee = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const id = location.state ? location.state : contextState.personId;
-  const [loading, seLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    seLoading(true);
+    setLoading(true);
     setTimeout(() => {
-      seLoading(false);
+      setLoading(false);
     }, 2000);
   }, []);
 
@@ -34,14 +34,14 @@ const Employee = () => {
     };
 
     const newProfile = Object.assign(profile, reportName);
-    navigate(`/perfil/editar/${profile.firstName.split(" ")[0] + " " + profile.lastName.split(" ")[0]}`,{
+    navigate(`/perfil/editar/${profile.firstName.split(" ")[0] + " " + profile.lastName.split(" ")[0]}`, {
       state: newProfile,
     });
   };
 
   const goTodocuments = (title) => {
-    const state = Object.assign({id}, {title});
-    navigate(`/perfil/documentos/${profile.firstName.split(" ")[0] + " " + profile.lastName.split(" ")[0]}`,{
+    const state = Object.assign({ id }, { title });
+    navigate(`/perfil/documentos/${profile.firstName.split(" ")[0] + " " + profile.lastName.split(" ")[0]}`, {
       state: state,
     });
   };
@@ -78,7 +78,7 @@ const Employee = () => {
       unmounted = true;
     };
   }, [id]);
-  
+
   const handleIsActive = (e) => {
     const isActive = e.target.checked;
     const modifiedAt = new Date();

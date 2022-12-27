@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const Dashboard = () => {
-  const [loading, seLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [ad, setAd] = useState([]);
   const [news, setNews] = useState([]);
@@ -20,11 +20,11 @@ const Dashboard = () => {
   useEffect(() => {
     let unmounted = false;
     if (!unmounted) {
-      seLoading(true);
+      setLoading(true);
     }
     setTimeout(() => {
       if (!unmounted) {
-        seLoading(false);
+        setLoading(false);
       }
     }, 1500);
     return () => {

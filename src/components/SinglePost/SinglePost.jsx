@@ -12,7 +12,7 @@ const SinglePost = () => {
   const [visible, setVisible] = useState(false);
   const [arrayImg, setArrayImg] = useState("");
   const [video, setVideo] = useState("");
-  const [loading, seLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const location = useLocation();
@@ -33,11 +33,11 @@ const SinglePost = () => {
     let unmounted = false;
 
     if (!unmounted) {
-      seLoading(true);
+      setLoading(true);
     }
     setTimeout(() => {
       if (!unmounted) {
-        seLoading(false);
+        setLoading(false);
       }
     }, 1500);
     return () => {

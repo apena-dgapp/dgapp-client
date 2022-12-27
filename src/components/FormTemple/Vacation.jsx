@@ -8,8 +8,6 @@ import toast from 'react-hot-toast';
 import { createVacation, approveSupervisor, revisionRRHH, apiApproveRRHH } from '../../api/form';
 import { sendEmail } from "../../api/email";
 import ImageCrop from './ImageCrop';
-// import { TbUpload } from "react-icons/tb";
-// import { signatureRRHH } from "../../utils/signatureRRHH"
 import { useNavigate } from "react-router-dom";
 import { SlPencil } from "react-icons/sl";
 
@@ -63,13 +61,7 @@ const Vacation = ({ img, profile, directorRRHH, request }) => {
             ...formData,
             [e.target.name]: e.target.value,
         });
-
-        // if (e.target.name === "rrhhFirstDaysAvailable" || e.target.name === "rrhhSecondDaysAvailable") {
-        //     setFormData({ rrhhTotalDaysAvailable: Number(formData.rrhhFirstDaysAvailable) + Number(formData.rrhhSecondDaysAvailable) })
-        // }
-
     };
-
 
     const refInput = useRef();
 
@@ -706,7 +698,6 @@ const Vacation = ({ img, profile, directorRRHH, request }) => {
                                                 color="green"
                                             />
                                         </>
-
                                 }
 
                             </div>

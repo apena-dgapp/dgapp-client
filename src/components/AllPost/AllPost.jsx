@@ -10,7 +10,7 @@ const AllPost = () => {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(8);
   const [pageLength, setPageLength] = useState("");
-  const [loading, seLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
 
   const category = location.state ? location.state.category : "Noticia";
@@ -20,11 +20,11 @@ const AllPost = () => {
   useEffect(() => {
     let unmounted = false;
     if (!unmounted) {
-      seLoading(true);
+      setLoading(true);
     }
     setTimeout(() => {
       if (!unmounted) {
-        seLoading(false);
+        setLoading(false);
       }
     }, 1500);
     return () => {

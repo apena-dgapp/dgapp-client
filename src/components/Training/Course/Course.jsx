@@ -1,14 +1,14 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import CourseForm from "./CourseForm.jsx";
 import { useParams } from "react-router";
 import useGetData from "../../../hooks/useGetData";
-import useUpdateRecord from "../../../hooks/useUpdateRecord";
+// import useUpdateRecord from "../../../hooks/useUpdateRecord";
 import GlobalContext from "../../../context/GlobalContext.js";
 
 
 const Course = () => {
   const urlApi = process.env.REACT_APP_API;
-  const [contextState, , ] = useContext(GlobalContext);
+  const [contextState, ,] = useContext(GlobalContext);
   const userId = contextState.personId; //This is the supposed employee id
 
   const { courseId, videolink } = useParams();
@@ -24,11 +24,11 @@ const Course = () => {
   // ///////////Global context///////////////
   const [globalCheck, setGlobalCheck] = useState();
   const [lastVideo, setLastVideo] = useState();
-  const [checkVideo, setCheckVideo] = useState();
+  // const [checkVideo, setCheckVideo] = useState();
 
   // /////////////Functions//////////////
-    // console.log(globalCheck)
-  function globalCount() {
+  // console.log(globalCheck)
+  const globalCount = useCallback(() => {
     //count the global videos checks
     let count = 0;
     recordsData?.map((record) => {
@@ -38,18 +38,18 @@ const Course = () => {
       return null
     });
     setGlobalCheck(count);
-  }
+  }, [recordsData])
 
-  function globalDuration() {
+  const globalDuration = (() => {
     let duration = 0;
     videosData.map((video) => {
       duration += video.duration
       return null
     });
     return duration
-  }
+  }, [])
 
-  function loading() {
+  const loading = (() => {
     //Check if there're a null value
     if (
       courseData !== null &&
@@ -60,58 +60,58 @@ const Course = () => {
       return true;
     }
     return false;
-  }
+  }, [])
 
-  function HandleCheck(event, id) {
-    useUpdateRecord(event.target.playerInfo.playerState, id, checkVideo);
+  // function HandleCheck(event, id) {
+  //   useUpdateRecord(event.target.playerInfo.playerState, id, checkVideo);
 
-    if (event.target.playerInfo.playerState === 0) {
-      //Planeo hacer que pase al siguiente video con esto
-      // {videos.map((video) => {
-      //   console.log(videoId)
-      //   if(video.id === props.id) {
-      //     console.log("coincide");
-      //   }
-      // })}
-    }
-  }
+  //   if (event.target.playerInfo.playerState === 0) {
+  //     //Planeo hacer que pase al siguiente video con esto
+  //     // {videos.map((video) => {
+  //     //   console.log(videoId)
+  //     //   if(video.id === props.id) {
+  //     //     console.log("coincide");
+  //     //   }
+  //     // })}
+  //   }
+  // }
 
   useEffect(() => {
     if (loading()) {
       //To check if there are a null value
       globalCount();
     }
-  }, [globalCount]);
+  }, [globalCount, loading]);
 
-    return (
-      <>
-        {/* <CourseContext.Provider
+  return (
+    <>
+      {/* <CourseContext.Provider
           value={[
             { globalCheck, setGlobalCheck },
             { lastVideo, setLastVideo },
             { userId },
           ]}
         >     */}
-        { loading() ?
-          <CourseForm
-            course={courseData}
-            sections={sectionsData ? sectionsData: null}
-            videos={videosData ? videosData : null }
-            records={recordsData ? recordsData :null}
-            HandleCheck={HandleCheck}
-            globalDuration={globalDuration}
-            link={videolink ? videolink : lastVideo}
-            globalCheck={globalCheck}
-            setGlobalCheck={setGlobalCheck}
-            lastVideo={lastVideo}
-            setLastVideo={setLastVideo}
-            userId={userId}
-          />
-          :null}
-        {/* </CourseContext.Provider> */}
-      </>
-    );
-  
+      {loading() ?
+        <CourseForm
+          course={courseData}
+          sections={sectionsData ? sectionsData : null}
+          videos={videosData ? videosData : null}
+          records={recordsData ? recordsData : null}
+          // HandleCheck={HandleCheck}
+          globalDuration={globalDuration}
+          link={videolink ? videolink : lastVideo}
+          globalCheck={globalCheck}
+          setGlobalCheck={setGlobalCheck}
+          lastVideo={lastVideo}
+          setLastVideo={setLastVideo}
+          userId={userId}
+        />
+        : null}
+      {/* </CourseContext.Provider> */}
+    </>
+  );
+
 };
 
 export default Course;

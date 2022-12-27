@@ -5,7 +5,7 @@ import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 import Images from "../../common/images/index";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import { useNavigate } from "react-router-dom";  
+// import { useNavigate } from "react-router-dom";
 
 
 const containerStyles = {
@@ -18,7 +18,7 @@ var navigate;
 
 const employeeProfile = (e) => {
   const employeeId = e.currentTarget.id;
-  navigate("/employee",{
+  navigate("/employee", {
     state: employeeId,
   });
 };
@@ -104,11 +104,11 @@ const renderForeignObjectNode = ({
         <img
           onClick={employeeProfile}
           id={nodeDatum.personId}
-          src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}    
+          src={nodeDatum.photo ? nodeDatum.photo : Images.noImg}
           className={classes.photo}
           alt="..."
         />
-       
+
         {!nodeDatum.Departament ? (
           <div className={classes.departament}>No Definido</div>
         ) : (
@@ -157,7 +157,7 @@ export default function TreeForm({ persons }) {
   const separation = { siblings: 1, nonSiblings: 1 };
   const foreignObjectProps = { width: nodeSize.x, height: nodeSize.y, x: -80 };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <div style={containerStyles} ref={containerRef}>

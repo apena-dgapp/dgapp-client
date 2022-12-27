@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Portal from "../../utils/Portal";
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import { saveSignature } from "../../api/form"
 import toast from "react-hot-toast";
-import { removebg } from "../../utils/imgRemove.js"
+// import { removebg } from "../../utils/imgRemove.js"
 
 const ImageCrop = ({
   children,

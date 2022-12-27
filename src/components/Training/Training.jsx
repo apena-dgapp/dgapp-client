@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TrainingForm from "./TrainingForm";
 import { getCourses } from "../../api/course";
 import { getAlldepartament } from "../../api/department";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import Cookies from "universal-cookie";
 // import useGetData from "../../hooks/useGetData";
@@ -17,9 +17,9 @@ const Training = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(8);
   const [pageLength, setPageLength] = useState("");
-  const [loading, seLoading] = useState(false);
- 
- 
+  const [loading, setLoading] = useState(false);
+
+
   const cookies = new Cookies();
 
   function updateView(courseId, views) {
@@ -30,9 +30,9 @@ const Training = () => {
         views: views + 1
       }
     })
-    .catch((err) => {
-      console.log(err);
-    })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   function getVideoId(url) {
@@ -47,11 +47,11 @@ const Training = () => {
   useEffect(() => {
     let unmounted = false;
     if (!unmounted) {
-      seLoading(true);
+      setLoading(true);
     }
     setTimeout(() => {
       if (!unmounted) {
-        seLoading(false);
+        setLoading(false);
       }
     }, 1500);
     return () => {
@@ -75,7 +75,7 @@ const Training = () => {
         console.error(err.status);
       });
 
-      getCourses()
+    getCourses()
       .then((res) => {
         return res.json();
       })
@@ -112,7 +112,7 @@ const Training = () => {
       if (search.length === 0)
         return courses.slice(currentPage, currentPage + 8);
       const filtered = courses.filter((course) =>
-      course.title.toLowerCase().includes(search)
+        course.title.toLowerCase().includes(search)
       );
       return filtered.slice(currentPage, currentPage + 8);
     } else {
@@ -139,7 +139,7 @@ const Training = () => {
     setPage(page + 8);
     if (
       courses.filter((course) =>
-      course.title.toLowerCase().includes(search)
+        course.title.toLowerCase().includes(search)
       ).length >
       currentPage + 8
     )
@@ -158,54 +158,54 @@ const Training = () => {
   };
 
 
-  const goToNew = () => { 
-      navigate("/entrenamiento/curso/crear");
+  const goToNew = () => {
+    navigate("/entrenamiento/curso/crear");
   };
 
   const goToCourse = (props) => {
     let videoCookie = cookies.get(`courseId:${props.id}:lastVideo`);
-    if(videoCookie) {
+    if (videoCookie) {
       navigate(`/entrenamiento/curso/${props.id}/${videoCookie}`)
-    } 
+    }
     else {
       axios.get(`${process.env.REACT_APP_API}/video/firstVideo/${props.id}`)
-      .then(res => {
-        const url = getVideoId(res.data[0].link);
-        navigate(`/entrenamiento/curso/${props.id}/${url}`)
-      })
+        .then(res => {
+          const url = getVideoId(res.data[0].link);
+          navigate(`/entrenamiento/curso/${props.id}/${url}`)
+        })
     }
-    
+
     updateView(props.courseId, props.views)
-    
+
   }
 
-  const goToEdit = (id) => { 
+  const goToEdit = (id) => {
     navigate(`/entrenamiento/curso/${id}/edit`);
   };
 
   return (
     <>
-    {loading ? (
+      {loading ? (
         <div className="spinner-container">
           <ClipLoader color="#113250" loading={loading} size={150} />
         </div>
       ) : (
-      <TrainingForm
-        filterArrayCourses={filterArrayCourses}
-        nextPage={nextPage}
-        backPage={backPage}
-        onSearchChange={onSearchChange}
-        search={search}
-        arrayDepartament={arrayDepartament}
-        filterDep={filterDep}
-        searchDep={searchDep}
-        pageLength={pageLength}
-        page={page}
-        goToNew={goToNew}
-        goToEdit={goToEdit}
-        goToCourse={goToCourse}
-        disableCourse={disableCourse}
-      />
+        <TrainingForm
+          filterArrayCourses={filterArrayCourses}
+          nextPage={nextPage}
+          backPage={backPage}
+          onSearchChange={onSearchChange}
+          search={search}
+          arrayDepartament={arrayDepartament}
+          filterDep={filterDep}
+          searchDep={searchDep}
+          pageLength={pageLength}
+          page={page}
+          goToNew={goToNew}
+          goToEdit={goToEdit}
+          goToCourse={goToCourse}
+          disableCourse={disableCourse}
+        />
       )}
     </>
   );

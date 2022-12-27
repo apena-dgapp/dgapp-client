@@ -76,10 +76,10 @@ const NavbarForm = ({
                 </li>
                 <li>
                   <p onClick={(e) => aboutUSChange(e, "DIRECTOR GENERAL")}> Director General</p>
-                </li>
+                </li>*/}
                 <li>
                   <p onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}>Organigrama</p>
-                </li> */}
+                </li>
               </ul>
             </li>
 
