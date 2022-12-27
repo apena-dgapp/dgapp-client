@@ -527,7 +527,7 @@
     p {
         width: 80%;
         text-align: center;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         margin: 0;
         font-weight: bold;
         color: white;
@@ -565,9 +565,9 @@
     p {
         width: 80%;
         text-align: center;
-        font-size: 0.6rem;
+        font-size: 0.85rem;
         margin: 0;
-        font-weight: bold;
+        // font-weight: bold;
         color: white;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -580,13 +580,13 @@
 .dashboard-section-5-galery-img-cont {
     width: 15.5rem;
     height: 10rem;
-    background-color: #113250;
+    // background-color: #113250;
 }
 
 .dashboard-section-5-galery-img {
     width: 15.5rem;
     height: 10rem;
-    object-fit: contain;
+    object-fit: cover;
     cursor: pointer;
 }
 

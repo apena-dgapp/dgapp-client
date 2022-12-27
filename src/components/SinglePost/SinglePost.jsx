@@ -17,17 +17,6 @@ const SinglePost = () => {
   const [comments, setComments] = useState([]);
   const location = useLocation();
   const dataPost = location.state;
-  // const [person, setPerson] = useState();
-
-  // const [person, setPerson] = useState({
-  //   personId: "",
-  //   fullName: "",
-  //   position: "",
-  //   photo: "",
-  // });
-
-
-  console.log(dataPost)
 
   useEffect(() => {
     let unmounted = false;
@@ -48,28 +37,6 @@ const SinglePost = () => {
   useEffect(() => {
     let unmounted = false;
 
-    // if (contextState.personId) {
-    //   getOnePerson(contextState.personId)
-    //     .then((res) => {
-    //       return res.json();
-    //     })
-    //     .then((res) => {
-    //       if (!unmounted) {
-    //         setPerson({
-    //           personId: res.personId,
-    //           fullName:
-    //             res.firstName.split(" ", 1) + " " + res.lastName.split(" ", 1),
-    //           position: res.position,
-    //           birthday: res.birthday,
-    //           photo: res.photo,
-    //         });
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.error(err.status);
-    //     });
-    // }
-
     getFiles(dataPost.id)
       .then((res) => {
         return res.json();
@@ -89,7 +56,6 @@ const SinglePost = () => {
       })
       .then((res) => {
         if (!unmounted) {
-          // console.log(res)
           setComments(res);
         }
       })
@@ -151,19 +117,6 @@ const SinglePost = () => {
         return toast.error("Error del servidor");
       });
   };
-
-  // const getPerson = (id)=>{
-  //   getOnePerson(id)
-  //   .then((res) => {
-  //     return res.json();
-  //   })
-  //   .then((res) => {
-  //     setPerson(res)
-  //   })
-
-  // }
-
-  // console.log(person)
 
   return (
     <>
