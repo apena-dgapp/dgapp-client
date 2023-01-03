@@ -98,7 +98,7 @@ const DashboardSection4 = ({ birthday, events, goToProfile }) => {
                                                             )}
                                                         </p>
                                                         <p className="dashboard-section-4-event-date">
-                                                            {item.to ? new Date(item.to).toLocaleDateString(
+                                                            {item.to && item.from !== item.to ? new Date(item.to).toLocaleDateString(
                                                                 "es-ES",
                                                                 optionsDate
                                                             ) : null}

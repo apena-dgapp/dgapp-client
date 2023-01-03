@@ -24,7 +24,7 @@
     height: 34rem;
     margin-top: 11.5rem;
     background-color: white;
-    position: fixed;
+    position: absolute;
     border-radius: 0.5rem;
     z-index: 2;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -43,6 +43,9 @@
     font-size: 1rem;
     margin-left: 1.5rem;
     margin-bottom: 3rem;
+}
+.employee-upcoming-container{
+    height: 10rem;
 }
 
 .employee-info-container {
@@ -142,7 +145,7 @@
 
 .employee-updates-container {
     width: 100%;
-    height: 100%;
+    height: 4;
 }
 
 .employee-updates-title {

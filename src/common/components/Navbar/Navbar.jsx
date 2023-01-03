@@ -114,11 +114,11 @@ const Navbar = () => {
       setShow("menu_hiden");
     }
 
-    navigate("/publicaciones/noticias", { state: { category: "Noticia" } });
+    navigate("/publicaciones/noticias/pagina/1", { state: { category: "Noticia" } });
   };
 
   const employeedirectory = () => {
-    navigate("/directorio");
+    navigate("/directorio/pagina/1");
   };
   const employeeNew = () => {
     navigate("/administracion/nuevo-empleado");

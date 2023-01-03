@@ -7,8 +7,6 @@ import OrganizationChart from "./OrganizationChart";
 import useScreenSize from "../../hooks/useScreenSize";
 import { useLocation } from "react-router-dom";
 
-
-
 const AboutUs = () => {
   const [getModule, setGetModule] = useState("");
   // const [getMargin, setGetMargin] = useState("");

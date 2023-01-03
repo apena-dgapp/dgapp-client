@@ -2,20 +2,19 @@ import React, { useState, useEffect } from "react";
 import AllPostForm from "./AllPostForm";
 import { getPost } from "../../api/post";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const AllPost = () => {
+  const { number } = useParams();
   const [arrayAllPost, setArrayAllPost] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(number === "1" ? 0 : 8 * Number(number));
   const [search, setSearch] = useState("");
-  const [page, setPage] = useState(8);
+  const [page, setPage] = useState(8 * Number(number));
   const [pageLength, setPageLength] = useState("");
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-
+  const navigate = useNavigate();
   const category = location.state ? location.state.category : "Noticia";
-
-  // console.log(props)
 
   useEffect(() => {
     let unmounted = false;
@@ -65,6 +64,7 @@ const AllPost = () => {
   };
 
   const nextPage = () => {
+    navigate(`/publicaciones/noticias/pagina/${Number(number) + 1}`, { state: { category: "Noticia" } });
     setPage(page + 8);
     if (
       arrayAllPost.filter((post) => post.title.toLowerCase().includes(search))
@@ -75,6 +75,7 @@ const AllPost = () => {
   };
 
   const backPage = () => {
+    navigate(`/publicaciones/noticias/pagina/${Number(number) - 1}`, { state: { category: "Noticia" } });
     setPage(page - 8);
     if (currentPage > 0) {
       setCurrentPage(currentPage - 8);
@@ -88,6 +89,8 @@ const AllPost = () => {
     setCurrentPage(0);
     setSearch(e.target.value.toLowerCase());
   };
+  // console.log(page);
+  // console.log(currentPage);
 
   return (
     <>

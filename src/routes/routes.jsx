@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, redirect } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import Login from "../components/LogIn/Login";
 import Navbar from "../common/components/Navbar/Navbar";
@@ -58,7 +58,7 @@ const RoutesComponent = () => {
           element={contextState.token ? <SinglePost /> : <Login />}
         />
         <Route
-          path={`/publicaciones/noticias`}
+          path={`/publicaciones/noticias/pagina/:number`}
           element={contextState.token ? <AllPost /> : <Login />}
         />
 
@@ -110,9 +110,13 @@ const RoutesComponent = () => {
           element={contextState.token ? <Documents /> : <Login />}
         />
         <Route
-          path={`/directorio`}
+          path={`/directorio/pagina/:number`}
           element={contextState.token ? <EmployeeDirectory /> : <Login />}
         />
+        {/* <Route
+          path={`/directorio/`}
+          element={contextState.token ? <EmployeeDirectory /> : <Login />}
+        /> */}
         <Route
           path={`/entrenamiento`}
           element={contextState.token ? <Training /> : <Login />}

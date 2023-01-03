@@ -9,7 +9,7 @@ import {
   MdSmartphone,
 } from "react-icons/md";
 import { FaBirthdayCake } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import Images from "../../common/images/index";
 import GlobalContext from "../../context/GlobalContext";
 
@@ -43,9 +43,8 @@ const EmployeeForm = ({
     if (profile.birthdayDate) {
       var day = profile.birthdayDate.split("-");
       var daySplit = day[2];
-      const currentDay = `${new Date().getFullYear()}-${
-        new Date().getMonth() + 1
-      }-${daySplit}`;
+      const currentDay = `${new Date().getFullYear()}-${new Date().getMonth() + 1
+        }-${daySplit}`;
       const fechaComoCadena = currentDay; // día lunes
       const dias = [
         "domingo",
@@ -70,7 +69,7 @@ const EmployeeForm = ({
     var reportsToPhoto = reportsTo.photo;
   }
 
-  useEffect(() => {}, [
+  useEffect(() => { }, [
     firstNSplit,
     lastNSplit,
     profile,
@@ -80,7 +79,7 @@ const EmployeeForm = ({
   ]);
 
   const goToProfileReportTo = () => {
-    navigate(`/perfil/${reportsTofirstN + " " + reportsTolastN}`,{
+    navigate(`/perfil/${reportsTofirstN + " " + reportsTolastN}`, {
       state: reportsTo.personId,
     });
   };
@@ -162,11 +161,11 @@ const EmployeeForm = ({
         </div>
         <div className="employee-header-container">
           <div className="employee-img-con-cel">
-              <img
-                className="employee-img-cel"
-                src={profile.photo ? profile.photo : Images.noImg}
-                alt=""
-              />
+            <img
+              className="employee-img-cel"
+              src={profile.photo ? profile.photo : Images.noImg}
+              alt=""
+            />
           </div>
           <div className="employee-name">{firstNSplit + " " + lastNSplit}</div>
           <div className="employee-position">
@@ -198,7 +197,7 @@ const EmployeeForm = ({
           </div>
 
           <div className="employee-btn-container">
-            <button
+            {/* <button
               onClick={() => goTodocuments("MIS DOCUMENTOS")}
               type="button"
               className="employee-btn-documentation"
@@ -213,7 +212,7 @@ const EmployeeForm = ({
               >
                 Editar
               </button>
-            ) : null}
+            ) : null} */}
 
             {/* <button
               onClick={goToChat}
@@ -261,7 +260,7 @@ const EmployeeForm = ({
                 </p>
               </div>
             </div>
-            <div className="employee-updates-container">
+            {/* <div className="employee-updates-container">
               <div className="employee-updates-title">
                 Documentos Personales
               </div>
@@ -276,7 +275,7 @@ const EmployeeForm = ({
               <div className="employee-info-container">
                 <p className="employee-contact-email">- Cursos Realizados</p>
               </div>
-            </div>
+            </div> */}
           </>
         ) : (
           <>
@@ -324,7 +323,7 @@ const EmployeeForm = ({
                   {profile.phoneNumber ? profile.phoneNumber : null}
                 </p>
               </div>
-              {contextState.userRole === 1 ? 
+              {contextState.userRole === 1 ?
                 <div className="employee-info-container">
                   <i className="md md-smart-phone" />
                   <MdSmartphone size="1.5em" color="gray" />
@@ -332,8 +331,8 @@ const EmployeeForm = ({
                   <p className="employee-contact-email">
                     {profile.celNumber ? profile.celNumber : null}
                   </p>
-                </div>:
-              null}
+                </div> :
+                null}
             </div>
           </>
         )}

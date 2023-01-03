@@ -68,6 +68,9 @@ const NavbarForm = ({
                 <li>
                   <p onClick={(e) => aboutUSChange(e, "MISIÓN, VISIÓN Y VALORES")}>Misión, Visión y Valores</p>
                 </li>
+                <li>
+                  <p onClick={employeedirectory}>Directorio de Empleados</p>
+                </li>
                 {/* <li>
                   <p onClick={(e) => aboutUSChange(e, "FUNCIONES")}>Funciones</p>
                 </li>
@@ -77,9 +80,9 @@ const NavbarForm = ({
                 <li>
                   <p onClick={(e) => aboutUSChange(e, "DIRECTOR GENERAL")}> Director General</p>
                 </li>*/}
-                <li>
+                {/* <li>
                   <p onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}>Organigrama</p>
-                </li>
+                </li> */}
               </ul>
             </li>
 
@@ -117,8 +120,8 @@ const NavbarForm = ({
                       </p>
                       <ul style={{ left: "4.5rem" }} className="menu-left">
                         <li>
-                          <p onClick={() => ticketSystem("crear")}>Crear Ticket</p>
-                          {/* <p onClick={inConstruction}>Crear Ticket</p> */}
+                          {/* <p onClick={() => ticketSystem("crear")}>Crear Ticket</p> */}
+                          <p onClick={inConstruction}>Crear Ticket</p>
                         </li>
                         {/* <li>
                           {
@@ -174,8 +177,12 @@ const NavbarForm = ({
                   <p onClick={allPost}>Noticias</p>
                 </li>
                 <li>
-                  {/* <p on4Click={() => goToPDF()}>Boletin</p> */}
-                  {/* <p onClick={inConstruction}>Boletin</p> */}
+                  <p onClick={inConstruction}>Multimedia</p>
+                </li>
+                <li>
+                  <p onClick={inConstruction}>Contenido Educativo</p>
+                </li>
+                {/* <li>
                   <a
                     className=""
                     href="Boletin No.9.html"
@@ -183,12 +190,12 @@ const NavbarForm = ({
                   >
                     Boletín
                   </a>
-                </li>
+                </li> */}
               </ul>
             </li>
 
             <li className="class-list">
-              <p onClick={training}>Entrenamiento</p>
+              <p onClick={training}>Capacitación</p>
               {/* <p onClick={inConstruction}>Entrenamiento</p> */}
             </li>
             {
@@ -277,7 +284,7 @@ const NavbarForm = ({
                     Mi Perfil
                   </p>
                 </li>
-                <li>
+                {/* <li>
                   <p className="dropdown-item" onClick={employeedirectory}>
                     <i className="fa fa-users" />
                     <FaUsers
@@ -287,8 +294,8 @@ const NavbarForm = ({
                     />
                     Directorio de Empleados
                   </p>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <p onClick={employeeTree} className="dropdown-item">
                     <i className="im im-tree" />
                     <ImTree
@@ -298,7 +305,7 @@ const NavbarForm = ({
                     />
                     Organigrama
                   </p>
-                </li>
+                </li> */}
                 <li>
                   <p onClick={() => logOut()} className="dropdown-item">
                     <i className="md md-logoute" />

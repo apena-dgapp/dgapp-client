@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import DashboardForm from "./DashboardForm";
 import { getPost, getDataCarousel, getPostMultimedia, getPostMultimediaMain } from "../../api/post";
+import { getFiles } from "../../api/post";
 import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
 import { viewUpdate } from "../../api/post";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import DashboardPopup from "./DashboardPopup";
+import Viewer from "react-viewer";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
@@ -18,6 +21,15 @@ const Dashboard = () => {
   const [multimedia, setMultimedia] = useState([]);
   const [multimediaMain, setMultimediaMain] = useState();
   const [arrayCarousel, setArrayCarousel] = useState([]);
+  const [modalActive, setModalActive] = useState(false);
+  const [modalData, setModalData] = useState("");
+  const [visible, setVisible] = useState(false);
+  const [arrayImg, setArrayImg] = useState("");
+
+  const modalToggle = (data) => {
+    setModalActive(!modalActive);
+    setModalData(data)
+  };
 
   useEffect(() => {
     let unmounted = false;
@@ -28,7 +40,7 @@ const Dashboard = () => {
       if (!unmounted) {
         setLoading(false);
       }
-    }, 1500);
+    }, 2500);
     return () => {
       unmounted = true;
     };
@@ -79,23 +91,24 @@ const Dashboard = () => {
           setMultimedia(res[0]);
           res.map((item, index) => {
             return setMultimediaMain({
+              id: item.postId,
               title: item.title,
               url: item.FilesPosts[index].file,
             });
           });
-        }
-      })
-      .catch((err) => {
-        console.error(err.status);
-      });
 
-    getPostMultimedia("Multimedia", 4)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        if (!unmounted) {
-          setMultimedia(res);
+          getPostMultimedia("Multimedia", 5)
+            .then((data) => {
+              return data.json();
+            })
+            .then((data) => {
+              if (!unmounted) {
+                setMultimedia((data?.filter((item) => item.postId !== res[0].postId)));
+              }
+            })
+            .catch((err) => {
+              console.error(err.status);
+            });
         }
       })
       .catch((err) => {
@@ -167,11 +180,11 @@ const Dashboard = () => {
     navigate("/organigrama");
   };
   const employeedirectory = () => {
-    navigate("/directorio");
+    navigate("/directorio/pagina/1");
   };
 
   const allPost = () => {
-    navigate("/publicaciones/noticias", {
+    navigate("/publicaciones/noticias/pagina/1", {
       state: {
         category: "Noticia"
       }
@@ -186,8 +199,33 @@ const Dashboard = () => {
     navigate("/construccion");
   };
 
+  const getImagesHandler = (id) => {
+    getFiles(id)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setArrayImg(res);
+        setVisible(true);
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  }
+
   return (
     <>
+      <Viewer
+        visible={visible}
+        images={arrayImg.files}
+        onClose={() => {
+          setVisible(false);
+        }}
+        zoomSpeed={0.2}
+        // activeIndex={activeIndex}
+        downloadable
+      />
+      <DashboardPopup modalToggle={modalToggle} modalActive={modalActive} modalData={modalData} />
       {loading ? (
         <div className="spinner-container">
           <ClipLoader color="#113250" loading={loading} size={150} />
@@ -209,6 +247,8 @@ const Dashboard = () => {
           arrayCarousel={arrayCarousel}
           requestMenu={requestMenu}
           inConstruction={inConstruction}
+          modalToggle={modalToggle}
+          getImagesHandler={getImagesHandler}
         />
       )}
     </>

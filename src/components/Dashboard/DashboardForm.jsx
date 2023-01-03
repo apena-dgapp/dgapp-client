@@ -18,7 +18,9 @@ const DashboardForm = ({
   multimediaMain,
   arrayCarousel,
   requestMenu,
-  inConstruction
+  inConstruction,
+  modalToggle,
+  getImagesHandler
 }) => {
 
   return (
@@ -37,10 +39,10 @@ const DashboardForm = ({
         <DashboardSection4 birthday={birthday} events={events} goToProfile={goToProfile} />
 
         {/* multimedia */}
-        <DashboardSection5 multimedia={multimedia} multimediaMain={multimediaMain} goToPost={goToPost} />
+        <DashboardSection5 multimedia={multimedia} multimediaMain={multimediaMain} goToPost={goToPost} modalToggle={modalToggle} getImagesHandler={getImagesHandler} />
 
         {/* logo */}
-        <DashboardSection6 />
+        < DashboardSection6 />
 
         {/* social */}
         {/* <DashboardSection7/> */}

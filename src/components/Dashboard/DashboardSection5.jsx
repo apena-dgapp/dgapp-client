@@ -1,11 +1,12 @@
 import React from 'react'
 import { IoMdImages } from "react-icons/io";
-import ReactPlayer from "react-player";
+import { getVideoId } from "../../utils/getYoutubeId"
 
-const DashboardSection5 = ({ multimedia, multimediaMain, goToPost }) => {
+const DashboardSection5 = ({ multimedia, multimediaMain, modalToggle, getImagesHandler }) => {
 
   return (
     <>
+
       <div className="dashboard-section-5">
         <div className="dashboard-section-5-container">
           <div className="dashboard-section-5-header">
@@ -16,14 +17,11 @@ const DashboardSection5 = ({ multimedia, multimediaMain, goToPost }) => {
             multimedia.length ?
               <div className="dashboard-section-5-grid">
                 <div className="dashboard-section-5-video">
-                  {" "}
-                  <ReactPlayer
-                    width="90%"
-                    height="85%"
-                    style={{ marginBottom: "0.5rem" }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    url={multimediaMain?.url}
-                    controls
+                  <span onClick={() => modalToggle(multimediaMain)} className='dashboard-section-5-video-onclick'></span>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${getVideoId(multimediaMain?.url)}`}
+                    aria-disabled title="video"
+                    frameBorder="0"
                   />
                   <p>{multimediaMain?.title}</p>
                 </div>
@@ -35,16 +33,14 @@ const DashboardSection5 = ({ multimedia, multimediaMain, goToPost }) => {
                         return (
                           item.FilesPosts[0].type === "URL" ?
                             <div key={key} className="dashboard-section-5-galery-grid-mult">
-                              <ReactPlayer
-                                width="80%"
-                                height="80%"
-                                // style={{ marginTop: "0.5rem" }}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                url={item.FilesPosts[0].file}
-                                controls
+                              <span onClick={() => modalToggle({ id: item.postId, title: item.title, url: item.FilesPosts[0].file })} className='dashboard-section-5-grid-onclick'></span>
+                              <iframe
+                                src={`https://www.youtube.com/embed/${getVideoId(item.FilesPosts[0].file)}`}
+                                aria-disabled title="video"
+                                frameBorder="0"
                               />
                               <p>{item.title}</p>
-                            </div> : <div onClick={() => goToPost(item)} key={key} className="dashboard-section-5-galery-grid-mult">
+                            </div> : <div onClick={() => getImagesHandler(item.postId)} key={key} className="dashboard-section-5-galery-grid-mult">
                               <i className="io io-md-images" />
                               <IoMdImages
                                 size="1.2rem"

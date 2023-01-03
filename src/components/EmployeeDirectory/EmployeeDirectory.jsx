@@ -2,17 +2,19 @@ import React, { useState, useEffect } from "react";
 import EmployeeDirectoryForm from "./EmployeeDirectoryForm";
 import { getAllPersons } from "../../api/person";
 import { getAlldepartament } from "../../api/department";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const EmployeeDirectory = () => {
+  const { number } = useParams();
   const [arrayAllPersons, setArrayAllPersons] = useState([]);
   const [arrayDepartament, setArrayDepartament] = useState();
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(number === "1" ? 0 : 8 * Number(number));
   const [search, setSearch] = useState("");
   const [searchDep, setSearchDep] = useState("");
   const navigate = useNavigate();
-  const [page, setPage] = useState(8);
+  const location = useLocation();
+  const [page, setPage] = useState(8 * Number(number));
   const [pageLength, setPageLength] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -109,6 +111,7 @@ const EmployeeDirectory = () => {
   };
 
   const nextPage = () => {
+    navigate(`/directorio/pagina/${Number(number) + 1}`);
     setPage(page + 8);
     if (
       arrayAllPersons.filter((persons) =>
@@ -119,6 +122,7 @@ const EmployeeDirectory = () => {
       setCurrentPage(currentPage + 8);
   };
   const backPage = () => {
+    navigate(`/directorio/pagina/${Number(number) - 1}`);
     setPage(page - 8);
     if (currentPage > 0) {
       setCurrentPage(currentPage - 8);

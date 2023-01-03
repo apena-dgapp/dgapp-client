@@ -10,6 +10,10 @@ const RequestMenu = () => {
         navigate(`/servicios/recursoshumanos/solicitudes/${module}`);
     };
 
+    const inConstruction = () => {
+        navigate("/construccion");
+    };
+
     return (
         <>
             <div className="allPostTitle-cont">
@@ -46,7 +50,7 @@ const RequestMenu = () => {
                             <p>Asistencia</p>
                         </div>
                     </div>
-                    <div className="requestmain-button">
+                    <div onClick={inConstruction} className="requestmain-button">
                         <div className="requestmain-btn-img">
                             <img src={Images.btnLicense} alt="" />
                         </div>
@@ -54,7 +58,7 @@ const RequestMenu = () => {
                             <p>Licencias y Permisos</p>
                         </div>
                     </div>
-                    <div className="requestmain-button">
+                    {/* <div className="requestmain-button">
                         <div className="requestmain-btn-img">
                             <img src={Images.btnCarnet} alt="" />
                         </div>
@@ -77,7 +81,7 @@ const RequestMenu = () => {
                         <div className="requestmain-btn-text">
                             <p>Engrega de carnet</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>
