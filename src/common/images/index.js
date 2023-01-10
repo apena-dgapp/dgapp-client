@@ -67,6 +67,11 @@ import btnAttendance from "./btn-task.png";
 import mision from "./Misión.png";
 import vision from "./Visión.png";
 import valores from "./Valores.png";
+import notices from "./Recurso 210.png";
+import educapp from "./EDUCAPP.png";
+import fotoDelDia from "./FOTO DEL DÍA.png";
+import valorDelMes from "./VALOR DEL MES.png";
+import dgappLogo3 from '../images/MicrosoftTeams-image (2).png';
 
 const Images = {
     iconUser,
@@ -136,7 +141,12 @@ const Images = {
     btnAttendance,
     mision,
     vision,
-    valores
+    valores,
+    notices,
+    educapp,
+    fotoDelDia,
+    valorDelMes,
+    dgappLogo3
 }
 
 export default Images;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DashboardForm from "./DashboardForm";
-import { getPost, getDataCarousel, getPostMultimedia, getPostMultimediaMain } from "../../api/post";
+import { getPost, getDataCarousel, getPostMultimedia, getPostMultimediaMain, expirationNoticies } from "../../api/post";
 import { getFiles } from "../../api/post";
 import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import DashboardPopup from "./DashboardPopup";
 import Viewer from "react-viewer";
+import { getTweets } from "../../api/tweets";
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
@@ -25,6 +26,8 @@ const Dashboard = () => {
   const [modalData, setModalData] = useState("");
   const [visible, setVisible] = useState(false);
   const [arrayImg, setArrayImg] = useState("");
+  const [notices, setNotices] = useState([]);
+  const [tweets, setTweets] = useState([]);
 
   const modalToggle = (data) => {
     setModalActive(!modalActive);
@@ -149,6 +152,37 @@ const Dashboard = () => {
     };
   }, []);
 
+  useEffect(() => {
+    let unmounted = false;
+
+    expirationNoticies()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted && res === 200) {
+          getPost("Aviso", 2)
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              if (!unmounted) {
+                setNotices(res.posts);
+              }
+            })
+            .catch((err) => {
+              console.error(err.status);
+            });
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
   const goToPost = (item) => {
     // console.log(item)
     viewUpdate(item.postId)
@@ -170,6 +204,22 @@ const Dashboard = () => {
         return;
       });
   };
+
+  useEffect(() => {
+    let unmounted = false;
+    getTweets()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setTweets(res.tweets);
+        }
+      });
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
   const goToProfile = (props) => {
     navigate(`/perfil/${props.name}`, {
@@ -249,6 +299,8 @@ const Dashboard = () => {
           inConstruction={inConstruction}
           modalToggle={modalToggle}
           getImagesHandler={getImagesHandler}
+          notices={notices}
+          tweets={tweets}
         />
       )}
     </>

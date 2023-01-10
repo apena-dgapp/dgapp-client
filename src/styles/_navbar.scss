@@ -42,26 +42,66 @@ nav ul li p {
     // background-color: red;
     // width: 8rem;
     display: block;
-    color: #0B2C4B;
+    color: #113250;
     text-decoration: none;
     font-size: 1rem;
     height: 100%;
     margin-bottom: 0;
     cursor: pointer;
+    border: gainsboro solid 1px;
+    border-radius: 1rem;
+    // padding-right: 10px;
+    padding-left: 10px;
+    box-shadow: rgba(42, 139, 212, 0.35) -3px 5px 5px;
+}
 
+nav ul li span {
+    background-color: white;
+    // width: 8rem;
+    display: block;
+    color: #113250;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-bottom: 0;
+    cursor: pointer;
+    height: 2rem;
+    // padding-left: 0.5rem;
+    // padding-bottom: 1.5rem;
+    // border: gainsboro solid 1px;
+    // border-radius: 1rem;
+
+    &:hover{
+        background-color: #113250;
+        color: white;
+        border: gainsboro solid 1px;
+        border-radius: 1rem;
+        height: 2rem;
+        padding-left: 0.5rem;
+        // padding-bottom: 2rem;
+        // text-align: center;
+    }
+}
+
+.navbar-arrow{
+    color: #113250;
+
+    &:hover{
+        color: white;
+    }
 }
 
 nav ul li p:hover {
-    // background: #2e4957;
-    color: #0B2C4B;
-    // font-weight: bold;
+    background-color: #113250;
+    color: white;
+    border: #75AAD3 solid 1px;
+    font-weight: bold;
     // margin-bottom: 0;
     cursor: pointer;
 }
 
 nav ul li a {
     display: block;
-    color: #0B2C4B;
+    color: #113250;
     text-decoration: none;
     font-size: 1rem;
     height: 100%;
@@ -71,20 +111,20 @@ nav ul li a {
 
 nav ul ul a:hover {
     // background: #2e4957;
-    color: #0B2C4B;
+    color: #113250;
     // font-weight: bold;
     // margin-bottom: 0;
     cursor: pointer;
 }
 
 nav ul p:hover {
-    color: #0B2C4B;
+    color: #113250;
     cursor: pointer;
 }
 
 nav ul ul p:hover {
     // background: #2e4957;
-    color: #0B2C4B;
+    color: #113250;
     // font-weight: bold;
     // margin-bottom: 0;
     cursor: pointer;
@@ -111,20 +151,22 @@ nav ul ul li {
     position: relative;
 }
 
-nav ul li::before {
-    content: "";
-    height: 3px;
-    width: 0%;
-    background-color: #79ADD4;
-    ;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    transition: 0.4s ease-out;
-}
+// nav ul li::before {
+//     content: "";
+//     height: 3px;
+//     width: 0%;
+//     background-color: #79ADD4;
+//     ;
+//     position: absolute;
+//     left: 0;
+//     bottom: 0;
+//     transition: 0.4s ease-out;
+// }
 
 .dropdown-menu {
     width: 15rem;
+    border: gainsboro solid 1px;
+    border-radius: 1rem;
 
     // line-height: 3rem;
     // height: 25rem;
@@ -181,8 +223,9 @@ nav ul li ul li:hover::before {
 
 .class-list {
     // background-color: red;
-    margin-left: 0.8rem;
-    margin-right: 0.8rem;
+    margin-left: 0.85rem;
+    // margin-right: 0.8rem;
+
     // p{
     //     width: 10rem;
     // }
@@ -209,7 +252,7 @@ nav ul li ul li:hover::before {
 
 .bar_menu {
     background-color: white;
-    height: 10.5rem;
+    height: 9rem;
     width: 100%;
     display: grid;
     grid-template-columns: 20% 60% 20%;
@@ -311,9 +354,12 @@ nav ul li ul li:hover::before {
     margin: 0;
     cursor: pointer;
     color: #113250;
+    border-radius: none;
+    box-shadow: none;
 
     &:hover {
         background-color: white;
+        border:none;
     }
 
     padding-top: 1rem;
@@ -324,7 +370,7 @@ nav ul li ul li:hover::before {
 }
 
 .menu-left {
-    left: 6.8rem;
+    left: 11rem;
     top: -0.5rem;
     width: 10rem;
 }

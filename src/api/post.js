@@ -1,6 +1,6 @@
 
-export const newPostApi = async (title, description, category, author, image, views, isactive, createdby, createdat) => {
-    const body = { title, description, category, author, image, views, isactive, createdby, createdat };
+export const newPostApi = async (title, description, category, author, image, views, isactive, createdby, createdat,expiration) => {
+    const body = { title, description, category, author, image, views, isactive, createdby, createdat,expiration };
     return fetch(`${process.env.REACT_APP_API}post/newpost`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -197,3 +197,15 @@ export const disabledPost = async (id) => {
         }
     })
 }
+
+export const expirationNoticies = async () => {
+    return fetch(`${process.env.REACT_APP_API}post/expirationnoticies`, {
+        method: "PUT",
+        body: JSON.stringify(),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+

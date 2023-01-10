@@ -30,6 +30,7 @@ const NewPost = () => {
     isActive: true,
     video: "",
     date: "",
+    expiration: ""
   });
 
   const refInput = useRef();
@@ -41,6 +42,17 @@ const NewPost = () => {
   const inputText = () => {
     refInput.current.type = "text";
   };
+
+  const refExpiration = useRef();
+
+  const expirationDate = () => {
+    refExpiration.current.type = "date";
+  };
+
+  const expirationText = () => {
+    refExpiration.current.type = "text";
+  };
+
 
   const options = [
     {
@@ -171,19 +183,25 @@ const NewPost = () => {
 
     if (!formData.category) {
       return toast.error("Por favor agregar un categoría");
-    } else if (!formData.title) {
+    } else if (!formData.title && formData.category !== "Aviso") {
       return toast.error("Por favor agregar un título");
       // } else if (!formData.author) {
       //   return toast.error("Por favor agregar un autor");
     } else if (!formData.date) {
       return toast.error("Por favor agregar una fecha");
-    } else if (!currentContentAsHTML) {
+    } else if (!formData.expiration && formData.category === "Aviso") {
+      return toast.error("Por favor agregar una fecha de expiración");
+    } else if (currentContentAsHTML === "<p></p>" && formData.category === "Noticia") {
+      return toast.error("Por favor agregar una descripción");
+    } else if (currentContentAsHTML === "<p></p>" && formData.category === "Aviso") {
+      return toast.error("Por favor agregar una descripción");
+    } else if (currentContentAsHTML.length > 150 && formData.category === "Aviso") {
+      return toast.error("El máximo de caracteres permitidos es de 150");
+    } else if (currentContentAsHTML === "<p></p>" && formData.category === "Multimedia") {
       return toast.error("Por favor agregar una descripción");
     } else if (!img && formData.category === "Portada Principal") {
       return toast.error("Por favor agregar una imagen de portada");
     } else if (!img && formData.category === "Noticia") {
-      return toast.error("Por favor agregar una imagen de portada");
-    } else if (!img && formData.category === "Aviso") {
       return toast.error("Por favor agregar una imagen de portada");
     } else if (!img && formData.category === "EducAPP") {
       return toast.error("Por favor agregar una imagen de portada");
@@ -198,7 +216,8 @@ const NewPost = () => {
       formData.views,
       formData.isActive,
       state?.fullName,
-      formData.date
+      formData.date,
+      formData.expiration
     )
       .then((res) => {
         return res.json();
@@ -306,7 +325,8 @@ const NewPost = () => {
       views: 0,
       isActive: true,
       video: "",
-      date: ""
+      date: "",
+      expiration: ""
     });
     setImg("");
     setAccept("");
@@ -355,6 +375,9 @@ const NewPost = () => {
         refInput={refInput}
         inputDate={inputDate}
         inputText={inputText}
+        refExpiration={refExpiration}
+        expirationDate={expirationDate}
+        expirationText={expirationText}
       />
     </>
   );

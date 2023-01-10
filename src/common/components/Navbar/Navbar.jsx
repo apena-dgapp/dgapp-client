@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import GlobalContext from "../../../context/GlobalContext";
-import NavbarForm from "./NavbarForm";
+import NavbarForm from "../Navbar/NavbarForm";
 import { getOnePerson } from "../../../api/person";
 import useScreenSize from "../../../hooks/useScreenSize";
 

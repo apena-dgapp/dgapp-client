@@ -51,10 +51,6 @@ const DashboardSection4 = ({ birthday, events, goToProfile }) => {
                                     );
                                 })
                             ) : (null
-                                // <div className="dashboard-nodata-cont">
-                                // <img src={Images.nodata} alt="" />
-                                // <p>No se registran cumpleaños para este mes</p>
-                                // </div>
                             )}
                         </div>
                     </div>
