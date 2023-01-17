@@ -28,6 +28,7 @@
 @import "./notifications";
 @import "./course";
 @import "./formTemple";
+@import url('https://fonts.cdnfonts.com/css/gotham');
 
 *,
 *:before,
@@ -45,7 +46,9 @@ body {
   background-size: cover;
   // background-color: #EEEEEE;
   overflow-x: hidden;
-  font-family: 'PT Sans', sans-serif;
+  // font-family: 'PT Sans', sans-serif;
+  font-family: 'Gotham', sans-serif;
+  
 }
 
 body::-webkit-scrollbar {

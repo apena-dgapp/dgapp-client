@@ -15,12 +15,8 @@ const DashboardForm = ({
   multimedia,
   goToPost,
   goToProfile,
-  employeedirectory,
-  allPost,
   multimediaMain,
   arrayCarousel,
-  requestMenu,
-  inConstruction,
   modalToggle,
   getImagesHandler,
   notices,
@@ -31,10 +27,10 @@ const DashboardForm = ({
     <>
       <div className="dashboard-container">
         {/* carousel y noticias */}
-        <DashboardSection1 arrayCarousel={arrayCarousel} news={news} goToPost={goToPost} allPost={allPost} />
+        <DashboardSection1 arrayCarousel={arrayCarousel} news={news} goToPost={goToPost} />
 
         {/* botones */}
-        <DashboardSection2 employeedirectory={employeedirectory} requestMenu={requestMenu} inConstruction={inConstruction} />
+        <DashboardSection2 />
 
         {/* Avisos */}
         <DashboardSection8 notices={notices} />

@@ -10,11 +10,11 @@ import ClipLoader from "react-spinners/ClipLoader";
 import DashboardPopup from "./DashboardPopup";
 import Viewer from "react-viewer";
 import { getTweets } from "../../api/tweets";
+import { TwitterApi } from 'twitter-api-v2';
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  // const [ad, setAd] = useState([]);
   const [news, setNews] = useState([]);
   const [birthday, setBirthday] = useState([]);
   const [events, setEvents] = useState([]);
@@ -33,6 +33,23 @@ const Dashboard = () => {
     setModalActive(!modalActive);
     setModalData(data)
   };
+
+  // useEffect(() => {
+  //   let unmounted = false;
+  //   getTweets()
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((res) => {
+  //       if (!unmounted) {
+  //         setTweets(res.tweets);
+  //         console.log(res);
+  //       }
+  //     });
+  //   return () => {
+  //     unmounted = true;
+  //   };
+  // }, []);
 
   useEffect(() => {
     let unmounted = false;
@@ -184,7 +201,6 @@ const Dashboard = () => {
   }, []);
 
   const goToPost = (item) => {
-    // console.log(item)
     viewUpdate(item.postId)
       .then((res) => {
         navigate(`/${item.category.toLowerCase()}/${item.title.toLowerCase()}`, {
@@ -205,22 +221,6 @@ const Dashboard = () => {
       });
   };
 
-  useEffect(() => {
-    let unmounted = false;
-    getTweets()
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        if (!unmounted) {
-          setTweets(res.tweets);
-        }
-      });
-    return () => {
-      unmounted = true;
-    };
-  }, []);
-
   const goToProfile = (props) => {
     navigate(`/perfil/${props.name}`, {
       state: props.id,
@@ -228,25 +228,6 @@ const Dashboard = () => {
   };
   const employeeTree = () => {
     navigate("/organigrama");
-  };
-  const employeedirectory = () => {
-    navigate("/directorio/pagina/1");
-  };
-
-  const allPost = () => {
-    navigate("/publicaciones/noticias/pagina/1", {
-      state: {
-        category: "Noticia"
-      }
-    });
-  };
-
-  const requestMenu = () => {
-    navigate("/servicios/recursoshumanos/solicitudes");
-  };
-
-  const inConstruction = () => {
-    navigate("/construccion");
   };
 
   const getImagesHandler = (id) => {
@@ -292,11 +273,7 @@ const Dashboard = () => {
           goToPost={goToPost}
           goToProfile={goToProfile}
           employeeTree={employeeTree}
-          employeedirectory={employeedirectory}
-          allPost={allPost}
           arrayCarousel={arrayCarousel}
-          requestMenu={requestMenu}
-          inConstruction={inConstruction}
           modalToggle={modalToggle}
           getImagesHandler={getImagesHandler}
           notices={notices}

@@ -2,20 +2,21 @@
 .dashboard-container {
     width: 100%;
     // height: 213rem;
-    height: 223rem;
+    // height: 207rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 9.3rem;
 }
 
 .dashboard-section-1 {
-    width: 90%;
-    height: 23rem;
+    width: 80%;
+    height: 20.5rem;
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 8rem;
+    align-items: flex-end;
+    // margin-top: 8rem;
     // background-color: blue;
 }
 
@@ -40,7 +41,7 @@
 .dashboard-section-1-news-header {
     p {
         color: #113250;
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: bold;
         margin: 0;
         margin-top: -0.5rem;
@@ -52,7 +53,7 @@
     width: 3rem;
     height: 0.3rem;
     background-color: #75AAD3;
-    font-size: 5px;
+    font-size: 4px;
     margin-bottom: 1rem;
 }
 
@@ -111,6 +112,7 @@
     height: 1.3rem;
     border-radius: 1rem;
     background-color: #75AAD3;
+    text-decoration: none;
 
     p {
         font-size: 0.8rem;
@@ -123,7 +125,7 @@
 
 //dashboard botones y avisos
 .dashboard-section-2 {
-    width: 90%;
+    width: 80%;
     height: 15rem;
     display: flex;
     flex-direction: column;
@@ -134,7 +136,7 @@
 
 .dashboard-section-2-btn-container {
     width: 100%;
-    height: 40rem;
+    height: 15rem;
     // background-color: red;
     display: flex;
     justify-content: space-between;
@@ -150,6 +152,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    text-decoration: none;
 
     p {
         font-size: 1rem;
@@ -172,8 +175,8 @@
     margin-top: 5rem;
 }
 .dashboard-section-2-notices{
-    width: 90%;
-    height: 18rem;
+    width: 80%;
+    height: 16rem;
     // margin-bottom: 10rem;
     // background-color: blue;
 }
@@ -185,11 +188,19 @@
     grid-template-columns: 45% 10% 45%;
 }
 
+.dashboard-section-2-line-cont{
+    width: 80%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    // background-color: red;
+}
+
 .dashboard-section-2-notices-txt{
     width: 80%;
-    height: 8rem;
-    margin-top: 9rem;
-    // margin-left: 3.5rem;
+    height: 9rem;
+    margin-top: 6rem;
+    margin-left: 3.5rem;
 
     p{
         margin: 0;
@@ -207,16 +218,33 @@
 
 .dashboard-section-2-notices-img-cont{
     width: 100%;
-    // height: 100%;
+    height: 18rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    // position: absolute;
-    margin-top: -16.5rem;
+    margin-top: -16rem;
+    // background-color: red;
+
+    // img{
+    //     width: 100%;
+    //     height: 100%;
+    //     object-fit: cover;
+    // }
+}
+
+.dashboard-section-2-notices-img{
+    width: 100%;
+    height: 18rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // margin-top: -16rem;
+    // background-color: red;
 
     img{
-        width: 92rem;
-        // object-fit: cover;
+        width: 100%;
+        height: 15.5rem;
+        object-fit: cover;
     }
 }
 
@@ -224,13 +252,13 @@
     width: 50%;
     height: 30%;
     border-right: #113250 solid 2px;
-    margin-top: 10rem;
+    margin-top: 8rem;
 }
 
 //avisos y educapp
 .dashboard-section-3-container {
-    width: 90%;
-    height: 35rem;
+    width: 80%;
+    height: 28rem;
     display: flex;
     // background-color: yellow;
 }
@@ -254,7 +282,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
+    margin-top: 0.8rem;
     border: #BCD3E6 solid 0.3rem;    
 }
 .dashboard-section-3-header {
@@ -262,20 +290,25 @@
     justify-content: center;
     align-items: center;
     width: 23rem;
-    height: 6.6rem;
+    height: 5rem;
     background-color: #113250;
     color: white;
     border: #BCD3E6 0.3rem solid;
-    border-radius: 1rem;
-
-    img{
-        width: 8.5rem;
-    }
+    border-radius: 1rem; 
 }
 
+.dashboard-section-3-img-educapp{
+    width: 8rem;
+}
+.dashboard-section-3-img-photoday{
+    width: 10rem; 
+}
+.dashboard-section-3-img-valuemonth{
+    width: 11rem;
+}
 .dashboard-section-3-line-cont{
-    width: 90%;
-    height: 8rem;
+    width: 80%;
+    height: 5rem;
     display: flex;
     align-items: center;
     // background-color: red;
@@ -287,89 +320,10 @@
     background-color: #BCD3E6;
 }
 
-
-
-
-// .dashboard-section-3-header {
-//     display: flex;
-//     justify-content: space-around;
-//     align-items: center;
-//     width: 87%;
-//     height: 8rem;
-//     margin-top: 8rem;
-// }
-
-// .dashboard-section-3 {
-//     width: 87%;
-//     height: 30rem;
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     margin-top: 17.5rem;
-// }
-
-// .dashboard-section-3-title {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     width: 33rem;
-//     height: 8rem;
-//     margin-top: -8rem;
-// }
-
-// .dashboard-section-3-img-ad {
-//     width: 15.5rem;
-// }
-
-// .dashboard-section-3-img-educ {
-//     width: 17.5rem;
-// }
-
-// .dashboard-section-3-cont {
-//     display: flex;
-//     flex-direction: column;
-//     width: 100%;
-//     height: 100%;
-//     justify-content: center;
-//     align-items: center;
-// }
-
-// .dashboard-section-3-figure {
-//     width: 87%;
-//     height: 40%;
-//     background-color: #BCD3E6;
-//     position: absolute;
-// }
-
-// .dashboard-section-3-ad-educ {
-//     display: flex;
-//     justify-content: space-around;
-//     align-items: center;
-//     width: 100%;
-//     height: 100%;
-//     background-color: transparent;
-//     z-index: 2;
-// }
-
-// .dashboard-section-3-ad {
-//     width: 35rem;
-//     height: 32rem;
-//     border: #75AAD3 1.2rem solid;
-//     // background-color: red;
-// }
-
-// .dashboard-section-3-educ {
-//     width: 35rem;
-//     height: 32rem;
-//     border: #75AAD3 1.2rem solid;
-//     // background-color: red;
-// }
-
 //cumpleanos y calendario
 .dashboard-section-4 {
-    width: 90%;
-    height: 25rem;
+    width: 80%;
+    height: 23rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -396,7 +350,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 6rem;
+    height: 5rem;
     background-color: #113250;
     color: white;
     border: #BCD3E6 0.3rem solid;
@@ -404,12 +358,13 @@
 }
 
 .dashboard-section-4-img-birhtday {
-    width: 14.5rem;
+    width: 13.5rem;
 }
 
 .dashboard-section-4-scroll {
     height: 18.5rem;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .dashboard-section-4-scroll::-webkit-scrollbar {
@@ -436,14 +391,13 @@
     height: 6rem;
     cursor: pointer;
     border-bottom: 1px solid gainsboro;
+    text-decoration: none;
 
     p {
         margin: 0;
     }
 
     &:hover {
-        // background-color: #BCD3E6;
-        // color: white;
         p{
             color: #75AAD3;
         }
@@ -455,7 +409,6 @@
     grid-template-columns: 5% 70% 25%;
     justify-content: center;
     align-items: center;
-    // text-align: justify;
     width: 100%;
     height: 7rem;
     cursor: pointer;
@@ -466,9 +419,6 @@
     }
 
     &:hover {
-        // background-color: #BCD3E6;
-        // color: white;
-
         p{
             color: #75AAD3;
         }
@@ -477,7 +427,7 @@
 
 .dashboard-section-4-event-num {
     width: 100%;
-    height: 7rem;
+    height: 6.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -501,7 +451,7 @@
     width: 4rem;
     height: 3.8rem;
     // background-color: red;
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-weight: bold;
     color: #113250;
 }
@@ -531,7 +481,7 @@
     width: 20rem;
 
     p {
-        font-size: 1.1rem;
+        font-size: 1rem;
         color: #113250;
     }
 }
@@ -551,7 +501,7 @@
 }
 
 .dashboard-section-4-event-txt {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #113250;
     font-weight: bold;
 }
@@ -565,13 +515,13 @@
 }
 
 .dashboard-section-4-event-date {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     color: #113250;
 }
 
 .dashboard-section-4-event-time {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #113250;
 }
 
@@ -602,8 +552,8 @@
 
 //Multimedia
 .dashboard-section-5 {
-    width: 90%;
-    height: 43rem;
+    width: 80%;
+    height: 40rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -630,7 +580,7 @@
 
     p {
         color: white;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: bold;
         margin: 0;
     }
@@ -663,7 +613,7 @@
         width:35rem;
         height: 4rem;
         text-align: center;
-        font-size: 1rem;
+        font-size: 0.89rem;
         margin: 0;
         font-weight: bold;
         color: white;
@@ -725,7 +675,7 @@
         width: 80%;
         height: 2.5rem;
         text-align: center;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         margin: 0;
         // font-weight: bold;
         color: white;
@@ -770,10 +720,11 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 8rem;
+    width: 8.6rem;
     height: 1.3rem;
     border-radius: 1rem;
     background-color: #75AAD3;
+    text-decoration: none;
 
     p {
         font-size: 0.8rem;
@@ -783,6 +734,7 @@
     }
 
 }
+
 
 //REACT VIEWER
 .react-viewer-mask{
@@ -805,8 +757,8 @@
 }
 
 .dashboard-section-6 {
-    width: 90%;
-    height: 12rem;
+    width: 80%;
+    height: 18rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -841,6 +793,7 @@
     font-size: 0.8rem;
 }
 
+//social
 .dashboard-section-7 {
     width: 90%;
     height: 25rem;
@@ -850,12 +803,11 @@
     // margin-top: 3rem;
     // background-color: red;
 }
-
 .dashboard-section-7-grid {
     display: grid;
     width: 100%;
     height: 25rem;
-    grid-template-columns: 32% 1% 33%  1% 33%;
+    grid-template-columns: 28% 1% 35%  1% 35%;
 }
 
 .dashboard-section-7-section {
@@ -869,7 +821,7 @@
 
     p {
         color: #113250;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: bold;
         margin: 0;
     }
@@ -965,15 +917,17 @@
 
     span {
         width: 0.2rem;
-        height: 15rem;
+        height: 10rem;
         background-color: gainsboro;
-        margin-top: 2.5rem;
+        // margin-top: 2.5rem;
     }
 }
 
 .dashboard-section-7-scroll {
+    width: 90%;
     height: 16rem;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .dashboard-section-7-scroll::-webkit-scrollbar {
@@ -1001,19 +955,10 @@
     cursor: pointer;
     border-bottom: 1px solid gainsboro;
     text-decoration: none;
-    // background-color: blue;
 
     p {
         margin: 0;
     }
-
-    // &:hover {
-    //     // background-color: #BCD3E6;
-    //     // color: white;
-    //     p{
-    //         color: #75AAD3;
-    //     }
-    // }
 }
 .dashboard-section-7-content{
     width: 25rem;
@@ -2308,24 +2253,908 @@
 //laptop generic
 @media screen and (min-width: 1021px) and (max-width: 1320px) {
 
-    //avisos y educapp
-    .dashboard-section-3-ad {
-        width: 32rem;
+    //carousel y noticias
+    .dashboard-container {
+        margin-top: 8rem;
+    }
+    .dashboard-section-1 {
+        height: 16.7rem;
+        // margin-top: 8rem;
     }
 
-    .dashboard-section-3-educ {
-        width: 32rem;
+    .dashboard-section-1-carousel {  
+        height: 16rem;
     }
-    .dashboard-section-2-notices-img-cont img {
-        width: 83rem;
+
+    .dashboard-section-1-news {
+        height: 16rem;
+    }
+
+    .dashboard-section-1-news-multi {
+        height: 12.3rem;
+    }
+    
+    .dashboard-section-1-news-content {
+        height: 3.5rem;
+        margin-top: 0.5rem;
+    }
+    
+    .dashboard-section-1-news-content-txt {
+        height: 3rem;
+        font-size: 0.69rem;
+    }
+
+    //dashboard botones y avisos
+    .dashboard-section-2 {
+        height: 14.5rem;
+    }
+
+    .dashboard-section-2-btn-container {
+        height: 11rem;
+    }
+
+    .dashboard-section-2-btn {
+        width: 8rem;
+        height: 10rem;
+
+        p {
+            font-size: 0.8rem;
+        }
+    }
+
+    .dashboard-section-2-btn-img {
+        width: 7rem;
+    }
+    .dashboard-section-2-notices{
+        height: 15rem;
+    }
+
+    .dashboard-section-2-line-cont {
+        height: 1.5rem;
+        align-items: flex-start;
+        // margin-bottom: 1rem;
+        // background-color: red;
+    }
+    
+    .dashboard-section-2-notices-txt{
+        p{
+            font-size: 0.8rem;
+        }
+    }
+    
+    .dashboard-section-2-notices-img{    
+        height: 16rem;
+        img{
+            height: 12.91rem;
+        }
+    }
+    
+    .dashboard-section-2-notices-separte{
+        height: 25%;
+        margin-top: 8.8rem;
+    }
+
+     //avisos y educapp
+     .dashboard-section-3-container {
+        width: 83%;
+        height: 28rem;
+    }
+    .dashboard-section-3-figure{
+        width: 23rem;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .dashboard-section-3-box{
+        width: 20rem;
+        height: 20rem;
+    }
+    .dashboard-section-3-header {
+        width: 20rem;
+        height: 3.5rem;
+    }
+
+     //cumpleanos y calendario
+     .dashboard-section-4 {
+        height: 21rem;
+    }
+
+    .dashboard-section-4-header {
+        height: 4.5rem;
+    }
+
+    .dashboard-section-4-img-birhtday {
+        width: 12rem;
+    }
+
+    .dashboard-section-4-scroll {
+        height: 16.5rem;
+    }
+
+    .dashboard-section-4-content-birth {
+        height: 5.5rem;
+    }
+
+    .dashboard-section-4-content-calendar {
+        height: 6rem;
+        grid-template-columns: 5% 67% 28%;
+    }
+
+    .dashboard-section-4-event-num {
+        height: 5.5rem;
+    }
+
+    .dashboard-section-4-day {
+        height: 3rem;
+        font-size: 2.5rem;
+    }
+
+    .dashboard-section-4-month {
+        font-size: 0.9rem;
+    }
+
+    .dashboard-section-4-employee-img {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .dashboard-section-4-text {
+        p {
+            font-size: 0.9rem;
+        }
+    }
+
+    .dashboard-section-4-event-txt {
+        font-size: 0.9rem;
+    }
+
+    .dashboard-section-4-event-time {
+        font-size: 0.9rem;
+    }
+
+    //Multimedia
+    .dashboard-section-5 {
+        height: 32rem;
+    }
+
+    .dashboard-section-5-container {
+        height: 28rem;
+    }
+
+    .dashboard-section-5-header {
+        height: 4.5rem;
+        p {
+            font-size: 1.6rem;
+        }
+    }
+
+    .dashboard-section-5-line {
+        height: 0.2rem;
+    }
+
+    .dashboard-section-5-grid {
+        height: 20rem;
+        grid-template-columns: 51% 1% 48%;
+    }
+
+    .dashboard-section-5-video {
+        p {
+            width:30rem;
+        }
+        iframe{
+            width:30rem;
+            height: 15rem;
+        }
+    }
+
+    .dashboard-section-5-galery-grid-mult {
+        iframe{
+            width: 13rem;
+            height: 7rem;
+        }
+    }
+
+    .dashboard-section-5-galery-img-cont {
+        width: 13rem;
+        height: 7rem;
+    }
+
+    .dashboard-section-5-galery-img {
+        width: 13rem;
+        height: 7rem;
+    }
+
+    .dashboard-section-5-galery-icon {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .dashboard-section-5-btn-container {
+        margin-left: -1rem;
+    }
+
+    ///logo
+    .dashboard-section-6 {
+        height: 15rem;
+    }
+
+    //social
+    .dashboard-section-7 {
+        height: 25rem;
+    }
+
+    .dashboard-section-7-grid {
+        grid-template-columns: 30% 1% 34% 1% 34%;
+    }
+    
+    .dashboard-section-7-section-instagram {
+        width: 10.5rem;
+        height: 15rem;
+    }
+    .dashboard-section-7-section-instagram-logo{   
+        padding-left: 1.8rem;
+        img{
+            width: 0.8rem;
+            height: 0.8rem;
+        }
+        p{
+            margin-left: 0.4rem;
+        }
+    }
+    .dashboard-section-7-section-instagram-img{
+        width: 10rem;
+        height: 9.7rem;
+        img{
+            width: 10rem;
+            height: 7rem;
+        }
+    
+    }
+    .dashboard-section-7-section-instagram-likes{
+        p{
+            font-size: 0.5rem;
+        }
+    }
+    
+    .dashboard-section-7-scroll {
+        width: 90%;
+        height: 15rem;
     }
 }
 
-//laptop generic yelissa
+//laptop yelissa
 @media screen and (min-width: 1321px) and (max-width: 1367px) {
 
-    //navbar
-    .nav-senction-items {
-        margin-left: 2rem;
+   //carousel y noticias
+    .dashboard-container {
+        margin-top: 8rem;
+    }
+
+    .dashboard-section-1 {
+        height: 16.8rem;
+        // margin-top: 8rem;
+    }
+
+    .dashboard-section-1-carousel {  
+        height: 16rem;
+    }
+
+    .dashboard-section-1-news {
+        height: 16rem;
+    }
+
+    .dashboard-section-1-news-multi {
+        height: 12.3rem;
+    }
+
+    .dashboard-section-1-news-content {
+        height: 3.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .dashboard-section-1-news-content-txt {
+        height: 3rem;
+        font-size: 0.69rem;
+    }
+    //dashboard botones y avisos
+    .dashboard-section-2 {
+        height: 14.5rem;
+    }
+
+    .dashboard-section-2-btn-container {
+        height: 11rem;
+    }
+
+    .dashboard-section-2-btn {
+        width: 8rem;
+        height: 10rem;
+
+        p {
+            font-size: 0.8rem;
+        }
+    }
+
+    .dashboard-section-2-btn-img {
+        width: 7rem;
+    }
+    .dashboard-section-2-notices{
+        height: 15rem;
+    }
+
+    .dashboard-section-2-line-cont {
+        height: 1.5rem;
+        align-items: flex-start;
+        // margin-bottom: 1rem;
+        // background-color: red;
+    }
+    
+    .dashboard-section-2-notices-txt{
+        p{
+            font-size: 0.8rem;
+        }
+    } 
+    .dashboard-section-2-notices-img{    
+        img{
+            height: 13.8rem;
+        }
+    }
+    .dashboard-section-2-notices-separte{
+        height: 25%;
+        margin-top: 8.8rem;
+    }
+
+    //avisos y educapp
+    .dashboard-section-3-container {
+        width: 83%;
+        height: 25rem;
+    }
+    .dashboard-section-3-figure{
+        width: 23rem;
+        justify-content: center;
+        align-items: center;
+    }
+    .dashboard-section-3-box{
+        width: 20rem;
+        height: 20rem;
+    }
+    .dashboard-section-3-header {
+        width: 20rem;
+        height: 4.5rem;
+    }
+    .dashboard-section-3-line-cont{
+        width: 80%;
+        height: 5rem;
+        display: flex;
+        align-items: center;
+        // background-color: red;
+    }
+    .dashboard-section-3-line-cont {
+        height: 4.5rem;
+    }
+
+    //cumpleanos y calendario
+    .dashboard-section-4 {
+        height: 21rem;
+    }
+    .dashboard-section-4-header {
+        height: 4.5rem;
+    }
+
+    .dashboard-section-4-img-birhtday {
+        width: 12rem;
+    }
+
+    .dashboard-section-4-scroll {
+        height: 16.5rem;
+    }
+
+    .dashboard-section-4-content-birth {
+        height: 5.5rem;
+    }
+
+    .dashboard-section-4-content-calendar {
+        height: 6rem;
+        grid-template-columns: 5% 67% 28%;
+    }
+
+    .dashboard-section-4-event-num {
+        height: 5.5rem;
+    }
+
+    .dashboard-section-4-day {
+        height: 3rem;
+        font-size: 2.5rem;
+    }
+
+    .dashboard-section-4-month {
+        font-size: 0.9rem;
+    }
+
+    .dashboard-section-4-employee-img {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .dashboard-section-4-text {
+        p {
+            font-size: 0.9rem;
+        }
+    }
+
+    .dashboard-section-4-event-txt {
+        font-size: 0.9rem;
+    }
+
+    .dashboard-section-4-event-time {
+        font-size: 0.9rem;
+    }
+   
+
+    //Multimedia
+    .dashboard-section-5 {
+        height: 33rem;
+    }
+
+    .dashboard-section-5-container {
+        height: 28rem;
+    }
+
+    .dashboard-section-5-header {
+        height: 4.5rem;
+        p {
+            font-size: 1.6rem;
+        }
+    }
+
+    .dashboard-section-5-line {
+        height: 0.2rem;
+    }
+
+    .dashboard-section-5-grid {
+        height: 20rem;
+        grid-template-columns: 50% 1% 49%;
+    }
+
+    .dashboard-section-5-video {
+        p {
+            width:30rem;
+        }
+        iframe{
+            width:30rem;
+            height: 15rem;
+        }
+    }
+
+    .dashboard-section-5-galery-grid-mult {
+        iframe{
+            width: 13rem;
+            height: 7rem;
+        }
+    }
+
+    .dashboard-section-5-galery-img-cont {
+        width: 13rem;
+        height: 7rem;
+    }
+
+    .dashboard-section-5-galery-img {
+        width: 13rem;
+        height: 7rem;
+    }
+
+    .dashboard-section-5-galery-icon {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+
+    .dashboard-section-5-btn-container {
+        margin-left: -1.5rem;
+    }
+
+       ///logo
+       .dashboard-section-6 {
+        height: 15rem;
+    }
+
+    //social
+    .dashboard-section-7 {
+        height: 25rem;
+    }
+
+    .dashboard-section-7-grid {
+        grid-template-columns: 30% 1% 34% 1% 34%;
+    }
+    
+    .dashboard-section-7-section-instagram {
+        width: 10.5rem;
+        height: 15rem;
+    }
+    .dashboard-section-7-section-instagram-logo{   
+        padding-left: 1.8rem;
+        img{
+            width: 0.8rem;
+            height: 0.8rem;
+        }
+        p{
+            margin-left: 0.4rem;
+        }
+    }
+    .dashboard-section-7-section-instagram-img{
+        width: 10rem;
+        height: 9.7rem;
+        img{
+            width: 10rem;
+            height: 7rem;
+        }   
+    }
+    .dashboard-section-7-section-instagram-likes{
+        p{
+            font-size: 0.5rem;
+        }
+    }
+    
+    .dashboard-section-7-scroll {
+        width: 90%;
+        height: 15rem;
     }
 }
+
+//laptop david
+@media screen and (min-width: 5020px) and (max-width: 5321px) {
+
+       //carousel y noticias
+       .dashboard-container {
+            margin-top: 20rem;
+        }
+
+     .dashboard-section-1 {
+         height: 51rem;
+        //  margin-top: 7rem;
+        //  background-color: blue;
+     }
+ 
+     .dashboard-section-1-carousel {  
+         height: 50rem;
+     }
+
+     .dashboard-section-1-news-header p {
+        font-size: 2rem;
+    }
+
+    .dashboard-section-1-news-title-line {
+        content: "";
+        width: 7rem;
+        height: 0.6rem;
+    }
+
+     .dashboard-section-1-news {
+        height: 45rem;
+     }
+ 
+     .dashboard-section-1-news-multi {
+         height: 40rem;
+     }
+ 
+     .dashboard-section-1-news-content {
+         height: 11.2rem;
+         margin-top: 0.8rem;
+     }
+ 
+     .dashboard-section-1-news-content-txt {
+         height: 9.8rem;
+         font-size: 2rem;
+        //  background-color: red;
+     }
+
+     .dashboard-section-1-news-btn-container {
+        height: 5rem;
+        // background-color: red;
+    }
+
+    .dashboard-section-1-news-btn {
+        width: 18.5rem;
+        height: 3.5rem;
+    }
+    .dashboard-section-1-news-btn p {
+        font-size: 2.1rem;
+    }
+
+     //dashboard botones y avisos
+     .dashboard-section-2 {
+         height: 45rem;
+        //  background-color: blue
+     }
+ 
+     .dashboard-section-2-btn-container {
+         height: 30rem;
+        //  background-color: blue;
+     }
+ 
+     .dashboard-section-2-btn {
+         width: 30rem;
+         height: 30rem;
+        //  background-color: red;
+ 
+         p {
+             font-size: 2.6rem;
+         }
+     }
+ 
+     .dashboard-section-2-btn-img {
+         width: 17rem;
+     }
+     .dashboard-section-2-notices{
+         height: 58rem;
+        //  background-color: red;
+     }
+
+     .dashboard-section-2-line-cont {
+        height: 2rem;
+    }
+     
+     .dashboard-section-2-notices-txt{
+        width: 80%;
+        height: 5rem;
+        margin-top: 32rem;
+        margin-left: 3.5rem;
+         p{
+             font-size: 2.5rem;
+         }
+     } 
+     .dashboard-section-2-notices-img-cont {
+        height: 20rem;
+    }
+     .dashboard-section-2-notices-img{    
+         img{
+             height: 51.8rem;
+         }
+     }
+     .dashboard-section-2-notices-separte{
+         height: 50%;
+         margin-top: 32.8rem;
+     }
+ 
+     //avisos y educapp
+     .dashboard-section-3-container {
+         width: 83%;
+         height: 58rem;
+        //  background-color: red;
+     }
+     .dashboard-section-3-figure{
+         width: 53rem;
+         justify-content: center;
+         align-items: center;
+        //  background-color: blue;
+     }
+     .dashboard-section-3-box{
+         width: 50rem;
+         height: 50rem;
+        //  background-color: green;
+     }
+     .dashboard-section-3-header {
+         width: 50rem;
+         height: 8.5rem;
+     }
+     .dashboard-section-3-img-educapp {
+        width: 16rem;
+    }
+    .dashboard-section-3-img-photoday {
+        width: 18rem;
+    }
+    .dashboard-section-3-img-valuemonth {
+        width: 19rem;
+    }
+     .dashboard-section-3-line-cont{
+         width: 80%;
+         height: 5rem;
+         display: flex;
+         align-items: center;
+         // background-color: red;
+     }
+     .dashboard-section-3-line-cont {
+         height: 4.5rem;
+     }
+ 
+     //cumpleanos y calendario
+     .dashboard-section-4 {
+         height: 60rem;
+     }
+     .dashboard-section-4-header {
+         height: 10.5rem;
+     }
+ 
+     .dashboard-section-4-img-birhtday {
+         width: 25rem;
+     }
+ 
+     .dashboard-section-4-scroll {
+         height: 32.5rem;
+     }
+     .dashboard-section-4-scroll::-webkit-scrollbar {
+        width: 20px;
+    }
+    
+ 
+     .dashboard-section-4-content-birth {
+         height: 10.5rem;
+     }
+ 
+     .dashboard-section-4-content-calendar {
+         height: 10.5rem;
+         grid-template-columns: 5% 67% 28%;
+     }
+ 
+     .dashboard-section-4-event-num {
+         height: 10rem;
+     }
+ 
+     .dashboard-section-4-day {
+        width: 100%;
+        height: 5rem;
+        font-size: 5rem;
+     }
+ 
+     .dashboard-section-4-month {
+         font-size: 2.5rem;
+     }
+ 
+     .dashboard-section-4-employee-img {
+         width: 7.5rem;
+         height: 7.5rem;
+     }
+ 
+     .dashboard-section-4-text {
+        width: 70rem;
+         p {
+             font-size: 2.5rem;
+         }
+     }
+ 
+     .dashboard-section-4-event-txt {
+         font-size: 2.5rem;
+     }
+ 
+     .dashboard-section-4-event-time {
+         font-size: 2.5rem;
+     }
+    
+ 
+     //Multimedia
+     .dashboard-section-5 {
+         height: 90rem;
+        //  background-color: red;
+     }
+ 
+     .dashboard-section-5-container {
+         height: 80rem;
+     }
+ 
+     .dashboard-section-5-header {
+         height: 10rem;
+        //    background-color: red;
+         p {
+             font-size: 3.5rem;
+         }
+     }
+     .dashboard-section-5-line {
+        width: 8.5rem;
+         height: 0.6rem;
+     }
+ 
+     .dashboard-section-5-grid {
+         height: 65rem;
+         grid-template-columns: 51% 1% 48%;
+        //  background-color: red;
+     }
+
+    .dashboard-section-5-video-onclick {
+        width: 118rem;
+        height: 61rem;
+        // background-color: blue;
+    }
+
+     .dashboard-section-5-video {
+         p {
+             width:95rem;
+             height: 12rem;
+             font-size: 2.5rem;
+            //  background-color: red;
+         }
+         iframe{
+             width:118rem;
+             height: 60rem;
+         }
+     }
+
+     .dashboard-section-5-galery-grid-mult {
+        justify-content: flex-start;
+         iframe{
+             width: 50rem;
+             height: 25rem;
+         }
+
+         p{
+            font-size: 2rem;
+         }
+        //  background-color: red;
+     }
+ 
+     .dashboard-section-5-galery-img-cont {
+         width: 50rem;
+         height: 25rem;
+     }
+ 
+     .dashboard-section-5-galery-img {
+         width: 50rem;
+         height: 25rem;
+     }
+ 
+     .dashboard-section-5-galery-icon {
+         width: 3.5rem;
+         height: 3.5rem;
+     }
+ 
+     .dashboard-section-5-btn-container {
+         margin-left: -5rem;
+         height: 3rem;
+        //  background-color: blue;
+     }
+     .dashboard-section-5-btn {
+        width: 20rem;
+        height: 3rem;
+        p{
+            font-size: 2.1rem;
+        }
+    }
+ 
+        ///logo
+        .dashboard-section-6 {
+         height: 25rem;
+     }
+     .dashboard-section-6-logo-icon {
+        width: 7rem;
+        height: 7rem;
+    }
+ 
+     //social
+     .dashboard-section-7 {
+         height: 25rem;
+     }
+ 
+     .dashboard-section-7-grid {
+         grid-template-columns: 30% 1% 34% 1% 34%;
+     }
+     
+     .dashboard-section-7-section-instagram {
+         width: 10.5rem;
+         height: 15rem;
+     }
+     .dashboard-section-7-section-instagram-logo{   
+         padding-left: 1.8rem;
+         img{
+             width: 0.8rem;
+             height: 0.8rem;
+         }
+         p{
+             margin-left: 0.4rem;
+         }
+     }
+     .dashboard-section-7-section-instagram-img{
+         width: 10rem;
+         height: 9.7rem;
+         img{
+             width: 10rem;
+             height: 7rem;
+         }   
+     }
+     .dashboard-section-7-section-instagram-likes{
+         p{
+             font-size: 0.5rem;
+         }
+     }
+     
+     .dashboard-section-7-scroll {
+         width: 90%;
+         height: 15rem;
+     }
+ 
+ }

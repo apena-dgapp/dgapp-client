@@ -217,7 +217,7 @@ const NewPost = () => {
       formData.isActive,
       state?.fullName,
       formData.date,
-      formData.expiration
+      formData.expiration ? formData.expiration : null
     )
       .then((res) => {
         return res.json();

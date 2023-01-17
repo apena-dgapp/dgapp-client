@@ -21,10 +21,27 @@
     }
 }  
 
-.chart-container{
+// .chart-container{
+//     width: 100%;
+//     height: 84rem;
+// }
+
+.chart-container {
     width: 100%;
-    height: 84rem;
-}
+    // height: 50rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-color: red;
+    margin-top: 8rem;
+  }
+  
+  .chart-img {
+    width: 100%;
+    img{
+        width: 80%;
+    }
+  }
 
 .box-con{
     display: flex;

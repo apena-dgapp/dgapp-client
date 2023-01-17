@@ -20,7 +20,7 @@ import imgActive from './image-active.png';
 import galery from '../images/galeria-de-imagenes.png';
 import galeryActive from '../images/galeria-de-imagenes-active.png';
 import cumpleanos from './cumpleanos.png';
-import chart from './diagram.png';
+import chart from './Estructura Organizacional DGAPP 2021-17.png';
 import ministerio from './ministerio.jpg';
 import noImg from '../images/sinFoto.jpg';
 import director from '../images/director.jpg';
@@ -67,10 +67,10 @@ import btnAttendance from "./btn-task.png";
 import mision from "./Misión.png";
 import vision from "./Visión.png";
 import valores from "./Valores.png";
-import notices from "./Recurso 210.png";
-import educapp from "./EDUCAPP.png";
-import fotoDelDia from "./FOTO DEL DÍA.png";
-import valorDelMes from "./VALOR DEL MES.png";
+import notices from "./Recurso 1@4x.png";
+import educapp from "./Recurso 4@4x.png";
+import fotoDelDia from "./Recurso 3@4x.png";
+import valorDelMes from "./Recurso 2@4x.png";
 import dgappLogo3 from '../images/MicrosoftTeams-image (2).png';
 
 const Images = {

@@ -15,7 +15,7 @@
 
 
 nav {
-    position: fixed;
+    // position: fixed;
     z-index: 3;
     top: 0;
 
@@ -44,14 +44,15 @@ nav ul li p {
     display: block;
     color: #113250;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
+    text-align: center;
     height: 100%;
     margin-bottom: 0;
     cursor: pointer;
     border: gainsboro solid 1px;
     border-radius: 1rem;
     // padding-right: 10px;
-    padding-left: 10px;
+    // padding-left: 10px;
     box-shadow: rgba(42, 139, 212, 0.35) -3px 5px 5px;
 }
 
@@ -61,7 +62,7 @@ nav ul li span {
     display: block;
     color: #113250;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin-bottom: 0;
     cursor: pointer;
     height: 2rem;
@@ -103,7 +104,7 @@ nav ul li a {
     display: block;
     color: #113250;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
     height: 100%;
     // margin-bottom: 0;
     cursor: pointer;
@@ -254,18 +255,24 @@ nav ul li ul li:hover::before {
     background-color: white;
     height: 9rem;
     width: 100%;
+    position: fixed;
     display: grid;
     grid-template-columns: 20% 60% 20%;
     // justify-content: center;
     align-items: center;
     box-shadow: 0 8px 5px rgba(51, 77, 131, 0.205);
-    // background-color: blue;
+    transition: opacity 1s ease-out;
+    opacity: 0;
+}
+
+.bar_menu-show{
+    opacity: 1;
+    display: grid;
 }
 
 .nav-senction-logo {
     width: 100%;
     height: 100%;
-    // background-color: blue;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -324,7 +331,7 @@ nav ul li ul li:hover::before {
 
 .nav-user-name {
     color: #0B2C4B;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: bold;
     //   margin-top: 2rem;
     //   cursor: pointer;
@@ -332,7 +339,7 @@ nav ul li ul li:hover::before {
 
 .nav-user-position {
     color: rgb(42, 52, 63);
-    font-size: 1rem;
+    font-size: 0.8rem;
     margin-bottom: 0.5rem;
     font-weight: bold;
 }
@@ -765,7 +772,7 @@ nav ul li ul li:hover::before {
 //laptop generic
 @media screen and (min-width: 1021px) and (max-width: 1320px) {
     .bar_menu {
-        height: 5.5;
+        height: 8rem;
         grid-template-columns: 16% 67% 17%;
     }
 
@@ -791,4 +798,68 @@ nav ul li ul li:hover::before {
         font-size: 0.8rem;
     }
 
+}
+
+//laptop Yelissa
+@media screen and (min-width: 1321px) and (max-width: 1367px) {
+
+    //navbar
+    .bar_menu {
+        height: 8rem;
+        grid-template-columns: 19% 63% 18%;
+    }
+    .logo_dgapp{
+        width: 7.8rem;
+    }
+    .nav-senction-items {
+        margin-left: 2.2rem;
+    }
+    .nav-user-img {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+    .nav-user-name {
+        font-size: 0.8rem;
+    }
+}
+
+//laptop David
+@media screen and (min-width: 5020px) and (max-width: 5321px) {
+
+    //navbar
+    .bar_menu {
+        height: 20rem;
+        grid-template-columns: 19% 63% 18%;
+        // background-color: red;
+    }
+    .logo_dgapp{
+        width: 22rem;
+    }
+    .nav-senction-items {
+        margin-left: 0;
+        justify-content: center;
+    }
+    .class-list {
+        margin-left: 4.5rem;
+        height: 3rem;
+    }
+    nav ul li p {
+        font-size: 2rem;
+        height: 3.3rem;
+    }
+    nav ul li span {
+        font-size: 2rem;
+        height: 3.5rem;
+    }
+    nav ul li span:hover {
+        font-size: 2rem;
+        height: 3.5rem;
+    }
+    .nav-user-img {
+        width: 8.5rem;
+        height: 8.5rem;
+    }
+    .nav-user-name {
+        font-size: 2rem;
+    }
 }

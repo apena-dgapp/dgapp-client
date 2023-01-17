@@ -1,60 +1,62 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import Images from "../../common/images/index";
+import { TwitterTimelineEmbed, TwitterShareButton, TwitterFollowButton, TwitterHashtagButton, TwitterMentionButton, TwitterTweetEmbed, TwitterMomentShare, TwitterDMButton, TwitterVideoEmbed, TwitterOnAirButton } from 'react-twitter-embed';
 
-const DashboardSection2 = ({ employeedirectory, requestMenu, inConstruction }) => {
+const DashboardSection2 = () => {
 
   return (
     <>
       <div className="dashboard-section-2">
         <div className="dashboard-section-2-btn-container">
-          <div onClick={inConstruction} className="dashboard-section-2-btn">
+          <Link className="dashboard-section-2-btn" to={"/construccion"}>
             <img
               className="dashboard-section-2-btn-img"
               src={Images.induccion}
               alt=""
             />
             <p>INDUCCIÓN</p>
-          </div>
-          <div onClick={employeedirectory} className="dashboard-section-2-btn">
+          </Link>
+          <Link className="dashboard-section-2-btn" to={"/directorio/pagina/1"}>
             <img
               className="dashboard-section-2-btn-img"
               src={Images.directorio}
               alt=""
             />
             <p>DIRECTORIO</p>
-          </div>
-          <div onClick={inConstruction} className="dashboard-section-2-btn">
+          </Link>
+          <Link className="dashboard-section-2-btn" to={"/construccion"}>
             <img
               className="dashboard-section-2-btn-img"
               src={Images.capacitacion}
               alt=""
             />
             <p>CAPACITACIÓN</p>
-          </div>
-          <div onClick={inConstruction} className="dashboard-section-2-btn">
+          </Link>
+          <Link className="dashboard-section-2-btn" to={"/construccion"}>
             <img
               className="dashboard-section-2-btn-img"
               src={Images.politicas}
               alt=""
             />
-            <p>POLÍTICAS INSTITUCIONALES</p>
-          </div>
-          <div onClick={inConstruction} className="dashboard-section-2-btn">
+            <p>POLÍTICAS Y PROCESOS</p>
+          </Link>
+          <Link className="dashboard-section-2-btn" to={"/construccion"}>
             <img
               className="dashboard-section-2-btn-img"
               src={Images.recursos}
               alt=""
             />
             <p>RECURSOS</p>
-          </div>
-          <div onClick={requestMenu} className="dashboard-section-2-btn">
+          </Link>
+          <Link className="dashboard-section-2-btn" to={"/servicios/recursoshumanos/solicitudes"}>
             <img
               className="dashboard-section-2-btn-img"
               src={Images.solicitudes}
               alt=""
             />
             <p>SOLICITUDES</p>
-          </div>
+          </Link>
         </div>
       </div>
     </>

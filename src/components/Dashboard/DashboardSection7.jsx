@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Images from '../../common/images';
-import { replaceTxt } from "../../utils/textLink.js";
+// import { replaceTxt } from "../../utils/textLink.js";
 import { FiSend, FiHeart } from "react-icons/fi";
 import { FaRegComment } from "react-icons/fa";
 
 const DashboardSection7 = ({ tweets }) => {
+
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://platform.twitter.com/widgets.js";
+        document.getElementsByClassName("twitter-embed")[0].appendChild(script);
+    }, []);
+
 
     return (
         <>
@@ -14,10 +21,11 @@ const DashboardSection7 = ({ tweets }) => {
                         <p>TWITTER</p>
                         <div className="dashboard-section-7-section-cont">
                             <div className="dashboard-section-7-scroll">
-                                {tweets.length ? (
+                                {/* {tweets.length ? (
                                     tweets?.map((item, index) => {
                                         return (
-                                            <a key={index}
+                                            <a
+                                                key={index}
                                                 href={`https://twitter.com/DGAPPRD/status/${item.tweet_id}`}
                                                 target="_blank"
                                                 rel="noreferrer"
@@ -39,14 +47,26 @@ const DashboardSection7 = ({ tweets }) => {
                                                         <p> {replaceTxt(item.text)}</p>
                                                     </div>
                                                     <div className="dashboard-section-7-content-text">
-                                                        <p style={{ color: "#5CB8E4", marginTop: "0.5rem", fontWeight: "bold" }}> {`#${item.entities.hashtags[0]?.tag} #${item.entities.hashtags[1]?.tag}`}</p>
+                                                        <p style={{ color: "#5CB8E4", marginTop: "0.5rem", fontWeight: "bold" }}> {`#${item.entities.hashtags ? item.entities.hashtags[0]?.tag : null} #${item.entities.hashtags ? item.entities.hashtags[1]?.tag : null}`}</p>
                                                     </div>
                                                 </div>
                                             </a>
                                         );
                                     })
                                 ) : (null
-                                )}
+                                )} */}
+                                <section className="twitterContainer">
+                                    <div className="twitter-embed">
+                                        <a
+                                            className="twitter-timeline"
+                                            // data-theme="dark"
+                                            data-tweet-limit="5"
+                                            data-chrome="noheader nofooter noborders"
+                                            href="https://twitter.com/DGAPPRD"
+                                        >
+                                        </a>
+                                    </div>
+                                </section>
                             </div>
                         </div>
                     </div>

@@ -2,8 +2,12 @@ import React from 'react'
 import { IoMdImages } from "react-icons/io";
 import { MdOutlineDoubleArrow } from "react-icons/md";
 import { getVideoId } from "../../utils/getYoutubeId"
+import { Link } from 'react-router-dom';
+import useScreenSize from "../../hooks/useScreenSize";
 
 const DashboardSection5 = ({ multimedia, multimediaMain, modalToggle, getImagesHandler }) => {
+
+  const { width } = useScreenSize();
 
   return (
     <>
@@ -62,15 +66,15 @@ const DashboardSection5 = ({ multimedia, multimediaMain, modalToggle, getImagesH
               </div> : null
           }
           <div className="dashboard-section-5-btn-container">
-            <div onClick="" type="button" className="dashboard-section-5-btn">
+            <Link to="" type="button" className="dashboard-section-5-btn">
               <i className="md md-outline-double-arrow" />
               <p>Ir a Multimedia</p>
               <MdOutlineDoubleArrow
-                size="1.2rem"
+                size={width < 5021 ? "1.2rem" : "2.5rem"}
                 color="white"
                 style={{ marginLeft: "0.3rem", marginRight: "0.5rem" }}
               />
-            </div>
+            </Link>
           </div>
         </div>
       </div>

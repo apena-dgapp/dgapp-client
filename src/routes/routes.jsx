@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter as Router, Routes, Route, redirect } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import Login from "../components/LogIn/Login";
 import Navbar from "../common/components/Navbar/Navbar";
