@@ -43,12 +43,12 @@ const DashboardSection7 = ({ tweets, instagram }) => {
                     <div className="dashboard-section-7-section">
                         <p>FACEBOOK</p>
                         <div className="dashboard-section-7-section-cont">
-                            <div className="dashboard-section-7-scroll">
+                            <div className="dashboard-section-7-scroll-fb">
                                 <section className="dashboard-section-7-fb">
                                     <iframe
                                         title='facebook'
-                                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdgapprd&tabs=timeline&width=424&height=2500&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId=616510976770949"
-                                        width={450}
+                                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdgapprd&tabs=timeline&width=350&height=2500&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=true&appId=616510976770949"
+                                        width={400}
                                         height={2500}
                                         style={{ border: 'none', overflow: 'hidden' }}
                                         scrolling="no"
@@ -70,7 +70,7 @@ const DashboardSection7 = ({ tweets, instagram }) => {
                             {
                                 instagram?.map((item, key) => {
                                     return (
-                                        key < 2 ? <a key={key} href={item.permalink} target="_blank" rel="noreferrer" className="dashboard-section-7-section-instagram">
+                                        key < 1 ? <a key={key} href={item.permalink} target="_blank" rel="noreferrer" className="dashboard-section-7-section-instagram">
                                             <div className="dashboard-section-7-section-instagram-logo">
                                                 <img src={Images.dgappicon} alt="" />
                                                 <p>dgapprd</p>
@@ -79,34 +79,35 @@ const DashboardSection7 = ({ tweets, instagram }) => {
                                                 {
                                                     item?.media_type === "VIDEO" ? <iframe title='video' src={item?.media_url} frameborder="0" /> : <img src={item?.media_url} alt="" />
                                                 }
-                                                {/* <div className="dashboard-section-7-section-instagram-icons">
+                                                <div className="dashboard-section-7-section-instagram-text">
+                                                    <p className="">
+                                                        {replaceTxt(item.caption)}
+                                                    </p>
+                                                </div>
+                                                <div className="dashboard-section-7-section-instagram-icons">
                                                     <span>
                                                         <i className="fi fi-heart" />
                                                         <FiHeart
                                                             className="dashboard-section-7-section-instagram-icon"
-                                                            size="1rem"
+                                                            size="1.2rem"
                                                         />
                                                     </span>
                                                     <span>
                                                         <i className="fa fa-regcomment" />
                                                         <FaRegComment
                                                             className="dashboard-section-7-section-instagram-icon"
-                                                            size="1rem"
+                                                            size="1.2rem"
                                                         />
                                                     </span>
                                                     <span>
                                                         <i className="fi fi-send" />
                                                         <FiSend
                                                             className="dashboard-section-7-section-instagram-icon"
-                                                            size="1rem"
+                                                            size="1.2rem"
                                                         />
                                                     </span>
-                                                </div> */}
-                                                <div className="dashboard-section-7-section-instagram-text">
-                                                    <p className="">
-                                                        {replaceTxt(item.caption)}
-                                                    </p>
                                                 </div>
+
                                             </div>
                                             <div className="dashboard-section-7-section-instagram-likes">
                                                 <p>32 personas le han dado me gusta</p>

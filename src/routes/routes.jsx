@@ -28,6 +28,7 @@ import TicketSystem from "../components/TicketSystem/TicketSystem";
 import Documents from "../components/DownloadFile/Download";
 import FormTemple from "../components/FormTemple/FormTemple";
 import RequestMenu from "../components/FormTemple/RequestMenu";
+import News from "../components/News/News";
 
 const RoutesComponent = () => {
   const [contextState] = useContext(GlobalContext);
@@ -59,7 +60,7 @@ const RoutesComponent = () => {
         />
         <Route
           path={`/publicaciones/noticias/pagina/:number`}
-          element={contextState.token ? <AllPost /> : <Login />}
+          element={contextState.token ? <News /> : <Login />}
         />
 
         <Route

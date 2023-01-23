@@ -132,7 +132,7 @@
 
 .newPostContainerGrid {
   display: grid;
-  grid-template-columns: 42% 55%;
+  grid-template-columns: 43% 57%;
   width: 100%;
 }
 
@@ -140,6 +140,7 @@
   display: flex;
   width: 100%;
   justify-content: center;
+  // background-color: red;
 }
 
 .area {
@@ -251,7 +252,13 @@
   display: flex;
   justify-content: center;
 }
-
+.newpost-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .post-title {
   display: flex;
   justify-content: center;
@@ -273,6 +280,14 @@
 
 .newpost-form {
   margin-top: 1.5rem;
+}
+
+//MEDIAS QUERIES
+@media screen and (min-width: 1366px ) and (max-width:1367px){
+  .newPostContainerGrid {
+    grid-template-columns: 45% 55%;
+  }
+
 }
 
 

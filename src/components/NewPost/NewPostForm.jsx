@@ -50,7 +50,7 @@ const NewPostForm = ({
         modalToggleCancel={modalToggleCancel}
         modalToggleAceppt={modalToggleAceppt}
       />
-      <div className="post-container">
+      <div className="newpost-container">
         <div className="post-title">
           <p className="Post-title-text">CREAR UNA NUEVA PUBLICACIÓN</p>
         </div>
