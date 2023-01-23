@@ -223,14 +223,27 @@ nav ul li ul li:hover::before {
 }
 
 .class-list {
-    // background-color: red;
     margin-left: 0.85rem;
-    // margin-right: 0.8rem;
-
-    // p{
-    //     width: 10rem;
-    // }
 }
+
+// .class-list-inicio {
+//     width: 3.8rem;
+// }
+// .class-list-nosotros {
+//    width: 6.6rem;
+// }
+// .class-list-servicios {
+   
+// }
+// .class-list-publiaciones {
+   
+// }
+// .class-list-capacitacion {
+   
+// }
+// .class-list-administracion {
+   
+// }
 
 .container-menu-right {
     display: flex;
@@ -398,379 +411,379 @@ nav ul li ul li:hover::before {
 
 //MEDIAS QUERIES
 
-//Phone X
-@media screen and (max-width:420px) {
-    .bar_menu {
-        height: 5rem;
-        width: 100%;
-        display: flex;
-        grid-template-columns: none;
-        align-items: center;
-        text-align: center;
-    }
+// //Phone X
+// @media screen and (max-width:420px) {
+//     .bar_menu {
+//         height: 5rem;
+//         width: 100%;
+//         display: flex;
+//         grid-template-columns: none;
+//         align-items: center;
+//         text-align: center;
+//     }
 
-    .nav-senction-logo {
-        // background-color: blue;
-        display: flex;
-        // width: 8rem;
-        justify-content: center;
-    }
+//     .nav-senction-logo {
+//         // background-color: blue;
+//         display: flex;
+//         // width: 8rem;
+//         justify-content: center;
+//     }
 
-    .logo_dgapp {
-        width: 6.5rem;
-    }
+//     .logo_dgapp {
+//         width: 6.5rem;
+//     }
 
-    .nav-senction-items {
-        // background-color: red;
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        // margin-top: 10rem;
-        align-items: center;
-        margin-left: 0;
-    }
+//     .nav-senction-items {
+//         // background-color: red;
+//         display: flex;
+//         width: 100%;
+//         flex-direction: column;
+//         // margin-top: 10rem;
+//         align-items: center;
+//         margin-left: 0;
+//     }
 
-    .menu_items {
-        display: none;
-        flex-direction: column;
-        flex-wrap: none;
-        margin-top: 5rem;
-        background-color: #113250;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-    }
+//     .menu_items {
+//         display: none;
+//         flex-direction: column;
+//         flex-wrap: none;
+//         margin-top: 5rem;
+//         background-color: #113250;
+//         width: 100%;
+//         height: 100%;
+//         position: fixed;
+//     }
 
-    .menu_items_show {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: none;
-        margin-top: 5rem;
-        background-color: #113250;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-    }
+//     .menu_items_show {
+//         display: flex;
+//         flex-direction: column;
+//         flex-wrap: none;
+//         margin-top: 5rem;
+//         background-color: #113250;
+//         width: 100%;
+//         height: 100%;
+//         position: fixed;
+//     }
 
-    .nav-senction-user {
-        // background-color: blue;
-        display: flex;
-        // width: 5rem;
-        justify-content: center !important;
-    }
+//     .nav-senction-user {
+//         // background-color: blue;
+//         display: flex;
+//         // width: 5rem;
+//         justify-content: center !important;
+//     }
 
-    .btn_menu {
-        display: flex;
-    }
+//     .btn_menu {
+//         display: flex;
+//     }
 
-    .btn_menu-img {
-        margin-right: 0;
-    }
+//     .btn_menu-img {
+//         margin-right: 0;
+//     }
 
-    nav ul li p {
-        color: white;
-        font-size: 2rem;
-        letter-spacing: 2px;
-        margin-top: 1rem;
+//     nav ul li p {
+//         color: white;
+//         font-size: 2rem;
+//         letter-spacing: 2px;
+//         margin-top: 1rem;
 
-        // height: 4.5rem;
-        &:hover {
-            color: #75AAD3;
-        }
-    }
+//         // height: 4.5rem;
+//         &:hover {
+//             color: #75AAD3;
+//         }
+//     }
 
-    nav ul li::before {
-        display: none;
-    }
+//     nav ul li::before {
+//         display: none;
+//     }
 
-    nav ul li:hover>ul {
-        // display: none;
-        width: 100% !important;
-        height: 35rem !important;
-        background-color: #113250;
-        z-index: 5;
-        margin-top: -1rem;
-
-
-        p {
-            font-size: 1rem;
-            line-height: 0.5rem;
-            margin-top: 1rem;
-            height: 2rem;
-        }
-    }
-
-    nav ul li a {
-        color: white;
-        font-size: 1rem;
-    }
-
-    nav ul ul a:hover {
-        color: #75AAD3;
-    }
-
-    nav ul p:hover {
-        cursor: pointer;
-    }
-
-    nav ul ul p:hover {
-        color: #75AAD3;
-    }
-
-    .menu-left {
-        left: 0;
-        top: 0;
-        // width: 10rem;
-    }
-
-    nav ul ul li {
-        // float: none;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        color: white;
-    }
-
-    .icondown {
-        display: none;
-    }
-
-    .btn_menu {
-        cursor: pointer;
-        display: block;
-    }
-
-    .nav-senction-user {
-        figure {
-            display: none;
-        }
-    }
-
-    .admin-hiden {
-        display: none;
-    }
-}
-
-//Phone 12/13 Pro Mas
-@media screen and (min-width: 421px) and (max-width: 720px) {
-    .bar_menu {
-        height: 5rem;
-        width: 100%;
-        display: flex;
-        grid-template-columns: none;
-        align-items: center;
-        text-align: center;
-    }
-
-    .nav-senction-logo {
-        // background-color: blue;
-        display: flex;
-        // width: 8rem;
-        justify-content: center;
-    }
-
-    .logo_dgapp {
-        width: 6.5rem;
-    }
-
-    .nav-senction-items {
-        // background-color: red;
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        // margin-top: 10rem;
-        align-items: center;
-        margin-left: 0;
-    }
-
-    .menu_items {
-        display: none;
-        flex-direction: column;
-        flex-wrap: none;
-        margin-top: 5rem;
-        background-color: #113250;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-    }
-
-    .menu_items_show {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: none;
-        margin-top: 5rem;
-        background-color: #113250;
-        width: 100%;
-        height: 100%;
-        position: fixed;
-    }
-
-    .nav-senction-user {
-        // background-color: blue;
-        display: flex;
-        // width: 5rem;
-        justify-content: center !important;
-    }
-
-    .btn_menu {
-        display: flex;
-    }
-
-    .btn_menu-img {
-        margin-right: 0;
-    }
-
-    nav ul li p {
-        color: white;
-        font-size: 2rem;
-        letter-spacing: 2px;
-        margin-top: 1rem;
-
-        // height: 4.5rem;
-        &:hover {
-            color: #75AAD3;
-        }
-    }
-
-    nav ul li::before {
-        display: none;
-    }
-
-    nav ul li:hover>ul {
-        // display: none;
-        width: 100% !important;
-        height: 35rem !important;
-        background-color: #113250;
-        z-index: 5;
-        margin-top: -1rem;
+//     nav ul li:hover>ul {
+//         // display: none;
+//         width: 100% !important;
+//         height: 35rem !important;
+//         background-color: #113250;
+//         z-index: 5;
+//         margin-top: -1rem;
 
 
-        p {
-            font-size: 1rem;
-            line-height: 0.5rem;
-            margin-top: 1rem;
-            height: 2rem;
-        }
-    }
+//         p {
+//             font-size: 1rem;
+//             line-height: 0.5rem;
+//             margin-top: 1rem;
+//             height: 2rem;
+//         }
+//     }
 
-    nav ul li a {
-        color: white;
-        font-size: 1rem;
-    }
+//     nav ul li a {
+//         color: white;
+//         font-size: 1rem;
+//     }
 
-    nav ul ul a:hover {
-        color: #75AAD3;
-    }
+//     nav ul ul a:hover {
+//         color: #75AAD3;
+//     }
 
-    nav ul p:hover {
-        cursor: pointer;
-    }
+//     nav ul p:hover {
+//         cursor: pointer;
+//     }
 
-    nav ul ul p:hover {
-        color: #75AAD3;
-    }
+//     nav ul ul p:hover {
+//         color: #75AAD3;
+//     }
 
-    .menu-left {
-        left: 0;
-        top: 0;
-        // width: 10rem;
-    }
+//     .menu-left {
+//         left: 0;
+//         top: 0;
+//         // width: 10rem;
+//     }
 
-    nav ul ul li {
-        // float: none;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        color: white;
-    }
+//     nav ul ul li {
+//         // float: none;
+//         display: flex;
+//         flex-direction: column;
+//         position: relative;
+//         color: white;
+//     }
 
-    .icondown {
-        display: none;
-    }
+//     .icondown {
+//         display: none;
+//     }
 
-    .btn_menu {
-        cursor: pointer;
-        display: block;
-    }
+//     .btn_menu {
+//         cursor: pointer;
+//         display: block;
+//     }
 
-    .nav-senction-user {
-        figure {
-            display: none;
-        }
-    }
+//     .nav-senction-user {
+//         figure {
+//             display: none;
+//         }
+//     }
 
-    .admin-hiden {
-        display: none;
-    }
-}
+//     .admin-hiden {
+//         display: none;
+//     }
+// }
 
-//Ipad
-@media screen and (min-width: 721px) and (max-width: 1020px) {
-    .bar_menu {
-        height: 6.5rem;
-        grid-template-columns: 16% 65% 19%;
-        box-shadow: 0 8px 5px rgba(51, 77, 131, 0.205);
-    }
+// //Phone 12/13 Pro Mas
+// @media screen and (min-width: 421px) and (max-width: 720px) {
+//     .bar_menu {
+//         height: 5rem;
+//         width: 100%;
+//         display: flex;
+//         grid-template-columns: none;
+//         align-items: center;
+//         text-align: center;
+//     }
 
-    // .nav-senction-items {
-    //     margin-left: 0.5rem;
-    // }
+//     .nav-senction-logo {
+//         // background-color: blue;
+//         display: flex;
+//         // width: 8rem;
+//         justify-content: center;
+//     }
 
-    .logo_dgapp {
-        width: 6.5rem;
-    }
+//     .logo_dgapp {
+//         width: 6.5rem;
+//     }
 
-    .nav-senction-items {
-        margin-left: 0;
-        align-items: center;
-        justify-content: center;
-    }
+//     .nav-senction-items {
+//         // background-color: red;
+//         display: flex;
+//         width: 100%;
+//         flex-direction: column;
+//         // margin-top: 10rem;
+//         align-items: center;
+//         margin-left: 0;
+//     }
 
-    // .nav-senction-user {
-    //     display: none;
-    // }
+//     .menu_items {
+//         display: none;
+//         flex-direction: column;
+//         flex-wrap: none;
+//         margin-top: 5rem;
+//         background-color: #113250;
+//         width: 100%;
+//         height: 100%;
+//         position: fixed;
+//     }
 
-    // .container-menu-right {
-    //     flex-direction: column-reverse;
-    // }
+//     .menu_items_show {
+//         display: flex;
+//         flex-direction: column;
+//         flex-wrap: none;
+//         margin-top: 5rem;
+//         background-color: #113250;
+//         width: 100%;
+//         height: 100%;
+//         position: fixed;
+//     }
 
-    .nav-user-img {
-        width: 2.5rem;
-        height: 2.5rem;
-        border: 0.15rem solid #75AAD3;
-    }
+//     .nav-senction-user {
+//         // background-color: blue;
+//         display: flex;
+//         // width: 5rem;
+//         justify-content: center !important;
+//     }
 
-    .nav-user-name {
-        font-size: 0.8rem;
-    }
+//     .btn_menu {
+//         display: flex;
+//     }
 
-    // img,
-    // svg {
-    //     width: 1rem;
-    // }
+//     .btn_menu-img {
+//         margin-right: 0;
+//     }
 
-    // .nav-user-img {
-    //     width: 3rem;
-    //     height: 3rem;
-    // }
+//     nav ul li p {
+//         color: white;
+//         font-size: 2rem;
+//         letter-spacing: 2px;
+//         margin-top: 1rem;
 
-    nav ul li p {
-        font-size: 0.8rem;
-    }
+//         // height: 4.5rem;
+//         &:hover {
+//             color: #75AAD3;
+//         }
+//     }
 
-    .class-list {
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
-    }
+//     nav ul li::before {
+//         display: none;
+//     }
 
-    .admin-hiden {
-        display: none;
-    }
+//     nav ul li:hover>ul {
+//         // display: none;
+//         width: 100% !important;
+//         height: 35rem !important;
+//         background-color: #113250;
+//         z-index: 5;
+//         margin-top: -1rem;
 
-}
+
+//         p {
+//             font-size: 1rem;
+//             line-height: 0.5rem;
+//             margin-top: 1rem;
+//             height: 2rem;
+//         }
+//     }
+
+//     nav ul li a {
+//         color: white;
+//         font-size: 1rem;
+//     }
+
+//     nav ul ul a:hover {
+//         color: #75AAD3;
+//     }
+
+//     nav ul p:hover {
+//         cursor: pointer;
+//     }
+
+//     nav ul ul p:hover {
+//         color: #75AAD3;
+//     }
+
+//     .menu-left {
+//         left: 0;
+//         top: 0;
+//         // width: 10rem;
+//     }
+
+//     nav ul ul li {
+//         // float: none;
+//         display: flex;
+//         flex-direction: column;
+//         position: relative;
+//         color: white;
+//     }
+
+//     .icondown {
+//         display: none;
+//     }
+
+//     .btn_menu {
+//         cursor: pointer;
+//         display: block;
+//     }
+
+//     .nav-senction-user {
+//         figure {
+//             display: none;
+//         }
+//     }
+
+//     .admin-hiden {
+//         display: none;
+//     }
+// }
+
+// //Ipad
+// @media screen and (min-width: 721px) and (max-width: 1020px) {
+//     .bar_menu {
+//         height: 6.5rem;
+//         grid-template-columns: 16% 65% 19%;
+//         box-shadow: 0 8px 5px rgba(51, 77, 131, 0.205);
+//     }
+
+//     // .nav-senction-items {
+//     //     margin-left: 0.5rem;
+//     // }
+
+//     .logo_dgapp {
+//         width: 6.5rem;
+//     }
+
+//     .nav-senction-items {
+//         margin-left: 0;
+//         align-items: center;
+//         justify-content: center;
+//     }
+
+//     // .nav-senction-user {
+//     //     display: none;
+//     // }
+
+//     // .container-menu-right {
+//     //     flex-direction: column-reverse;
+//     // }
+
+//     .nav-user-img {
+//         width: 2.5rem;
+//         height: 2.5rem;
+//         border: 0.15rem solid #75AAD3;
+//     }
+
+//     .nav-user-name {
+//         font-size: 0.8rem;
+//     }
+
+//     // img,
+//     // svg {
+//     //     width: 1rem;
+//     // }
+
+//     // .nav-user-img {
+//     //     width: 3rem;
+//     //     height: 3rem;
+//     // }
+
+//     nav ul li p {
+//         font-size: 0.8rem;
+//     }
+
+//     .class-list {
+//         margin-left: 0.5rem;
+//         margin-right: 0.5rem;
+//     }
+
+//     .admin-hiden {
+//         display: none;
+//     }
+
+// }
 
 //laptop generic
-@media screen and (min-width: 1021px) and (max-width: 1320px) {
+@media screen and (min-width: 1279px) and (max-width:1365px) {
     .bar_menu {
         height: 8rem;
         grid-template-columns: 16% 67% 17%;
@@ -801,7 +814,7 @@ nav ul li ul li:hover::before {
 }
 
 //laptop Yelissa
-@media screen and (min-width: 1321px) and (max-width: 1367px) {
+@media screen and (min-width: 1366px ) and (max-width:1367px)  {
 
     //navbar
     .bar_menu {
@@ -823,43 +836,70 @@ nav ul li ul li:hover::before {
     }
 }
 
-//laptop David
-@media screen and (min-width: 5020px) and (max-width: 5321px) {
+//Monitor
+@media screen and (min-width: 1600px) and (max-width:1601px){
 
-    //navbar
-    .bar_menu {
-        height: 20rem;
-        grid-template-columns: 19% 63% 18%;
-        // background-color: red;
-    }
-    .logo_dgapp{
-        width: 22rem;
-    }
-    .nav-senction-items {
-        margin-left: 0;
-        justify-content: center;
-    }
-    .class-list {
-        margin-left: 4.5rem;
-        height: 3rem;
-    }
-    nav ul li p {
-        font-size: 2rem;
-        height: 3.3rem;
-    }
-    nav ul li span {
-        font-size: 2rem;
-        height: 3.5rem;
-    }
-    nav ul li span:hover {
-        font-size: 2rem;
-        height: 3.5rem;
-    }
-    .nav-user-img {
-        width: 8.5rem;
-        height: 8.5rem;
-    }
-    .nav-user-name {
-        font-size: 2rem;
-    }
 }
+
+//laptop David
+// @media screen and (min-width: 2420px) and (max-width: 5121px) {
+
+//     //navbar
+//     .bar_menu {
+//         height: 20rem;
+//         grid-template-columns: 19% 63% 18%;
+//         // background-color: red;
+//     }
+//     .logo_dgapp{
+//         width: 22rem;
+//     }
+//     .nav-senction-items {
+//         margin-left: 0;
+//         justify-content: center;
+//     }
+//     .class-list {
+//         height: 3rem;
+//         margin-left: 4.5rem;
+//     }
+//     // .class-list-inicio {
+//     //     width: 10.8rem;
+//     // }
+//     // .class-list-nosotros {
+//     //    width: 18.8rem;
+//     // }
+//     // .class-list-servicios {
+       
+//     // }
+//     // .class-list-publiaciones {
+       
+//     // }
+//     // .class-list-capacitacion {
+       
+//     // }
+//     // .class-list-administracion {
+       
+//     // }
+//     nav ul li p {
+//         font-size: 2rem;
+//         height: 3.3rem;
+//     }
+//     nav ul li span {
+//         font-size: 2rem;
+//         height: 3.5rem;
+//     }
+//     nav ul li span:hover {
+//         font-size: 2rem;
+//         height: 3.5rem;
+//     }
+//     .nav-user-img {
+//         width: 8.5rem;
+//         height: 8.5rem;
+//     }
+//     .nav-user-name {
+//         font-size: 2rem;
+//     }
+//     .dropdown-menu {
+//         width: 18rem;
+//         height: 9rem;
+//     }
+// }

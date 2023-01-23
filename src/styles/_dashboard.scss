@@ -7,7 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 9.3rem;
+    margin-top: 10rem;
 }
 
 .dashboard-section-1 {
@@ -269,7 +269,7 @@
     justify-content: space-between;
 }
 .dashboard-section-3-figure{
-    width: 23rem;
+    width: 20rem;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -839,7 +839,8 @@
     background-color: rgb(240, 239, 239);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 0.5rem;
-    // background-color: blue;
+    text-decoration: none;
+    // background-color: red;
 }
 .dashboard-section-7-section-instagram-logo{   
     width: 13rem;
@@ -860,7 +861,11 @@
 }
 .dashboard-section-7-section-instagram-img{
     width: 12rem;
-    height: 11.7rem;
+    height: 13.7rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
     // margin-top: 0.5rem;
     background-color: white;
     img{
@@ -869,6 +874,28 @@
         object-fit: cover;
     }
 
+    iframe{
+        width: 12rem;
+        height: 9rem;
+    }
+
+}
+.dashboard-section-7-section-instagram-text{
+    width: 9rem;
+    height: 2.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    // background-color: blue;
+    margin-top: 0.3rem;
+    p{
+        margin: 0;
+        font-size: 0.5rem;
+        font-weight: normal;
+        text-align: justify;
+    }
 }
 .dashboard-section-7-section-instagram-icons{
     width: 5rem;
@@ -903,7 +930,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     // background-color: green;
 }
@@ -929,7 +956,16 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
-
+// .dashboard-section-7-scroll-fb {
+//     width: 90%;
+//     height: 16rem;
+//     overflow-y: auto;
+//     overflow-x: hidden;
+//     z-index: 10;
+// }
+// .dashboard-section-7-fb{
+//     z-index: 0;
+// }
 .dashboard-section-7-scroll::-webkit-scrollbar {
     width: 10px;
     background-color: #F5F5F5;
@@ -1158,1108 +1194,1113 @@
 //MEDIAS QUERIES
 
 //Phone X
-@media screen and (max-width:420px) {
-
-    //carousel y noticias
-    .dashboard-container {
-        width: 100%;
-        height: 193.5rem;
-    }
-
-    .dashboard-section-1 {
-        width: 95%;
-        height: 32rem;
-        margin-top: 0rem;
-    }
-
-    .dashboard-section-1-grid {
-        display: flex;
-        flex-direction: column;
-        grid-template-columns: none;
-    }
-
-    .carousel-container {
-        height: 11rem !important;
-    }
-
-    .dashboard-section-1-carousel {
-        height: 11rem;
-    }
-
-    .dashboard-section-1-news {
-        height: 11rem;
-        margin-top: 1rem;
-    }
-
-    .dashboard-section-1-news-header {
-        p {
-            font-size: 1rem;
-            margin: 0;
-            margin-top: -0.5rem;
-        }
-    }
-
-    .dashboard-section-1-news-title-line {
-        width: 3rem;
-        height: 0.2rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .dashboard-section-1-news-multi {
-        height: 11.2rem;
-    }
-
-    .dashboard-section-1-news-content {
-        height: 3rem;
-        margin-top: 1.1rem;
-        -webkit-line-clamp: 2;
-    }
-
-    .dashboard-section-1-news-content-txt {
-        width: 100%;
-        height: 3rem;
-        font-size: 0.65rem;
-    }
-
-    .dashboard-section-1-news-btn {
-        width: 7rem;
-
-        p {
-            font-size: 0.65rem;
-        }
-
-        img,
-        svg {
-            width: 0.8rem;
-        }
-    }
-
-    //dashboard botones
-    .dashboard-section-2 {
-        width: 95%;
-        height: 14rem;
-    }
-
-    .dashboard-section-btn-container {
-        display: grid;
-        grid-template-columns: 33.5% 33% 33.5%;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 2rem;
-    }
-
-    .dashboard-section-btn {
-        // background-color: red;
-        width: 100%;
-        height: 8rem;
-
-        p {
-            font-size: 0.6rem;
-        }
-    }
-
-    .dashboard-section-btn-img {
-        width: 5rem;
-    }
-
-    //avisos y educapp
-
-    .dashboard-section-3 {
-        width: 95%;
-        height: 30rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 3rem;
-    }
-
-    .dashboard-section-3-title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 0;
-        margin-top: 0;
-        // background-color: red;
-    }
-
-    .dashboard-section-3-img-ad {
-        width: 7.5rem;
-        margin-top: -4rem;
-    }
-
-    .dashboard-section-3-img-educ {
-        width: 7.5rem;
-        margin-top: -4rem;
-    }
-
-    .dashboard-section-3-cont {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .dashboard-section-3-figure {
-        display: none;
-        // width: 87%;
-        // height: 40%;
-        // background-color: #BCD3E6;
-        // position: absolute;
-    }
-
-    .dashboard-section-3-carousel {
-        width: 100%;
-    }
-
-    .carouselad-container {
-        height: 50% !important;
-    }
-
-    .carouselad-container img {
-        width: 100% !important;
-        // margin-top: 4.9rem;
-        // height: 60% !important;
-    }
-
-    .dashboard-section-3-ad-educ {
-        width: 100%;
-        height: 100%;
-        display: grid;
-    }
-
-    .dashboard-section-3-ad {
-        width: 22rem;
-        height: 22rem;
-        border: #75AAD3 1rem solid;
-        margin-top: 5rem;
-    }
-
-    .dashboard-section-3-educ {
-        width: 22rem;
-        height: 22rem;
-        border: #75AAD3 1rem solid;
-        margin-top: 5rem;
-    }
-
-    //cumpleanos y calendario
-    .dashboard-section-4 {
-        width: 95%;
-        height: 23.5rem;
-        margin-top: 26rem;
-    }
-
-    .dashboard-section-4-grid {
-        display: flex;
-        flex-direction: column;
-        grid-template-columns: none;
-    }
-
-    .dashboard-section-4-birhtday {
-        margin-bottom: 2rem;
-    }
-
-    .dashboard-section-4-header {
-        height: 3.6rem;
-    }
-
-    .dashboard-section-4-img-birhtday {
-        width: 7.5rem;
-    }
-
-    .dashboard-section-4-scroll {
-        height: 15rem;
-        overflow-y: auto;
-    }
-
-    .dashboard-section-4-scroll::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .dashboard-section-4-content-birth {
-        height: 5rem;
-    }
-
-    .dashboard-section-4-content-calendar {
-        height: 5rem;
-    }
-
-    .dashboard-section-4-event-num {
-        height: 5rem;
-    }
-
-    .dashboard-section-4-day {
-        width: 3rem;
-        height: 2.8rem;
-        font-size: 2.5rem;
-    }
-
-    .dashboard-section-4-month {
-        font-size: 0.8rem;
-    }
-
-
-    .dashboard-section-4-employee-img {
-        width: 3rem;
-        height: 3rem;
-        border: 0.2rem solid #75AAD3;
-        margin-left: 0.5rem;
-    }
-
-    .dashboard-section-4-text {
-        margin-left: 0.5rem;
-
-        p {
-            font-size: 0.8rem;
-        }
-    }
-
-    .dashboard-section-4-event-txt {
-        font-size: 0.8rem;
-    }
-
-    .dashboard-section-4-event-date-cont {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .dashboard-section-4-event-date {
-        font-size: 0.8rem;
-    }
-
-    .dashboard-section-4-event-time {
-        font-size: 0.8rem;
-    }
-
-    //MULTIMEDIA
-    .dashboard-section-5 {
-        width: 95%;
-        height: 18rem;
-        margin-top: 25rem;
-    }
-
-    .dashboard-section-5-container {
-        width: 100%;
-        height: 30rem;
-    }
-
-    .dashboard-section-5-header {
-        width: 100%;
-        height: 3rem;
-
-        p {
-            font-size: 1.5rem;
-        }
-    }
-
-    .dashboard-section-5-line {
-        content: "";
-        width: 3.5rem;
-        height: 0.2rem;
-        background-color: white;
-        // margin-top: 0.5rem;
-    }
-
-    .dashboard-section-5-grid {
-        width: 100%;
-        height: 25rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        grid-template-columns: none;
-    }
-
-    .dashboard-section-5-video {
-        p {
-            font-size: 0.8rem;
-        }
-    }
-
-    .dashboard-section-5-galery {
-        display: none;
-    }
-
-    //LOGO 
-    .dashboard-section-6 {
-        width: 95%;
-        margin-top: 10rem;
-        text-align: center;
-        // background-color: red;
-    }
-
-    .dashboard-section-6-logo-mention {
-        margin-top: 0.5rem;
-    }
-
-    //FOOTER
-    .footer-section-1-grid {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        grid-template-columns: none !important;
-    }
-
-    .footer-section-1-cont {
-        font-size: 0.6rem;
-        height: 0 !important;
-    }
-
-    .footer-section-1-img {
-        display: none;
-    }
-
-    .footer-section-1-img-logo {
-        display: none;
-    }
-
-}
-
-//Phone 12/13 Pro Mas
-@media screen and (min-width: 421px) and (max-width: 720px) {
-
-    //carousel y noticias
-    .dashboard-container {
-        width: 100%;
-        height: 193.5rem;
-    }
-
-    .dashboard-section-1 {
-        width: 95%;
-        height: 32rem;
-        margin-top: 0rem;
-    }
-
-    .dashboard-section-1-grid {
-        display: flex;
-        flex-direction: column;
-        grid-template-columns: none;
-    }
-
-    .carousel-container {
-        height: 11rem !important;
-    }
-
-    .dashboard-section-1-carousel {
-        height: 11rem;
-    }
-
-    .dashboard-section-1-news {
-        height: 11rem;
-        margin-top: 1rem;
-    }
-
-    .dashboard-section-1-news-header {
-        p {
-            font-size: 1rem;
-            margin: 0;
-            margin-top: -0.5rem;
-        }
-    }
-
-    .dashboard-section-1-news-title-line {
-        width: 3rem;
-        height: 0.2rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .dashboard-section-1-news-multi {
-        height: 11.2rem;
-    }
-
-    .dashboard-section-1-news-content {
-        height: 3rem;
-        margin-top: 1.1rem;
-        -webkit-line-clamp: 2;
-    }
-
-    .dashboard-section-1-news-content-txt {
-        width: 100%;
-        height: 3rem;
-        font-size: 0.65rem;
-    }
-
-    .dashboard-section-1-news-btn {
-        width: 7rem;
-
-        p {
-            font-size: 0.65rem;
-        }
-
-        img,
-        svg {
-            width: 0.8rem;
-        }
-    }
-
-    //dashboard botones
-    .dashboard-section-2 {
-        width: 95%;
-        height: 14rem;
-    }
-
-    .dashboard-section-btn-container {
-        display: grid;
-        grid-template-columns: 33.5% 33% 33.5%;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 2rem;
-    }
-
-    .dashboard-section-btn {
-        // background-color: red;
-        width: 100%;
-        height: 8rem;
-
-        p {
-            font-size: 0.6rem;
-        }
-    }
-
-    .dashboard-section-btn-img {
-        width: 5rem;
-    }
-
-    //avisos y educapp
-
-    .dashboard-section-3 {
-        width: 95%;
-        height: 30rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 3rem;
-    }
-
-    .dashboard-section-3-title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 0;
-        margin-top: 0;
-        // background-color: red;
-    }
-
-    .dashboard-section-3-img-ad {
-        width: 7.5rem;
-        margin-top: -4rem;
-    }
-
-    .dashboard-section-3-img-educ {
-        width: 7.5rem;
-        margin-top: -4rem;
-    }
-
-    .dashboard-section-3-cont {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .dashboard-section-3-figure {
-        display: none;
-        // width: 87%;
-        // height: 40%;
-        // background-color: #BCD3E6;
-        // position: absolute;
-    }
-
-    .dashboard-section-3-carousel {
-        width: 100%;
-    }
-
-    .carouselad-container {
-        height: 50% !important;
-    }
-
-    .carouselad-container img {
-        width: 100% !important;
-        // margin-top: 4.9rem;
-        // height: 60% !important;
-    }
-
-    .dashboard-section-3-ad-educ {
-        width: 100%;
-        height: 100%;
-        display: grid;
-    }
-
-    .dashboard-section-3-ad {
-        width: 22rem;
-        height: 22rem;
-        border: #75AAD3 1rem solid;
-        margin-top: 5rem;
-    }
-
-    .dashboard-section-3-educ {
-        width: 22rem;
-        height: 22rem;
-        border: #75AAD3 1rem solid;
-        margin-top: 5rem;
-    }
-
-    //cumpleanos y calendario
-    .dashboard-section-4 {
-        width: 95%;
-        height: 23.5rem;
-        margin-top: 26rem;
-    }
-
-    .dashboard-section-4-grid {
-        display: flex;
-        flex-direction: column;
-        grid-template-columns: none;
-    }
-
-    .dashboard-section-4-birhtday {
-        margin-bottom: 2rem;
-    }
-
-    .dashboard-section-4-header {
-        height: 3.6rem;
-    }
-
-    .dashboard-section-4-img-birhtday {
-        width: 7.5rem;
-    }
-
-    .dashboard-section-4-scroll {
-        height: 15rem;
-        overflow-y: auto;
-    }
-
-    .dashboard-section-4-scroll::-webkit-scrollbar {
-        width: 5px;
-    }
-
-    .dashboard-section-4-content-birth {
-        height: 5rem;
-    }
-
-    .dashboard-section-4-content-calendar {
-        height: 5rem;
-    }
-
-    .dashboard-section-4-event-num {
-        height: 5rem;
-    }
-
-    .dashboard-section-4-day {
-        width: 3rem;
-        height: 2.8rem;
-        font-size: 2.5rem;
-    }
-
-    .dashboard-section-4-month {
-        font-size: 0.8rem;
-    }
-
-
-    .dashboard-section-4-employee-img {
-        width: 3rem;
-        height: 3rem;
-        border: 0.2rem solid #75AAD3;
-        margin-left: 0.5rem;
-    }
-
-    .dashboard-section-4-text {
-        margin-left: 0.5rem;
-
-        p {
-            font-size: 0.8rem;
-        }
-    }
-
-    .dashboard-section-4-event-txt {
-        font-size: 0.8rem;
-    }
-
-    .dashboard-section-4-event-date-cont {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .dashboard-section-4-event-date {
-        font-size: 0.8rem;
-    }
-
-    .dashboard-section-4-event-time {
-        font-size: 0.8rem;
-    }
-
-    //MULTIMEDIA
-    .dashboard-section-5 {
-        width: 95%;
-        height: 18rem;
-        margin-top: 25rem;
-    }
-
-    .dashboard-section-5-container {
-        width: 100%;
-        height: 30rem;
-    }
-
-    .dashboard-section-5-header {
-        width: 100%;
-        height: 3rem;
-
-        p {
-            font-size: 1.5rem;
-        }
-    }
-
-    .dashboard-section-5-line {
-        content: "";
-        width: 3.5rem;
-        height: 0.2rem;
-        background-color: white;
-        // margin-top: 0.5rem;
-    }
-
-    .dashboard-section-5-grid {
-        width: 100%;
-        height: 25rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        grid-template-columns: none;
-    }
-
-    .dashboard-section-5-video {
-        p {
-            font-size: 0.8rem;
-        }
-    }
-
-    .dashboard-section-5-galery {
-        display: none;
-    }
-
-    //LOGO 
-    .dashboard-section-6 {
-        width: 95%;
-        margin-top: 10rem;
-        text-align: center;
-        // background-color: red;
-    }
-
-    .dashboard-section-6-logo-mention {
-        margin-top: 0.5rem;
-    }
-
-    //FOOTER
-    .footer-section-1-grid {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        grid-template-columns: none !important;
-    }
-
-    .footer-section-1-cont {
-        font-size: 0.6rem;
-        height: 0 !important;
-    }
-
-    .footer-section-1-img {
-        display: none;
-    }
-
-    .footer-section-1-img-logo {
-        display: none;
-    }
-}
-
-//Ipad
-@media screen and (min-width: 721px) and (max-width: 1020px) {
-
-    //carousel y noticias
-    .dashboard-container {
-        width: 100%;
-        height: 269rem;
-    }
-
-    .dashboard-section-1 {
-        width: 95%;
-        height: 34rem;
-        margin-top: 10rem;
-    }
-
-    .dashboard-section-1-grid {
-        display: flex;
-        flex-direction: column;
-        grid-template-columns: none;
-    }
-
-    .carousel-container {
-        height: 15rem !important;
-    }
-
-    .dashboard-section-1-carousel {
-        height: 15rem;
-    }
-
-    .dashboard-section-1-news {
-        height: 17rem;
-        margin-top: 1.5rem;
-    }
-
-    .dashboard-section-1-news-header {
-        p {
-            font-size: 1.2rem;
-            margin: 0;
-            margin-top: -0.5rem;
-        }
-    }
-
-    .dashboard-section-1-news-title-line {
-        width: 4rem;
-        height: 0.3rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .dashboard-section-1-news-multi {
-        height: 14.2rem;
-    }
-
-    .dashboard-section-1-news-content {
-        height: 4rem;
-        margin-top: 1.1rem;
-        -webkit-line-clamp: 2;
-        // background-color: red;
-    }
-
-    .dashboard-section-1-news-content-txt {
-        width: 100%;
-        height: 3rem;
-        font-size: 1rem;
-    }
-
-    .dashboard-section-1-news-btn {
-        width: 8.5rem;
-
-        p {
-            font-size: 1rem;
-        }
-
-        img,
-        svg {
-            width: 1rem;
-        }
-    }
-
-    //dashboard botones
-    .dashboard-section-2 {
-        width: 95%;
-        height: 14rem;
-        // margin-top: 3rem;
-    }
-
-    .dashboard-section-btn-container {
-        width: 100%;
-        display: grid;
-        grid-template-columns: 33.5% 33% 33.5%;
-        justify-content: space-between;
-        align-items: center;
-        // margin-top: 2rem;
-    }
-
-    .dashboard-section-btn {
-        // background-color: red;
-        width: 100%;
-        height: 12rem;
-
-        p {
-            font-size: 1rem;
-        }
-    }
-
-    .dashboard-section-btn-img {
-        width: 8rem;
-    }
-
-    //avisos y educapp
-
-    .dashboard-section-3 {
-        width: 95%;
-        height: 30rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        // margin-top: 12rem;
-    }
-
-    .dashboard-section-3-title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 0;
-        margin-top: 0;
-        // background-color: red;
-    }
-
-    .dashboard-section-3-img-ad {
-        width: 12rem;
-        margin-top: -6rem;
-    }
-
-    .dashboard-section-3-img-educ {
-        width: 12rem;
-        margin-top: -6rem;
-    }
-
-    .dashboard-section-3-cont {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .dashboard-section-3-figure {
-        display: none;
-        // width: 87%;
-        // height: 40%;
-        // background-color: #BCD3E6;
-        // position: absolute;
-    }
-
-    .dashboard-section-3-carousel {
-        width: 100%;
-    }
-
-    .carouselad-container {
-        height: 100% !important;
-    }
-
-    .carouselad-container img {
-        width: 100% !important;
-        // margin-top: 4.9rem;
-        // height: 60% !important;
-    }
-
-    .dashboard-section-3-ad-educ {
-        width: 100%;
-        height: 100%;
-        display: grid;
-    }
-
-    .dashboard-section-3-ad {
-        width: 40rem;
-        height: 40rem;
-        border: #75AAD3 1rem solid;
-        margin-top: 5rem;
-    }
-
-    .dashboard-section-3-educ {
-        width: 40rem;
-        height: 40rem;
-        border: #75AAD3 1rem solid;
-        margin-top: 8rem;
-    }
-
-    //cumpleanos y calendario
-    .dashboard-section-4 {
-        width: 95%;
-        height: 23.5rem;
-        margin-top: 70rem;
-    }
-
-    .dashboard-section-4-grid {
-        display: flex;
-        flex-direction: column;
-        grid-template-columns: none;
-    }
-
-    .dashboard-section-4-birhtday {
-        margin-bottom: 2rem;
-    }
-
-    .dashboard-section-4-header {
-        height: 5rem;
-    }
-
-    .dashboard-section-4-img-birhtday {
-        width: 12rem;
-    }
-
-    .dashboard-section-4-scroll {
-        height: 18rem;
-        overflow-y: auto;
-    }
-
-    .dashboard-section-4-scroll::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    .dashboard-section-4-content-birth {
-        height: 8rem;
-    }
-
-    .dashboard-section-4-content-calendar {
-        height: 8rem;
-    }
-
-    .dashboard-section-4-event-num {
-        height: 8rem;
-    }
-
-    .dashboard-section-4-day {
-        width: 5rem;
-        height: 4rem;
-        font-size: 3.5rem;
-    }
-
-    .dashboard-section-4-month {
-        font-size: 1rem;
-    }
-
-
-    .dashboard-section-4-employee-img {
-        width: 4rem;
-        height: 4rem;
-        border: 0.2rem solid #75AAD3;
-        margin-left: 0.8rem;
-    }
-
-    .dashboard-section-4-text {
-        margin-left: 0.8rem;
-
-        p {
-            font-size: 1rem;
-        }
-    }
-
-    .dashboard-section-4-event-txt {
-        font-size: 1rem;
-    }
-
-    .dashboard-section-4-event-date-cont {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .dashboard-section-4-event-date {
-        font-size: 1rem;
-    }
-
-    .dashboard-section-4-event-time {
-        font-size: 1rem;
-    }
-
-    //MULTIMEDIA
-    .dashboard-section-5 {
-        width: 95%;
-        height: 18rem;
-        margin-top: 38rem;
-    }
-
-    .dashboard-section-5-container {
-        width: 100%;
-        height: 30rem;
-    }
-
-    .dashboard-section-5-header {
-        width: 100%;
-        height: 3rem;
-
-        p {
-            font-size: 1.5rem;
-        }
-    }
-
-    .dashboard-section-5-line {
-        content: "";
-        width: 3.5rem;
-        height: 0.2rem;
-        background-color: white;
-        // margin-top: 0.5rem;
-    }
-
-    .dashboard-section-5-grid {
-        width: 100%;
-        height: 25rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        grid-template-columns: none;
-    }
-
-    .dashboard-section-5-video {
-        p {
-            font-size: 0.8rem;
-        }
-    }
-
-    .dashboard-section-5-galery {
-        display: none;
-    }
-
-    //LOGO 
-    .dashboard-section-6 {
-        width: 95%;
-        margin-top: 10rem;
-        text-align: center;
-        // background-color: red;
-    }
-
-    .dashboard-section-6-logo-mention {
-        margin-top: 0.5rem;
-    }
-
-    //FOOTER
-    .footer-section-1-grid {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        grid-template-columns: none !important;
-    }
-
-    .footer-section-1-cont {
-        font-size: 0.6rem;
-        height: 0 !important;
-    }
-
-    .footer-section-1-img {
-        display: none;
-    }
-
-    .footer-section-1-img-logo {
-        display: none;
-    }
-}
+// @media screen and (max-width:420px) {
+
+//     //carousel y noticias
+//     .dashboard-container {
+//         width: 100%;
+//         height: 193.5rem;
+//     }
+
+//     .dashboard-section-1 {
+//         width: 95%;
+//         height: 32rem;
+//         margin-top: 0rem;
+//     }
+
+//     .dashboard-section-1-grid {
+//         display: flex;
+//         flex-direction: column;
+//         grid-template-columns: none;
+//     }
+
+//     .carousel-container {
+//         height: 11rem !important;
+//     }
+
+//     .dashboard-section-1-carousel {
+//         height: 11rem;
+//     }
+
+//     .dashboard-section-1-news {
+//         height: 11rem;
+//         margin-top: 1rem;
+//     }
+
+//     .dashboard-section-1-news-header {
+//         p {
+//             font-size: 1rem;
+//             margin: 0;
+//             margin-top: -0.5rem;
+//         }
+//     }
+
+//     .dashboard-section-1-news-title-line {
+//         width: 3rem;
+//         height: 0.2rem;
+//         margin-bottom: 0.5rem;
+//     }
+
+//     .dashboard-section-1-news-multi {
+//         height: 11.2rem;
+//     }
+
+//     .dashboard-section-1-news-content {
+//         height: 3rem;
+//         margin-top: 1.1rem;
+//         -webkit-line-clamp: 2;
+//     }
+
+//     .dashboard-section-1-news-content-txt {
+//         width: 100%;
+//         height: 3rem;
+//         font-size: 0.65rem;
+//     }
+
+//     .dashboard-section-1-news-btn {
+//         width: 7rem;
+
+//         p {
+//             font-size: 0.65rem;
+//         }
+
+//         img,
+//         svg {
+//             width: 0.8rem;
+//         }
+//     }
+
+//     //dashboard botones
+//     .dashboard-section-2 {
+//         width: 95%;
+//         height: 14rem;
+//     }
+
+//     .dashboard-section-btn-container {
+//         display: grid;
+//         grid-template-columns: 33.5% 33% 33.5%;
+//         justify-content: space-between;
+//         align-items: center;
+//         margin-top: 2rem;
+//     }
+
+//     .dashboard-section-btn {
+//         // background-color: red;
+//         width: 100%;
+//         height: 8rem;
+
+//         p {
+//             font-size: 0.6rem;
+//         }
+//     }
+
+//     .dashboard-section-btn-img {
+//         width: 5rem;
+//     }
+
+//     //avisos y educapp
+
+//     .dashboard-section-3 {
+//         width: 95%;
+//         height: 30rem;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: center;
+//         margin-top: 3rem;
+//     }
+
+//     .dashboard-section-3-title {
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         width: 100%;
+//         height: 0;
+//         margin-top: 0;
+//         // background-color: red;
+//     }
+
+//     .dashboard-section-3-img-ad {
+//         width: 7.5rem;
+//         margin-top: -4rem;
+//     }
+
+//     .dashboard-section-3-img-educ {
+//         width: 7.5rem;
+//         margin-top: -4rem;
+//     }
+
+//     .dashboard-section-3-cont {
+//         display: flex;
+//         flex-direction: column;
+//         width: 100%;
+//         height: 100%;
+//         justify-content: center;
+//         align-items: center;
+//     }
+
+//     .dashboard-section-3-figure {
+//         display: none;
+//         // width: 87%;
+//         // height: 40%;
+//         // background-color: #BCD3E6;
+//         // position: absolute;
+//     }
+
+//     .dashboard-section-3-carousel {
+//         width: 100%;
+//     }
+
+//     .carouselad-container {
+//         height: 50% !important;
+//     }
+
+//     .carouselad-container img {
+//         width: 100% !important;
+//         // margin-top: 4.9rem;
+//         // height: 60% !important;
+//     }
+
+//     .dashboard-section-3-ad-educ {
+//         width: 100%;
+//         height: 100%;
+//         display: grid;
+//     }
+
+//     .dashboard-section-3-ad {
+//         width: 22rem;
+//         height: 22rem;
+//         border: #75AAD3 1rem solid;
+//         margin-top: 5rem;
+//     }
+
+//     .dashboard-section-3-educ {
+//         width: 22rem;
+//         height: 22rem;
+//         border: #75AAD3 1rem solid;
+//         margin-top: 5rem;
+//     }
+
+//     //cumpleanos y calendario
+//     .dashboard-section-4 {
+//         width: 95%;
+//         height: 23.5rem;
+//         margin-top: 26rem;
+//     }
+
+//     .dashboard-section-4-grid {
+//         display: flex;
+//         flex-direction: column;
+//         grid-template-columns: none;
+//     }
+
+//     .dashboard-section-4-birhtday {
+//         margin-bottom: 2rem;
+//     }
+
+//     .dashboard-section-4-header {
+//         height: 3.6rem;
+//     }
+
+//     .dashboard-section-4-img-birhtday {
+//         width: 7.5rem;
+//     }
+
+//     .dashboard-section-4-scroll {
+//         height: 15rem;
+//         overflow-y: auto;
+//     }
+
+//     .dashboard-section-4-scroll::-webkit-scrollbar {
+//         width: 5px;
+//     }
+
+//     .dashboard-section-4-content-birth {
+//         height: 5rem;
+//     }
+
+//     .dashboard-section-4-content-calendar {
+//         height: 5rem;
+//     }
+
+//     .dashboard-section-4-event-num {
+//         height: 5rem;
+//     }
+
+//     .dashboard-section-4-day {
+//         width: 3rem;
+//         height: 2.8rem;
+//         font-size: 2.5rem;
+//     }
+
+//     .dashboard-section-4-month {
+//         font-size: 0.8rem;
+//     }
+
+
+//     .dashboard-section-4-employee-img {
+//         width: 3rem;
+//         height: 3rem;
+//         border: 0.2rem solid #75AAD3;
+//         margin-left: 0.5rem;
+//     }
+
+//     .dashboard-section-4-text {
+//         margin-left: 0.5rem;
+
+//         p {
+//             font-size: 0.8rem;
+//         }
+//     }
+
+//     .dashboard-section-4-event-txt {
+//         font-size: 0.8rem;
+//     }
+
+//     .dashboard-section-4-event-date-cont {
+//         width: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: center;
+//     }
+
+//     .dashboard-section-4-event-date {
+//         font-size: 0.8rem;
+//     }
+
+//     .dashboard-section-4-event-time {
+//         font-size: 0.8rem;
+//     }
+
+//     //MULTIMEDIA
+//     .dashboard-section-5 {
+//         width: 95%;
+//         height: 18rem;
+//         margin-top: 25rem;
+//     }
+
+//     .dashboard-section-5-container {
+//         width: 100%;
+//         height: 30rem;
+//     }
+
+//     .dashboard-section-5-header {
+//         width: 100%;
+//         height: 3rem;
+
+//         p {
+//             font-size: 1.5rem;
+//         }
+//     }
+
+//     .dashboard-section-5-line {
+//         content: "";
+//         width: 3.5rem;
+//         height: 0.2rem;
+//         background-color: white;
+//         // margin-top: 0.5rem;
+//     }
+
+//     .dashboard-section-5-grid {
+//         width: 100%;
+//         height: 25rem;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         grid-template-columns: none;
+//     }
+
+//     .dashboard-section-5-video {
+//         p {
+//             font-size: 0.8rem;
+//         }
+//     }
+
+//     .dashboard-section-5-galery {
+//         display: none;
+//     }
+
+//     //LOGO 
+//     .dashboard-section-6 {
+//         width: 95%;
+//         margin-top: 10rem;
+//         text-align: center;
+//         // background-color: red;
+//     }
+
+//     .dashboard-section-6-logo-mention {
+//         margin-top: 0.5rem;
+//     }
+
+//     //FOOTER
+//     .footer-section-1-grid {
+//         display: flex !important;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: center;
+//         grid-template-columns: none !important;
+//     }
+
+//     .footer-section-1-cont {
+//         font-size: 0.6rem;
+//         height: 0 !important;
+//     }
+
+//     .footer-section-1-img {
+//         display: none;
+//     }
+
+//     .footer-section-1-img-logo {
+//         display: none;
+//     }
+
+// }
+
+// //Phone 12/13 Pro Mas
+// @media screen and (min-width: 421px) and (max-width: 720px) {
+
+//     //carousel y noticias
+//     .dashboard-container {
+//         width: 100%;
+//         height: 193.5rem;
+//     }
+
+//     .dashboard-section-1 {
+//         width: 95%;
+//         height: 32rem;
+//         margin-top: 0rem;
+//     }
+
+//     .dashboard-section-1-grid {
+//         display: flex;
+//         flex-direction: column;
+//         grid-template-columns: none;
+//     }
+
+//     .carousel-container {
+//         height: 11rem !important;
+//     }
+
+//     .dashboard-section-1-carousel {
+//         height: 11rem;
+//     }
+
+//     .dashboard-section-1-news {
+//         height: 11rem;
+//         margin-top: 1rem;
+//     }
+
+//     .dashboard-section-1-news-header {
+//         p {
+//             font-size: 1rem;
+//             margin: 0;
+//             margin-top: -0.5rem;
+//         }
+//     }
+
+//     .dashboard-section-1-news-title-line {
+//         width: 3rem;
+//         height: 0.2rem;
+//         margin-bottom: 0.5rem;
+//     }
+
+//     .dashboard-section-1-news-multi {
+//         height: 11.2rem;
+//     }
+
+//     .dashboard-section-1-news-content {
+//         height: 3rem;
+//         margin-top: 1.1rem;
+//         -webkit-line-clamp: 2;
+//     }
+
+//     .dashboard-section-1-news-content-txt {
+//         width: 100%;
+//         height: 3rem;
+//         font-size: 0.65rem;
+//     }
+
+//     .dashboard-section-1-news-btn {
+//         width: 7rem;
+
+//         p {
+//             font-size: 0.65rem;
+//         }
+
+//         img,
+//         svg {
+//             width: 0.8rem;
+//         }
+//     }
+
+//     //dashboard botones
+//     .dashboard-section-2 {
+//         width: 95%;
+//         height: 14rem;
+//     }
+
+//     .dashboard-section-btn-container {
+//         display: grid;
+//         grid-template-columns: 33.5% 33% 33.5%;
+//         justify-content: space-between;
+//         align-items: center;
+//         margin-top: 2rem;
+//     }
+
+//     .dashboard-section-btn {
+//         // background-color: red;
+//         width: 100%;
+//         height: 8rem;
+
+//         p {
+//             font-size: 0.6rem;
+//         }
+//     }
+
+//     .dashboard-section-btn-img {
+//         width: 5rem;
+//     }
+
+//     //avisos y educapp
+
+//     .dashboard-section-3 {
+//         width: 95%;
+//         height: 30rem;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: center;
+//         margin-top: 3rem;
+//     }
+
+//     .dashboard-section-3-title {
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         width: 100%;
+//         height: 0;
+//         margin-top: 0;
+//         // background-color: red;
+//     }
+
+//     .dashboard-section-3-img-ad {
+//         width: 7.5rem;
+//         margin-top: -4rem;
+//     }
+
+//     .dashboard-section-3-img-educ {
+//         width: 7.5rem;
+//         margin-top: -4rem;
+//     }
+
+//     .dashboard-section-3-cont {
+//         display: flex;
+//         flex-direction: column;
+//         width: 100%;
+//         height: 100%;
+//         justify-content: center;
+//         align-items: center;
+//     }
+
+//     .dashboard-section-3-figure {
+//         display: none;
+//         // width: 87%;
+//         // height: 40%;
+//         // background-color: #BCD3E6;
+//         // position: absolute;
+//     }
+
+//     .dashboard-section-3-carousel {
+//         width: 100%;
+//     }
+
+//     .carouselad-container {
+//         height: 50% !important;
+//     }
+
+//     .carouselad-container img {
+//         width: 100% !important;
+//         // margin-top: 4.9rem;
+//         // height: 60% !important;
+//     }
+
+//     .dashboard-section-3-ad-educ {
+//         width: 100%;
+//         height: 100%;
+//         display: grid;
+//     }
+
+//     .dashboard-section-3-ad {
+//         width: 22rem;
+//         height: 22rem;
+//         border: #75AAD3 1rem solid;
+//         margin-top: 5rem;
+//     }
+
+//     .dashboard-section-3-educ {
+//         width: 22rem;
+//         height: 22rem;
+//         border: #75AAD3 1rem solid;
+//         margin-top: 5rem;
+//     }
+
+//     //cumpleanos y calendario
+//     .dashboard-section-4 {
+//         width: 95%;
+//         height: 23.5rem;
+//         margin-top: 26rem;
+//     }
+
+//     .dashboard-section-4-grid {
+//         display: flex;
+//         flex-direction: column;
+//         grid-template-columns: none;
+//     }
+
+//     .dashboard-section-4-birhtday {
+//         margin-bottom: 2rem;
+//     }
+
+//     .dashboard-section-4-header {
+//         height: 3.6rem;
+//     }
+
+//     .dashboard-section-4-img-birhtday {
+//         width: 7.5rem;
+//     }
+
+//     .dashboard-section-4-scroll {
+//         height: 15rem;
+//         overflow-y: auto;
+//     }
+
+//     .dashboard-section-4-scroll::-webkit-scrollbar {
+//         width: 5px;
+//     }
+
+//     .dashboard-section-4-content-birth {
+//         height: 5rem;
+//     }
+
+//     .dashboard-section-4-content-calendar {
+//         height: 5rem;
+//     }
+
+//     .dashboard-section-4-event-num {
+//         height: 5rem;
+//     }
+
+//     .dashboard-section-4-day {
+//         width: 3rem;
+//         height: 2.8rem;
+//         font-size: 2.5rem;
+//     }
+
+//     .dashboard-section-4-month {
+//         font-size: 0.8rem;
+//     }
+
+
+//     .dashboard-section-4-employee-img {
+//         width: 3rem;
+//         height: 3rem;
+//         border: 0.2rem solid #75AAD3;
+//         margin-left: 0.5rem;
+//     }
+
+//     .dashboard-section-4-text {
+//         margin-left: 0.5rem;
+
+//         p {
+//             font-size: 0.8rem;
+//         }
+//     }
+
+//     .dashboard-section-4-event-txt {
+//         font-size: 0.8rem;
+//     }
+
+//     .dashboard-section-4-event-date-cont {
+//         width: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: center;
+//     }
+
+//     .dashboard-section-4-event-date {
+//         font-size: 0.8rem;
+//     }
+
+//     .dashboard-section-4-event-time {
+//         font-size: 0.8rem;
+//     }
+
+//     //MULTIMEDIA
+//     .dashboard-section-5 {
+//         width: 95%;
+//         height: 18rem;
+//         margin-top: 25rem;
+//     }
+
+//     .dashboard-section-5-container {
+//         width: 100%;
+//         height: 30rem;
+//     }
+
+//     .dashboard-section-5-header {
+//         width: 100%;
+//         height: 3rem;
+
+//         p {
+//             font-size: 1.5rem;
+//         }
+//     }
+
+//     .dashboard-section-5-line {
+//         content: "";
+//         width: 3.5rem;
+//         height: 0.2rem;
+//         background-color: white;
+//         // margin-top: 0.5rem;
+//     }
+
+//     .dashboard-section-5-grid {
+//         width: 100%;
+//         height: 25rem;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         grid-template-columns: none;
+//     }
+
+//     .dashboard-section-5-video {
+//         p {
+//             font-size: 0.8rem;
+//         }
+//     }
+
+//     .dashboard-section-5-galery {
+//         display: none;
+//     }
+
+//     //LOGO 
+//     .dashboard-section-6 {
+//         width: 95%;
+//         margin-top: 10rem;
+//         text-align: center;
+//         // background-color: red;
+//     }
+
+//     .dashboard-section-6-logo-mention {
+//         margin-top: 0.5rem;
+//     }
+
+//     //FOOTER
+//     .footer-section-1-grid {
+//         display: flex !important;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: center;
+//         grid-template-columns: none !important;
+//     }
+
+//     .footer-section-1-cont {
+//         font-size: 0.6rem;
+//         height: 0 !important;
+//     }
+
+//     .footer-section-1-img {
+//         display: none;
+//     }
+
+//     .footer-section-1-img-logo {
+//         display: none;
+//     }
+// }
+
+// //Ipad
+// @media screen and (min-width: 721px) and (max-width: 1020px) {
+
+//     //carousel y noticias
+//     .dashboard-container {
+//         width: 100%;
+//         height: 269rem;
+//     }
+
+//     .dashboard-section-1 {
+//         width: 95%;
+//         height: 34rem;
+//         margin-top: 10rem;
+//     }
+
+//     .dashboard-section-1-grid {
+//         display: flex;
+//         flex-direction: column;
+//         grid-template-columns: none;
+//     }
+
+//     .carousel-container {
+//         height: 15rem !important;
+//     }
+
+//     .dashboard-section-1-carousel {
+//         height: 15rem;
+//     }
+
+//     .dashboard-section-1-news {
+//         height: 17rem;
+//         margin-top: 1.5rem;
+//     }
+
+//     .dashboard-section-1-news-header {
+//         p {
+//             font-size: 1.2rem;
+//             margin: 0;
+//             margin-top: -0.5rem;
+//         }
+//     }
+
+//     .dashboard-section-1-news-title-line {
+//         width: 4rem;
+//         height: 0.3rem;
+//         margin-bottom: 0.5rem;
+//     }
+
+//     .dashboard-section-1-news-multi {
+//         height: 14.2rem;
+//     }
+
+//     .dashboard-section-1-news-content {
+//         height: 4rem;
+//         margin-top: 1.1rem;
+//         -webkit-line-clamp: 2;
+//         // background-color: red;
+//     }
+
+//     .dashboard-section-1-news-content-txt {
+//         width: 100%;
+//         height: 3rem;
+//         font-size: 1rem;
+//     }
+
+//     .dashboard-section-1-news-btn {
+//         width: 8.5rem;
+
+//         p {
+//             font-size: 1rem;
+//         }
+
+//         img,
+//         svg {
+//             width: 1rem;
+//         }
+//     }
+
+//     //dashboard botones
+//     .dashboard-section-2 {
+//         width: 95%;
+//         height: 14rem;
+//         // margin-top: 3rem;
+//     }
+
+//     .dashboard-section-btn-container {
+//         width: 100%;
+//         display: grid;
+//         grid-template-columns: 33.5% 33% 33.5%;
+//         justify-content: space-between;
+//         align-items: center;
+//         // margin-top: 2rem;
+//     }
+
+//     .dashboard-section-btn {
+//         // background-color: red;
+//         width: 100%;
+//         height: 12rem;
+
+//         p {
+//             font-size: 1rem;
+//         }
+//     }
+
+//     .dashboard-section-btn-img {
+//         width: 8rem;
+//     }
+
+//     //avisos y educapp
+
+//     .dashboard-section-3 {
+//         width: 95%;
+//         height: 30rem;
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: center;
+//         // margin-top: 12rem;
+//     }
+
+//     .dashboard-section-3-title {
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         width: 100%;
+//         height: 0;
+//         margin-top: 0;
+//         // background-color: red;
+//     }
+
+//     .dashboard-section-3-img-ad {
+//         width: 12rem;
+//         margin-top: -6rem;
+//     }
+
+//     .dashboard-section-3-img-educ {
+//         width: 12rem;
+//         margin-top: -6rem;
+//     }
+
+//     .dashboard-section-3-cont {
+//         display: flex;
+//         flex-direction: column;
+//         width: 100%;
+//         height: 100%;
+//         justify-content: center;
+//         align-items: center;
+//     }
+
+//     .dashboard-section-3-figure {
+//         display: none;
+//         // width: 87%;
+//         // height: 40%;
+//         // background-color: #BCD3E6;
+//         // position: absolute;
+//     }
+
+//     .dashboard-section-3-carousel {
+//         width: 100%;
+//     }
+
+//     .carouselad-container {
+//         height: 100% !important;
+//     }
+
+//     .carouselad-container img {
+//         width: 100% !important;
+//         // margin-top: 4.9rem;
+//         // height: 60% !important;
+//     }
+
+//     .dashboard-section-3-ad-educ {
+//         width: 100%;
+//         height: 100%;
+//         display: grid;
+//     }
+
+//     .dashboard-section-3-ad {
+//         width: 40rem;
+//         height: 40rem;
+//         border: #75AAD3 1rem solid;
+//         margin-top: 5rem;
+//     }
+
+//     .dashboard-section-3-educ {
+//         width: 40rem;
+//         height: 40rem;
+//         border: #75AAD3 1rem solid;
+//         margin-top: 8rem;
+//     }
+
+//     //cumpleanos y calendario
+//     .dashboard-section-4 {
+//         width: 95%;
+//         height: 23.5rem;
+//         margin-top: 70rem;
+//     }
+
+//     .dashboard-section-4-grid {
+//         display: flex;
+//         flex-direction: column;
+//         grid-template-columns: none;
+//     }
+
+//     .dashboard-section-4-birhtday {
+//         margin-bottom: 2rem;
+//     }
+
+//     .dashboard-section-4-header {
+//         height: 5rem;
+//     }
+
+//     .dashboard-section-4-img-birhtday {
+//         width: 12rem;
+//     }
+
+//     .dashboard-section-4-scroll {
+//         height: 18rem;
+//         overflow-y: auto;
+//     }
+
+//     .dashboard-section-4-scroll::-webkit-scrollbar {
+//         width: 8px;
+//     }
+
+//     .dashboard-section-4-content-birth {
+//         height: 8rem;
+//     }
+
+//     .dashboard-section-4-content-calendar {
+//         height: 8rem;
+//     }
+
+//     .dashboard-section-4-event-num {
+//         height: 8rem;
+//     }
+
+//     .dashboard-section-4-day {
+//         width: 5rem;
+//         height: 4rem;
+//         font-size: 3.5rem;
+//     }
+
+//     .dashboard-section-4-month {
+//         font-size: 1rem;
+//     }
+
+
+//     .dashboard-section-4-employee-img {
+//         width: 4rem;
+//         height: 4rem;
+//         border: 0.2rem solid #75AAD3;
+//         margin-left: 0.8rem;
+//     }
+
+//     .dashboard-section-4-text {
+//         margin-left: 0.8rem;
+
+//         p {
+//             font-size: 1rem;
+//         }
+//     }
+
+//     .dashboard-section-4-event-txt {
+//         font-size: 1rem;
+//     }
+
+//     .dashboard-section-4-event-date-cont {
+//         width: 100%;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//         justify-content: center;
+//     }
+
+//     .dashboard-section-4-event-date {
+//         font-size: 1rem;
+//     }
+
+//     .dashboard-section-4-event-time {
+//         font-size: 1rem;
+//     }
+
+//     //MULTIMEDIA
+//     .dashboard-section-5 {
+//         width: 95%;
+//         height: 18rem;
+//         margin-top: 38rem;
+//     }
+
+//     .dashboard-section-5-container {
+//         width: 100%;
+//         height: 30rem;
+//     }
+
+//     .dashboard-section-5-header {
+//         width: 100%;
+//         height: 3rem;
+
+//         p {
+//             font-size: 1.5rem;
+//         }
+//     }
+
+//     .dashboard-section-5-line {
+//         content: "";
+//         width: 3.5rem;
+//         height: 0.2rem;
+//         background-color: white;
+//         // margin-top: 0.5rem;
+//     }
+
+//     .dashboard-section-5-grid {
+//         width: 100%;
+//         height: 25rem;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         grid-template-columns: none;
+//     }
+
+//     .dashboard-section-5-video {
+//         p {
+//             font-size: 0.8rem;
+//         }
+//     }
+
+//     .dashboard-section-5-galery {
+//         display: none;
+//     }
+
+//     //LOGO 
+//     .dashboard-section-6 {
+//         width: 95%;
+//         margin-top: 10rem;
+//         text-align: center;
+//         // background-color: red;
+//     }
+
+//     .dashboard-section-6-logo-mention {
+//         margin-top: 0.5rem;
+//     }
+
+//     //FOOTER
+//     .footer-section-1-grid {
+//         display: flex !important;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: center;
+//         grid-template-columns: none !important;
+//     }
+
+//     .footer-section-1-cont {
+//         font-size: 0.6rem;
+//         height: 0 !important;
+//     }
+
+//     .footer-section-1-img {
+//         display: none;
+//     }
+
+//     .footer-section-1-img-logo {
+//         display: none;
+//     }
+// }
+
+//Móviles en horizontal o tablets en vertical
+@media screen and (min-width: 768px)  {}
+
 
 //laptop generic
-@media screen and (min-width: 1021px) and (max-width: 1320px) {
+@media screen and (min-width: 1279px) and (max-width:1365px)  {
 
     //carousel y noticias
     .dashboard-container {
-        margin-top: 8rem;
+        margin-top: 8.8rem;
     }
     .dashboard-section-1 {
         height: 16.7rem;
         // margin-top: 8rem;
+        //   background-color: red;
     }
 
     .dashboard-section-1-carousel {  
@@ -2323,7 +2364,7 @@
     }
     
     .dashboard-section-2-notices-img{    
-        height: 16rem;
+        height: 15rem;
         img{
             height: 12.91rem;
         }
@@ -2336,11 +2377,10 @@
 
      //avisos y educapp
      .dashboard-section-3-container {
-        width: 83%;
+        width: 80%;
         height: 28rem;
     }
     .dashboard-section-3-figure{
-        width: 23rem;
         justify-content: flex-start;
         align-items: center;
     }
@@ -2507,6 +2547,11 @@
             width: 10rem;
             height: 7rem;
         }
+
+        iframe{
+            width: 10rem;
+            height: 7rem;
+        }
     
     }
     .dashboard-section-7-section-instagram-likes{
@@ -2522,11 +2567,11 @@
 }
 
 //laptop yelissa
-@media screen and (min-width: 1321px) and (max-width: 1367px) {
+@media screen and (min-width: 1366px ) and (max-width:1367px) {
 
    //carousel y noticias
     .dashboard-container {
-        margin-top: 8rem;
+        margin-top: 8.8rem;
     }
 
     .dashboard-section-1 {
@@ -2604,7 +2649,7 @@
 
     //avisos y educapp
     .dashboard-section-3-container {
-        width: 83%;
+        width: 80%;
         height: 25rem;
     }
     .dashboard-section-3-figure{
@@ -2784,7 +2829,11 @@
         img{
             width: 10rem;
             height: 7rem;
-        }   
+        }  
+        iframe{
+            width: 10rem;
+            height: 7rem;
+        } 
     }
     .dashboard-section-7-section-instagram-likes{
         p{
@@ -2798,363 +2847,425 @@
     }
 }
 
+// Monitor hp 2009m
+ @media screen and (min-width: 1600px) and (max-width:1601px){
+
+//      .dashboard-section-1 {
+//          width: 70%;
+//      }
+ 
+//      //dashboard botones y avisos
+//      .dashboard-section-2 {
+//          width: 70%;
+//      }
+ 
+//      .dashboard-section-2-line-cont {
+//         width: 70%;
+//      }
+     
+//      .dashboard-section-2-notices-txt{
+//       margin-top: 9rem;
+//      } 
+    // .dashboard-section-2-notices {
+    //     height: 17rem;
+    // }
+    // .dashboard-section-2-notices-img-cont{    
+    //     height: 17rem;
+    // }
+    .dashboard-section-2-notices-img{    
+         img{
+             height: 16.2rem;
+         }
+     }
+//      .dashboard-section-2-notices-separte{
+//          margin-top: 10rem;
+//      }
+ 
+//      //avisos y educapp
+//      .dashboard-section-3-container {
+//          width: 70%;
+//      }
+//      .dashboard-section-3-line-cont {
+//          width: 70%;
+//      }
+ 
+//      //cumpleanos y calendario
+//      .dashboard-section-4 {
+//         width: 70%;
+//      }
+ 
+//      //Multimedia
+//      .dashboard-section-5 {
+//         width: 70%;
+//      }
+ 
+//      .dashboard-section-5-btn-container {
+//          margin-left: -2.8rem;
+//      }
+ 
+//         ///logo
+//     .dashboard-section-6 {
+//         width: 70%;
+//      }
+  }
+
 //laptop david
-@media screen and (min-width: 5020px) and (max-width: 5321px) {
+// @media screen and (min-width: 2420px){
 
-       //carousel y noticias
-       .dashboard-container {
-            margin-top: 20rem;
-        }
+//        //carousel y noticias
+//        .dashboard-container {
+//             margin-top: 22rem;
+//         }
 
-     .dashboard-section-1 {
-         height: 51rem;
-        //  margin-top: 7rem;
-        //  background-color: blue;
-     }
+//      .dashboard-section-1 {
+//          height: 51rem;
+//         //  margin-top: 7rem;
+//         //  background-color: blue;
+//      }
  
-     .dashboard-section-1-carousel {  
-         height: 50rem;
-     }
+//      .dashboard-section-1-carousel {  
+//          height: 50rem;
+//      }
 
-     .dashboard-section-1-news-header p {
-        font-size: 2rem;
-    }
+//      .dashboard-section-1-news-header p {
+//         font-size: 2rem;
+//     }
 
-    .dashboard-section-1-news-title-line {
-        content: "";
-        width: 7rem;
-        height: 0.6rem;
-    }
+//     .dashboard-section-1-news-title-line {
+//         content: "";
+//         width: 7rem;
+//         height: 0.6rem;
+//     }
 
-     .dashboard-section-1-news {
-        height: 45rem;
-     }
+//      .dashboard-section-1-news {
+//         height: 45rem;
+//      }
  
-     .dashboard-section-1-news-multi {
-         height: 40rem;
-     }
+//      .dashboard-section-1-news-multi {
+//          height: 40rem;
+//      }
  
-     .dashboard-section-1-news-content {
-         height: 11.2rem;
-         margin-top: 0.8rem;
-     }
+//      .dashboard-section-1-news-content {
+//          height: 11.2rem;
+//          margin-top: 0.8rem;
+//      }
  
-     .dashboard-section-1-news-content-txt {
-         height: 9.8rem;
-         font-size: 2rem;
-        //  background-color: red;
-     }
+//      .dashboard-section-1-news-content-txt {
+//          height: 9.8rem;
+//          font-size: 2rem;
+//         //  background-color: red;
+//      }
 
-     .dashboard-section-1-news-btn-container {
-        height: 5rem;
-        // background-color: red;
-    }
+//      .dashboard-section-1-news-btn-container {
+//         height: 5rem;
+//         // background-color: red;
+//     }
 
-    .dashboard-section-1-news-btn {
-        width: 18.5rem;
-        height: 3.5rem;
-    }
-    .dashboard-section-1-news-btn p {
-        font-size: 2.1rem;
-    }
+//     .dashboard-section-1-news-btn {
+//         width: 18.5rem;
+//         height: 3.5rem;
+//     }
+//     .dashboard-section-1-news-btn p {
+//         font-size: 2.1rem;
+//     }
 
-     //dashboard botones y avisos
-     .dashboard-section-2 {
-         height: 45rem;
-        //  background-color: blue
-     }
+//      //dashboard botones y avisos
+//      .dashboard-section-2 {
+//          height: 45rem;
+//         //  background-color: blue
+//      }
  
-     .dashboard-section-2-btn-container {
-         height: 30rem;
-        //  background-color: blue;
-     }
+//      .dashboard-section-2-btn-container {
+//          height: 30rem;
+//         //  background-color: blue;
+//      }
  
-     .dashboard-section-2-btn {
-         width: 30rem;
-         height: 30rem;
-        //  background-color: red;
+//      .dashboard-section-2-btn {
+//          width: 30rem;
+//          height: 30rem;
+//         //  background-color: red;
  
-         p {
-             font-size: 2.6rem;
-         }
-     }
+//          p {
+//              font-size: 2.6rem;
+//          }
+//      }
  
-     .dashboard-section-2-btn-img {
-         width: 17rem;
-     }
-     .dashboard-section-2-notices{
-         height: 58rem;
-        //  background-color: red;
-     }
+//      .dashboard-section-2-btn-img {
+//          width: 17rem;
+//      }
+//      .dashboard-section-2-notices{
+//          height: 58rem;
+//         //  background-color: red;
+//      }
 
-     .dashboard-section-2-line-cont {
-        height: 2rem;
-    }
+//      .dashboard-section-2-line-cont {
+//         height: 2rem;
+//     }
      
-     .dashboard-section-2-notices-txt{
-        width: 80%;
-        height: 5rem;
-        margin-top: 32rem;
-        margin-left: 3.5rem;
-         p{
-             font-size: 2.5rem;
-         }
-     } 
-     .dashboard-section-2-notices-img-cont {
-        height: 20rem;
-    }
-     .dashboard-section-2-notices-img{    
-         img{
-             height: 51.8rem;
-         }
-     }
-     .dashboard-section-2-notices-separte{
-         height: 50%;
-         margin-top: 32.8rem;
-     }
+//      .dashboard-section-2-notices-txt{
+//         width: 80%;
+//         height: 5rem;
+//         margin-top: 32rem;
+//         margin-left: 3.5rem;
+//          p{
+//              font-size: 2.5rem;
+//          }
+//      } 
+//      .dashboard-section-2-notices-img-cont {
+//         height: 20rem;
+//     }
+//      .dashboard-section-2-notices-img{    
+//          img{
+//              height: 51.8rem;
+//          }
+//      }
+//      .dashboard-section-2-notices-separte{
+//          height: 50%;
+//          margin-top: 32.8rem;
+//      }
  
-     //avisos y educapp
-     .dashboard-section-3-container {
-         width: 83%;
-         height: 58rem;
-        //  background-color: red;
-     }
-     .dashboard-section-3-figure{
-         width: 53rem;
-         justify-content: center;
-         align-items: center;
-        //  background-color: blue;
-     }
-     .dashboard-section-3-box{
-         width: 50rem;
-         height: 50rem;
-        //  background-color: green;
-     }
-     .dashboard-section-3-header {
-         width: 50rem;
-         height: 8.5rem;
-     }
-     .dashboard-section-3-img-educapp {
-        width: 16rem;
-    }
-    .dashboard-section-3-img-photoday {
-        width: 18rem;
-    }
-    .dashboard-section-3-img-valuemonth {
-        width: 19rem;
-    }
-     .dashboard-section-3-line-cont{
-         width: 80%;
-         height: 5rem;
-         display: flex;
-         align-items: center;
-         // background-color: red;
-     }
-     .dashboard-section-3-line-cont {
-         height: 4.5rem;
-     }
+//      //avisos y educapp
+//      .dashboard-section-3-container {
+//          width: 80%;
+//          height: 58rem;
+//         //  background-color: red;
+//      }
+//      .dashboard-section-3-figure{
+//          width: 53rem;
+//          justify-content: center;
+//          align-items: center;
+//         //  background-color: blue;
+//      }
+//      .dashboard-section-3-box{
+//          width: 50rem;
+//          height: 50rem;
+//         //  background-color: green;
+//      }
+//      .dashboard-section-3-header {
+//          width: 50rem;
+//          height: 8.5rem;
+//      }
+//      .dashboard-section-3-img-educapp {
+//         width: 16rem;
+//     }
+//     .dashboard-section-3-img-photoday {
+//         width: 18rem;
+//     }
+//     .dashboard-section-3-img-valuemonth {
+//         width: 19rem;
+//     }
+//      .dashboard-section-3-line-cont{
+//          width: 80%;
+//          height: 5rem;
+//          display: flex;
+//          align-items: center;
+//          // background-color: red;
+//      }
+//      .dashboard-section-3-line-cont {
+//          height: 4.5rem;
+//      }
  
-     //cumpleanos y calendario
-     .dashboard-section-4 {
-         height: 60rem;
-     }
-     .dashboard-section-4-header {
-         height: 10.5rem;
-     }
+//      //cumpleanos y calendario
+//      .dashboard-section-4 {
+//          height: 60rem;
+//      }
+//      .dashboard-section-4-header {
+//          height: 10.5rem;
+//      }
  
-     .dashboard-section-4-img-birhtday {
-         width: 25rem;
-     }
+//      .dashboard-section-4-img-birhtday {
+//          width: 25rem;
+//      }
  
-     .dashboard-section-4-scroll {
-         height: 32.5rem;
-     }
-     .dashboard-section-4-scroll::-webkit-scrollbar {
-        width: 20px;
-    }
+//      .dashboard-section-4-scroll {
+//          height: 32.5rem;
+//      }
+//      .dashboard-section-4-scroll::-webkit-scrollbar {
+//         width: 20px;
+//     }
     
  
-     .dashboard-section-4-content-birth {
-         height: 10.5rem;
-     }
+//      .dashboard-section-4-content-birth {
+//          height: 10.5rem;
+//      }
  
-     .dashboard-section-4-content-calendar {
-         height: 10.5rem;
-         grid-template-columns: 5% 67% 28%;
-     }
+//      .dashboard-section-4-content-calendar {
+//          height: 10.5rem;
+//          grid-template-columns: 5% 67% 28%;
+//      }
  
-     .dashboard-section-4-event-num {
-         height: 10rem;
-     }
+//      .dashboard-section-4-event-num {
+//          height: 10rem;
+//      }
  
-     .dashboard-section-4-day {
-        width: 100%;
-        height: 5rem;
-        font-size: 5rem;
-     }
+//      .dashboard-section-4-day {
+//         width: 100%;
+//         height: 5rem;
+//         font-size: 5rem;
+//      }
  
-     .dashboard-section-4-month {
-         font-size: 2.5rem;
-     }
+//      .dashboard-section-4-month {
+//          font-size: 2.5rem;
+//      }
  
-     .dashboard-section-4-employee-img {
-         width: 7.5rem;
-         height: 7.5rem;
-     }
+//      .dashboard-section-4-employee-img {
+//          width: 7.5rem;
+//          height: 7.5rem;
+//      }
  
-     .dashboard-section-4-text {
-        width: 70rem;
-         p {
-             font-size: 2.5rem;
-         }
-     }
+//      .dashboard-section-4-text {
+//         width: 70rem;
+//          p {
+//              font-size: 2.5rem;
+//          }
+//      }
  
-     .dashboard-section-4-event-txt {
-         font-size: 2.5rem;
-     }
+//      .dashboard-section-4-event-txt {
+//          font-size: 2.5rem;
+//      }
  
-     .dashboard-section-4-event-time {
-         font-size: 2.5rem;
-     }
+//      .dashboard-section-4-event-time {
+//          font-size: 2.5rem;
+//      }
     
  
-     //Multimedia
-     .dashboard-section-5 {
-         height: 90rem;
-        //  background-color: red;
-     }
+//      //Multimedia
+//      .dashboard-section-5 {
+//          height: 90rem;
+//         //  background-color: red;
+//      }
  
-     .dashboard-section-5-container {
-         height: 80rem;
-     }
+//      .dashboard-section-5-container {
+//          height: 80rem;
+//      }
  
-     .dashboard-section-5-header {
-         height: 10rem;
-        //    background-color: red;
-         p {
-             font-size: 3.5rem;
-         }
-     }
-     .dashboard-section-5-line {
-        width: 8.5rem;
-         height: 0.6rem;
-     }
+//      .dashboard-section-5-header {
+//          height: 10rem;
+//         //    background-color: red;
+//          p {
+//              font-size: 3.5rem;
+//          }
+//      }
+//      .dashboard-section-5-line {
+//         width: 8.5rem;
+//          height: 0.6rem;
+//      }
  
-     .dashboard-section-5-grid {
-         height: 65rem;
-         grid-template-columns: 51% 1% 48%;
-        //  background-color: red;
-     }
+//      .dashboard-section-5-grid {
+//          height: 65rem;
+//          grid-template-columns: 51% 1% 48%;
+//         //  background-color: red;
+//      }
 
-    .dashboard-section-5-video-onclick {
-        width: 118rem;
-        height: 61rem;
-        // background-color: blue;
-    }
+//     .dashboard-section-5-video-onclick {
+//         width: 118rem;
+//         height: 61rem;
+//         // background-color: blue;
+//     }
 
-     .dashboard-section-5-video {
-         p {
-             width:95rem;
-             height: 12rem;
-             font-size: 2.5rem;
-            //  background-color: red;
-         }
-         iframe{
-             width:118rem;
-             height: 60rem;
-         }
-     }
+//      .dashboard-section-5-video {
+//          p {
+//              width:95rem;
+//              height: 12rem;
+//              font-size: 2.5rem;
+//             //  background-color: red;
+//          }
+//          iframe{
+//              width:118rem;
+//              height: 60rem;
+//          }
+//      }
 
-     .dashboard-section-5-galery-grid-mult {
-        justify-content: flex-start;
-         iframe{
-             width: 50rem;
-             height: 25rem;
-         }
+//      .dashboard-section-5-galery-grid-mult {
+//         justify-content: flex-start;
+//          iframe{
+//              width: 50rem;
+//              height: 25rem;
+//          }
 
-         p{
-            font-size: 2rem;
-         }
-        //  background-color: red;
-     }
+//          p{
+//             font-size: 2rem;
+//          }
+//         //  background-color: red;
+//      }
  
-     .dashboard-section-5-galery-img-cont {
-         width: 50rem;
-         height: 25rem;
-     }
+//      .dashboard-section-5-galery-img-cont {
+//          width: 50rem;
+//          height: 25rem;
+//      }
  
-     .dashboard-section-5-galery-img {
-         width: 50rem;
-         height: 25rem;
-     }
+//      .dashboard-section-5-galery-img {
+//          width: 50rem;
+//          height: 25rem;
+//      }
  
-     .dashboard-section-5-galery-icon {
-         width: 3.5rem;
-         height: 3.5rem;
-     }
+//      .dashboard-section-5-galery-icon {
+//          width: 3.5rem;
+//          height: 3.5rem;
+//      }
  
-     .dashboard-section-5-btn-container {
-         margin-left: -5rem;
-         height: 3rem;
-        //  background-color: blue;
-     }
-     .dashboard-section-5-btn {
-        width: 20rem;
-        height: 3rem;
-        p{
-            font-size: 2.1rem;
-        }
-    }
+//      .dashboard-section-5-btn-container {
+//          margin-left: -5rem;
+//          height: 3rem;
+//         //  background-color: blue;
+//      }
+//      .dashboard-section-5-btn {
+//         width: 20rem;
+//         height: 3rem;
+//         p{
+//             font-size: 2.1rem;
+//         }
+//     }
  
-        ///logo
-        .dashboard-section-6 {
-         height: 25rem;
-     }
-     .dashboard-section-6-logo-icon {
-        width: 7rem;
-        height: 7rem;
-    }
+//         ///logo
+//         .dashboard-section-6 {
+//          height: 25rem;
+//      }
+//      .dashboard-section-6-logo-icon {
+//         width: 7rem;
+//         height: 7rem;
+//     }
  
-     //social
-     .dashboard-section-7 {
-         height: 25rem;
-     }
+//      //social
+//      .dashboard-section-7 {
+//          height: 25rem;
+//      }
  
-     .dashboard-section-7-grid {
-         grid-template-columns: 30% 1% 34% 1% 34%;
-     }
+//      .dashboard-section-7-grid {
+//          grid-template-columns: 30% 1% 34% 1% 34%;
+//      }
      
-     .dashboard-section-7-section-instagram {
-         width: 10.5rem;
-         height: 15rem;
-     }
-     .dashboard-section-7-section-instagram-logo{   
-         padding-left: 1.8rem;
-         img{
-             width: 0.8rem;
-             height: 0.8rem;
-         }
-         p{
-             margin-left: 0.4rem;
-         }
-     }
-     .dashboard-section-7-section-instagram-img{
-         width: 10rem;
-         height: 9.7rem;
-         img{
-             width: 10rem;
-             height: 7rem;
-         }   
-     }
-     .dashboard-section-7-section-instagram-likes{
-         p{
-             font-size: 0.5rem;
-         }
-     }
+//      .dashboard-section-7-section-instagram {
+//          width: 10.5rem;
+//          height: 15rem;
+//      }
+//      .dashboard-section-7-section-instagram-logo{   
+//          padding-left: 1.8rem;
+//          img{
+//              width: 0.8rem;
+//              height: 0.8rem;
+//          }
+//          p{
+//              margin-left: 0.4rem;
+//          }
+//      }
+//      .dashboard-section-7-section-instagram-img{
+//          width: 10rem;
+//          height: 9.7rem;
+//          img{
+//              width: 10rem;
+//              height: 7rem;
+//          }   
+//      }
+//      .dashboard-section-7-section-instagram-likes{
+//          p{
+//              font-size: 0.5rem;
+//          }
+//      }
      
-     .dashboard-section-7-scroll {
-         width: 90%;
-         height: 15rem;
-     }
+//      .dashboard-section-7-scroll {
+//          width: 90%;
+//          height: 15rem;
+//      }
  
- }
+//  }

@@ -28,6 +28,7 @@ const Dashboard = () => {
   const [arrayImg, setArrayImg] = useState("");
   const [notices, setNotices] = useState([]);
   const [tweets, setTweets] = useState([]);
+  const [instagram, setInstagram] = useState([]);
 
   const modalToggle = (data) => {
     setModalActive(!modalActive);
@@ -50,6 +51,25 @@ const Dashboard = () => {
   //     unmounted = true;
   //   };
   // }, []);
+
+  useEffect(() => {
+    let unmounted = false;
+
+    if (!unmounted) {
+      fetch(
+        `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,timestamp,caption&limit=3&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setInstagram(data.data);
+        });
+    }
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
   useEffect(() => {
     let unmounted = false;
@@ -278,6 +298,7 @@ const Dashboard = () => {
           getImagesHandler={getImagesHandler}
           notices={notices}
           tweets={tweets}
+          instagram={instagram}
         />
       )}
     </>

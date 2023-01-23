@@ -5,6 +5,8 @@ import GlobalContext from "../../../context/GlobalContext";
 import { MdLogout, MdKeyboardArrowDown, } from "react-icons/md";
 import { FaUserCog } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useDetectScroll } from "@smakss/react-scroll-direction";
+
 
 const NavbarForm = ({
     logOut,
@@ -35,25 +37,19 @@ const NavbarForm = ({
 
     const [contextState] = useContext(GlobalContext);
     const [navShow, setNavShow] = useState(true);
-
-    const controlNavbar = () => {
-        if (window.scrollY > 100) {
-            setNavShow(false);
-        } else {
-            setNavShow(true);
-        }
-    }
+    const [scrollDir] = useDetectScroll({});
 
     useEffect(() => {
-        window.addEventListener('scroll', controlNavbar)
-        return () => {
-            window.removeEventListener('scroll', controlNavbar)
+        if (scrollDir === "down") {
+            setNavShow(false);
+        } else if (scrollDir === "up") {
+            setNavShow(true);
         }
-    }, [])
+    }, [scrollDir, navShow])
 
     return (
         <>
-            <nav style={{ display: isHidden ? "none" : null }} className={`bar_menu ${navShow && 'bar_menu-show'}`}>
+            <nav id="navbar" style={{ display: isHidden ? "none" : null }} className={`bar_menu ${navShow && 'bar_menu-show'}`}>
                 <div className="nav-senction-logo">
                     <figure style={{ cursor: "pointer" }}>
                         <img
@@ -67,7 +63,7 @@ const NavbarForm = ({
 
                 <div className="nav-senction-items">
                     <ul className={active}>
-                        <li onClick={home} className="class-list" style={{ width: width < 5021 ? "3.8rem" : "10.8rem" }}>
+                        <li onClick={home} className="class-list" style={{ width: width >= 5120 ? "10.8rem" : "3.8rem" }}>
                             <p>Inicio</p>
                         </li>
                         {
@@ -76,17 +72,17 @@ const NavbarForm = ({
                             </li> : null
                         }
 
-                        <li className="class-list" style={{ width: width < 5021 ? "6.6rem" : "18.8rem" }}>
+                        <li className="class-list" style={{ width: width >= 5120 ? "18.8rem" : "6.6rem" }}>
                             <p onClick={width <= 721 ? () => hidenToggle("Nosotros") : null}>
                                 Nosotros
                                 <i className="io io-md-arrow-dopdown navbar-arrow" />
                                 <IoMdArrowDropdown
-                                    size={width < 5021 ? "1.3rem" : "2.3rem"}
+                                    size={width >= 5120 ? "2.3rem" : "1.3rem"}
                                     style={{ cursor: "pointer" }}
                                 />
                             </p>
                             <ul className={action === "Nosotros" ? show : null}
-                                style={{ width: width < 5021 ? "13rem" : "28.5rem", height: "15.5rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}
+                                style={{ width: width >= 5120 ? "28.5rem" : "13rem", height: width >= 5120 ? "15.5rem" : "9.3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}
                             >
                                 <li>
                                     <span onClick={(e) => aboutUSChange(e, "MISIÓN, VISIÓN Y VALORES")}>Misión, Visión y Valores</span>
@@ -103,17 +99,17 @@ const NavbarForm = ({
                             </ul>
                         </li>
 
-                        <li className="class-list" style={{ width: width < 5021 ? "6.7rem" : "15.7rem" }}>
+                        <li className="class-list" style={{ width: width >= 5120 ? "15.7rem" : "6.7rem" }}>
                             <p onClick={width <= 721 ? () => hidenToggle("Servicios") : null}>
                                 Servicios
                                 <i className="io io-md-arrow-dopdown navbar-arrow" />
                                 <IoMdArrowDropdown
-                                    size={width < 5021 ? "1.3rem" : "2.3rem"}
+                                    size={width >= 5120 ? "2.3rem" : "1.3rem"}
                                     style={{ cursor: "pointer" }}
                                 />
                             </p>
                             <ul className={action === "Servicios" ? show : null}
-                                style={{ width: width < 5021 ? "12rem" : "23rem", height: "4.5rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}
+                                style={{ width: width >= 5120 ? "23rem" : "12rem", height: width >= 5120 ? "4.5rem" : "3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}
                             >
                                 {/* <li style={{ width: "12rem", backgroundColor: "transparent" }}>
                                     <span style={{ width: "11rem" }}>
@@ -142,26 +138,26 @@ const NavbarForm = ({
                                         </li>
                                     </ul>
                                 </li> */}
-                                <li style={{ width: width < 5021 ? "12rem" : "22.5rem", backgroundColor: "transparent" }}>
-                                    <span style={{ width: width < 5021 ? "11rem" : "22rem" }}>
+                                <li style={{ width: width >= 5120 ? "22.5rem" : "12rem", backgroundColor: "transparent" }}>
+                                    <span style={{ width: width >= 5120 ? "22rem" : "11rem" }}>
                                         Recursos Humanos
                                         <i className="io io-md-arrow-dopdown navbar-arrow" />
                                         <IoMdArrowDropdown
-                                            size={width < 5021 ? "1.3rem" : "2.3rem"}
+                                            size={width >= 5120 ? "2.3rem" : "1.3rem"}
                                             style={{ cursor: "pointer", transform: "rotate(270deg)" }}
                                         />
                                     </span>
-                                    <ul style={{ top: "0.6rem", width: width < 5021 ? "8rem" : "15rem", marginLeft: width < 5021 ? "11.5rem" : "22.5rem", height: "4.5rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "1px" }} >
-                                        <li style={{ width: width < 5021 ? "8rem" : "14rem", backgroundColor: "transparent" }}>
-                                            <span style={{ width: width < 5021 ? "6.8rem" : "14rem" }}>
+                                    <ul style={{ top: "0.6rem", width: width >= 5120 ? "15rem" : "8rem", marginLeft: width >= 5120 ? "22.5rem" : "11.5rem", height: width >= 5120 ? "4.5rem" : "3.2rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "1px" }} >
+                                        <li style={{ width: width >= 5120 ? "14rem" : "8rem", backgroundColor: "transparent" }}>
+                                            <span style={{ width: width >= 5120 ? "14rem" : "6.8rem" }}>
                                                 Solicitudes
                                                 <i className="io io-md-arrow-dopdown navbar-arrow" />
                                                 <IoMdArrowDropdown
-                                                    size={width < 5021 ? "1.3rem" : "2.3rem"}
+                                                    size={width >= 5120 ? "2.3rem" : "1.3rem"}
                                                     style={{ cursor: "pointer", transform: "rotate(270deg)" }}
                                                 />
                                             </span>
-                                            <ul style={{ top: "0.6rem", width: width < 5021 ? "8rem" : "14rem", marginLeft: width < 5021 ? "7.48rem" : "13.5rem", height: "9rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "1px" }}>
+                                            <ul style={{ top: "0.6rem", width: width >= 5120 ? "14rem" : "8rem", marginLeft: width >= 5120 ? "13.5rem" : "7.48rem", height: width >= 5120 ? "9rem" : "5.3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "1px" }}>
                                                 <li>
                                                     <span onClick={() => formTemple("vacaciones")}>Vacaciones</span>
                                                 </li>
@@ -175,16 +171,16 @@ const NavbarForm = ({
                             </ul>
                         </li>
 
-                        <li className="class-list" style={{ width: width < 5021 ? "8.8rem" : "20.8rem" }}>
+                        <li className="class-list" style={{ width: width >= 5120 ? "20.8rem" : "8.8rem" }}>
                             <p onClick={width <= 721 ? () => hidenToggle("Publicaciones") : null}>
                                 Publicaciones
                                 <i className="io io-md-arrow-dopdown navbar-arrow" />
                                 <IoMdArrowDropdown
-                                    size={width < 5021 ? "1.3rem" : "2.3rem"}
+                                    size={width >= 5120 ? "2.3rem" : "1.3rem"}
                                     style={{ cursor: "pointer" }}
                                 />
                             </p>
-                            <ul className={action === "Publicaciones" ? show : null} style={{ width: width < 5021 ? "12rem" : "23rem", height: "12rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
+                            <ul className={action === "Publicaciones" ? show : null} style={{ width: width >= 5120 ? "23rem" : "12rem", height: width >= 5120 ? "12rem" : "7.5rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
                                 <li>
                                     <span onClick={allPost}>Noticias</span>
                                 </li>
@@ -197,7 +193,7 @@ const NavbarForm = ({
                             </ul>
                         </li>
 
-                        <li className="class-list" style={{ width: width < 5021 ? "7.5rem" : "18.5rem" }}>
+                        <li className="class-list" style={{ width: width >= 5120 ? "18.5rem" : "7.5rem" }}>
                             <p onClick={training}>Capacitación</p>
                         </li>
                         {
@@ -207,16 +203,16 @@ const NavbarForm = ({
                         }
 
                         {contextState.userRole === 1 || contextState.userRole === 3 ? (
-                            <li className="class-list admin-hiden" style={{ width: width < 5021 ? "9.5rem" : "22.5rem" }}>
+                            <li className="class-list admin-hiden" style={{ width: width >= 5120 ? "22.5rem" : "9.5rem" }}>
                                 <p>
                                     Administración
                                     <i className="io io-md-arrow-dopdown navbar-arrow" />
                                     <IoMdArrowDropdown
-                                        size={width < 5021 ? "1.3rem" : "2.3rem"}
+                                        size={width >= 5120 ? "2.3rem" : "1.3rem"}
                                         style={{ cursor: "pointer" }}
                                     />
                                 </p>
-                                <ul style={{ width: width < 5021 ? "12rem" : "22.5rem", height: contextState.userRole === 3 ? "7rem" : "19rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
+                                <ul style={{ width: width >= 5120 ? "22.5rem" : "12rem", height: width >= 5120 ? "19rem" : "11.3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
                                     {contextState.userRole === 1 || contextState.userRole === 3 ?
                                         <>
                                             <li>
@@ -258,7 +254,7 @@ const NavbarForm = ({
                         <div className="dropdown">
                             <i className="md md-keyboard-arrow-down" />
                             <MdKeyboardArrowDown
-                                size={width < 5021 ? "1.5rem" : "2.5rem"}
+                                size={width >= 5120 ? "2.5rem" : "1.5rem"}
                                 color="#113250"
                                 className="dropdown-toggle"
                                 data-bs-toggle="dropdown"

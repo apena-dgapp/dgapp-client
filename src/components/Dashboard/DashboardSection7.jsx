@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import Images from '../../common/images';
-// import { replaceTxt } from "../../utils/textLink.js";
+import { shortDate } from '../../utils/shortDate';
+import { replaceTxt } from "../../utils/textLink.js";
 import { FiSend, FiHeart } from "react-icons/fi";
 import { FaRegComment } from "react-icons/fa";
 
-const DashboardSection7 = ({ tweets }) => {
+const DashboardSection7 = ({ tweets, instagram }) => {
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -21,40 +22,6 @@ const DashboardSection7 = ({ tweets }) => {
                         <p>TWITTER</p>
                         <div className="dashboard-section-7-section-cont">
                             <div className="dashboard-section-7-scroll">
-                                {/* {tweets.length ? (
-                                    tweets?.map((item, index) => {
-                                        return (
-                                            <a
-                                                key={index}
-                                                href={`https://twitter.com/DGAPPRD/status/${item.tweet_id}`}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className="dashboard-section-7-box"
-                                            >
-                                                <div className="dashboard-section-7-content">
-                                                    <div className="dashboard-section-7-content-container">
-                                                        <div className="dashboard-section-7-content-logo">
-                                                            <img src={Images.dgappLogo3} alt="" />
-                                                        </div>
-                                                        <div className="dashboard-section-7-content-title">
-                                                            <p>Dirección General de Alianzas Público Priva...</p>
-                                                        </div>
-                                                        <div className="dashboard-section-7-content-date">
-                                                            <p>{`@DGAPP... ${item.created_at}`}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="dashboard-section-7-content-text">
-                                                        <p> {replaceTxt(item.text)}</p>
-                                                    </div>
-                                                    <div className="dashboard-section-7-content-text">
-                                                        <p style={{ color: "#5CB8E4", marginTop: "0.5rem", fontWeight: "bold" }}> {`#${item.entities.hashtags ? item.entities.hashtags[0]?.tag : null} #${item.entities.hashtags ? item.entities.hashtags[1]?.tag : null}`}</p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        );
-                                    })
-                                ) : (null
-                                )} */}
                                 <section className="twitterContainer">
                                     <div className="twitter-embed">
                                         <a
@@ -74,79 +41,23 @@ const DashboardSection7 = ({ tweets }) => {
                         <span></span>
                     </div>
                     <div className="dashboard-section-7-section">
-                        <p>INSTAGRAM</p>
+                        <p>FACEBOOK</p>
                         <div className="dashboard-section-7-section-cont">
-                            <div className="dashboard-section-7-section-instagram">
-                                <div className="dashboard-section-7-section-instagram-logo">
-                                    <img src={Images.dgappicon} alt="" />
-                                    <p>dgapprd</p>
-                                </div>
-                                <div className="dashboard-section-7-section-instagram-img">
-                                    <img src={Images.director} alt="" />
-                                    <div className="dashboard-section-7-section-instagram-icons">
-                                        <span>
-                                            <i className="fi fi-heart" />
-                                            <FiHeart
-                                                className="dashboard-section-7-section-instagram-icon"
-                                                size="1rem"
-                                            />
-                                        </span>
-                                        <span>
-                                            <i className="fa fa-regcomment" />
-                                            <FaRegComment
-                                                className="dashboard-section-7-section-instagram-icon"
-                                                size="1rem"
-                                            />
-                                        </span>
-                                        <span>
-                                            <i className="fi fi-send" />
-                                            <FiSend
-                                                className="dashboard-section-7-section-instagram-icon"
-                                                size="1rem"
-                                            />
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="dashboard-section-7-section-instagram-likes">
-                                    <p>32 personas le han dado me gusta</p>
-                                    <p style={{ color: "gray", fontWeight: "normal" }}>10 de enero</p>
-                                </div>
-                            </div>
-                            <div className="dashboard-section-7-section-instagram">
-                                <div className="dashboard-section-7-section-instagram-logo">
-                                    <img src={Images.dgappicon} alt="" />
-                                    <p>dgapprd</p>
-                                </div>
-                                <div className="dashboard-section-7-section-instagram-img">
-                                    <img src={Images.director} alt="" />
-                                    <div className="dashboard-section-7-section-instagram-icons">
-                                        <span>
-                                            <i className="fi fi-heart" />
-                                            <FiHeart
-                                                className="dashboard-section-7-section-instagram-icon"
-                                                size="1rem"
-                                            />
-                                        </span>
-                                        <span>
-                                            <i className="fa fa-regcomment" />
-                                            <FaRegComment
-                                                className="dashboard-section-7-section-instagram-icon"
-                                                size="1rem"
-                                            />
-                                        </span>
-                                        <span>
-                                            <i className="fi fi-send" />
-                                            <FiSend
-                                                className="dashboard-section-7-section-instagram-icon"
-                                                size="1rem"
-                                            />
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="dashboard-section-7-section-instagram-likes">
-                                    <p>32 personas le han dado me gusta</p>
-                                    <p style={{ color: "gray", fontWeight: "normal" }}>10 de enero</p>
-                                </div>
+                            <div className="dashboard-section-7-scroll">
+                                <section className="dashboard-section-7-fb">
+                                    <iframe
+                                        title='facebook'
+                                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdgapprd&tabs=timeline&width=424&height=2500&small_header=true&adapt_container_width=false&hide_cover=false&show_facepile=true&appId=616510976770949"
+                                        width={450}
+                                        height={2500}
+                                        style={{ border: 'none', overflow: 'hidden' }}
+                                        scrolling="no"
+                                        frameBorder={0}
+                                        allowFullScreen="true"
+                                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                    />
+
+                                </section>
                             </div>
                         </div>
                     </div>
@@ -154,9 +65,58 @@ const DashboardSection7 = ({ tweets }) => {
                         <span></span>
                     </div>
                     <div className="dashboard-section-7-section">
-                        <p>FACEBOOK</p>
+                        <p>INSTAGRAM</p>
                         <div className="dashboard-section-7-section-cont">
-                            <div className="dashboard-section-7-section-instagram">
+                            {
+                                instagram?.map((item, key) => {
+                                    return (
+                                        key < 2 ? <a key={key} href={item.permalink} target="_blank" rel="noreferrer" className="dashboard-section-7-section-instagram">
+                                            <div className="dashboard-section-7-section-instagram-logo">
+                                                <img src={Images.dgappicon} alt="" />
+                                                <p>dgapprd</p>
+                                            </div>
+                                            <div className="dashboard-section-7-section-instagram-img">
+                                                {
+                                                    item?.media_type === "VIDEO" ? <iframe title='video' src={item?.media_url} frameborder="0" /> : <img src={item?.media_url} alt="" />
+                                                }
+                                                {/* <div className="dashboard-section-7-section-instagram-icons">
+                                                    <span>
+                                                        <i className="fi fi-heart" />
+                                                        <FiHeart
+                                                            className="dashboard-section-7-section-instagram-icon"
+                                                            size="1rem"
+                                                        />
+                                                    </span>
+                                                    <span>
+                                                        <i className="fa fa-regcomment" />
+                                                        <FaRegComment
+                                                            className="dashboard-section-7-section-instagram-icon"
+                                                            size="1rem"
+                                                        />
+                                                    </span>
+                                                    <span>
+                                                        <i className="fi fi-send" />
+                                                        <FiSend
+                                                            className="dashboard-section-7-section-instagram-icon"
+                                                            size="1rem"
+                                                        />
+                                                    </span>
+                                                </div> */}
+                                                <div className="dashboard-section-7-section-instagram-text">
+                                                    <p className="">
+                                                        {replaceTxt(item.caption)}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="dashboard-section-7-section-instagram-likes">
+                                                <p>32 personas le han dado me gusta</p>
+                                                <p style={{ color: "gray", fontWeight: "normal" }}>{shortDate(item.timestamp)}</p>
+                                            </div>
+                                        </a> : null
+                                    )
+                                })
+                            }
+                            {/* <div className="dashboard-section-7-section-instagram">
                                 <div className="dashboard-section-7-section-instagram-logo">
                                     <img src={Images.dgappicon} alt="" />
                                     <p>dgapprd</p>
@@ -191,8 +151,8 @@ const DashboardSection7 = ({ tweets }) => {
                                     <p>32 personas le han dado me gusta</p>
                                     <p style={{ color: "gray", fontWeight: "normal" }}>10 de enero</p>
                                 </div>
-                            </div>
-                            <div className="dashboard-section-7-section-instagram">
+                            </div> */}
+                            {/* <div className="dashboard-section-7-section-instagram">
                                 <div className="dashboard-section-7-section-instagram-logo">
                                     <img src={Images.dgappicon} alt="" />
                                     <p>dgapprd</p>
@@ -227,7 +187,7 @@ const DashboardSection7 = ({ tweets }) => {
                                     <p>32 personas le han dado me gusta</p>
                                     <p style={{ color: "gray", fontWeight: "normal" }}>10 de enero</p>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

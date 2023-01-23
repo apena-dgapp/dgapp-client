@@ -20,7 +20,8 @@ const DashboardForm = ({
   modalToggle,
   getImagesHandler,
   notices,
-  tweets
+  tweets,
+  instagram
 }) => {
 
   return (
@@ -48,7 +49,7 @@ const DashboardForm = ({
         < DashboardSection6 />
 
         {/* social */}
-        <DashboardSection7 tweets={tweets} />
+        <DashboardSection7 tweets={tweets} instagram={instagram} />
       </div>
     </>
   );
