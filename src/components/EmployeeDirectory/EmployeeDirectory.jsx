@@ -13,7 +13,7 @@ const EmployeeDirectory = () => {
   const [search, setSearch] = useState("");
   const [searchDep, setSearchDep] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   const [page, setPage] = useState(8 * Number(number));
   const [pageLength, setPageLength] = useState("");
   const [loading, setLoading] = useState(false);

@@ -1,7 +1,7 @@
 .newPostContainer {
   display: flex;
   align-items: flex-end;
-  text-align: center;
+  // text-align: center;
   flex-flow: column;
   width: 100%;
   height: 100%;
@@ -16,7 +16,7 @@
 .inputTitle {
   border-radius: 0.6vw;
   width: 35rem;
-  height: 2.5rem;
+  height: 2rem;
   border: gray solid 1px;
   padding-left: 1rem;
   // font-style: italic;
@@ -35,10 +35,12 @@
 
 .editor {
   width: 35rem;
-  height: 15em;
+  height: 15rem;
   background-color: white;
   border: none !important;
   border-radius: 0.5rem;
+  margin: 0 !important;
+  margin-bottom: 1rem !important;
 
 }
 
@@ -89,9 +91,9 @@
 .input-group {
   display: flex;
   justify-content: center;
-  border-radius: 0.6vw;
+  border-radius: 0.5rem;
   width: 35rem;
-  height: 2.5rem;
+  height: 2rem;
   border: gray solid 1px;
   padding-left: 1rem;
   font-size: 1rem;
@@ -219,6 +221,7 @@
   // margin-bottom:2rem ;
   // background-color: red;
   min-height: 10rem;
+  text-align: center;
 }
 
 .newPostImg {
@@ -239,6 +242,7 @@
   width: 100%;
   font-size: 2rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .remove-cont {
@@ -280,6 +284,46 @@
 
 .newpost-form {
   margin-top: 1.5rem;
+}
+
+.tags-container{
+  width: 35rem;
+  // height: 2rem;
+  min-height: 2rem;
+  // background-color: red;
+  margin-top: 1.5rem;
+  border: none;
+}
+.rti--container{
+  border-radius: 0.5rem;
+  width: 35rem;
+  min-height: 2rem;
+  // height: 2rem;
+  border: gray solid 1px;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  padding-left: 0.5rem;
+}
+
+.rti--tag{
+  background-color: #79ADD4;
+  height: 1.5rem;
+}
+.rti--input{
+  width: 9.2rem;
+  height: 1.5rem;
+  // background-color: red;
+}
+
+.rmsc .dropdown-heading {
+  width: 35rem;
+  min-height: 2rem;
+  max-height: 2rem;
+}
+.dropdown-container{
+  border: gray solid 1px !important;
+  border-radius: 0.5rem !important;
 }
 
 //MEDIAS QUERIES

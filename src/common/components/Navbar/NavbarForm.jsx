@@ -13,7 +13,7 @@ const NavbarForm = ({
     createPost,
     person,
     inConstruction,
-    allPost,
+    news,
     employeeProfile,
     home,
     employeedirectory,
@@ -182,7 +182,7 @@ const NavbarForm = ({
                             </p>
                             <ul className={action === "Publicaciones" ? show : null} style={{ width: width >= 5120 ? "23rem" : "12rem", height: width >= 5120 ? "12rem" : "7.5rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
                                 <li>
-                                    <span onClick={allPost}>Noticias</span>
+                                    <span onClick={news}>Noticias</span>
                                 </li>
                                 <li>
                                     <span onClick={inConstruction}>Multimedia</span>
@@ -212,7 +212,7 @@ const NavbarForm = ({
                                         style={{ cursor: "pointer" }}
                                     />
                                 </p>
-                                <ul style={{ width: width >= 5120 ? "22.5rem" : "12rem", height: width >= 5120 ? "19rem" : "11.3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
+                                <ul style={{ width: width >= 5120 ? "22.5rem" : "12rem", height: width >= 5120 ? "19rem" : (contextState.userRole === 3 ? "7.2rem" : "11.3rem"), backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
                                     {contextState.userRole === 1 || contextState.userRole === 3 ?
                                         <>
                                             <li>

@@ -1,6 +1,5 @@
-
-export const newPostApi = async (title, description, category, author, image, views, isactive, createdby, createdat,expiration) => {
-    const body = { title, description, category, author, image, views, isactive, createdby, createdat,expiration };
+export const newPostApi = async (title, description, category, author, image, views, isactive, createdby, createdat,expiration,tags,link) => {
+    const body = { title, description, category, author, image, views, isactive, createdby, createdat,expiration,tags,link };
     return fetch(`${process.env.REACT_APP_API}post/newpost`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -209,3 +208,25 @@ export const expirationNoticies = async () => {
     })
 }
 
+export const giveLike = async (postId, personId, action) => {
+    const body = { postId, personId,action };
+    return fetch(`${process.env.REACT_APP_API}like/givelike`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+export const countLike = async ( postId, action ) => {
+    const body = { postId, action };
+    return fetch(`${process.env.REACT_APP_API}like/likes`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}

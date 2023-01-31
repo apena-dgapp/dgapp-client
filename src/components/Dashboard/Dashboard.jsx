@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import DashboardForm from "./DashboardForm";
 import { getPost, getDataCarousel, getPostMultimedia, getPostMultimediaMain, expirationNoticies } from "../../api/post";
+import { incrementClick } from '../../api/tags';
+import { getNews } from '../../api/news';
 import { getFiles } from "../../api/post";
 import { getBirthday } from "../../api/person";
 import { getEvents } from "../../api/events";
@@ -9,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import DashboardPopup from "./DashboardPopup";
 import Viewer from "react-viewer";
-import { getTweets } from "../../api/tweets";
-import { TwitterApi } from 'twitter-api-v2';
+// import { getTweets } from "../../api/tweets";
+// import { TwitterApi } from 'twitter-api-v2';
 
 const Dashboard = () => {
   const [loading, setLoading] = useState(false);
@@ -27,7 +29,7 @@ const Dashboard = () => {
   const [visible, setVisible] = useState(false);
   const [arrayImg, setArrayImg] = useState("");
   const [notices, setNotices] = useState([]);
-  const [tweets, setTweets] = useState([]);
+  // const [tweets, setTweets] = useState([]);
   const [instagram, setInstagram] = useState([]);
 
   const modalToggle = (data) => {
@@ -61,7 +63,7 @@ const Dashboard = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           setInstagram(data.data);
         });
     }
@@ -109,13 +111,20 @@ const Dashboard = () => {
   useEffect(() => {
     let unmounted = false;
 
-    getPost("Noticia", 3)
+    getNews("0", 3)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
         if (!unmounted) {
-          setNews(res.posts);
+          setNews(res?.rows);
+
+          // var arr
+          // arr = res?.rows[2].tags;
+
+          // console.log(arr);
+          // console.log(arr.split(/[\s,{""}]+/));
+          // console.log(res?.rows[2].tags);
         }
       })
       .catch((err) => {
@@ -221,9 +230,26 @@ const Dashboard = () => {
   }, []);
 
   const goToPost = (item) => {
+
+    if (item?.tags) {
+      var arr
+      arr = item?.tags.split(/[{","}]+/);
+      arr.map((item) => {
+        return (
+          item ?
+            incrementClick(item)
+              .then((res) => {
+                console.log(res);
+              })
+              .catch((err) => {
+                return console.error(err.status);
+              }) : null
+        )
+      })
+    }
     viewUpdate(item.postId)
       .then((res) => {
-        navigate(`/${item.category.toLowerCase()}/${item.title.toLowerCase()}`, {
+        navigate(`/publicaciones/noticias/${item.title.toLowerCase()}`, {
           state: {
             id: item.postId,
             title: item.title,
@@ -231,13 +257,13 @@ const Dashboard = () => {
             description: item.description,
             date: item.createdAt,
             author: item.author,
-            createdby: item.createdBy
+            createdby: item.createdBy,
+            tags: item.tags,
           },
         });
       })
       .catch((err) => {
-        console.error(err.status);
-        return;
+        return console.error(err.status);
       });
   };
 
@@ -297,7 +323,7 @@ const Dashboard = () => {
           modalToggle={modalToggle}
           getImagesHandler={getImagesHandler}
           notices={notices}
-          tweets={tweets}
+          // tweets={tweets}
           instagram={instagram}
         />
       )}

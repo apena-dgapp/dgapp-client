@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import NewPostForm from "./NewPostForm";
 import { newPostApi, postId, createFile } from "../../api/post";
 import { blobToBase64, getBase64 } from "../../utils/blobManager";
@@ -6,6 +6,10 @@ import toast from "react-hot-toast";
 import { EditorState } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import { useLocation } from "react-router-dom";
+import { TagsInput } from "react-tag-input-component";
+import { MultiSelect } from "react-multi-select-component";
+import { newTags, getTags } from "../../api/tags";
+import { set } from "immutable";
 
 const NewPost = () => {
   const [editorState, setEditorState] = useState(() =>
@@ -21,6 +25,9 @@ const NewPost = () => {
   const [qtyPdf, setQtyPdf] = useState("");
   const [namePdf, setNamePdf] = useState("");
   const [nameImg, setNameImg] = useState("");
+  const [selected, setSelected] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [tagsList, setTagsList] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -30,7 +37,8 @@ const NewPost = () => {
     isActive: true,
     video: "",
     date: "",
-    expiration: ""
+    expiration: "",
+    link: ""
   });
 
   const refInput = useRef();
@@ -53,7 +61,6 @@ const NewPost = () => {
     refExpiration.current.type = "text";
   };
 
-
   const options = [
     {
       id: "1",
@@ -74,6 +81,10 @@ const NewPost = () => {
     {
       id: "5",
       value: "Multimedia",
+    },
+    {
+      id: "6",
+      value: "Otras Noticias",
     },
   ];
 
@@ -187,7 +198,7 @@ const NewPost = () => {
       return toast.error("Por favor agregar un título");
       // } else if (!formData.author) {
       //   return toast.error("Por favor agregar un autor");
-    } else if (!formData.date) {
+    } else if (!formData.date && formData.category !== "Otras Noticias") {
       return toast.error("Por favor agregar una fecha");
     } else if (!formData.expiration && formData.category === "Aviso") {
       return toast.error("Por favor agregar una fecha de expiración");
@@ -217,7 +228,11 @@ const NewPost = () => {
       formData.isActive,
       state?.fullName,
       formData.date,
-      formData.expiration ? formData.expiration : null
+      formData.expiration ? formData.expiration : null,
+      formData.category === "Noticia" || formData.category === "Multimedia" ? state?.fullName === "Yelissa Diaz" ? selected : selected.map(function (item) {
+        return item['value'];
+      }) : [],
+      formData.link,
     )
       .then((res) => {
         return res.json();
@@ -303,9 +318,16 @@ const NewPost = () => {
             // toast.dismiss(loadingId);
             toast.success("Publicacion guardada exitosamente!");
             scrollToTop();
-            // setTimeout(function () {
-            //   window.location.reload(true);
-            // }, 1100);
+
+            if (state?.fullName === "Yelissa Diaz") {
+              var final = selected.filter(function (item) {
+                return !tags.includes(item.split('.')[0]);
+              })
+
+              final.map((item) => {
+                return (newTags(item, state?.fullName))
+              })
+            }
           })
           .catch((err) => {
             // toast.dismiss(loadingId);
@@ -326,7 +348,8 @@ const NewPost = () => {
       isActive: true,
       video: "",
       date: "",
-      expiration: ""
+      expiration: "",
+      link: ""
     });
     setImg("");
     setAccept("");
@@ -342,7 +365,43 @@ const NewPost = () => {
     });
 
     setEditorState(EditorState.createEmpty());
+
+    setTagsList([]);
+    setSelected([]);
+    setTags([]);
   };
+
+  useEffect(() => {
+    let unmounted = false;
+
+    getTags()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          if (state?.fullName !== "Yelissa Diaz") {
+            setTagsList(res)
+          } else {
+            setSelected(res.map(function (item) {
+              return item['value'];
+            }));
+
+            setTags(res.map(function (item) {
+              return item['value'];
+            }));
+          }
+
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, [state]);
 
   return (
     <>
@@ -378,6 +437,12 @@ const NewPost = () => {
         refExpiration={refExpiration}
         expirationDate={expirationDate}
         expirationText={expirationText}
+        TagsInput={TagsInput}
+        selected={selected}
+        setSelected={setSelected}
+        user={state?.fullName}
+        MultiSelect={MultiSelect}
+        tagsList={tagsList}
       />
     </>
   );

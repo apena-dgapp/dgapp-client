@@ -104,7 +104,7 @@ const Navbar = () => {
     navigate("/construccion");
   };
 
-  const allPost = () => {
+  const news = () => {
 
     if (active === "menu_items_show") {
       setActive("menu_items");
@@ -217,7 +217,7 @@ const Navbar = () => {
         createPost={createPost}
         person={person}
         inConstruction={inConstruction}
-        allPost={allPost}
+        news={news}
         employeeProfile={employeeProfile}
         home={home}
         employeedirectory={employeedirectory}

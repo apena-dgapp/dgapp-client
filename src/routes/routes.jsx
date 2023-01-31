@@ -6,7 +6,7 @@ import Navbar from "../common/components/Navbar/Navbar";
 import Dashboard from "../components/Dashboard/Dashboard";
 import Footer from "../common/components/Footer/Footer";
 import SinglePost from "../components/SinglePost/SinglePost";
-import AllPost from "../components/AllPost/AllPost";
+// import AllPost from "../components/AllPost/AllPost";
 import NewPost from "../components/NewPost/NewPost";
 import Register from "../components/Register/Register";
 import Page404 from "../common/components/404/Page404";
@@ -29,6 +29,7 @@ import Documents from "../components/DownloadFile/Download";
 import FormTemple from "../components/FormTemple/FormTemple";
 import RequestMenu from "../components/FormTemple/RequestMenu";
 import News from "../components/News/News";
+import New from "../components/New/New";
 
 const RoutesComponent = () => {
   const [contextState] = useContext(GlobalContext);
@@ -61,6 +62,10 @@ const RoutesComponent = () => {
         <Route
           path={`/publicaciones/noticias/pagina/:number`}
           element={contextState.token ? <News /> : <Login />}
+        />
+        <Route
+          path={`/publicaciones/noticias/:title`}
+          element={contextState.token ? <New /> : <Login />}
         />
 
         <Route
