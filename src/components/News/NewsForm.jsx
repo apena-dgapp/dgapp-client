@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReactPaginate from 'react-paginate';
 import { shortDate } from "../../utils/shortDate";
-import DashboardSection5 from "../Dashboard/DashboardSection5"
+import DashboardSection5 from "../Dashboard/DashboardSection5";
+import DashboardSection6 from "../Dashboard/DashboardSection6";
+import DashboardSection7 from "../Dashboard/DashboardSection7";
+import { FiEdit } from "react-icons/fi";
+import { CiSquareRemove } from "react-icons/ci";
+import GlobalContext from "../../context/GlobalContext";
 
 const NewsForm = ({
   handlePageClick,
@@ -13,8 +18,14 @@ const NewsForm = ({
   modalToggle,
   getImagesHandler,
   otherNews,
-  tags
+  tags,
+  setRelated,
+  instagram,
+  EditToggle,
+  messageToggle,
+  width
 }) => {
+  const [contextState] = useContext(GlobalContext);
 
   return (
     <>
@@ -28,14 +39,33 @@ const NewsForm = ({
             {
               items.rows?.map((item, index) => {
                 return (
-                  <div key={index} onClick={() => goToPost(item)} className="news-box">
-                    <div className="news-box-img">
+                  <div key={index} className="news-box">
+                    {contextState.userRole === 1 || contextState.userRole === 3 ?
+                      <div className="news-box-img-icon">
+                        <span onClick={() => EditToggle(item)}>
+                          <i className="fi fi-edit" />
+                          <FiEdit
+                            style={{ cursor: "pointer" }}
+                            size="1.1rem"
+                            color="#FBB454"
+                          />
+                        </span>
+                        <span onClick={() => messageToggle(item)}>
+                          <i className="ci ci-square-remove" />
+                          <CiSquareRemove
+                            style={{ cursor: "pointer" }}
+                            size="1.2rem"
+                            color="#FB2576"
+                          />
+                        </span>
+                      </div> : null}
+                    <div onClick={() => goToPost(item)} className="news-box-img">
                       <img src={item.image} alt="" />
                     </div>
                     <div className="news-box-text">
                       <p className='news-box-text-title'>{item.title}</p>
                       <p className='news-box-text-date'>{shortDate(item.createdAt)}</p>
-                      <p className='news-box-text-cont'>{item.description.replace(/(<([^>]+)>)/gi, "")}</p>
+                      <p style={{ WebkitLineClamp: width <= 1366 && item?.title.length > 104 ? "2" : "3" }} className='news-box-text-cont'>{item.description.replace(/(<([^>]+)>)/gi, "")}</p>
                     </div>
                   </div>
                 )
@@ -83,7 +113,7 @@ const NewsForm = ({
                     return (
                       <div
                         key={index}
-                        // onClick={() => goToPost(item)}
+                        onClick={() => setRelated(item.name)}
                         className="news-mostviewed-content"
                       >
                         <div className="news-mostviewed-content-txt">
@@ -125,6 +155,12 @@ const NewsForm = ({
           modalToggle={modalToggle}
           getImagesHandler={getImagesHandler}
         />
+
+        {/* logo */}
+        < DashboardSection6 />
+
+        {/* social */}
+        <DashboardSection7 instagram={instagram} />
       </div>
     </>
   )

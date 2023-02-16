@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import NewForm from './NewForm'
 import { useLocation, useNavigate } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
-import { getNews } from "../../api/news";
+import { getNews, getRelated } from "../../api/news";
 import { incrementClick } from '../../api/tags';
 import { viewUpdate } from "../../api/post";
 import { addCommentPost, getComments, giveLike, countLike, getPostMultimedia } from "../../api/post";
@@ -28,6 +28,7 @@ const New = () => {
     const [modalData, setModalData] = useState("");
     const [visible, setVisible] = useState(false);
     const [arrayImg, setArrayImg] = useState("");
+    const [related, setRelated] = useState([]);
 
     useEffect(() => {
         let unmounted = false;
@@ -75,8 +76,26 @@ const New = () => {
 
     useEffect(() => {
         let unmounted = false;
+        dataPost?.tagsArray.map((item, index) => {
 
-        getNews(0, 3)
+            return (
+                index <= 2 ?
+                    getRelated(dataPost.id, item)
+                        .then((res) => {
+                            return res.json();
+                        })
+                        .then((res) => {
+                            if (!unmounted) {
+                                setRelated((related) => [...related, ...res]);
+                            }
+                        })
+                        .catch((err) => {
+                            console.error(err.status);
+                        }) : null
+            )
+        })
+
+        getNews(0, 3, "")
             .then((res) => {
                 return res.json();
             })
@@ -105,7 +124,7 @@ const New = () => {
         return () => {
             unmounted = true;
         };
-    }, [dataPost.id]);
+    }, [dataPost]);
 
     useEffect(() => {
         let unmounted = false;
@@ -157,6 +176,7 @@ const New = () => {
                         author: item.author,
                         createdby: item.createdBy,
                         tags: item.tags,
+                        tagsArray: arr
                     },
                 });
             })
@@ -298,6 +318,7 @@ const New = () => {
                 multimedia={multimedia}
                 modalToggle={modalToggle}
                 getImagesHandler={getImagesHandler}
+                related={related}
             />
         </>
 

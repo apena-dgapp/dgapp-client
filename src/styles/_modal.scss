@@ -179,7 +179,7 @@
   border-radius: 0.6vw;
   width: 30rem;
   height: 2.5rem;
-  border: #113250 solid 1px;
+  border: #0D2F4C solid 1px;
   padding-left: 1rem;
   // font-style: italic;
   font-size: 1rem;
@@ -315,7 +315,8 @@
 
 //EDIT POST MODAL
 .card-window-model {
-  position: relative;
+  top: 2rem;
+  position: fixed;
   background: white;
   // background-image: url("../common/images/Fondo.png");
   border-radius: 0.5rem;
@@ -334,10 +335,11 @@
   grid-template-columns: 68% 42%;
 }
 
-.edit-input-title {
-  font-size: 1rem;
+.edit-input-title-modal {
+  font-size: 0.8rem;
   font-weight: bold;
   color: #79ADD4;
+  margin: 0;
 }
 
 .card-edit-img-modal-cont {
@@ -353,7 +355,7 @@
   width: 12rem;
   height: 13rem;
   margin-top: 3.5rem;
-  // border: #113250 solid 2px;
+  // border: #0D2F4C solid 2px;
   object-fit: cover;
 }
 
@@ -387,7 +389,7 @@
 
 .card-edit-editor {
   width: 38.8rem;
-  height: 15em;
+  height: 13rem;
   background-color: white;
   border: none !important;
   border-radius: 0.5rem;
@@ -397,8 +399,8 @@
 .card-edit-editor-class {
   background-color: white;
   width: 38.5rem;
-  height: 8.7em;
+  height: 6.8em;
   padding-right: 0.5rem;
   padding-left: 0.5rem;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }

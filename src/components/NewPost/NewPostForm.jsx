@@ -2,6 +2,7 @@ import React from "react";
 import Images from "../../common/images/index";
 import { TiDelete } from "react-icons/ti";
 import Modal from "./NewPost.Modal";
+import Caption from "./Caption";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
@@ -40,7 +41,13 @@ const NewPostForm = ({
   setSelected,
   user,
   MultiSelect,
-  tagsList
+  tagsList,
+  reloadTags,
+  captionToggle,
+  captionActive,
+  uploadFiles,
+  caption,
+  setCaption
 }) => {
   const handleEditorChange = (state) => {
     setEditorState(state);
@@ -62,6 +69,17 @@ const NewPostForm = ({
         modalToggleCancel={modalToggleCancel}
         modalToggleAceppt={modalToggleAceppt}
       />
+      <Caption
+        captionToggle={captionToggle}
+        captionActive={captionActive}
+        uploadFiles={uploadFiles}
+        caption={caption}
+        setCaption={setCaption}
+      // formData={formData}
+      // setFormData={setFormData}
+      // modalToggleCancel={modalToggleCancel}
+      // modalToggleAceppt={modalToggleAceppt}
+      />
       <div className="news-container">
         <div className="news-title">
           <p>CREAR NUEVA ENTRADA</p>
@@ -77,6 +95,7 @@ const NewPostForm = ({
                   className="input-group"
                   value={formData.category || ""}
                   onChange={handlerInputChange}
+                  onClick={reloadTags}
                 >
                   <option disabled={true} value="">Elige una Categoría</option>
                   {options?.map(({ value, id }) => {
@@ -110,7 +129,7 @@ const NewPostForm = ({
                 </div>
               }
               {
-                formData.category === "Otras Noticias" ? <div>
+                formData.category === "Otras Noticias" || formData.category === "Portada Principal" ? <div>
                   <input
                     id="link"
                     name="link"
@@ -174,16 +193,19 @@ const NewPostForm = ({
                 }
 
                 <div className="newpost-form">
-                  <div className="editor">
-                    <Editor
-                      editorState={editorState}
-                      onEditorStateChange={handleEditorChange}
-                      wrapperClassName="wrapper-class"
-                      editorClassName="editor-class"
-                      toolbarClassName="toolbar-class"
-                      placeholder="Escribir aquí..."
-                    />
-                  </div>
+                  {formData.category === "Noticia" || formData.category === "Aviso" ?
+                    <div className="editor">
+                      <Editor
+                        editorState={editorState}
+                        onEditorStateChange={handleEditorChange}
+                        wrapperClassName="wrapper-class"
+                        editorClassName="editor-class"
+                        toolbarClassName="toolbar-class"
+                        placeholder="Escribir aquí..."
+                      />
+                    </div>
+                    : null
+                  }
 
                   <div className="btn-publish-cont">
                     <button

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import EmployeeDirectoryForm from "./EmployeeDirectoryForm";
 import { getAllPersons } from "../../api/person";
 import { getAlldepartament } from "../../api/department";
-import { useNavigate, useLocation, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const EmployeeDirectory = () => {

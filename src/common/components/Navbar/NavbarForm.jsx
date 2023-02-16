@@ -32,7 +32,9 @@ const NavbarForm = ({
     hidenToggle,
     action,
     width,
-    formTemple
+    formTemple,
+    modalToggle,
+    multimedia
 }) => {
 
     const [contextState] = useContext(GlobalContext);
@@ -185,7 +187,7 @@ const NavbarForm = ({
                                     <span onClick={news}>Noticias</span>
                                 </li>
                                 <li>
-                                    <span onClick={inConstruction}>Multimedia</span>
+                                    <span onClick={multimedia}>Multimedia</span>
                                 </li>
                                 <li>
                                     <span onClick={inConstruction}>Contenido Educativo</span>
@@ -222,7 +224,7 @@ const NavbarForm = ({
                                                 <span onClick={createEvents}>Crear Evento</span>
                                             </li>
                                             <li>
-                                                <span onClick={createEvents}>Crear Avisos</span>
+                                                <span onClick={modalToggle}>Crear Encuesta</span>
                                             </li>
                                         </>
                                         : null}

@@ -1,16 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import NewsForm from './NewsForm'
 import { getNews, getOtherNews } from "../../api/news";
-import { getPostMultimedia, getPostMultimediaMain } from "../../api/post";
+import { getPostMultimedia, getPostMultimediaMain, updatePost, disabledPost } from "../../api/post";
 import { incrementClick, mostviewedTags } from '../../api/tags';
 import { getFiles } from "../../api/post";
 import { viewUpdate } from "../../api/post";
 import { useNavigate } from "react-router-dom";
 import DashboardPopup from "../Dashboard/DashboardPopup";
 import Viewer from "react-viewer";
+import { EditorState, ContentState, convertFromHTML } from "draft-js";
+import EditCardModal from "../../common/components/Card/EditCardModal";
+import { getBase64 } from "../../utils/blobManager";
+import { convertToHTML } from "draft-convert";
+import toast from "react-hot-toast";
+import Message from "../../common/Message/Message";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const News = () => {
     const navigate = useNavigate();
+    const { width } = useScreenSize();
     const [items, setItems] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [pageCount, setPageCount] = useState(0);
@@ -18,22 +26,60 @@ const News = () => {
     const [multimedia, setMultimedia] = useState([]);
     const [multimediaMain, setMultimediaMain] = useState();
     const [modalActive, setModalActive] = useState(false);
+    const [editModal, setEditModal] = useState(false);
     const [modalData, setModalData] = useState("");
     const [visible, setVisible] = useState(false);
     const [arrayImg, setArrayImg] = useState("");
     const [tags, setTags] = useState([]);
+    const [data, setData] = useState([]);
+    const [related, setRelated] = useState("");
+    const [instagram, setInstagram] = useState([]);
+    const [editorState, setEditorState] = useState();
+    const [message, setMessage] = useState({
+        title: "",
+        text: "",
+        isActive: false
+    });
+    const [formData, setFormData] = useState({
+        title: "",
+        description: "",
+        image: "",
+        author: "",
+        date: "",
+        tags: ""
+    });
 
     useEffect(() => {
         let unmounted = false;
 
-        getNews(currentPage, 4)
+        if (!unmounted) {
+            fetch(
+                `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,timestamp,caption&limit=3&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    // console.log(data);
+                    setInstagram(data.data);
+                });
+        }
+
+        return () => {
+            unmounted = true;
+        };
+    }, []);
+
+    useEffect(() => {
+        let unmounted = false;
+
+        getNews(currentPage, 4, related)
             .then((res) => {
                 return res.json();
             })
             .then((res) => {
                 if (!unmounted) {
                     setItems(res);
-                    setPageCount(Math.round(res.count / 4))
+                    setPageCount(res.count / 4);
+                    // setPageCount(Math.round(res.count / 4));
                 }
             })
             .catch((err) => {
@@ -56,7 +102,7 @@ const News = () => {
         return () => {
             unmounted = true;
         };
-    }, [currentPage]);
+    }, [currentPage, related]);
 
     useEffect(() => {
         let unmounted = false;
@@ -106,8 +152,6 @@ const News = () => {
                         .catch((err) => {
                             console.error(err.status);
                         });
-
-
                 }
             })
             .catch((err) => {
@@ -127,9 +171,7 @@ const News = () => {
                 return (
                     item ?
                         incrementClick(item)
-                            .then((res) => {
-                                console.log(res);
-                            })
+                            .then(res => res)
                             .catch((err) => {
                                 return console.error(err.status);
                             }) : null
@@ -147,7 +189,8 @@ const News = () => {
                         date: item.createdAt,
                         author: item.author,
                         createdby: item.createdBy,
-                        tags: item.tags
+                        tags: item.tags,
+                        tagsArray: arr
                     },
                 });
             })
@@ -178,6 +221,114 @@ const News = () => {
     const handlePageClick = (data) => {
         setCurrentPage(data.selected)
     }
+
+    //edit and delete
+    const messageToggle = (item) => {
+        setData(item)
+        setMessage({ title: "ELIMINAR PUBLICACIÓN", text: "Seguro que desea eliminar esta publicación?", isActive: !message.isActive })
+    };
+    const btnConfirmm = () => {
+        disabledPost(data.postId)
+            .then((res) => {
+                if (res.status !== 200) {
+                    return toast.error("Error al intentar eliminar la publicación");
+                } else {
+                    navigate(0);
+                    return toast.success("La publicación se elimino exitosamente!");
+                }
+            })
+            .catch((err) => {
+                console.error(err.status);
+            });
+    }
+
+    const btnCancel = () => {
+        setMessage({ title: "", text: "", isActive: !message.isActive })
+    };
+
+    const handlerInputChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const seletedHandler = async (e) => {
+        setFormData({ image: (await getBase64(e.target.files[0])) });
+    };
+
+    const refInput = useRef();
+
+    const refBtnImg = useRef();
+
+    const inputDate = () => {
+        refInput.current.type = "date";
+    };
+
+    const inputText = () => {
+        refInput.current.type = "text";
+    };
+
+    const changeImg = () => {
+        refBtnImg.current.click();
+    }
+
+    const removeImg = () => {
+        refBtnImg.current.value = "";
+        setFormData({ image: "" })
+    };
+
+    const EditToggle = (item) => {
+        // const state = Object.assign({ item }, { img });
+        setData(item);
+        setEditorState(EditorState.createWithContent(
+            ContentState.createFromBlockArray(
+                convertFromHTML(item?.description)
+            ),
+        ),)
+        setEditModal(!editModal);
+        setFormData({
+            title: item?.title,
+            description: item?.description,
+            image: item?.image,
+            author: item?.author,
+            date: item?.createdAt,
+            tags: item?.tags
+        });
+    };
+
+    const sendHandlerForm = () => {
+
+        let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
+
+        updatePost(data?.postId, formData.title === "" || formData.title === undefined ? data?.title : formData.title
+            , currentContentAsHTML === "<p></p>" ? data?.description : currentContentAsHTML
+            , formData.author === "" || formData.author === undefined ? data?.author : formData.author
+            , formData.image === "" || formData.image === undefined ? data?.image : formData.image
+            , formData.date === "" || formData.date === undefined ? data?.date : formData.date
+            , formData.tags === "" || formData.tags === undefined ? data?.tags : formData.tags)
+            .then((res) => {
+                if (res.status !== 200) {
+                    return toast.error("Error al intentar actualizar");
+                } else {
+                    setFormData({
+                        title: "",
+                        description: "",
+                        image: "",
+                        author: "",
+                        date: "",
+                        tags: ""
+                    });
+                    setEditorState(EditorState.createEmpty());
+                    setModalActive(false);
+                    navigate(0);
+                    return toast.success("Se realizo la actualizo exitosamente!");
+                }
+            })
+            .catch((err) => {
+                console.error(err.status);
+            });
+    }
     return (
         <>
             <Viewer
@@ -190,7 +341,32 @@ const News = () => {
                 // activeIndex={activeIndex}
                 downloadable
             />
-            <DashboardPopup modalToggle={modalToggle} modalActive={modalActive} modalData={modalData} />
+            <DashboardPopup
+                modalToggle={modalToggle}
+                modalActive={modalActive} modalData={modalData}
+            />
+            <Message
+                message={message}
+                btnConfirmm={btnConfirmm}
+                btnCancel={btnCancel}
+            />
+            <EditCardModal
+                modalToggle={EditToggle}
+                modalActive={editModal}
+                setModalActive={setEditModal}
+                setEditorState={setEditorState}
+                editorState={editorState}
+                refInput={refInput}
+                inputDate={inputDate}
+                inputText={inputText}
+                handlerInputChange={handlerInputChange}
+                formData={formData}
+                sendHandlerForm={sendHandlerForm}
+                refBtnImg={refBtnImg}
+                changeImg={changeImg}
+                removeImg={removeImg}
+                seletedHandler={seletedHandler}
+            />
             <NewsForm
                 handlePageClick={handlePageClick}
                 items={items}
@@ -202,6 +378,11 @@ const News = () => {
                 getImagesHandler={getImagesHandler}
                 otherNews={otherNews}
                 tags={tags}
+                setRelated={setRelated}
+                instagram={instagram}
+                EditToggle={EditToggle}
+                messageToggle={messageToggle}
+                width={width}
             />
         </>
 

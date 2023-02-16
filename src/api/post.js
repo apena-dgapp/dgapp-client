@@ -22,6 +22,17 @@ export const getPost = async (category, limit) => {
     })
 }
 
+export const getMultimedia = async (category, limit, type) => {
+    const body = { category, limit,type };
+    return fetch(`${process.env.REACT_APP_API}post/multimediafiles`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
 export const getPostMultimedia = async (category, limit) => {
     const body = { category, limit };
     return fetch(`${process.env.REACT_APP_API}post/multimediapost`, {
@@ -90,8 +101,8 @@ export const postId = async (title, category, author) => {
     })
 }
 
-export const createFile = async (postid, name, type, file, size) => {
-    const body = { postid, name, type, file, size };
+export const createFile = async (postid, name, type, file, size, caption) => {
+    const body = { postid, name, type, file, size, caption };
     return fetch(`${process.env.REACT_APP_API}filespost/createfile`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -173,8 +184,8 @@ export const getDataCarousel = async (category, limit) => {
     })
 }
 
-export const updatePost = async (id, title, description, author, image, date) => {
-    const body = { id, title, description, author, image, date };
+export const updatePost = async (id, title, description, author, image, date, tags) => {
+    const body = { id, title, description, author, image, date, tags };
     return fetch(`${process.env.REACT_APP_API}post/updatepost`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -222,6 +233,30 @@ export const giveLike = async (postId, personId, action) => {
 export const countLike = async ( postId, action ) => {
     const body = { postId, action };
     return fetch(`${process.env.REACT_APP_API}like/likes`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const getGallery = async (page, limit, related, type) => {
+    const body = { page, limit, related,type };
+    return fetch(`${process.env.REACT_APP_API}post/getgallery`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const imagesCount = async (postid) => {
+    const body = { postid };
+    return fetch(`${process.env.REACT_APP_API}filespost/count`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: {

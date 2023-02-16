@@ -30,6 +30,7 @@ import FormTemple from "../components/FormTemple/FormTemple";
 import RequestMenu from "../components/FormTemple/RequestMenu";
 import News from "../components/News/News";
 import New from "../components/New/New";
+import Multimedia from "../components/Multimedia/Multimedia";
 
 const RoutesComponent = () => {
   const [contextState] = useContext(GlobalContext);
@@ -66,6 +67,10 @@ const RoutesComponent = () => {
         <Route
           path={`/publicaciones/noticias/:title`}
           element={contextState.token ? <New /> : <Login />}
+        />
+        <Route
+          path={`/publicaciones/multimedia/:form`}
+          element={contextState.token ? <Multimedia /> : <Login />}
         />
 
         <Route

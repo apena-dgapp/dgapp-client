@@ -63,6 +63,7 @@ const Card = (props) => {
       date: item?.date,
     });
   };
+
   const messageToggle = () => {
     setMessage({ title: "ELIMINAR PUBLICACIÓN", text: "Seguro que desea eliminar esta publicación?", isActive: !message.isActive })
   };

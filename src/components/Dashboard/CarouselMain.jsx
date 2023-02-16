@@ -1,57 +1,8 @@
 import React from "react";
 import 'react-alice-carousel/lib/alice-carousel.css';
 import AliceCarousel from 'react-alice-carousel';
-import { viewUpdate } from "../../api/post";
-import { useNavigate } from "react-router-dom";
-// import { MdSubtitlesOff } from "react-icons/md";
-// import Images from "../../common/images";
 
 const CarouselMain = ({ arrayCarousel }) => {
-  const navigate = useNavigate();
-  // const [arrayCarousel, setArrayCarousel] = useState([]);
-
-  // useEffect(() => {
-  //   let unmounted = false;
-
-  //   getPost("Portada Principal", 3)
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((res) => {
-  //       if (!unmounted) {
-  //         setArrayCarousel(res.posts);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.error(err.status);
-  //     });
-
-  //   return () => {
-  //     unmounted = true;
-  //   };
-  // }, []);
-
-
-  const goToPost = (item) => {
-    viewUpdate(item.postId)
-      .then((res) => {
-        navigate(`/${item.category.toLowerCase()}/${item.title.toLowerCase()}`, {
-          state: {
-            id: item.postId,
-            title: item.title,
-            image: item.image,
-            description: item.description,
-            date: item.createdAt,
-            author: item.author,
-            createdby: item.createdBy
-          },
-        });
-      })
-      .catch((err) => {
-        console.error(err.status);
-        return;
-      });
-  };
 
   return (
     arrayCarousel?.length ? <AliceCarousel
@@ -69,26 +20,21 @@ const CarouselMain = ({ arrayCarousel }) => {
     >
       {arrayCarousel?.map((item, index) => {
         return (
-          <div
+          <a
             key={index}
-            onClick={() => goToPost(item)}
-            className="carousel-container"
+            href={item.link}
+            target="_blank"
+            rel="noreferrer"
+            style={{ textDecoration: "none" }}
           >
-            <img alt="" src={item.image} />
-            {/* <div className="carousel-container-txt">
-              <p className="carousel-title">{item.title}</p>
-              <p className="carousel-inf">
-                {item.description.replace(/(<([^>]+)>)/gi, "")}
-              </p>
-            </div> */}
-          </div>
+            <div className="carousel-container">
+              <img alt="" src={item.image} />
+            </div>
+
+          </a>
         );
       })}
     </AliceCarousel> : null
-    // <div className="dashboard-nodata-cont">
-    //   <img src={Images.nodata} alt="" />
-    //   <p>No se encuentran portadas</p>
-    // </div>
   );
 };
 

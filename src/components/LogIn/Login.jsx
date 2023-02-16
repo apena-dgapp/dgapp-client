@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";  
+import { useNavigate } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
 import { apiAuth } from "../../api/auth";
 import { passUpdate } from "../../api/user";
@@ -21,7 +21,7 @@ const Login = () => {
 
   const [modalActive, setModalActive] = useState(false);
   const [formData, setFormData] = useState({
-    id:"",
+    id: "",
     password: "",
     confirm: ""
   });
@@ -61,17 +61,17 @@ const Login = () => {
       })
       .then((res) => {
 
-        if(profile.password ==="000"){
+        if (profile.password === "000") {
           setModalActive(true);
-          setFormData({id:res.user.personId})
-        }else{
+          setFormData({ id: res.user.personId })
+        } else {
           contextMiddleware.newToken(res.token);
           contextMiddleware.newUserName(
-          res.user.personId,
-          profile.username.toUpperCase(),
-          res.user.UserRoles[0].roleId,
-          (profile.isAuth = true)
-        );
+            res.user.personId,
+            profile.username.toUpperCase(),
+            res.user.UserRoles[0].roleId,
+            (profile.isAuth = true)
+          );
           navigate("/inicio");
         }
       })
@@ -83,27 +83,27 @@ const Login = () => {
   const modalToggleAceppt = () => {
     if (!formData.password) {
       return toast.error("Por favor digitar una nueva contraseña");
-    } else  if (!formData.confirm) {
+    } else if (!formData.confirm) {
       return toast.error("Por favor de confirmar la contraseña");
-    } else  if (formData.password !== formData.confirm) {
+    } else if (formData.password !== formData.confirm) {
       return toast.error("Las contraseñas no coinciden");
-    } else  if (formData.password === "000") {
+    } else if (formData.password === "000") {
       return toast.error("Esta contraseña no es valida por favor de digitar otra");
-    }else{
+    } else {
       passUpdate(formData?.id, formData.password)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        setModalActive(!modalActive);
-        setProfile({username:"", password:""});
-        setFormData({password: "", confirm:""});
-        return toast.success("Contraseña guardada exitosamente, puedes logearte con tu nueva contraseña");
-      })
-      .catch((err) => {
-        return console.log(err.status);
-      });
-    } 
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          setModalActive(!modalActive);
+          setProfile({ username: "", password: "" });
+          setFormData({ password: "", confirm: "" });
+          return toast.success("Contraseña guardada exitosamente, puedes logearte con tu nueva contraseña");
+        })
+        .catch((err) => {
+          return console.log(err.status);
+        });
+    }
   };
 
   const modalToggle = () => {
@@ -112,7 +112,7 @@ const Login = () => {
 
   const modalToggleCancel = () => {
     setModalActive(!modalActive);
-    setFormData({password: "", confirm:""});
+    setFormData({ password: "", confirm: "" });
   };
 
   const modalInputChange = (e) => {

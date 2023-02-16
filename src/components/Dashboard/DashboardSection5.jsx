@@ -1,6 +1,7 @@
 import React from 'react'
 import { IoMdImages } from "react-icons/io";
 import { MdOutlineDoubleArrow } from "react-icons/md";
+import { AiOutlinePlayCircle } from "react-icons/ai";
 import { getVideoId } from "../../utils/getYoutubeId"
 import { Link } from 'react-router-dom';
 import useScreenSize from "../../hooks/useScreenSize";
@@ -23,10 +24,19 @@ const DashboardSection5 = ({ multimedia, multimediaMain, modalToggle, getImagesH
               <div className="dashboard-section-5-grid">
                 <div className="dashboard-section-5-video">
                   <span onClick={() => modalToggle(multimediaMain)} className='dashboard-section-5-video-onclick'></span>
-                  <iframe
+                  {/* <iframe
                     src={`https://www.youtube.com/embed/${getVideoId(multimediaMain?.url)}`}
                     aria-disabled title="video"
                     frameBorder="0"
+                  /> */}
+                  <i className="ai ai-outline-play-circle" />
+                  <AiOutlinePlayCircle
+                    className="dashboard-section-5-galery-main"
+                  />
+                  <img
+                    // className="dashboard-section-5-galery-img" 
+                    src={`http://img.youtube.com/vi/${getVideoId(multimediaMain?.url)}/0.jpg`}
+                    alt=""
                   />
                   <p>{multimediaMain?.title}</p>
                 </div>
@@ -37,19 +47,22 @@ const DashboardSection5 = ({ multimedia, multimediaMain, modalToggle, getImagesH
                       multimedia?.map((item, key) => {
                         return (
                           item.FilesPosts[0].type === "URL" ?
-                            <div key={key} className="dashboard-section-5-galery-grid-mult">
-                              <span onClick={() => modalToggle({ id: item.postId, title: item.title, url: item.FilesPosts[0].file })} className='dashboard-section-5-grid-onclick'></span>
-                              <iframe
-                                src={`https://www.youtube.com/embed/${getVideoId(item.FilesPosts[0].file)}`}
-                                aria-disabled title="video"
-                                frameBorder="0"
+                            <div
+                              key={key}
+                              onClick={() => modalToggle({ id: item.postId, title: item.title, url: item.FilesPosts[0].file })}
+                              className="dashboard-section-5-galery-grid-mult"
+                            >
+                              <i className="ai ai-outline-play-circle" />
+                              <AiOutlinePlayCircle
+                                className="dashboard-section-5-galery-icon"
                               />
+                              <div className="dashboard-section-5-galery-img-cont">
+                                <img className="dashboard-section-5-galery-img" src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/0.jpg`} alt="" />
+                              </div>
                               <p>{item.title}</p>
                             </div> : <div onClick={() => getImagesHandler(item.postId)} key={key} className="dashboard-section-5-galery-grid-mult">
                               <i className="io io-md-images" />
                               <IoMdImages
-                                size="1.2rem"
-                                color="white"
                                 className="dashboard-section-5-galery-icon"
                               />
                               <div className="dashboard-section-5-galery-img-cont">
@@ -66,7 +79,7 @@ const DashboardSection5 = ({ multimedia, multimediaMain, modalToggle, getImagesH
               </div> : null
           }
           <div className="dashboard-section-5-btn-container">
-            <Link to="" type="button" className="dashboard-section-5-btn">
+            <Link to="/publicaciones/multimedia/menu" type="button" className="dashboard-section-5-btn">
               <i className="md md-outline-double-arrow" />
               <p>Ir a Multimedia</p>
               <MdOutlineDoubleArrow

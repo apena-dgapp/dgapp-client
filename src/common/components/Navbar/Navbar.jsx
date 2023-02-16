@@ -1,9 +1,12 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
+import React, { useContext, useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import GlobalContext from "../../../context/GlobalContext";
 import NavbarForm from "../Navbar/NavbarForm";
 import { getOnePerson } from "../../../api/person";
 import useScreenSize from "../../../hooks/useScreenSize";
+import NewQuiz from './NewQuiz'
+import { newQuiz } from '../../../api/quiz.js'
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -26,6 +29,53 @@ const Navbar = () => {
     reportsTo: "",
     startedOn: ""
   });
+
+  const refExpiration = useRef();
+
+  const expirationDate = () => {
+    refExpiration.current.type = "date";
+  };
+
+  const expirationText = () => {
+    refExpiration.current.type = "text";
+  };
+
+  const [modalActive, setModalActive] = useState(false);
+  const [answer, setAnswer] = useState([1, 2]);
+  const [formData, setFormData] = useState({
+    question: "",
+    answers: [],
+    expiration: ""
+  });
+
+  const modalToggle = () => {
+    setModalActive(!modalActive);
+    if (modalActive) {
+      setAnswer([1, 2]);
+      setFormData({
+        question: "",
+        answers: [],
+        expiration: ""
+      });
+    }
+  };
+
+  const modalInputChange = (e, index) => {
+    if (e.target.name === "answers") {
+      let temp = formData.answers;
+      temp[index] = e.target.value;
+      setFormData({
+        ...formData,
+        [e.target.name]: temp,
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value,
+      });
+    }
+
+  };
 
   const navToggle = () => {
 
@@ -115,6 +165,10 @@ const Navbar = () => {
     }
 
     navigate("/publicaciones/noticias/pagina/1", { state: { category: "Noticia" } });
+  };
+
+  const multimedia = () => {
+    navigate("/publicaciones/multimedia/menu");
   };
 
   const employeedirectory = () => {
@@ -209,10 +263,70 @@ const Navbar = () => {
     };
   }, [contextState.personId, location.pathname, logOut]);
 
+  const addAnswer = () => {
+    if (answer.length < 4) setAnswer(answer => [...answer, answer.length + 1])
+  }
+
+  const RemoveAnswer = (e) => {
+    var array = [...answer];
+    var array2 = [...formData.answers];
+    var index = array.indexOf(e)
+    if (index !== -1) {
+      array.splice(index, 1);
+      array2.splice(index, 1);
+      setAnswer(array);
+      setFormData({
+        question: formData.question,
+        answers: array2
+      })
+    }
+  }
+
+  const sendQuiz = () => {
+
+    if (formData.question === "") {
+      return toast.error("Por favor agregar una pregunta");
+    } else if (formData.answers.length < 2) {
+      return toast.error("Por favor agregar mínimo dos respuestas");
+    } else if (formData.expiration === "") {
+      return toast.error("Por favor agregar una fecha de caducidad");
+    }
+
+    newQuiz(formData.question, formData.answers[0], formData.answers[1], formData.answers[2] ? formData.answers[2] : "",
+      formData.answers[3] ? formData.answers[3] : "", person.fullName, formData.expiration)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res === 200) {
+          toast.success("La encuesta fue creada exitosamente!");
+          modalToggle();
+        } else {
+          toast.error("Error al intentar crear la encuesta!");
+        }
+      })
+      .catch((err) => {
+        toast.error("Error del servidor");
+        console.error(err.status);
+      });
+  }
+
   return (
     <>
+      <NewQuiz
+        modalToggle={modalToggle}
+        modalActive={modalActive}
+        formData={formData}
+        modalInputChange={modalInputChange}
+        answer={answer}
+        addAnswer={addAnswer}
+        RemoveAnswer={RemoveAnswer}
+        sendQuiz={sendQuiz}
+        refExpiration={refExpiration}
+        expirationDate={expirationDate}
+        expirationText={expirationText}
+      />
       <NavbarForm
-        // handeleLang={setLanguage}
         logOut={logOut}
         createPost={createPost}
         person={person}
@@ -224,7 +338,6 @@ const Navbar = () => {
         employeeNew={employeeNew}
         employeeTree={employeeTree}
         isHidden={isHidden}
-        // goToFile={goToFile}
         training={training}
         register={register}
         createEvents={createEvents}
@@ -238,6 +351,8 @@ const Navbar = () => {
         action={action}
         width={width}
         formTemple={formTemple}
+        modalToggle={modalToggle}
+        multimedia={multimedia}
       />
     </>
   );

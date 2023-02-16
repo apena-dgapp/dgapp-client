@@ -48,13 +48,14 @@ const DashboardSection7 = ({ tweets, instagram }) => {
                                     <iframe
                                         title='facebook'
                                         src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdgapprd&tabs=timeline&width=350&height=2500&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=true&appId=616510976770949"
-                                        width={400}
-                                        height={2500}
+                                        // width={400}
+                                        // height={2500}
                                         style={{ border: 'none', overflow: 'hidden' }}
                                         scrolling="no"
                                         frameBorder={0}
-                                        allowFullScreen="true"
+                                        allowFullScreen={true}
                                         allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                                        className='facebook-timeline'
                                     />
 
                                 </section>

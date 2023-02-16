@@ -407,7 +407,187 @@ nav ul li ul li:hover::before {
     display: block !important;
 }
 
+///NEWQUIZ
 
+.newquiz-window {
+    position: relative;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: rgb(0, 0, 0) 2px 2px 10px;
+    z-index: 10;
+    overflow: hidden;
+    width: 40rem;
+    min-height: 18.5rem;
+    margin: auto;
+    top: 4rem;
+}
+
+.newquiz-modal-title {
+    color: #113250;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    margin-top: 0.8rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.newquiz-textarea {
+    width: 100%;
+    height: 6.5rem;
+    display: flex;
+    justify-content: center;
+
+    textarea{
+        width: 38rem;
+        height: 6.5rem;
+        resize: none;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.5rem;
+        border: #75AAD3 solid 1.5px;
+        border-radius: 0.5rem;  
+        overflow: hidden;
+    }
+   
+}
+
+.newquiz-buttons-cont{
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    // background-color: red;
+}
+
+.newquiz-buttons{
+    width: 94%;
+    height: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // background-color: blue;
+
+    p{
+        margin:0;
+    }
+
+}
+
+
+.newquiz-icons{
+    width: 1.5rem;
+    height: 1.5rem;
+    // color: #75AAD3;
+}
+
+.newquiz-inputcont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+
+    span{
+        width: 95%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // background-color: blue;
+    }
+
+    input{
+        border-radius: 0.5rem;
+        width: 30rem;
+        height: 2rem;
+        border: #75AAD3 solid 1px;
+        padding-left: 1rem;
+        // font-style: italic;
+        font-size: 1rem;
+        outline: none;
+    }
+    // background-color: red;
+}
+.newquiz-input-expiration {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+
+    span{
+        width: 95%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // background-color: blue;
+    }
+
+    input{
+        border-radius: 0.5rem;
+        width: 25rem;
+        height: 2rem;
+        border: #75AAD3 solid 1px;
+        padding-left: 1rem;
+        // font-style: italic;
+        font-size: 1rem;
+        outline: none;
+    }
+    // background-color: red;
+}
+
+.newquiz-icon-delete{
+    width: 1.2rem;
+    height: 1.2rem;
+    color: #F48484;
+    margin-left: 0.5rem;
+    // margin-bottom: 0.3rem;
+    cursor: pointer;
+    &:hover{
+        color: #D61355;
+    }
+}
+
+.newquiz-close-container{
+    width: 100%;
+    height: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #75AAD3;
+}
+
+.newquiz-close{
+    width: 1.2rem;
+    height: 1.2rem;
+    color: white;
+    margin-right: 0.5rem;
+    cursor: pointer;
+
+    &:hover{
+        color: #D61355;
+    }
+}
+
+.quiz-create-btn {
+    border-radius: 0.6rem;
+    width: 10rem;
+    height: 2.3rem;
+    border: none;
+    color: white;
+    background-color: #0b2c4bc4;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #0B2C4B;
+
+    }
+  }
 
 //MEDIAS QUERIES
 
@@ -811,6 +991,10 @@ nav ul li ul li:hover::before {
         font-size: 0.8rem;
     }
 
+    .newquiz-window {
+        top: -4rem;
+    }
+
 }
 
 //laptop Yelissa
@@ -834,12 +1018,23 @@ nav ul li ul li:hover::before {
     .nav-user-name {
         font-size: 0.8rem;
     }
+    .newquiz-window {
+        top: 1rem;
+    }
 }
 
 //Monitor
 @media screen and (min-width: 1600px) and (max-width:1601px){
 
 }
+
+//Monitor cesar
+@media screen and (min-width: 1920px) and (max-width:1921px){
+    .newquiz-window {
+        top: -8rem;
+    }
+}
+
 
 //laptop David
 // @media screen and (min-width: 2420px) and (max-width: 5121px) {

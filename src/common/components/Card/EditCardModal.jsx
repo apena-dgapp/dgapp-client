@@ -34,7 +34,7 @@ const EditCardModal = ({
             <div className="card-edit-grid">
               <div className="card-edit-inputs">
                 <div className="">
-                  <p className="edit-input-title">Título</p>
+                  <p className="edit-input-title-modal">Título</p>
                   <input
                     onChange={handlerInputChange}
                     name="title"
@@ -47,7 +47,7 @@ const EditCardModal = ({
                   />
                 </div>
                 <div className="">
-                  <p className="edit-input-title">Autor</p>
+                  <p className="edit-input-title-modal">Autor</p>
                   <input
                     onChange={handlerInputChange}
                     name="author"
@@ -60,7 +60,20 @@ const EditCardModal = ({
                   />
                 </div>
                 <div className="">
-                  <p className="edit-input-title">Fecha</p>
+                  <p className="edit-input-title-modal">Etiquetas</p>
+                  <input
+                    onChange={handlerInputChange}
+                    name="tags"
+                    type="text"
+                    // placeholder={
+                    //   data?.item.author ? data?.item.author : "Escriba un author"
+                    // }
+                    className="edit-input"
+                    value={formData.tags}
+                  />
+                </div>
+                <div className="">
+                  <p className="edit-input-title-modal">Fecha</p>
                   <input
                     onChange={handlerInputChange}
                     name="date"
@@ -78,7 +91,7 @@ const EditCardModal = ({
                   />
                 </div>
                 <div className="">
-                  <p className="edit-input-title">Descripción</p>
+                  <p className="edit-input-title-modal">Descripción</p>
                   <div className="card-edit-editor">
                     <Editor
                       editorState={editorState}
@@ -113,7 +126,7 @@ const EditCardModal = ({
 
             <div className="btn-publish-cont">
               <button
-                onClick={sendHandlerForm}
+                onClick={() => sendHandlerForm()}
                 className="btn-publish"
                 name="btn-publish"
                 type="submit"

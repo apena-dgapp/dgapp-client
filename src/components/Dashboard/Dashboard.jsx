@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import DashboardForm from "./DashboardForm";
 import { getPost, getDataCarousel, getPostMultimedia, getPostMultimediaMain, expirationNoticies } from "../../api/post";
 import { incrementClick } from '../../api/tags';
@@ -11,10 +11,14 @@ import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import DashboardPopup from "./DashboardPopup";
 import Viewer from "react-viewer";
+import { getQuiz, expirationQuiz, sendAnswer } from "../../api/quiz";
+import GlobalContext from "../../context/GlobalContext";
+// import toast from "react-hot-toast";
 // import { getTweets } from "../../api/tweets";
 // import { TwitterApi } from 'twitter-api-v2';
 
 const Dashboard = () => {
+  const [contextState, ,] = useContext(GlobalContext);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [news, setNews] = useState([]);
@@ -31,7 +35,9 @@ const Dashboard = () => {
   const [notices, setNotices] = useState([]);
   // const [tweets, setTweets] = useState([]);
   const [instagram, setInstagram] = useState([]);
-
+  const [ansowerCount, setAnsowerCount] = useState({});
+  const [quiz, setQuiz] = useState("");
+  const [exists, setExists] = useState("");
   const modalToggle = (data) => {
     setModalActive(!modalActive);
     setModalData(data)
@@ -103,15 +109,38 @@ const Dashboard = () => {
       .catch((err) => {
         console.error(err.status);
       });
+
+    expirationQuiz()
+      .then((res) => res.json());
+
+    getQuiz()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setQuiz(res);
+          setExists(res[0]?.Answers.find(o => o.personId === contextState.personId))
+          var count = {};
+          res[0]?.Answers.forEach(function (v) {
+            count[v.selected] = (count[v.selected] || 0) + 1;
+          })
+          setAnsowerCount(count)
+          // console.log(res);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
     return () => {
       unmounted = true;
     };
-  }, []);
+  }, [contextState.personId]);
 
   useEffect(() => {
     let unmounted = false;
 
-    getNews("0", 3)
+    getNews("0", 3, "")
       .then((res) => {
         return res.json();
       })
@@ -259,6 +288,7 @@ const Dashboard = () => {
             author: item.author,
             createdby: item.createdBy,
             tags: item.tags,
+            tagsArray: arr
           },
         });
       })
@@ -284,6 +314,40 @@ const Dashboard = () => {
       .then((res) => {
         setArrayImg(res);
         setVisible(true);
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  }
+
+  const HandlerAnswer = (selected) => {
+    sendAnswer(quiz[0].quizId, contextState.personId, selected)
+      .then((res) => {
+        setLoading(true);
+        return res.json();
+      })
+      .then((res) => {
+        if (res === 200) {
+          getQuiz()
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              setQuiz(res);
+              setExists(res[0]?.Answers.find(o => o.personId === contextState.personId))
+              var count = {};
+              res[0]?.Answers.forEach(function (v) {
+                count[v.selected] = (count[v.selected] || 0) + 1;
+              })
+              setAnsowerCount(count)
+              setTimeout(() => {
+                setLoading(false);
+              }, 1500);
+            })
+            .catch((err) => {
+              console.error(err.status);
+            });
+        }
       })
       .catch((err) => {
         console.error(err.status);
@@ -325,6 +389,10 @@ const Dashboard = () => {
           notices={notices}
           // tweets={tweets}
           instagram={instagram}
+          quiz={quiz}
+          HandlerAnswer={HandlerAnswer}
+          exists={exists}
+          ansowerCount={ansowerCount}
         />
       )}
     </>

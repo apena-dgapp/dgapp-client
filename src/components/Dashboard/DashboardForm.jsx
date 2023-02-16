@@ -21,7 +21,11 @@ const DashboardForm = ({
   getImagesHandler,
   notices,
   tweets,
-  instagram
+  instagram,
+  quiz,
+  HandlerAnswer,
+  exists,
+  ansowerCount
 }) => {
 
   return (
@@ -34,7 +38,7 @@ const DashboardForm = ({
         <DashboardSection2 />
 
         {/* Avisos */}
-        <DashboardSection8 notices={notices} />
+        <DashboardSection8 notices={notices} quiz={quiz} HandlerAnswer={HandlerAnswer} exists={exists} ansowerCount={ansowerCount} />
 
         {/* multimedia */}
         <DashboardSection5 multimedia={multimedia} multimediaMain={multimediaMain} goToPost={goToPost} modalToggle={modalToggle} getImagesHandler={getImagesHandler} />

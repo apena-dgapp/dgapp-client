@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 import { TagsInput } from "react-tag-input-component";
 import { MultiSelect } from "react-multi-select-component";
 import { newTags, getTags } from "../../api/tags";
-import { set } from "immutable";
+// import { set } from "immutable";
 
 const NewPost = () => {
   const [editorState, setEditorState] = useState(() =>
@@ -18,6 +18,7 @@ const NewPost = () => {
   const location = useLocation();
   const state = location.state;
   const [modalActive, setModalActive] = useState(false);
+  const [captionActive, setCaptionActive] = useState(false);
   const [img, setImg] = useState("");
   const [actionInput, setActionInput] = useState("");
   const [accept, setAccept] = useState("");
@@ -27,6 +28,7 @@ const NewPost = () => {
   const [nameImg, setNameImg] = useState("");
   const [selected, setSelected] = useState([]);
   const [tags, setTags] = useState([]);
+  const [caption, setCaption] = useState([]);
   const [tagsList, setTagsList] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
@@ -88,10 +90,65 @@ const NewPost = () => {
     },
   ];
 
+  useEffect(() => {
+    let unmounted = false;
+
+    getTags()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          if (state?.fullName !== "Yelissa Diaz") {
+            setTagsList(res)
+          } else {
+            setSelected(res.map(function (item) {
+              return item['value'];
+            }));
+
+            setTags(res.map(function (item) {
+              return item['value'];
+            }));
+          }
+
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, [state]);
+
+  const reloadTags = () => {
+    getTags()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (state?.fullName !== "Yelissa Diaz") {
+          setTagsList(res)
+        } else {
+          setSelected(res.map(function (item) {
+            return item['value'];
+          }));
+
+          setTags(res.map(function (item) {
+            return item['value'];
+          }));
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  }
+
   const [uploadFiles, setUploadFiles] = useState({
     imagenes: "",
     pdf: "",
-    video: "",
+    video: ""
   });
 
   const modalToggleAceppt = () => {
@@ -101,12 +158,16 @@ const NewPost = () => {
       return toast.error("Por favor de agregar el enlace del video");
     }
   };
+
   const modalToggle = () => {
     setModalActive(!modalActive);
+    setActionInput("video");
   };
+
   const modalToggleCancel = () => {
     setModalActive(!modalActive);
     setFormData({ ...formData, video: "" });
+    setActionInput("");
   };
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -130,16 +191,19 @@ const NewPost = () => {
 
   const handleruploadFiles = async (e) => {
     const { name, files } = e.target;
+
     if (actionInput === "imagenes") {
       setNameImg(...nameImg, files);
     }
+
     if (actionInput === "pdf") {
       setNamePdf(...namePdf, files);
     }
+
     if (files.length > 1) {
       setUploadFiles({
         ...uploadFiles,
-        [name]: await blobToBase64(files),
+        [name]: await blobToBase64(files)
       });
     } else {
       setUploadFiles({
@@ -150,6 +214,7 @@ const NewPost = () => {
 
     if (actionInput === "imagenes" && files.length > 1) {
       setQtyImg(files.length);
+      setCaptionActive(true);
     } else if (actionInput === "imagenes" && files.length === 1) {
       setQtyImg(1);
     }
@@ -173,6 +238,7 @@ const NewPost = () => {
     setUploadFiles({
       imagenes: "",
     });
+    setCaption([]);
     setQtyImg("");
     document.getElementById("fileinput").value = "";
   };
@@ -187,6 +253,11 @@ const NewPost = () => {
 
   const removeVideo = () => {
     setFormData({ ...formData, video: "" });
+    setActionInput("");
+  };
+
+  const captionToggle = () => {
+    setCaptionActive(!captionActive);
   };
 
   const sendHandlerForm = () => {
@@ -208,8 +279,8 @@ const NewPost = () => {
       return toast.error("Por favor agregar una descripción");
     } else if (currentContentAsHTML.length > 150 && formData.category === "Aviso") {
       return toast.error("El máximo de caracteres permitidos es de 150");
-    } else if (currentContentAsHTML === "<p></p>" && formData.category === "Multimedia") {
-      return toast.error("Por favor agregar una descripción");
+      // } else if (currentContentAsHTML === "<p></p>" && formData.category === "Multimedia") {
+      //   return toast.error("Por favor agregar una descripción");
     } else if (!img && formData.category === "Portada Principal") {
       return toast.error("Por favor agregar una imagen de portada");
     } else if (!img && formData.category === "Noticia") {
@@ -220,7 +291,7 @@ const NewPost = () => {
 
     newPostApi(
       formData.title,
-      currentContentAsHTML,
+      formData.category === "Multimedia" ? actionInput : currentContentAsHTML,
       formData.category,
       formData.author,
       img,
@@ -229,9 +300,10 @@ const NewPost = () => {
       state?.fullName,
       formData.date,
       formData.expiration ? formData.expiration : null,
-      formData.category === "Noticia" || formData.category === "Multimedia" ? state?.fullName === "Yelissa Diaz" ? selected : selected.map(function (item) {
-        return item['value'];
-      }) : [],
+      formData.category === "Noticia" || formData.category === "Multimedia" ? selected.toString() : "",
+      // formData.category === "Noticia" || formData.category === "Multimedia" ? state?.fullName === "Yelissa Diaz" ? selected : selected.map(function (item) {
+      //   return item['value'];
+      // }) : [],
       formData.link,
     )
       .then((res) => {
@@ -258,7 +330,8 @@ const NewPost = () => {
                     nameImg[i].name,
                     type[1],
                     newArrayImg[i],
-                    nameImg[i].size
+                    nameImg[i].size,
+                    caption[i]
                   ).then((res) => {
                     console.log(res.status);
                   });
@@ -272,7 +345,8 @@ const NewPost = () => {
                   nameImg[0].name,
                   type[1],
                   newArrayImg,
-                  nameImg[0].size
+                  nameImg[0].size,
+                  caption[0]
                 ).then((res) => {
                   console.log(res.status);
                 });
@@ -371,38 +445,6 @@ const NewPost = () => {
     setTags([]);
   };
 
-  useEffect(() => {
-    let unmounted = false;
-
-    getTags()
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        if (!unmounted) {
-          if (state?.fullName !== "Yelissa Diaz") {
-            setTagsList(res)
-          } else {
-            setSelected(res.map(function (item) {
-              return item['value'];
-            }));
-
-            setTags(res.map(function (item) {
-              return item['value'];
-            }));
-          }
-
-        }
-      })
-      .catch((err) => {
-        console.error(err.status);
-      });
-
-    return () => {
-      unmounted = true;
-    };
-  }, [state]);
-
   return (
     <>
       <NewPostForm
@@ -443,6 +485,12 @@ const NewPost = () => {
         user={state?.fullName}
         MultiSelect={MultiSelect}
         tagsList={tagsList}
+        reloadTags={reloadTags}
+        captionToggle={captionToggle}
+        captionActive={captionActive}
+        uploadFiles={uploadFiles}
+        caption={caption}
+        setCaption={setCaption}
       />
     </>
   );
