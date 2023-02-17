@@ -13,7 +13,7 @@ import EditCardModal from "../../common/components/Card/EditCardModal";
 import { getBase64 } from "../../utils/blobManager";
 import { convertToHTML } from "draft-convert";
 import toast from "react-hot-toast";
-import Message from "../../common/Message/Message";
+import Message from "../../common/components/Message/Message";
 import useScreenSize from "../../hooks/useScreenSize";
 
 const News = () => {

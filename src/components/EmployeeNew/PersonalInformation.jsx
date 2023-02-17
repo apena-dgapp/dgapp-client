@@ -1,6 +1,4 @@
 import React from "react";
-// import DatePicker from "react-multi-date-picker";
-// import Input from "../../common/components/Input/Input";
 
 function PersonalInformation({ handlerInputChange, formData, validateId }) {
   return (

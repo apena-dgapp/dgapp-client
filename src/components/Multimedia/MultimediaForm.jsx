@@ -4,7 +4,6 @@ import { IoMdImages } from "react-icons/io";
 import { AiOutlinePlayCircle } from "react-icons/ai";
 import { MdOutlineDoubleArrow } from "react-icons/md";
 import { getVideoId } from "../../utils/getYoutubeId"
-import { Link } from 'react-router-dom';
 
 const MultimediaForm = ({
     imagesFiles,
@@ -57,7 +56,6 @@ const MultimediaForm = ({
                             }
 
                         </Slider>
-
                     </div>
                     <div className="multimedia-dashboard-fotos">
                         <div className="multimedia-dashboard-btn-container">
@@ -83,7 +81,7 @@ const MultimediaForm = ({
                                             >
                                                 <i className="ai ai-outline-play-circle" />
                                                 <AiOutlinePlayCircle className="multimedia-dashboard-galery-icon" />
-                                                <img src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/0.jpg`} alt='imagem' title='imagem' />
+                                                <img src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/mqdefault.jpg`} alt='video' title='video' />
                                                 <p>{item.title}</p>
                                             </div>
                                         )

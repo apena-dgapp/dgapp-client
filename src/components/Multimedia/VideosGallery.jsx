@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
 import { shortDate } from "../../utils/shortDate";
+import { getVideoId } from "../../utils/getYoutubeId"
 
 const ImagesGallery = ({
     handlePageClick,
     items,
     pageCount,
-    imagesTotal
+    handleVideoClick,
+    videoSelected
+
 }) => {
 
     return (
@@ -16,23 +19,46 @@ const ImagesGallery = ({
                     <p>GALERIAS VIDEOS</p>
                     <span className='news-title-line'></span>
                 </div>
-                <div className="multimedia-images-container">
-                    <div className="multimedia-images">
-                        {
-                            items?.map((item, index) => {
-                                return (
-                                    <div key={index} className="multimedia-images-box">
-                                        <img src={item.FilesPosts[0].file} alt="" />
-                                        <div className="multimedia-images-box-text">
-                                            <p className='multimedia-images-box-text-title'>{item.title}</p>
-                                            <p className='multimedia-images-box-text-date'>{`${imagesTotal[index]?.length} fotos`}</p>
-                                            <p className='multimedia-images-box-text-date'>{shortDate(item.createdAt)}</p>
-                                        </div>
-                                    </div>
-                                )
-                            })
-                        }
-                    </div>
+
+                <div className="multimedia-video-main">
+                    {
+                        items.length > 0 ?
+                            <>
+                                <iframe
+                                    src={`https://www.youtube.com/embed/${getVideoId(items[videoSelected]?.FilesPosts[0]?.file === undefined ? items[0]?.FilesPosts[0]?.file : items[videoSelected]?.FilesPosts[0]?.file)}?autoplay=1`}
+                                    title="video"
+                                    allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    frameBorder="0"
+                                />
+                                <div className="multimedia-video-main-text">
+                                    <p>{items[videoSelected]?.title}</p>
+                                </div>
+                            </>
+                            : null
+                    }
+
+                </div>
+                <div className="multimedia-video-slider-container">
+                    {
+                        items?.map((item, index) => {
+                            return (
+                                <span>
+                                    {
+                                        index !== videoSelected ?
+                                            <div key={index} onClick={() => handleVideoClick(index)} className="multimedia-video-slider-box">
+                                                <img src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/mqdefault.jpg`} alt="" />
+                                                <div className="multimedia-video-slider-box-text">
+                                                    <p>{item.title}</p>
+                                                </div>
+
+                                            </div> : null
+                                    }
+                                </span>
+
+                            )
+                        })
+                    }
                 </div>
                 <div className="news-pagination-section">
                     <ReactPaginate

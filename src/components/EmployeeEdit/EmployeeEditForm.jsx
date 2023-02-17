@@ -1,5 +1,4 @@
 import React from "react";
-// import Input from "../../common/components/Input/Input";
 import { BsPlusCircleDotted, BsDashCircleDotted } from "react-icons/bs";
 import Images from "../../common/images";
 
@@ -333,9 +332,9 @@ function EmployeeEditForm({
                     <option
                       disabled
                       value="DEFAULT"
-                      // defaultValue={true}
-                      // disabled
-                      // selected
+                    // defaultValue={true}
+                    // disabled
+                    // selected
                     >
                       {profile.Departament?.name
                         ? profile.Departament?.name
@@ -343,16 +342,16 @@ function EmployeeEditForm({
                     </option>
                     {departaments
                       ? departaments.map((item, index) => {
-                          return (
-                            <option
-                              id={item.departamentId}
-                              key={index}
-                              value={item.name || ""}
-                            >
-                              {item.name}
-                            </option>
-                          );
-                        })
+                        return (
+                          <option
+                            id={item.departamentId}
+                            key={index}
+                            value={item.name || ""}
+                          >
+                            {item.name}
+                          </option>
+                        );
+                      })
                       : null}
                   </select>
                 </div>
@@ -372,16 +371,16 @@ function EmployeeEditForm({
                     </option>
                     {reportsTo
                       ? reportsTo.map((item, index) => {
-                          return item.isActive ? (
-                            <option
-                              id={item.personId}
-                              key={index}
-                              value={item.fullName || ""}
-                            >
-                              {item.fullName || ""}
-                            </option>
-                          ) : null;
-                        })
+                        return item.isActive ? (
+                          <option
+                            id={item.personId}
+                            key={index}
+                            value={item.fullName || ""}
+                          >
+                            {item.fullName || ""}
+                          </option>
+                        ) : null;
+                      })
                       : null}
                   </select>
                 </div>

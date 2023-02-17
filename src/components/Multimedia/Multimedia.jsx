@@ -22,6 +22,7 @@ const Multimedia = () => {
     const [pageCount, setPageCount] = useState(0);
     const [related, setRelated] = useState("");
     const [imagesTotal, setImagesTotal] = useState("");
+    const [videoSelected, setVideoSelected] = useState(0);
 
     var locationName = location.pathname.split('/')[3];
 
@@ -35,7 +36,6 @@ const Multimedia = () => {
             .then((data) => {
                 if (!unmounted) {
                     setImagesFiles(data);
-                    console.log(data);
                 }
             })
             .catch((err) => {
@@ -49,7 +49,6 @@ const Multimedia = () => {
             .then((data) => {
                 if (!unmounted) {
                     setVideosFiles(data);
-                    console.log(data);
                 }
             })
             .catch((err) => {
@@ -65,14 +64,19 @@ const Multimedia = () => {
     useEffect(() => {
         let unmounted = false;
 
-        getGallery(currentPage, 6, related, locationName)
+        getGallery(currentPage, locationName === "video" ? 4 : 6, related, locationName)
             .then((res) => {
                 return res.json();
             })
             .then((res) => {
                 if (!unmounted) {
                     setItems(res?.rows);
-                    setPageCount(res.count / 6);
+                    if (locationName === "video") {
+                        setPageCount(res.count / 4);
+                    } else {
+                        setPageCount(res.count / 6);
+                    }
+
                     setImagesTotal([]);
                     // setPageCount(Math.round(res.count / 4))
                     res?.rows.map((item, index) => {
@@ -124,6 +128,10 @@ const Multimedia = () => {
         setCurrentPage(data.selected)
     }
 
+    const handleVideoClick = (index) => {
+        setVideoSelected(index)
+    }
+
     return (
         <>
             <Viewer
@@ -146,16 +154,18 @@ const Multimedia = () => {
                     < ImagesGallery
                         items={items}
                         pageCount={pageCount}
-                        // setRelated={setRelated}
                         handlePageClick={handlePageClick}
                         imagesTotal={imagesTotal}
                         getImagesHandler={getImagesHandler}
+                    // setRelated={setRelated}
                     /> : (locationName === "video" ? < VideosGallery
                         items={items}
                         pageCount={pageCount}
-                        // setRelated={setRelated}
                         handlePageClick={handlePageClick}
                         imagesTotal={imagesTotal}
+                        handleVideoClick={handleVideoClick}
+                        videoSelected={videoSelected}
+                    // setRelated={setRelated}
                     /> : < MultimediaForm
                         imagesFiles={imagesFiles}
                         videoFiles={videoFiles}

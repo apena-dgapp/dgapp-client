@@ -10,7 +10,7 @@
     justify-content: center;
     width: 100%;
     height: 20rem;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/office-work-3293203_960_720.jpg");
+    // background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../common/images/office-work-3293203_960_720.jpg");
 }
 
 .emDirectory {
@@ -192,6 +192,69 @@
     width: 80%;
     display: flex;
     // justify-content: end;
+}
+
+.btn-next {
+    border-radius: 0.6rem;
+    width: 13rem;
+    height: 2.5rem;
+    border: none;
+    color: white;
+    background-color: #2B4865;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    &:hover {
+        color: white;
+        background-color: #787A91;
+    }
+}
+
+.btn-back {
+    border-radius: 0.6rem;
+    width: 13rem;
+    height: 2.5rem;
+    border: none;
+    color: white;
+    background-color: #2B4865;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    &:hover {
+        color: white;
+        background-color: #787A91;
+    }
+}
+
+.btn-active {
+    border-radius: 0.6rem;
+    width: 13rem;
+    height: 2.5rem;
+    border: none;
+    color: white;
+    background-color: #113250;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    &:hover {
+        color: white;
+        background-color: #787A91;
+    }
+}
+
+.btn-disabled {
+    border-radius: 0.6rem;
+    width: 13rem;
+    height: 2.5rem;
+    border: none;
+    color: rgb(165, 164, 164);
+    background-color: #bebebe;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 //MEDIAS QUERIES

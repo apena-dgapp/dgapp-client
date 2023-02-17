@@ -57,26 +57,6 @@ export const getPostMultimediaMain = async (category, limit) => {
     })
 }
 
-export const allPostApi = async () => {
-    return fetch(`${process.env.REACT_APP_API}post/allpost`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: 'Bearer',
-        }
-    })
-}
-
-export const interestPost = async () => {
-    return fetch(`${process.env.REACT_APP_API}post/interest`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Authorization: 'Bearer',
-        }
-    })
-}
-
 export const viewUpdate = async (id) => {
     const body = { id };
     return fetch(`${process.env.REACT_APP_API}post/updateview`, {

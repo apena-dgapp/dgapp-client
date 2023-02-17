@@ -26,8 +26,8 @@ const ImagesGallery = ({
                                         <img src={item.FilesPosts[0].file} alt="" />
                                         <div className="multimedia-images-box-text">
                                             <p className='multimedia-images-box-text-title'>{item.title}</p>
-                                            <p className='multimedia-images-box-text-date'>{`${imagesTotal[index]?.length} fotos`}</p>
-                                            <p className='multimedia-images-box-text-date'>{shortDate(item.createdAt)}</p>
+                                            <p className='multimedia-images-box-text-date'>{`${imagesTotal[index]?.length} fotos | ${shortDate(item.createdAt)}`}</p>
+                                            {/* <p className='multimedia-images-box-text-date'>{shortDate(item.createdAt)}</p> */}
                                         </div>
                                     </div>
                                 )

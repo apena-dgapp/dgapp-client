@@ -35,12 +35,12 @@ const DashboardSection5 = ({ multimedia, multimediaMain, modalToggle, getImagesH
                   />
                   <img
                     // className="dashboard-section-5-galery-img" 
-                    src={`http://img.youtube.com/vi/${getVideoId(multimediaMain?.url)}/0.jpg`}
+                    src={`http://img.youtube.com/vi/${getVideoId(multimediaMain?.url)}/mqdefault.jpg`}
                     alt=""
                   />
                   <p>{multimediaMain?.title}</p>
                 </div>
-                <div className=""></div>
+                {/* <div className=""></div> */}
                 <div className="dashboard-section-5-galery">
                   <div className="dashboard-section-5-galery-grid">
                     {
@@ -52,19 +52,24 @@ const DashboardSection5 = ({ multimedia, multimediaMain, modalToggle, getImagesH
                               onClick={() => modalToggle({ id: item.postId, title: item.title, url: item.FilesPosts[0].file })}
                               className="dashboard-section-5-galery-grid-mult"
                             >
-                              <i className="ai ai-outline-play-circle" />
-                              <AiOutlinePlayCircle
-                                className="dashboard-section-5-galery-icon"
-                              />
+                              <div className="dashboard-section-5-galery-grid-mult-icon">
+                                <i className="ai ai-outline-play-circle" />
+                                <AiOutlinePlayCircle
+                                  className="dashboard-section-5-galery-icon"
+                                />
+                              </div>
                               <div className="dashboard-section-5-galery-img-cont">
-                                <img className="dashboard-section-5-galery-img" src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/0.jpg`} alt="" />
+                                <img className="dashboard-section-5-galery-img" src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/mqdefault.jpg`} alt="" />
                               </div>
                               <p>{item.title}</p>
                             </div> : <div onClick={() => getImagesHandler(item.postId)} key={key} className="dashboard-section-5-galery-grid-mult">
-                              <i className="io io-md-images" />
-                              <IoMdImages
-                                className="dashboard-section-5-galery-icon"
-                              />
+                              <div className="dashboard-section-5-galery-grid-mult-icon">
+                                <i className="io io-md-images" />
+                                <IoMdImages
+                                  className="dashboard-section-5-galery-icon"
+                                />
+                              </div>
+
                               <div className="dashboard-section-5-galery-img-cont">
                                 <img className="dashboard-section-5-galery-img" src={item.FilesPosts[0].file} alt="" />
                               </div>

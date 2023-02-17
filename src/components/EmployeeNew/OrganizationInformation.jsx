@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-// import Input from "../../common/components/Input/Input";
 import { getLastCode, validationEmail } from "../../api/person";
 
 function OrganizationInformation({
@@ -27,8 +26,8 @@ function OrganizationInformation({
             count.current++;
             setEmail(
               formData.firstname.substring(0, count.current).toUpperCase() +
-                formData.lastname.split(" ")[0].toUpperCase() +
-                "@DGAPP.GOB.DO"
+              formData.lastname.split(" ")[0].toUpperCase() +
+              "@DGAPP.GOB.DO"
             );
           }
         }
@@ -106,16 +105,16 @@ function OrganizationInformation({
               </option>
               {departaments
                 ? departaments.map((item, index) => {
-                    return (
-                      <option
-                        id={item.departamentId}
-                        key={index}
-                        value={item.name}
-                      >
-                        {item.name}
-                      </option>
-                    );
-                  })
+                  return (
+                    <option
+                      id={item.departamentId}
+                      key={index}
+                      value={item.name}
+                    >
+                      {item.name}
+                    </option>
+                  );
+                })
                 : null}
             </select>
             <div className="input-required">*</div>
@@ -136,16 +135,16 @@ function OrganizationInformation({
               </option>
               {person
                 ? person.map((item, index) => {
-                    return item.isActive ? (
-                      <option
-                        id={item.personId}
-                        key={index}
-                        value={item.fullName}
-                      >
-                        {item.fullName}
-                      </option>
-                    ) : null;
-                  })
+                  return item.isActive ? (
+                    <option
+                      id={item.personId}
+                      key={index}
+                      value={item.fullName}
+                    >
+                      {item.fullName}
+                    </option>
+                  ) : null;
+                })
                 : null}
             </select>
             <div className="input-required">*</div>

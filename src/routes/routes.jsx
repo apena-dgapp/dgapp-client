@@ -5,17 +5,13 @@ import Login from "../components/LogIn/Login";
 import Navbar from "../common/components/Navbar/Navbar";
 import Dashboard from "../components/Dashboard/Dashboard";
 import Footer from "../common/components/Footer/Footer";
-import SinglePost from "../components/SinglePost/SinglePost";
-// import AllPost from "../components/AllPost/AllPost";
 import NewPost from "../components/NewPost/NewPost";
 import Register from "../components/Register/Register";
 import Page404 from "../common/components/404/Page404";
 import ScrollToTop from "../utils/scrollToTop";
 import AboutUs from "../components/AboutUs/AboutUs";
 import EmployeeProfile from "../components/EmployeeProfile/Employee";
-import FilePdf from "../common/components/FilePdf/FilePdf";
 import EmployeeDirectory from "../components/EmployeeDirectory/EmployeeDirectory";
-import EmployeeTree from "../components/EmployeeTree/Tree";
 import EmployeeEdit from "../components/EmployeeEdit/EmployeeEdit";
 import EmployeeNew from "../components/EmployeeNew/EmployeeNew";
 import Building from "../common/components/Building/Building";
@@ -23,9 +19,7 @@ import Training from "../components/Training/Training";
 import Course from "../components/Training/Course/Course";
 import NewCourse from "../components/Training/NewCourse";
 import CreateEvents from "../components/CreateEvents/CreateEvents";
-import FoodOrder from "../components/FoodOrder/FoodOrder";
 import TicketSystem from "../components/TicketSystem/TicketSystem";
-import Documents from "../components/DownloadFile/Download";
 import FormTemple from "../components/FormTemple/FormTemple";
 import RequestMenu from "../components/FormTemple/RequestMenu";
 import News from "../components/News/News";
@@ -37,13 +31,6 @@ const RoutesComponent = () => {
 
   return (
     <Router>
-      {/* {contextState.token ? (
-        !contextState.isShowChat ? (
-          <ChatButton />
-        ) : (
-          <Chat />
-        )
-      ) : null} */}
       <ScrollToTop />
       {contextState.token ? <Navbar /> : null}
       <Routes>
@@ -56,10 +43,6 @@ const RoutesComponent = () => {
           element={contextState.token ? <Dashboard /> : <Login />}
         />
 
-        <Route
-          path={`/:category/:title`}
-          element={contextState.token ? <SinglePost /> : <Login />}
-        />
         <Route
           path={`/publicaciones/noticias/pagina/:number`}
           element={contextState.token ? <News /> : <Login />}
@@ -77,13 +60,6 @@ const RoutesComponent = () => {
           path={`/nosotros/:name`}
           element={contextState.token ? <AboutUs /> : <Login />}
         />
-
-        <Route
-          path={`/organigrama`}
-          element={contextState.token ? <EmployeeTree /> : <Login />}
-        />
-
-        <Route path={`/pdf`} element={<FilePdf />} />
 
         <Route
           path={`/construccion`}
@@ -117,17 +93,10 @@ const RoutesComponent = () => {
         }
 
         <Route
-          path={`/perfil/documentos/:name`}
-          element={contextState.token ? <Documents /> : <Login />}
-        />
-        <Route
           path={`/directorio/pagina/:number`}
           element={contextState.token ? <EmployeeDirectory /> : <Login />}
         />
-        {/* <Route
-          path={`/directorio/`}
-          element={contextState.token ? <EmployeeDirectory /> : <Login />}
-        /> */}
+
         <Route
           path={`/entrenamiento`}
           element={contextState.token ? <Training /> : <Login />}
@@ -147,10 +116,6 @@ const RoutesComponent = () => {
         <Route
           path={`/entrenamiento/curso/:courseId/:videolink`}
           element={contextState.token ? <Course /> : <Login />}
-        />
-        <Route
-          path={`/foodorder`}
-          element={contextState.token ? <FoodOrder /> : <Login />}
         />
         <Route
           path={`/servicios/tecnologia/ticket/:action`}
