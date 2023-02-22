@@ -7,6 +7,7 @@ import DashboardSection7 from "../Dashboard/DashboardSection7";
 import { FiEdit } from "react-icons/fi";
 import { CiSquareRemove } from "react-icons/ci";
 import GlobalContext from "../../context/GlobalContext";
+import ImagesPost from "../../common/components/imagesPost/ImagesPost"
 
 const NewsForm = ({
   handlePageClick,
@@ -23,7 +24,8 @@ const NewsForm = ({
   instagram,
   EditToggle,
   messageToggle,
-  width
+  width,
+  related
 }) => {
   const [contextState] = useContext(GlobalContext);
 
@@ -36,6 +38,16 @@ const NewsForm = ({
         </div>
         <div className="news-grid-container">
           <div className="news-grid-panel1">
+            {
+              related ?
+                <>
+                  <div className="dashboard-section-1-news-header d-flex">
+                    <p style={{ fontSize: "0.8rem", paddingLeft: contextState.userRole === 1 || contextState.userRole === 3 ? "1.5rem" : "0" }}>TEMAS RELACIONADOS CON:</p>
+                    <p style={{ color: "#75AAD3", paddingLeft: "0.5rem", fontSize: "0.8rem" }}>{related}</p>
+                  </div>
+                  <div style={{ height: "0.1rem", marginLeft: contextState.userRole === 1 || contextState.userRole === 3 ? "1.5rem" : "0" }} className="dashboard-section-1-news-title-line"></div>
+                </> : null
+            }
             {
               items.rows?.map((item, index) => {
                 return (
@@ -60,9 +72,10 @@ const NewsForm = ({
                         </span>
                       </div> : null}
                     <div onClick={() => goToPost(item)} className="news-box-img">
-                      <img src={item.image} alt="" />
+                      {/* <img src={item.image} alt="" /> */}
+                      <ImagesPost id={item.postId} table="post" />
                     </div>
-                    <div className="news-box-text">
+                    <div onClick={() => goToPost(item)} className="news-box-text">
                       <p className='news-box-text-title'>{item.title}</p>
                       <p className='news-box-text-date'>{shortDate(item.createdAt)}</p>
                       <p style={{ WebkitLineClamp: width <= 1366 && item?.title.length > 104 ? "2" : "3" }} className='news-box-text-cont'>{item.description.replace(/(<([^>]+)>)/gi, "")}</p>

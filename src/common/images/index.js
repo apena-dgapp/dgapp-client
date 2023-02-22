@@ -40,6 +40,7 @@ import valores from "./Valores.png";
 import educapp from "./Recurso 4@4x.png";
 import fotoDelDia from "./Recurso 3@4x.png";
 import valorDelMes from "./Recurso 2@4x.png";
+import notices from "./Recurso 1@4x.png";
 
 const Images = {
     iconUser,
@@ -83,6 +84,7 @@ const Images = {
     educapp,
     fotoDelDia,
     valorDelMes,
+    notices
 }
 
 export default Images;

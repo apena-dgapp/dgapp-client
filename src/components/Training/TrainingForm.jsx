@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import TrainingCard from "./TrainingCard";
-import { MdSearch, MdModelTraining } from "react-icons/md";
 import GlobalContext from "../../context/GlobalContext";
 
 const TrainingForm = ({

@@ -21,7 +21,7 @@ export const getAllPersons = async () => {
 }
 
 export const getPersonIt = async () => {
-    return fetch(`${process.env.REACT_APP_API}person/gepersonit`, {
+    return fetch(`${process.env.REACT_APP_API}person/getpersonit`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

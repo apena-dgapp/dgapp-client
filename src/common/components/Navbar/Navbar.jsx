@@ -6,6 +6,7 @@ import { getOnePerson } from "../../../api/person";
 import useScreenSize from "../../../hooks/useScreenSize";
 import NewQuiz from './NewQuiz'
 import { newQuiz } from '../../../api/quiz.js'
+import { validationNotices } from '../../../api/post'
 import toast from "react-hot-toast";
 
 const Navbar = () => {
@@ -30,6 +31,16 @@ const Navbar = () => {
     startedOn: ""
   });
 
+  const refInitial = useRef();
+
+  const initialDate = () => {
+    refInitial.current.type = "date";
+  };
+
+  const initialText = () => {
+    refInitial.current.type = "text";
+  };
+
   const refExpiration = useRef();
 
   const expirationDate = () => {
@@ -45,6 +56,7 @@ const Navbar = () => {
   const [formData, setFormData] = useState({
     question: "",
     answers: [],
+    initial: "",
     expiration: ""
   });
 
@@ -55,6 +67,7 @@ const Navbar = () => {
       setFormData({
         question: "",
         answers: [],
+        initial: "",
         expiration: ""
       });
     }
@@ -288,27 +301,42 @@ const Navbar = () => {
       return toast.error("Por favor agregar una pregunta");
     } else if (formData.answers.length < 2) {
       return toast.error("Por favor agregar mínimo dos respuestas");
+    } else if (formData.initial === "") {
+      return toast.error("Por favor agregar una fecha inicial");
     } else if (formData.expiration === "") {
       return toast.error("Por favor agregar una fecha de caducidad");
+    } else if (formData.expiration <= formData.initial) {
+      return toast.error("La fecha de caducidad no puede ser igual ni menor a la fecha inicial");
     }
 
-    newQuiz(formData.question, formData.answers[0], formData.answers[1], formData.answers[2] ? formData.answers[2] : "",
-      formData.answers[3] ? formData.answers[3] : "", person.fullName, formData.expiration)
+    validationNotices(formData.initial)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
-        if (res === 200) {
-          toast.success("La encuesta fue creada exitosamente!");
-          modalToggle();
+        if (res !== null) {
+          return toast.error(`Fecha no disponible. Actualmente hay un aviso con esta fecha.
+         EL AVISO EXPIRA: ${res?.expirationDate}`);
         } else {
-          toast.error("Error al intentar crear la encuesta!");
+          newQuiz(formData.question, formData.answers[0], formData.answers[1], formData.answers[2] ? formData.answers[2] : "",
+            formData.answers[3] ? formData.answers[3] : "", person.fullName, formData.initial, formData.expiration)
+            .then((res) => {
+              return res.json();
+            })
+            .then((res) => {
+              if (res === 200) {
+                toast.success("La encuesta fue creada exitosamente!");
+                modalToggle();
+              } else {
+                toast.error("Error al intentar crear la encuesta!");
+              }
+            })
+            .catch((err) => {
+              toast.error("Error del servidor");
+              console.error(err.status);
+            });
         }
       })
-      .catch((err) => {
-        toast.error("Error del servidor");
-        console.error(err.status);
-      });
   }
 
   return (
@@ -322,6 +350,9 @@ const Navbar = () => {
         addAnswer={addAnswer}
         RemoveAnswer={RemoveAnswer}
         sendQuiz={sendQuiz}
+        refInitial={refInitial}
+        initialDate={initialDate}
+        initialText={initialText}
         refExpiration={refExpiration}
         expirationDate={expirationDate}
         expirationText={expirationText}

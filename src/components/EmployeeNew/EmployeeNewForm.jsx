@@ -131,7 +131,10 @@ function EmployeeNewForm({
       </div>
 
       <div className="new-header-container">
-        <div className="edit-header-title">CREAR NUEVO EMPLEADO</div>
+        <div style={{ marginTop: "7rem" }} className="news-title">
+          <p style={{ color: "white" }}>CREAR NUEVO EMPLEADO</p>
+          <span className='news-title-line'></span>
+        </div>
       </div>
     </>
   );

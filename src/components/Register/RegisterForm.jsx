@@ -35,29 +35,29 @@ const RegisterForm = ({
                 className="edit-input"
                 onChange={getPerson}
                 defaultValue={"DEFAULT"}
-                // value={reportsTo?.fullName}
+              // value={reportsTo?.fullName}
               >
                 <option disabled value="DEFAULT">
                   Seleccionar un Empleado
                 </option>
                 {person
                   ? person.map((item, index) => {
-                      return (
-                        <option
-                          id={item.personId}
-                          key={index}
-                          value={{
-                            user: {
-                              firstName: item.firstName,
-                              lastName: item.lastName,
-                              photo: item.photo,
-                            },
-                          }}
-                        >
-                          {item.fullName}
-                        </option>
-                      );
-                    })
+                    return (
+                      <option
+                        id={item.personId}
+                        key={index}
+                        value={{
+                          user: {
+                            firstName: item.firstName,
+                            lastName: item.lastName,
+                            photo: item.photo,
+                          },
+                        }}
+                      >
+                        {item.fullName}
+                      </option>
+                    );
+                  })
                   : null}
               </select>
             </div>
@@ -87,7 +87,7 @@ const RegisterForm = ({
                 disabled={autoName ? true : false}
               />
             </div>
-  
+
             <div className="mt-1">
               <p className="edit-input-title">Privilegio</p>
               <select
@@ -96,7 +96,7 @@ const RegisterForm = ({
                 onChange={handlerInputChange}
                 defaultValue={"DEFAULT"}
                 disabled={exist ? true : false}
-                // value={formData.role === "" ? "DEFAULT" : undefined}
+              // value={formData.role === "" ? "DEFAULT" : undefined}
               >
                 <option value="DEFAULT" disabled>
                   Seleccionar privilegio
@@ -121,7 +121,10 @@ const RegisterForm = ({
         </div>
       </div>
       <div className="register-header-container">
-        <div className="register-header-title">REGISTRAR EMPLEADO</div>
+        <div style={{ marginTop: "7rem" }} className="news-title">
+          <p style={{ color: "white" }}>REGISTRAR EMPLEADO</p>
+          <span className='news-title-line'></span>
+        </div>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
-export const newQuiz = async ( question, answer1, answer2, answer3, answer4, createdBy, expiration ) => {
-    const body = { question, answer1, answer2, answer3, answer4, createdBy, expiration };
+export const newQuiz = async ( question, answer1, answer2, answer3, answer4, createdBy,initial, expiration ) => {
+    const body = { question, answer1, answer2, answer3, answer4, createdBy,initial, expiration };
     return fetch(`${process.env.REACT_APP_API}quiz/new`, {
         method: "POST",
         body: JSON.stringify(body),

@@ -203,8 +203,8 @@ const EmployeeForm = ({
               className="employee-btn-documentation"
             >
               Documentación
-            </button>
-            {contextState.userRole === 1 ? (
+            </button> */}
+            {contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 ? (
               <button
                 onClick={edit}
                 type="button"
@@ -212,7 +212,7 @@ const EmployeeForm = ({
               >
                 Editar
               </button>
-            ) : null} */}
+            ) : null}
 
             {/* <button
               onClick={goToChat}

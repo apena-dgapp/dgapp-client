@@ -37,7 +37,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
           </div>
 
           <div className="">
-            <p className="edit-input-title">cédula</p>
+            <p className="edit-input-title">Cédula</p>
             <div className="new-employee-documentid">
               <input
                 onChange={handlerInputChange}
@@ -114,18 +114,18 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
             </select>
           </div>
           <div className="">
-            <p className="edit-input-title">Carrera</p>
+            <p className="edit-input-title">Profesión</p>
             <input
               onChange={handlerInputChange}
               name="career"
               type="text"
-              placeholder="Escriba la carrera"
+              placeholder="Escriba la profesión"
               className="edit-input"
               value={formData.career?.replace(/[^a-zA-ZñÑ ]/g, "")}
             />
           </div>
           <div className="">
-            <p className="edit-input-title">Nombre Contacto de Emergencia</p>
+            <p className="edit-input-title">Nombre del Contacto de Emergencia</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}
@@ -137,7 +137,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
             />
           </div>
           <div className="">
-            <p className="edit-input-title">Número Contacto de Emergencia</p>
+            <p className="edit-input-title">Número del Contacto de Emergencia</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}

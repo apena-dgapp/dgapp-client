@@ -95,7 +95,7 @@ export const createFile = async (postid, name, type, file, size, caption) => {
 
 export const getFiles = async (postid) => {
     const body = { postid };
-    return fetch(`${process.env.REACT_APP_API}filespost/getfiles`, {
+    return fetch(`${process.env.REACT_APP_API}filespost/getfilespost`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: {
@@ -105,6 +105,17 @@ export const getFiles = async (postid) => {
     })
 }
 
+export const srcFiles = async (id) => {
+    const body = { id };
+    return fetch(`${process.env.REACT_APP_API}filespost/getfiles`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
 export const getVideo = async (postid) => {
     const body = { postid };
     return fetch(`${process.env.REACT_APP_API}filespost/getvideo`, {
@@ -128,6 +139,8 @@ export const addCommentPost = async (postid, personid, text) => {
         }
     })
 }
+
+
 export const getComments = async (postid) => {
     const body = { postid };
     return fetch(`${process.env.REACT_APP_API}post/getcomments`, {
@@ -140,6 +153,17 @@ export const getComments = async (postid) => {
     })
 }
 
+export const deleteComment = async (id) => {
+    const body = { id };
+    return fetch(`${process.env.REACT_APP_API}post/deletecomment`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
 export const getImage = async (id) => {
     const body = { id }
     return fetch(`${process.env.REACT_APP_API}post/getimage`, {
@@ -179,6 +203,18 @@ export const updatePost = async (id, title, description, author, image, date, ta
 export const disabledPost = async (id) => {
     const body = { id };
     return fetch(`${process.env.REACT_APP_API}post/disabledpost`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const validationNotices = async (initial) => {
+    const body = { initial };
+    return fetch(`${process.env.REACT_APP_API}post/validationnoticies`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: {

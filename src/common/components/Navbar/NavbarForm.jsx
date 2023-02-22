@@ -230,10 +230,13 @@ const NavbarForm = ({
                                         : null}
                                     {contextState.userRole === 1 ?
                                         <>
-                                            <li>
-                                                <span onClick={employeeNew}>Nuevo Empleado</span>
-                                            </li>
-                                            <li>
+                                            {
+                                                contextState.personId === 2 || contextState.personId === 88 || contextState.userRole === 1 ? <li>
+                                                    <span onClick={employeeNew}>Nuevo Empleado</span>
+                                                </li> : null
+                                            }
+
+                                            < li >
                                                 <span onClick={register}>Crear Usuario</span>
                                             </li>
                                         </>

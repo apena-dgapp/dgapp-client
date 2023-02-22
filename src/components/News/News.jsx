@@ -293,7 +293,8 @@ const News = () => {
             image: item?.image,
             author: item?.author,
             date: item?.createdAt,
-            tags: item?.tags
+            tags: item?.tags,
+            action: "News"
         });
     };
 
@@ -383,6 +384,7 @@ const News = () => {
                 EditToggle={EditToggle}
                 messageToggle={messageToggle}
                 width={width}
+                related={related}
             />
         </>
 

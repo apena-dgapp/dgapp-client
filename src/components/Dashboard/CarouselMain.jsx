@@ -20,18 +20,34 @@ const CarouselMain = ({ arrayCarousel }) => {
     >
       {arrayCarousel?.map((item, index) => {
         return (
-          <a
-            key={index}
-            href={item.link}
-            target="_blank"
-            rel="noreferrer"
-            style={{ textDecoration: "none" }}
-          >
-            <div className="carousel-container">
-              <img alt="" src={item.image} />
-            </div>
+          <>
+            {
+              item.link ? <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <div className="carousel-container">
+                  <img alt="" src={item.image} />
+                </div>
 
-          </a>
+              </a> :
+                <div
+                  key={index}
+                  href={item.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ textDecoration: "none", cursor: "default" }}
+                >
+                  <div className="carousel-container">
+                    <img alt="" src={item.image} />
+                  </div>
+
+                </div>
+            }
+          </>
         );
       })}
     </AliceCarousel> : null

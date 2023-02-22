@@ -3,7 +3,8 @@ import Slider from "react-slick";
 import { IoMdImages } from "react-icons/io";
 import { AiOutlinePlayCircle } from "react-icons/ai";
 import { MdOutlineDoubleArrow } from "react-icons/md";
-import { getVideoId } from "../../utils/getYoutubeId"
+import ImagesPost from "../../common/components/imagesPost/ImagesPost"
+// import { getVideoId } from "../../utils/getYoutubeId"
 
 const MultimediaForm = ({
     imagesFiles,
@@ -16,7 +17,7 @@ const MultimediaForm = ({
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 4,
+        slidesToShow: imagesFiles.length > 4 ? 4 : imagesFiles.length,
         slidesToScroll: 4
     };
 
@@ -29,7 +30,7 @@ const MultimediaForm = ({
                 </div>
                 <div className="multimedia-dashboard-container">
                     <div className="multimedia-dashboard-fotos">
-                        <div className="multimedia-dashboard-btn-container">
+                        <div className="multimedia-dashboard-btn-container" style={{ marginLeft: imagesFiles.length <= 3 ? "4.5rem" : null }}>
                             <div onClick={() => goTomultimedia("imagenes")} type="button" className="multimedia-dashboard-btn">
                                 <i className="md md-outline-double-arrow" />
                                 <p>Más Fotos</p>
@@ -48,7 +49,8 @@ const MultimediaForm = ({
                                             <div key={index} onClick={() => getImagesHandler(item.postId)} className="multimedia-dashboard-fotos-img">
                                                 <i className="io io-md-images" />
                                                 <IoMdImages className="multimedia-dashboard-galery-icon" />
-                                                <img src={item.FilesPosts[0].file} alt='imagem' title='imagem' />
+                                                {/* <img src={item.FilesPosts[0].file} alt='imagem' title='imagem' /> */}
+                                                <ImagesPost id={item.FilesPosts[0].filesId} />
                                                 <p>{item.title}</p>
                                             </div>
                                         )
@@ -58,7 +60,7 @@ const MultimediaForm = ({
                         </Slider>
                     </div>
                     <div className="multimedia-dashboard-fotos">
-                        <div className="multimedia-dashboard-btn-container">
+                        <div className="multimedia-dashboard-btn-container" style={{ marginLeft: imagesFiles.length <= 3 ? "4.5rem" : null }}>
                             <div onClick={() => goTomultimedia("video")} type="button" className="multimedia-dashboard-btn">
                                 <i className="md md-outline-double-arrow" />
                                 <p>Más Videos</p>
@@ -81,7 +83,8 @@ const MultimediaForm = ({
                                             >
                                                 <i className="ai ai-outline-play-circle" />
                                                 <AiOutlinePlayCircle className="multimedia-dashboard-galery-icon" />
-                                                <img src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/mqdefault.jpg`} alt='video' title='video' />
+                                                <ImagesPost id={item.FilesPosts[0].filesId} />
+                                                {/* <img src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/mqdefault.jpg`} alt='video' title='video' /> */}
                                                 <p>{item.title}</p>
                                             </div>
                                         )

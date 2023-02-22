@@ -509,7 +509,10 @@ function EmployeeEditForm({
       </div>
 
       <div className="edit-header-container">
-        <div className="edit-header-title">EDITAR PERFIL</div>
+        <div style={{ marginTop: "7rem" }} className="news-title">
+          <p style={{ color: "white" }}>EDITAR PERFIL</p>
+          <span className='news-title-line'></span>
+        </div>
       </div>
     </>
   );

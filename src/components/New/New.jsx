@@ -5,7 +5,7 @@ import GlobalContext from "../../context/GlobalContext";
 import { getNews, getRelated } from "../../api/news";
 import { incrementClick } from '../../api/tags';
 import { viewUpdate } from "../../api/post";
-import { addCommentPost, getComments, giveLike, countLike, getPostMultimedia } from "../../api/post";
+import { addCommentPost, getComments, giveLike, countLike, getPostMultimedia, deleteComment } from "../../api/post";
 import { getFiles } from "../../api/post";
 import toast from "react-hot-toast";
 import Viewer from "react-viewer";
@@ -107,6 +107,14 @@ const New = () => {
             .catch((err) => {
                 console.error(err.status);
             });
+
+        return () => {
+            unmounted = true;
+        };
+    }, [dataPost]);
+
+    useEffect(() => {
+        let unmounted = false;
 
         getComments(dataPost.id)
             .then((res) => {
@@ -287,6 +295,25 @@ const New = () => {
 
     // console.log(`LIKE: ${selectedLike} ---- DISLIKE: ${selectedDislike}`);
 
+    const removeComment = (id) => {
+        deleteComment(id)
+            .then((res) => {
+                if (res.status !== 500) {
+                    setComment("");
+                    getComments(dataPost.id)
+                        .then((res) => {
+                            return res.json();
+                        })
+                        .then((res) => {
+                            setComments(res);
+                        })
+                        .catch((err) => {
+                            console.error(err.status);
+                        });
+                }
+            })
+    }
+
     return (
         <>
             <Viewer
@@ -319,6 +346,8 @@ const New = () => {
                 modalToggle={modalToggle}
                 getImagesHandler={getImagesHandler}
                 related={related}
+                removeComment={removeComment}
+                personId={contextState.personId}
             />
         </>
 

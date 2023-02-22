@@ -1,14 +1,18 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
-import { shortDate } from "../../utils/shortDate";
-import { getVideoId } from "../../utils/getYoutubeId"
+// import { shortDate } from "../../utils/shortDate";
+// import { getVideoId } from "../../utils/getYoutubeId"
+import { CiSquareRemove } from "react-icons/ci";
+import ImagesPost from "../../common/components/imagesPost/ImagesPost"
 
 const ImagesGallery = ({
     handlePageClick,
     items,
     pageCount,
     handleVideoClick,
-    videoSelected
+    videoSelected,
+    contextState,
+    messageToggle
 
 }) => {
 
@@ -24,13 +28,14 @@ const ImagesGallery = ({
                     {
                         items.length > 0 ?
                             <>
-                                <iframe
+                                {/* <iframe
                                     src={`https://www.youtube.com/embed/${getVideoId(items[videoSelected]?.FilesPosts[0]?.file === undefined ? items[0]?.FilesPosts[0]?.file : items[videoSelected]?.FilesPosts[0]?.file)}?autoplay=1`}
                                     title="video"
                                     allow="autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
                                     frameBorder="0"
-                                />
+                                /> */}
+                                <ImagesPost isFrame={true} id={items[videoSelected].FilesPosts[0].filesId === undefined ? items[0]?.FilesPosts[0]?.filesId : items[videoSelected]?.FilesPosts[0]?.filesId} />
                                 <div className="multimedia-video-main-text">
                                     <p>{items[videoSelected]?.title}</p>
                                 </div>
@@ -46,9 +51,21 @@ const ImagesGallery = ({
                                 <span>
                                     {
                                         index !== videoSelected ?
-                                            <div key={index} onClick={() => handleVideoClick(index)} className="multimedia-video-slider-box">
-                                                <img src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/mqdefault.jpg`} alt="" />
-                                                <div className="multimedia-video-slider-box-text">
+                                            <div key={index} className="multimedia-video-slider-box">
+                                                {contextState.userRole === 1 || contextState.userRole === 3 ?
+                                                    <div className="multimedia-box-video-icon">
+                                                        <span onClick={() => messageToggle(item)}>
+                                                            <i className="ci ci-square-remove" />
+                                                            <CiSquareRemove
+                                                                style={{ cursor: "pointer" }}
+                                                                size="1.2rem"
+                                                                color="#FB2576"
+                                                            />
+                                                        </span>
+                                                    </div> : null}
+                                                {/* <img onClick={() => handleVideoClick(index)} src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/mqdefault.jpg`} alt="" /> */}
+                                                <ImagesPost func={() => handleVideoClick(index)} id={item.FilesPosts[0].filesId} />
+                                                <div onClick={() => handleVideoClick(index)} className="multimedia-video-slider-box-text">
                                                     <p>{item.title}</p>
                                                 </div>
 

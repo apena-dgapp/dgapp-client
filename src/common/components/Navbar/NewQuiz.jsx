@@ -15,7 +15,10 @@ const NewQuiz = ({
     sendQuiz,
     refExpiration,
     expirationDate,
-    expirationText
+    expirationText,
+    refInitial,
+    initialText,
+    initialDate
 }) => {
 
     return (
@@ -93,8 +96,20 @@ const NewQuiz = ({
                                     )
                                 }) : null
                         }
-                        <div className="newquiz-input-expiration">
-                            <span>
+                        <div className="newquiz-input-expiration-container">
+                            <div className="newquiz-input-expiration">
+                                <input
+                                    id="initial"
+                                    name="initial"
+                                    type="text"
+                                    onBlur={initialText}
+                                    onFocus={initialDate}
+                                    className="inputTitle"
+                                    placeholder="fecha Inicial"
+                                    onChange={modalInputChange}
+                                    value={formData.initial || ""}
+                                    ref={refInitial}
+                                />
                                 <input
                                     id="expiration"
                                     name="expiration"
@@ -102,12 +117,13 @@ const NewQuiz = ({
                                     onBlur={expirationText}
                                     onFocus={expirationDate}
                                     className="inputTitle"
-                                    placeholder="Agregar una fecha de caducidad"
+                                    placeholder="fecha de caducidad"
                                     onChange={modalInputChange}
                                     value={formData.expiration || ""}
                                     ref={refExpiration}
+                                    style={{ marginRight: "1.8rem" }}
                                 />
-                            </span>
+                            </div>
                         </div>
                         <div className="d-flex justify-content-center mt-4 mb-4">
                             <button

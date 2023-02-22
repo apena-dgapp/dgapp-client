@@ -12,7 +12,11 @@ const Message = ({
             {message.isActive && (
                 <div className="wrapper-notification">
                     <div className="window-notification">
-                        <p className="modal-title-notification">{message.title}</p>
+                        <div className="modal-title-notification">
+                            <p>{message.title}</p>
+                            <span className='modal-title-notification-line'></span>
+                        </div>
+                        {/* <p className="modal-title-notification">{message.title}</p> */}
 
                         <div className="modal-labelcont-notification">
                             <p>{message.text}</p>

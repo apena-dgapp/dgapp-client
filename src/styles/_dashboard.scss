@@ -184,6 +184,33 @@
     grid-template-columns: 45% 10% 45%;
 }
 
+.dashboard-section-2-notices-icons{
+   width: 80%;
+   height: 2rem; 
+//    margin-bottom: 1rem;
+}
+
+.dashboard-section-2-notices-txt{
+    width: 80%;
+    height: 9rem;
+    margin-left: 3.5rem;
+    margin-top: 5rem;
+    z-index: 1;
+
+    p{
+        margin: 0;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #113250;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        text-align: justify;
+    }
+}
+
 .dashboard-section-2-line-cont{
     width: 80%;
     height: 5rem;
@@ -307,7 +334,8 @@
     padding-left: 1rem;
     margin: 0;
     font-size: 1rem;
-    color: gainsboro;
+    color: white;
+        font-weight: bolder;
 }
 
 .dashboard-section-2-quiz-ansower-count{
@@ -326,8 +354,8 @@
         padding-left: 1rem;
         margin: 0;
         font-size: 1rem;
-        color: gainsboro;
-        // font-weight: bold;
+        color: white;
+        font-weight: bolder;
         z-index: 1;
     }
 
@@ -361,25 +389,6 @@
     }
 }
 
-.dashboard-section-2-notices-txt{
-    width: 80%;
-    height: 9rem;
-    margin-top: 6rem;
-    margin-left: 3.5rem;
-
-    p{
-        margin: 0;
-        font-size: 1rem;
-        font-weight: bold;
-        color: #113250;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        text-align: justify;
-    }
-}
 
 .dashboard-section-2-notices-img-cont{
     width: 100%;
@@ -872,14 +881,16 @@
     position: absolute;
     color: white;
     margin-top: 2.5rem;
+    margin-right: 3rem;
 }
 
-.dashboard-section-5-galery-main {
+.dashboard-section-5-galery-icon-main {
     width: 6rem;
     height: 6rem;
     position: absolute;
     color: white;
     margin-bottom: 1.5rem;
+    cursor: pointer;
 }
 
 
@@ -1294,16 +1305,16 @@
 
 .dashboard-popup-window {
     position:  fixed;
-    // background-color: #75AAD3;
+    // background-color: red;
     z-index: 10;
     overflow: hidden;
-    width: 50%;
+    width: 55%;
     height: 45rem;
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    // flex-direction: column;
 }
 
 .dashboard-popup-background {
@@ -1719,6 +1730,10 @@
     .dashboard-section-7-scroll-fb {
         width: 90%;
     }
+
+    .dashboard-popup-window {
+        width:67%;
+    }
 }
 
 //laptop yelissa
@@ -2012,6 +2027,9 @@
     .dashboard-section-7-scroll-fb {
         width: 84%;
     }
+    .dashboard-popup-window {
+        width:67%;
+    }
 }
 
 //Monitor hp 2009m
@@ -2040,10 +2058,27 @@
     .dashboard-section-2 {
         width: 70%;
     }
+
+    .dashboard-section-2-line-cont {
+        width: 70%;
+
+    }
+    
+    .dashboard-section-2-notices {
+        width: 70%;
+        height: 19rem;
+    }
+
+    .dashboard-section-2-notices-img-cont {
+        height: 22rem;
+    }
+    .dashboard-section-2-notices-separte {
+        margin-top: 10.5rem;
+    }
     
     .dashboard-section-2-notices-img{    
         img{
-            height: 19.5rem;
+            height: 17rem;
         }
     }
 
@@ -2052,6 +2087,10 @@
     }
 
     .dashboard-section-3-container {
+        width: 70%;
+    }
+
+    .dashboard-section-3-line-cont {
         width: 70%;
     }
 

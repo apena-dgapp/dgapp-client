@@ -7,6 +7,7 @@ import { IoMdImages } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { MdOutlineDoubleArrow } from "react-icons/md";
 import useScreenSize from "../../hooks/useScreenSize";
+import { IoRemoveCircleSharp } from "react-icons/io5";
 
 const NewsForm = ({
   dataPost,
@@ -26,7 +27,9 @@ const NewsForm = ({
   multimedia,
   modalToggle,
   getImagesHandler,
-  related
+  related,
+  removeComment,
+  personId
 }) => {
 
   const createMarkup = (html) => {
@@ -121,21 +124,32 @@ const NewsForm = ({
             </div>
 
             {
-              comments.comments?.length ? <div className="singlePost-comment-list-cont">
-                <div className="singlePost-comment-list-header">
+              comments.comments?.length ? <div className="new-comment-list-cont">
+                <div className="new-comment-list-header">
                   <p>Comentarios</p>
                 </div>
-                <div className="singlePost-comment-list-container">
+                <div className="new-comment-list-container">
                   {
                     comments.comments?.map((item, key) => {
                       return (
-                        <div key={key} className="singlePost-comment-list">
-                          <div className="singlePost-comment-list-user">
+                        <div key={key} className="new-comment-list">
+                          <div className="new-comment-list-user">
                             <img src={item.Person.photo} alt="" />
                             <p>{item.Person.firstName.split(" ", 1) + " " + item.Person.lastName.split(" ", 1)}</p>
                           </div>
-                          <div className="singlePost-comment-lis-text">
+                          <div className="new-comment-lis-text">
                             <p>{item.text}</p>
+                            {
+                              personId === item.personId ? <span onClick={() => removeComment(item.commentId)}>
+                                <i className="ci ci-square-remove" />
+                                <IoRemoveCircleSharp
+                                  style={{ cursor: "pointer" }}
+                                  size="1rem"
+                                  color="#FB2576"
+                                />
+                              </span> : null
+                            }
+
                           </div>
                         </div>
                       )

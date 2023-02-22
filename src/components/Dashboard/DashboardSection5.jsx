@@ -31,7 +31,8 @@ const DashboardSection5 = ({ multimedia, multimediaMain, modalToggle, getImagesH
                   /> */}
                   <i className="ai ai-outline-play-circle" />
                   <AiOutlinePlayCircle
-                    className="dashboard-section-5-galery-main"
+                    onClick={() => modalToggle(multimediaMain)}
+                    className="dashboard-section-5-galery-icon-main"
                   />
                   <img
                     // className="dashboard-section-5-galery-img" 

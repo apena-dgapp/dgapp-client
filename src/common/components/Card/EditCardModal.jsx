@@ -46,50 +46,56 @@ const EditCardModal = ({
                     value={formData.title}
                   />
                 </div>
-                <div className="">
-                  <p className="edit-input-title-modal">Autor</p>
-                  <input
-                    onChange={handlerInputChange}
-                    name="author"
-                    type="text"
-                    // placeholder={
-                    //   data?.item.author ? data?.item.author : "Escriba un author"
-                    // }
-                    className="edit-input"
-                    value={formData.author}
-                  />
-                </div>
-                <div className="">
-                  <p className="edit-input-title-modal">Etiquetas</p>
-                  <input
-                    onChange={handlerInputChange}
-                    name="tags"
-                    type="text"
-                    // placeholder={
-                    //   data?.item.author ? data?.item.author : "Escriba un author"
-                    // }
-                    className="edit-input"
-                    value={formData.tags}
-                  />
-                </div>
-                <div className="">
-                  <p className="edit-input-title-modal">Fecha</p>
-                  <input
-                    onChange={handlerInputChange}
-                    name="date"
-                    type="text"
-                    onBlur={inputText}
-                    onFocus={inputDate}
-                    ref={refInput}
-                    // placeholder={
-                    //   data?.item.date ? new Date(data?.item.date)
-                    //     .toLocaleString('en-us', { year: 'numeric', month: '2-digit', day: '2-digit' })
-                    //     .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : "Escriba un author"
-                    // }
-                    className="edit-input"
-                    value={formData.date}
-                  />
-                </div>
+
+                {
+                  formData.action === "News" ?
+                    <>
+                      <div className="">
+                        <p className="edit-input-title-modal">Autor</p>
+                        <input
+                          onChange={handlerInputChange}
+                          name="author"
+                          type="text"
+                          // placeholder={
+                          //   data?.item.author ? data?.item.author : "Escriba un author"
+                          // }
+                          className="edit-input"
+                          value={formData.author}
+                        />
+                      </div>
+                      <div className="">
+                        <p className="edit-input-title-modal">Etiquetas</p>
+                        <input
+                          onChange={handlerInputChange}
+                          name="tags"
+                          type="text"
+                          // placeholder={
+                          //   data?.item.author ? data?.item.author : "Escriba un author"
+                          // }
+                          className="edit-input"
+                          value={formData.tags}
+                        />
+                      </div>
+                      <div className="">
+                        <p className="edit-input-title-modal">Fecha</p>
+                        <input
+                          onChange={handlerInputChange}
+                          name="date"
+                          type="text"
+                          onBlur={inputText}
+                          onFocus={inputDate}
+                          ref={refInput}
+                          // placeholder={
+                          //   data?.item.date ? new Date(data?.item.date)
+                          //     .toLocaleString('en-us', { year: 'numeric', month: '2-digit', day: '2-digit' })
+                          //     .replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2') : "Escriba un author"
+                          // }
+                          className="edit-input"
+                          value={formData.date}
+                        />
+                      </div>
+                    </> : null
+                }
                 <div className="">
                   <p className="edit-input-title-modal">Descripción</p>
                   <div className="card-edit-editor">
@@ -103,25 +109,26 @@ const EditCardModal = ({
                     //   data?.item.description ? data?.item.description.replace(/<[^>]*>/g, '') : "Escriba una descripción"
                     // }
                     />
-
-
                   </div>
                 </div>
               </div>
-              <div className="card-edit-img-modal-cont">
-                <input
-                  onChange={seletedHandler}
-                  name="image"
-                  className="upload-file-buton"
-                  type="file"
-                  accept=".jpg, .jpeg, .jfif, .png, .webp"
-                  ref={refBtnImg}
-                />
-                <img className="card-edit-img-modal" src={formData.image} alt="" />
-                <div className="card-edit-img-btn-cont">
-                  <button onClick={formData.image ? removeImg : changeImg}>{formData.image ? "REMOVER" : "CAMBIAR"}</button>
-                </div>
-              </div>
+              {
+                formData.action === "News" ?
+                  <div className="card-edit-img-modal-cont">
+                    <input
+                      onChange={seletedHandler}
+                      name="image"
+                      className="upload-file-buton"
+                      type="file"
+                      accept=".jpg, .jpeg, .jfif, .png, .webp"
+                      ref={refBtnImg}
+                    />
+                    <img className="card-edit-img-modal" src={formData.image} alt="" />
+                    <div className="card-edit-img-btn-cont">
+                      <button onClick={formData.image ? removeImg : changeImg}>{formData.image ? "REMOVER" : "CAMBIAR"}</button>
+                    </div>
+                  </div> : null
+              }
             </div>
 
             <div className="btn-publish-cont">
