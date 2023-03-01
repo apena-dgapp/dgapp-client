@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import EmployeeForm from "./EmployeeForm";
-import { getOnePerson, isActivePerson } from "../../api/person";
+import { getOnePerson, isActivePerson, isVacationPerson } from "../../api/person";
 import { toast } from "react-hot-toast";
 import { useNavigate, useLocation } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
@@ -91,6 +91,18 @@ const Employee = () => {
       });
   };
 
+  const handleIsVacation = (e) => {
+    const isActive = e.target.checked;
+    const modifiedAt = new Date();
+    isVacationPerson(id, isActive, contextState.userName, modifiedAt)
+      .then((res) => {
+        return res.json();
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+  };
+
   return (
     <>
       {loading ? (
@@ -104,6 +116,7 @@ const Employee = () => {
           msgDisable={msgDisable}
           edit={edit}
           handleIsActive={handleIsActive}
+          handleIsVacation={handleIsVacation}
           goTodocuments={goTodocuments}
         />
       )}

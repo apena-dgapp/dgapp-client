@@ -30,7 +30,7 @@ const CarouselMain = ({ arrayCarousel }) => {
                 style={{ textDecoration: "none" }}
               >
                 <div className="carousel-container">
-                  <img alt="" src={item.image} />
+                  <img key={index} alt="" src={item.image} />
                 </div>
 
               </a> :
@@ -42,7 +42,7 @@ const CarouselMain = ({ arrayCarousel }) => {
                   style={{ textDecoration: "none", cursor: "default" }}
                 >
                   <div className="carousel-container">
-                    <img alt="" src={item.image} />
+                    <img key={index} alt="" src={item.image} />
                   </div>
 
                 </div>

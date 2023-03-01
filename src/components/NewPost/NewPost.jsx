@@ -146,7 +146,7 @@ const NewPost = () => {
   }
 
   const [uploadFiles, setUploadFiles] = useState({
-    imagenes: "",
+    imagenes: [],
     pdf: "",
     video: ""
   });
@@ -192,6 +192,14 @@ const NewPost = () => {
   const handleruploadFiles = async (e) => {
     const { name, files } = e.target;
 
+    for (var key in files) {
+      var obj = files[key];
+
+      if (obj.size?.toString().length > 7 && obj.size?.toString().split('')[0] > 1) {
+        return toast.error("Error Las fotos no puede exceder los 2.5MB");
+      }
+    }
+
     if (actionInput === "imagenes") {
       setNameImg(...nameImg, files);
     }
@@ -208,7 +216,7 @@ const NewPost = () => {
     } else {
       setUploadFiles({
         ...uploadFiles,
-        [name]: await getBase64(files[0]),
+        [name]: [await getBase64(files[0])],
       });
     }
 
@@ -217,6 +225,7 @@ const NewPost = () => {
       setCaptionActive(true);
     } else if (actionInput === "imagenes" && files.length === 1) {
       setQtyImg(1);
+      setCaptionActive(true);
     }
 
     if (actionInput === "pdf") {
@@ -263,6 +272,10 @@ const NewPost = () => {
   const sendHandlerForm = () => {
     let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
 
+    console.log(formData.category);
+    console.log(uploadFiles.imagenes);
+    console.log(actionInput);
+
     if (!formData.category) {
       return toast.error("Por favor agregar un categoría");
     } else if (!formData.title && formData.category !== "Aviso") {
@@ -287,6 +300,10 @@ const NewPost = () => {
       return toast.error("Por favor agregar una imagen de portada");
     } else if (!img && formData.category === "EducAPP") {
       return toast.error("Por favor agregar una imagen de portada");
+    } else if (!actionInput && formData.category === "Multimedia") {
+      return toast.error("Por favor agregar fotos o Video");
+    } else if (actionInput === "imagenes" && formData.category === "Multimedia" && !uploadFiles.imagenes) {
+      return toast.error("Por favor agregar fotos o Video");
     }
 
     newPostApi(
@@ -310,7 +327,6 @@ const NewPost = () => {
         return res.json();
       })
       .then((res) => {
-        console.log(res)
         postId(formData.title, formData.category, formData.author)
           .then((res) => {
             return res.json();

@@ -6,7 +6,7 @@ import { getNews, getRelated } from "../../api/news";
 import { incrementClick } from '../../api/tags';
 import { viewUpdate } from "../../api/post";
 import { addCommentPost, getComments, giveLike, countLike, getPostMultimedia, deleteComment } from "../../api/post";
-import { getFiles } from "../../api/post";
+import { getFiles, getFilesId } from "../../api/post";
 import toast from "react-hot-toast";
 import Viewer from "react-viewer";
 import DashboardPopup from "../Dashboard/DashboardPopup";
@@ -29,6 +29,9 @@ const New = () => {
     const [visible, setVisible] = useState(false);
     const [arrayImg, setArrayImg] = useState("");
     const [related, setRelated] = useState([]);
+    const [filesIds, setFilesIds] = useState("");
+    const [filesIdCount, setFilesIdCount] = useState("");
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
         let unmounted = false;
@@ -76,7 +79,7 @@ const New = () => {
 
     useEffect(() => {
         let unmounted = false;
-        dataPost?.tagsArray.map((item, index) => {
+        dataPost?.tagsArray?.map((item, index) => {
 
             return (
                 index <= 2 ?
@@ -154,6 +157,28 @@ const New = () => {
             unmounted = true;
         };
     }, []);
+
+    useEffect(() => {
+        let unmounted = false;
+
+        getFilesId(dataPost.id)
+            .then((res) => {
+                return res.json();
+            })
+            .then((res) => {
+                if (!unmounted) {
+                    setFilesIds(res.rows);
+                    setFilesIdCount(res.count - 1)
+                }
+            })
+            .catch((err) => {
+                console.error(err.status);
+            });
+
+        return () => {
+            unmounted = true;
+        };
+    }, [dataPost]);
 
     const goToPost = (item) => {
         if (item?.tags) {
@@ -314,6 +339,21 @@ const New = () => {
             })
     }
 
+    const handlerBtnRight = () => {
+        if (count < filesIdCount) {
+            setCount(count + 1);
+            // setCurrentVideo(recentVideos[count]);
+        }
+    }
+
+    const handlerBtnLeft = () => {
+
+        if (count !== 0) {
+            setCount(count - 1);
+            // setCurrentVideo(count ? recentVideos[count] : null);
+        }
+    }
+
     return (
         <>
             <Viewer
@@ -348,6 +388,11 @@ const New = () => {
                 related={related}
                 removeComment={removeComment}
                 personId={contextState.personId}
+                handlerBtnRight={handlerBtnRight}
+                handlerBtnLeft={handlerBtnLeft}
+                count={count}
+                filesIdCount={filesIdCount}
+                filesIds={filesIds}
             />
         </>
 

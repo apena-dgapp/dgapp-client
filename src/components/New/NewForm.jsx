@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import { MdOutlineDoubleArrow } from "react-icons/md";
 import useScreenSize from "../../hooks/useScreenSize";
 import { IoRemoveCircleSharp } from "react-icons/io5";
+import ImagesPost from "../../common/components/imagesPost/ImagesPost"
+import { TfiArrowCircleRight, TfiArrowCircleLeft } from "react-icons/tfi";
 
 const NewsForm = ({
   dataPost,
@@ -29,7 +31,12 @@ const NewsForm = ({
   getImagesHandler,
   related,
   removeComment,
-  personId
+  personId,
+  count,
+  filesIdCount,
+  handlerBtnLeft,
+  handlerBtnRight,
+  filesIds
 }) => {
 
   const createMarkup = (html) => {
@@ -47,11 +54,46 @@ const NewsForm = ({
           <p>NOTICIAS</p>
           <span className='news-title-line'></span>
         </div>
-        <div className="news-grid-container">
+        <div className="new-grid-container">
           <div className="news-grid-panel1">
-            <div className="new-img-container">
-              <img src={dataPost?.img} alt="" />
+            <div className='new-img-icon-container'>
+              <div className='new-img-icon-left' onClick={handlerBtnLeft}>
+                {
+                  filesIds.length > 0 ?
+                    <>
+                      <i className="tfi tfi-arrow-circle-left" />
+                      <TfiArrowCircleLeft
+                        size={"2rem"}
+                        cursor={count > 0 ? 'pointer' : null}
+                        // style={{ marginRight: "1rem" }}
+                        color={count > 0 ? "#75AAD3" : "gray"}
+                      />
+                    </> : null
+                }
+              </div>
+
+              <div className="new-img-container">
+                {
+                  count < 1 ? <ImagesPost id={dataPost?.id} table="post" /> : <ImagesPost id={filesIds[count]?.filesId} table="" />
+                }
+              </div>
+
+              <div className='new-img-icon-right' onClick={handlerBtnRight}>
+                {
+                  filesIds.length > 0 ?
+                    <>
+                      <i className="tfi tfi-arrow-circle-right" />
+                      <TfiArrowCircleRight
+                        color={count < filesIdCount ? "#75AAD3" : "gray"}
+                        cursor={count < filesIdCount ? 'pointer' : null}
+                        size={"2rem"}
+                      // style={{ marginLeft: "1rem" }}
+                      />
+                    </> : null
+                }
+              </div>
             </div>
+
             <div className="new-title-container">
               <p>{dataPost?.title}</p>
             </div>
@@ -202,30 +244,33 @@ const NewsForm = ({
               </div>
 
             </div>
-            <div className="dashboard-section-1-news">
-              <div className="dashboard-section-1-news-header">
-                <p>TEMAS RELACIONADOS</p>
-              </div>
-              <div className="dashboard-section-1-news-title-line"></div>
-              <div className="dashboard-section-1-news-multi">
-                {
-                  related?.map((item, index) => {
-                    return (
-                      index <= 2 ?
-                        <div
-                          key={index}
-                          onClick={() => goToPost(item)}
-                          className="dashboard-section-1-news-content"
-                        >
-                          <div className="dashboard-section-1-news-content-txt">
-                            {item.title}
-                          </div>
-                        </div> : null
-                    );
-                  })
-                }
-              </div>
-            </div>
+            {
+              related.length > 0 ? <div className="dashboard-section-1-news">
+                <div className="dashboard-section-1-news-header">
+                  <p>TEMAS RELACIONADOS</p>
+                </div>
+                <div className="dashboard-section-1-news-title-line"></div>
+                <div className="dashboard-section-1-news-multi">
+                  {
+                    related?.map((item, index) => {
+                      return (
+                        index <= 2 ?
+                          <div
+                            key={index}
+                            onClick={() => goToPost(item)}
+                            className="dashboard-section-1-news-content"
+                          >
+                            <div className="dashboard-section-1-news-content-txt">
+                              {item.title}
+                            </div>
+                          </div> : null
+                      );
+                    })
+                  }
+                </div>
+              </div> : null
+            }
+
             <div className="new-multimedia-container">
               <div className="dashboard-section-1-news-header">
                 <p>MULTIMEDIA</p>

@@ -44,13 +44,13 @@
         object-fit: cover;
     }
     P{
-        width: 17rem;
+        width: 16rem;
         height: 3.5rem;
         // background-color: red;
         font-size: 0.8rem;
         font-weight: bold; 
         color: #0D2F4C;
-        text-align: center;
+        text-align: justify;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
@@ -60,21 +60,34 @@
         margin-top: 0.5rem;
     }
 }
+
+.slick-slide {
+    width: 19rem !important; 
+} 
+
+.slick-next {
+    top: 36%;
+}
+.slick-prev {
+    top: 36%;
+}
 .multimedia-dashboard-galery-icon {
     width: 4rem;
     height: 4rem;
     position: absolute;
     color: white;
     margin-top: -2.5rem;
+    // margin-left: 6rem;
 }
 .multimedia-dashboard-btn-container {
-    width: 100%;
+    width: 12.9%;
     height: 1.8rem;
     display: flex;
-    // justify-content: flex-end;
+    justify-content: flex-end;
     // align-items: flex-end;
     // margin-top: 1rem;
-    margin-left: 1.5rem;
+    // margin-left: 1.5rem;
+    // background-color: red;
 }
 
 .multimedia-dashboard-btn {
@@ -177,7 +190,7 @@
 //VIDEOS GALLERY
 .multimedia-video-main{
     width:  80%;
-    height: 28rem;
+    height: 31.8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -186,7 +199,7 @@
 
     iframe{
         width: 48rem;
-        height: 27rem;
+        height: 28rem;
     }
 }
 .multimedia-video-main-text{
@@ -252,4 +265,69 @@
         cursor: pointer;
     }
 }
+
+//MEDIAS QUERIES
+
+//laptop generic
+@media screen and (min-width: 1279px) and (max-width:1365px)  {
+
+    .multimedia-dashboard-btn-container {
+        width: 14.5%;
+    }
+    
+    .multimedia-dashboard-fotos-img{
+        img{
+            width: 14rem;
+        }
+        P{
+            width: 14rem;
+        }
+    }
+
+    .slick-slide {
+        width: 15.75rem !important; 
+    } 
+}
+
+//laptop yelissa
+@media screen and (min-width: 1366px ) and (max-width:1367px) {
+
+    .multimedia-dashboard-btn-container {
+        width: 14.5%;
+    }
+    
+    .multimedia-dashboard-fotos-img{
+        img{
+            width: 14rem;
+        }
+        P{
+            width: 14rem;
+        }
+    }
+
+    .slick-slide {
+        width: 16.86rem !important; 
+    } 
+}
+
+//Monitor hp 2009m
+@media screen and (min-width: 1600px) and (max-width:1601px){
+    .slick-slide {
+        width: 19.75rem !important; 
+    } 
+}
+//Monitor cesar
+@media screen and (min-width: 1920px) and (max-width:1921px){
+
+    .multimedia-dashboard-container {
+        width: 70%;
+    }
+    .slick-slide {
+        width: 20.80rem !important; 
+    } 
+}
+
+
+
+
 

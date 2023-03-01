@@ -46,7 +46,8 @@ const News = () => {
         image: "",
         author: "",
         date: "",
-        tags: ""
+        tags: "",
+        action: ""
     });
 
     useEffect(() => {
@@ -254,7 +255,16 @@ const News = () => {
     };
 
     const seletedHandler = async (e) => {
-        setFormData({ image: (await getBase64(e.target.files[0])) });
+        // setFormData({ image: (await getBase64(e.target.files[0])) });
+        setFormData({
+            title: formData.title,
+            description: formData.description,
+            image: (await getBase64(e.target.files[0])),
+            author: formData.author,
+            date: formData.date,
+            tags: formData.tags,
+            action: formData.action
+        })
     };
 
     const refInput = useRef();
@@ -275,7 +285,16 @@ const News = () => {
 
     const removeImg = () => {
         refBtnImg.current.value = "";
-        setFormData({ image: "" })
+        setFormData({
+            title: formData.title,
+            description: formData.description,
+            image: "",
+            author: formData.author,
+            date: formData.date,
+            tags: formData.tags,
+            action: formData.action
+        })
+        // setFormData({ image: "" })
     };
 
     const EditToggle = (item) => {
@@ -318,7 +337,8 @@ const News = () => {
                         image: "",
                         author: "",
                         date: "",
-                        tags: ""
+                        tags: "",
+                        action: ""
                     });
                     setEditorState(EditorState.createEmpty());
                     setModalActive(false);

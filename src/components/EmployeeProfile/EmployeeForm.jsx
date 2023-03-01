@@ -19,6 +19,7 @@ const EmployeeForm = ({
   msgDisable,
   edit,
   handleIsActive,
+  handleIsVacation,
   goTodocuments
 }) => {
   const navigate = useNavigate();
@@ -214,14 +215,7 @@ const EmployeeForm = ({
               </button>
             ) : null}
 
-            {/* <button
-              onClick={goToChat}
-              type="button"
-              className="btn btn-light employee-btn"
-            >
-              Chatear
-            </button> */}
-            {contextState.userRole === 1 ? (
+            {contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 ? (
               <div className="onoffswitch1">
                 <input
                   onClick={handleIsActive}
@@ -236,7 +230,27 @@ const EmployeeForm = ({
                   <span className="onoffswitch1-switch" />
                 </label>
               </div>
+
             ) : null}
+
+            {contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 ? (
+              <div className="onoffswitch2">
+                <input
+                  onClick={handleIsVacation}
+                  type="checkbox"
+                  name="onoffswitch2"
+                  className="onoffswitch2-checkbox"
+                  id="myonoffswitch2"
+                  defaultChecked={profile.isVacation}
+                />
+                <label className="onoffswitch2-label" htmlFor="myonoffswitch2">
+                  <span className="onoffswitch2-inner" />
+                  <span className="onoffswitch2-switch" />
+                </label>
+              </div>
+
+            ) : null}
+
           </div>
         </div>
 

@@ -421,8 +421,8 @@ const NewPostForm = ({
                         name={actionInput}
                         type="file"
                         onChange={handleruploadFiles}
-                        accept={accept}
                         multiple
+                        accept={accept}
                       />
                     )}
                   </div>

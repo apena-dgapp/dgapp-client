@@ -230,11 +230,9 @@ const NavbarForm = ({
                                         : null}
                                     {contextState.userRole === 1 ?
                                         <>
-                                            {
-                                                contextState.personId === 2 || contextState.personId === 88 || contextState.userRole === 1 ? <li>
-                                                    <span onClick={employeeNew}>Nuevo Empleado</span>
-                                                </li> : null
-                                            }
+                                            <li>
+                                                <span onClick={employeeNew}>Nuevo Empleado</span>
+                                            </li>
 
                                             < li >
                                                 <span onClick={register}>Crear Usuario</span>
@@ -244,7 +242,28 @@ const NavbarForm = ({
 
                                 </ul>
                             </li>
-                        ) : null}
+                        ) : (
+                            contextState.personId === 2 || contextState.personId === 88 || contextState.userRole === 1 ?
+
+                                <li className="class-list admin-hiden" style={{ width: width >= 5120 ? "22.5rem" : "9.5rem" }}>
+                                    <p>
+                                        Administración
+                                        <i className="io io-md-arrow-dopdown navbar-arrow" />
+                                        <IoMdArrowDropdown
+                                            size={width >= 5120 ? "2.3rem" : "1.3rem"}
+                                            style={{ cursor: "pointer" }}
+                                        />
+                                    </p>
+                                    <ul style={{ width: "10rem", height: "3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
+                                        <li>
+                                            <span onClick={employeeNew}>Nuevo Empleado</span>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                : null
+
+                        )}
                     </ul>
                 </div>
 

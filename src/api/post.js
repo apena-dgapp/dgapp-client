@@ -105,6 +105,18 @@ export const getFiles = async (postid) => {
     })
 }
 
+export const getFilesId = async (postid) => {
+    const body = { postid };
+    return fetch(`${process.env.REACT_APP_API}filespost/getfilesid`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
 export const srcFiles = async (id) => {
     const body = { id };
     return fetch(`${process.env.REACT_APP_API}filespost/getfiles`, {

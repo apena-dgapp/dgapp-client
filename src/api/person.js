@@ -76,6 +76,18 @@ export const isActivePerson = async (id, bool, modifiedby, modifiedat) => {
     })
 }
 
+export const isVacationPerson = async (id, bool, modifiedby, modifiedat) => {
+    const body = { id, bool, modifiedby, modifiedat };
+    return fetch(`${process.env.REACT_APP_API}person/isvacationperson`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
 export const getLastCode = async () => {
     return fetch(`${process.env.REACT_APP_API}person/lastcode`, {
         method: "GET",

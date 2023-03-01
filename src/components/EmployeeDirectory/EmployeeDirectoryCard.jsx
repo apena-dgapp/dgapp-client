@@ -8,7 +8,7 @@ const CardForm = (props) => {
   const [contextState] = useContext(GlobalContext);
   const [photo, setPhoto] = useState([]);
 
-  const id =props.id;
+  const id = props.id;
 
   useEffect(() => {
 
@@ -16,16 +16,16 @@ const CardForm = (props) => {
 
     if (!unmounted) {
       getPhotos(id)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
           setPhoto(res);
- 
-      })
-      .catch((err) => {
-        console.error(err.status);
-      });
+
+        })
+        .catch((err) => {
+          console.error(err.status);
+        });
     }
 
     return () => {
@@ -37,19 +37,9 @@ const CardForm = (props) => {
     <>
       <div className="emDirectory-card">
         <div className="emDirectory-card-cont">
-          {contextState.userRole === 1 ? (
-            props.isActive ? (
-              <div className="d-flex">
-                <p style={{ fontWeight: "bold", color: "green" }}>Activo</p>
-                <i className="md md-phone-in-talk" />
-                <MdCircle
-                  style={{ marginTop: "0.3rem" }}
-                  size="1rem"
-                  color="green"
-                />
-              </div>
-            ) : (
-              <div className="d-flex">
+          {
+            !props.isActive && (contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88) ? (
+              <div className="d-flex mt-1">
                 <p style={{ fontWeight: "bold", color: "red" }}>Desactivado</p>
                 <i className="md md-phone-in-talk" />
                 <MdCircle
@@ -58,14 +48,32 @@ const CardForm = (props) => {
                   color="red"
                 />
               </div>
-            )
-          ) : null}
+            ) : (props.isVacation ? <div className="d-flex mt-1">
+              <p style={{ fontWeight: "bold", color: "#009EFF" }}>Vacaciones</p>
+              <i className="md md-phone-in-talk" />
+              <MdCircle
+                style={{ marginTop: "0.3rem" }}
+                size="1rem"
+                color="#009EFF"
+              />
+            </div> : props.isActive && (contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88) ? (
+              <div className="d-flex mt-1">
+                <p style={{ fontWeight: "bold", color: "green" }}>Activo</p>
+                <i className="md md-phone-in-talk" />
+                <MdCircle
+                  style={{ marginTop: "0.3rem" }}
+                  size="1rem"
+                  color="green"
+                />
+              </div>
+            ) : <div style={{ width: "100%", height: "2.46rem", marginTop: "0.3rem" }}></div>)}
 
           <img
-            src={photo?.photo ? photo?.photo : Images.noImg }
+            src={photo?.photo ? photo?.photo : Images.noImg}
             className="emDirectory-card-img"
             alt="..."
-            onClick={() => props.goToProfile({id: props.id, name: props?.name})}
+            onClick={() => contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 || props.id === contextState.personId ?
+              props.goToProfile({ id: props.id, name: props?.name }) : null}
           />
           <div className="card-body">
             <p className="emDirectory-card-departament">
@@ -91,17 +99,17 @@ const CardForm = (props) => {
           </div>
           {
             contextState.userRole === 1 ? <div className="mb-2">
-            <p className="emDirectory-card-text-contact">
-              <i className="md md-smart-phone" />
-              <MdSmartphone
-                style={{ marginRight: "0.5rem" }}
-                size="1.5em"
-                color="#8CB2C4"
-              />
-              {props.cel ? props.cel : "No definido!"}
-            </p>
-            </div>:null
-          }  
+              <p className="emDirectory-card-text-contact">
+                <i className="md md-smart-phone" />
+                <MdSmartphone
+                  style={{ marginRight: "0.5rem" }}
+                  size="1.5em"
+                  color="#8CB2C4"
+                />
+                {props.cel ? props.cel : "No definido!"}
+              </p>
+            </div> : null
+          }
           <div className="mb-2">
             <p className="emDirectory-card-text-contact">
               <i className="md md-Email" />
@@ -114,7 +122,8 @@ const CardForm = (props) => {
             </p>
           </div>
           <button
-            onClick={() => props.goToProfile({id: props.id, name: props?.name})}
+            onClick={() => contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 || props.id === contextState.personId ?
+              props.goToProfile({ id: props.id, name: props?.name }) : null}
             className="emDirectory-card-btn"
           >
             Ir al Perfil

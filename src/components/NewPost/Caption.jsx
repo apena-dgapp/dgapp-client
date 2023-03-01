@@ -8,29 +8,23 @@ const Caption = ({
     uploadFiles,
     caption,
     setCaption,
-    // formData,
-    // setFormData,
-    // modalToggleCancel,
-    // modalToggleAceppt,
 }) => {
-    // const [array, setArray] = useState([]);
 
     useEffect(() => {
         let unmounted = false;
 
-        if (!unmounted && uploadFiles.imagenes.length > 0) {
+        if (!unmounted && captionActive && uploadFiles?.imagenes) {
             uploadFiles?.imagenes?.map((item, index) => {
                 return (
-                    setCaption(caption => [...caption, ''])
+                    uploadFiles?.imagenes?.length > 1 ? setCaption(caption => [...caption, '']) : setCaption([''])
                 )
             })
-            // setArray(oldArray => [...oldArray,newValue] );
         }
 
         return () => {
             unmounted = true;
         };
-    }, [uploadFiles, setCaption]);
+    }, [uploadFiles, captionActive, setCaption]);
 
     const textareaChange = (e, index) => {
         if (e.target.name === "caption") {
@@ -59,8 +53,9 @@ const Caption = ({
                     <div className="window-caption">
                         <p className="modal-title-newpost">PIE DE FOTO</p>
                         <div className="caption-box">
+                            {console.log(uploadFiles?.imagenes?.length)}
                             {
-                                uploadFiles.imagenes.length > 0 ?
+                                uploadFiles?.imagenes?.length > 0 ?
                                     uploadFiles?.imagenes?.map((item, index) => {
                                         return (
                                             <>

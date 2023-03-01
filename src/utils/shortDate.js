@@ -17,7 +17,7 @@ export const shortDate = (date) => {
     const dias_semana = [
         "Domingo",
         "Lunes",
-        "martes",
+        "Martes",
         "Miércoles",
         "Jueves",
         "Viernes",

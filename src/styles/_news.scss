@@ -39,6 +39,7 @@
 
 .news-grid-panel1{
     width: 100%;
+    // background-color: red;
 }
 // .news-selected-tag{
 //     // width: 20rem;
@@ -195,6 +196,32 @@
 // }
 
 //new
+.new-grid-container{
+    width: 85.6%;
+    display: grid;
+    grid-template-columns: 69% 5% 28%;
+}
+.new-img-icon-container{
+    width: 100%;
+    height: 29rem;
+    display: flex;
+    align-items: center;
+}
+.new-img-icon-left{
+    width: 3.3rem;
+    height: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    // background-color: red;
+}
+.new-img-icon-right{
+    display: flex;
+    justify-content: flex-end;
+    width: 3rem;
+    height: 2rem;
+    // background-color: red;
+}
+
 .new-img-container{
     width: 100%;
     height: 29rem;
@@ -203,7 +230,9 @@
         height: 28rem;
         object-fit: cover;
     }
+    // background-color: blue;
 }
+
 
 .new-recent-news {
     width: 100%;
@@ -218,6 +247,7 @@
     text-align: justify;
     color: #0D2F4C;
     margin-top: 1.5rem;
+    margin-left: 2.8rem;
     // background-color: red;
 }
 
@@ -227,6 +257,7 @@
     font-size: 0.7rem;
     font-weight: bold;
     color: #75AAD3;
+    margin-left: 2.8rem;
 }
 
 .new-descrip-container{
@@ -236,12 +267,14 @@
     text-align: justify;
     color: #0D2F4C;
     margin-top: 1rem;
+    margin-left: 2.8rem;
     // background-color: red;
  
 }
 
 .new-comment-header {
     margin-top: 3rem;
+    margin-left: 2.8rem;
     p {
         color: #113250;
         font-size: 1.3rem;
@@ -253,10 +286,11 @@
 .new-comment-line {
     content: "";
     width: 3rem;
-    height: 0.4rem;
+    height: 0.2rem;
     background-color: #75AAD3;
     font-size: 4px;
     margin-bottom: 1.5rem;
+    margin-left: 2.8rem;
 }
 
 .new-comment-textarea {
@@ -269,6 +303,7 @@
     border: #75AAD3 solid 1.5px;
     border-radius: 0.5rem;
     overflow: hidden;
+    margin-left: 2.8rem;
 }
 
 .new-comment-buttons {
@@ -278,6 +313,7 @@
     justify-content: space-between;
     align-items: flex-start;
     // background-color: red;
+    margin-left: 2.8rem;
 }
 .new-comment-button-box{
     min-width: 10rem;
@@ -654,4 +690,7 @@
   .news-grid-container {
     width: 65%;
 }  
+.new-grid-container{
+    width: 68.5%;
+}
 }

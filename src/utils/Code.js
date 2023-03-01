@@ -25,3 +25,11 @@
 //         setArray([...array], temp);
 //     }
 // };
+
+//recorer un objecto
+
+// for (var key in files) {
+//     var obj = files[key];
+//     console.log(obj.size);
+//     // ...
+//   }

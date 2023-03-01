@@ -19,10 +19,9 @@ const ImagesPost = ({ id, desing, func, isFrame, table }) => {
                 })
                 .then((data) => {
                     if (!unmounted) {
-                        console.log(data);
                         setImg({
                             type: "",
-                            src: data.image
+                            src: data.image,
                         });
                     }
                 })
@@ -53,8 +52,6 @@ const ImagesPost = ({ id, desing, func, isFrame, table }) => {
             };
         }
 
-
-
     }, [id, table]);
 
     return (
@@ -70,8 +67,9 @@ const ImagesPost = ({ id, desing, func, isFrame, table }) => {
                         allowFullScreen
                     /> :
                     (
-                        img.type === "URL" ? <img onClick={func} className={desing} src={`http://img.youtube.com/vi/${getVideoId(img.src)}/mqdefault.jpg`} alt="" /> :
-                            <img onClick={func} className={desing} src={img.src} alt="" />
+                        img.type === "URL" ?
+                            <img onClick={func} className={desing} src={`http://img.youtube.com/vi/${getVideoId(img.src)}/mqdefault.jpg`} alt="img" /> :
+                            <img onClick={func} className={desing} src={img.src} alt="img" />
                     )
 
             }

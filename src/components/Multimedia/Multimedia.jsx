@@ -13,7 +13,6 @@ import toast from "react-hot-toast";
 import EditImagesGallery from './EditImagesGallery';
 
 const Multimedia = () => {
-
     const location = useLocation();
     const navigate = useNavigate();
     const [imagesFiles, setImagesFiles] = useState("");
@@ -77,14 +76,14 @@ const Multimedia = () => {
     useEffect(() => {
         let unmounted = false;
 
-        getGallery(currentPage, locationName === "video" ? 4 : 6, related, locationName)
+        getGallery(currentPage, locationName === "videos" ? 4 : 6, related, locationName === "videos" ? "video" : locationName)
             .then((res) => {
                 return res.json();
             })
             .then((res) => {
                 if (!unmounted) {
                     setItems(res?.rows);
-                    if (locationName === "video") {
+                    if (locationName === "videos") {
                         setPageCount(res.count / 4);
                     } else {
                         setPageCount(res.count / 6);
@@ -149,8 +148,8 @@ const Multimedia = () => {
     const messageToggle = (item) => {
         setData(item)
         setMessage({
-            title: locationName === "imagenes" ? "ELIMINAR GALERIA" : (locationName === "video" ? "ELIMINAR VIDEO" : null),
-            text: locationName === "imagenes" ? "Seguro que desea eliminar esta galeria?" : (locationName === "video" ? "Seguro que desea eliminar este video?" : null),
+            title: locationName === "imagenes" ? "ELIMINAR GALERIA" : (locationName === "videos" ? "ELIMINAR VIDEO" : null),
+            text: locationName === "imagenes" ? "Seguro que desea eliminar esta galeria?" : (locationName === "videos" ? "Seguro que desea eliminar este video?" : null),
             isActive: !message.isActive
         })
     };
@@ -159,10 +158,10 @@ const Multimedia = () => {
         disabledPost(data.postId)
             .then((res) => {
                 if (res.status !== 200) {
-                    return toast.error(locationName === "imagenes" ? "Error al intentar eliminar la galeria" : (locationName === "video" ? "Error al intentar eliminar el video" : null));
+                    return toast.error(locationName === "imagenes" ? "Error al intentar eliminar la galeria" : (locationName === "videos" ? "Error al intentar eliminar el video" : null));
                 } else {
                     navigate(0);
-                    return toast.success(locationName === "imagenes" ? "La galeria se elimino exitosamente!" : (locationName === "video" ? "El video se elimino exitosamente!" : null));
+                    return toast.success(locationName === "imagenes" ? "La galeria se elimino exitosamente!" : (locationName === "videos" ? "El video se elimino exitosamente!" : null));
                 }
             })
             .catch((err) => {
@@ -198,7 +197,11 @@ const Multimedia = () => {
                 // activeIndex={activeIndex}
                 downloadable
                 noImgDetails={true}
+            // attribute={true}
             />
+            {/* <div className='viewer-caption'>
+                <p>Pie de foto</p>
+            </div> */}
             <EditImagesGallery
                 EditToggle={EditToggle}
                 editActive={editActive}
@@ -220,8 +223,9 @@ const Multimedia = () => {
                         getImagesHandler={getImagesHandler}
                         contextState={contextState}
                         messageToggle={messageToggle}
+                        visible={visible}
                     // setRelated={setRelated}
-                    /> : (locationName === "video" ?
+                    /> : (locationName === "videos" ?
                         < VideosGallery
                             items={items}
                             pageCount={pageCount}

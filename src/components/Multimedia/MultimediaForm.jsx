@@ -13,11 +13,18 @@ const MultimediaForm = ({
     getImagesHandler,
     modalToggle,
 }) => {
-    var settings = {
+    var settingsImages = {
         dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: imagesFiles.length > 4 ? 4 : imagesFiles.length,
+        slidesToScroll: 4
+    };
+    var settingsVideos = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: videoFiles.length > 4 ? 4 : videoFiles.length,
         slidesToScroll: 4
     };
 
@@ -30,7 +37,7 @@ const MultimediaForm = ({
                 </div>
                 <div className="multimedia-dashboard-container">
                     <div className="multimedia-dashboard-fotos">
-                        <div className="multimedia-dashboard-btn-container" style={{ marginLeft: imagesFiles.length <= 3 ? "4.5rem" : null }}>
+                        <div className="multimedia-dashboard-btn-container">
                             <div onClick={() => goTomultimedia("imagenes")} type="button" className="multimedia-dashboard-btn">
                                 <i className="md md-outline-double-arrow" />
                                 <p>Más Fotos</p>
@@ -41,7 +48,7 @@ const MultimediaForm = ({
                                 />
                             </div>
                         </div>
-                        <Slider {...settings}>
+                        <Slider {...settingsImages}>
                             {
                                 imagesFiles.length > 0 ?
                                     imagesFiles?.map((item, index) => {
@@ -60,8 +67,8 @@ const MultimediaForm = ({
                         </Slider>
                     </div>
                     <div className="multimedia-dashboard-fotos">
-                        <div className="multimedia-dashboard-btn-container" style={{ marginLeft: imagesFiles.length <= 3 ? "4.5rem" : null }}>
-                            <div onClick={() => goTomultimedia("video")} type="button" className="multimedia-dashboard-btn">
+                        <div className="multimedia-dashboard-btn-container">
+                            <div onClick={() => goTomultimedia("videos")} type="button" className="multimedia-dashboard-btn">
                                 <i className="md md-outline-double-arrow" />
                                 <p>Más Videos</p>
                                 <MdOutlineDoubleArrow
@@ -71,7 +78,7 @@ const MultimediaForm = ({
                                 />
                             </div>
                         </div>
-                        <Slider {...settings}>
+                        <Slider {...settingsVideos}>
                             {
                                 videoFiles.length > 0 ?
                                     videoFiles?.map((item, index) => {

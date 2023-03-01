@@ -12,7 +12,8 @@ const ImagesGallery = ({
     imagesTotal,
     getImagesHandler,
     contextState,
-    messageToggle
+    messageToggle,
+    visible
 }) => {
 
     return (
@@ -48,11 +49,16 @@ const ImagesGallery = ({
                                                 </span>
                                             </div> : null}
                                         {/* <img onClick={() => getImagesHandler(item.postId)} src={item.FilesPosts[0].file} alt="" /> */}
-                                        <ImagesPost func={() => getImagesHandler(item.postId)} id={item.FilesPosts[0].filesId} />
+                                        <ImagesPost id={item.FilesPosts[0].filesId} func={() => getImagesHandler(item.postId)} />
                                         <div onClick={() => getImagesHandler(item.postId)} className="multimedia-images-box-text">
                                             <p className='multimedia-images-box-text-title'>{item.title}</p>
                                             <p className='multimedia-images-box-text-date'>{`${imagesTotal[index]?.length} fotos | ${shortDate(item.createdAt)}`}</p>
-                                            {/* <p className='multimedia-images-box-text-date'>{shortDate(item.createdAt)}</p> */}
+                                            {
+                                                // console.log(item.FilesPosts[index])
+                                                // item.FilesPosts.caption ? <div className='multimedia-images-box-text-caption'>
+                                                //     <p>{item.FilesPosts[index].caption}</p>
+                                                // </div> : null
+                                            }
                                         </div>
                                     </div>
                                 )
