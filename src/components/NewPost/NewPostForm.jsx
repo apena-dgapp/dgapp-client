@@ -116,7 +116,7 @@ const NewPostForm = ({
                 />
               </div>
               {
-                formData.category === "Aviso" || formData.category === "Otras Noticias" ? null : <div>
+                formData.category === "Aviso" || formData.category === "Otras Noticias" || formData.category === "Fechas Conmemorativas" ? null : <div>
                   <input
                     id="authorinput"
                     name="author"
@@ -193,7 +193,7 @@ const NewPostForm = ({
                 }
 
                 <div className="newpost-form">
-                  {formData.category === "Noticia" || formData.category === "Aviso" ?
+                  {formData.category === "Noticia" || formData.category === "Aviso" || formData.category === "Fechas Conmemorativas" ?
                     <div className="editor">
                       <Editor
                         editorState={editorState}
@@ -223,7 +223,7 @@ const NewPostForm = ({
           </div>
 
           {
-            formData.category === "Aviso" || formData.category === "Otras Noticias" ? null : <div className="newPostContainer">
+            formData.category === "Aviso" || formData.category === "Otras Noticias" || formData.category === "Fechas Conmemorativas" ? null : <div className="newPostContainer">
               <div className="newpost-tools-title">
                 <p>Seleccionar una acción</p>
               </div>

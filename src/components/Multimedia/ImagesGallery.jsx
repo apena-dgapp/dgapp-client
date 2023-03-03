@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
 import { shortDate } from "../../utils/shortDate";
-// import { FiEdit } from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
 import { CiSquareRemove } from "react-icons/ci";
 import ImagesPost from "../../common/components/imagesPost/ImagesPost"
 
@@ -13,6 +13,7 @@ const ImagesGallery = ({
     getImagesHandler,
     contextState,
     messageToggle,
+    EditToggle,
     visible
 }) => {
 
@@ -20,7 +21,7 @@ const ImagesGallery = ({
         <>
             <div className="news-container">
                 <div className="news-title">
-                    <p>GALERIAS IMAGENES</p>
+                    <p>GALERIA DE FOTOS</p>
                     <span className='news-title-line'></span>
                 </div>
                 <div className="multimedia-images-container">
@@ -31,14 +32,14 @@ const ImagesGallery = ({
                                     <div key={index} className="multimedia-images-box">
                                         {contextState.userRole === 1 || contextState.userRole === 3 ?
                                             <div className="multimedia-box-img-icon">
-                                                {/* <span>
+                                                <span onClick={EditToggle}>
                                                     <i className="fi fi-edit" />
                                                     <FiEdit
                                                         style={{ cursor: "pointer", marginRight: '1rem' }}
                                                         size="1.1rem"
                                                         color="#FBB454"
                                                     />
-                                                </span> */}
+                                                </span>
                                                 <span onClick={() => messageToggle(item)}>
                                                     <i className="ci ci-square-remove" />
                                                     <CiSquareRemove

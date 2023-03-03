@@ -47,7 +47,7 @@ const DashboardSection7 = ({ tweets, instagram }) => {
                                 <section className="dashboard-section-7-fb">
                                     <iframe
                                         title='facebook'
-                                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdgapprd&tabs=timeline&width=350&height=2500&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=true&appId=616510976770949"
+                                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fdgapprd&tabs=timeline&width=380&height=2500&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=true&appId=616510976770949"
                                         // width={400}
                                         // height={2500}
                                         style={{ border: 'none', overflow: 'hidden' }}

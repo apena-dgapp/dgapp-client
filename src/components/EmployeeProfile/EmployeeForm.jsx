@@ -233,7 +233,7 @@ const EmployeeForm = ({
 
             ) : null}
 
-            {contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 ? (
+            {contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 || contextState.personId === profile.personId ? (
               <div className="onoffswitch2">
                 <input
                   onClick={handleIsVacation}

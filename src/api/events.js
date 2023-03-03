@@ -21,3 +21,14 @@ export const getEvents = async () => {
     })
 }
 
+export const disabledEvent = async (id) => {
+    const body = { id };
+    return fetch(`${process.env.REACT_APP_API}events/disable`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}

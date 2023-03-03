@@ -88,6 +88,10 @@ const NewPost = () => {
       id: "6",
       value: "Otras Noticias",
     },
+    {
+      id: "7",
+      value: "Fechas Conmemorativas",
+    }
   ];
 
   useEffect(() => {
@@ -271,10 +275,6 @@ const NewPost = () => {
 
   const sendHandlerForm = () => {
     let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
-
-    console.log(formData.category);
-    console.log(uploadFiles.imagenes);
-    console.log(actionInput);
 
     if (!formData.category) {
       return toast.error("Por favor agregar un categoría");

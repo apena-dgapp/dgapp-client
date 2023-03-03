@@ -25,26 +25,60 @@ const DashboardForm = ({
   quiz,
   HandlerAnswer,
   exists,
-  ansowerCount
+  ansowerCount,
+  selectedCaledary,
+  setSelectedCaledary,
+  commemorative,
+  contextState,
+  EditToggle,
+  messageToggle,
+  messageToggleActivity
 }) => {
 
   return (
     <>
       <div className="dashboard-container">
         {/* carousel y noticias */}
-        <DashboardSection1 arrayCarousel={arrayCarousel} news={news} goToPost={goToPost} />
+        <DashboardSection1
+          arrayCarousel={arrayCarousel}
+          news={news}
+          goToPost={goToPost}
+        />
 
         {/* botones */}
         <DashboardSection2 />
 
         {/* Avisos */}
-        <DashboardSection8 notices={notices} quiz={quiz} HandlerAnswer={HandlerAnswer} exists={exists} ansowerCount={ansowerCount} />
+        <DashboardSection8
+          notices={notices}
+          quiz={quiz}
+          HandlerAnswer={HandlerAnswer}
+          exists={exists}
+          ansowerCount={ansowerCount}
+        />
 
         {/* multimedia */}
-        <DashboardSection5 multimedia={multimedia} multimediaMain={multimediaMain} goToPost={goToPost} modalToggle={modalToggle} getImagesHandler={getImagesHandler} />
+        <DashboardSection5
+          multimedia={multimedia}
+          multimediaMain={multimediaMain}
+          goToPost={goToPost}
+          modalToggle={modalToggle}
+          getImagesHandler={getImagesHandler}
+        />
 
         {/* cumpleanos y calendario */}
-        <DashboardSection4 birthday={birthday} events={events} goToProfile={goToProfile} />
+        <DashboardSection4
+          birthday={birthday}
+          events={events}
+          goToProfile={goToProfile}
+          selectedCaledary={selectedCaledary}
+          setSelectedCaledary={setSelectedCaledary}
+          commemorative={commemorative}
+          contextState={contextState}
+          EditToggle={EditToggle}
+          messageToggle={messageToggle}
+          messageToggleActivity={messageToggleActivity}
+        />
 
         {/* educapp, foto del dia y valor del mes */}
         <DashboardSection3 />
@@ -53,7 +87,10 @@ const DashboardForm = ({
         < DashboardSection6 />
 
         {/* social */}
-        <DashboardSection7 tweets={tweets} instagram={instagram} />
+        <DashboardSection7
+          tweets={tweets}
+          instagram={instagram}
+        />
       </div>
     </>
   );

@@ -38,7 +38,6 @@ const DashboardSection8 = ({ notices, quiz, HandlerAnswer, exists, ansowerCount 
 
     const EditToggle = (item) => {
         // const state = Object.assign({ item }, { img });
-        console.log(item);
         setData(item);
         setEditorState(EditorState.createWithContent(
             ContentState.createFromBlockArray(

@@ -41,6 +41,7 @@ import educapp from "./Recurso 4@4x.png";
 import fotoDelDia from "./Recurso 3@4x.png";
 import valorDelMes from "./Recurso 2@4x.png";
 import notices from "./Recurso 1@4x.png";
+import commemorative from "./wetransfer_recursos_2022-09-21_1856/Recursos/Calendario de Fechas.png";
 
 const Images = {
     iconUser,
@@ -84,7 +85,8 @@ const Images = {
     educapp,
     fotoDelDia,
     valorDelMes,
-    notices
+    notices,
+    commemorative
 }
 
 export default Images;

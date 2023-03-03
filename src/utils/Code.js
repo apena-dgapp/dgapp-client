@@ -26,10 +26,13 @@
 //     }
 // };
 
-//recorer un objecto
+//RECORRER OBJECTO
 
 // for (var key in files) {
 //     var obj = files[key];
 //     console.log(obj.size);
 //     // ...
 //   }
+
+//UNIR OBJECTOS
+// const state = Object.assign({ item }, { img });

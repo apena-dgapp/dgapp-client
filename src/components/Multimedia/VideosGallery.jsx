@@ -20,7 +20,7 @@ const ImagesGallery = ({
         <>
             <div className="news-container">
                 <div className="news-title">
-                    <p>GALERIAS VIDEOS</p>
+                    <p>GALERIA DE VIDEOS</p>
                     <span className='news-title-line'></span>
                 </div>
 
@@ -35,6 +35,17 @@ const ImagesGallery = ({
                                     allowFullScreen
                                     frameBorder="0"
                                 /> */}
+                                {/* {contextState.userRole === 1 || contextState.userRole === 3 ?
+                                    <div className="">
+                                        <span onClick={() => messageToggle(items[videoSelected].FilesPosts[0].filesId === undefined ? items[0]?.FilesPosts[0]?.filesId : items[videoSelected]?.FilesPosts[0]?.filesId)}>
+                                            <i className="ci ci-square-remove" />
+                                            <CiSquareRemove
+                                                style={{ cursor: "pointer" }}
+                                                size="1.2rem"
+                                                color="#FB2576"
+                                            />
+                                        </span>
+                                    </div> : null} */}
                                 <ImagesPost isFrame={true} id={items[videoSelected].FilesPosts[0].filesId === undefined ? items[0]?.FilesPosts[0]?.filesId : items[videoSelected]?.FilesPosts[0]?.filesId} />
                                 <div className="multimedia-video-main-text">
                                     <p>{items[videoSelected]?.title}</p>

@@ -247,6 +247,18 @@ export const expirationNoticies = async () => {
     })
 }
 
+export const expirationPost = async (category, table) => {
+    const body ={category, table};
+    return fetch(`${process.env.REACT_APP_API}post/expirationpost`, {
+        method: "PUT",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
 export const giveLike = async (postId, personId, action) => {
     const body = { postId, personId,action };
     return fetch(`${process.env.REACT_APP_API}like/givelike`, {
