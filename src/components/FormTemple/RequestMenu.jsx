@@ -1,5 +1,5 @@
 import React from "react";
-import { CgFileDocument } from "react-icons/cg";
+// import { CgFileDocument } from "react-icons/cg";
 import Images from "../../common/images";
 import { useNavigate } from "react-router-dom";
 
@@ -10,9 +10,9 @@ const RequestMenu = () => {
         navigate(`/servicios/recursoshumanos/solicitudes/${module}`);
     };
 
-    const inConstruction = () => {
-        navigate("/construccion");
-    };
+    // const inConstruction = () => {
+    //     navigate("/construccion");
+    // };
 
     return (
         <>
@@ -40,7 +40,7 @@ const RequestMenu = () => {
                                 <p>Asistencia</p>
                             </div>
                         </div>
-                        <div onClick={inConstruction} className="requestmain-button">
+                        <div onClick={() => FormTemple("licencia")} className="requestmain-button">
                             <div className="requestmain-btn-img">
                                 <img src={Images.btnLicense} alt="" />
                             </div>

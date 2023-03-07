@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
 import { shortDate } from "../../utils/shortDate";
-import { FiEdit } from "react-icons/fi";
+// import { FiEdit } from "react-icons/fi";
 import { CiSquareRemove } from "react-icons/ci";
 import ImagesPost from "../../common/components/imagesPost/ImagesPost"
 
@@ -32,14 +32,14 @@ const ImagesGallery = ({
                                     <div key={index} className="multimedia-images-box">
                                         {contextState.userRole === 1 || contextState.userRole === 3 ?
                                             <div className="multimedia-box-img-icon">
-                                                <span onClick={EditToggle}>
+                                                {/* <span onClick={() => EditToggle(item.postId)}>
                                                     <i className="fi fi-edit" />
                                                     <FiEdit
                                                         style={{ cursor: "pointer", marginRight: '1rem' }}
                                                         size="1.1rem"
                                                         color="#FBB454"
                                                     />
-                                                </span>
+                                                </span> */}
                                                 <span onClick={() => messageToggle(item)}>
                                                     <i className="ci ci-square-remove" />
                                                     <CiSquareRemove
@@ -49,17 +49,10 @@ const ImagesGallery = ({
                                                     />
                                                 </span>
                                             </div> : null}
-                                        {/* <img onClick={() => getImagesHandler(item.postId)} src={item.FilesPosts[0].file} alt="" /> */}
-                                        <ImagesPost id={item.FilesPosts[0].filesId} func={() => getImagesHandler(item.postId)} />
-                                        <div onClick={() => getImagesHandler(item.postId)} className="multimedia-images-box-text">
+                                        <ImagesPost id={item.FilesPosts[0].filesId} func={() => getImagesHandler(item)} />
+                                        <div onClick={() => getImagesHandler(item)} className="multimedia-images-box-text">
                                             <p className='multimedia-images-box-text-title'>{item.title}</p>
                                             <p className='multimedia-images-box-text-date'>{`${imagesTotal[index]?.length} fotos | ${shortDate(item.createdAt)}`}</p>
-                                            {
-                                                // console.log(item.FilesPosts[index])
-                                                // item.FilesPosts.caption ? <div className='multimedia-images-box-text-caption'>
-                                                //     <p>{item.FilesPosts[index].caption}</p>
-                                                // </div> : null
-                                            }
                                         </div>
                                     </div>
                                 )

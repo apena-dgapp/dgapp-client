@@ -1,34 +1,39 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Portal from "../../utils/Portal";
+import { getFiles } from '../../api/post'
 
 const EditImagesGallery = ({
     children,
     EditToggle,
     editActive,
-    setCaption,
+    editId
     // formData,
     // setFormData,
     // modalToggleCancel,
     // modalToggleAceppt,
 }) => {
-    // const [array, setArray] = useState([]);
+    const [array, setArray] = useState([]);
 
-    // useEffect(() => {
-    //     let unmounted = false;
+    useEffect(() => {
+        let unmounted = false;
 
-    //     if (!unmounted && uploadFiles.imagenes.length > 0) {
-    //         uploadFiles?.imagenes?.map((item, index) => {
-    //             return (
-    //                 setCaption(caption => [...caption, ''])
-    //             )
-    //         })
-    //         // setArray(oldArray => [...oldArray,newValue] );
-    //     }
+        if (!unmounted) {
+            getFiles(editId)
+                .then((res) => {
+                    return res.json();
+                })
+                .then((res) => {
+                    setArray(res);
+                })
+                .catch((err) => {
+                    console.error(err.status);
+                });
+        }
 
-    //     return () => {
-    //         unmounted = true;
-    //     };
-    // }, [uploadFiles, setCaption]);
+        return () => {
+            unmounted = true;
+        };
+    }, [editId]);
 
     // const textareaChange = (e, index) => {
     //     if (e.target.name === "caption") {
@@ -55,27 +60,27 @@ const EditImagesGallery = ({
             {editActive && (
                 <div className="wrapper-caption">
                     <div className="window-caption">
-                        <p className="modal-title-newpost">PIE DE FOTO</p>
+                        <p className="modal-title-newpost">EDITAR GALERIA</p>
                         <div className="caption-box">
-                            {/* {
-                                uploadFiles.imagenes.length > 0 ?
-                                    uploadFiles?.imagenes?.map((item, index) => {
+                            {
+                                array.length > 0 ?
+                                    array?.map((item, index) => {
                                         return (
                                             <>
                                                 <div key={index} className="caption-box-img">
-                                                    <img src={item} alt="" />
+                                                    <img src={item?.src} alt="" />
                                                     <textarea
                                                         name="caption"
-                                                        onChange={(val) => textareaChange(val, index)}
+                                                        // onChange={(val) => textareaChange(val, index)}
                                                         maxLength={75}
-                                                        placeholder="Escribe un pie de foto"
-                                                    // value={array[index]}
+                                                        placeholder={"Escribe un pie de foto"}
+                                                        value={item?.caption}
                                                     />
                                                 </div>
                                             </>
                                         )
                                     }) : null
-                            } */}
+                            }
                         </div>
                         <div className="d-flex justify-content-evenly mt-4">
                             <button

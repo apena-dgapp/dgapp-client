@@ -63,7 +63,7 @@ const DashboardSection5 = ({ multimedia, multimediaMain, modalToggle, getImagesH
                                 <img className="dashboard-section-5-galery-img" src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/mqdefault.jpg`} alt="" />
                               </div>
                               <p>{item.title}</p>
-                            </div> : <div onClick={() => getImagesHandler(item.postId)} key={key} className="dashboard-section-5-galery-grid-mult">
+                            </div> : <div onClick={() => getImagesHandler(item)} key={key} className="dashboard-section-5-galery-grid-mult">
                               <div className="dashboard-section-5-galery-grid-mult-icon">
                                 <i className="io io-md-images" />
                                 <IoMdImages

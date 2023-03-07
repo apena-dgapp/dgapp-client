@@ -5,20 +5,24 @@ import VideosGallery from './VideosGallery'
 import { getMultimedia, getGallery, imagesCount, getFiles } from "../../api/post";
 import { useLocation, useNavigate } from "react-router-dom";
 import DashboardPopup from "../Dashboard/DashboardPopup";
-import Viewer from "react-viewer";
+// import Viewer from "react-viewer";
 import GlobalContext from "../../context/GlobalContext";
 import Message from "../../common/components/Message/Message";
 import { disabledPost } from "../../api/post";
 import toast from "react-hot-toast";
 import EditImagesGallery from './EditImagesGallery';
+import ClipLoader from "react-spinners/ClipLoader";
+import ImageViewer from "../../common/components/ImageViewer/ImageViewer";
 
 const Multimedia = () => {
     const location = useLocation();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [imagesFiles, setImagesFiles] = useState("");
     const [videoFiles, setVideosFiles] = useState("");
     const [visible, setVisible] = useState(false);
     const [arrayImg, setArrayImg] = useState("");
+    const [galleryName, setGalleryName] = useState("");
     const [modalActive, setModalActive] = useState(false);
     const [modalData, setModalData] = useState("");
     const [items, setItems] = useState([]);
@@ -30,11 +34,17 @@ const Multimedia = () => {
     const [contextState] = useContext(GlobalContext);
     const [data, setData] = useState([]);
     const [editActive, setEditActive] = useState(false);
+    const [editId, setEditId] = useState("");
     const [message, setMessage] = useState({
         title: "",
         text: "",
         isActive: false
     });
+
+    // const [formData, setFormData] = useState({
+    //     image: "",
+    //     caption: "",
+    // });
 
     var locationName = location.pathname.split('/')[3];
 
@@ -117,14 +127,23 @@ const Multimedia = () => {
         navigate(`/publicaciones/multimedia/${form}`);
     };
 
-    const getImagesHandler = (id) => {
-        getFiles(id)
+    const getImagesHandler = (item) => {
+
+        setLoading(true);
+
+        getFiles(item.postId)
             .then((res) => {
                 return res.json();
             })
             .then((res) => {
                 setArrayImg(res);
                 setVisible(true);
+                setGalleryName(item.title)
+                setTimeout(() => {
+                    if (res) {
+                        setLoading(false);
+                    }
+                }, 2500);
             })
             .catch((err) => {
                 console.error(err.status);
@@ -173,9 +192,10 @@ const Multimedia = () => {
         setMessage({ title: "", text: "", isActive: !message.isActive })
     };
 
-    //edit images gallery
 
-    const EditToggle = () => {
+    //edit images gallery
+    const EditToggle = (item) => {
+        setEditId(item);
         setEditActive(!editActive);
     };
 
@@ -186,32 +206,28 @@ const Multimedia = () => {
                 btnConfirmm={btnConfirmm}
                 btnCancel={btnCancel}
             />
-
-            <Viewer
-                visible={visible}
-                images={arrayImg.files}
-                onClose={() => {
-                    setVisible(false);
-                }}
-                zoomSpeed={0.2}
-                // activeIndex={activeIndex}
-                downloadable
-                noImgDetails={true}
-            // attribute={true}
-            />
-            {/* <div className='viewer-caption'>
-                <p>Pie de foto</p>
-            </div> */}
+            {loading ? (
+                <div className="spinner-container">
+                    <ClipLoader color="#113250" loading={loading} size={150} />
+                </div>
+            ) : (
+                <ImageViewer
+                    visible={visible}
+                    setVisible={setVisible}
+                    arrayImg={arrayImg}
+                    galleryName={galleryName}
+                    length={arrayImg.length - 1}
+                />
+            )}
             <EditImagesGallery
-                EditToggle={EditToggle}
                 editActive={editActive}
+                editId={editId}
             // uploadFiles={uploadFiles}
             // caption={caption}
             // setCaption={setCaption}
             />
             <DashboardPopup
-                modalToggle={modalToggle}
-                modalActive={modalActive} modalData={modalData}
+                modalActive={modalActive} modalData={modalData} modalToggle={modalToggle}
             />
             {
                 locationName === "imagenes" ?
@@ -224,6 +240,7 @@ const Multimedia = () => {
                         contextState={contextState}
                         messageToggle={messageToggle}
                         visible={visible}
+                        EditToggle={EditToggle}
                     // setRelated={setRelated}
                     /> : (locationName === "videos" ?
                         < VideosGallery

@@ -287,46 +287,54 @@ const NewsForm = ({
                       >
                         {
                           item.FilesPosts[0].type === "URL" ?
-                            <a
-                              key={index}
-                              href={item.FilesPosts[0].file}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="new-multimedia-content-video"
-                              style={{ textDecoration: "none" }}
-                            >
-                              <i className="ai ai-outline-play-circle" />
-                              <AiOutlinePlayCircle
-                                color="white"
-                                className="new-multimedia-content-img-icon"
-                              />
-                              <div className="new-multimedia-content-cont">
-                                <img className="new-multimedia-content-img" src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/0.jpg`} alt="" />
+                            <>
+                              <div
+                                onClick={() => modalToggle({ id: item.postId, title: item.title, url: item.FilesPosts[0].file })}
+                                // key={index}
+                                // href={item.FilesPosts[0].file}
+                                // target="_blank"
+                                // rel="noreferrer"
+                                className="new-multimedia-content-video"
+                              // style={{ textDecoration: "none" }}
+                              >
+                                <i className="ai ai-outline-play-circle" />
+                                <AiOutlinePlayCircle
+                                  color="white"
+                                  className="new-multimedia-content-img-icon"
+                                />
+                                <div className="new-multimedia-content-cont">
+                                  <img className="new-multimedia-content-img" src={`http://img.youtube.com/vi/${getVideoId(item.FilesPosts[0].file)}/0.jpg`} alt="" />
+                                </div>
                               </div>
-                              {/* <p>{item.title}</p> */}
-                            </a> : <div onClick={() => getImagesHandler(item.postId)} key={index} className="new-multimedia-content-video">
-                              <i className="io io-md-images" />
-                              <IoMdImages
-                                color="white"
-                                className="new-multimedia-content-img-icon"
-                              />
-                              <div className="new-multimedia-content-cont">
-                                <img className="new-multimedia-content-img" src={item.FilesPosts[0].file} alt="" />
+                              <div onClick={() => modalToggle({ id: item.postId, title: item.title, url: item.FilesPosts[0].file })} className="dashboard-section-1-news-content-txt">
+                                {item.title}
                               </div>
-                              {/* <p>{item.title}</p> */}
-                            </div>
+                            </>
+                            :
+                            <>
+                              <div onClick={() => getImagesHandler(item)} key={index} className="new-multimedia-content-video">
+                                <i className="io io-md-images" />
+                                <IoMdImages
+                                  color="white"
+                                  className="new-multimedia-content-img-icon"
+                                />
+                                <div className="new-multimedia-content-cont">
+                                  <img className="new-multimedia-content-img" src={item.FilesPosts[0].file} alt="" />
+                                </div>
+                              </div>
+                              <div onClick={() => getImagesHandler(item)} className="dashboard-section-1-news-content-txt">
+                                {item.title}
+                              </div>
+                            </>
 
                         }
-                        <div className="dashboard-section-1-news-content-txt">
-                          {item.title}
-                        </div>
                       </div>
                     );
                   })
                 }
                 {recentNews.rows ? (
                   <div className="dashboard-section-5-btn-container m-0">
-                    <Link to="" type="button" className="dashboard-section-5-btn">
+                    <Link to="/publicaciones/multimedia/menu" type="button" className="dashboard-section-5-btn">
                       <i className="md md-outline-double-arrow" />
                       <p>Ir a Multimedia</p>
                       <MdOutlineDoubleArrow

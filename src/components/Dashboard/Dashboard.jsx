@@ -10,7 +10,8 @@ import { viewUpdate } from "../../api/post";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import DashboardPopup from "./DashboardPopup";
-import Viewer from "react-viewer";
+// import Viewer from "react-viewer";
+import ImageViewer from "../../common/components/ImageViewer/ImageViewer";
 import { getQuiz, expirationQuiz, sendAnswer } from "../../api/quiz";
 import GlobalContext from "../../context/GlobalContext";
 import Message from "../../common/components/Message/Message";
@@ -32,6 +33,7 @@ const Dashboard = () => {
   const [eventDate, setEventDate] = useState([]);
   const [multimedia, setMultimedia] = useState([]);
   const [multimediaMain, setMultimediaMain] = useState();
+  const [galleryName, setGalleryName] = useState("");
   const [arrayCarousel, setArrayCarousel] = useState([]);
   const [modalActive, setModalActive] = useState(false);
   const [selectedCaledary, setSelectedCaledary] = useState("activities");
@@ -272,7 +274,25 @@ const Dashboard = () => {
       })
       .then((res) => {
         if (!unmounted) {
-          setBirthday(res);
+          // setBirthday(res);
+          var array1 = [];
+          var array2 = [];
+          var arrayUnion = [];
+          var x = 0
+          var y = 0
+
+          for (var i = 0; i < res.length; i++) {
+            if (res[i].nextMonth === "Mes Próximo") {
+              array2[x] = res[i]
+              x = x + 1
+            } else {
+              array1[y] = res[i]
+              y = y + 1
+            }
+          }
+
+          arrayUnion = array1.concat(array2);
+          setBirthday(arrayUnion);
         }
       })
       .catch((err) => {
@@ -379,14 +399,35 @@ const Dashboard = () => {
     navigate("/organigrama");
   };
 
-  const getImagesHandler = (id) => {
-    getFiles(id)
+  // const getImagesHandler = (id) => {
+  //   getFiles(id)
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((res) => {
+  //       setArrayImg(res);
+  //       setVisible(true);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err.status);
+  //     });
+  // }
+
+  const getImagesHandler = (item) => {
+    setLoading(true);
+    getFiles(item.postId)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
         setArrayImg(res);
         setVisible(true);
+        setGalleryName(item.title)
+        setTimeout(() => {
+          if (res) {
+            setLoading(false);
+          }
+        }, 2500);
       })
       .catch((err) => {
         console.error(err.status);
@@ -593,16 +634,30 @@ const Dashboard = () => {
         btnCancel={isEvent ? btnCancelActivity : btnCancel}
       />
 
-      <Viewer
+      {/* <Viewer
         visible={visible}
-        images={arrayImg.files}
+        images={arrayImg}
         onClose={() => {
           setVisible(false);
         }}
         zoomSpeed={0.2}
         // activeIndex={activeIndex}
         downloadable
-      />
+      /> */}
+
+      {loading ? (
+        <div className="spinner-container">
+          <ClipLoader color="#113250" loading={loading} size={150} />
+        </div>
+      ) : (
+        <ImageViewer
+          visible={visible}
+          setVisible={setVisible}
+          arrayImg={arrayImg}
+          galleryName={galleryName}
+          length={arrayImg.length - 1}
+        />
+      )}
 
       <DashboardPopup modalToggle={modalToggle} modalActive={modalActive} modalData={modalData} />
 

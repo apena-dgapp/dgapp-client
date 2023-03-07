@@ -7,7 +7,7 @@ import { getFiles } from "../../api/post";
 import { viewUpdate } from "../../api/post";
 import { useNavigate } from "react-router-dom";
 import DashboardPopup from "../Dashboard/DashboardPopup";
-import Viewer from "react-viewer";
+// import Viewer from "react-viewer";
 import { EditorState, ContentState, convertFromHTML } from "draft-js";
 import EditCardModal from "../../common/components/Card/EditCardModal";
 import { getBase64 } from "../../utils/blobManager";
@@ -15,6 +15,8 @@ import { convertToHTML } from "draft-convert";
 import toast from "react-hot-toast";
 import Message from "../../common/components/Message/Message";
 import useScreenSize from "../../hooks/useScreenSize";
+import ClipLoader from "react-spinners/ClipLoader";
+import ImageViewer from "../../common/components/ImageViewer/ImageViewer";
 
 const News = () => {
     const navigate = useNavigate();
@@ -35,6 +37,8 @@ const News = () => {
     const [related, setRelated] = useState("");
     const [instagram, setInstagram] = useState([]);
     const [editorState, setEditorState] = useState();
+    const [loading, setLoading] = useState(false);
+    const [galleryName, setGalleryName] = useState("");
     const [message, setMessage] = useState({
         title: "",
         text: "",
@@ -72,6 +76,8 @@ const News = () => {
     useEffect(() => {
         let unmounted = false;
 
+        setLoading(true);
+
         getNews(currentPage, 4, related)
             .then((res) => {
                 return res.json();
@@ -80,6 +86,11 @@ const News = () => {
                 if (!unmounted) {
                     setItems(res);
                     setPageCount(res.count / 4);
+                    setTimeout(() => {
+                        if (res) {
+                            setLoading(false);
+                        }
+                    }, 2500);
                     // setPageCount(Math.round(res.count / 4));
                 }
             })
@@ -205,14 +216,22 @@ const News = () => {
         setModalActive(!modalActive);
         setModalData(data)
     };
-    const getImagesHandler = (id) => {
-        getFiles(id)
+
+    const getImagesHandler = (item) => {
+        setLoading(true);
+        getFiles(item.postId)
             .then((res) => {
                 return res.json();
             })
             .then((res) => {
                 setArrayImg(res);
                 setVisible(true);
+                setGalleryName(item.title)
+                setTimeout(() => {
+                    if (res) {
+                        setLoading(false);
+                    }
+                }, 2500);
             })
             .catch((err) => {
                 console.error(err.status);
@@ -352,16 +371,20 @@ const News = () => {
     }
     return (
         <>
-            <Viewer
-                visible={visible}
-                images={arrayImg.files}
-                onClose={() => {
-                    setVisible(false);
-                }}
-                zoomSpeed={0.2}
-                // activeIndex={activeIndex}
-                downloadable
-            />
+            {loading ? (
+                <div className="spinner-container">
+                    <ClipLoader color="#113250" loading={loading} size={150} />
+                </div>
+            ) : (
+                <ImageViewer
+                    visible={visible}
+                    setVisible={setVisible}
+                    arrayImg={arrayImg}
+                    galleryName={galleryName}
+                    length={arrayImg.length - 1}
+                />
+            )}
+
             <DashboardPopup
                 modalToggle={modalToggle}
                 modalActive={modalActive} modalData={modalData}

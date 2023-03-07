@@ -86,33 +86,6 @@ const DashboardPopup = ({
                 style={{ marginLeft: "1rem" }}
               />
             </div>
-
-            {/* <div className="dashboard-popup-recent">
-              <div className="dashboard-popup-recent-box-text">
-                <p>Más Videos</p>
-              </div>
-              <div className="dashboard-popup-recent-box-cont">
-                {
-                  recentVideos?.map((item, index) => {
-                    return (
-                      <>
-                        <div id={index} className="dashboard-popup-recent-box">
-                          <span onClick={() => setCurrentVideo(item)} className='dashboard-popup-box-onclick'></span>
-                          <iframe
-                            src={`https://www.youtube.com/embed/${getVideoId(item?.FilesPosts[0].file)}`}
-                            title="video"
-                            // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            frameBorder="0"
-                            className="dashboard-popup-iframe-box"
-                          />
-                          <p>{item?.title}</p>
-                        </div>
-                      </>
-                    )
-                  })
-                }
-              </div>
-            </div> */}
             <div>{children}</div>
           </div>
           <div onClick={() => {

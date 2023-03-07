@@ -8,8 +8,10 @@ import { viewUpdate } from "../../api/post";
 import { addCommentPost, getComments, giveLike, countLike, getPostMultimedia, deleteComment } from "../../api/post";
 import { getFiles, getFilesId } from "../../api/post";
 import toast from "react-hot-toast";
-import Viewer from "react-viewer";
+// import Viewer from "react-viewer";
 import DashboardPopup from "../Dashboard/DashboardPopup";
+import ClipLoader from "react-spinners/ClipLoader";
+import ImageViewer from "../../common/components/ImageViewer/ImageViewer";
 
 const New = () => {
     const [contextState] = useContext(GlobalContext);
@@ -32,6 +34,8 @@ const New = () => {
     const [filesIds, setFilesIds] = useState("");
     const [filesIdCount, setFilesIdCount] = useState("");
     const [count, setCount] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const [galleryName, setGalleryName] = useState("");
 
     useEffect(() => {
         let unmounted = false;
@@ -304,14 +308,21 @@ const New = () => {
         setModalData(data)
     };
 
-    const getImagesHandler = (id) => {
-        getFiles(id)
+    const getImagesHandler = (item) => {
+        setLoading(true);
+        getFiles(item.postId)
             .then((res) => {
                 return res.json();
             })
             .then((res) => {
                 setArrayImg(res);
                 setVisible(true);
+                setGalleryName(item.title)
+                setTimeout(() => {
+                    if (res) {
+                        setLoading(false);
+                    }
+                }, 2500);
             })
             .catch((err) => {
                 console.error(err.status);
@@ -356,16 +367,20 @@ const New = () => {
 
     return (
         <>
-            <Viewer
-                visible={visible}
-                images={arrayImg.files}
-                onClose={() => {
-                    setVisible(false);
-                }}
-                zoomSpeed={0.2}
-                // activeIndex={activeIndex}
-                downloadable
-            />
+            {loading ? (
+                <div className="spinner-container">
+                    <ClipLoader color="#113250" loading={loading} size={150} />
+                </div>
+            ) : (
+                <ImageViewer
+                    visible={visible}
+                    setVisible={setVisible}
+                    arrayImg={arrayImg}
+                    galleryName={galleryName}
+                    length={arrayImg.length - 1}
+                />
+            )}
+
             <DashboardPopup modalToggle={modalToggle} modalActive={modalActive} modalData={modalData} />
             <NewForm
                 dataPost={dataPost}

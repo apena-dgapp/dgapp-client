@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Vacation from './Vacation'
 import Attendance from './Attendance';
+import License from './License';
 import { useLocation, useNavigate } from "react-router-dom";
 import { apiOneFile } from "../../api/files"
 import { getFormVacation } from "../../api/form"
@@ -119,8 +120,8 @@ const FormTemple = () => {
 
         } else if (location.pathname?.split("/")[4].replace("%20", " ") === "asistencia") {
             setGetModule(<Attendance profile={person} setHeader={setHeader} />);
-        } else if (location.pathname?.split("/")[4] === "MARCO INSTITUCIONAL") {
-            // setGetModule(<InstitutionalFramework />);
+        } else if (location.pathname?.split("/")[4].replace("%20", " ") === "licencia") {
+            setGetModule(<License profile={person} setHeader={setHeader} />);
         } else if (location.pathname?.split("/")[4] === "DIRECTOR GENERAL") {
             // setGetModule(<Director />);
         } else if (location.pathname?.split("/")[4] === "ORGANIGRAMA") {
@@ -149,7 +150,15 @@ const FormTemple = () => {
                     date: "No definido",
                     version: "No definido"
                 })
+
             }
+        } else if (location.pathname?.split("/")[4].replace("%20", " ") === "licencia") {
+            setHeader({
+                code: "No definido",
+                date: "No definido",
+                version: "No definido"
+            })
+
         }
 
         return () => {

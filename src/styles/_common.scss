@@ -47,11 +47,13 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  position: absolute;
+  top: 0;
+  left: 0;
+  position: fixed;
   background-color: white;
   // background: rgba(20, 20, 20, 0.651);
   backdrop-filter: blur(4px);
-  z-index: 100;
+  z-index: 4;
   // overflow: hidden !important;
 }
 
@@ -84,6 +86,102 @@
   text-align: center;
 }
 
+//IMAGEVIEWER
+.imageviewer-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageviewer-window {
+  position:  fixed;
+  // background-color: red;
+  z-index: 10;
+  overflow: hidden;
+  width: 65%;
+  height: 45rem;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // flex-direction: column;
+}
+
+.imageviewer-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(10, 10, 10, 0.829);
+  // opacity: 0.4;
+  // backdrop-filter: blur(2px);
+  z-index: 4;
+}
+.imageviewer-name {
+  width: 100%;
+  // background-color: red;
+  p{
+  color: white;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: justify;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  }
+ 
+}
+
+.imageviewer-img{
+  // background-color: red;
+  width: 54.5rem;
+  height: 34rem;
+
+  img {
+    width: 54.5rem;
+    height: 34rem;
+   object-fit: cover; 
+  };
+  
+}
+.imageviewer-txt{
+  width: 100%;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  // background-color: red;
+  p{
+    color:white;
+    font-size: 1rem;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: #75AAD3;
+    &:hover{
+      font-size: 1.3rem;
+    }
+  }
+ 
+}
+
+
 //MEDIAS QUERIES
 
 //Phone X
@@ -98,22 +196,70 @@
 }
 
 //Phone 12/13 Pro Mas
-@media screen and (min-width: 421px) and (max-width: 720px) {
-  .title-inconstruction {
-    font-size: 2rem;
-  }
+// @media screen and (min-width: 421px) and (max-width: 720px) {
+//   .title-inconstruction {
+//     font-size: 2rem;
+//   }
 
-  .subtitle-inconstruction {
-    font-size: 0.8rem;
-  }
-}
+//   .subtitle-inconstruction {
+//     font-size: 0.8rem;
+//   }
+// }
 
-//Ipad
-@media screen and (min-width: 721px) and (max-width: 1020px) {
-  .container-inconstruction {
-    margin-top: 15rem;
-  }
-}
+// //Ipad
+// @media screen and (min-width: 721px) and (max-width: 1020px) {
+//   .container-inconstruction {
+//     margin-top: 15rem;
+//   }
+// }
 
 //laptop generic
-@media screen and (min-width: 1021px) and (max-width: 1320px) {}
+@media screen and (min-width: 1279px) and (max-width:1365px) {
+
+  //IMAGEVIEWER
+.imageviewer-wrapper {
+  top: -3rem;
+}
+
+.imageviewer-window {
+  width: 75%;
+  height: 45rem;
+}
+
+.imageviewer-img{
+  width: 48.5rem;
+  height: 28rem;
+
+  img {
+    width: 48.5rem;
+    height: 28rem;
+  };
+  
+}
+
+}
+
+//laptop yelissa
+@media screen and (min-width: 1366px ) and (max-width:1367px) {
+   
+  //IMAGEVIEWER
+
+.imageviewer-window {
+  width: 75%;
+  height: 45rem;
+}
+
+.imageviewer-img{
+  width: 48.5rem;
+  height: 28rem;
+
+  img {
+    width: 48.5rem;
+    height: 28rem;
+  };
+  
+}
+}
+
+//Monitor cesar
+@media screen and (min-width: 1920px) and (max-width:1921px){}

@@ -41,6 +41,9 @@ const DashboardSection4 = ({
                                             className="dashboard-section-4-content-birth"
                                         >
                                             <div className="dashboard-section-4-date">
+                                                <p className="dashboard-section-4-nextmonth">
+                                                    {item.nextMonth}
+                                                </p>
                                                 <p className="dashboard-section-4-day">
                                                     {item.day?.split("-")[0]}
                                                 </p>

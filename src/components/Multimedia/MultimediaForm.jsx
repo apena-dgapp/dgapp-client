@@ -53,7 +53,7 @@ const MultimediaForm = ({
                                 imagesFiles.length > 0 ?
                                     imagesFiles?.map((item, index) => {
                                         return (
-                                            <div key={index} onClick={() => getImagesHandler(item.postId)} className="multimedia-dashboard-fotos-img">
+                                            <div key={index} onClick={() => getImagesHandler(item)} className="multimedia-dashboard-fotos-img">
                                                 <i className="io io-md-images" />
                                                 <IoMdImages className="multimedia-dashboard-galery-icon" />
                                                 {/* <img src={item.FilesPosts[0].file} alt='imagem' title='imagem' /> */}
