@@ -16,6 +16,8 @@ const EmployeeDirectoryForm = ({
   searchDep,
   pageLength,
   page,
+  male,
+  female
 }) => {
   const [, , contextState] = useContext(GlobalContext);
 
@@ -34,37 +36,55 @@ const EmployeeDirectoryForm = ({
             color="rgb(153, 149, 149)"
           />
         </div> */}
-        <div className="dropdown emDirectory-dropdown">
-          <p
-            className="dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Filtrar por Area
-          </p>
-          <ul className="dropdown-menu dropdown-menu-employee" aria-labelledby="dropdownMenuButton1">
-            <li>
-              <div onClick={() => filterDep("todos")} className="dropdown-item">
-                Todos
-              </div>
-              {arrayDepartament?.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    onClick={() => filterDep(item.name)}
-                    className="dropdown-item"
-                  >
-                    {item.name}
-                  </div>
-                );
-              })}
-            </li>
-          </ul>
-        </div>
 
         <div className="emDirectory-input-cont">
+
+          <div className="dropdown emDirectory-dropdown">
+            <div className="directory-count-container">
+              <div className="directory-count">
+                <div className="directory-count-gender">
+                  <p style={{ color: "#113250", marginRight: "0.5rem" }}>Masculino:</p>
+                  <p style={{ color: "#75AAD3", fontWeight: "bold" }}>{male.length}</p>
+                </div>
+                <div className="directory-count-gender">
+                  <p style={{ color: "#113250", marginRight: "0.5rem" }}>Femenino:</p>
+                  <p style={{ color: "#75AAD3", fontWeight: "bold" }}>{female.length}</p>
+                </div>
+              </div>
+
+              <div className="directory-count">
+                <p style={{ color: "#113250", marginRight: "0.5rem", fontWeight: "bold" }}>Total de colaboradores y colaboradoras:</p>
+                <p style={{ color: "#75AAD3", fontWeight: "bold" }}>{pageLength}</p>
+              </div>
+            </div>
+            <p
+              className="dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Filtrar por Area
+            </p>
+            <ul className="dropdown-menu dropdown-menu-employee" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <div onClick={() => filterDep("todos")} className="dropdown-item">
+                  Todos
+                </div>
+                {arrayDepartament?.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => filterDep(item.name)}
+                      className="dropdown-item"
+                    >
+                      {item.name}
+                    </div>
+                  );
+                })}
+              </li>
+            </ul>
+          </div>
           <div className="emDirectory-input">
             <input
               id="search"

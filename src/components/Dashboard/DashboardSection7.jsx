@@ -69,54 +69,54 @@ const DashboardSection7 = ({ tweets, instagram }) => {
                         <p>INSTAGRAM</p>
                         <div className="dashboard-section-7-section-cont">
                             {
-                                instagram?.map((item, key) => {
-                                    return (
-                                        key < 1 ? <a key={key} href={item.permalink} target="_blank" rel="noreferrer" className="dashboard-section-7-section-instagram">
-                                            <div className="dashboard-section-7-section-instagram-logo">
-                                                <img src={Images.dgappicon} alt="" />
-                                                <p>dgapprd</p>
-                                            </div>
-                                            <div className="dashboard-section-7-section-instagram-img">
-                                                {
-                                                    item?.media_type === "VIDEO" ? <iframe title='video' src={item?.media_url} frameborder="0" /> : <img src={item?.media_url} alt="" />
-                                                }
-                                                <div className="dashboard-section-7-section-instagram-text">
-                                                    <p className="">
-                                                        {replaceTxt(item.caption)}
-                                                    </p>
-                                                </div>
-                                                <div className="dashboard-section-7-section-instagram-icons">
-                                                    <span>
-                                                        <i className="fi fi-heart" />
-                                                        <FiHeart
-                                                            className="dashboard-section-7-section-instagram-icon"
-                                                            size="1.2rem"
-                                                        />
-                                                    </span>
-                                                    <span>
-                                                        <i className="fa fa-regcomment" />
-                                                        <FaRegComment
-                                                            className="dashboard-section-7-section-instagram-icon"
-                                                            size="1.2rem"
-                                                        />
-                                                    </span>
-                                                    <span>
-                                                        <i className="fi fi-send" />
-                                                        <FiSend
-                                                            className="dashboard-section-7-section-instagram-icon"
-                                                            size="1.2rem"
-                                                        />
-                                                    </span>
-                                                </div>
+                                // instagram?.map((item, key) => {
+                                //     return (
+                                //         key < 1 ? <a key={key} href={item.permalink} target="_blank" rel="noreferrer" className="dashboard-section-7-section-instagram">
+                                //             <div className="dashboard-section-7-section-instagram-logo">
+                                //                 <img src={Images.dgappicon} alt="" />
+                                //                 <p>dgapprd</p>
+                                //             </div>
+                                //             <div className="dashboard-section-7-section-instagram-img">
+                                //                 {
+                                //                     item?.media_type === "VIDEO" ? <iframe title='video' src={item?.media_url} frameborder="0" /> : <img src={item?.media_url} alt="" />
+                                //                 }
+                                //                 <div className="dashboard-section-7-section-instagram-text">
+                                //                     <p className="">
+                                //                         {replaceTxt(item.caption)}
+                                //                     </p>
+                                //                 </div>
+                                //                 <div className="dashboard-section-7-section-instagram-icons">
+                                //                     <span>
+                                //                         <i className="fi fi-heart" />
+                                //                         <FiHeart
+                                //                             className="dashboard-section-7-section-instagram-icon"
+                                //                             size="1.2rem"
+                                //                         />
+                                //                     </span>
+                                //                     <span>
+                                //                         <i className="fa fa-regcomment" />
+                                //                         <FaRegComment
+                                //                             className="dashboard-section-7-section-instagram-icon"
+                                //                             size="1.2rem"
+                                //                         />
+                                //                     </span>
+                                //                     <span>
+                                //                         <i className="fi fi-send" />
+                                //                         <FiSend
+                                //                             className="dashboard-section-7-section-instagram-icon"
+                                //                             size="1.2rem"
+                                //                         />
+                                //                     </span>
+                                //                 </div>
 
-                                            </div>
-                                            <div className="dashboard-section-7-section-instagram-likes">
-                                                <p>32 personas le han dado me gusta</p>
-                                                <p style={{ color: "gray", fontWeight: "normal" }}>{shortDate(item.timestamp)}</p>
-                                            </div>
-                                        </a> : null
-                                    )
-                                })
+                                //             </div>
+                                //             <div className="dashboard-section-7-section-instagram-likes">
+                                //                 <p>32 personas le han dado me gusta</p>
+                                //                 <p style={{ color: "gray", fontWeight: "normal" }}>{shortDate(item.timestamp)}</p>
+                                //             </div>
+                                //         </a> : null
+                                //     )
+                                // })
                             }
                             {/* <div className="dashboard-section-7-section-instagram">
                                 <div className="dashboard-section-7-section-instagram-logo">

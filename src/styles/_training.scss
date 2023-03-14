@@ -39,7 +39,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: 3rem;
 }
 
 .emDirectory-input {
@@ -175,11 +175,12 @@
 
 .emDirectory-dropdown {
     position: absolute;
-    width: 89%;
+    width: 79%;
     display: flex;
-    justify-content: end;
-    margin-top: 0.9rem;
+    justify-content: space-between;
+    margin-top: -3rem;
     // margin-bottom: 0.5rem;
+    // background-color: red;
 }
 
 .emDirectory-filter-dep {

@@ -40,8 +40,8 @@ export const getBirthday = async () => {
     })
 }
 
-export const createPerson = async (code, firstname, lastname, documentid, phone, cel, email, departament, createdby, modifiedby, photo, date, position, isactive, career, reportto, startedon, health, blood, emergencyname, emergencynumber, emergencyrelationship, contracttype, contractexpiration) => {
-    const body = { code, firstname, lastname, documentid, phone, cel, email, departament, createdby, modifiedby, photo, date, position, isactive, career, reportto, startedon, health, blood, emergencyname, emergencynumber, emergencyrelationship, contracttype, contractexpiration };
+export const createPerson = async (code, firstname, lastname, documentid, phone, cel, email, departament, createdby, modifiedby, photo, date,gender, position, isactive, career, reportto, startedon, health, blood, emergencyname, emergencynumber, emergencyrelationship, contracttype, contractexpiration) => {
+    const body = { code, firstname, lastname, documentid, phone, cel, email, departament, createdby, modifiedby, photo, date,gender, position, isactive, career, reportto, startedon, health, blood, emergencyname, emergencynumber, emergencyrelationship, contracttype, contractexpiration };
     return fetch(`${process.env.REACT_APP_API}person/createperson`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -52,8 +52,8 @@ export const createPerson = async (code, firstname, lastname, documentid, phone,
     })
 }
 
-export const updatePerson = async (id, photo, firstname, lastname, documentid, cel, date, career, code, position, departament, reportto, startedon, phone, email, health, modifiedby, modifiedat, blood, emergencyname, emergencynumber, emergencyrelationship, contracttype, contractexpiration) => {
-    const body = { id, photo, firstname, lastname, documentid, cel, date, career, code, position, departament, reportto, startedon, phone, email, health, modifiedby, modifiedat, blood, emergencyname, emergencynumber, emergencyrelationship, contracttype, contractexpiration };
+export const updatePerson = async (id, photo, firstname, lastname, documentid, cel, date, career, code, position, departament, reportto, startedon, phone, email, health, modifiedby, modifiedat, blood, emergencyname, emergencynumber, emergencyrelationship, contracttype, contractexpiration, gender) => {
+    const body = { id, photo, firstname, lastname, documentid, cel, date, career, code, position, departament, reportto, startedon, phone, email, health, modifiedby, modifiedat, blood, emergencyname, emergencynumber, emergencyrelationship, contracttype, contractexpiration, gender };
     return fetch(`${process.env.REACT_APP_API}person/updateperson`, {
         method: "POST",
         body: JSON.stringify(body),

@@ -20,6 +20,7 @@ import { EditorState, ContentState, convertFromHTML } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import { getBase64 } from "../../utils/blobManager";
 import EditCardModal from "../../common/components/Card/EditCardModal";
+import { getAllPost } from "../../api/instagram";
 // import { getTweets } from "../../api/tweets";
 // import { TwitterApi } from 'twitter-api-v2';
 
@@ -87,6 +88,23 @@ const Dashboard = () => {
   //   };
   // }, []);
 
+  // useEffect(() => {
+  //   let unmounted = false;
+  //   getAllPost()
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((res) => {
+  //       if (!unmounted) {
+  //         console.log(res);
+  //         setInstagram(res);
+  //       }
+  //     });
+  //   return () => {
+  //     unmounted = true;
+  //   };
+  // }, []);
+
   useEffect(() => {
     let unmounted = false;
 
@@ -135,24 +153,24 @@ const Dashboard = () => {
   //   };
   // }, []);
 
-  useEffect(() => {
-    let unmounted = false;
+  // useEffect(() => {
+  //   let unmounted = false;
 
-    if (!unmounted) {
-      fetch(
-        `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,timestamp,caption&limit=3&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          // console.log(data);
-          setInstagram(data.data);
-        });
-    }
+  //   if (!unmounted) {
+  //     fetch(
+  //       `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,timestamp,caption&limit=3&access_token=${process.env.REACT_APP_INSTAGRAM_TOKEN}`
+  //     )
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         // console.log(data);
+  //         setInstagram(data.data);
+  //       });
+  //   }
 
-    return () => {
-      unmounted = true;
-    };
-  }, []);
+  //   return () => {
+  //     unmounted = true;
+  //   };
+  // }, []);
 
   useEffect(() => {
     let unmounted = false;

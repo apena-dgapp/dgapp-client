@@ -18,7 +18,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
               type="text"
               placeholder="Escriba el nombre"
               className="edit-input"
-              value={formData.firstname?.replace(/[^a-zA-ZñÑ ]/g, "")}
+              value={formData.firstname?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "")}
             />
             <div className="input-required">*</div>
           </div>
@@ -31,7 +31,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
               type="text"
               placeholder="Escriba el apellido"
               className="edit-input"
-              value={formData.lastname?.replace(/[^a-zA-ZñÑ ]/g, "")}
+              value={formData.lastname?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "")}
             />
             <div className="input-required">*</div>
           </div>
@@ -93,7 +93,6 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
           </div>
           <div className="">
             <p className="edit-input-title">Tipo de Sangre</p>
-
             <select
               name="blood"
               className="edit-input"
@@ -114,6 +113,22 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
             </select>
           </div>
           <div className="">
+            <p className="edit-input-title">Género</p>
+            <select
+              name="gender"
+              className="edit-input"
+              onChange={handlerInputChange}
+              defaultValue={"DEFAULT"}
+            >
+              <option disabled value="DEFAULT">
+                Seleccionar género
+              </option>
+              <option>Masculino</option>
+              <option>Femenino</option>
+            </select>
+            <div className="input-required">*</div>
+          </div>
+          <div className="">
             <p className="edit-input-title">Profesión</p>
             <input
               onChange={handlerInputChange}
@@ -121,7 +136,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
               type="text"
               placeholder="Escriba la profesión"
               className="edit-input"
-              value={formData.career?.replace(/[^a-zA-ZñÑ ]/g, "")}
+              value={formData.career?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "")}
             />
           </div>
           <div className="">
@@ -133,7 +148,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
               type="text"
               placeholder="Escriba el nombre de el contacto de emergencia"
               className="edit-input"
-              value={formData.emergencyname?.replace(/[^a-zA-ZñÑ ]/g, "")}
+              value={formData.emergencyname?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "")}
             />
           </div>
           <div className="">
@@ -157,10 +172,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
               type="text"
               placeholder="tipo de relación de el contacto de emergencia"
               className="edit-input"
-              value={formData.emergencyrelationship?.replace(
-                /[^a-zA-ZñÑ ]/g,
-                ""
-              )}
+              value={formData.emergencyrelationship?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "")}
             />
           </div>
         </div>

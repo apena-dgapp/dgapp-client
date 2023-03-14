@@ -4,7 +4,7 @@ import { getAlldepartament } from "../../api/department";
 import { getAllPersons, updatePerson } from "../../api/person";
 import { getBase64 } from "../../utils/blobManager";
 import toast from "react-hot-toast";
-import { useNavigate, useLocation } from "react-router-dom";  
+import { useNavigate, useLocation } from "react-router-dom";
 import GlobalContext from "../../context/GlobalContext";
 
 function EmployeeEdit() {
@@ -36,6 +36,7 @@ function EmployeeEdit() {
     emergencyrelationship: "",
     contracttype: "",
     contractexpiration: "",
+    gender: ""
   });
 
   const refInput = useRef();
@@ -95,7 +96,7 @@ function EmployeeEdit() {
   // console.log(validateCode);
 
   const goToProfile = (props) => {
-    navigate(`/perfil/${props.name}`,{
+    navigate(`/perfil/${props.name}`, {
       state: props.id,
     });
   };
@@ -119,6 +120,7 @@ function EmployeeEdit() {
       emergencyrelationship: "",
       contracttype: "",
       contractexpiration: "",
+      gender: ""
     });
     setDepartament("");
     setReportTo("");
@@ -153,7 +155,7 @@ function EmployeeEdit() {
     }
 
     if (formData.code) {
-      const found = person.find(function(element) {
+      const found = person.find(function (element) {
         return element.employeeCode === formData.code;
       });
 
@@ -175,7 +177,7 @@ function EmployeeEdit() {
     }
 
     if (formData.email) {
-      const found = person.find(function(element) {
+      const found = person.find(function (element) {
         return element.email === formData.email.toLocaleUpperCase();
       });
 
@@ -207,6 +209,7 @@ function EmployeeEdit() {
       formData.emergencynumber === "" &&
       formData.emergencyrelationship === "" &&
       formData.contracttype === "" &&
+      formData.gender === "" &&
       formData.contractexpiration === ""
     ) {
       return toast.error("Por el momento no hay datos para actualizar");
@@ -250,14 +253,17 @@ function EmployeeEdit() {
         : location.state.contractType,
       formData.contractexpiration
         ? formData.contractexpiration
-        : location.state.contractExpiration
+        : location.state.contractExpiration,
+      formData.gender
+        ? formData.gender
+        : location.state.gender
     )
       .then((res) => {
         if (res.status === 500) {
           return toast.error("Error en el Servidor!");
         } else {
           toast.success("Perfil de empleado actualizado!");
-          goToProfile({id:location.state.personId,name: location.state.firstName.split(" ")[0] + " " + location.state.lastName.split(" ")[0]} );
+          goToProfile({ id: location.state.personId, name: location.state.firstName.split(" ")[0] + " " + location.state.lastName.split(" ")[0] });
         }
       })
       .catch((err) => {

@@ -4,7 +4,7 @@ import Attendance from './Attendance';
 import License from './License';
 import { useLocation, useNavigate } from "react-router-dom";
 import { apiOneFile } from "../../api/files"
-import { getFormVacation } from "../../api/form"
+import { getFormVacation, getFormLicense } from "../../api/form"
 import GlobalContext from "../../context/GlobalContext";
 import { getOnePerson } from "../../api/person";
 import toast from 'react-hot-toast';
@@ -118,14 +118,54 @@ const FormTemple = () => {
                 setGetModule(<Vacation img={img} profile={person} request="" />);
             }
 
+        } else if (location.pathname?.split("/")[4] === "licencia") {
+            if (!unmounted && location.pathname?.split("/")[5]) {
+                getFormLicense(location.pathname?.split("/")[5])
+                    .then((res) => {
+                        return res.json();
+                    })
+                    .then((data) => {
+                        if (!unmounted) {
+                            if (location.pathname?.split("/")[5] && !data) {
+                                navigate("/404")
+                                return toast.error("Esta solicitud ya fue cerrado o no existe!");
+                            } else {
+                                setGetModule(<License img={img} profile={person} request={data} />);
+                            }
+                        }
+                    })
+                    .catch((err) => {
+                        console.error(err.status);
+                    });
+            } else {
+                setGetModule(<License img={img} profile={person} request="" />);
+            }
+
         } else if (location.pathname?.split("/")[4].replace("%20", " ") === "asistencia") {
             setGetModule(<Attendance profile={person} setHeader={setHeader} />);
-        } else if (location.pathname?.split("/")[4].replace("%20", " ") === "licencia") {
-            setGetModule(<License profile={person} setHeader={setHeader} />);
-        } else if (location.pathname?.split("/")[4] === "DIRECTOR GENERAL") {
-            // setGetModule(<Director />);
-        } else if (location.pathname?.split("/")[4] === "ORGANIGRAMA") {
-            // setGetModule(<OrganizationChart />);
+            // } else if (location.pathname?.split("/")[4].replace("%20", " ") === "licencia") {
+            //     if (!unmounted && location.pathname?.split("/")[5]) {
+            //         getFormVacation(location.pathname?.split("/")[5])
+            //             .then((res) => {
+            //                 return res.json();
+            //             })
+            //             .then((data) => {
+            //                 if (!unmounted) {
+            //                     if (location.pathname?.split("/")[5] && !data) {
+            //                         navigate("/404")
+            //                         return toast.error("Esta solicitud ya fue cerrado o no existe!");
+            //                     } else {
+            //                         setGetModule(<License img={img} profile={person} request={data} />);
+            //                     }
+            //                 }
+            //             })
+            //             .catch((err) => {
+            //                 console.error(err.status);
+            //             });
+            //     } else {
+            //         setGetModule(<License img={img} profile={person} request="" />);
+            //     }
+
         }
 
         return () => {
@@ -154,9 +194,9 @@ const FormTemple = () => {
             }
         } else if (location.pathname?.split("/")[4].replace("%20", " ") === "licencia") {
             setHeader({
-                code: "No definido",
-                date: "No definido",
-                version: "No definido"
+                code: "DRH-FO-003",
+                date: "8/9/2022",
+                version: "0"
             })
 
         }

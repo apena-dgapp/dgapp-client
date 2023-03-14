@@ -40,6 +40,7 @@ function EmployeeNew() {
     emergencyrelationship: "",
     contracttype: "",
     contractexpiration: "",
+    gender: "",
   });
 
   const refInput = useRef();
@@ -111,6 +112,7 @@ function EmployeeNew() {
       emergencyrelationship: "",
       contracttype: "",
       contractexpiration: "",
+      gender: ""
     });
     setDepartament("");
     setReportTo("");
@@ -153,6 +155,10 @@ function EmployeeNew() {
       return toast.error(
         "Por favor de llenar el campo FECHA DE NACIMIENTO antes de continuar"
       );
+    } else if (formData.gender === "" || formData.gender === undefined) {
+      return toast.error(
+        "Por favor de llenar el campo de género"
+      );
     } else {
       if (formData?.documentid) {
         validationDocument(formData?.documentid)
@@ -165,8 +171,8 @@ function EmployeeNew() {
             } else {
               setEmail(
                 formData.firstname.split("")[0].toUpperCase() +
-                  formData.lastname.split(" ")[0].toUpperCase() +
-                  "@DGAPP.GOB.DO"
+                formData.lastname.split(" ")[0].toUpperCase() +
+                "@DGAPP.GOB.DO"
               );
               setScreen(2);
             }
@@ -197,30 +203,30 @@ function EmployeeNew() {
   const createHandlerForm = () => {
     if (formData.position === "" || formData.position === undefined) {
       return toast.error(
-        "Por favor de llenar el campo POSICIÓN antes de crear un nuevo empleado"
+        "Por favor de llenar el campo POSICIÓN, antes de crear un nuevo empleado"
       );
     } else if (departament === "" || departament === undefined) {
       return toast.error(
-        "Por favor de llenar el campo DEPARTAMENTO antes de crear un nuevo empleado"
+        "Por favor de llenar el campo DEPARTAMENTO, antes de crear un nuevo empleado"
       );
     } else if (reportTo === "" || reportTo === undefined) {
       return toast.error(
-        "Por favor de llenar el campo SE REPORTA antes de crear un nuevo empleado"
+        "Por favor de llenar el campo a quien SE REPORTA, antes de crear un nuevo empleado"
       );
     } else if (formData.startedon === "" || formData.startedon === undefined) {
       return toast.error(
-        "Por favor de llenar el campo INICIO LABORAL antes de crear un nuevo empleado"
+        "Por favor de llenar el campo INICIO LABORAL, antes de crear un nuevo empleado"
       );
     } else if (email === "" || email === undefined) {
       return toast.error(
-        "Por favor de llenar el campo EMAIL antes de crear un nuevo empleado"
+        "Por favor de llenar el campo EMAIL, antes de crear un nuevo empleado"
       );
     } else if (
       formData.contracttype === "" ||
       formData.contracttype === undefined
     ) {
       return toast.error(
-        "Por favor de llenar el campo TIPO DE CONTRATO antes de crear un nuevo empleado"
+        "Por favor de llenar el campo TIPO DE CONTRATO, antes de crear un nuevo empleado"
       );
     } else {
       if (formData.date) {
@@ -237,6 +243,7 @@ function EmployeeNew() {
           "",
           photo,
           formatDate(formData.date),
+          formData.gender,
           formData.position,
           true,
           formData.career,
@@ -327,7 +334,7 @@ function EmployeeNew() {
         refInput={refInput}
         clickRemove={clickRemove}
         validateId={validateId}
-        // departament={departament}
+      // departament={departament}
       />
     </>
   );

@@ -85,7 +85,7 @@ function OrganizationInformation({
               type="text"
               placeholder="Escriba la posición"
               className="edit-input"
-              value={formData.position?.replace(/[^a-zA-ZñÑ ]/g, "")}
+              value={formData.position?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "")}
             />
             <div className="input-required">*</div>
           </div>

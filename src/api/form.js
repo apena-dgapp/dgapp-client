@@ -69,3 +69,16 @@ export const saveSignature = async (id, table, column, signature) => {
         }
     })
 }
+
+//LICENSE
+export const getFormLicense = async (id) => {
+    const body = { id };
+    return fetch(`${process.env.REACT_APP_API}form/getlicense`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}

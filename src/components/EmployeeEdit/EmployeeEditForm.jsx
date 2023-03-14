@@ -101,10 +101,9 @@ function EmployeeEditForm({
                     profile?.firstName ? profile?.firstName : "No definido!"
                   }
                   className="edit-input"
-                  value={formData.firstname?.replace(/[^a-zA-ZñÑ ]/g, "") || ""}
+                  value={formData.firstname?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""}
                 />
               </div>
-
               <div className="">
                 <p className="edit-input-title">Apellido</p>
                 <input
@@ -115,10 +114,9 @@ function EmployeeEditForm({
                     profile?.lastName ? profile?.lastName : "No definido!"
                   }
                   className="edit-input"
-                  value={formData.lastname?.replace(/[^a-zA-ZñÑ ]/g, "") || ""}
+                  value={formData.lastname?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""}
                 />
               </div>
-
               <div className="">
                 <p className="edit-input-title">Cédula</p>
                 <div className="new-employee-documentid">
@@ -154,6 +152,22 @@ function EmployeeEditForm({
                   value={formData.cel?.replace(/[^0-9.]/g, "") || ""}
                   maxLength={10}
                 />
+              </div>
+              <div className="">
+                <p className="edit-input-title">Género</p>
+                <select
+                  name="gender"
+                  className="edit-input"
+                  onChange={handlerInputChange}
+
+                  defaultValue={"DEFAULT"}
+                >
+                  <option disabled value="DEFAULT">
+                    {profile?.gender ? profile?.gender : "No definido!"}
+                  </option>
+                  <option>Masculino</option>
+                  <option>Femenino</option>
+                </select>
               </div>
               <div className="">
                 <p className="edit-input-title">Fecha de Nacimiento</p>
@@ -216,7 +230,7 @@ function EmployeeEditForm({
                   }
                   className="edit-input"
                   value={
-                    formData.emergencyname?.replace(/[^a-zA-ZñÑ ]/g, "") || ""
+                    formData.emergencyname?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""
                   }
                 />
               </div>
@@ -255,11 +269,7 @@ function EmployeeEditForm({
                   }
                   className="edit-input"
                   value={
-                    formData.emergencyrelationship?.replace(
-                      /[^a-zA-ZñÑ ]/g,
-                      ""
-                    ) || ""
-                  }
+                    formData.emergencyrelationship?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""}
                 />
               </div>
               <div className="">
@@ -272,7 +282,7 @@ function EmployeeEditForm({
                     profile?.career ? profile?.career : "No definido!"
                   }
                   className="edit-input"
-                  value={formData.career?.replace(/[^a-zA-ZñÑ ]/g, "") || ""}
+                  value={formData.career?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""}
                 />
               </div>
             </div>
@@ -314,7 +324,7 @@ function EmployeeEditForm({
                     }
                     className="edit-input"
                     value={
-                      formData.position?.replace(/[^a-zA-ZñÑ ]/g, "") || ""
+                      formData.position?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""
                     }
                   />
                 </div>

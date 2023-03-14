@@ -17,6 +17,9 @@ const EmployeeDirectory = () => {
   const [page, setPage] = useState(8 * Number(number));
   const [pageLength, setPageLength] = useState("");
   const [loading, setLoading] = useState(false);
+  const [male, setMale] = useState([]);
+  const [female, setFemale] = useState([]);
+
 
   useEffect(() => {
     let unmounted = false;
@@ -57,6 +60,8 @@ const EmployeeDirectory = () => {
         if (!unmounted) {
           setArrayAllPersons((arrayAllPersons) => [...arrayAllPersons, ...res]);
           setPageLength(res.length);
+          setMale(res?.filter((item) => item.gender === "Masculino"));
+          setFemale(res?.filter((item) => item.gender === "Femenino"));
         }
       })
       .catch((err) => {
@@ -135,7 +140,7 @@ const EmployeeDirectory = () => {
   };
 
   const goToProfile = (props) => {
-    console.log(props)
+    // console.log(props)
     if (props.id !== 0) {
       navigate(`/perfil/${props.name}`, {
         state: props.id,
@@ -162,6 +167,8 @@ const EmployeeDirectory = () => {
           searchDep={searchDep}
           pageLength={pageLength}
           page={page}
+          male={male}
+          female={female}
         />
       )}
     </>
