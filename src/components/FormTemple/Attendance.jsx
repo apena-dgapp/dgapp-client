@@ -100,7 +100,7 @@ const Attendance = ({ setHeader }) => {
         } else if (formData.subject === "") {
             return toast.error("Por favor digitar el asunto");
         } else if (formData.type === "") {
-            return toast.error("Por favor seleccionar un el tipo");
+            return toast.error("Por favor seleccionar el tipo");
         }
 
         pdf.addImage(img, 'PNG', 15, 10, 585, 760, 'undefined', 'FAST');

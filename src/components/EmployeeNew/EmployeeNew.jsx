@@ -157,7 +157,7 @@ function EmployeeNew() {
       );
     } else if (formData.gender === "" || formData.gender === undefined) {
       return toast.error(
-        "Por favor de llenar el campo de género"
+        "Por favor de llenar el campo de sexo"
       );
     } else {
       if (formData?.documentid) {

@@ -40,7 +40,7 @@
     }
 
     &:hover {
-        background-color: gainsboro;
+        background-color: #dceaf7;
     }
 }
 
@@ -565,6 +565,7 @@
     width: 15rem;
     display: flex;
 }
+
 .license-section2-textarea-radio {
     width: 10.5rem;
     display: flex;
@@ -719,4 +720,31 @@
         width: 10rem;
         height: 2rem;
     }
+}
+
+//CARNET
+.carnet-section2-radio {
+    width: 18rem;
+    display: flex;
+}
+.carnet-section3-container{
+    width: 100%;
+    height: 5rem;
+    // background-color: red;
+}
+.carnet-section3 {
+    width: 90%;
+    display: flex;
+    p{
+        color: #0D2F4C;
+        margin: 0;
+        // background-color: red;
+    }
+}
+.carnet-section4 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 3rem;
 }

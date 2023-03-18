@@ -47,11 +47,11 @@ const LoginForm = ({
                 value={profile.password}
               />
             </div>
-            <div className="d-flex justify-content-center mt-1">
+            {/* <div className="d-flex justify-content-center mt-1">
               <p onClick={inConstruction} className="txt-forgot">
                 ¿Has olvidado tu contraseña?
               </p>
-            </div>
+            </div> */}
             <div className="d-flex justify-content-center container-btn-login">
               <button
                 className="btn-login"
@@ -59,10 +59,10 @@ const LoginForm = ({
                 type="submit"
                 onClick={handeleSignIn}
               >
-                Acesso
+                Acceso
               </button>
             </div>
-            <div className="d-flex justify-content-center container-btn-login">
+            {/* <div className="d-flex justify-content-center container-btn-login">
               <button
                 onClick={inConstruction}
                 className="btn-create"
@@ -71,7 +71,7 @@ const LoginForm = ({
               >
                 Crear Nueva Cuenta
               </button>
-            </div>
+            </div> */}
           </form>
         </div>
       </div>

@@ -154,7 +154,7 @@ function EmployeeEditForm({
                 />
               </div>
               <div className="">
-                <p className="edit-input-title">Género</p>
+                <p className="edit-input-title">Sexo</p>
                 <select
                   name="gender"
                   className="edit-input"

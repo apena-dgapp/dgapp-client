@@ -2,9 +2,10 @@ import React, { useEffect, useState, useContext } from 'react'
 import Vacation from './Vacation'
 import Attendance from './Attendance';
 import License from './License';
+import Carnet from './Carnet';
 import { useLocation, useNavigate } from "react-router-dom";
-import { apiOneFile } from "../../api/files"
-import { getFormVacation, getFormLicense } from "../../api/form"
+// import { apiOneFile } from "../../api/files"
+import { getFormVacation, getFormLicense, getFormCarnet } from "../../api/form"
 import GlobalContext from "../../context/GlobalContext";
 import { getOnePerson } from "../../api/person";
 import toast from 'react-hot-toast';
@@ -12,7 +13,7 @@ import toast from 'react-hot-toast';
 const FormTemple = () => {
     const navigate = useNavigate();
     const [contextState] = useContext(GlobalContext);
-    const [img, setImg] = useState("");
+    // const [img, setImg] = useState("");
     const location = useLocation();
     const [getModule, setGetModule] = useState("");
     const [person, setPerson] = useState({
@@ -69,27 +70,27 @@ const FormTemple = () => {
         };
     }, [contextState.personId]);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        let unmounted = false;
+    //     let unmounted = false;
 
-        if (!unmounted) {
-            apiOneFile("DRH-FO-002 -Formulario Solicitud de Vacaciones. V.0")
-                .then((res) => {
-                    return res.json();
-                })
-                .then((res) => {
-                    setImg(res.file)
-                })
-                .catch((err) => {
-                    console.error(err.status);
-                });
-        }
+    //     if (!unmounted) {
+    //         apiOneFile("DRH-FO-002 -Formulario Solicitud de Vacaciones. V.0")
+    //             .then((res) => {
+    //                 return res.json();
+    //             })
+    //             .then((res) => {
+    //                 setImg(res.file)
+    //             })
+    //             .catch((err) => {
+    //                 console.error(err.status);
+    //             });
+    //     }
 
-        return () => {
-            unmounted = true;
-        };
-    }, []);
+    //     return () => {
+    //         unmounted = true;
+    //     };
+    // }, []);
 
     useEffect(() => {
 
@@ -107,7 +108,7 @@ const FormTemple = () => {
                                 navigate("/404")
                                 return toast.error("Esta solicitud ya fue cerrado o no existe!");
                             } else {
-                                setGetModule(<Vacation img={img} profile={person} request={data} />);
+                                setGetModule(<Vacation profile={person} request={data} />);
                             }
                         }
                     })
@@ -115,10 +116,10 @@ const FormTemple = () => {
                         console.error(err.status);
                     });
             } else {
-                setGetModule(<Vacation img={img} profile={person} request="" />);
+                setGetModule(<Vacation profile={person} request="" />);
             }
 
-        } else if (location.pathname?.split("/")[4] === "licencia") {
+        } else if (location.pathname?.split("/")[4] === "licencias") {
             if (!unmounted && location.pathname?.split("/")[5]) {
                 getFormLicense(location.pathname?.split("/")[5])
                     .then((res) => {
@@ -130,7 +131,7 @@ const FormTemple = () => {
                                 navigate("/404")
                                 return toast.error("Esta solicitud ya fue cerrado o no existe!");
                             } else {
-                                setGetModule(<License img={img} profile={person} request={data} />);
+                                setGetModule(<License profile={person} request={data} />);
                             }
                         }
                     })
@@ -138,44 +139,43 @@ const FormTemple = () => {
                         console.error(err.status);
                     });
             } else {
-                setGetModule(<License img={img} profile={person} request="" />);
+                setGetModule(<License profile={person} request="" />);
             }
-
+        } else if (location.pathname?.split("/")[4] === "carnet") {
+            if (!unmounted && location.pathname?.split("/")[5]) {
+                getFormCarnet(location.pathname?.split("/")[5])
+                    .then((res) => {
+                        return res.json();
+                    })
+                    .then((data) => {
+                        if (!unmounted) {
+                            if (location.pathname?.split("/")[5] && !data) {
+                                navigate("/404")
+                                return toast.error("Esta solicitud ya fue cerrado o no existe!");
+                            } else {
+                                setGetModule(<Carnet profile={person} request={data} />);
+                            }
+                        }
+                    })
+                    .catch((err) => {
+                        console.error(err.status);
+                    });
+            } else {
+                setGetModule(<Carnet profile={person} request="" />);
+            }
         } else if (location.pathname?.split("/")[4].replace("%20", " ") === "asistencia") {
             setGetModule(<Attendance profile={person} setHeader={setHeader} />);
-            // } else if (location.pathname?.split("/")[4].replace("%20", " ") === "licencia") {
-            //     if (!unmounted && location.pathname?.split("/")[5]) {
-            //         getFormVacation(location.pathname?.split("/")[5])
-            //             .then((res) => {
-            //                 return res.json();
-            //             })
-            //             .then((data) => {
-            //                 if (!unmounted) {
-            //                     if (location.pathname?.split("/")[5] && !data) {
-            //                         navigate("/404")
-            //                         return toast.error("Esta solicitud ya fue cerrado o no existe!");
-            //                     } else {
-            //                         setGetModule(<License img={img} profile={person} request={data} />);
-            //                     }
-            //                 }
-            //             })
-            //             .catch((err) => {
-            //                 console.error(err.status);
-            //             });
-            //     } else {
-            //         setGetModule(<License img={img} profile={person} request="" />);
-            //     }
-
         }
 
         return () => {
             unmounted = true;
         };
-    }, [img, person, navigate, location]);
+    }, [person, navigate, location]);
 
     useEffect(() => {
 
         let unmounted = false;
+        console.log(location.pathname?.split("/")[4]);
 
         if (!unmounted) {
             if (location.pathname?.split("/")[4] === "vacaciones") {
@@ -191,13 +191,19 @@ const FormTemple = () => {
                     version: "No definido"
                 })
 
+            } else if (location.pathname?.split("/")[4] === "licencias") {
+                setHeader({
+                    code: "DRH-FO-003",
+                    date: "8/9/2022",
+                    version: "0"
+                })
+            } else if (location.pathname?.split("/")[4] === "carnet") {
+                setHeader({
+                    code: "DRH-FO-001",
+                    date: "8/8/2022",
+                    version: "0"
+                })
             }
-        } else if (location.pathname?.split("/")[4].replace("%20", " ") === "licencia") {
-            setHeader({
-                code: "DRH-FO-003",
-                date: "8/9/2022",
-                version: "0"
-            })
 
         }
 
@@ -211,7 +217,8 @@ const FormTemple = () => {
             <div className='form-container'>
                 <div className="form-header">
                     <div className="form-header-title">
-                        <p>{`SOLICITUD DE ${location.pathname.split("/")[4].toUpperCase().replace("%20", " ")} `}</p>
+
+                        <p>{`SOLICITUD ${location.pathname?.split("/")[4] === "carnet" ? "ENTREGA" : ""} DE ${location.pathname.split("/")[4].toUpperCase().replace("%20", " ")} ${location.pathname?.split("/")[4] === "licencias" ? "O PERMISOS" : ""}`}</p>
                     </div>
                     <div className="form-header-menu">
                         <div className="form-header-menu-text">

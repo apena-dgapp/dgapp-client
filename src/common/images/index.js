@@ -34,6 +34,7 @@ import youtube from './wetransfer_recursos_2022-09-21_1856/Recursos/youtube.png'
 import btnVacation from "./btn-vacation.png";
 import btnLicense from "./btn-license.png";
 import btnAttendance from "./btn-task.png";
+import btnCarnet from "./btn-carnet.png";
 import mision from "./Misión.png";
 import vision from "./Visión.png";
 import valores from "./Valores.png";
@@ -79,6 +80,7 @@ const Images = {
     btnVacation,
     btnLicense,
     btnAttendance,
+    btnCarnet,
     mision,
     vision,
     valores,

@@ -40,7 +40,7 @@ const RequestMenu = () => {
                                 <p>Asistencia</p>
                             </div>
                         </div>
-                        <div onClick={() => FormTemple("licencia")} className="requestmain-button">
+                        <div onClick={() => FormTemple("licencias")} className="requestmain-button">
                             <div className="requestmain-btn-img">
                                 <img src={Images.btnLicense} alt="" />
                             </div>
@@ -48,30 +48,30 @@ const RequestMenu = () => {
                                 <p>Licencias y Permisos</p>
                             </div>
                         </div>
+                        <div onClick={() => FormTemple("carnet")} className="requestmain-button">
+                            <div className="requestmain-btn-img">
+                                <img src={Images.btnCarnet} alt="" />
+                            </div>
+                            <div className="requestmain-btn-text">
+                                <p>Engrega de carnet</p>
+                            </div>
+                        </div>
                         {/* <div className="requestmain-button">
-                        <div className="requestmain-btn-img">
-                            <img src={Images.btnCarnet} alt="" />
-                        </div>
-                        <div className="requestmain-btn-text">
-                            <p>Engrega de carnet</p>
-                        </div>
-                    </div>
-                    <div className="requestmain-button">
-                        <div className="requestmain-btn-img">
-                            <img src={Images.btnLicense} alt="" />
-                        </div>
-                        <div className="requestmain-btn-text">
-                            <p>Licencias y Permisos</p>
-                        </div>
-                    </div>
-                    <div className="requestmain-button">
-                        <div className="requestmain-btn-img">
-                            <img src={Images.btnCarnet} alt="" />
-                        </div>
-                        <div className="requestmain-btn-text">
-                            <p>Engrega de carnet</p>
-                        </div>
-                    </div> */}
+                            <div className="requestmain-btn-img">
+                                <img src={Images.btnLicense} alt="" />
+                            </div>
+                            <div className="requestmain-btn-text">
+                                <p>Licencias y Permisos</p>
+                            </div>
+                        </div> */}
+                        {/* <div className="requestmain-button">
+                            <div className="requestmain-btn-img">
+                                <img src={Images.btnCarnet} alt="" />
+                            </div>
+                            <div className="requestmain-btn-text">
+                                <p>Engrega de carnet</p>
+                            </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

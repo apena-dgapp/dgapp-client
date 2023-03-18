@@ -159,12 +159,18 @@ const NavbarForm = ({
                                                     style={{ cursor: "pointer", transform: "rotate(270deg)" }}
                                                 />
                                             </span>
-                                            <ul style={{ top: "0.6rem", width: width >= 5120 ? "14rem" : "8rem", marginLeft: width >= 5120 ? "13.5rem" : "7.48rem", height: width >= 5120 ? "9rem" : "5.3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "1px" }}>
+                                            <ul style={{ top: "0.6rem", width: width >= 5120 ? "17rem" : "11rem", marginLeft: width >= 5120 ? "13.5rem" : "7.48rem", height: width >= 5120 ? "9rem" : "9.3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "1px" }}>
                                                 <li>
                                                     <span onClick={() => formTemple("vacaciones")}>Vacaciones</span>
                                                 </li>
                                                 <li>
                                                     <span onClick={() => formTemple("asistencia")}>Asistencia</span>
+                                                </li>
+                                                <li>
+                                                    <span onClick={() => formTemple("licencia")}>Lincecias y Permisos</span>
+                                                </li>
+                                                <li>
+                                                    <span onClick={() => formTemple("carnet")}>Entrega Carnet</span>
                                                 </li>
                                             </ul>
                                         </li>

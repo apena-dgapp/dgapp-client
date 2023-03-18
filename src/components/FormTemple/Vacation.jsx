@@ -10,11 +10,13 @@ import { sendEmail } from "../../api/email";
 import ImageCrop from './ImageCrop';
 import { useNavigate } from "react-router-dom";
 import { SlPencil } from "react-icons/sl";
+import { apiOneFile } from "../../api/files"
 
-const Vacation = ({ img, profile, directorRRHH, request }) => {
+const Vacation = ({ profile, directorRRHH, request }) => {
     const navigate = useNavigate();
     const [modalActive, setModalActive] = useState(false);
     const [totalDays, setTotalDays] = useState("");
+    const [img, setImg] = useState("");
     const currentDate = new Date().toISOString().slice(0, 10);
     const pdf = new jsPDF.jsPDF('p', 'pt', 'letter', 'a4', true);
     const [image, setImage] = useState("");
@@ -84,6 +86,28 @@ const Vacation = ({ img, profile, directorRRHH, request }) => {
         }
         return businessDays;
     }
+
+    useEffect(() => {
+
+        let unmounted = false;
+
+        if (!unmounted) {
+            apiOneFile("DRH-FO-002 -Formulario Solicitud de Vacaciones. V.0")
+                .then((res) => {
+                    return res.json();
+                })
+                .then((res) => {
+                    setImg(res.file)
+                })
+                .catch((err) => {
+                    console.error(err.status);
+                });
+        }
+
+        return () => {
+            unmounted = true;
+        };
+    }, []);
 
     useEffect(() => {
 
@@ -362,7 +386,7 @@ const Vacation = ({ img, profile, directorRRHH, request }) => {
                 }
             })
             .then((data) => {
-                sendEmail("CALVAREZ@DGAPP.GOB.DO", [request.email, "RESTRELLA@DGAPP.GOB.DO", request.reportToEmail], `Solicitud de Vacaciones - ${request.name}-${request.requirementDate}`, `
+                sendEmail("YDIAZ@DGAPP.GOB.DO", [request.email, "RESTRELLA@DGAPP.GOB.DO", request.reportToEmail], `Solicitud de Vacaciones - ${request.name}-${request.requirementDate}`, `
                 Saludos Wendy Núñez,
 
                 La solicitud realizada por el empleado ${request.name}, el dia ${request.requirementDate}, se han hechos las observaciones y evaluaciones correspondientes.
@@ -383,7 +407,6 @@ const Vacation = ({ img, profile, directorRRHH, request }) => {
                 console.error(err.status);
                 toast.error("Error al intentar enviar el formulario");
             });
-
     }
 
     const approveRRHH = () => {
@@ -431,11 +454,19 @@ const Vacation = ({ img, profile, directorRRHH, request }) => {
         pdf.text(request.motivesSubstitute.substring(150, 200), 305, 448);
 
         pdf.text(request.name, 90, 527);
-        pdf.addImage(request.signatureApplicant, 'PNG', 40, 480, 150, 80);
+        // if (request.signatureApplicant) {
+        //     pdf.addImage(request.signatureApplicant, 'PNG', 40, 480, 150, 80);
+        // }
+
         pdf.text(request.reportToName, 450, 527);
-        pdf.addImage(request.signatureSupervisor, 'PNG', 410, 480, 150, 80);
+        // if (request.signatureSupervisor) {
+        //     pdf.addImage(request.signatureSupervisor, 'PNG', 410, 480, 150, 80);
+        // }
+
         pdf.text(profile.fullName, 280, 563);
-        pdf.addImage(profile.signature, 'PNG', 230, 495, 150, 80);
+        // if (profile.signature) {
+        //     pdf.addImage(profile.signature, 'PNG', 230, 495, 150, 80);
+        // }
 
         pdf.text(request.rrhhFirstYearDaysAvailable.split("-")[0], 235, 629);
         pdf.text(request.rrhhSecondYearDaysAvailable.split("-")[0], 235, 645);
@@ -824,7 +855,8 @@ const Vacation = ({ img, profile, directorRRHH, request }) => {
                 </div>
                 {/* SECTION-4 */}
                 <div className="vacation-header">
-                    <p>Firmas Correspondientes (Click al icono para cargar firma)</p>
+                    <p>Firmas Correspondientes</p>
+                    {/* <p>Firmas Correspondientes (Click al icono para cargar firma)</p> */}
                 </div>
                 <div className="vacation-section4">
                     <div className="vacation-section4-line">

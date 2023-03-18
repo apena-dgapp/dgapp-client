@@ -56,3 +56,10 @@ body::-webkit-scrollbar-thumb {
   background-color: #113250;
   border-radius: 7px;
 }
+
+input {
+  -webkit-user-select: text; /* Chrome, Opera, Safari */
+  -moz-user-select: text; /* Firefox 2+ */
+  -ms-user-select: text; /* IE 10+ */
+  user-select: text; /* Standard syntax */
+}

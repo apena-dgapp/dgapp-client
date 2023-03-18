@@ -82,3 +82,88 @@ export const getFormLicense = async (id) => {
         }
     })
 }
+export const createLicense = async (personId, name, position, documentId, email, reportToId, reportToName, reportToEmail, departament, requirementDate, type,startHour,finalHour,totalHour, startDate, endDate, totalDaysRequested,justification,specificJustification,reason, signatureApplicant) => {
+    const body = { personId, name, position, documentId, email, reportToId, reportToName, reportToEmail, departament, requirementDate, type,startHour,finalHour,totalHour, startDate, endDate, totalDaysRequested,justification,specificJustification,reason, signatureApplicant };
+    // console.log(body);
+    return fetch(`${process.env.REACT_APP_API}form/createlicense`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const approveSupervisorLicense = async (licenseId, requestStatus, signature) => {
+    const body = { licenseId, requestStatus, signature };
+    return fetch(`${process.env.REACT_APP_API}form/approvesupervisorlicense`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const revisionRRHHLicense = async (licenseId, generalRemarks, rrhhName) => {
+    const body = { licenseId, generalRemarks, rrhhName };
+    return fetch(`${process.env.REACT_APP_API}form/closelicense`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const apiApproveRRHHLicense = async (licenseId, signatureRRHH, blobPdf) => {
+    const body = {licenseId, signatureRRHH, blobPdf};
+    return fetch(`${process.env.REACT_APP_API}form/approverrhhlicense`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+//CARNET
+export const getFormCarnet = async (id) => {
+    const body = { id };
+    return fetch(`${process.env.REACT_APP_API}form/getcarnet`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const createCarnet = async (personId, name, position, documentId,code,accessCard,pinID, email, reportToId, reportToName, reportToEmail, departament, requirementDate, type,specify,signatureApplicant) => {
+    const body = {personId, name, position, documentId,code,accessCard,pinID, email, reportToId, reportToName, reportToEmail, departament, requirementDate, type,specify,signatureApplicant };
+    return fetch(`${process.env.REACT_APP_API}form/createcarnet`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const revisionRRHHCarnet = async (carnetId, generalRemarks, rrhhName) => {
+    const body = { carnetId, generalRemarks, rrhhName };
+    return fetch(`${process.env.REACT_APP_API}form/revisionrrhh`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
