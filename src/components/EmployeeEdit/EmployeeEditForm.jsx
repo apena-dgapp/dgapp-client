@@ -97,9 +97,9 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="firstname"
                   type="text"
-                  placeholder={
-                    profile?.firstName ? profile?.firstName : "No definido!"
-                  }
+                  // placeholder={
+                  //   profile?.firstName ? profile?.firstName : "No definido!"
+                  // }
                   className="edit-input"
                   value={formData.firstname?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""}
                 />
@@ -110,9 +110,9 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="lastname"
                   type="text"
-                  placeholder={
-                    profile?.lastName ? profile?.lastName : "No definido!"
-                  }
+                  // placeholder={
+                  //   profile?.lastName ? profile?.lastName : "No definido!"
+                  // }
                   className="edit-input"
                   value={formData.lastname?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""}
                 />
@@ -124,9 +124,9 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="documentid"
                     type="text"
-                    placeholder={
-                      profile?.documentId ? profile?.documentId : "No definido!"
-                    }
+                    // placeholder={
+                    //   profile?.documentId ? profile?.documentId : "No definido!"
+                    // }
                     className="edit-input"
                     value={formData.documentid?.replace(/[^0-9.]/g, "") || ""}
                     maxLength={11}
@@ -145,9 +145,9 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="cel"
                   type="text"
-                  placeholder={
-                    profile?.celNumber ? profile?.celNumber : "No definido!"
-                  }
+                  // placeholder={
+                  //   profile?.celNumber ? profile?.celNumber : "No definido!"
+                  // }
                   className="edit-input"
                   value={formData.cel?.replace(/[^0-9.]/g, "") || ""}
                   maxLength={10}
@@ -223,11 +223,11 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="emergencyname"
                   type="text"
-                  placeholder={
-                    profile?.emergencyName
-                      ? profile?.emergencyName
-                      : "No definido!"
-                  }
+                  // placeholder={
+                  //   profile?.emergencyName
+                  //     ? profile?.emergencyName
+                  //     : "No definido!"
+                  // }
                   className="edit-input"
                   value={
                     formData.emergencyname?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""
@@ -242,11 +242,11 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="emergencynumber"
                   type="text"
-                  placeholder={
-                    profile?.emergencyNumber
-                      ? profile?.emergencyNumber
-                      : "No definido!"
-                  }
+                  // placeholder={
+                  //   profile?.emergencyNumber
+                  //     ? profile?.emergencyNumber
+                  //     : "No definido!"
+                  // }
                   className="edit-input"
                   value={
                     formData.emergencynumber?.replace(/[^0-9.]/g, "") || ""
@@ -262,11 +262,11 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="emergencyrelationship"
                   type="text"
-                  placeholder={
-                    profile?.emergencyRelationship
-                      ? profile?.emergencyRelationship
-                      : "No definido!"
-                  }
+                  // placeholder={
+                  //   profile?.emergencyRelationship
+                  //     ? profile?.emergencyRelationship
+                  //     : "No definido!"
+                  // }
                   className="edit-input"
                   value={
                     formData.emergencyrelationship?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""}
@@ -278,9 +278,9 @@ function EmployeeEditForm({
                   onChange={handlerInputChange}
                   name="career"
                   type="text"
-                  placeholder={
-                    profile?.career ? profile?.career : "No definido!"
-                  }
+                  // placeholder={
+                  //   profile?.career ? profile?.career : "No definido!"
+                  // }
                   className="edit-input"
                   value={formData.career?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""}
                 />
@@ -304,11 +304,11 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="code"
                     type="text"
-                    placeholder={
-                      profile?.employeeCode
-                        ? profile?.employeeCode
-                        : "No definido!"
-                    }
+                    // placeholder={
+                    //   profile?.employeeCode
+                    //     ? profile?.employeeCode
+                    //     : "No definido!"
+                    // }
                     className="edit-input"
                     value={formData.code || ""}
                   />
@@ -319,9 +319,9 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="position"
                     type="text"
-                    placeholder={
-                      profile?.position ? profile?.position : "No definido!"
-                    }
+                    // placeholder={
+                    //   profile?.position ? profile?.position : "No definido!"
+                    // }
                     className="edit-input"
                     value={
                       formData.position?.replace(/[^a-zA-ZÀ-ÿ-ZñÑ ]/g, "") || ""
@@ -415,11 +415,11 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="phone"
                     type="text"
-                    placeholder={
-                      profile?.phoneNumber
-                        ? profile?.phoneNumber
-                        : "No definido!"
-                    }
+                    // placeholder={
+                    //   profile?.phoneNumber
+                    //     ? profile?.phoneNumber
+                    //     : "No definido!"
+                    // }
                     className="edit-input"
                     value={formData.phone?.replace(/[^0-9.]/g, "") || ""}
                   />
@@ -431,9 +431,9 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="email"
                     type="email"
-                    placeholder={
-                      profile?.email ? profile?.email : "No definido!"
-                    }
+                    // placeholder={
+                    //   profile?.email ? profile?.email : "No definido!"
+                    // }
                     className="edit-input"
                     value={formData.email.toUpperCase() || ""}
                   />
@@ -444,11 +444,11 @@ function EmployeeEditForm({
                     onChange={handlerInputChange}
                     name="health"
                     type="text"
-                    placeholder={
-                      profile?.healthInsurance
-                        ? profile?.healthInsurance
-                        : "No definido!"
-                    }
+                    // placeholder={
+                    //   profile?.healthInsurance
+                    //     ? profile?.healthInsurance
+                    //     : "No definido!"
+                    // }
                     className="edit-input"
                     value={formData.health?.replace(/[^0-9.]/g, "") || ""}
                   />

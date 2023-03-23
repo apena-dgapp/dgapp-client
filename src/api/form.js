@@ -156,9 +156,21 @@ export const createCarnet = async (personId, name, position, documentId,code,acc
     })
 }
 
-export const revisionRRHHCarnet = async (carnetId, generalRemarks, rrhhName) => {
-    const body = { carnetId, generalRemarks, rrhhName };
+export const revisionRRHHCarnet = async (carnetId, generalRemarks, rrhhName, deliveryDate) => {
+    const body = { carnetId, generalRemarks, rrhhName,deliveryDate };
     return fetch(`${process.env.REACT_APP_API}form/revisionrrhh`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
+export const ApproveRRHHCarnet = async (carnetId, signatureRRHH, blobPdf, dateReceived) => {
+    const body = {carnetId, signatureRRHH, blobPdf, dateReceived};
+    return fetch(`${process.env.REACT_APP_API}form/approverrhhcarnet`, {
         method: "POST",
         body: JSON.stringify(body),
         headers: {

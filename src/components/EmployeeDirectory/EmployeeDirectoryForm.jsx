@@ -1,25 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import CardEmployee from "./EmployeeDirectoryCard";
-// import { MdSearch } from "react-icons/md";
-// import { ImUsers } from "react-icons/im";
-import GlobalContext from "../../context/GlobalContext";
+import ReactPaginate from 'react-paginate';
 
 const EmployeeDirectoryForm = ({
-  filteredArryPersons,
-  nextPage,
-  backPage,
   onSearchChange,
   search,
   goToProfile,
   arrayDepartament,
   filterDep,
   searchDep,
-  pageLength,
-  page,
   male,
-  female
+  female,
+  maleTotal,
+  femaleTotal,
+  pageCount,
+  handlePageClick,
+  items,
+  total
 }) => {
-  const [, , contextState] = useContext(GlobalContext);
 
   return (
     <>
@@ -28,43 +26,44 @@ const EmployeeDirectoryForm = ({
           <p>DIRECTORIO DE EMPLEADOS</p>
           <span className='news-title-line'></span>
         </div>
-        {/* <div className="emDirectory-input-search-cont">
-          <i className="md md-arrow-forward-ios" />
-          <MdSearch
-            className="emDirectory-se"
-            size="1.5em"
-            color="rgb(153, 149, 149)"
-          />
-        </div> */}
-
         <div className="emDirectory-input-cont">
-
           <div className="dropdown emDirectory-dropdown">
             <div className="directory-count-container">
               <div className="directory-count">
+                <p style={{ color: "#113250", marginRight: "0.5rem", fontWeight: "bold" }}>Total de colaboradores y colaboradoras:</p>
+                <p style={{ color: "#75AAD3", fontWeight: "bold" }}>{total}</p>
+              </div>
+              <div className="directory-count">
                 <div className="directory-count-gender">
                   <p style={{ color: "#113250", marginRight: "0.5rem" }}>Masculino:</p>
-                  <p style={{ color: "#75AAD3", fontWeight: "bold" }}>{male.length}</p>
+                  <p style={{ color: "#75AAD3", fontWeight: "bold" }}>{searchDep === "" || searchDep === "todos" ? maleTotal.length : male.length}</p>
                 </div>
                 <div className="directory-count-gender">
                   <p style={{ color: "#113250", marginRight: "0.5rem" }}>Femenino:</p>
-                  <p style={{ color: "#75AAD3", fontWeight: "bold" }}>{female.length}</p>
+                  <p style={{ color: "#75AAD3", fontWeight: "bold" }}>{searchDep === "" || searchDep === "todos" ? femaleTotal.length : female.length}</p>
                 </div>
               </div>
-
-              <div className="directory-count">
-                <p style={{ color: "#113250", marginRight: "0.5rem", fontWeight: "bold" }}>Total de colaboradores y colaboradoras:</p>
-                <p style={{ color: "#75AAD3", fontWeight: "bold" }}>{pageLength}</p>
-              </div>
             </div>
+          </div>
+          <div className="emDirectory-input">
+            <input
+              id="search"
+              name="searchpost"
+              type="text"
+              placeholder="Buscar empleados por nombre..."
+              className="emDirectory-input-search"
+              value={search}
+              onChange={onSearchChange}
+            />
             <p
               className="dropdown-toggle"
               type="button"
               id="dropdownMenuButton1"
               data-bs-toggle="dropdown"
               aria-expanded="false"
+              style={{ fontWeight: "bold", color: "#75AAD3" }}
             >
-              Filtrar por Area
+              Filtrar por área
             </p>
             <ul className="dropdown-menu dropdown-menu-employee" aria-labelledby="dropdownMenuButton1">
               <li>
@@ -85,17 +84,6 @@ const EmployeeDirectoryForm = ({
               </li>
             </ul>
           </div>
-          <div className="emDirectory-input">
-            <input
-              id="search"
-              name="searchpost"
-              type="text"
-              placeholder="Buscar empleados por nombre..."
-              className="emDirectory-input-search"
-              value={search}
-              onChange={onSearchChange}
-            />
-          </div>
         </div>
         <div className="emDirectory-filter-dep">
           <div className="emDirectory-filter-txt">
@@ -112,33 +100,14 @@ const EmployeeDirectoryForm = ({
         </div>
         <div className="emDirectory-Container">
           <div className="grid-container">
-            {filteredArryPersons().map((person) => {
-              if (contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88) {
-                return person.isActive ? (
-                  <CardEmployee
-                    key={person.personId}
-                    id={person.personId}
-                    name={person.firstName.split(" ")[0] + " " + person.lastName.split(" ")[0]}
-                    // name={person.fullName}
-                    // img={()=> personPhoto(person?.personId)}
-                    position={person.position}
-                    departament={person.Departament.name}
-                    email={person.email.toLowerCase()}
-                    phone={person.phoneNumber}
-                    cel={person.celNumber}
-                    goToProfile={goToProfile}
-                    isActive={person.isActive}
-                  />
-                ) : null;
-              } else {
+            {
+              items.rows?.map((person) => {
                 return (
                   <CardEmployee
                     key={person.personId}
                     id={person.personId}
                     name={person.firstName.split(" ")[0] + " " + person.lastName.split(" ")[0]}
-                    // name={person.fullName}
-                    // img={()=> personPhoto(person?.personId)}
-                    // img={person.photo}
+                    birthday={person.birthdayDate}
                     position={person.position}
                     departament={person.Departament.name}
                     email={person.email.toLowerCase()}
@@ -146,15 +115,32 @@ const EmployeeDirectoryForm = ({
                     cel={person.celNumber}
                     goToProfile={goToProfile}
                     isActive={person.isActive}
-                    isVacation={person.isVacation}
                   />
-                );
-              }
-            })}
+                )
+              })}
           </div>
         </div>
 
-        <div className="emDirectory-btn-cont">
+        <div className="news-pagination-section">
+          <ReactPaginate
+            previousLabel={'<< Anterior'}
+            nextLabel={'Siguiente >>'}
+            breakLabel={'...'}
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            containerClassName={'pagination'}
+            pageClassName={'page-item'}
+            pageLinkClassName={'page-link'}
+            previousClassName={'page-item'}
+            previousLinkClassName={'page-link'}
+            nextClassName={'page-item'}
+            nextLinkClassName={'page-link'}
+            breakLinkClassName={'page-link'}
+            activeClassName={'active'}
+          />
+        </div>
+
+        {/* <div className="emDirectory-btn-cont">
           <div className="emDirectory-btns">
             <button
               onClick={backPage}
@@ -177,7 +163,7 @@ const EmployeeDirectoryForm = ({
               Siguiente
             </button>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

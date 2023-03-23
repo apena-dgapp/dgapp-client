@@ -20,6 +20,18 @@ export const getAllPersons = async () => {
     })
 }
 
+export const getDirectory = async (page,limit,related, departamentList, departament) => {
+    const body = { page,limit,related,departamentList, departament }
+    return fetch(`${process.env.REACT_APP_API}person/getdirectory`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer',
+        }
+    })
+}
+
 export const getPersonIt = async () => {
     return fetch(`${process.env.REACT_APP_API}person/getpersonit`, {
         method: "GET",

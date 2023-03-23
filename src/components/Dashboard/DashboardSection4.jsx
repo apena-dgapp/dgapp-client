@@ -167,7 +167,7 @@ const DashboardSection4 = ({
                                             return (
                                                 <div
                                                     key={index}
-                                                    className="dashboard-section-4-content-calendar"
+                                                    className="dashboard-section-4-content-commemorative"
                                                 >
                                                     <div style={{ backgroundColor: item.color ? item.color : null }} className="dashboard-section-4-event-num">
                                                         <p className="dashboard-section-4-event-txt">
@@ -175,16 +175,13 @@ const DashboardSection4 = ({
                                                         </p>
                                                     </div>
                                                     <div className="dashboard-section-4-event">
-                                                        <p className="dashboard-section-4-event-txt">
-                                                            {item.title}
-                                                        </p>
-                                                        <p className="dashboard-section-4-dates-descrp">
-                                                            {item.description.replace(/(<([^>]+)>)/gi, "")}
-                                                        </p>
-                                                    </div>
-                                                    <div className="dashboard-section-4-employee">
-                                                        <div className="dashboard-section-4-text">
-                                                            <div className="dashboard-section-4-event-date-cont">
+                                                        <div className='dashboard-section-4-commemorative-text'>
+                                                            <div>
+                                                                <p className="dashboard-section-4-event-txt">
+                                                                    {item.title}
+                                                                </p>
+                                                            </div>
+                                                            <div className="">
                                                                 <p className="dashboard-section-4-event-date">
                                                                     {new Date(item.createdAt).toLocaleDateString(
                                                                         "es-ES",
@@ -192,6 +189,22 @@ const DashboardSection4 = ({
                                                                     )}
                                                                 </p>
                                                             </div>
+                                                        </div>
+
+                                                        <p className="dashboard-section-4-dates-descrp">
+                                                            {item.description.replace(/(<([^>]+)>)/gi, "")}
+                                                        </p>
+                                                    </div>
+                                                    <div className="dashboard-section-4-employee">
+                                                        <div className="dashboard-section-4-text">
+                                                            {/* <div className="dashboard-section-4-event-date-cont">
+                                                                <p className="dashboard-section-4-event-date">
+                                                                    {new Date(item.createdAt).toLocaleDateString(
+                                                                        "es-ES",
+                                                                        optionsDate
+                                                                    )}
+                                                                </p>
+                                                            </div> */}
                                                         </div>
                                                         {
                                                             contextState.userRole === 1 || contextState.userRole === 3 ?

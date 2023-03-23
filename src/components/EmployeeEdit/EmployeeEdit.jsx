@@ -18,22 +18,22 @@ function EmployeeEdit() {
   const [departament, setDepartament] = useState("");
   const [reportTo, setReportTo] = useState("");
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
-    documentid: "",
-    cel: "",
+    firstname: location.state.firstName,
+    lastname: location.state.lastName,
+    documentid: location.state.documentId,
+    cel: location.state.celNumber,
     date: "",
-    career: "",
-    code: "",
-    position: "",
+    career: location.state.career,
+    code: location.state.employeeCode,
+    position: location.state.position,
     startedon: "",
-    phone: "",
-    email: "",
-    health: "",
+    phone: location.state.phoneNumber,
+    email: location.state.email,
+    health: location.state.healthInsurance,
     blood: "",
-    emergencyname: "",
-    emergencynumber: "",
-    emergencyrelationship: "",
+    emergencyname: location.state.emergencyName,
+    emergencynumber: location.state.emergencyNumber,
+    emergencyrelationship: location.state.emergencyRelationship,
     contracttype: "",
     contractexpiration: "",
     gender: ""
@@ -130,7 +130,9 @@ function EmployeeEdit() {
   const updateHandlerForm = () => {
     const modifiedAt = new Date();
 
-    if (formData.documentid) {
+    console.log(formData.documentid);
+
+    if (formData.documentid && formData.documentid !== location.state.documentId) {
       if (!validateId) {
         return toast.error(
           "Por favor debes de digitar una CEDULA valida antes de continuar"
@@ -138,7 +140,7 @@ function EmployeeEdit() {
       }
     }
 
-    if (formData.documentid) {
+    if (formData.documentid && formData.documentid !== location.state.documentId) {
       if (formData.documentid.length < 11) {
         return toast.error(
           "El Campo CÉDULA tiene que tener un mínimo de 11 caracteres"
@@ -146,7 +148,7 @@ function EmployeeEdit() {
       }
     }
 
-    if (formData.cel) {
+    if (formData.cel && formData.cel !== location.state.celNumber) {
       if (formData.cel.length < 10) {
         return toast.error(
           "El Campo CELULAR tiene que tener un mínimo de 10 caracteres"
@@ -154,9 +156,9 @@ function EmployeeEdit() {
       }
     }
 
-    if (formData.code) {
+    if (formData.code && formData.code !== location.state.celNumber) {
       const found = person.find(function (element) {
-        return element.employeeCode === formData.code;
+        return element.employeeCode === formData.employeeCode;
       });
 
       if (found) {
@@ -166,7 +168,7 @@ function EmployeeEdit() {
       }
     }
 
-    if (formData.email) {
+    if (formData.email && formData.email !== location.state.email) {
       var regex = /^[^\s@]+@DGAPP\.GOB\.DO$/;
       var result = regex.test(formData.email.toLocaleUpperCase());
       if (result !== true) {
@@ -176,7 +178,7 @@ function EmployeeEdit() {
       }
     }
 
-    if (formData.email) {
+    if (formData.email && formData.email !== location.state.email) {
       const found = person.find(function (element) {
         return element.email === formData.email.toLocaleUpperCase();
       });
@@ -218,45 +220,35 @@ function EmployeeEdit() {
     updatePerson(
       location.state.personId,
       photo ? photo : location.state.photo,
-      formData.firstname ? formData.firstname : location.state.firstName,
-      formData.lastname ? formData.lastname : location.state.lastName,
-      formData.documentid
-        ? formData.documentid
-        : location.state.documentId,
-      formData.cel ? formData.cel : location.state.celNumber,
+      formData.firstname ? formData.firstname : (location.state.firstName !== "" && formData.firstname === "" ? formData.firstname : location.state.firstName),
+      formData.lastname ? formData.lastname : (location.state.lastName !== "" && formData.lastname === "" ? formData.lastname : location.state.lastName),
+      formData.documentid ? formData.documentid : (location.state.documentId !== "" && formData.documentid === "" ? formData.documentid : location.state.documentId),
+      formData.cel ? formData.cel : (location.state.celNumber !== "" && formData.cel === "" ? formData.cel : location.state.celNumber),
+      // formData.date ? formData.date : (location.state.birthdayDate !== "" && formData.date === "" ? formData.date : location.state.birthdayDate),
       formData.date ? formData.date : location.state.birthdayDate,
-      formData.career ? formData.career : location.state.career,
-      formData.code ? formData.code : location.state.employeeCode,
-      formData.position ? formData.position : location.state.position,
+      formData.career ? formData.career : (location.state.career !== "" && formData.career === "" ? formData.career : location.state.career),
+      formData.code ? formData.code : (location.state.employeeCode !== "" && formData.code === "" ? formData.code : location.state.employeeCode),
+      formData.position ? formData.position : (location.state.position !== "" && formData.position === "" ? formData.position : location.state.position),
       departament ? Number(departament) : location.state.departamentId,
       reportTo ? Number(reportTo) : location.state.reportsTo,
+      // formData.startedon ? formData.startedon : (location.state.startedOn !== "" && formData.startedon === "" ? formData.startedon : location.state.startedOn),
       formData.startedon ? formData.startedon : location.state.startedOn,
-      formData.phone ? formData.phone : location.state.phoneNumber,
-      formData.email
-        ? formData.email.toUpperCase()
-        : location.state.email.toUpperCase(),
-      formData.health ? formData.health : location.state.healthInsurance,
+      formData.phone ? formData.phone : (location.state.phoneNumber !== "" && formData.phone === "" ? formData.phone : location.state.phoneNumber),
+      formData.email ? formData.email.toUpperCase() : (location.state.email.toUpperCase() !== "" && formData.email === "" ? formData.email.toUpperCase() : location.state.email.toUpperCase()),
+      formData.health ? formData.health : (location.state.healthInsurance !== "" && formData.health === "" ? formData.health : location.state.healthInsurance),
       contextState.userName,
       modifiedAt,
+      // formData.blood ? formData.blood : (location.state.bloodType !== "" && formData.blood === "" ? formData.blood : location.state.bloodType),
       formData.blood ? formData.blood : location.state.bloodType,
-      formData.emergencyname
-        ? formData.emergencyname
-        : location.state.emergencyName,
-      formData.emergencynumber
-        ? formData.emergencynumber
-        : location.state.emergencyNumber,
-      formData.emergencyrelationship
-        ? formData.emergencyrelationship
-        : location.state.emergencyRelationship,
-      formData.contracttype
-        ? formData.contracttype
-        : location.state.contractType,
-      formData.contractexpiration
-        ? formData.contractexpiration
-        : location.state.contractExpiration,
-      formData.gender
-        ? formData.gender
-        : location.state.gender
+      formData.emergencyname ? formData.emergencyname : (location.state.emergencyName !== "" && formData.emergencyname === "" ? formData.emergencyname : location.state.emergencyName),
+      formData.emergencynumber ? formData.emergencynumber : (location.state.emergencyNumber !== "" && formData.emergencynumber === "" ? formData.emergencynumber : location.state.emergencyNumber),
+      formData.emergencyrelationship ? formData.emergencyrelationship : (location.state.emergencyRelationship !== "" && formData.emergencyrelationship === "" ? formData.emergencyrelationship : location.state.emergencyRelationship),
+      // formData.contracttype ? formData.contracttype : (location.state.contractTypep !== "" && formData.contracttype === "" ? formData.contracttype : location.state.contractType),
+      formData.contracttype ? formData.contracttype : location.state.contractType,
+      // formData.contractexpiration ? formData.contractexpiration : (location.state.contractExpiration !== "" && formData.contractexpiration === "" ? formData.contractexpiration : location.state.contractExpiration),
+      formData.contractexpiration ? formData.contractexpiration : location.state.contractExpiration,
+      // formData.gender ? formData.gender : (location.state.gender !== "" && formData.gender === "" ? formData.gender : location.state.gender)
+      formData.gender ? formData.gender : location.state.gender
     )
       .then((res) => {
         if (res.status === 500) {

@@ -621,7 +621,6 @@ const License = ({ request, profile }) => {
                                         />
                                     </>
                             }
-
                         </div>
                         <div className="license-input">
                             {/* <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? "gainsboro" : null }}>Fecha de Ingreso a DGAPP:</p> */}

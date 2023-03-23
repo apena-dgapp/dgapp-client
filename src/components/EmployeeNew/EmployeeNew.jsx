@@ -143,10 +143,10 @@ function EmployeeNew() {
       return toast.error(
         "El Campo CÉDULA tiene que tener un mínimo de 11 caracteres"
       );
-    } else if (formData.cel === "" || formData.cel === undefined) {
-      return toast.error(
-        "Por favor de llenar el campo CELULAR antes de continuar"
-      );
+      // } else if (formData.cel === "" || formData.cel === undefined) {
+      //   return toast.error(
+      //     "Por favor de llenar el campo CELULAR antes de continuar"
+      //   );
     } else if (formData.cel.length < 10) {
       return toast.error(
         "El Campo CELULAR tiene que tener un mínimo de 10 caracteres"

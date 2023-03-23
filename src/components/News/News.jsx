@@ -239,6 +239,7 @@ const News = () => {
     }
 
     const handlePageClick = (data) => {
+        console.log(data);
         setCurrentPage(data.selected)
     }
 

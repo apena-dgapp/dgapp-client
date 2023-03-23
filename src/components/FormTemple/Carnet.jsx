@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { getOnePerson } from "../../api/person"
 import { SlPencil } from "react-icons/sl";
-import moment from 'moment';
 import * as jsPDF from 'jspdf';
 import { optionsDay, optionsMonth, optionsYear } from "../../utils/optionsArrays"
 import toast from 'react-hot-toast';
 import { sendEmail } from "../../api/email";
-import { apiApproveRRHHLicense, revisionRRHHCarnet, approveSupervisorLicense, createCarnet } from '../../api/form';
+import { revisionRRHHCarnet, ApproveRRHHCarnet, createCarnet } from '../../api/form';
 import ImageCrop from './ImageCrop';
 import { useNavigate } from "react-router-dom";
 import { apiOneFile } from "../../api/files"
@@ -19,8 +18,6 @@ const Carnet = ({ request, profile }) => {
     const [modalActive, setModalActive] = useState(false);
     const [image, setImage] = useState("");
     const [img, setImg] = useState("");
-    const [totalHour, setTotalHour] = useState("");
-    const [totalDays, setTotalDays] = useState("");
     const [signature, setSignature] = useState("");
     const [reportTo, setReportTo] = useState({
         name: "",
@@ -32,32 +29,19 @@ const Carnet = ({ request, profile }) => {
         accessCard: "",
         pinID: "",
         type: "",
-        deliveryDate: "",
         specify: "",
-
-        startHour: "",
-        finalHour: "",
         dayStart: "",
         monthStart: "",
         yearStart: "",
-        dayEnd: "",
-        monthEnd: "",
-        yearEnd: "",
-        totalDaysRequested: "",
-        justification: "",
-        specificJustification: "",
-        reason: "",
-        requestStatus: "",
         generalRemarks: "",
     });
-
 
     useEffect(() => {
 
         let unmounted = false;
 
         if (!unmounted) {
-            apiOneFile("DRH-FO-003-Formulario Solicitud de Lincencias y Permisos. V.0")
+            apiOneFile("DRH-FO-001-Formulario Solicitud de Entrega de Carnet. V.0")
                 .then((res) => {
                     return res.json();
                 })
@@ -103,80 +87,6 @@ const Carnet = ({ request, profile }) => {
         });
     };
 
-    useEffect(() => {
-
-        let unmounted = false;
-
-        if (!unmounted) {
-            const a = moment.duration(formData.startHour);
-            const b = moment.duration(formData.finalHour);
-
-            const c = b.subtract(a);
-            setTotalHour(`${c.hours()}:${c.minutes()}`)
-        }
-
-        return () => {
-            unmounted = true;
-        };
-    }, [formData.startHour, formData.finalHour]);
-
-    useEffect(() => {
-
-        let unmounted = false;
-
-        if (!unmounted) {
-
-            if (formData.dayStart && formData.monthStart && formData.yearStart && formData.dayEnd && formData.monthEnd && formData.yearEnd) {
-                var fecha1 = `${formData.yearStart}-${dayNum(formData.monthStart)}-${formData.dayStart}`;
-                var fecha2 = `${formData.yearEnd}-${dayNum(formData.monthEnd)}-${formData.dayEnd}`;
-
-                setTotalDays(calcBusinessDays(fecha1, fecha2) + " Días Laborables");
-            }
-        }
-
-        return () => {
-            unmounted = true;
-        };
-    }, [formData.dayStart, formData.monthStart, formData.yearStart, formData.dayEnd, formData.monthEnd, formData.yearEnd]);
-
-    function dayNum(month) {
-        if (month === "enero") {
-            return 1
-        } else if (month === "febrero") {
-            return 2
-        } else if (month === "marzo") {
-            return 3
-        } else if (month === "abril") {
-            return 4
-        } else if (month === "mayo") {
-            return 5
-        } else if (month === "junio") {
-            return 6
-        } else if (month === "julio") {
-            return 7
-        } else if (month === "agosto") {
-            return 8
-        } else if (month === "septiembre") {
-            return 9
-        } else if (month === "octubre") {
-            return 10
-        } else if (month === "noviembre") {
-            return 11
-        } else if (month === "diciembre") {
-            return 12
-        }
-    }
-
-    function calcBusinessDays(startDate, endDate) {
-        var day = moment(startDate);
-        var businessDays = 0;
-
-        while (day.isSameOrBefore(endDate, 'day')) {
-            if (day.day() !== 0 && day.day() !== 6) businessDays++;
-            day.add(1, 'd');
-        }
-        return businessDays;
-    }
 
     const requestMenu = () => {
         navigate("/servicios/recursoshumanos/solicitudes");
@@ -241,10 +151,17 @@ const Carnet = ({ request, profile }) => {
     }
 
     const sendFormRRHH = () => {
+        if (formData.deliveryDate === "") {
+            return toast.error("Por favor seleccionar la fecha de entrega del carnet");
+        } else if (formData.generalRemarks === "") {
+            return toast.error("Por favor de escribir las observaciones generales");
+        }
+
         revisionRRHHCarnet(
             request.carnetId,
             formData.generalRemarks,
             profile.fullName,
+            `${formData.dayStart}-${formData.monthStart}-${formData.yearStart}`
         )
             .then((res) => {
                 if (res.status !== 200) {
@@ -267,7 +184,7 @@ const Carnet = ({ request, profile }) => {
                             return toast.error("Error al intentar enviar la solicitud");
                         } else {
                             toast.success("La solicitud se envío exitosamente!");
-                            // requestMenu();
+                            requestMenu();
                         }
                     })
             })
@@ -280,147 +197,90 @@ const Carnet = ({ request, profile }) => {
 
     const approveRRHH = () => {
 
-        // console.log(request);
+        pdf.addImage(img, 'PNG', 10, -30, 585, 830, 'undefined', 'FAST');
+        pdf.setFontSize(10);
 
-        // pdf.addImage(img, 'PNG', 10, -30, 585, 830, 'undefined', 'FAST');
-        // pdf.setFontSize(10);
+        pdf.text(request.name, 180, 170);
+        // pdf.text(request.code, 133, 190);
+        pdf.text(request.documentId, 180, 200);
+        // pdf.text(request.accessCard, 403, 158);
+        // pdf.text(request.pinID, 403, 158);
+        if (request.deliveryDate) {
+            pdf.text(request.deliveryDate.split("-")[0], 428, 233);
+            pdf.text(request.deliveryDate.split("-")[1], 470, 233);
+            pdf.text(request.deliveryDate.split("-")[2], 510, 233);
+        }
 
-        // pdf.text(request.name, 133, 160);
-        // pdf.text(request.position.substring(0, 30), 133, 190);
-        // pdf.text(request.position.substring(30, 100), 133, 202);
-        // pdf.text(request.documentId, 133, 223);
+        if (request.type === "Personal Nuevo Ingreso") {
+            pdf.circle(66, 333, 4.8, 'F')
+        } else if (request.type === "Perdida Involuntaria de Carnet") {
+            pdf.circle(230, 333, 4.8, 'F')
+        } else if (request.type === "Deterioro de Carnet") {
+            pdf.circle(433, 331, 4.8, 'F')
+        } else if (request.type === "Datos Incorrectos") {
+            pdf.circle(66, 362, 4.8, 'F')
+        } else if (request.type === "Cambio de Cargo") {
+            pdf.circle(230, 360, 4.8, 'F')
+        } else if (request.type === "Otro") {
+            pdf.circle(433, 360, 4.8, 'F')
+        }
 
-        // pdf.text(request.reportToName, 403, 158);
-        // pdf.text(request.departament.substring(0, 30), 403, 190);
-        // pdf.text(request.departament.substring(30, 100), 403, 203);
-        // pdf.text(request.requirementDate.split("-")[2], 403, 229);
-        // pdf.text(request.requirementDate.split("-")[1], 440, 229);
-        // pdf.text(request.requirementDate.split("-")[0], 480, 229);
+        if (request.specify) {
+            pdf.text(request.specify.substring(0, 90), 143, 393);
+            pdf.text(request.specify.substring(90, 180), 143, 405);
+            pdf.text(request.specify.substring(180, 270), 143, 416);
+            pdf.text(request.specify.substring(270, 360), 143, 428);
+        }
 
-        // pdf.text(request.type, 175, 308);
+        pdf.text(request.name, 230, 520);
 
-        // if (request.startHour) {
-        //     pdf.text(request.startHour, 132, 348);
-        // }
-        // if (request.finalHour) {
-        //     pdf.text(request.finalHour, 132, 370);
-        // }
-        // if (request.totalHour) {
-        //     pdf.text(request.totalHour, 132, 390);
-        // }
+        pdf.text(currentDate, 355, 535);
 
-        // if (request.startDate) {
-        //     pdf.text(request.startDate.split("-")[2], 478, 308);
-        //     pdf.text(request.startDate.split("-")[1], 520, 308);
-        //     pdf.text(request.startDate.split("-")[0], 560, 308);
-        // }
+        if (request.generalRemarks) {
+            pdf.text(request.generalRemarks.substring(0, 120), 23, 710);
+            pdf.text(request.generalRemarks.substring(120, 240), 23, 720);
+            pdf.text(request.generalRemarks.substring(240, 360), 23, 730);
+            pdf.text(request.generalRemarks.substring(360, 480), 23, 740);
+        }
 
-        // if (request.endDate) {
-        //     pdf.text(request.endDate.split("-")[2], 478, 350);
-        //     pdf.text(request.endDate.split("-")[1], 520, 350);
-        //     pdf.text(request.endDate.split("-")[0], 560, 350);
-        // }
+        var btoa = require('btoa');
+        var out = pdf.output();
+        let url = btoa(out);
 
-        // if (request.totalDaysRequested) {
-        //     pdf.text(request.totalDaysRequested, 478, 390);
-        // }
+        ApproveRRHHCarnet(
+            request.carnetId,
+            profile.signature,
+            "data:application/pdf;base64," + url,
+            currentDate,
+        )
+            .then((res) => {
+                if (res.status !== 200) {
+                    return toast.error("Error al intentar enviar la solicitud");
+                } else {
+                    return res.json();
+                }
+            })
+            .then((data) => {
+                sendEmail(request.email, ["RESTRELLA@DGAPP.GOB.DO", request.reportToEmail], `Solicitud de ${request.type} - ${request.name}-${request.requirementDate}`, `
+                Saludos ${request.name},
 
-        // if (request.justification === "Matrimonio") {
-        //     pdf.rect(23, 438, 8, 10, 'F')
-        // } else if (request.justification === "Licencia por Paternidad") {
-        //     pdf.rect(110, 438, 8, 10, 'F')
-        // } else if (request.justification === "Licencia por Maternidad") {
-        //     pdf.rect(243, 438, 8, 10, 'F')
-        // } else if (request.justification === "Enfermedad") {
-        //     pdf.rect(403, 438, 8, 10, 'F')
-        // } else if (request.justification === "Comisión de Servicios") {
-        //     pdf.rect(110, 462, 8, 10, 'F')
-        // } else if (request.justification === "Cargo a Vacaciones") {
-        //     pdf.rect(243, 462, 8, 10, 'F')
-        // } else if (request.justification === "Otro") {
-        //     pdf.rect(52, 492, 8, 10, 'F')
-        // }
+                La solicitud realizada el dia ${request.requirementDate}, fue concluida.
 
-        // if (request.specificJustification) {
-        //     pdf.text(request.specificJustification.substring(0, 100), 133, 488);
-        //     pdf.text(request.specificJustification.substring(100, 200), 133, 500);
-        //     pdf.text(request.specificJustification.substring(200, 300), 133, 512);
-        // }
-
-        // if (request.reason) {
-        //     pdf.text(request.reason.substring(0, 120), 23, 548);
-        //     pdf.text(request.reason.substring(120, 240), 23, 560);
-        //     pdf.text(request.reason.substring(240, 360), 23, 572);
-        // }
-
-        // if (request.requestStatus === "Aprobada") {
-        //     pdf.rect(45, 610, 8, 10, 'F')
-        // } else if (request.requestStatus === "Rechazada") {
-        //     pdf.rect(156, 609, 8, 10, 'F')
-        // } else if (request.requestStatus === "Remunerada") {
-        //     pdf.rect(267, 609, 8, 10, 'F')
-        // } else if (request.requestStatus === "No Remunerada") {
-        //     pdf.rect(382, 609, 8, 10, 'F')
-        // }
-
-        // pdf.text(request.name, 65, 683);
-        // // if (request.signatureApplicant) {
-        // //     pdf.addImage(request.signatureApplicant, 'PNG', 40, 480, 150, 80);
-        // // }
-
-        // pdf.text(request.reportToName, 485, 683);
-        // // if (request.signatureSupervisor) {
-        // //     pdf.addImage(request.signatureSupervisor, 'PNG', 410, 480, 150, 80);
-        // // }
-
-        // pdf.text(profile.fullName, 250, 683);
-        // // if (profile.signature) {
-        // //     pdf.addImage(profile.signature, 'PNG', 230, 495, 150, 80);
-        // // }
-
-        // if (request.generalRemarks) {
-        //     pdf.text(request.generalRemarks.substring(0, 120), 23, 760);
-        //     pdf.text(request.generalRemarks.substring(120, 240), 23, 772);
-        //     pdf.text(request.generalRemarks.substring(240, 360), 23, 785);
-        // }
-
-        // var btoa = require('btoa');
-        // var out = pdf.output();
-        // let url = btoa(out);
-
-        // apiApproveRRHHLicense(
-        //     request.licenseId,
-        //     profile.signature,
-        //     "data:application/pdf;base64," + url
-        // )
-        //     .then((res) => {
-        //         if (res.status !== 200) {
-        //             return toast.error("Error al intentar enviar la solicitud");
-        //         } else {
-        //             return res.json();
-        //         }
-        //     })
-        //     .then((data) => {
-        //         sendEmail(request.email, ["RESTRELLA@DGAPP.GOB.DO", request.reportToEmail], `Solicitud de ${request.type} - ${request.name}-${request.requirementDate}`, `
-        //         Saludos ${request.name},
-
-        //         La solicitud realizada el dia ${request.requirementDate}, fue concluida.
-
-        //         NOTA: Solicitud adjunta.
-        //         `, `Solicitud de ${request.type} - ${request.name}-${request.requirementDate}.pdf`, url, request.step)
-        //             .then((res) => {
-        //                 if (res.status !== 200) {
-        //                     return toast.error("Error al intentar enviar la solicitud");
-        //                 } else {
-        //                     toast.success("La solicitud se envío exitosamente!");
-        //                     requestMenu();
-        //                 }
-        //             })
-        //     })
-        //     .catch((err) => {
-        //         console.error(err.status);
-        //         toast.error("Error al intentar enviar el formulario");
-        //     });
+                NOTA: Solicitud adjunta.
+                `, `Solicitud de ${request.type} - ${request.name}-${request.requirementDate}.pdf`, url, request.step)
+                    .then((res) => {
+                        if (res.status !== 200) {
+                            return toast.error("Error al intentar enviar la solicitud");
+                        } else {
+                            toast.success("La solicitud se envío exitosamente!");
+                            requestMenu();
+                        }
+                    })
+            })
+            .catch((err) => {
+                console.error(err.status);
+                toast.error("Error al intentar enviar el formulario");
+            });
 
         // pdf.save(`solicitud-vacaciones-${profile.fullName.toLowerCase()}-${currentDate}.pdf`);
     }
@@ -433,7 +293,9 @@ const Carnet = ({ request, profile }) => {
         refInput.current.click();
         setModalActive(!modalActive);
     };
-    console.log(request);
+
+    // console.log(request);
+
     return (
         <>
             <ImageCrop
@@ -482,68 +344,67 @@ const Carnet = ({ request, profile }) => {
                             {/* <input disabled={request.step === "Pending Supervisor" || request.step === "Pending RRHH" || request.step === "Pending Approval" ? true : false} readOnly type="text" defaultValue={request.departament ? request.departament : profile.departament} /> */}
                             <input disabled={true} readOnly type="text" defaultValue={""} />
                         </div>
-                        <div className="vacation-inputs">
-                            <div className="vacation-input">
-                                <p style={{ color: request.step === "" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Fecha de Inicio:</p>
-                                <div className="vacation-input-date">
-                                    {
-                                        request.startDate ? <input name="dayStart" disabled={request.step === "" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.startDate.split("-")[2]} /> :
-                                            <select
-                                                name="dayStart"
-                                                value={formData.dayStart || ""}
-                                                onChange={handlerInputChange}
+
+                        {
+                            request.deliveryDate ?
+                                <div className="vacation-input">
+                                    <p style={{ color: request.step === "" || request.step === "Pending Approval" ? "gainsboro" : null }}>Fecha de Entrega:</p>
+                                    <input name="deliveryDate" disabled={true} readOnly type="text" defaultValue={request.deliveryDate} />
+                                </div> :
+                                <div className="vacation-input">
+                                    <div className="vacation-input-date">
+                                        <p style={{ color: request.step === "" || request.step === "Pending Approval" ? "gainsboro" : null }}>Fecha de Entrega:</p>
+                                        <select
+                                            name="dayStart"
+                                            value={formData.dayStart || ""}
+                                            onChange={handlerInputChange}
+                                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? false : true}
+                                        // onBlur={onBlurTotalDays}
+
+                                        >
+                                            <option disabled={true} value="">Día</option>
+                                            {optionsDay?.map(({ value, id }) => {
+                                                return <option key={id} value={value}>{value}</option>;
+                                            })}
+                                        </select>
+
+                                        <select
+                                            name="monthStart"
+                                            value={formData.monthStart || ""}
+                                            onChange={handlerInputChange}
+                                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? false : true}
+                                        // onBlur={onBlurTotalDays}
+                                        >
+                                            <option disabled={true} value="">Mes</option>
+                                            {optionsMonth?.map(({ value, id }) => {
+                                                return <option key={id} value={value}>{value}</option>;
+                                            })}
+                                        </select>
+
+                                        <select
+                                            name="yearStart"
+                                            value={formData.yearStart || ""}
+                                            onChange={handlerInputChange}
+                                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? false : true}
                                             // onBlur={onBlurTotalDays}
-
-                                            >
-                                                <option disabled={true} value="">Día</option>
-                                                {optionsDay?.map(({ value, id }) => {
-                                                    return <option key={id} value={value}>{value}</option>;
-                                                })}
-                                            </select>
-                                    }
-
-                                    {
-                                        request.startDate ? <input name="monthStart" disabled={request.step === "" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.startDate.split("-")[1]} /> :
-                                            <select
-                                                name="monthStart"
-                                                value={formData.monthStart || ""}
-                                                onChange={handlerInputChange}
-                                            // onBlur={onBlurTotalDays}
-                                            >
-                                                <option disabled={true} value="">Mes</option>
-                                                {optionsMonth?.map(({ value, id }) => {
-                                                    return <option key={id} value={value}>{value}</option>;
-                                                })}
-                                            </select>
-                                    }
-
-                                    {
-                                        request.startDate ? <input name="yearStart" disabled={request.step === "" || request.step === "Pending RRHH" ? true : false} readOnly type="text" defaultValue={request.startDate.split("-")[0]} /> :
-                                            <>
-                                                <select
-                                                    name="yearStart"
-                                                    value={formData.yearStart || ""}
-                                                    onChange={handlerInputChange}
-                                                    // onBlur={onBlurTotalDays}
-                                                    style={{ marginRight: 0 }}
-                                                >
-                                                    <option disabled={true} value="">Año</option>
-                                                    {optionsYear?.map(({ value, id }) => {
-                                                        return <option key={id} value={value}>{value}</option>;
-                                                    })}
-                                                </select>
-                                                <i className="hi hi-outline-pencil-square" />
-                                                <SlPencil
-                                                    size="1.2rem"
-                                                    style={{ marginLeft: "0.3rem", marginTop: "0.3rem" }}
-                                                    color="green"
-                                                />
-                                            </>
-                                    }
-
+                                            style={{ marginRight: 0 }}
+                                        >
+                                            <option disabled={true} value="">Año</option>
+                                            {optionsYear?.map(({ value, id }) => {
+                                                return <option key={id} value={value}>{value}</option>;
+                                            })}
+                                        </select>
+                                        <i className="hi hi-outline-pencil-square" />
+                                        <SlPencil
+                                            size="1.2rem"
+                                            style={{ marginLeft: "0.3rem", marginTop: "0.3rem" }}
+                                            color="green"
+                                        />
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+
+                        }
+
                     </div>
                 </div>
 
@@ -694,15 +555,25 @@ const Carnet = ({ request, profile }) => {
                     <div className='carnet-section3'>
                         <p>
                             Por medio del presente documento, Yo
-                            <span style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
-                                {` ${request.name ? request.name : profile.fullName} `}
-                            </span>
+                            {
+                                request.step === "Pending Approval" && profile.fullName === request.name ? <span style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
+                                    {` ${request.name ? request.name : profile.fullName} `}
+                                </span> : <span style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
+                                    _________________________
+                                </span>
+                            }
+
                             <span>
                                 Certifico haber recibido de parte del Departamento de Recursos Humanos de la  DGAPP el Carnet de identificacion en fecha:
                             </span>
-                            <span style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
-                                {` ${request.requirementDate ? request.requirementDate : currentDate} `}
-                            </span>
+                            {
+                                request.step === "Pending Approval" && profile.fullName === request.name ? <span style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
+                                    {` ${request.requirementDate ? request.requirementDate : currentDate} `}
+                                </span> : <span style={{ fontWeight: "bold", textDecorationLine: "underline" }}>
+                                    ________________
+                                </span>
+                            }
+
                             <span>
                                 confirmando que acepto los lineamientos establecidos en el referido Documento.
                             </span>
@@ -715,7 +586,7 @@ const Carnet = ({ request, profile }) => {
                     {/* <p>4. Firmas Correspondientes (Click al icono para cargar firma)</p> */}
                 </div>
                 <div className="carnet-section4">
-                    <div className="vacation-section4-line">
+                    <div className="carnet-section4-line">
 
                         {
                             // request.signatureApplicant ? <img className='vacation-signature-applicant' src={request.signatureApplicant} alt='signature' /> : <img className='vacation-signature-applicant' src={profile.signature} alt='signature' />
@@ -726,24 +597,15 @@ const Carnet = ({ request, profile }) => {
                         <p style={{ color: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : "#0D2F4C", backgroundColor: request.step === "Pending Supervisor" || request.step === "Pending RRHH" ? "gainsboro" : null }}>Firma de la Persona Solicitante</p>
                     </div>
 
-                    {/* <div className="vacation-section4-line">
-
-                        {
-                            request.signatureRRHH ? <img className='vacation-signature-rrhh' src={request.signatureRRHH} alt='signature' /> : (request.step === "Pending Approval" && profile.position === "Directora de Recursos Humanos" ?
-                                <img className='vacation-signature-rrhh' src={profile.position === "Directora de Recursos Humanos" && request.step === "Pending Approval" ? profile.signature : null} alt='signature' /> : null)
-                        }
-                        <span style={{ color: profile.position !== "Directora de Recursos Humanos" || request.step !== "Pending Approval" ? "gainsboro" : null }}>{request.step === "Pending Approval" && profile.position === "Directora de Recursos Humanos" ? profile.fullName : null}</span>
-                        <div className="vacacion-section4-canvas"></div>
-                        <p style={{ color: profile.position !== "Directora de Recursos Humanos" || request.step !== "Pending Approval" ? "gainsboro" : null, backgroundColor: profile.position !== "Directora de Recursos Humanos" || request.step !== "Pending Approval" ? "gainsboro" : null }}>Departamento de Recursos Humanos</p>
-                    </div> */}
-
-                    <div className="vacation-section4-line">
+                    <div className="carnet-section4-line">
                         {
                             // request.signatureRRHH ? <img className='vacation-signature-supervisor' src={request.signatureRRHH} alt='signature' /> : (request.step === "Pending RRHH" && profile.position === "Directora de Recursos Humanos" ?
                             //     <img className='vacation-signature-supervisor' src={profile.position === "Directora de Recursos Humanos" && request.step === "Pending RRHH" ? profile.signature : null} alt='signature' /> : null)
                         }
-
-                        <span style={{ color: request.step !== "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? "gainsboro" : "#0D2F4C" }}>{request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? profile.fullName : null} </span>
+                        {
+                            request.rrhhName ? <span>{request.rrhhName}</span> :
+                                <span style={{ color: request.step !== "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? "gainsboro" : "#0D2F4C" }}>{request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? profile.fullName : null} </span>
+                        }
                         <div className="vacacion-section4-canvas"></div>
                         <p style={{ color: request.step !== "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? "gainsboro" : "#0D2F4C", background: request.step !== "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? "gainsboro" : null }}>Departamento RRHH</p>
                     </div>
@@ -784,9 +646,9 @@ const Carnet = ({ request, profile }) => {
                         ENVIAR
                     </button> : <button
                         onClick={approveRRHH}
-                        className={profile.position !== "Directora de Recursos Humanos" ? "btn-disabled" : "btn-active"}
-                        disabled={profile.position !== "Directora de Recursos Humanos" ? true : false}
-                    >APROBAR</button>
+                        className={request.step === "Pending Approval" && profile.fullName === request.name ? "btn-active" : "btn-disabled"}
+                        disabled={request.step === "Pending Approval" && profile.fullName === request.name ? false : true}
+                    >ENTREGADO</button>
                 }
 
             </div>

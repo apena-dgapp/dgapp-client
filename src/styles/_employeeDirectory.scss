@@ -1,8 +1,75 @@
-.emDirectory-Container {
+.emDirectory-input-cont {
+    width: 100%;
     display: flex;
     justify-content: center;
-    width: 100%;
+    margin-top: 3rem;
+}
+
+.emDirectory-input {
+    width: 80%;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
+    // background-color: red;
+    p{
+        width: 10.5rem;
+        // color: red !important;
+        text-align: center;
+        // margin-left: 1rem !important;
+        // background-color: #0D2F4C;
+    }
+}
+
+.emDirectory-input-search {
+    border-radius: 0.6vw;
+    width: 49%;
+    height: 2.5rem;
+    border: #113250 solid 1px;
+    padding-left: 2rem;
+    font-size: 1rem;
+    outline: none;
+}
+
+.emDirectory-btn-cont {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.emDirectory-card-inf{
+    width: 12.5rem;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    // background-color: red;
+}
+
+.emDirectory-btns {
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+}
+
+.emDirectory-input-search-cont {
+    // text-align:start;
+    margin-left: 9.9rem;
+    position: absolute;
+    width: 1.5rem;
+    margin-top: 2.9rem;
+    // margin-left: 0.3rem;
+    // background-color: red;
+}
+
+.emDirectory-Container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+    // background-color: red;
 }
 
 .emDirectory-cont {
@@ -49,72 +116,15 @@
 }
 
 .grid-container {
+    width: 100%;
     display: grid;
     // background-color: red;
     grid-template-columns: 25% 25% 25% 25%;
-    width: 80%;
-}
-
-.grid-card:hover {
-    border: blue solid 15px;
-}
-
-.emDirectory-input-cont {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    // margin-top: 2.5rem;
-    // background-color: red;
-}
-
-.emDirectory-input {
-    display: flex;
-    width: 80%;
-    margin-bottom: 2rem;
-    // z-index: 1;
 }
 
 .dropdown-toggle{
-    align-self: flex-end;
+    // align-self: flex-end;
     margin-bottom: 0;
-}
-
-.emDirectory-input-search {
-    border-radius: 0.6vw;
-    width: 99%;
-    height: 2.5rem;
-    border: gray solid 1px;
-    padding-left: 2rem;
-    font-size: 1rem;
-    outline: none;
-}
-
-.emDirectory-btn-cont {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3rem;
-}
-
-.emDirectory-btns {
-    display: flex;
-    width: 80%;
-    justify-content: space-evenly;
-}
-
-.emDirectory-input-search-cont {
-    // text-align:start;
-    margin-left: 9.9rem;
-    position: absolute;
-    width: 1.5rem;
-    margin-top: 2.9rem;
-    // margin-left: 0.3rem;
-    // background-color: red;
-}
-
-.emDirectory-input-search {
-    padding-right: 1rem;
 }
 
 ///employee card 
@@ -122,6 +132,7 @@
     width: 18rem;
     // height: 30rem;
     margin-bottom: 3rem;
+    // background-color: blue;
 }
 
 .emDirectory-card-cont {
@@ -137,10 +148,10 @@
 }
 
 .emDirectory-card-img {
-    width: 10rem;
-    height: 10rem;
+    width: 8rem;
+    height: 8rem;
     border-radius: 5rem;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     // margin-right: 1.5rem;
     object-fit: cover;
     border: 0.2rem solid #8CB2C4;
@@ -204,12 +215,14 @@
 
 .emDirectory-dropdown {
     position: absolute;
-    width: 89%;
+    width: 79%;
     display: flex;
-    justify-content: flex-end;
-    margin-top: 0.9rem;
+    justify-content: space-between;
+    margin-top: -3rem;
     // margin-bottom: 0.5rem;
+    // background-color: red;
 }
+
 
 .emDirectory-filter-dep {
     width: 100%;
@@ -288,92 +301,88 @@
 
 //MEDIAS QUERIES
 
-//Phone X
-@media screen and (max-width:420px) {
-
-    .emDirectory-cont {
-        height: 9rem;
-    }
-
-    .emDirectory-dropdown {
-        margin-top: 1.5rem !important;
-    }
-
-    .dropdown-toggle {
-        font-size: 0.8rem;
-        margin-bottom: 0;
-    }
-
-    .emDirectory-input-search {
-        height: 2rem !important;
-        font-size: 0.8rem !important;
-    }
-
-    .emDirectory-input-search-cont {
-        margin-left: 2.9rem !important;
-        margin-top: 2.7rem !important;
-    }
-
-    .emDirectory-btns {
-        display: flex;
-        width: 77%;
-        justify-content: space-between;
-
-        button {
-            width: 8rem;
-            height: 2rem;
-            font-size: 1rem;
-        }
-    }
-
-}
-
-//Phone 12/13 Pro Mas
-@media screen and (min-width: 421px) and (max-width: 720px) {
-    .emDirectory-cont {
-        height: 9rem;
-    }
-
-    .emDirectory-dropdown {
-        margin-top: 1.5rem !important;
-    }
-
-    .dropdown-toggle {
-        font-size: 0.8rem;
-        margin-bottom: 0;
-    }
-
-    .emDirectory-input-search {
-        height: 2rem !important;
-        font-size: 0.8rem !important;
-    }
-
-    .emDirectory-input-search-cont {
-        margin-left: 2.9rem !important;
-        margin-top: 2.7rem !important;
-    }
-
-    .emDirectory-btns {
-        display: flex;
-        width: 68%;
-        justify-content: space-between;
-
-        button {
-            width: 8rem;
-            height: 2rem;
-            font-size: 1rem;
-        }
-    }
-
-}
-
-//Ipad
-@media screen and (min-width: 721px) and (max-width: 1020px) {
-    .emDirectory-input-search-cont {
-        margin-left: 5.5rem !important;
-        margin-top: 2.9rem !important;
-    }
-}
-
 //laptop generic
-@media screen and (min-width: 1021px) and (max-width: 1320px) {}
+@media screen and (min-width: 1279px) and (max-width:1365px)  {
+    ///employee card 
+    .emDirectory-card {
+        width: 15rem;
+        // height: 30rem;
+        margin-bottom: 3rem;
+        // background-color: blue;
+    }
+
+    .emDirectory-card-cont {
+        min-height: 27rem;
+        max-height: 27rem;
+    }
+    
+    .emDirectory-card-img {
+        width: 7rem;
+        height: 7rem;
+        border-radius: 5rem;
+    }
+    
+    .emDirectory-input-search {
+        height: 2rem;
+    }
+    .emDirectory-dropdown {
+        width: 80%;
+    }
+
+}
+
+//laptop yelissa
+@media screen and (min-width: 1366px ) and (max-width:1367px) {
+        ///employee card 
+        .emDirectory-card {
+            width: 16rem;
+            // height: 30rem;
+            margin-bottom: 3rem;
+            // background-color: blue;
+        }
+    
+        .emDirectory-card-cont {
+            min-height: 27rem;
+            max-height: 27rem;
+        }
+        
+        .emDirectory-card-img {
+            width: 7rem;
+            height: 7rem;
+            border-radius: 5rem;
+        }
+        
+        .emDirectory-input-search {
+            height: 2rem;
+        }
+        .emDirectory-dropdown {
+            width: 80%;
+        }
+    
+    }
+    
+
+    //Monitor cesar
+@media screen and (min-width: 1920px) and (max-width:1921px){
+    // .emDirectory-input-cont {
+    //     width: 8%;
+    // }
+    .emDirectory-dropdown {
+        width: 70%;
+    }
+    .emDirectory-input {
+        width: 70%;
+        p{
+            width: 14.5rem;
+        }
+    }
+
+    .emDirectory-filter-dep {
+        width: 88.5%;
+    }
+
+    .emDirectory-Container {
+        width: 70%;
+    }
+}
+    

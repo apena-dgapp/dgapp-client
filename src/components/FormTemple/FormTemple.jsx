@@ -175,7 +175,6 @@ const FormTemple = () => {
     useEffect(() => {
 
         let unmounted = false;
-        console.log(location.pathname?.split("/")[4]);
 
         if (!unmounted) {
             if (location.pathname?.split("/")[4] === "vacaciones") {
@@ -222,7 +221,7 @@ const FormTemple = () => {
                     </div>
                     <div className="form-header-menu">
                         <div className="form-header-menu-text">
-                            <p style={{ fontWeight: "bold" }}>Codigo:</p>
+                            <p style={{ fontWeight: "bold" }}>Código:</p>
                             <p>{header.code}</p>
                         </div>
                         <div className="form-header-menu-text">

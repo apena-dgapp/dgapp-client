@@ -16,11 +16,11 @@ const Attendance = ({ setHeader }) => {
     const optionsType = [
         {
             id: "1",
-            value: "interna",
+            value: "Interna",
         },
         {
             id: "2",
-            value: "externa",
+            value: "Externa",
         }
     ]
 
@@ -51,7 +51,7 @@ const Attendance = ({ setHeader }) => {
         let unmounted = false;
 
         if (!unmounted) {
-            apiOneFile(formData.type === "interna" ? "CAL-FO-003 -Formulario Lista de Asistencia Interna. V.0." : "CAL-FO-004 -Formulario Lista de Asistencia Externa. V.0.")
+            apiOneFile(formData.type === "Interna" ? "CAL-FO-003 -Formulario Lista de Asistencia Interna. V.0." : "CAL-FO-004 -Formulario Lista de Asistencia Externa. V.0.")
                 .then((res) => {
                     return res.json();
                 })
@@ -73,13 +73,13 @@ const Attendance = ({ setHeader }) => {
         let unmounted = false;
 
         if (!unmounted) {
-            if (formData.type === "interna") {
+            if (formData.type === "Interna") {
                 setHeader({
                     code: "CAL-FO-003",
                     date: "3/8/2022",
                     version: "0"
                 })
-            } else if (formData.type === "externa") {
+            } else if (formData.type === "Externa") {
                 setHeader({
                     code: "CAL-FO-004",
                     date: "3/8/2022",
@@ -119,7 +119,7 @@ const Attendance = ({ setHeader }) => {
             <div className='vacation-container'>
                 {/* SECTION-1 */}
                 <div className="vacation-header">
-                    <p>Por favor de llenar los campos</p>
+                    <p>Favor de llenar los siguientes campos</p>
                 </div>
                 <div className="vacation-content">
                     <div className="vacation-inputs">

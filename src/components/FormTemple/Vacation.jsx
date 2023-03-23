@@ -533,9 +533,9 @@ const Vacation = ({ profile, directorRRHH, request }) => {
             />
             <div className='vacation-container'>
                 {/* SECTION-1 */}
-                <div className="vacation-status">
+                {/* <div className="vacation-status">
                     <p>Actualmente, esta solicitud está pendiente {status}</p> : null
-                </div>
+                </div> */}
                 <div className="vacation-header">
                     <p>Información del Personal Solicitante</p>
                 </div>
