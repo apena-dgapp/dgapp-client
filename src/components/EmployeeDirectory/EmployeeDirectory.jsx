@@ -35,7 +35,6 @@ const EmployeeDirectory = () => {
           setItems(res);
           setPageCount(res.count / 8);
           if (searchDep !== "" || searchDep !== "todos") {
-            console.log("klok1");
             setMale(res.rows?.filter((item) => item.gender === "Masculino"));
             setFemale(res.rows?.filter((item) => item.gender === "Femenino"));
           }

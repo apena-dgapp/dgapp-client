@@ -4,8 +4,9 @@ import { shortDate } from '../../utils/shortDate';
 import { replaceTxt } from "../../utils/textLink.js";
 import { FiSend, FiHeart } from "react-icons/fi";
 import { FaRegComment } from "react-icons/fa";
+import { BsFileEarmarkArrowUpFill } from "react-icons/bs";
 
-const DashboardSection7 = ({ tweets, instagram }) => {
+const DashboardSection7 = ({ tweets, instagram, jsonUploadToggle }) => {
 
     useEffect(() => {
         const script = document.createElement("script");
@@ -13,7 +14,7 @@ const DashboardSection7 = ({ tweets, instagram }) => {
         document.getElementsByClassName("twitter-embed")[0].appendChild(script);
     }, []);
 
-
+    console.log(instagram);
     return (
         <>
             <div className="dashboard-section-7">
@@ -66,57 +67,69 @@ const DashboardSection7 = ({ tweets, instagram }) => {
                         <span></span>
                     </div>
                     <div className="dashboard-section-7-section">
-                        <p>INSTAGRAM</p>
+                        <div className="dashboard-section-7-section-upload">
+                            <p>INSTAGRAM</p>
+                            <span>
+                                <i className="fa fa-regcomment" />
+                                <BsFileEarmarkArrowUpFill
+                                    className="dashboard-section-7-section-instagram-icon"
+                                    size="1.2rem"
+                                    style={{ marginLeft: "1rem" }}
+                                    onClick={jsonUploadToggle}
+                                />
+                            </span>
+                        </div>
+
                         <div className="dashboard-section-7-section-cont">
                             {
-                                // instagram?.map((item, key) => {
-                                //     return (
-                                //         key < 1 ? <a key={key} href={item.permalink} target="_blank" rel="noreferrer" className="dashboard-section-7-section-instagram">
-                                //             <div className="dashboard-section-7-section-instagram-logo">
-                                //                 <img src={Images.dgappicon} alt="" />
-                                //                 <p>dgapprd</p>
-                                //             </div>
-                                //             <div className="dashboard-section-7-section-instagram-img">
-                                //                 {
-                                //                     item?.media_type === "VIDEO" ? <iframe title='video' src={item?.media_url} frameborder="0" /> : <img src={item?.media_url} alt="" />
-                                //                 }
-                                //                 <div className="dashboard-section-7-section-instagram-text">
-                                //                     <p className="">
-                                //                         {replaceTxt(item.caption)}
-                                //                     </p>
-                                //                 </div>
-                                //                 <div className="dashboard-section-7-section-instagram-icons">
-                                //                     <span>
-                                //                         <i className="fi fi-heart" />
-                                //                         <FiHeart
-                                //                             className="dashboard-section-7-section-instagram-icon"
-                                //                             size="1.2rem"
-                                //                         />
-                                //                     </span>
-                                //                     <span>
-                                //                         <i className="fa fa-regcomment" />
-                                //                         <FaRegComment
-                                //                             className="dashboard-section-7-section-instagram-icon"
-                                //                             size="1.2rem"
-                                //                         />
-                                //                     </span>
-                                //                     <span>
-                                //                         <i className="fi fi-send" />
-                                //                         <FiSend
-                                //                             className="dashboard-section-7-section-instagram-icon"
-                                //                             size="1.2rem"
-                                //                         />
-                                //                     </span>
-                                //                 </div>
+                                instagram?.data.map((item, key) => {
+                                    return (
+                                        key < 1 ? <a key={key} href={item.permalink} target="_blank" rel="noreferrer" className="dashboard-section-7-section-instagram">
+                                            <div className="dashboard-section-7-section-instagram-logo">
+                                                <img src={Images.dgappicon} alt="" />
+                                                <p>dgapprd</p>
+                                            </div>
+                                            <div className="dashboard-section-7-section-instagram-img">
+                                                {
+                                                    item?.media_type === "VIDEO" ? <iframe title='video' src={item?.media_url} frameborder="0" /> : <img src={item?.media_url} alt="" />
+                                                }
+                                                <div className="dashboard-section-7-section-instagram-text">
+                                                    <p className="">
+                                                        {replaceTxt(item.caption)}
+                                                    </p>
+                                                </div>
+                                                <div className="dashboard-section-7-section-instagram-icons">
+                                                    <span>
+                                                        <i className="fi fi-heart" />
+                                                        <FiHeart
+                                                            className="dashboard-section-7-section-instagram-icon"
+                                                            size="1.2rem"
+                                                        />
+                                                    </span>
+                                                    <span>
+                                                        <i className="fa fa-regcomment" />
+                                                        <FaRegComment
+                                                            className="dashboard-section-7-section-instagram-icon"
+                                                            size="1.2rem"
+                                                        />
+                                                    </span>
+                                                    <span>
+                                                        <i className="fi fi-send" />
+                                                        <FiSend
+                                                            className="dashboard-section-7-section-instagram-icon"
+                                                            size="1.2rem"
+                                                        />
+                                                    </span>
+                                                </div>
 
-                                //             </div>
-                                //             <div className="dashboard-section-7-section-instagram-likes">
-                                //                 <p>32 personas le han dado me gusta</p>
-                                //                 <p style={{ color: "gray", fontWeight: "normal" }}>{shortDate(item.timestamp)}</p>
-                                //             </div>
-                                //         </a> : null
-                                //     )
-                                // })
+                                            </div>
+                                            <div className="dashboard-section-7-section-instagram-likes">
+                                                <p>32 personas le han dado me gusta</p>
+                                                <p style={{ color: "gray", fontWeight: "normal" }}>{shortDate(item.timestamp)}</p>
+                                            </div>
+                                        </a> : null
+                                    )
+                                })
                             }
                             {/* <div className="dashboard-section-7-section-instagram">
                                 <div className="dashboard-section-7-section-instagram-logo">

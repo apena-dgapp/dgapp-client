@@ -1,6 +1,15 @@
 import React, { useEffect, useState, useContext, useRef } from "react";
 import DashboardForm from "./DashboardForm";
-import { getPost, getDataCarousel, getPostMultimedia, getPostMultimediaMain, expirationNoticies, expirationPost, updatePost, disabledPost } from "../../api/post";
+import {
+  getPost,
+  getDataCarousel,
+  getPostMultimedia,
+  getPostMultimediaMain,
+  expirationNoticies,
+  expirationPost,
+  updatePost,
+  disabledPost
+} from "../../api/post";
 import { incrementClick } from '../../api/tags';
 import { getNews } from '../../api/news';
 import { getFiles } from "../../api/post";
@@ -10,7 +19,6 @@ import { viewUpdate } from "../../api/post";
 import { useNavigate } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import DashboardPopup from "./DashboardPopup";
-// import Viewer from "react-viewer";
 import ImageViewer from "../../common/components/ImageViewer/ImageViewer";
 import { getQuiz, expirationQuiz, sendAnswer } from "../../api/quiz";
 import GlobalContext from "../../context/GlobalContext";
@@ -20,9 +28,8 @@ import { EditorState, ContentState, convertFromHTML } from "draft-js";
 import { convertToHTML } from "draft-convert";
 import { getBase64 } from "../../utils/blobManager";
 import EditCardModal from "../../common/components/Card/EditCardModal";
-import { getAllPost } from "../../api/instagram";
-// import { getTweets } from "../../api/tweets";
-// import { TwitterApi } from 'twitter-api-v2';
+import JsonUpload from "../../common/components/JsonUpload/JsonUpload";
+import { upload, getJson } from "../../api/instagram.js"
 
 const Dashboard = () => {
   const [contextState, ,] = useContext(GlobalContext);
@@ -43,8 +50,12 @@ const Dashboard = () => {
   const [arrayImg, setArrayImg] = useState("");
   const [notices, setNotices] = useState([]);
   // const [tweets, setTweets] = useState([]);
-  const [instagram, setInstagram] = useState([]);
+  const [activeJson, setActiveJson] = useState(false);
+  const [jsonValue, setJsonValue] = useState("");
+  const [instagram, setInstagram] = useState("");
   const [ansowerCount, setAnsowerCount] = useState({});
+  const [dayPhoto, setDayPhoto] = useState([]);
+  const [monthValue, setMonthValue] = useState([]);
   const [quiz, setQuiz] = useState("");
   const [exists, setExists] = useState("");
   const [commemorative, setCommemorative] = useState("");
@@ -71,39 +82,68 @@ const Dashboard = () => {
     action: ""
   });
 
-  // useEffect(() => {
-  //   let unmounted = false;
-  //   getTweets()
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((res) => {
-  //       if (!unmounted) {
-  //         setTweets(res.tweets);
-  //         console.log(res);
-  //       }
-  //     });
-  //   return () => {
-  //     unmounted = true;
-  //   };
-  // }, []);
+  useEffect(() => {
+    let unmounted = false;
 
-  // useEffect(() => {
-  //   let unmounted = false;
-  //   getAllPost()
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((res) => {
-  //       if (!unmounted) {
-  //         console.log(res);
-  //         setInstagram(res);
-  //       }
-  //     });
-  //   return () => {
-  //     unmounted = true;
-  //   };
-  // }, []);
+    getJson()
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setInstagram(JSON.parse(res.json));
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let unmounted = false;
+
+    getDataCarousel("Foto del Día", 1)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setDayPhoto(res.posts);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    let unmounted = false;
+
+    getDataCarousel("Valor del Mes", 1)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (!unmounted) {
+          setMonthValue(res.posts);
+        }
+      })
+      .catch((err) => {
+        console.error(err.status);
+      });
+
+    return () => {
+      unmounted = true;
+    };
+  }, []);
 
   useEffect(() => {
     let unmounted = false;
@@ -452,6 +492,13 @@ const Dashboard = () => {
       });
   }
 
+  const getImageHandler = (item) => {
+    setArrayImg(item);
+    setVisible(true);
+    setGalleryName(item[0]?.title)
+  }
+
+
   const HandlerAnswer = (selected) => {
     sendAnswer(quiz[0].quizId, contextState.personId, selected)
       .then((res) => {
@@ -644,8 +691,46 @@ const Dashboard = () => {
     setMessage({ title: "", text: "", isActive: !message.isActive })
   };
 
+  const jsonUploadToggle = () => {
+    setActiveJson(!activeJson);
+  };
+  const jsonUploadToggleAceppt = () => {
+    if (!jsonValue) {
+      return toast.error("Por favor insertar un json");
+    }
+
+    upload(jsonValue)
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setActiveJson(!activeJson);
+        setJsonValue("");
+        return toast.success("El json fue cargado exitosamente");
+      })
+      .catch((err) => {
+        return console.log(err.status);
+      });
+  };
+
+  const jsonUploadToggleCancel = () => {
+    setActiveJson(!activeJson);
+    setJsonValue("");
+  };
+
+  const jsonUploadInputChange = (e) => {
+    setJsonValue(e.target.value);
+  };
+
   return (
     <>
+      <JsonUpload
+        activeJson={activeJson}
+        jsonUploadInputChange={jsonUploadInputChange}
+        jsonUploadToggleAceppt={jsonUploadToggleAceppt}
+        jsonUploadToggleCancel={jsonUploadToggleCancel}
+      />
+
       <Message
         message={message}
         btnConfirmm={isEvent ? btnConfirmmActivity : btnConfirmm}
@@ -697,6 +782,7 @@ const Dashboard = () => {
         seletedHandler={seletedHandler}
       />
 
+
       {loading ? (
         <div className="spinner-container">
           <ClipLoader color="#113250" loading={loading} size={150} />
@@ -716,6 +802,7 @@ const Dashboard = () => {
           arrayCarousel={arrayCarousel}
           modalToggle={modalToggle}
           getImagesHandler={getImagesHandler}
+          getImageHandler={getImageHandler}
           notices={notices}
           // tweets={tweets}
           instagram={instagram}
@@ -730,6 +817,9 @@ const Dashboard = () => {
           EditToggle={EditToggle}
           messageToggle={messageToggle}
           messageToggleActivity={messageToggleActivity}
+          dayPhoto={dayPhoto}
+          monthValue={monthValue}
+          jsonUploadToggle={jsonUploadToggle}
         />
       )}
     </>

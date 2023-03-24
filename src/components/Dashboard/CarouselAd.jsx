@@ -6,7 +6,7 @@ import { getDataCarousel } from "../../api/post";
 // import { viewUpdate } from "../../../api/post";
 // import Images from "../../common/images";
 
-const CarouselAd = ({category}) => {
+const CarouselAd = ({ category }) => {
   // const navigate = useNavigate();
   const [arrayCarousel, setArrayCarousel] = useState([]);
 
@@ -32,31 +32,47 @@ const CarouselAd = ({category}) => {
   }, [category]);
 
   return (
-    arrayCarousel.length ?  <AliceCarousel
+    arrayCarousel.length ? <AliceCarousel
       // swipeScrollTolerance={5}
-    //   autoPlay
-        // autoPlayControls
-        autoPlayStrategy="none"
-        autoPlayInterval={2500}
-        animationDuration={2500}
-        animationType="slide"
-        infinite
-        touchTracking={false}
-        // disableDotsControls
-        disableButtonsControls
+      //   autoPlay
+      // autoPlayControls
+      autoPlayStrategy="none"
+      autoPlayInterval={2500}
+      animationDuration={2500}
+      animationType="slide"
+      infinite
+      touchTracking={false}
+      // disableDotsControls
+      disableButtonsControls
     >
-      {arrayCarousel?.map((item, index) => {
+      {arrayCarousel?.slice(0).reverse().map((item, index) => {
         return (
-          <div
-            key={index}
-            // onClick={() => goToPost(item)}
-            className="carouselad-container"
-          >
-            <img alt="" src={item.image} />
-          </div>
+          <>
+            {
+              item.link ? <a
+                key={index}
+                href={item.link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <div className="carouselad-container">
+                  <img key={index} alt="" src={item.image} />
+                </div>
+
+              </a> :
+                <div
+                  key={index}
+                  // onClick={() => goToPost(item)}
+                  className="carouselad-container"
+                >
+                  <img alt="" src={item.image} />
+                </div>
+            }
+          </>
         );
       })}
-    </AliceCarousel>: null
+    </AliceCarousel> : null
     // <div className="dashboard-nodata-cont">
     //   <img src={Images.nodata} alt="" />
     //   <p>{`No se encuentran ${category} recientes`}</p>

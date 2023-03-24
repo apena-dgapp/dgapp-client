@@ -129,7 +129,7 @@ const NewPostForm = ({
                 </div>
               }
               {
-                formData.category === "Otras Noticias" || formData.category === "Portada Principal" ? <div>
+                formData.category === "Otras Noticias" || formData.category === "Portada Principal" || formData.category === "EducAPP" ? <div>
                   <input
                     id="link"
                     name="link"
@@ -174,7 +174,7 @@ const NewPostForm = ({
               <div>
                 {
                   formData.category === "Noticia" || formData.category === "Multimedia" ?
-                    user !== "Yelissa Diaz" ? <div className="tags-container">
+                    user !== "Yelissa Díaz" ? <div className="tags-container">
                       <MultiSelect
                         options={tagsList}
                         value={selected}

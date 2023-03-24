@@ -2,7 +2,7 @@ import React from 'react'
 import CarouselAd from "./CarouselAd";
 import Images from "../../common/images";
 
-const DashboardSection3 = () => {
+const DashboardSection3 = ({ dayPhoto, getImageHandler, monthValue }) => {
   return (
     <>
       <div className="dashboard-section-3-line-cont">
@@ -31,7 +31,14 @@ const DashboardSection3 = () => {
               />
             </div>
             <div className="dashboard-section-3-box">
-              <CarouselAd category="PhotoDay" />
+              <div className="dashboard-section-3-img">
+                <img
+                  key={dayPhoto[0]?.postId}
+                  onClick={() => getImageHandler(dayPhoto)}
+                  src={dayPhoto[0]?.image}
+                  alt=""
+                />
+              </div>
             </div>
           </div>
           <div className="dashboard-section-3-figure">
@@ -43,10 +50,16 @@ const DashboardSection3 = () => {
               />
             </div>
             <div className="dashboard-section-3-box">
-              <CarouselAd category="ValueMonth" />
+              <div className="dashboard-section-3-img">
+                <img
+                  key={monthValue[0]?.postId}
+                  onClick={() => getImageHandler(monthValue)}
+                  src={monthValue[0]?.image}
+                  alt=""
+                />
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </>

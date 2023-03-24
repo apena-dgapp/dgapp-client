@@ -82,7 +82,7 @@ const RoutesComponent = () => {
           element={contextState.token ? <FormTemple /> : <Login />}
         />
         {
-          contextState.personId === 2 || contextState.personId === 88 || contextState.userRole === 1 ?
+          contextState.personId === 2 || contextState.personId === 88 || contextState.personId === 115 || contextState.userRole === 1 ?
             <Route
               path={`/perfil/editar/:name`}
               element={contextState.token ? <EmployeeEdit /> : <Login />}
@@ -156,7 +156,7 @@ const RoutesComponent = () => {
         }
 
         {
-          contextState.personId === 2 || contextState.personId === 88 || contextState.userRole === 1 ?
+          contextState.personId === 2 || contextState.personId === 88 || contextState.personId === 115 || contextState.userRole === 1 ?
             <Route
               path={`/administracion/nuevo-empleado`}
               element={contextState.token ? <EmployeeNew /> : <Login />}

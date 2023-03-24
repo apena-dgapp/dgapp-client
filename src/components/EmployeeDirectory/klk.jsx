@@ -113,7 +113,7 @@ const EmployeeDirectoryForm = ({
                 <div className="emDirectory-Container">
                     <div className="grid-container">
                         {filteredArryPersons().map((person) => {
-                            if (contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88) {
+                            if (contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 || contextState.personId === 115) {
                                 return person.isActive ? (
                                     <CardEmployee
                                         key={person.personId}

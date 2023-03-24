@@ -35,14 +35,16 @@ import btnVacation from "./btn-vacation.png";
 import btnLicense from "./btn-license.png";
 import btnAttendance from "./btn-task.png";
 import btnCarnet from "./btn-carnet.png";
-import mision from "./Misión.png";
-import vision from "./Visión.png";
-import valores from "./Valores.png";
+import mision from "./Mision@3x.png";
+import vision from "./Vision@3x.png";
+import valores from "./Valores@3x.png";
 import educapp from "./Recurso 4@4x.png";
+import all from "./Mision, Vision y Valores INTRANET@3x.png";
 import fotoDelDia from "./Recurso 3@4x.png";
 import valorDelMes from "./Recurso 2@4x.png";
 import notices from "./Recurso 1@4x.png";
 import commemorative from "./wetransfer_recursos_2022-09-21_1856/Recursos/Calendario de Fechas.png";
+import chart from "./Estructura Organizacional DGAPP 2021-17.png";
 
 const Images = {
     iconUser,
@@ -88,7 +90,9 @@ const Images = {
     fotoDelDia,
     valorDelMes,
     notices,
-    commemorative
+    commemorative,
+    chart,
+    all
 }
 
 export default Images;

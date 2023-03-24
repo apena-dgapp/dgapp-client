@@ -28,14 +28,14 @@ const StrategicMap = () => {
             ) : (
                 <div className="strategicmap-container">
                     <div className="strategicmap-img">
-                        <img src={Images.mision} alt="mision" />
+                        <img src={Images.all} alt="mision" />
                     </div>
-                    <div className="strategicmap-img">
+                    {/* <div className="strategicmap-img">
                         <img src={Images.vision} alt="vison" />
                     </div>
                     <div className="strategicmap-img">
                         <img src={Images.valores} alt="mision" />
-                    </div>
+                    </div> */}
                 </div>
             )}
         </>

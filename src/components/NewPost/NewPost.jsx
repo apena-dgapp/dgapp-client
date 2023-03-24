@@ -82,14 +82,22 @@ const NewPost = () => {
     },
     {
       id: "5",
-      value: "Multimedia",
+      value: "Foto del Día",
     },
     {
       id: "6",
-      value: "Otras Noticias",
+      value: "Valor del Mes",
     },
     {
       id: "7",
+      value: "Multimedia",
+    },
+    {
+      id: "8",
+      value: "Otras Noticias",
+    },
+    {
+      id: "9",
       value: "Fechas Conmemorativas",
     }
   ];
@@ -103,7 +111,7 @@ const NewPost = () => {
       })
       .then((res) => {
         if (!unmounted) {
-          if (state?.fullName !== "Yelissa Diaz") {
+          if (state?.fullName !== "Yelissa Díaz") {
             setTagsList(res)
           } else {
             setSelected(res.map(function (item) {
@@ -132,7 +140,7 @@ const NewPost = () => {
         return res.json();
       })
       .then((res) => {
-        if (state?.fullName !== "Yelissa Diaz") {
+        if (state?.fullName !== "Yelissa Díaz") {
           setTagsList(res)
         } else {
           setSelected(res.map(function (item) {
@@ -278,7 +286,14 @@ const NewPost = () => {
 
     if (!formData.category) {
       return toast.error("Por favor agregar un categoría");
-    } else if (!formData.title && formData.category !== "Aviso") {
+    } else if ((!formData.title && formData.category === "Portada Principal")
+      || (!formData.title && formData.category === "Noticia")
+      || (!formData.title && formData.category === "EducAPP")
+      || (!formData.title && formData.category === "Foto del Día")
+      || (!formData.title && formData.category === "Multimedia")
+      || (!formData.title && formData.category === "Otras Noticias")
+      || (!formData.title && formData.category === "Fechas Conmemorativas")
+    ) {
       return toast.error("Por favor agregar un título");
       // } else if (!formData.author) {
       //   return toast.error("Por favor agregar un autor");
@@ -300,6 +315,10 @@ const NewPost = () => {
       return toast.error("Por favor agregar una imagen de portada");
     } else if (!img && formData.category === "EducAPP") {
       return toast.error("Por favor agregar una imagen de portada");
+    } else if (!img && formData.category === "Foto del Día") {
+      return toast.error("Por favor agregar una imagen de portada");
+    } else if (!img && formData.category === "Valor del Mes") {
+      return toast.error("Por favor agregar una imagen de portada");
     } else if (!actionInput && formData.category === "Multimedia") {
       return toast.error("Por favor agregar fotos o Video");
     } else if (actionInput === "imagenes" && formData.category === "Multimedia" && !uploadFiles.imagenes) {
@@ -318,7 +337,7 @@ const NewPost = () => {
       formData.date,
       formData.expiration ? formData.expiration : null,
       formData.category === "Noticia" || formData.category === "Multimedia" ? selected.toString() : "",
-      // formData.category === "Noticia" || formData.category === "Multimedia" ? state?.fullName === "Yelissa Diaz" ? selected : selected.map(function (item) {
+      // formData.category === "Noticia" || formData.category === "Multimedia" ? state?.fullName === "Yelissa Díaz" ? selected : selected.map(function (item) {
       //   return item['value'];
       // }) : [],
       formData.link,
@@ -409,7 +428,7 @@ const NewPost = () => {
             toast.success("Publicacion guardada exitosamente!");
             scrollToTop();
 
-            if (state?.fullName === "Yelissa Diaz") {
+            if (state?.fullName === "Yelissa Díaz") {
               var final = selected.filter(function (item) {
                 return !tags.includes(item.split('.')[0]);
               })

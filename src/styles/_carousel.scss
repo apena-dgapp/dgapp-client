@@ -108,7 +108,7 @@
         height: 16rem;
     }
     .carouselad-container img{
-        height: 19.4rem;
+        height: 19.5rem;
     }
     .alice-carousel__dots {
         margin-top: -4rem;
@@ -122,17 +122,26 @@
         height: 16rem;
     }
     .carouselad-container img{
-        height: 19.4rem;
+        height: 19.5rem;
     }
     .alice-carousel__dots {
         margin-top: -4rem;
     }
 }
 
-//Monitor
-@media screen and (min-width: 1621px) and (max-width: 2367px) {
-
+//Monitor hp 2009m
+@media screen and (min-width: 1600px) and (max-width:1601px){
+    .carouselad-container img {
+        height: 21.5rem;
+    }
 }
+
+@media screen and (min-width: 1920px) and (max-width:1921px){
+    .carouselad-container img {
+        height: 21.5rem;
+    }
+}
+
 
 //laptop David
 // @media screen and (min-width: 2420px) and (max-width: 5121px) {

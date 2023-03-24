@@ -192,7 +192,6 @@ const Carnet = ({ request, profile }) => {
                 console.error(err.status);
                 toast.error("Error al intentar enviar el formulario");
             });
-
     }
 
     const approveRRHH = () => {
@@ -358,7 +357,7 @@ const Carnet = ({ request, profile }) => {
                                             name="dayStart"
                                             value={formData.dayStart || ""}
                                             onChange={handlerInputChange}
-                                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? false : true}
+                                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Díaz" ? false : true}
                                         // onBlur={onBlurTotalDays}
 
                                         >
@@ -372,7 +371,7 @@ const Carnet = ({ request, profile }) => {
                                             name="monthStart"
                                             value={formData.monthStart || ""}
                                             onChange={handlerInputChange}
-                                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? false : true}
+                                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Díaz" ? false : true}
                                         // onBlur={onBlurTotalDays}
                                         >
                                             <option disabled={true} value="">Mes</option>
@@ -385,7 +384,7 @@ const Carnet = ({ request, profile }) => {
                                             name="yearStart"
                                             value={formData.yearStart || ""}
                                             onChange={handlerInputChange}
-                                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? false : true}
+                                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Díaz" ? false : true}
                                             // onBlur={onBlurTotalDays}
                                             style={{ marginRight: 0 }}
                                         >
@@ -604,10 +603,10 @@ const Carnet = ({ request, profile }) => {
                         }
                         {
                             request.rrhhName ? <span>{request.rrhhName}</span> :
-                                <span style={{ color: request.step !== "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? "gainsboro" : "#0D2F4C" }}>{request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? profile.fullName : null} </span>
+                                <span style={{ color: request.step !== "Pending RRHH" && profile.fullName === "Yelissa Díaz" ? "gainsboro" : "#0D2F4C" }}>{request.step === "Pending RRHH" && profile.fullName === "Yelissa Díaz" ? profile.fullName : null} </span>
                         }
                         <div className="vacacion-section4-canvas"></div>
-                        <p style={{ color: request.step !== "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? "gainsboro" : "#0D2F4C", background: request.step !== "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? "gainsboro" : null }}>Departamento RRHH</p>
+                        <p style={{ color: request.step !== "Pending RRHH" && profile.fullName === "Yelissa Díaz" ? "gainsboro" : "#0D2F4C", background: request.step !== "Pending RRHH" && profile.fullName === "Yelissa Díaz" ? "gainsboro" : null }}>Departamento RRHH</p>
                     </div>
                 </div>
                 {/* SECTION-5 */}
@@ -618,13 +617,13 @@ const Carnet = ({ request, profile }) => {
                     <div className='license-section2-2-textarea'>
                         <textarea
                             onChange={handlerInputChange}
-                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? false : true}
+                            disabled={request.step === "Pending RRHH" && profile.fullName === "Yelissa Díaz" ? false : true}
                             name="generalRemarks"
                             maxLength={200}
                             defaultValue={request.generalRemarks ? request.generalRemarks : null}
                         />
                         {
-                            request.step === "Pending RRHH" && profile.fullName === "Yelissa Diaz" ? <>
+                            request.step === "Pending RRHH" && profile.fullName === "Yelissa Díaz" ? <>
                                 <i className="hi hi-outline-pencil-square" />
                                 <SlPencil
                                     size="1.2rem"
@@ -640,8 +639,8 @@ const Carnet = ({ request, profile }) => {
                 {
                     request.step !== "Pending Approval" ? <button
                         onClick={request.step === "Pending RRHH" ? sendFormRRHH : sendFormApplicant}
-                        className={request.step === "Pending RRHH" && profile.fullName !== "Yelissa Diaz" ? "btn-disabled" : "btn-active"}
-                        disabled={request.step === "Pending RRHH" && profile.fullName !== "Yelissa Diaz" ? true : false}
+                        className={request.step === "Pending RRHH" && profile.fullName !== "Yelissa Díaz" ? "btn-disabled" : "btn-active"}
+                        disabled={request.step === "Pending RRHH" && profile.fullName !== "Yelissa Díaz" ? true : false}
                     >
                         ENVIAR
                     </button> : <button

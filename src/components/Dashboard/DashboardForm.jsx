@@ -19,6 +19,7 @@ const DashboardForm = ({
   arrayCarousel,
   modalToggle,
   getImagesHandler,
+  getImageHandler,
   notices,
   tweets,
   instagram,
@@ -32,7 +33,10 @@ const DashboardForm = ({
   contextState,
   EditToggle,
   messageToggle,
-  messageToggleActivity
+  messageToggleActivity,
+  dayPhoto,
+  monthValue,
+  jsonUploadToggle
 }) => {
 
   return (
@@ -81,7 +85,11 @@ const DashboardForm = ({
         />
 
         {/* educapp, foto del dia y valor del mes */}
-        <DashboardSection3 />
+        <DashboardSection3
+          dayPhoto={dayPhoto}
+          monthValue={monthValue}
+          getImageHandler={getImageHandler}
+        />
 
         {/* logo */}
         < DashboardSection6 />
@@ -90,6 +98,7 @@ const DashboardForm = ({
         <DashboardSection7
           tweets={tweets}
           instagram={instagram}
+          jsonUploadToggle={jsonUploadToggle}
         />
       </div>
     </>

@@ -147,10 +147,10 @@ function EmployeeNew() {
       //   return toast.error(
       //     "Por favor de llenar el campo CELULAR antes de continuar"
       //   );
-    } else if (formData.cel.length < 10) {
-      return toast.error(
-        "El Campo CELULAR tiene que tener un mínimo de 10 caracteres"
-      );
+      // } else if (formData.cel.length < 10) {
+      //   return toast.error(
+      //     "El Campo CELULAR tiene que tener un mínimo de 10 caracteres"
+      //   );
     } else if (formData.date === "" || formData.date === undefined) {
       return toast.error(
         "Por favor de llenar el campo FECHA DE NACIMIENTO antes de continuar"

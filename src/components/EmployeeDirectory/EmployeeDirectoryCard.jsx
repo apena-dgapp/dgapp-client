@@ -62,7 +62,7 @@ const CardForm = (props) => {
       <div className="emDirectory-card">
         <div className="emDirectory-card-cont">
           {
-            !props.isActive && (contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88) ? (
+            !props.isActive && (contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 || contextState.personId === 115) ? (
               <div className="d-flex mt-1">
                 <p style={{ fontWeight: "bold", color: "red" }}>Desactivado</p>
                 <i className="md md-phone-in-talk" />
@@ -80,7 +80,7 @@ const CardForm = (props) => {
                 size="1rem"
                 color="#F7C04A"
               />
-            </div> : props.isActive && (contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88) ? (
+            </div> : props.isActive && (contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 || contextState.personId === 115) ? (
               <div className="d-flex mt-1">
                 <p style={{ fontWeight: "bold", color: "#75AAD3" }}>Activo</p>
                 <i className="md md-phone-in-talk" />
@@ -96,7 +96,7 @@ const CardForm = (props) => {
             src={photo?.photo ? photo?.photo : Images.noImg}
             className="emDirectory-card-img"
             alt="..."
-            onClick={() => contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 || props.id === contextState.personId ?
+            onClick={() => contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 || contextState.personId === 115 || props.id === contextState.personId ?
               props.goToProfile({ id: props.id, name: props?.name }) : null}
           />
           <div className="card-body">
@@ -174,7 +174,7 @@ const CardForm = (props) => {
               </p> : null
             }
           </div>
-          {contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 || props.id === contextState.personId ?
+          {contextState.userRole === 1 || contextState.personId === 2 || contextState.personId === 88 || contextState.personId === 115 || props.id === contextState.personId ?
             <button
               onClick={() => props.goToProfile({ id: props.id, name: props?.name })}
               className="emDirectory-card-btn"
