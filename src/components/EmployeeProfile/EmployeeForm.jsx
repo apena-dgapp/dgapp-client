@@ -262,7 +262,7 @@ const EmployeeForm = ({
                 <p className="employee-line" style={{ width: "97%" }}></p>
               </div>
             </div>
-            <div className="employee-upcoming-container">
+            {/* <div className="employee-upcoming-container">
               <div className="employee-info-container">
                 <i className="md md-Email mt-5" />
                 <MdEmail size="1.5em" color="gray" />
@@ -272,22 +272,6 @@ const EmployeeForm = ({
                     ? profile.healthInsurance
                     : "No definido!"}
                 </p>
-              </div>
-            </div>
-            {/* <div className="employee-updates-container">
-              <div className="employee-updates-title">
-                Documentos Personales
-              </div>
-              <div className="employe-line-container">
-                <p className="employee-line" style={{ width: "97%" }}></p>
-              </div>
-            </div>
-            <div className="employee-email-container">
-              <div className="employee-info-container">
-                <p className="employee-contact-email">- Volante de pago</p>
-              </div>
-              <div className="employee-info-container">
-                <p className="employee-contact-email">- Cursos Realizados</p>
               </div>
             </div> */}
           </>

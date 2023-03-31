@@ -203,7 +203,6 @@ const FormTemple = () => {
                     version: "0"
                 })
             }
-
         }
 
         return () => {
@@ -216,7 +215,6 @@ const FormTemple = () => {
             <div className='form-container'>
                 <div className="form-header">
                     <div className="form-header-title">
-
                         <p>{`SOLICITUD ${location.pathname?.split("/")[4] === "carnet" ? "ENTREGA" : ""} DE ${location.pathname.split("/")[4].toUpperCase().replace("%20", " ")} ${location.pathname?.split("/")[4] === "licencias" ? "O PERMISOS" : ""}`}</p>
                     </div>
                     <div className="form-header-menu">

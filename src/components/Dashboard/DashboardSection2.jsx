@@ -41,7 +41,7 @@ const DashboardSection2 = () => {
             />
             <p>POLÍTICAS Y PROCESOS</p>
           </Link>
-          <Link className="dashboard-section-2-btn" to={"/construccion"}>
+          <Link className="dashboard-section-2-btn" to={"/recursos/menu"}>
             <img
               className="dashboard-section-2-btn-img"
               src={Images.recursos}

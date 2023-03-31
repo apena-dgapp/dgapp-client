@@ -1,5 +1,6 @@
 import React from "react";
 import Portal from "../../../utils/Portal";
+import { BiLink } from "react-icons/bi";
 
 const JsonUpload = ({
   children,
@@ -18,8 +19,23 @@ const JsonUpload = ({
             <p className="welcome-modal-title">Subir json de Instagram</p>
 
             <div className="welcome-modal-inputcont">
-              <div className="welcome-input-title">
+              <div className="dashboard-section-7-section-instagram-title">
                 <p>JSON</p>
+                <a
+                  href={"https://graph.instagram.com/me/media?fields=id,caption,location,media_type,media_url,permalink,timestamp&access_token=IGQVJVMkdnNVQ1MjJnUlVtNEJjcFVCOVBPTndoTW93dUI4cjdDVnZAiNlFpQVFvYVJUTG1LLXZApVzRoX0JhamdVUDlVaEd3M3NkaGtHZAzFybjNFMnhZAZA2haVEFrWVh4MHVBR2l6T1Nn&limit=1"}
+                  target="_blank"
+                  rel="noreferrer"
+                  // className="dashboard-section-1-news-content"
+                  style={{ textDecoration: "none" }}
+                >
+                  <i className="fa fa-regcomment" />
+                  <BiLink
+                    className="dashboard-section-7-section-instagram-link"
+                    size="1.2rem"
+                    style={{ marginLeft: "1rem" }}
+
+                  />
+                </a>
               </div>
               <textarea
                 onChange={jsonUploadInputChange}

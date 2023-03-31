@@ -1,0 +1,34 @@
+.resources-buttons-container {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.resources-cover-box{
+    width: 18.95rem;
+    height: 23rem;
+    display: flex;
+    justify-content: center;
+    // background-color: blue;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    img{
+        border: #75AAD3 solid 5px;
+        margin-top: 0.5rem;
+        width: 95%;
+        height: 95%;
+    }
+}
+
+.resources-cover-description{
+    width: 14rem;
+    height: 20rem;
+    position: absolute;
+    // margin-bottom: 2rem;
+    background-color: red;
+    p{
+        margin-bottom: 0;
+    }
+}

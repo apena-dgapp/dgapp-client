@@ -29,8 +29,6 @@ const NewsForm = ({
 }) => {
   const [contextState] = useContext(GlobalContext);
 
-  console.log(pageCount);
-
   return (
     <>
       <div className="news-container">

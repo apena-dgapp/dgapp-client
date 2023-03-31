@@ -36,7 +36,7 @@ const DashboardForm = ({
   messageToggleActivity,
   dayPhoto,
   monthValue,
-  jsonUploadToggle
+  jsonUploadToggle,
 }) => {
 
   return (
@@ -99,6 +99,7 @@ const DashboardForm = ({
           tweets={tweets}
           instagram={instagram}
           jsonUploadToggle={jsonUploadToggle}
+          contextState={contextState}
         />
       </div>
     </>

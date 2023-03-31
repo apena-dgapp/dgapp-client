@@ -45,6 +45,9 @@ import valorDelMes from "./Recurso 2@4x.png";
 import notices from "./Recurso 1@4x.png";
 import commemorative from "./wetransfer_recursos_2022-09-21_1856/Recursos/Calendario de Fechas.png";
 import chart from "./Estructura Organizacional DGAPP 2021-17.png";
+import papeleria from "./documento.png";
+import plantillas from "./powerpoint.png";
+import isotipo from "./Isotipo DGAPP.png";
 
 const Images = {
     iconUser,
@@ -92,7 +95,10 @@ const Images = {
     notices,
     commemorative,
     chart,
-    all
+    all,
+    papeleria,
+    plantillas,
+    isotipo
 }
 
 export default Images;

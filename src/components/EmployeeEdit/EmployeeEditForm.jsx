@@ -170,7 +170,7 @@ function EmployeeEditForm({
                 </select>
               </div>
               <div className="">
-                <p className="edit-input-title">Fecha de Nacimiento</p>
+                <p className="edit-input-title">Fecha de nacimiento</p>
                 <input
                   // value={date}
                   name="date"
@@ -183,7 +183,7 @@ function EmployeeEditForm({
                 />
               </div>
               <div className="">
-                <p className="edit-input-title">Tipo de Sangre</p>
+                <p className="edit-input-title">Tipo de sangre</p>
                 {/* <input
                   onChange={handlerInputChange}
                   name="blood"
@@ -217,7 +217,7 @@ function EmployeeEditForm({
               </div>
               <div className="">
                 <p className="edit-input-title">
-                  Nombre Contacto de Emergencia
+                  Nombre del contacto de emergencia
                 </p>
                 <input
                   onChange={handlerInputChange}
@@ -236,7 +236,7 @@ function EmployeeEditForm({
               </div>
               <div className="">
                 <p className="edit-input-title">
-                  Número Contacto de Emergencia
+                  Número del contacto de emergencia
                 </p>
                 <input
                   onChange={handlerInputChange}
@@ -256,7 +256,7 @@ function EmployeeEditForm({
               </div>
               <div className="">
                 <p className="edit-input-title">
-                  Relación Contacto de Emergencia
+                  Relación con el contacto de emergencia
                 </p>
                 <input
                   onChange={handlerInputChange}
@@ -298,7 +298,7 @@ function EmployeeEditForm({
             <div className="edit-input-cont">
               <div className="edit-inputs">
                 <div className="">
-                  <p className="edit-input-title">Código de Empleado</p>
+                  <p className="edit-input-title">Código de empleado</p>
                   <input
                     // disabled
                     onChange={handlerInputChange}
@@ -367,7 +367,7 @@ function EmployeeEditForm({
                 </div>
 
                 <div className="">
-                  <p className="edit-input-title">Se Reporta</p>
+                  <p className="edit-input-title">Reporta a</p>
                   <select
                     name="reportto"
                     className="edit-input"
@@ -395,7 +395,7 @@ function EmployeeEditForm({
                   </select>
                 </div>
                 <div className="">
-                  <p className="edit-input-title">Inicio Laboral</p>
+                  <p className="edit-input-title">Inicio laboral</p>
                   <input
                     onChange={handlerInputChange}
                     name="startedon"
@@ -439,7 +439,7 @@ function EmployeeEditForm({
                   />
                 </div>
                 <div className="">
-                  <p className="edit-input-title">Seguro Médico</p>
+                  <p className="edit-input-title">Seguro médico</p>
                   <input
                     onChange={handlerInputChange}
                     name="health"
@@ -454,7 +454,7 @@ function EmployeeEditForm({
                   />
                 </div>
                 <div className="">
-                  <p className="edit-input-title">Tipo de Contrato</p>
+                  <p className="edit-input-title">Tipo de contrato</p>
                   <select
                     // defaultValue="Seleccionar un Empleado"
                     name="contracttype"
@@ -477,7 +477,7 @@ function EmployeeEditForm({
                   </select>
                 </div>
                 <div className="">
-                  <p className="edit-input-title">Expiración de Contrato</p>
+                  <p className="edit-input-title">Expiración del contrato</p>
                   <input
                     // value={date}
                     onChange={handlerInputChange}

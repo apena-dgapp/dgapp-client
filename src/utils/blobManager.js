@@ -18,7 +18,6 @@ export const getBase64 = (file) => {
     })
 }
 
-
 // export const base64ToBlob = async (b64, type) => {
 //     const blob = await fetch(`data:${type};base64,${b64}`);
 //     return blob;

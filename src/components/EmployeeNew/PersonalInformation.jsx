@@ -72,7 +72,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
             <div className="input-required">*</div>
           </div>
           <div className="">
-            <p className="edit-input-title">Fecha de Nacimiento</p>
+            <p className="edit-input-title">Fecha de nacimiento</p>
             {/* <DatePicker
               name="date"
               onChange={handlerInputChange}
@@ -92,7 +92,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
             <div className="input-required">*</div>
           </div>
           <div className="">
-            <p className="edit-input-title">Tipo de Sangre</p>
+            <p className="edit-input-title">Tipo de sangre</p>
             <select
               name="blood"
               className="edit-input"
@@ -100,7 +100,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
               defaultValue={"DEFAULT"}
             >
               <option disabled value="DEFAULT">
-                Seleccionar el tipo de Sangre
+                Seleccionar el tipo de sangre
               </option>
               <option>A+</option>
               <option>O+</option>
@@ -140,7 +140,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
             />
           </div>
           <div className="">
-            <p className="edit-input-title">Nombre del Contacto de Emergencia</p>
+            <p className="edit-input-title">Nombre del contacto de emergencia</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}
@@ -152,7 +152,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
             />
           </div>
           <div className="">
-            <p className="edit-input-title">Número del Contacto de Emergencia</p>
+            <p className="edit-input-title">Número del contacto de emergencia</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}
@@ -165,7 +165,7 @@ function PersonalInformation({ handlerInputChange, formData, validateId }) {
             />
           </div>
           <div className="">
-            <p className="edit-input-title">Relación Contacto de Emergencia</p>
+            <p className="edit-input-title">Relación con el contacto de emergencia</p>
             <input
               onChange={handlerInputChange}
               name="emergencyrelationship"

@@ -7,7 +7,6 @@ import { FaUserCog } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { useDetectScroll } from "@smakss/react-scroll-direction";
 
-
 const NavbarForm = ({
     logOut,
     createPost,
@@ -34,7 +33,8 @@ const NavbarForm = ({
     width,
     formTemple,
     modalToggle,
-    multimedia
+    multimedia,
+    policiesProcesses
 }) => {
 
     const [contextState] = useContext(GlobalContext);
@@ -92,8 +92,52 @@ const NavbarForm = ({
                                 <li>
                                     <span onClick={(e) => aboutUSChange(e, "ORGANIGRAMA")}>Organigrama</span>
                                 </li>
-                                <li>
-                                    <span onClick={inConstruction}>Políticas Institucionales</span>
+                                <li style={{ width: width >= 5120 ? "22.5rem" : "15rem", backgroundColor: "transparent" }}>
+                                    <span style={{ width: width >= 5120 ? "22rem" : "11rem" }}>
+                                        Políticas y Procesos
+                                        <i className="io io-md-arrow-dopdown navbar-arrow" />
+                                        <IoMdArrowDropdown
+                                            size={width >= 5120 ? "2.3rem" : "1.3rem"}
+                                            style={{ cursor: "pointer", transform: "rotate(270deg)" }}
+                                        />
+                                    </span>
+                                    <ul style={{ top: "0.8rem", width: width >= 5120 ? "14rem" : "7rem", marginLeft: width >= 5120 ? "23.5rem" : "12.5rem", height: width >= 5120 ? "6.5rem" : "5.2rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "-8px" }} >
+                                        <li style={{ width: width >= 5120 ? "13rem" : "7rem", backgroundColor: "transparent" }}>
+                                            <span onClick={() => policiesProcesses("politicas")} style={{ width: width >= 5120 ? "13rem" : "5.8rem" }}>
+                                                Políticas
+                                            </span>
+                                        </li>
+                                        <li style={{ width: width >= 5120 ? "13rem" : "7rem", backgroundColor: "transparent" }}>
+                                            <span style={{ width: width >= 5120 ? "13rem" : "5.8rem" }}>
+                                                Procesos
+                                                <i className="io io-md-arrow-dopdown navbar-arrow" />
+                                                <IoMdArrowDropdown
+                                                    size={width >= 5120 ? "2.3rem" : "1.3rem"}
+                                                    style={{ cursor: "pointer", transform: "rotate(270deg)" }}
+                                                />
+                                            </span>
+                                            <ul style={{ top: "0.6rem", width: width >= 5120 ? "22rem" : "17.5rem", marginLeft: width >= 5120 ? "12.5rem" : "6.48rem", height: width >= 5120 ? "15rem" : "13.3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "-4px" }}>
+                                                <li>
+                                                    <span onClick={() => policiesProcesses("recursos humanos")}>Recursos Humanos</span>
+                                                </li>
+                                                <li>
+                                                    <span onClick={() => policiesProcesses("planificacion y desarrollo")}>Planificación y Desarrollo</span>
+                                                </li>
+                                                <li>
+                                                    <span onClick={() => policiesProcesses("administracion financiera")}>Administración Financiera</span>
+                                                </li>
+                                                <li>
+                                                    <span onClick={() => policiesProcesses("subdireccion de supervision y gestion")}>Subdirección de Supervisión y Gestión</span>
+                                                </li>
+                                                <li>
+                                                    <span onClick={() => policiesProcesses("subdireccion de promocion")}>Subdirección de Promoción</span>
+                                                </li>
+                                                <li>
+                                                    <span onClick={() => policiesProcesses("subdireccion tecnica")}>Subdirección Técnica</span>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li>
                                     <span onClick={employeedirectory}>Directorio de Empleados</span>
@@ -113,33 +157,6 @@ const NavbarForm = ({
                             <ul className={action === "Servicios" ? show : null}
                                 style={{ width: width >= 5120 ? "23rem" : "12rem", height: width >= 5120 ? "4.5rem" : "3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}
                             >
-                                {/* <li style={{ width: "12rem", backgroundColor: "transparent" }}>
-                                    <span style={{ width: "11rem" }}>
-                                        Depto. Tecnología
-                                        <i className="io io-md-arrow-dopdown navbar-arrow" />
-                                        <IoMdArrowDropdown
-                                            size="1.3rem"
-                                            style={{ cursor: "pointer", transform: "rotate(270deg)" }}
-                                        />
-                                    </span>
-                                    <ul className="" style={{ top: "-0.5rem", width: "6rem", marginLeft: "11.7rem", height: "3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "1px" }}>
-                                        <li style={{ width: "6rem", backgroundColor: "transparent" }}>
-                                            <span style={{ width: "4.8rem" }}>
-                                                Ticket
-                                                <i className="io io-md-arrow-dopdown navbar-arrow" />
-                                                <IoMdArrowDropdown
-                                                    size="1.3rem"
-                                                    style={{ cursor: "pointer", transform: "rotate(270deg)" }}
-                                                />
-                                            </span>
-                                            <ul className="" style={{ top: "-0.6rem", width: "8rem", marginLeft: "5.6rem", height: "3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "1px" }}>
-                                                <li>
-                                                    <span onClick={inConstruction}>Crear Ticket</span>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li> */}
                                 <li style={{ width: width >= 5120 ? "22.5rem" : "12rem", backgroundColor: "transparent" }}>
                                     <span style={{ width: width >= 5120 ? "22rem" : "11rem" }}>
                                         Recursos Humanos
@@ -188,16 +205,16 @@ const NavbarForm = ({
                                     style={{ cursor: "pointer" }}
                                 />
                             </p>
-                            <ul className={action === "Publicaciones" ? show : null} style={{ width: width >= 5120 ? "23rem" : "12rem", height: width >= 5120 ? "12rem" : "7.5rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
+                            <ul className={action === "Publicaciones" ? show : null} style={{ width: width >= 5120 ? "23rem" : "12rem", height: width >= 5120 ? "6.5rem" : "5rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
                                 <li>
                                     <span onClick={news}>Noticias</span>
                                 </li>
                                 <li>
                                     <span onClick={multimedia}>Multimedia</span>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <span onClick={inConstruction}>Contenido Educativo</span>
-                                </li>
+                                </li> */}
                             </ul>
                         </li>
 
@@ -249,7 +266,7 @@ const NavbarForm = ({
                                 </ul>
                             </li>
                         ) : (
-                            contextState.personId === 2 || contextState.personId === 88 || contextState.personId === 115 || contextState.userRole === 1 ?
+                            contextState.personId === 2 || contextState.personId === 88 || contextState.personId === 115 || contextState.userRole === 1 || contextState.personId === 116 ?
 
                                 <li className="class-list admin-hiden" style={{ width: width >= 5120 ? "22.5rem" : "9.5rem" }}>
                                     <p>
@@ -261,9 +278,13 @@ const NavbarForm = ({
                                         />
                                     </p>
                                     <ul style={{ width: "10rem", height: "3rem", backgroundColor: "white", border: "gainsboro solid 1px", borderRadius: "1rem", marginTop: "0.5px" }}>
-                                        <li>
-                                            <span onClick={employeeNew}>Nuevo Empleado</span>
-                                        </li>
+                                        {
+                                            contextState.personId === 116 ? < li >
+                                                <span onClick={register}>Crear Usuario</span>
+                                            </li> : <li>
+                                                <span onClick={employeeNew}>Nuevo Empleado</span>
+                                            </li>
+                                        }
                                     </ul>
                                 </li>
 

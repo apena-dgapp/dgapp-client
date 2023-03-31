@@ -168,8 +168,8 @@ export const revisionRRHHCarnet = async (carnetId, generalRemarks, rrhhName, del
     })
 }
 
-export const ApproveRRHHCarnet = async (carnetId, signatureRRHH, blobPdf, dateReceived) => {
-    const body = {carnetId, signatureRRHH, blobPdf, dateReceived};
+export const ApproveRRHHCarnet = async (carnetId, signatureRRHH, blobPdf, dateReceived, generalRemarks, rrhhName, deliveryDate) => {
+    const body = {carnetId, signatureRRHH, blobPdf, dateReceived, generalRemarks, rrhhName, deliveryDate};
     return fetch(`${process.env.REACT_APP_API}form/approverrhhcarnet`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -179,3 +179,15 @@ export const ApproveRRHHCarnet = async (carnetId, signatureRRHH, blobPdf, dateRe
         }
     })
 }
+
+// export const ApproveRRHHCarnet = async (carnetId, signatureRRHH, blobPdf, dateReceived) => {
+//     const body = {carnetId, signatureRRHH, blobPdf, dateReceived};
+//     return fetch(`${process.env.REACT_APP_API}form/approverrhhcarnet`, {
+//         method: "POST",
+//         body: JSON.stringify(body),
+//         headers: {
+//             "Content-Type": "application/json",
+//             Authorization: 'Bearer',
+//         }
+//     })
+// }

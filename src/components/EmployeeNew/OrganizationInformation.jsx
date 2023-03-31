@@ -63,7 +63,7 @@ function OrganizationInformation({
       <div className="edit-input-cont">
         <div className="edit-inputs">
           <div className="">
-            <p className="edit-input-title">Código de Empleado</p>
+            <p className="edit-input-title">Código de empleado</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}
@@ -101,7 +101,7 @@ function OrganizationInformation({
               defaultValue={"DEFAULT"}
             >
               <option disabled value="DEFAULT">
-                Seleccionar un Departamento
+                Seleccionar un departamento
               </option>
               {departaments
                 ? departaments.map((item, index) => {
@@ -121,7 +121,7 @@ function OrganizationInformation({
           </div>
 
           <div className="">
-            <p className="edit-input-title">Se Reporta</p>
+            <p className="edit-input-title">Reporta a</p>
             <select
               // defaultValue="Seleccionar un Empleado"
               name="reportto"
@@ -131,7 +131,7 @@ function OrganizationInformation({
               defaultValue={"DEFAULT"}
             >
               <option disabled value="DEFAULT">
-                Seleccionar un Empleado
+                Seleccionar un empleado
               </option>
               {person
                 ? person.map((item, index) => {
@@ -150,7 +150,7 @@ function OrganizationInformation({
             <div className="input-required">*</div>
           </div>
           <div className="">
-            <p className="edit-input-title">Inicio Laboral</p>
+            <p className="edit-input-title">Inicio laboral</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}
@@ -189,7 +189,7 @@ function OrganizationInformation({
             <div className="input-required">*</div>
           </div>
           <div className="">
-            <p className="edit-input-title">Seguro Médico</p>
+            <p className="edit-input-title">Seguro médico</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}
@@ -201,7 +201,7 @@ function OrganizationInformation({
             />
           </div>
           <div className="">
-            <p className="edit-input-title">Tipo de Contrato</p>
+            <p className="edit-input-title">Tipo de contrato</p>
             <select
               // defaultValue="Seleccionar un Empleado"
               name="contracttype"
@@ -211,7 +211,7 @@ function OrganizationInformation({
               defaultValue={"DEFAULT"}
             >
               <option disabled value="DEFAULT">
-                Seleccionar el tipo de Contrato
+                Seleccionar el tipo de contrato
               </option>
               <option id="1" value="Contratado">
                 Contratado
@@ -223,7 +223,7 @@ function OrganizationInformation({
             <div className="input-required">*</div>
           </div>
           <div className="">
-            <p className="edit-input-title">Vencimiento de Contrato</p>
+            <p className="edit-input-title">Vencimiento del contrato</p>
             <input
               // id="titleinput"
               onChange={handlerInputChange}

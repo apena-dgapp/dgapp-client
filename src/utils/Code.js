@@ -37,3 +37,4 @@
 //UNIR OBJECTOS
 // const state = Object.assign({ item }, { img });
 
+

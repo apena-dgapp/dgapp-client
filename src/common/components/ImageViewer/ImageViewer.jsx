@@ -23,8 +23,6 @@ const ImageViewer = ({
     }
   }
 
-  console.log(arrayImg);
-
   return (
     <Portal>
       {visible && (

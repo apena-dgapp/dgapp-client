@@ -87,7 +87,6 @@ const Navbar = () => {
         [e.target.name]: e.target.value,
       });
     }
-
   };
 
   const navToggle = () => {
@@ -135,7 +134,6 @@ const Navbar = () => {
   };
 
   const home = () => {
-
     if (active === "menu_items_show") {
       setActive("menu_items");
     }
@@ -155,7 +153,6 @@ const Navbar = () => {
   };
 
   const inConstruction = () => {
-
     if (active === "menu_items_show") {
       setActive("menu_items");
     }
@@ -168,7 +165,6 @@ const Navbar = () => {
   };
 
   const news = () => {
-
     if (active === "menu_items_show") {
       setActive("menu_items");
     }
@@ -178,6 +174,10 @@ const Navbar = () => {
     }
 
     navigate("/publicaciones/noticias/pagina/1", { state: { category: "Noticia" } });
+  };
+
+  const policiesProcesses = (form) => {
+    navigate(`/nosotros/politicas&procesos/${form}`);
   };
 
   const multimedia = () => {
@@ -384,6 +384,7 @@ const Navbar = () => {
         formTemple={formTemple}
         modalToggle={modalToggle}
         multimedia={multimedia}
+        policiesProcesses={policiesProcesses}
       />
     </>
   );

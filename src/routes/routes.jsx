@@ -25,6 +25,9 @@ import RequestMenu from "../components/FormTemple/RequestMenu";
 import News from "../components/News/News";
 import New from "../components/New/New";
 import Multimedia from "../components/Multimedia/Multimedia";
+import PDF from "../common/components/PDF/PDF";
+import PDFForm from "../common/components/PDF/PDFForm";
+import Resources from "../components/Resources/ResourcesMenu";
 
 const RoutesComponent = () => {
   const [contextState] = useContext(GlobalContext);
@@ -46,6 +49,20 @@ const RoutesComponent = () => {
         <Route
           path={`/publicaciones/noticias/pagina/:number`}
           element={contextState.token ? <News /> : <Login />}
+        />
+
+        <Route
+          path={`/recursos/:form`}
+          element={contextState.token ? <Resources /> : <Login />}
+        />
+
+        <Route
+          path={`/nosotros/politicas&procesos/:form/`}
+          element={contextState.token ? <PDF /> : <Login />}
+        />
+        <Route
+          path={`/nosotros/politicas&procesos/:form/:pdf`}
+          element={contextState.token ? <PDFForm /> : <Login />}
         />
         <Route
           path={`/publicaciones/noticias/:title`}
@@ -123,7 +140,7 @@ const RoutesComponent = () => {
         />
 
         {
-          contextState.userRole === 1 ?
+          contextState.userRole === 1 || contextState.personId === 116 ?
             <Route
               path={`/administracion/registrar`}
               element={contextState.token ? <Register /> : <Login />}

@@ -29,7 +29,7 @@ import { convertToHTML } from "draft-convert";
 import { getBase64 } from "../../utils/blobManager";
 import EditCardModal from "../../common/components/Card/EditCardModal";
 import JsonUpload from "../../common/components/JsonUpload/JsonUpload";
-import { upload, getJson } from "../../api/instagram.js"
+import { upload, getJson } from "../../api/instagram"
 
 const Dashboard = () => {
   const [contextState, ,] = useContext(GlobalContext);
@@ -84,7 +84,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     let unmounted = false;
-
     getJson()
       .then((res) => {
         return res.json();
@@ -259,7 +258,6 @@ const Dashboard = () => {
             count[v.selected] = (count[v.selected] || 0) + 1;
           })
           setAnsowerCount(count)
-          // console.log(res);
         }
       })
       .catch((err) => {
@@ -805,7 +803,7 @@ const Dashboard = () => {
           getImageHandler={getImageHandler}
           notices={notices}
           // tweets={tweets}
-          instagram={instagram}
+          instagram={instagram ? instagram : null}
           quiz={quiz}
           HandlerAnswer={HandlerAnswer}
           exists={exists}
