@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const useGetData = (url) => {
+const useGetData = (url, refresh) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const useGetData = (url) => {
     return () => {
       controller.abort()
     }
-  }, [url]);
+  }, [url, refresh]);
 
   return {
     data
