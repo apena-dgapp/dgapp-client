@@ -6,7 +6,9 @@ const PDFForm = () => {
     const [pdfSelected, setPdfSelected] = useState(location?.state?.pdf?.file);
     const [pdfCover, setPdfCover] = useState(location?.state?.pdf?.cover);
     const subCategory = location?.state?.subCategory;
-    // console.log(subCategory);
+
+    // console.log(pdfSelected);
+
     return (
         <>
             <div className="news-container">
@@ -27,13 +29,13 @@ const PDFForm = () => {
                                             <div key={key}
                                                 style={{ marginLeft: item?.file === pdfSelected ? "1rem" : null }} className="pdf-menu-left-text">
                                                 <span
-                                                    style={{ color: item?.file === pdfSelected ? "#113250" : null, display: item?.file === pdfSelected ? "flex" : null }}></span>
+                                                    style={{ color: item?.file === pdfSelected ? "#75AAD3" : null, display: item?.file === pdfSelected ? "flex" : null }}></span>
                                                 <p
                                                     onClick={() => {
                                                         setPdfSelected(item.file);
                                                         setPdfCover(item.cover)
                                                     }}
-                                                    style={{ color: item?.file === pdfSelected ? "#113250" : null, fontWeight: item?.file === pdfSelected ? "bold" : null }}
+                                                    style={{ color: item?.file === pdfSelected ? "#75AAD3" : null, fontWeight: item?.file === pdfSelected ? "bold" : null }}
                                                 >{item?.name}</p>
                                             </div> : null
                                     )
@@ -54,13 +56,13 @@ const PDFForm = () => {
                                                         item.subCategory && sub === item.subCategory ? <div key={key}
                                                             style={{ marginLeft: item?.file === pdfSelected ? "1rem" : null }} className="pdf-menu-left-text">
                                                             <span
-                                                                style={{ color: item?.file === pdfSelected ? "#113250" : null, display: item?.file === pdfSelected ? "flex" : null }}></span>
+                                                                style={{ color: item?.file === pdfSelected ? "#75AAD3" : null, display: item?.file === pdfSelected ? "flex" : null }}></span>
                                                             <p
                                                                 onClick={() => {
                                                                     setPdfSelected(item.file);
                                                                     setPdfCover(item.cover)
                                                                 }}
-                                                                style={{ color: item?.file === pdfSelected ? "#113250" : null, fontWeight: item?.file === pdfSelected ? "bold" : null }}
+                                                                style={{ color: item?.file === pdfSelected ? "#75AAD3" : null, fontWeight: item?.file === pdfSelected ? "bold" : null }}
                                                             >{item?.name}</p>
                                                         </div> : null
                                                     )

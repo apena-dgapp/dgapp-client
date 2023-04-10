@@ -33,7 +33,7 @@ const DashboardSection2 = () => {
             />
             <p>CAPACITACIÓN</p>
           </Link>
-          <Link className="dashboard-section-2-btn" to={"/construccion"}>
+          <Link className="dashboard-section-2-btn" to={"/nosotros/politicas&procesos/menu"}>
             <img
               className="dashboard-section-2-btn-img"
               src={Images.politicas}

@@ -28,6 +28,8 @@ import Multimedia from "../components/Multimedia/Multimedia";
 import PDF from "../common/components/PDF/PDF";
 import PDFForm from "../common/components/PDF/PDFForm";
 import Resources from "../components/Resources/ResourcesMenu";
+import PoliciesAndProcesses from "../components/PoliciesAndProcesses/PoliciesAndProcessesMenu";
+import Processes from "../components/PoliciesAndProcesses/ProcessesMenu";
 
 const RoutesComponent = () => {
   const [contextState] = useContext(GlobalContext);
@@ -55,7 +57,14 @@ const RoutesComponent = () => {
           path={`/recursos/:form`}
           element={contextState.token ? <Resources /> : <Login />}
         />
-
+        <Route
+          path={`/nosotros/politicas&procesos/menu`}
+          element={contextState.token ? <PoliciesAndProcesses /> : <Login />}
+        />
+        <Route
+          path={`/nosotros/politicas&procesos/procesos`}
+          element={contextState.token ? <Processes /> : <Login />}
+        />
         <Route
           path={`/nosotros/politicas&procesos/:form/`}
           element={contextState.token ? <PDF /> : <Login />}

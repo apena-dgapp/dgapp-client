@@ -2,12 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { BsFlag } from "react-icons/bs";
 import { GoLocation } from "react-icons/go";
 import { GiTrophyCup } from "react-icons/gi";
-import {
-  MdArrowForwardIos,
-  MdEmail,
-  MdPhoneInTalk,
-  MdSmartphone,
-} from "react-icons/md";
+import { MdArrowForwardIos, MdEmail, MdPhoneInTalk, MdSmartphone } from "react-icons/md";
 import { FaBirthdayCake } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Images from "../../common/images/index";
@@ -16,11 +11,11 @@ import GlobalContext from "../../context/GlobalContext";
 const EmployeeForm = ({
   profile,
   reportsTo,
-  msgDisable,
+  // msgDisable,
   edit,
   handleIsActive,
   handleIsVacation,
-  goTodocuments
+  // goTodocuments
 }) => {
   const navigate = useNavigate();
   const [contextState] = useContext(GlobalContext);
@@ -30,6 +25,7 @@ const EmployeeForm = ({
     const lastN = profile.lastName.split(" ");
     var firstNSplit = firstN[0];
     var lastNSplit = lastN[0];
+    var gender = profile.gender;
 
     var dateES = new Intl.DateTimeFormat("es-ES", {
       year: "numeric",
@@ -168,7 +164,13 @@ const EmployeeForm = ({
               alt=""
             />
           </div>
-          <div className="employee-name">{firstNSplit + " " + lastNSplit}</div>
+
+          {
+            contextState.personId === profile.personId ? gender === "Femenino" ? <div className="employee-name">{`¡Hola ${firstNSplit}, bienvenida!`}</div> :
+              <div className="employee-name">{`¡Hola ${firstNSplit}, bienvenido!`}</div> : <div style={{ textAlign: "initial", marginLeft: '1.5rem' }} className="employee-name">{firstNSplit + " " + lastNSplit}</div>
+          }
+          {/* <div className="employee-name">{firstNSplit + " " + lastNSplit}</div> */}
+
           <div className="employee-position">
             {/* {profile.career ? profile.career : "No definido!"} */}
           </div>

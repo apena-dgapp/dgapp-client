@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Images from "../../common/images";
-import { useNavigate } from "react-router-dom";
 import { getResources } from "../../api/files"
 import ResourcesCoversForm from "./ResourcesCoversForm";
+import ResourcesGraphicIdentity from "./ResourcesGraphicIdentity";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ResourcesMenu = () => {
+    const [loading, setLoading] = useState(false);
     const [files, setFiles] = useState([]);
-    const [fileName, setFileName] = useState("");
     const [form, setForm] = useState("");
-    const navigate = useNavigate();
-
-    const FormTemple = (formName) => {
-        setForm(formName)
-        // navigate(`/recursos/recursoshumanos/solicitudes/${module}`);
-    };
 
     useEffect(() => {
 
         let unmounted = false;
+
+        setLoading(true);
 
         if (!unmounted) {
             getResources("recursos", form)
@@ -26,6 +23,11 @@ const ResourcesMenu = () => {
                 })
                 .then((res) => {
                     setFiles(res)
+                    setTimeout(() => {
+                        if (res) {
+                            setLoading(false);
+                        }
+                    }, 2500)
                 })
                 .catch((err) => {
                     console.error(err.status);
@@ -36,10 +38,42 @@ const ResourcesMenu = () => {
         };
     }, [form]);
 
+    const FormTemple = (formName) => {
+        setForm(formName)
+    };
+
     return (
         <>
             {
-                form === "papeleria institucional" ? <ResourcesCoversForm formTitle={form} files={files} /> : null
+                form === "papeleria institucional" || form === "plantillas" ?
+                    <>
+                        {loading ? (
+                            <div className="spinner-container">
+                                <ClipLoader color="#113250" loading={loading} size={150} />
+                            </div>
+                        ) : (
+                            <ResourcesCoversForm
+                                formTitle={form}
+                                files={files}
+                            />)}
+                    </>
+                    : null
+            }
+
+            {
+                form === "identidad grafica" ?
+                    <>
+                        {loading ? (
+                            <div className="spinner-container">
+                                <ClipLoader color="#113250" loading={loading} size={150} />
+                            </div>
+                        ) : (
+                            <ResourcesGraphicIdentity
+                                // formTitle = { form }
+                                files={files}
+                            />)}
+                    </>
+                    : null
             }
 
             {

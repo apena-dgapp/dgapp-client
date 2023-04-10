@@ -2,16 +2,20 @@ import React, { useState, useEffect } from 'react'
 import PDFCoversForm from './PDFCoversForm'
 import { apiFiles } from "../../../api/files"
 import { useNavigate, useLocation } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const PDF = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [pdf, setPdf] = useState([]);
     const [subCategory, setSubCategory] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
 
         let unmounted = false;
+
+        setLoading(true);
 
         if (!unmounted) {
             apiFiles(location?.pathname?.split("/")[3].includes("%20") ? location?.pathname?.split("/")[3].replace(/%20/g, " ") : location?.pathname?.split("/")[3])
@@ -32,12 +36,11 @@ const PDF = () => {
                         setSubCategory(array)
                     }
 
-                    // console.log(unique);
-                    // res.map((item) => {
-                    //     return (
-                    //         item.subCategory ? setSubCategory((category) => [...category, item.subCategory]) : null
-                    //     )
-                    // })
+                    setTimeout(() => {
+                        if (res) {
+                            setLoading(false);
+                        }
+                    }, 2000)
                 })
                 .catch((err) => {
                     console.error(err.status);
@@ -50,17 +53,24 @@ const PDF = () => {
     }, [location?.pathname]);
 
     const goTpPdf = (pdfName, file, title, subCategory) => {
-        // console.log(subCategory);
         navigate(`/nosotros/politicas&procesos/${location?.pathname?.split("/")[3]}/${pdfName}`, { state: { pdf: file, arrayPdf: pdf, title: title, subCategory: subCategory } });
     };
 
     return (
-        <PDFCoversForm
-            pdf={pdf}
-            goTpPdf={goTpPdf}
-            pdfTitle={location?.pathname?.split("/")[3].includes("%20") ? location?.pathname?.split("/")[3].replace(/%20/g, " ") : location?.pathname?.split("/")[3]}
-            subCategory={subCategory}
-        />
+        <>
+            {loading ? (
+                <div className="spinner-container">
+                    <ClipLoader color="#113250" loading={loading} size={150} />
+                </div>
+            ) : (
+                <PDFCoversForm
+                    pdf={pdf}
+                    goTpPdf={goTpPdf}
+                    pdfTitle={location?.pathname?.split("/")[3].includes("%20") ? location?.pathname?.split("/")[3].replace(/%20/g, " ") : location?.pathname?.split("/")[3]}
+                    subCategory={subCategory}
+                />
+            )}
+        </>
     )
 }
 

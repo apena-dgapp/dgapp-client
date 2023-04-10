@@ -43,11 +43,26 @@ import all from "./Mision, Vision y Valores INTRANET@3x.png";
 import fotoDelDia from "./Recurso 3@4x.png";
 import valorDelMes from "./Recurso 2@4x.png";
 import notices from "./Recurso 1@4x.png";
-import commemorative from "./wetransfer_recursos_2022-09-21_1856/Recursos/Calendario de Fechas.png";
+import commemorative from "./Fechas importantes.png";
 import chart from "./Estructura Organizacional DGAPP 2021-17.png";
 import papeleria from "./documento.png";
 import plantillas from "./powerpoint.png";
 import isotipo from "./Isotipo DGAPP.png";
+import word from "./doc.png";
+import pdf2 from "./pdf2.png";
+import powerpoint from "./ppt.png";
+import policies from "./politica.png";
+import process from "./planificacion.png";
+import png from "./png.png";
+import jpg from "./jpg.png";
+import rar from "./raro.png";
+import recursosHumanos from "./comunidad.png";
+import planificacion from "./plan.png";
+import finanza from "./barras.png";
+import gestion from "./gestion-de-carpetas.png";
+import promosion from "./promocion.png";
+import subdireccion from "./gestion-de-proyectos.png";
+import font from "./fuente.png";
 
 const Images = {
     iconUser,
@@ -98,7 +113,22 @@ const Images = {
     all,
     papeleria,
     plantillas,
-    isotipo
+    isotipo,
+    word,
+    pdf2,
+    powerpoint,
+    policies,
+    process,
+    png,
+    jpg,
+    recursosHumanos,
+    planificacion,
+    finanza,
+    gestion,
+    promosion,
+    subdireccion,
+    rar,
+    font
 }
 
 export default Images;
