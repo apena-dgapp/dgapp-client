@@ -201,7 +201,7 @@ const Navbar = () => {
       setActive("menu_items");
     }
 
-    navigate("/entrenamiento");
+    navigate("/capacitacion/menu");
   };
 
   const createEvents = () => {
