@@ -25,7 +25,7 @@ const DashboardSection2 = () => {
             />
             <p>DIRECTORIO</p>
           </Link>
-          <Link className="dashboard-section-2-btn" to={"/construccion"}>
+          <Link className="dashboard-section-2-btn" to={"/capacitacion/menu"}>
             <img
               className="dashboard-section-2-btn-img"
               src={Images.capacitacion}

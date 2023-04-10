@@ -15,9 +15,7 @@ import EmployeeDirectory from "../components/EmployeeDirectory/EmployeeDirectory
 import EmployeeEdit from "../components/EmployeeEdit/EmployeeEdit";
 import EmployeeNew from "../components/EmployeeNew/EmployeeNew";
 import Building from "../common/components/Building/Building";
-import Training from "../components/Training/Training";
-import Course from "../components/Training/Course/Course";
-import NewCourse from "../components/Training/NewCourse";
+import TrainingMenu from "../components/Training/Menu/Index";
 import CreateEvents from "../components/CreateEvents/CreateEvents";
 import TicketSystem from "../components/TicketSystem/TicketSystem";
 import FormTemple from "../components/FormTemple/FormTemple";
@@ -124,25 +122,10 @@ const RoutesComponent = () => {
         />
 
         <Route
-          path={`/entrenamiento`}
-          element={contextState.token ? <Training /> : <Login />}
+          path={`/capacitacion/menu`}
+          element={contextState.token ? <TrainingMenu /> : <Login />}
         />
-        <Route
-          path={`/entrenamiento/curso/crear`}
-          element={contextState.token ? <NewCourse /> : <Login />}
-        />
-        <Route
-          path={`/entrenamiento/curso/:courseId/edit`}
-          element={contextState.token ? <NewCourse /> : <Login />}
-        />
-        <Route
-          path={`/entrenamiento/curso/:courseId`}
-          element={contextState.token ? <Course /> : <Login />}
-        />
-        <Route
-          path={`/entrenamiento/curso/:courseId/:videolink`}
-          element={contextState.token ? <Course /> : <Login />}
-        />
+
         <Route
           path={`/servicios/tecnologia/ticket/:action`}
           element={contextState.token ? <TicketSystem /> : <Login />}
